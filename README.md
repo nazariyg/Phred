@@ -12,7 +12,7 @@ One of the Phred's prime efforts is maintaining a clear and thorough [documentat
 
 Phred strives to transform PHP into a cutting-edge, fully-featured, and easy-to-use tool for contemporary web development, while remaining free for all and well-documented. And Phred is many months of work that has already been done and that still needs to be accomplished. *You can help Phred carry on and improve its quality by making a [donation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html).*
 
-# At a Glance
+## At a Glance
 
 ```php
 // An OOP Unicode string.
