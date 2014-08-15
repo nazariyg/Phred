@@ -20,6 +20,7 @@ $str = "Никита Попов";
 
 echo $str->length();          // 12
 echo $str->toUpperCase();     // НИКИТА ПОПОВ
+
 $array = $str->split(" ");
 echo $array->join(", ");      // Никита, Попов
 $array->sortOn("length");
