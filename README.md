@@ -6,11 +6,11 @@ Phred is an open-source initiative aimed at providing PHP with a consistent, com
 
 Phred is also outlining a web application framework to let developers take the most advantage of the improved PHP in their projects as well as to ensure backward compatibility with the whole multitude of existing libraries and APIs.
 
-One of the Phred's primary efforts is maintaining a clear and detailed [documentation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/index.html).
+One of the Phred's prime efforts is maintaining a clear and detailed [documentation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/index.html).
 
-Phred strives to transform PHP into a cutting-edge, full-featured, and easy-to-use tool for contemporary web development, while staying free for all and well-documented. And Phred is also many months of work that has been done and that still needs to be done.
+Phred strives to transform PHP into a cutting-edge, full-featured, and easy-to-use tool for contemporary web development, while staying free for all and well-documented. And Phred is also many months of work that has already been done and that still needs to be done.
 
-You can help Phred carry on and keep improving by making a [dontation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html).
+You can help Phred carry on and improve by making a [dontation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html).
 
 # At a Glance
 
