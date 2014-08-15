@@ -1,6 +1,4 @@
-﻿Extends PHP to a consistent, fully object-oriented coding standard with Unicode support for OOP strings, components for i18n/L10n, and with other essential features for creating modern web applications
-
-<p align="center">
+﻿<p align="center">
   <img src="readme-files/phred-logo.png"/>
 </p>
 
@@ -10,7 +8,9 @@ Phred is also outlining a web application framework to let developers take the m
 
 One of the Phred's primary focuses is on maintaining a detailed [documentation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/index.html).
 
-Phred strives to transform PHP into a cutting-edge, full-featured, and easy-to-use tool for contemporary web development, while staying free for all and well-documented. And Phred is also many months of work that has been done and that still needs to be done. **You can help Phred carry on and keep improving by making a [dontation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html).**
+Phred strives to transform PHP into a cutting-edge, full-featured, and easy-to-use tool for contemporary web development, while staying free for all and well-documented. And Phred is also many months of work that has been done and that still needs to be done.
+
+You can help Phred carry on and keep improving by making a [dontation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html).
 
 # At a Glance
 
