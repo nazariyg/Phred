@@ -2,7 +2,7 @@
   <img src="readme-files/phred-logo.png"/>
 </p>
 
-Phred is an open-source initiative aimed at providing PHP with a consistent, completely object-oriented coding standard that offers a comfortable API for creating modern-day web applications with integral support for Unicode and components of internationalization and localization, clear-cut fundamental data types focused on performance and reliability, enhanced testing and debugging, and more.
+Phred is an open-source initiative aimed at providing PHP with a consistent, completely object-oriented coding standard that offers a comfortable API for creating modern-day web applications with integrated support for Unicode, with components for internationalization and localization, clear-cut fundamental data types focused on performance and reliability, enhanced testing and debugging, and more.
 
 Phred is also outlining a web application framework to let developers take the most advantage of the improved PHP in their projects as well as to ensure backward compatibility with the whole multitude of existing libraries and APIs.
 
