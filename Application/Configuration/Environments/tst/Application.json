@@ -1,0 +1,7 @@
+{
+    // See ../../Application.json for comments.
+
+    "enableOop": true,
+
+    "defaultLocale": "en_US"
+}

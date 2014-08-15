@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>Phred API</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet" media="all"/>
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Phred API</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">426</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1807993655"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1807993655" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/ICopyingStatic.html">ICopyingStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEquality.html">IEquality</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrder.html">IEqualityAndOrder</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrderStatic.html">IEqualityAndOrderStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityStatic.html">IEqualityStatic</a></li>
+                                                                                                    <li class="class"><a href="../classes/array.html">array</a></li>
+                                                    <li class="class"><a href="../classes/bitfield.html">bitfield</a></li>
+                                                    <li class="class"><a href="../classes/CArray.html">CArray</a></li>
+                                                    <li class="class"><a href="../classes/CArrayObject.html">CArrayObject</a></li>
+                                                    <li class="class"><a href="../classes/CBase64.html">CBase64</a></li>
+                                                    <li class="class"><a href="../classes/CBitField.html">CBitField</a></li>
+                                                    <li class="class"><a href="../classes/CComparator.html">CComparator</a></li>
+                                                    <li class="class"><a href="../classes/CConfiguration.html">CConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CCookie.html">CCookie</a></li>
+                                                    <li class="class"><a href="../classes/CEString.html">CEString</a></li>
+                                                    <li class="class"><a href="../classes/CFile.html">CFile</a></li>
+                                                    <li class="class"><a href="../classes/CFilePath.html">CFilePath</a></li>
+                                                    <li class="class"><a href="../classes/CGZip.html">CGZip</a></li>
+                                                    <li class="class"><a href="../classes/CHash.html">CHash</a></li>
+                                                    <li class="class"><a href="../classes/CHtml.html">CHtml</a></li>
+                                                    <li class="class"><a href="../classes/CHttpRequest.html">CHttpRequest</a></li>
+                                                    <li class="class"><a href="../classes/CHttpResponse.html">CHttpResponse</a></li>
+                                                    <li class="class"><a href="../classes/CInetRequest.html">CInetRequest</a></li>
+                                                    <li class="class"><a href="../classes/CInetSession.html">CInetSession</a></li>
+                                                    <li class="class"><a href="../classes/CInputFilter.html">CInputFilter</a></li>
+                                                    <li class="class"><a href="../classes/CIp.html">CIp</a></li>
+                                                    <li class="class"><a href="../classes/CJson.html">CJson</a></li>
+                                                    <li class="class"><a href="../classes/CMail.html">CMail</a></li>
+                                                    <li class="class"><a href="../classes/CMap.html">CMap</a></li>
+                                                    <li class="class"><a href="../classes/CMapObject.html">CMapObject</a></li>
+                                                    <li class="class"><a href="../classes/CMathf.html">CMathf</a></li>
+                                                    <li class="class"><a href="../classes/CMathi.html">CMathi</a></li>
+                                                    <li class="class"><a href="../classes/CMimeType.html">CMimeType</a></li>
+                                                    <li class="class"><a href="../classes/CRegex.html">CRegex</a></li>
+                                                    <li class="class"><a href="../classes/CRequest.html">CRequest</a></li>
+                                                    <li class="class"><a href="../classes/CResponse.html">CResponse</a></li>
+                                                    <li class="class"><a href="../classes/CShell.html">CShell</a></li>
+                                                    <li class="class"><a href="../classes/CString.html">CString</a></li>
+                                                    <li class="class"><a href="../classes/CSystem.html">CSystem</a></li>
+                                                    <li class="class"><a href="../classes/CTime.html">CTime</a></li>
+                                                    <li class="class"><a href="../classes/CTimeZone.html">CTimeZone</a></li>
+                                                    <li class="class"><a href="../classes/CUFormat.html">CUFormat</a></li>
+                                                    <li class="class"><a href="../classes/CULocale.html">CULocale</a></li>
+                                                    <li class="class"><a href="../classes/CUrl.html">CUrl</a></li>
+                                                    <li class="class"><a href="../classes/CUrlPath.html">CUrlPath</a></li>
+                                                    <li class="class"><a href="../classes/CUrlQuery.html">CUrlQuery</a></li>
+                                                    <li class="class"><a href="../classes/CUString.html">CUString</a></li>
+                                                    <li class="class"><a href="../classes/CUStringObject.html">CUStringObject</a></li>
+                                                    <li class="class"><a href="../classes/CUUnit.html">CUUnit</a></li>
+                                                    <li class="class"><a href="../classes/CXml.html">CXml</a></li>
+                                                    <li class="class"><a href="../classes/enum.html">enum</a></li>
+                                                    <li class="class"><a href="../classes/map.html">map</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span12 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <!--
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    -->
+                    <br/ >
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><!-- <small>\</small> -->CEString</h1>
+                    <p><em><p>A collection of static methods that let you convert strings from one character encoding into another, "flatten" any
+Unicode string to ASCII, find out the encoding of a string, and not get lost in the multitude of character encoding
+names.</p></em></p>
+                    <p><strong>You can refer to this class by its alias, which is</strong> <code>EStr</code>.</p>
+<p>Powered by the ICU library, this class is able to convert between practically all character encodings there are in
+existence. For historical and other reasons, almost every of the supported character encodings is known by more than
+one name. So for each character encoding ICU picked a single name by which it refers to the encoding internally.
+Such character encoding names are called <em>primary</em> by this class and the rest of the names are called <em>aliases</em>. For
+example, "UTF-8" is a primary character encoding name, while "ibm-1208" and "cp1208" are some of its many aliases
+(and it's safe to say that "UTF-8" is an alias of "cp1208"). When you need to provide a character encoding name to a
+method of this class, an alias is just as good as the primary name. In addition to other places, you can find the
+ICU's selection of character encodings in the
+<a href="http://demo.icu-project.org/icu-bin/convexp">ICU's Converter Explorer</a>.</p>
+<p>Excluding about 275 IBM character encodings, the primary names of the character encodings known to the class are
+UTF-8, UTF-16, UTF-16BE, UTF-16LE, UTF-32, UTF-32BE, UTF-32LE, UTF16_PlatformEndian, UTF16_OppositeEndian,
+UTF32_PlatformEndian, UTF32_OppositeEndian, UTF-16BE,version=1, UTF-16LE,version=1, UTF-16,version=1,
+UTF-16,version=2, UTF-7, IMAP-mailbox-name, SCSU, BOCU-1, CESU-8, ISO-8859-1, US-ASCII, gb18030, iso-8859_10-1998,
+iso-8859_11-2001, iso-8859_14-1998, windows-51932-2006, euc-jp-2007, windows-950-2000, windows-936-2000,
+windows-949-2000, windows-874-2000, macos-0_2-10.2, macos-6_2-10.4, macos-7_3-10.2, macos-29-10.2, macos-35-10.2,
+ISO_2022,locale=ja,version=0, ISO_2022,locale=ja,version=1, ISO_2022,locale=ja,version=2,
+ISO_2022,locale=ja,version=3, ISO_2022,locale=ja,version=4, ISO_2022,locale=ko,version=0,
+ISO_2022,locale=ko,version=1, ISO_2022,locale=zh,version=0, ISO_2022,locale=zh,version=1,
+ISO_2022,locale=zh,version=2, HZ, x11-compound-text, ISCII,version=0, ISCII,version=1, ISCII,version=2,
+ISCII,version=3, ISCII,version=4, ISCII,version=5, ISCII,version=6, ISCII,version=7, ISCII,version=8, LMBCS-1,
+ebcdic-xml-us, gsm-03.38-2000, iso-8859_16-2001.</p>
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methodsum">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/CEString.html#method_convert" class="">convert()</a><br />
+                                                                    <a href="../classes/CEString.html#method_convertLatin1ToUtf8" class="">convertLatin1ToUtf8()</a><br />
+                                                                    <a href="../classes/CEString.html#method_flattenUnicodeToAscii" class="">flattenUnicodeToAscii()</a><br />
+                                                                    <a href="../classes/CEString.html#method_looksLikeUtf8" class="">looksLikeUtf8()</a><br />
+                                                                    <a href="../classes/CEString.html#method_looksLikeAscii" class="">looksLikeAscii()</a><br />
+                                                                    <a href="../classes/CEString.html#method_looksLikeLatin1" class="">looksLikeLatin1()</a><br />
+                                                                    <a href="../classes/CEString.html#method_guessEnc" class="">guessEnc()</a><br />
+                                                                    <a href="../classes/CEString.html#method_knownPrimaryEncNames" class="">knownPrimaryEncNames()</a><br />
+                                                                    <a href="../classes/CEString.html#method_isEncNameKnown" class="">isEncNameKnown()</a><br />
+                                                                    <a href="../classes/CEString.html#method_encNameAliases" class="">encNameAliases()</a><br />
+                                                                    <a href="../classes/CEString.html#method_areEncNamesEquivalent" class="">areEncNamesEquivalent()</a><br />
+                                                                    <a href="../classes/CEString.html#method_isEncNameUtf8" class="">isEncNameUtf8()</a><br />
+                                                                    <a href="../classes/CEString.html#method_isEncNameAscii" class="">isEncNameAscii()</a><br />
+                                                                    <a href="../classes/CEString.html#method_isEncNameLatin1" class="">isEncNameLatin1()</a><br />
+                                                                    <a href="../classes/CEString.html#method_fixUtf8" class="">fixUtf8()</a><br />
+                                                                    <a href="../classes/CEString.html#method_fixUtf8More" class="">fixUtf8More()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CEString.html#constant_UTF8" class="">UTF8</a><br />
+                                                                    <a href="../classes/CEString.html#constant_ASCII" class="">ASCII</a><br />
+                                                                    <a href="../classes/CEString.html#constant_LATIN1" class="">LATIN1</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties</em>
+                                                            </section>
+                        </section>
+                        <!--
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/CEString.html#method_flattenEncName" class="">flattenEncName()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CEString.html#property_ms_mWin1252ToUtf8" class="">$ms_mWin1252ToUtf8</a><br />
+                                                                    <a href="../classes/CEString.html#property_ms_mUtf8ToWin1252" class="">$ms_mUtf8ToWin1252</a><br />
+                                                                    <a href="../classes/CEString.html#property_ms_iFixUtf8MoreMaxNumIterations" class="">$ms_iFixUtf8MoreMaxNumIterations</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                        </section>
+                        -->
+                    </section>
+                </div>
+                <aside class="span2 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Classes.String.CEString.php.html"><div class="path-wrapper">Classes/String/CEString.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper"></div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\CRootClass</div>
+                                                                                                    <div class="namespace-wrapper">\CEString</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2 style="visibility: hidden">Tags</h2>
+                    <table class="table table-condensed" style="visibility: hidden">
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+            <a id="methodsum" name="methodsum"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Method Summary</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/CEString.html#method_convert" class="">convert()</a></td>
+                            <td><p>Converts a string from one character encoding into another and returns the new string.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CEString.html#method_convertLatin1ToUtf8" class="">convertLatin1ToUtf8()</a></td>
+                            <td><p>Converts a Latin-1 (ISO-8859-1) string into a UTF-8 string and returns it.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CEString.html#method_flattenUnicodeToAscii" class="">flattenUnicodeToAscii()</a></td>
+                            <td><p>Converts any Unicode string into ASCII, preserving as much information as possible, by default having
+transliterated the string into the Latin script beforehand, and returns the new string.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CEString.html#method_looksLikeUtf8" class="">looksLikeUtf8()</a></td>
+                            <td><p>Determines if a string appears to be a valid Unicode string encoded in UTF-8.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CEString.html#method_looksLikeAscii" class="">looksLikeAscii()</a></td>
+                            <td><p>Determines if a string appears to be an ASCII string.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CEString.html#method_looksLikeLatin1" class="">looksLikeLatin1()</a></td>
+                            <td><p>Determines if a string appears to be a Latin-1 (ISO-8859-1) string.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CEString.html#method_guessEnc" class="">guessEnc()</a></td>
+                            <td><p>Tries to determine the character encoding used by a string.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CEString.html#method_knownPrimaryEncNames" class="">knownPrimaryEncNames()</a></td>
+                            <td><p>Returns the primary character encoding names that are known to the class.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CEString.html#method_isEncNameKnown" class="">isEncNameKnown()</a></td>
+                            <td><p>Determines if a character encoding name is known to the class and thus can be used with it, looking among known
+aliases as well.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CEString.html#method_encNameAliases" class="">encNameAliases()</a></td>
+                            <td><p>Returns the aliases that are known for a character encoding name.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CEString.html#method_areEncNamesEquivalent" class="">areEncNamesEquivalent()</a></td>
+                            <td><p>Determines if a character encoding name refers to the same encoding as another name.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CEString.html#method_isEncNameUtf8" class="">isEncNameUtf8()</a></td>
+                            <td><p>Determines if a character encoding name refers to UTF-8.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CEString.html#method_isEncNameAscii" class="">isEncNameAscii()</a></td>
+                            <td><p>Determines if a character encoding name refers to ASCII.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CEString.html#method_isEncNameLatin1" class="">isEncNameLatin1()</a></td>
+                            <td><p>Determines if a character encoding name refers to Latin-1 (ISO-8859-1).</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CEString.html#method_fixUtf8" class="">fixUtf8()</a></td>
+                            <td><p>Tries to fix a presumably UTF-8 string that contains or may contain UTF-8 text mixed with Latin-1 (ISO-8859-1)
+or Windows-1252 text and returns the new UTF-8 string.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CEString.html#method_fixUtf8More" class="">fixUtf8More()</a></td>
+                            <td><p>Tries to fix a garbled UTF-8 string, that is a string containing UTF-8 text mixed with Latin-1 (ISO-8859-1) or
+Windows-1252 text that has been re-encoded into UTF-8 one or more times, and returns the new UTF-8 string.</p></td>
+                        </tr>
+                                        </table>
+                </div>
+                <aside class="span2 detailsbar"> </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_UTF8" name="constant_UTF8" class="anchor"></a>
+            <article id="constant_UTF8" class="constant">
+                <h3 class="">UTF8</h3>
+                <pre class="signature">UTF8</pre>
+                <p><p><code>enum</code> UTF-8 character encoding. This is the encoding that is assumed by default for any Unicode string.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ASCII" name="constant_ASCII" class="anchor"></a>
+            <article id="constant_ASCII" class="constant">
+                <h3 class="">ASCII</h3>
+                <pre class="signature">ASCII</pre>
+                <p><p><code>enum</code> ASCII character encoding.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_LATIN1" name="constant_LATIN1" class="anchor"></a>
+            <article id="constant_LATIN1" class="constant">
+                <h3 class="">LATIN1</h3>
+                <pre class="signature">LATIN1</pre>
+                <p><p><code>enum</code> Latin-1 character encoding, formally known as ISO-8859-1.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+            <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convert" name="method_convert" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">convert()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convert (string&nbsp;<span class="argument">$sString</span>, enum|string&nbsp;<span class="argument">$xFromEnc</span>, enum|string&nbsp;<span class="argument">$xToEnc</span>) : OOPString</pre>
+                <p><em><p>Converts a string from one character encoding into another and returns the new string.</p></em></p>
+                <p>If you specify a character encoding by name, you don't need to worry about the letter case used within the name
+or about hyphens, underscores, or whitespace in it, the method will focus on just the meaningful parts and will
+get any valid name right. You can also use any valid alias of a character encoding name.</p>
+<p>If the source string contains any bytes that are invalid in the character encoding declared for it, each of them
+will come out as "�" (U+FFFD) when converting to Unicode or as "?" when converting to ASCII.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The string to be converted.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xFromEnc</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a>|string</code></td>
+                                <td><p>The character encoding of the string. This is either the enumerand of one of the
+three main encodings, which are <code>UTF8</code>, <code>ASCII</code>, and <code>LATIN1</code>, or a character encoding name, primary one or an
+alias.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xToEnc</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a>|string</code></td>
+                                <td><p>The output character encoding. This is either the enumerand of one of the three
+main encodings, which are <code>UTF8</code>, <code>ASCII</code>, and <code>LATIN1</code>, or a character encoding name, primary one or an alias.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The converted string.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convertLatin1ToUtf8" name="method_convertLatin1ToUtf8" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">convertLatin1ToUtf8()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertLatin1ToUtf8 (string&nbsp;<span class="argument">$sString</span>) : OOPString</pre>
+                <p><em><p>Converts a Latin-1 (ISO-8859-1) string into a UTF-8 string and returns it.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The string to be converted.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The converted string.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_flattenUnicodeToAscii" name="method_flattenUnicodeToAscii" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">flattenUnicodeToAscii()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> flattenUnicodeToAscii (string&nbsp;<span class="argument">$sString</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bTransliterate</span></span>) : OOPString</pre>
+                <p><em><p>Converts any Unicode string into ASCII, preserving as much information as possible, by default having
+transliterated the string into the Latin script beforehand, and returns the new string.</p></em></p>
+                <p>Flattening Unicode strings to ASCII might be useful for the purposes of indexing Unicode text, searching inside
+or with Unicode text, and collating Unicode text.</p>
+<p>The flattening represents Latin characters from the Latin-1 Supplement, Latin Extended-A, and Latin Extended-B
+blocks with one or more ASCII characters. Latin characters like "æ" and German sharp "ß" are all handled
+properly ("æ" becomes "ae" and "ß" becomes "ss"). The method also converts to ASCII some of the beyond-Latin
+Unicode characters that have similar appearance or meaning. The Unicode Line Separator and Paragraph Separator
+characters are converted into ASCII LF characters. ASCII control characters (0x00-0x1F) are not affected.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The string to be flattened.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bTransliterate</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>true</code>. Tells whether to transliterate the string into the
+Latin script before flattening. This is what you would normally wish to happen for an arbitrary Unicode string
+since there is no way of mapping e.g. Japanese characters to ASCII ones but the transliteration makes any string
+in Japanese sound same or similar in Latin by rewriting it with Latin characters, after which mapping to ASCII
+becomes straightforward. For example, "こんにちは" is transliterated to "kon'nichiha".</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The flattened string.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_looksLikeUtf8" name="method_looksLikeUtf8" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">looksLikeUtf8()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> looksLikeUtf8 (string&nbsp;<span class="argument">$sString</span>) : bool</pre>
+                <p><em><p>Determines if a string appears to be a valid Unicode string encoded in UTF-8.</p></em></p>
+                <p>Thanks to the fact that the ASCII charset and encoding are compatible with UTF-8, this method will return <code>true</code>
+for any valid ASCII string.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The string to be looked into.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the string looks like a valid UTF-8 string, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_looksLikeAscii" name="method_looksLikeAscii" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">looksLikeAscii()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> looksLikeAscii (string&nbsp;<span class="argument">$sString</span>) : bool</pre>
+                <p><em><p>Determines if a string appears to be an ASCII string.</p></em></p>
+                <p>The method will return <code>false</code> if the string contains any control characters other than HT (0x09), LF (0x0A),
+and CR (0x0D).</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The string to be looked into.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the string looks like an ASCII string, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_looksLikeLatin1" name="method_looksLikeLatin1" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">looksLikeLatin1()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> looksLikeLatin1 (string&nbsp;<span class="argument">$sString</span>) : bool</pre>
+                <p><em><p>Determines if a string appears to be a Latin-1 (ISO-8859-1) string.</p></em></p>
+                <p>The method will return <code>false</code> if the string contains any control characters other than HT (0x09), LF (0x0A),
+and CR (0x0D).</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The string to be looked into.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the string looks like a Latin-1 string, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_guessEnc" name="method_guessEnc" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">guessEnc()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> guessEnc (string&nbsp;<span class="argument">$sString</span>, reference&nbsp;<span class="argument">$reEnc</span>) : bool</pre>
+                <p><em><p>Tries to determine the character encoding used by a string.</p></em></p>
+                <p>For the reason that any ASCII string is indistinguishable from the same UTF-8 string, the character encoding of
+a string is guessed only between UTF-8 and Latin-1.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The string to be looked into.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$reEnc</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
+                                <td><p><strong>OUTPUT.</strong> If the method returned <code>true</code>, the value of this parameter is the enumerand
+of the character encoding determined for the string, that is either <code>UTF8</code> or <code>LATIN1</code>.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the method was able to guess the character encoding of the string, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_knownPrimaryEncNames" name="method_knownPrimaryEncNames" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">knownPrimaryEncNames()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> knownPrimaryEncNames () : OOPArray</pre>
+                <p><em><p>Returns the primary character encoding names that are known to the class.</p></em></p>
+                <p>This method only outputs the primary character encoding names. Use <code>isEncNameKnown</code> method to find out if a
+character encoding name, primary one or an alias, can be used with the class.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CArrayObject.html"><span class="label label-info">OOP Array</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The primary character encoding names of type <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="#method_isEncNameKnown"><span class="namespace-wrapper">isEncNameKnown</span></a></dd>
+                                                                </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isEncNameKnown" name="method_isEncNameKnown" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isEncNameKnown()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isEncNameKnown (string&nbsp;<span class="argument">$sName</span>) : bool</pre>
+                <p><em><p>Determines if a character encoding name is known to the class and thus can be used with it, looking among known
+aliases as well.</p></em></p>
+                <p>You don't need to worry about the letter case used within the character encoding name or about hyphens,
+underscores, or whitespace in it, the method will focus on just the meaningful parts and will get any valid name
+right.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The character encoding name to be looked for.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the name is known to the class, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_encNameAliases" name="method_encNameAliases" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">encNameAliases()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> encNameAliases (string&nbsp;<span class="argument">$sName</span>) : OOPArray</pre>
+                <p><em><p>Returns the aliases that are known for a character encoding name.</p></em></p>
+                <p>You don't need to worry about the letter case used within the character encoding name or about hyphens,
+underscores, or whitespace in it, the method will focus on just the meaningful parts and will get any valid name
+right.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The character encoding name to be looked for. Can be an alias itself.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CArrayObject.html"><span class="label label-info">OOP Array</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The name's aliases of type <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_areEncNamesEquivalent" name="method_areEncNamesEquivalent" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">areEncNamesEquivalent()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> areEncNamesEquivalent (string&nbsp;<span class="argument">$sName0</span>, string&nbsp;<span class="argument">$sName1</span>) : bool</pre>
+                <p><em><p>Determines if a character encoding name refers to the same encoding as another name.</p></em></p>
+                <p>The method looks into the aliases of the character encoding names too.</p>
+<p>You don't need to worry about the letter case used within the character encoding names or about hyphens,
+underscores, or whitespace in them, the method will focus on just the meaningful parts and will get any valid
+name right.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sName0</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The first character encoding name for comparison.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sName1</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The second character encoding name for comparison.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the two names are equivalent, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isEncNameUtf8" name="method_isEncNameUtf8" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isEncNameUtf8()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isEncNameUtf8 (string&nbsp;<span class="argument">$sName</span>) : bool</pre>
+                <p><em><p>Determines if a character encoding name refers to UTF-8.</p></em></p>
+                <p>You don't need to worry about the letter case used within the character encoding name or about hyphens,
+underscores, or whitespace in it, the method will focus on just the meaningful parts and will get any valid name
+right.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The character encoding name to be looked into.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the name refers to the UTF-8 character encoding, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isEncNameAscii" name="method_isEncNameAscii" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isEncNameAscii()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isEncNameAscii (string&nbsp;<span class="argument">$sName</span>) : bool</pre>
+                <p><em><p>Determines if a character encoding name refers to ASCII.</p></em></p>
+                <p>You don't need to worry about the letter case used within the character encoding name or about hyphens,
+underscores, or whitespace in it, the method will focus on just the meaningful parts and will get any valid name
+right.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The character encoding name to be looked into.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the name refers to the ASCII character encoding, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isEncNameLatin1" name="method_isEncNameLatin1" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isEncNameLatin1()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isEncNameLatin1 (string&nbsp;<span class="argument">$sName</span>) : bool</pre>
+                <p><em><p>Determines if a character encoding name refers to Latin-1 (ISO-8859-1).</p></em></p>
+                <p>You don't need to worry about the letter case used within the character encoding name or about hyphens,
+underscores, or whitespace in it, the method will focus on just the meaningful parts and will get any valid name
+right.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The character encoding name to be looked into.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the name refers to the Latin-1 (ISO-8859-1) character encoding, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fixUtf8" name="method_fixUtf8" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fixUtf8()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fixUtf8 (string&nbsp;<span class="argument">$sString</span>) : OOPString</pre>
+                <p><em><p>Tries to fix a presumably UTF-8 string that contains or may contain UTF-8 text mixed with Latin-1 (ISO-8859-1)
+or Windows-1252 text and returns the new UTF-8 string.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The string to be fixed.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The resulting string.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fixUtf8More" name="method_fixUtf8More" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fixUtf8More()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fixUtf8More (string&nbsp;<span class="argument">$sString</span>) : OOPString</pre>
+                <p><em><p>Tries to fix a garbled UTF-8 string, that is a string containing UTF-8 text mixed with Latin-1 (ISO-8859-1) or
+Windows-1252 text that has been re-encoded into UTF-8 one or more times, and returns the new UTF-8 string.</p></em></p>
+                <p>For example, if this method is given "FÃ©dÃ©ration Camerounaise de Football", it will return "Fédération
+Camerounaise de Football".</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The string to be fixed.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The resulting string.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                <!--
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_flattenEncName" name="method_flattenEncName" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">flattenEncName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> flattenEncName (&nbsp;<span class="argument">$sName</span>)</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                -->
+            
+            <!--
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_ms_mWin1252ToUtf8" name="property_ms_mWin1252ToUtf8" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$ms_mWin1252ToUtf8</h3>
+                <pre class="signature">$ms_mWin1252ToUtf8</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_ms_mUtf8ToWin1252" name="property_ms_mUtf8ToWin1252" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$ms_mUtf8ToWin1252</h3>
+                <pre class="signature">$ms_mUtf8ToWin1252</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_ms_iFixUtf8MoreMaxNumIterations" name="property_ms_iFixUtf8MoreMaxNumIterations" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$ms_iFixUtf8MoreMaxNumIterations</h3>
+                <pre class="signature">$ms_iFixUtf8MoreMaxNumIterations</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                        -->
+        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">CEString.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Classes/String/CEString.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4" style="visibility: hidden">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 13th, 2014 at 18:15.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

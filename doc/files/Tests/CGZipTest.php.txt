@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @ignore
+ */
+
+class CGZipTest extends CTestCase
+{
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public function testDecompress ()
+    {
+        $byData = "The quick brown fox jumps over the lazy dog.";
+
+        $byCompressedData = CGZip::compress($byData, CGZip::FASTEST);
+        $bSuccess;
+        $byDecompressedData = CGZip::decompress($byCompressedData, $bSuccess);
+        $this->assertTrue( $bSuccess && $byDecompressedData->equals($byData) );
+
+        $byCompressedData = CGZip::compress($byData, CGZip::FAST);
+        $bSuccess;
+        $byDecompressedData = CGZip::decompress($byCompressedData, $bSuccess);
+        $this->assertTrue( $bSuccess && $byDecompressedData->equals($byData) );
+
+        $byCompressedData = CGZip::compress($byData, CGZip::NORMAL);
+        $bSuccess;
+        $byDecompressedData = CGZip::decompress($byCompressedData, $bSuccess);
+        $this->assertTrue( $bSuccess && $byDecompressedData->equals($byData) );
+
+        $byCompressedData = CGZip::compress($byData, CGZip::MAXIMUM);
+        $bSuccess;
+        $byDecompressedData = CGZip::decompress($byCompressedData, $bSuccess);
+        $this->assertTrue( $bSuccess && $byDecompressedData->equals($byData) );
+
+        $byCompressedData = "BEEF";
+        $bSuccess;
+        $byDecompressedData = CGZip::decompress($byCompressedData, $bSuccess);
+        $this->assertTrue( !$bSuccess && $byDecompressedData->equals("") );
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+}
+

@@ -1,0 +1,23 @@
+{
+    // See ../../Debug.json for comments.
+
+    "displayErrors": false,
+
+    "logging":
+    {
+        "enable": true
+    },
+
+    "mailing":
+    {
+        "enable": true
+    },
+
+    "enableAssertions": false
+
+    // "assertionsAreActiveBasedOn": "hour",
+
+    // "referenceTimeZone": "America/Los_Angeles",
+
+    // "assertionsAreActiveWithinHourRange": [0, 7]
+}

@@ -1,0 +1,25 @@
+<?php
+
+// Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
+// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Distributed under the GNU General Public License, Version 2.0
+// https://www.gnu.org/licenses/gpl-2.0.txt
+
+// This class is to serve documentation only and is never actually declared.
+
+if ( false )
+{
+
+    /**
+     * **Any of the efficient array types.**
+     *
+     * An efficient array type is an array implementation that can store elements without performance overhead. This is
+     * either an `CArrayObject` or, if the OOP mode is off, an object of the SplFixedArray class.
+     */
+
+    class array
+    {
+        // Empty.
+    }
+
+}

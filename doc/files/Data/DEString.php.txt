@@ -1,0 +1,633 @@
+<?php
+
+/**
+ * @ignore
+ */
+
+class DEString
+{
+    // Part 1.
+
+    public static $FlatteningReplaceWhatPt1 = [
+        "/\\x{013F}/u",   // Latin Capital Letter L with middle dot
+        "/\\x{0140}/u"];  // Latin Small Letter L with middle dot
+
+    public static $FlatteningReplaceWithPt1 = [
+        "L",   // Latin Capital Letter L with middle dot
+        "l"];  // Latin Small Letter L with middle dot
+
+    // Part 2.
+
+    public static $FlatteningReplaceWhatPt2 = [
+        // Latin-1 Supplement. Letters with all kinds of marks are skipped since they should have been handled by the
+        // previous step.
+        "/\\x{00A0}/u",   // No-break Space
+        "/\\x{00A1}/u",   // Inverted Exclamation Mark
+        "/\\x{00A2}/u",   // Cent sign
+        "/\\x{00A3}/u",   // Pound sign
+        "/\\x{00A4}/u",   // Currency sign
+        "/\\x{00A5}/u",   // Yen sign
+        "/\\x{00A6}/u",   // Broken bar
+        "/\\x{00A7}/u",   // Section sign
+        "/\\x{00A8}/u",   // Diaeresis
+        "/\\x{00A9}/u",   // Copyright sign
+        "/\\x{00AA}/u",   // Feminine Ordinal Indicator
+        "/\\x{00AB}/u",   // Left-pointing double angle quotation mark
+        "/\\x{00AC}/u",   // Not sign
+        "/\\x{00AD}/u",   // Soft hyphen
+        "/\\x{00AE}/u",   // Registered sign
+        "/\\x{00AF}/u",   // Macron
+        "/\\x{00B0}/u",   // Degree symbol
+        "/\\x{00B1}/u",   // Plus-minus sign
+        "/\\x{00B2}/u",   // Superscript two
+        "/\\x{00B3}/u",   // Superscript three
+        "/\\x{00B4}/u",   // Acute accent
+        "/\\x{00B5}/u",   // Micro sign
+        "/\\x{00B6}/u",   // Pilcrow sign
+        "/\\x{00B7}/u",   // Middle dot
+        "/\\x{00B8}/u",   // Cedilla
+        "/\\x{00B9}/u",   // Superscript one
+        "/\\x{00BA}/u",   // Masculine ordinal indicator
+        "/\\x{00BB}/u",   // Right-pointing double-angle quotation mark
+        "/\\x{00BC}/u",   // Vulgar fraction one quarter
+        "/\\x{00BD}/u",   // Vulgar fraction one half
+        "/\\x{00BE}/u",   // Vulgar fraction three quarters
+        "/\\x{00BF}/u",   // Inverted Question Mark
+        "/\\x{00C6}/u",   // Latin Capital letter AE
+        "/\\x{00D0}/u",   // Latin Capital letter Eth
+        "/\\x{00D7}/u",   // Multiplication sign
+        "/\\x{00D8}/u",   // Latin Capital letter O with stroke
+        "/\\x{00DE}/u",   // Latin Capital Letter Thorn
+        "/\\x{00DF}/u",   // Latin Small Letter sharp S
+        "/\\x{00E6}/u",   // Latin Small Letter AE
+        "/\\x{00F0}/u",   // Latin Small Letter Eth
+        "/\\x{00F7}/u",   // Division sign
+        "/\\x{00F8}/u",   // Latin Small Letter O with stroke
+        "/\\x{00FE}/u",   // Latin Small Letter Thorn
+
+        // Latin Extended-A (part 2).
+        "/\\x{0110}/u",   // Latin Capital Letter D with stroke
+        "/\\x{0111}/u",   // Latin Small Letter D with stroke
+        "/\\x{0126}/u",   // Latin Capital Letter H with stroke
+        "/\\x{0127}/u",   // Latin Small Letter H with stroke
+        "/\\x{0131}/u",   // Latin Small Letter dotless I
+        "/\\x{0138}/u",   // Latin Small Letter Kra
+        "/\\x{0141}/u",   // Latin Capital Letter L with stroke
+        "/\\x{0142}/u",   // Latin Small Letter L with stroke
+        "/\\x{014A}/u",   // Latin Capital Letter Eng
+        "/\\x{014B}/u",   // Latin Small Letter Eng
+        "/\\x{0152}/u",   // Latin Capital Ligature OE
+        "/\\x{0153}/u",   // Latin Small Ligature OE
+        "/\\x{0166}/u",   // Latin Capital Letter T with stroke
+        "/\\x{0167}/u",   // Latin Small Letter T with stroke
+
+        // Latin Extended-B.
+        "/\\x{0180}/u",   // Latin Small Letter B with stroke
+        "/\\x{0181}/u",   // Latin Capital Letter B with hook
+        "/\\x{0182}/u",   // Latin Capital Letter B with top bar
+        "/\\x{0183}/u",   // Latin Small Letter B with top bar
+        "/\\x{0184}/u",   // Latin Capital Letter Tone Six
+        "/\\x{0185}/u",   // Latin Small Letter Tone Six
+        "/\\x{0186}/u",   // Latin Capital Letter Open O
+        "/\\x{0187}/u",   // Latin Capital Letter C with hook
+        "/\\x{0188}/u",   // Latin Small Letter C with hook
+        "/\\x{0189}/u",   // Latin Capital Letter African D
+        "/\\x{018A}/u",   // Latin Capital Letter D with hook
+        "/\\x{018B}/u",   // Latin Capital Letter D with top bar
+        "/\\x{018C}/u",   // Latin Small Letter D with top bar
+        "/\\x{018D}/u",   // Latin Small Letter Turned Delta
+        "/\\x{018E}/u",   // Latin Capital Letter Reversed E
+        "/\\x{018F}/u",   // Latin Capital Letter Schwa
+        "/\\x{0190}/u",   // Latin Capital Letter Open E
+        "/\\x{0191}/u",   // Latin Capital Letter F with hook
+        "/\\x{0192}/u",   // Latin Small Letter F with hook
+        "/\\x{0193}/u",   // Latin Capital Letter G with hook
+        "/\\x{0194}/u",   // Latin Capital Letter Gamma
+        "/\\x{0195}/u",   // Latin Small Letter HV
+        "/\\x{0196}/u",   // Latin Capital Letter Iota
+        "/\\x{0197}/u",   // Latin Capital Letter I with stroke
+        "/\\x{0198}/u",   // Latin Capital Letter K with hook
+        "/\\x{0199}/u",   // Latin Small Letter K with hook
+        "/\\x{019A}/u",   // Latin Small Letter L with bar
+        "/\\x{019B}/u",   // Latin Small Letter Lambda with stroke
+        "/\\x{019C}/u",   // Latin Capital Letter Turned M
+        "/\\x{019D}/u",   // Latin Capital Letter N with left hook
+        "/\\x{019E}/u",   // Latin Small Letter N with long right leg
+        "/\\x{019F}/u",   // Latin Capital Letter O with middle tilde
+        "/\\x{01A2}/u",   // Latin Capital Letter OI (= Latin Capital Letter Gha)
+        "/\\x{01A3}/u",   // Latin Small Letter OI (= Latin Small Letter Gha)
+        "/\\x{01A4}/u",   // Latin Capital Letter P with hook
+        "/\\x{01A5}/u",   // Latin Small Letter P with hook
+        "/\\x{01A6}/u",   // Latin Letter YR
+        "/\\x{01A7}/u",   // Latin Capital Letter Tone Two
+        "/\\x{01A8}/u",   // Latin Small Letter Tone Two
+        "/\\x{01A9}/u",   // Latin Capital Letter Esh
+        "/\\x{01AA}/u",   // Latin Letter Reversed Esh Loop
+        "/\\x{01AB}/u",   // Latin Small Letter T with palatal hook
+        "/\\x{01AC}/u",   // Latin Capital Letter T with hook
+        "/\\x{01AD}/u",   // Latin Small Letter T with hook
+        "/\\x{01AE}/u",   // Latin Capital Letter T with retroflex hook
+        "/\\x{01B1}/u",   // Latin Capital Letter Upsilon
+        "/\\x{01B2}/u",   // Latin Capital Letter V with hook
+        "/\\x{01B3}/u",   // Latin Capital Letter Y with hook
+        "/\\x{01B4}/u",   // Latin Small Letter Y with hook
+        "/\\x{01B5}/u",   // Latin Capital Letter Z with stroke
+        "/\\x{01B6}/u",   // Latin Small Letter Z with stroke
+        "/\\x{01B7}/u",   // Latin Capital Letter Ezh
+        "/\\x{01B8}/u",   // Latin Capital Letter Ezh reversed
+        "/\\x{01B9}/u",   // Latin Small Letter Ezh reversed
+        "/\\x{01BA}/u",   // Latin Small Letter Ezh with tail
+        "/\\x{01BB}/u",   // Latin Letter Two with stroke
+        "/\\x{01BC}/u",   // Latin Capital Letter Tone Five
+        "/\\x{01BD}/u",   // Latin Small Letter Tone Five
+        "/\\x{01BE}/u",   // Latin Letter Inverted Glottal Stop with stroke
+        "/\\x{01BF}/u",   // Latin Letter Wynn
+        "/\\x{01C0}/u",   // Latin Letter Dental Click
+        "/\\x{01C1}/u",   // Latin Letter Lateral Click
+        "/\\x{01C2}/u",   // Latin Letter Alveolar Click
+        "/\\x{01C3}/u",   // Latin Letter Retroflex Click
+        "/\\x{01DD}/u",   // Latin Small Letter Turned E
+        "/\\x{01E4}/u",   // Latin Capital Letter G with stroke
+        "/\\x{01E5}/u",   // Latin Small Letter G with stroke
+        "/\\x{01F6}/u",   // Latin Capital Letter Hwair
+        "/\\x{01F7}/u",   // Latin Capital Letter Wynn
+        "/\\x{021C}/u",   // Latin Capital Letter Yogh
+        "/\\x{021D}/u",   // Latin Small Letter Yogh
+        "/\\x{0220}/u",   // Latin Capital Letter N with long right leg
+        "/\\x{0221}/u",   // Latin Small Letter D with curl
+        "/\\x{0222}/u",   // Latin Capital Letter OU
+        "/\\x{0223}/u",   // Latin Small Letter OU
+        "/\\x{0224}/u",   // Latin Capital Letter Z with hook
+        "/\\x{0225}/u",   // Latin Small Letter Z with hook
+        "/\\x{0234}/u",   // Latin Small Letter L with curl
+        "/\\x{0235}/u",   // Latin Small Letter N with curl
+        "/\\x{0236}/u",   // Latin Small Letter T with curl
+        "/\\x{0237}/u",   // Latin Small Letter Dotless J
+        "/\\x{0238}/u",   // Latin Small Letter DB Diagraph
+        "/\\x{0239}/u",   // Latin Small Letter QP Diagraph
+        "/\\x{023A}/u",   // Latin Capital Letter A with stroke
+        "/\\x{023B}/u",   // Latin Capital Letter C with stroke
+        "/\\x{023C}/u",   // Latin Small Letter C with stroke
+        "/\\x{023D}/u",   // Latin Capital Letter L with bar
+        "/\\x{023E}/u",   // Latin Capital Letter T with diagonal stroke
+        "/\\x{023F}/u",   // Latin Small Letter S with swash tail
+        "/\\x{0240}/u",   // Latin Small Letter Z with swash tail
+        "/\\x{0241}/u",   // Latin Capital Letter Glottal Stop
+        "/\\x{0242}/u",   // Latin Small Letter Glottal Stop
+        "/\\x{0243}/u",   // Latin Capital Letter B with stroke
+        "/\\x{0244}/u",   // Latin Capital Letter U bar
+        "/\\x{0245}/u",   // Latin Capital Letter Turned V
+        "/\\x{0246}/u",   // Latin Capital Letter E with stroke
+        "/\\x{0247}/u",   // Latin Small Letter E with stroke
+        "/\\x{0248}/u",   // Latin Capital Letter J with stroke
+        "/\\x{0249}/u",   // Latin Small Letter J with stroke
+        "/\\x{024A}/u",   // Latin Capital Letter Q with hook tail
+        "/\\x{024B}/u",   // Latin Small Letter Q with hook tail
+        "/\\x{024C}/u",   // Latin Capital Letter R with stroke
+        "/\\x{024D}/u",   // Latin Small Letter R with stroke
+        "/\\x{024E}/u",   // Latin Capital Letter Y with stroke
+        "/\\x{024F}/u",   // Latin Small Letter Y with stroke
+
+        // IPA Extensions. U+0292 Ezh may have been produced by the normalization step.
+        "/\\x{0292}/u",   // Latin Small Letter Ezh
+
+        // Greek and Coptic. The normalization step may have converted the U+00B5 Mu into the U+03BC Mu, which is
+        // located in this block.
+        "/\\x{03BC}/u",   // Greek Small Letter Mu
+
+        // Based on the alias and cross-reference Unicode info for ASCII characters, convert each above-ASCII Unicode
+        // character with a similar look or meaning into the corresponding ASCII character, unless, for most of the
+        // letters, the conversion is expected to be already done by the normalization step.
+        // Line Feed.
+        "/\\x{0085}/u",   // Next Line
+        "/\\p{Zl}/u",     // Line Separator
+        "/\\p{Zp}/u",     // Paragraph Separator
+        // Space.
+        "/[\\x{2000}-\\x{200A}]/u",   // U+2000-U+200A Spacing Characters
+        "/\\x{3000}/u",   // Ideographic Space
+        // Exclamation Mark.
+        "/\\x{203C}/u",   // Double Exclamation Mark
+        "/\\x{203D}/u",   // Interrobang
+        "/\\x{2762}/u",   // Heavy Exclamation Mark Ornament
+        // Quotation Mark.
+        "/[\\x{201C}-\\x{201F}]/u",   // U+201C-U+201F Double Quotation Marks
+        "/\\x{02BA}/u",   // Modifier Letter Double Prime
+        "/\\x{030B}/u",   // Combining Double Acute Accent
+        "/\\x{030E}/u",   // Combining Double Vertical Line Above
+        "/\\x{2033}/u",   // Double Prime
+        "/\\x{3003}/u",   // Ditto Mark
+        // Number Sign.
+        "/\\x{2114}/u",   // L B Bar Symbol
+        "/\\x{266F}/u",   // Music Sharp Sign
+        // Percent Sign.
+        "/\\x{066A}/u",   // Arabic Percent Sign
+        "/\\x{2030}/u",   // Per Mille Sign
+        "/\\x{2031}/u",   // Per Ten Thousand Sign
+        "/\\x{2052}/u",   // Commercial Minus Sign
+        // Ampersand.
+        "/\\x{204A}/u",   // Tironian Sign Et
+        "/\\x{214B}/u",   // Turned Ampersand
+        // Apostrophe.
+        "/[\\x{2018}-\\x{201B}]/u",   // U+2018-U+201B Single Quotation Marks
+        "/\\x{02B9}/u",   // Modifier Letter Prime
+        "/\\x{02BC}/u",   // Modifier Letter Apostrophe
+        "/\\x{02C8}/u",   // Modifier Letter Vertical Line
+        "/\\x{0301}/u",   // Combining Acute Accent
+        "/\\x{2032}/u",   // Prime
+        "/\\x{A78C}/u",   // Latin Small Letter Saltillo
+        // Asterisk.
+        "/\\x{066D}/u",   // Arabic Five Pointed Star
+        "/\\x{204E}/u",   // Low Asterisk
+        "/\\x{2217}/u",   // Asterisk Operator
+        "/\\x{26B9}/u",   // Sextile
+        "/\\x{2731}/u",   // Heavy Asterisk
+        // Plus Sign.
+        "/\\x{2795}/u",   // Heavy Plus Sign
+        // Comma.
+        "/\\x{060C}/u",   // Arabic Comma
+        "/\\x{3001}/u",   // Ideographic Comma
+        // Hyphen-minus.
+        "/\\x{2010}/u",   // Hyphen
+        "/\\x{2011}/u",   // Non-breaking Hyphen
+        "/\\x{2012}/u",   // Figure Dash
+        "/\\x{2013}/u",   // En Dash
+        "/\\x{2212}/u",   // Minus Sign
+        // Full Stop.
+        "/\\x{06D4}/u",   // Arabic Full Stop
+        "/\\x{3002}/u",   // Ideographic Full Stop
+        // Solidus.
+        "/\\x{0338}/u",   // Combining Long Solidus Overlay
+        "/\\x{2044}/u",   // Fraction Slash
+        "/\\x{2215}/u",   // Division Slash
+        // Colon.
+        "/\\x{0589}/u",   // Armenian Full Stop
+        "/\\x{05C3}/u",   // Hebrew Punctuation Sof Pasuq
+        "/\\x{2236}/u",   // Ratio
+        "/\\x{A789}/u",   // Modifier Letter Colon
+        // Semicolon.
+        "/\\x{037E}/u",   // Greek Question Mark
+        "/\\x{061B}/u",   // Arabic Semicolon
+        "/\\x{204F}/u",   // Reversed Semicolon
+        // Less-than Sign.
+        "/\\x{2039}/u",   // Single Left-pointing Angle Quotation Mark
+        "/\\x{2329}/u",   // Left-pointing Angle Bracket
+        "/\\x{27E8}/u",   // Mathematical Left Angle Bracket
+        "/\\x{3008}/u",   // Left Angle Bracket
+        // Equals Sign.
+        "/\\x{2261}/u",   // Identical To
+        "/\\x{A78A}/u",   // Modifier Letter Short Equals Sign
+        // Greater-than Sign.
+        "/\\x{203A}/u",   // Single Right-pointing Angle Quotation Mark
+        "/\\x{232A}/u",   // Right-pointing Angle Bracket
+        "/\\x{27E9}/u",   // Mathematical Right Angle Bracket
+        "/\\x{3009}/u",   // Right Angle Bracket
+        // Question Mark.
+        "/\\x{061F}/u",   // Arabic Question Mark
+        "/\\x{2048}/u",   // Question Exclamation Mark
+        "/\\x{2049}/u",   // Exclamation Question Mark
+        // Latin Capital Letter F.
+        "/\\x{2132}/u",   // Turned Capital F
+        // Latin Capital Letter I.
+        "/\\x{0406}/u",   // Cyrillic Capital Letter Byelorussian-ukrainian I
+        "/\\x{04C0}/u",   // Cyrillic Letter Palochka
+        // Reverse Solidus.
+        "/\\x{20E5}/u",   // Combining Reverse Solidus Overlay
+        "/\\x{2216}/u",   // Set Minus
+        // Circumflex Accent.
+        "/\\x{02C4}/u",   // Modifier Letter Up Arrowhead
+        "/\\x{02C6}/u",   // Modifier Letter Circumflex Accent
+        "/\\x{0302}/u",   // Combining Circumflex Accent
+        "/\\x{2038}/u",   // Caret
+        "/\\x{2303}/u",   // Up Arrowhead
+        // Low Line.
+        "/\\x{02CD}/u",   // Modifier Letter Low Macron
+        "/\\x{0331}/u",   // Combining Macron Below
+        "/\\x{0332}/u",   // Combining Low Line
+        // Grave Accent.
+        "/\\x{02CB}/u",   // Modifier Letter Grave Accent
+        "/\\x{0300}/u",   // Combining Grave Accent
+        "/\\x{2035}/u",   // Reversed Prime
+        // Latin Small Letter E.
+        "/\\x{212E}/u",   // Estimated Symbol
+        // Latin Small Letter G.
+        "/\\x{0261}/u",   // Latin Small Letter Script G
+        // Latin Small Letter H.
+        "/\\x{04BB}/u",   // Cyrillic Small Letter Shha
+        // Vertical Line.
+        "/\\x{05C0}/u",   // Hebrew Punctuation Paseq
+        "/\\x{2223}/u",   // Divides
+        "/\\x{2758}/u",   // Light Vertical Bar
+        // Tilde.
+        "/\\x{02DC}/u",   // Small Tilde
+        "/\\x{0303}/u",   // Combining Tilde
+        "/\\x{2053}/u",   // Swung Dash
+        "/\\x{223C}/u",   // Tilde Operator
+        "/\\x{FF5E}/u"];  // Fullwidth Tilde
+
+    public static $FlatteningReplaceWithPt2 = [
+        // Latin-1 Supplement. Letters with all kinds of marks are skipped since they should have been handled by the
+        // previous step.
+        " ",    // No-break Space
+        "!",    // Inverted Exclamation Mark
+        "c",    // Cent sign
+        "L",    // Pound sign
+        "*",    // Currency sign
+        "Y",    // Yen sign
+        "|",    // Broken bar
+        "",     // Section sign
+        "",     // Diaeresis
+        "(C)",  // Copyright sign
+        "a",    // Feminine Ordinal Indicator
+        "<<",   // Left-pointing double angle quotation mark
+        "-",    // Not sign
+        "",     // Soft hyphen
+        "(R)",  // Registered sign
+        "",     // Macron
+        "",     // Degree symbol
+        "+/-",  // Plus-minus sign
+        "2",    // Superscript two
+        "3",    // Superscript three
+        "",     // Acute accent
+        "u",    // Micro sign
+        "",     // Pilcrow sign
+        " ",    // Middle dot
+        "",     // Cedilla
+        "1",    // Superscript one
+        "o",    // Masculine ordinal indicator
+        ">>",   // Right-pointing double-angle quotation mark
+        "1/4",  // Vulgar fraction one quarter
+        "1/2",  // Vulgar fraction one half
+        "3/4",  // Vulgar fraction three quarters
+        "?",    // Inverted Question Mark
+        "AE",   // Latin Capital letter AE
+        "D",    // Latin Capital letter Eth
+        "*",    // Multiplication sign
+        "O",    // Latin Capital letter O with stroke
+        "TH",   // Latin Capital Letter Thorn
+        "ss",   // Latin Small Letter sharp S
+        "ae",   // Latin Small Letter AE
+        "d",    // Latin Small Letter Eth
+        "/",    // Division sign
+        "o",    // Latin Small Letter O with stroke
+        "th",   // Latin Small Letter Thorn
+
+        // Latin Extended-A (part 2).
+        "D",    // Latin Capital Letter D with stroke
+        "d",    // Latin Small Letter D with stroke
+        "H",    // Latin Capital Letter H with stroke
+        "h",    // Latin Small Letter H with stroke
+        "i",    // Latin Small Letter dotless I
+        "k",    // Latin Small Letter Kra
+        "L",    // Latin Capital Letter L with stroke
+        "l",    // Latin Small Letter L with stroke
+        "N",    // Latin Capital Letter Eng
+        "n",    // Latin Small Letter Eng
+        "OE",   // Latin Capital Ligature OE
+        "oe",   // Latin Small Ligature OE
+        "T",    // Latin Capital Letter T with stroke
+        "t",    // Latin Small Letter T with stroke
+
+        // Latin Extended-B.
+        "b",    // Latin Small Letter B with stroke
+        "B",    // Latin Capital Letter B with hook
+        "B",    // Latin Capital Letter B with top bar
+        "b",    // Latin Small Letter B with top bar
+        "b",    // Latin Capital Letter Tone Six
+        "b",    // Latin Small Letter Tone Six
+        "C",    // Latin Capital Letter Open O
+        "C",    // Latin Capital Letter C with hook
+        "c",    // Latin Small Letter C with hook
+        "D",    // Latin Capital Letter African D
+        "D",    // Latin Capital Letter D with hook
+        "D",    // Latin Capital Letter D with top bar
+        "d",    // Latin Small Letter D with top bar
+        "q",    // Latin Small Letter Turned Delta
+        "E",    // Latin Capital Letter Reversed E
+        "e",    // Latin Capital Letter Schwa
+        "E",    // Latin Capital Letter Open E
+        "F",    // Latin Capital Letter F with hook
+        "f",    // Latin Small Letter F with hook
+        "G",    // Latin Capital Letter G with hook
+        "V",    // Latin Capital Letter Gamma
+        "hv",   // Latin Small Letter HV
+        "I",    // Latin Capital Letter Iota
+        "I",    // Latin Capital Letter I with stroke
+        "K",    // Latin Capital Letter K with hook
+        "k",    // Latin Small Letter K with hook
+        "l",    // Latin Small Letter L with bar
+        "l",    // Latin Small Letter Lambda with stroke
+        "M",    // Latin Capital Letter Turned M
+        "N",    // Latin Capital Letter N with left hook
+        "n",    // Latin Small Letter N with long right leg
+        "O",    // Latin Capital Letter O with middle tilde
+        "OI",   // Latin Capital Letter OI (= Latin Capital Letter Gha)
+        "oi",   // Latin Small Letter OI (= Latin Small Letter Gha)
+        "P",    // Latin Capital Letter P with hook
+        "p",    // Latin Small Letter P with hook
+        "R",    // Latin Letter YR
+        "S",    // Latin Capital Letter Tone Two
+        "s",    // Latin Small Letter Tone Two
+        "E",    // Latin Capital Letter Esh
+        "q",    // Latin Letter Reversed Esh Loop
+        "t",    // Latin Small Letter T with palatal hook
+        "T",    // Latin Capital Letter T with hook
+        "t",    // Latin Small Letter T with hook
+        "T",    // Latin Capital Letter T with retroflex hook
+        "U",    // Latin Capital Letter Upsilon
+        "V",    // Latin Capital Letter V with hook
+        "Y",    // Latin Capital Letter Y with hook
+        "y",    // Latin Small Letter Y with hook
+        "Z",    // Latin Capital Letter Z with stroke
+        "z",    // Latin Small Letter Z with stroke
+        "3",    // Latin Capital Letter Ezh
+        "E",    // Latin Capital Letter Ezh reversed
+        "E",    // Latin Small Letter Ezh reversed
+        "3",    // Latin Small Letter Ezh with tail
+        "2",    // Latin Letter Two with stroke
+        "5",    // Latin Capital Letter Tone Five
+        "5",    // Latin Small Letter Tone Five
+        "?",    // Latin Letter Inverted Glottal Stop with stroke
+        "p",    // Latin Letter Wynn
+        "|",    // Latin Letter Dental Click
+        "||",   // Latin Letter Lateral Click
+        "+",    // Latin Letter Alveolar Click
+        "!",    // Latin Letter Retroflex Click
+        "e",    // Latin Small Letter Turned E
+        "G",    // Latin Capital Letter G with stroke
+        "g",    // Latin Small Letter G with stroke
+        "Hv",   // Latin Capital Letter Hwair
+        "P",    // Latin Capital Letter Wynn
+        "3",    // Latin Capital Letter Yogh
+        "3",    // Latin Small Letter Yogh
+        "n",    // Latin Capital Letter N with long right leg
+        "d",    // Latin Small Letter D with curl
+        "OU",   // Latin Capital Letter OU
+        "ou",   // Latin Small Letter OU
+        "Z",    // Latin Capital Letter Z with hook
+        "z",    // Latin Small Letter Z with hook
+        "l",    // Latin Small Letter L with curl
+        "n",    // Latin Small Letter N with curl
+        "t",    // Latin Small Letter T with curl
+        "j",    // Latin Small Letter Dotless J
+        "db",   // Latin Small Letter DB Diagraph
+        "qp",   // Latin Small Letter QP Diagraph
+        "A",    // Latin Capital Letter A with stroke
+        "C",    // Latin Capital Letter C with stroke
+        "c",    // Latin Small Letter C with stroke
+        "L",    // Latin Capital Letter L with bar
+        "T",    // Latin Capital Letter T with diagonal stroke
+        "s",    // Latin Small Letter S with swash tail
+        "z",    // Latin Small Letter Z with swash tail
+        "?",    // Latin Capital Letter Glottal Stop
+        "?",    // Latin Small Letter Glottal Stop
+        "B",    // Latin Capital Letter B with stroke
+        "U",    // Latin Capital Letter U bar
+        "A",    // Latin Capital Letter Turned V
+        "E",    // Latin Capital Letter E with stroke
+        "e",    // Latin Small Letter E with stroke
+        "J",    // Latin Capital Letter J with stroke
+        "j",    // Latin Small Letter J with stroke
+        "q",    // Latin Capital Letter Q with hook tail
+        "q",    // Latin Small Letter Q with hook tail
+        "R",    // Latin Capital Letter R with stroke
+        "r",    // Latin Small Letter R with stroke
+        "Y",    // Latin Capital Letter Y with stroke
+        "y",    // Latin Small Letter Y with stroke
+
+        // IPA Extensions. U+0292 Ezh may have been produced by the normalization step.
+        "3",    // Latin Small Letter Ezh
+
+        // Greek and Coptic. The normalization step may have converted the U+00B5 Mu into the U+03BC Mu, which is
+        // located in this block.
+        "u",    // Greek Small Letter Mu
+
+        // Based on the alias and cross-reference Unicode info for ASCII characters, convert each above-ASCII Unicode
+        // character with a similar look or meaning into the corresponding ASCII character, unless, for most of the
+        // letters, the conversion is expected to be already done by the normalization step.
+        // Line Feed.
+        CString::NEWLINE,  // Next Line
+        CString::NEWLINE,  // Line Separator
+        CString::NEWLINE,  // Paragraph Separator
+        // Space.
+        " ",    // U+2000-U+200A Spacing Characters
+        " ",    // Ideographic Space
+        // Exclamation Mark.
+        "!!",   // Double Exclamation Mark
+        "?!",   // Interrobang
+        "!",    // Heavy Exclamation Mark Ornament
+        // Quotation Mark.
+        "\"",   // U+201C-U+201F Double Quotation Marks
+        "\"",   // Modifier Letter Double Prime
+        "\"",   // Combining Double Acute Accent
+        "\"",   // Combining Double Vertical Line Above
+        "\"",   // Double Prime
+        "\"",   // Ditto Mark
+        // Number Sign.
+        "#",    // L B Bar Symbol
+        "#",    // Music Sharp Sign
+        // Percent Sign.
+        "%",    // Arabic Percent Sign
+        "%",    // Per Mille Sign
+        "%",    // Per Ten Thousand Sign
+        "%",    // Commercial Minus Sign
+        // Ampersand.
+        "&",    // Tironian Sign Et
+        "&",    // Turned Ampersand
+        // Apostrophe.
+        "'",    // U+2018-U+201B Single Quotation Marks
+        "'",    // Modifier Letter Prime
+        "'",    // Modifier Letter Apostrophe
+        "'",    // Modifier Letter Vertical Line
+        "'",    // Combining Acute Accent
+        "'",    // Prime
+        "'",    // Latin Small Letter Saltillo
+        // Asterisk.
+        "*",    // Arabic Five Pointed Star
+        "*",    // Low Asterisk
+        "*",    // Asterisk Operator
+        "*",    // Sextile
+        "*",    // Heavy Asterisk
+        // Plus Sign.
+        "+",    // Heavy Plus Sign
+        // Comma.
+        ",",    // Arabic Comma
+        ",",    // Ideographic Comma
+        // Hyphen-minus.
+        "-",    // Hyphen
+        "-",    // Non-breaking Hyphen
+        "-",    // Figure Dash
+        "-",    // En Dash
+        "-",    // Minus Sign
+        // Full Stop.
+        ".",    // Arabic Full Stop
+        ".",    // Ideographic Full Stop
+        // Solidus.
+        "/",    // Combining Long Solidus Overlay
+        "/",    // Fraction Slash
+        "/",    // Division Slash
+        // Colon.
+        ":",    // Armenian Full Stop
+        ":",    // Hebrew Punctuation Sof Pasuq
+        ":",    // Ratio
+        ":",    // Modifier Letter Colon
+        // Semicolon.
+        ";",    // Greek Question Mark
+        ";",    // Arabic Semicolon
+        ";",    // Reversed Semicolon
+        // Less-than Sign.
+        "<",    // Single Left-pointing Angle Quotation Mark
+        "<",    // Left-pointing Angle Bracket
+        "<",    // Mathematical Left Angle Bracket
+        "<",    // Left Angle Bracket
+        // Equals Sign.
+        "=",    // Identical To
+        "=",    // Modifier Letter Short Equals Sign
+        // Greater-than Sign.
+        ">",    // Single Right-pointing Angle Quotation Mark
+        ">",    // Right-pointing Angle Bracket
+        ">",    // Mathematical Right Angle Bracket
+        ">",    // Right Angle Bracket
+        // Question Mark.
+        "?",    // Arabic Question Mark
+        "?!",   // Question Exclamation Mark
+        "!?",   // Exclamation Question Mark
+        // Latin Capital Letter F.
+        "F",    // Turned Capital F
+        // Latin Capital Letter I.
+        "I",    // Cyrillic Capital Letter Byelorussian-ukrainian I
+        "I",    // Cyrillic Letter Palochka
+        // Reverse Solidus.
+        "\\",   // Combining Reverse Solidus Overlay
+        "\\",   // Set Minus
+        // Circumflex Accent.
+        "^",    // Modifier Letter Up Arrowhead
+        "^",    // Modifier Letter Circumflex Accent
+        "^",    // Combining Circumflex Accent
+        "^",    // Caret
+        "^",    // Up Arrowhead
+        // Low Line.
+        "_",    // Modifier Letter Low Macron
+        "_",    // Combining Macron Below
+        "_",    // Combining Low Line
+        // Grave Accent.
+        "`",    // Modifier Letter Grave Accent
+        "`",    // Combining Grave Accent
+        "`",    // Reversed Prime
+        // Latin Small Letter E.
+        "e",    // Estimated Symbol
+        // Latin Small Letter G.
+        "g",    // Latin Small Letter Script G
+        // Latin Small Letter H.
+        "h",    // Cyrillic Small Letter Shha
+        // Vertical Line.
+        "|",    // Hebrew Punctuation Paseq
+        "|",    // Divides
+        "|",    // Light Vertical Bar
+        // Tilde.
+        "~",    // Small Tilde
+        "~",    // Combining Tilde
+        "~",    // Swung Dash
+        "~",    // Tilde Operator
+        "~"];   // Fullwidth Tilde
+}
+

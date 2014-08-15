@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>Phred API</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet" media="all"/>
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Phred API</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">426</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1692601571"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1692601571" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/ICopyingStatic.html">ICopyingStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEquality.html">IEquality</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrder.html">IEqualityAndOrder</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrderStatic.html">IEqualityAndOrderStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityStatic.html">IEqualityStatic</a></li>
+                                                                                                    <li class="class"><a href="../classes/array.html">array</a></li>
+                                                    <li class="class"><a href="../classes/bitfield.html">bitfield</a></li>
+                                                    <li class="class"><a href="../classes/CArray.html">CArray</a></li>
+                                                    <li class="class"><a href="../classes/CArrayObject.html">CArrayObject</a></li>
+                                                    <li class="class"><a href="../classes/CBase64.html">CBase64</a></li>
+                                                    <li class="class"><a href="../classes/CBitField.html">CBitField</a></li>
+                                                    <li class="class"><a href="../classes/CComparator.html">CComparator</a></li>
+                                                    <li class="class"><a href="../classes/CConfiguration.html">CConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CCookie.html">CCookie</a></li>
+                                                    <li class="class"><a href="../classes/CEString.html">CEString</a></li>
+                                                    <li class="class"><a href="../classes/CFile.html">CFile</a></li>
+                                                    <li class="class"><a href="../classes/CFilePath.html">CFilePath</a></li>
+                                                    <li class="class"><a href="../classes/CGZip.html">CGZip</a></li>
+                                                    <li class="class"><a href="../classes/CHash.html">CHash</a></li>
+                                                    <li class="class"><a href="../classes/CHtml.html">CHtml</a></li>
+                                                    <li class="class"><a href="../classes/CHttpRequest.html">CHttpRequest</a></li>
+                                                    <li class="class"><a href="../classes/CHttpResponse.html">CHttpResponse</a></li>
+                                                    <li class="class"><a href="../classes/CInetRequest.html">CInetRequest</a></li>
+                                                    <li class="class"><a href="../classes/CInetSession.html">CInetSession</a></li>
+                                                    <li class="class"><a href="../classes/CInputFilter.html">CInputFilter</a></li>
+                                                    <li class="class"><a href="../classes/CIp.html">CIp</a></li>
+                                                    <li class="class"><a href="../classes/CJson.html">CJson</a></li>
+                                                    <li class="class"><a href="../classes/CMail.html">CMail</a></li>
+                                                    <li class="class"><a href="../classes/CMap.html">CMap</a></li>
+                                                    <li class="class"><a href="../classes/CMapObject.html">CMapObject</a></li>
+                                                    <li class="class"><a href="../classes/CMathf.html">CMathf</a></li>
+                                                    <li class="class"><a href="../classes/CMathi.html">CMathi</a></li>
+                                                    <li class="class"><a href="../classes/CMimeType.html">CMimeType</a></li>
+                                                    <li class="class"><a href="../classes/CRegex.html">CRegex</a></li>
+                                                    <li class="class"><a href="../classes/CRequest.html">CRequest</a></li>
+                                                    <li class="class"><a href="../classes/CResponse.html">CResponse</a></li>
+                                                    <li class="class"><a href="../classes/CShell.html">CShell</a></li>
+                                                    <li class="class"><a href="../classes/CString.html">CString</a></li>
+                                                    <li class="class"><a href="../classes/CSystem.html">CSystem</a></li>
+                                                    <li class="class"><a href="../classes/CTime.html">CTime</a></li>
+                                                    <li class="class"><a href="../classes/CTimeZone.html">CTimeZone</a></li>
+                                                    <li class="class"><a href="../classes/CUFormat.html">CUFormat</a></li>
+                                                    <li class="class"><a href="../classes/CULocale.html">CULocale</a></li>
+                                                    <li class="class"><a href="../classes/CUrl.html">CUrl</a></li>
+                                                    <li class="class"><a href="../classes/CUrlPath.html">CUrlPath</a></li>
+                                                    <li class="class"><a href="../classes/CUrlQuery.html">CUrlQuery</a></li>
+                                                    <li class="class"><a href="../classes/CUString.html">CUString</a></li>
+                                                    <li class="class"><a href="../classes/CUStringObject.html">CUStringObject</a></li>
+                                                    <li class="class"><a href="../classes/CUUnit.html">CUUnit</a></li>
+                                                    <li class="class"><a href="../classes/CXml.html">CXml</a></li>
+                                                    <li class="class"><a href="../classes/enum.html">enum</a></li>
+                                                    <li class="class"><a href="../classes/map.html">map</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span12 offset2">
+            <div class="row-fluid">
+                <div class="span8 content namespace">
+                    <!--
+                    <nav>
+                                                
+                                            </nav>
+                    <h1><small></small>\</h1>
+                    -->
+
+                    
+                    
+                                        <h2>Classes</h2>
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/array.html">array</a></td>
+                            <td><p>Any of the efficient array types.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/bitfield.html">bitfield</a></td>
+                            <td><p>A value of this type is simply an integer.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CArray.html">CArray</a></td>
+                            <td><p>The hub for static methods that take care of objects of the SplFixedArray class, which is also known as CArray.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CArrayObject.html">CArrayObject</a></td>
+                            <td><p>The class of any OOP array, which wraps over the SplFixedArray class for high-performance array functionality.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CBase64.html">CBase64</a></td>
+                            <td><p>The static methods for Base64 decoding and encoding.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CBitField.html">CBitField</a></td>
+                            <td><p>This class works with bitfields, which are mere integers used for the compact storage of related boolean values,
+sometimes called flags.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CComparator.html">CComparator</a></td>
+                            <td><p>The home of the static methods that serve as the default comparators to be used by methods that depend on comparing
+values of unspecified types.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CConfiguration.html">CConfiguration</a></td>
+                            <td><p>A few static methods for getting and setting the configuration options of the web application.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CCookie.html">CCookie</a></td>
+                            <td><p>The class of HTTP cookies when they are a part of an HTTP response.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CEString.html">CEString</a></td>
+                            <td><p>A collection of static methods that let you convert strings from one character encoding into another, "flatten" any
+Unicode string to ASCII, find out the encoding of a string, and not get lost in the multitude of character encoding
+names.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CFile.html">CFile</a></td>
+                            <td><p>The home of the static methods that check on files and directories as to whether they exist and on their attributes,
+read from and write to files, create files and directories, copy, move, rename, and delete files and directories,
+list items in directories, search for items in directories with wildcards or regular expressions, as well as the
+class of file accessors that perform sequential read/write operations on files.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CFilePath.html">CFilePath</a></td>
+                            <td><p>A squad of static methods that track file system paths for various information.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CGZip.html">CGZip</a></td>
+                            <td><p>The static methods for decompressing data from and compressing data to gzip format.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CHash.html">CHash</a></td>
+                            <td><p>The class that lets you compute hashes on data and files in one piece as well as incremental hashes.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CHtml.html">CHtml</a></td>
+                            <td><p>The class of the HyperText Markup Language, inheriting from the CXml class.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CHttpRequest.html">CHttpRequest</a></td>
+                            <td><p>The class that enumerates the HTTP methods and HTTP request headers. This is also the base class for the CRequest
+class.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CHttpResponse.html">CHttpResponse</a></td>
+                            <td><p>The class that enumerates the HTTP response codes and HTTP response headers. This is also the base class for the
+CResponse class.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInetRequest.html">CInetRequest</a></td>
+                            <td><p>The class that lets you make HTTP, HTTPS, FTP, and FTPS requests over the Internet, as a part of a cookies-enabled
+session if used together with the CInetSession class.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInetSession.html">CInetSession</a></td>
+                            <td><p>The class that lets you send multiple requests over the Internet in a time-efficient way and with HTTP cookies
+supported.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html">CInputFilter</a></td>
+                            <td><p>The class that takes all the surprise out of communicating with users and the rest of the outer world by ensuring
+that any string that is expected to represent a boolean, integer, or floating-point value, an ASCII or Unicode
+string, an email, a URL etc. does exactly that, also being able to validate and sanitize values by various
+parameters in the process of filtering.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CIp.html">CIp</a></td>
+                            <td><p>The class that is dealing with IP addresses.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CJson.html">CJson</a></td>
+                            <td><p>The class that lets you decode even malformed JSON strings and to encode maps and arrays into JSON strings.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html">CMail</a></td>
+                            <td><p>The class that lets you send plain-text and HTML emails with attached content, embedded content, and with support
+for other email features and do it in the simplest way possible.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMap.html">CMap</a></td>
+                            <td><p>The hub for static methods that take care of instances of the PHP's associative array, which is also known as CMap.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMapObject.html">CMapObject</a></td>
+                            <td><p>The class of any OOP map, which wraps over the PHP's associative array.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMathf.html">CMathf</a></td>
+                            <td><p>A set of static methods that perform mathematic operations by taking floating-point or integer numbers as parameters
+but always outputting floating-point numbers.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMathi.html">CMathi</a></td>
+                            <td><p>A set of static methods that perform mathematic operations by taking integer or floating-point numbers as parameters
+but always outputting integer numbers.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMimeType.html">CMimeType</a></td>
+                            <td><p>The class that enumerates some of the MIME types.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CRegex.html">CRegex</a></td>
+                            <td><p>A collection of static methods that let you express yourself regularly and get answered in the neatest way possible.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CRequest.html">CRequest</a></td>
+                            <td><p>The class that represents the received HTTP request and that lets you retrieve the values of HTTP headers sent with
+the request, the values sent in the query string of the requested URL, the values sent with POST fields, the values
+of sent HTTP cookies, and more.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CResponse.html">CResponse</a></td>
+                            <td><p>The class that represents the HTTP response to be sent back and that lets you add HTTP headers and HTTP cookies to
+the response, make the response redirect the user's agent to another location, refresh the page, control the caching
+of the response, make the user's agent download a file, and more.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CShell.html">CShell</a></td>
+                            <td><p>The class that greatly simplifies writing CLI scripts in PHP by facilitating messaging, logging and mailing, script
+option retrieval, input capturing, and command execution in both CLI and regular modes.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CString.html">CString</a></td>
+                            <td><p>The hub for static methods that take care of ASCII strings.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html">CSystem</a></td>
+                            <td><p>The class that lets you obtain various information on the system that PHP is running on, access PHP's configuration
+options, set locks on files to ensure that a certain operation can be performed by only one script at a time, and
+more.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CTime.html">CTime</a></td>
+                            <td><p>The class of any point in time.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CTimeZone.html">CTimeZone</a></td>
+                            <td><p>The class that represents time zones around the world and is the best friend to the CTime class.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUFormat.html">CUFormat</a></td>
+                            <td><p>A group of static methods that can format numbers, percentages, amounts of currency, as well as dates and time using
+the local formatting rules associated with a locale and, for some methods, the language of a locale.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CULocale.html">CULocale</a></td>
+                            <td><p>The class of any locale.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html">CUrl</a></td>
+                            <td><p>This class lets you parse URLs into constituting parts, normalize and compare URLs, compose URLs from parts, ensure
+protocols for URLs, validate URLs, and put strings through percent-encoding (URL encoding) in either direction.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrlPath.html">CUrlPath</a></td>
+                            <td><p>This class allows you to parse the path part of a URL into components, compose a URL path from components, while
+automatically handling percent-encoding in both cases, as well as to walk a URL path component-by-component.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrlQuery.html">CUrlQuery</a></td>
+                            <td><p>This class allows you to parse the query string of a URL into fields (key-value pairs), compose a query string from
+one-dimensional or multi-dimensional fields, while automatically handling percent-encoding in both cases.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUString.html">CUString</a></td>
+                            <td><p>The hub for static methods that take care of Unicode strings and can provide the same quality of service to ASCII
+strings.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUStringObject.html">CUStringObject</a></td>
+                            <td><p>The class of any OOP Unicode string.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUUnit.html">CUUnit</a></td>
+                            <td><p>A collection of static methods that convert amounts of digital storage, time, length, speed, temperature, area,
+volume, and mass from one measurement unit into another.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CXml.html">CXml</a></td>
+                            <td><p>The class of the Extensible Markup Language.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/enum.html">enum</a></td>
+                            <td><p>A value of this type is simply an integer.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/map.html">map</a></td>
+                            <td><p>Any of the map types.</p></td>
+                        </tr>
+                                        </table>
+                    
+                    <!--
+                                        <h2>Interfaces</h2>
+                    <table class="table table-hover">
+                                                    <tr>
+                                <td><a href="../classes/ICopyingStatic.html">ICopyingStatic</a></td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/IEquality.html">IEquality</a></td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/IEqualityAndOrder.html">IEqualityAndOrder</a></td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/IEqualityAndOrderStatic.html">IEqualityAndOrderStatic</a></td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/IEqualityStatic.html">IEqualityStatic</a></td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                                        -->
+                </div>
+
+                <aside class="span2 detailsbar">
+                    <dl>
+                        <dt>Namespace hierarchy</dt>
+                        <dd class="hierarchy">
+                                                                                                                                                <div class="namespace-wrapper">\</div>
+                        </dd>
+                    </dl>
+                </aside>
+            </div>
+
+            
+            
+        </div>
+    </section>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4" style="visibility: hidden">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 13th, 2014 at 18:15.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

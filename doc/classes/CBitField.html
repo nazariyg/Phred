@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>Phred API</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet" media="all"/>
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Phred API</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">426</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-838614156"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-838614156" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/ICopyingStatic.html">ICopyingStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEquality.html">IEquality</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrder.html">IEqualityAndOrder</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrderStatic.html">IEqualityAndOrderStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityStatic.html">IEqualityStatic</a></li>
+                                                                                                    <li class="class"><a href="../classes/array.html">array</a></li>
+                                                    <li class="class"><a href="../classes/bitfield.html">bitfield</a></li>
+                                                    <li class="class"><a href="../classes/CArray.html">CArray</a></li>
+                                                    <li class="class"><a href="../classes/CArrayObject.html">CArrayObject</a></li>
+                                                    <li class="class"><a href="../classes/CBase64.html">CBase64</a></li>
+                                                    <li class="class"><a href="../classes/CBitField.html">CBitField</a></li>
+                                                    <li class="class"><a href="../classes/CComparator.html">CComparator</a></li>
+                                                    <li class="class"><a href="../classes/CConfiguration.html">CConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CCookie.html">CCookie</a></li>
+                                                    <li class="class"><a href="../classes/CEString.html">CEString</a></li>
+                                                    <li class="class"><a href="../classes/CFile.html">CFile</a></li>
+                                                    <li class="class"><a href="../classes/CFilePath.html">CFilePath</a></li>
+                                                    <li class="class"><a href="../classes/CGZip.html">CGZip</a></li>
+                                                    <li class="class"><a href="../classes/CHash.html">CHash</a></li>
+                                                    <li class="class"><a href="../classes/CHtml.html">CHtml</a></li>
+                                                    <li class="class"><a href="../classes/CHttpRequest.html">CHttpRequest</a></li>
+                                                    <li class="class"><a href="../classes/CHttpResponse.html">CHttpResponse</a></li>
+                                                    <li class="class"><a href="../classes/CInetRequest.html">CInetRequest</a></li>
+                                                    <li class="class"><a href="../classes/CInetSession.html">CInetSession</a></li>
+                                                    <li class="class"><a href="../classes/CInputFilter.html">CInputFilter</a></li>
+                                                    <li class="class"><a href="../classes/CIp.html">CIp</a></li>
+                                                    <li class="class"><a href="../classes/CJson.html">CJson</a></li>
+                                                    <li class="class"><a href="../classes/CMail.html">CMail</a></li>
+                                                    <li class="class"><a href="../classes/CMap.html">CMap</a></li>
+                                                    <li class="class"><a href="../classes/CMapObject.html">CMapObject</a></li>
+                                                    <li class="class"><a href="../classes/CMathf.html">CMathf</a></li>
+                                                    <li class="class"><a href="../classes/CMathi.html">CMathi</a></li>
+                                                    <li class="class"><a href="../classes/CMimeType.html">CMimeType</a></li>
+                                                    <li class="class"><a href="../classes/CRegex.html">CRegex</a></li>
+                                                    <li class="class"><a href="../classes/CRequest.html">CRequest</a></li>
+                                                    <li class="class"><a href="../classes/CResponse.html">CResponse</a></li>
+                                                    <li class="class"><a href="../classes/CShell.html">CShell</a></li>
+                                                    <li class="class"><a href="../classes/CString.html">CString</a></li>
+                                                    <li class="class"><a href="../classes/CSystem.html">CSystem</a></li>
+                                                    <li class="class"><a href="../classes/CTime.html">CTime</a></li>
+                                                    <li class="class"><a href="../classes/CTimeZone.html">CTimeZone</a></li>
+                                                    <li class="class"><a href="../classes/CUFormat.html">CUFormat</a></li>
+                                                    <li class="class"><a href="../classes/CULocale.html">CULocale</a></li>
+                                                    <li class="class"><a href="../classes/CUrl.html">CUrl</a></li>
+                                                    <li class="class"><a href="../classes/CUrlPath.html">CUrlPath</a></li>
+                                                    <li class="class"><a href="../classes/CUrlQuery.html">CUrlQuery</a></li>
+                                                    <li class="class"><a href="../classes/CUString.html">CUString</a></li>
+                                                    <li class="class"><a href="../classes/CUStringObject.html">CUStringObject</a></li>
+                                                    <li class="class"><a href="../classes/CUUnit.html">CUUnit</a></li>
+                                                    <li class="class"><a href="../classes/CXml.html">CXml</a></li>
+                                                    <li class="class"><a href="../classes/enum.html">enum</a></li>
+                                                    <li class="class"><a href="../classes/map.html">map</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span12 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <!--
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    -->
+                    <br/ >
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><!-- <small>\</small> -->CBitField</h1>
+                    <p><em><p>This class works with bitfields, which are mere integers used for the compact storage of related boolean values,
+sometimes called flags.</p></em></p>
+                    <p>Since an integer is made up of placeholders for <code>1</code>s and <code>0</code>s, just like any other information nowadays, it makes an
+integer a very efficient place to store multiple values if those values are boolean, i.e. can be either <code>true</code> or
+<code>false</code>. When talking about a bitfield, bits whose values are <code>1</code> are called <em>set</em> and bits that are <code>0</code> are called
+<em>unset</em>. It's not too convenient to look into a bitfield to see which bit is set or to modify a bit using the
+bitwise operations available PHP, so this class exists to make things bit easier.</p>
+<p>Each bit has its own position so that the first bit is located at the position of 0, the second at the position of
+1, and so on. When you need a bitfield where a single bit is set and you only know the bit's position, just use
+<code>SET_X</code> constant of the class, where <code>X</code> is the position of that bit.</p>
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methodsum">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/CBitField.html#method_isBitSet" class="">isBitSet()</a><br />
+                                                                    <a href="../classes/CBitField.html#method_setBit" class="">setBit()</a><br />
+                                                                    <a href="../classes/CBitField.html#method_unsetBit" class="">unsetBit()</a><br />
+                                                                    <a href="../classes/CBitField.html#method_toggleBit" class="">toggleBit()</a><br />
+                                                                    <a href="../classes/CBitField.html#method_numBitsSet" class="">numBitsSet()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CBitField.html#constant_ALL_UNSET" class="">ALL_UNSET</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_ALL_SET" class="">ALL_SET</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_0" class="">SET_0</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_1" class="">SET_1</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_2" class="">SET_2</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_3" class="">SET_3</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_4" class="">SET_4</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_5" class="">SET_5</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_6" class="">SET_6</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_7" class="">SET_7</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_8" class="">SET_8</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_9" class="">SET_9</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_10" class="">SET_10</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_11" class="">SET_11</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_12" class="">SET_12</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_13" class="">SET_13</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_14" class="">SET_14</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_15" class="">SET_15</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_16" class="">SET_16</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_17" class="">SET_17</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_18" class="">SET_18</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_19" class="">SET_19</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_20" class="">SET_20</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_21" class="">SET_21</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_22" class="">SET_22</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_23" class="">SET_23</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_24" class="">SET_24</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_25" class="">SET_25</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_26" class="">SET_26</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_27" class="">SET_27</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_28" class="">SET_28</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_29" class="">SET_29</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_30" class="">SET_30</a><br />
+                                                                    <a href="../classes/CBitField.html#constant_SET_31" class="">SET_31</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties</em>
+                                                            </section>
+                        </section>
+                        <!--
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                        </section>
+                        -->
+                    </section>
+                </div>
+                <aside class="span2 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Classes.System.CBitField.php.html"><div class="path-wrapper">Classes/System/CBitField.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper"></div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\CRootClass</div>
+                                                                                                    <div class="namespace-wrapper">\CBitField</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2 style="visibility: hidden">Tags</h2>
+                    <table class="table table-condensed" style="visibility: hidden">
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+            <a id="methodsum" name="methodsum"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Method Summary</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/CBitField.html#method_isBitSet" class="">isBitSet()</a></td>
+                            <td><p>Determines if a bit is set in a bitfield.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CBitField.html#method_setBit" class="">setBit()</a></td>
+                            <td><p>Sets a bit in a bitfield and returns the new bitfield.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CBitField.html#method_unsetBit" class="">unsetBit()</a></td>
+                            <td><p>Unsets a bit in a bitfield and returns the new bitfield.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CBitField.html#method_toggleBit" class="">toggleBit()</a></td>
+                            <td><p>Toggles the value of a bit in a bitfield and returns the new bitfield.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CBitField.html#method_numBitsSet" class="">numBitsSet()</a></td>
+                            <td><p>Counts the number of bits that are set in a bitfield.</p></td>
+                        </tr>
+                                        </table>
+                </div>
+                <aside class="span2 detailsbar"> </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ALL_UNSET" name="constant_ALL_UNSET" class="anchor"></a>
+            <article id="constant_ALL_UNSET" class="constant">
+                <h3 class="">ALL_UNSET</h3>
+                <pre class="signature">ALL_UNSET</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where all of the bits are unset (each bit is <code>0</code>).</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ALL_SET" name="constant_ALL_SET" class="anchor"></a>
+            <article id="constant_ALL_SET" class="constant">
+                <h3 class="">ALL_SET</h3>
+                <pre class="signature">ALL_SET</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where all of the bits are set (each bit is <code>1</code>).</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_0" name="constant_SET_0" class="anchor"></a>
+            <article id="constant_SET_0" class="constant">
+                <h3 class="">SET_0</h3>
+                <pre class="signature">SET_0</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 0 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_1" name="constant_SET_1" class="anchor"></a>
+            <article id="constant_SET_1" class="constant">
+                <h3 class="">SET_1</h3>
+                <pre class="signature">SET_1</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 1 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_2" name="constant_SET_2" class="anchor"></a>
+            <article id="constant_SET_2" class="constant">
+                <h3 class="">SET_2</h3>
+                <pre class="signature">SET_2</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 2 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_3" name="constant_SET_3" class="anchor"></a>
+            <article id="constant_SET_3" class="constant">
+                <h3 class="">SET_3</h3>
+                <pre class="signature">SET_3</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 3 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_4" name="constant_SET_4" class="anchor"></a>
+            <article id="constant_SET_4" class="constant">
+                <h3 class="">SET_4</h3>
+                <pre class="signature">SET_4</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 4 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_5" name="constant_SET_5" class="anchor"></a>
+            <article id="constant_SET_5" class="constant">
+                <h3 class="">SET_5</h3>
+                <pre class="signature">SET_5</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 5 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_6" name="constant_SET_6" class="anchor"></a>
+            <article id="constant_SET_6" class="constant">
+                <h3 class="">SET_6</h3>
+                <pre class="signature">SET_6</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 6 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_7" name="constant_SET_7" class="anchor"></a>
+            <article id="constant_SET_7" class="constant">
+                <h3 class="">SET_7</h3>
+                <pre class="signature">SET_7</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 7 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_8" name="constant_SET_8" class="anchor"></a>
+            <article id="constant_SET_8" class="constant">
+                <h3 class="">SET_8</h3>
+                <pre class="signature">SET_8</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 8 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_9" name="constant_SET_9" class="anchor"></a>
+            <article id="constant_SET_9" class="constant">
+                <h3 class="">SET_9</h3>
+                <pre class="signature">SET_9</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 9 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_10" name="constant_SET_10" class="anchor"></a>
+            <article id="constant_SET_10" class="constant">
+                <h3 class="">SET_10</h3>
+                <pre class="signature">SET_10</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 10 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_11" name="constant_SET_11" class="anchor"></a>
+            <article id="constant_SET_11" class="constant">
+                <h3 class="">SET_11</h3>
+                <pre class="signature">SET_11</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 11 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_12" name="constant_SET_12" class="anchor"></a>
+            <article id="constant_SET_12" class="constant">
+                <h3 class="">SET_12</h3>
+                <pre class="signature">SET_12</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 12 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_13" name="constant_SET_13" class="anchor"></a>
+            <article id="constant_SET_13" class="constant">
+                <h3 class="">SET_13</h3>
+                <pre class="signature">SET_13</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 13 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_14" name="constant_SET_14" class="anchor"></a>
+            <article id="constant_SET_14" class="constant">
+                <h3 class="">SET_14</h3>
+                <pre class="signature">SET_14</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 14 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_15" name="constant_SET_15" class="anchor"></a>
+            <article id="constant_SET_15" class="constant">
+                <h3 class="">SET_15</h3>
+                <pre class="signature">SET_15</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 15 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_16" name="constant_SET_16" class="anchor"></a>
+            <article id="constant_SET_16" class="constant">
+                <h3 class="">SET_16</h3>
+                <pre class="signature">SET_16</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 16 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_17" name="constant_SET_17" class="anchor"></a>
+            <article id="constant_SET_17" class="constant">
+                <h3 class="">SET_17</h3>
+                <pre class="signature">SET_17</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 17 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_18" name="constant_SET_18" class="anchor"></a>
+            <article id="constant_SET_18" class="constant">
+                <h3 class="">SET_18</h3>
+                <pre class="signature">SET_18</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 18 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_19" name="constant_SET_19" class="anchor"></a>
+            <article id="constant_SET_19" class="constant">
+                <h3 class="">SET_19</h3>
+                <pre class="signature">SET_19</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 19 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_20" name="constant_SET_20" class="anchor"></a>
+            <article id="constant_SET_20" class="constant">
+                <h3 class="">SET_20</h3>
+                <pre class="signature">SET_20</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 20 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_21" name="constant_SET_21" class="anchor"></a>
+            <article id="constant_SET_21" class="constant">
+                <h3 class="">SET_21</h3>
+                <pre class="signature">SET_21</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 21 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_22" name="constant_SET_22" class="anchor"></a>
+            <article id="constant_SET_22" class="constant">
+                <h3 class="">SET_22</h3>
+                <pre class="signature">SET_22</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 22 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_23" name="constant_SET_23" class="anchor"></a>
+            <article id="constant_SET_23" class="constant">
+                <h3 class="">SET_23</h3>
+                <pre class="signature">SET_23</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 23 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_24" name="constant_SET_24" class="anchor"></a>
+            <article id="constant_SET_24" class="constant">
+                <h3 class="">SET_24</h3>
+                <pre class="signature">SET_24</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 24 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_25" name="constant_SET_25" class="anchor"></a>
+            <article id="constant_SET_25" class="constant">
+                <h3 class="">SET_25</h3>
+                <pre class="signature">SET_25</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 25 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_26" name="constant_SET_26" class="anchor"></a>
+            <article id="constant_SET_26" class="constant">
+                <h3 class="">SET_26</h3>
+                <pre class="signature">SET_26</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 26 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_27" name="constant_SET_27" class="anchor"></a>
+            <article id="constant_SET_27" class="constant">
+                <h3 class="">SET_27</h3>
+                <pre class="signature">SET_27</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 27 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_28" name="constant_SET_28" class="anchor"></a>
+            <article id="constant_SET_28" class="constant">
+                <h3 class="">SET_28</h3>
+                <pre class="signature">SET_28</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 28 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_29" name="constant_SET_29" class="anchor"></a>
+            <article id="constant_SET_29" class="constant">
+                <h3 class="">SET_29</h3>
+                <pre class="signature">SET_29</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 29 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_30" name="constant_SET_30" class="anchor"></a>
+            <article id="constant_SET_30" class="constant">
+                <h3 class="">SET_30</h3>
+                <pre class="signature">SET_30</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 30 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SET_31" name="constant_SET_31" class="anchor"></a>
+            <article id="constant_SET_31" class="constant">
+                <h3 class="">SET_31</h3>
+                <pre class="signature">SET_31</pre>
+                <p><p><code>bitfield</code> A predefined bitfield where only the bit at the position of 31 is set.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+            <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isBitSet" name="method_isBitSet" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isBitSet()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isBitSet (bitfield&nbsp;<span class="argument">$bfField</span>, bitfield&nbsp;<span class="argument">$bfBit</span>) : bool</pre>
+                <p><em><p>Determines if a bit is set in a bitfield.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bfField</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
+                                <td><p>The bitfield to be looked into.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bfBit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
+                                <td><p>A bitfield where exactly one bit is set, which is the bit to be tested against the bits
+in <code>$bfField</code>. This is something you often get as a constant e.g. <code>SOME_OPTION</code> and you test it against e.g.
+<code>AVAILABLE_OPTIONS</code> to see if the option is enabled.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the bit is set in the bitfield, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setBit" name="method_setBit" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setBit()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setBit (bitfield&nbsp;<span class="argument">$bfField</span>, bitfield&nbsp;<span class="argument">$bfBit</span>) : bitfield</pre>
+                <p><em><p>Sets a bit in a bitfield and returns the new bitfield.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bfField</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
+                                <td><p>The bitfield to be modified.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bfBit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
+                                <td><p>A bitfield where exactly one bit is set, which indicates the position of the bit to be
+set in <code>$bfField</code>.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/bitfield.html">bitfield</a>
+                    <!-- </code> -->
+                                            &mdash; <p>The new bitfield.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_unsetBit" name="method_unsetBit" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">unsetBit()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> unsetBit (bitfield&nbsp;<span class="argument">$bfField</span>, bitfield&nbsp;<span class="argument">$bfBit</span>) : bitfield</pre>
+                <p><em><p>Unsets a bit in a bitfield and returns the new bitfield.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bfField</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
+                                <td><p>The bitfield to be modified.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bfBit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
+                                <td><p>A bitfield where exactly one bit is set, which indicates the position of the bit to be
+unset in <code>$bfField</code>.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/bitfield.html">bitfield</a>
+                    <!-- </code> -->
+                                            &mdash; <p>The new bitfield.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_toggleBit" name="method_toggleBit" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">toggleBit()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> toggleBit (bitfield&nbsp;<span class="argument">$bfField</span>, bitfield&nbsp;<span class="argument">$bfBit</span>) : bitfield</pre>
+                <p><em><p>Toggles the value of a bit in a bitfield and returns the new bitfield.</p></em></p>
+                <p>If the bit is <code>0</code> (unset), it becomes <code>1</code> (set), and vice versa.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bfField</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
+                                <td><p>The bitfield to be modified.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bfBit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
+                                <td><p>A bitfield where exactly one bit is set, which indicates the position of the bit to be
+toggled in <code>$bfField</code>.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/bitfield.html">bitfield</a>
+                    <!-- </code> -->
+                                            &mdash; <p>The new bitfield.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_numBitsSet" name="method_numBitsSet" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">numBitsSet()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> numBitsSet (bitfield&nbsp;<span class="argument">$bfField</span>) : int</pre>
+                <p><em><p>Counts the number of bits that are set in a bitfield.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bfField</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
+                                <td><p>The bitfield to be looked into.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The number of bits set.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                <!--
+                                                -->
+            
+            <!--
+                                    -->
+        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">CBitField.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Classes/System/CBitField.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4" style="visibility: hidden">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 13th, 2014 at 18:15.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

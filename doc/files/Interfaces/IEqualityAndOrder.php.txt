@@ -1,0 +1,10 @@
+<?php
+
+interface IEqualityAndOrder
+{
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public function equals ($xToValue);
+    public function compare ($xToValue);
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+}
+

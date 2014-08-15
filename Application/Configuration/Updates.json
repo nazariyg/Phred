@@ -1,0 +1,53 @@
+{
+    // Whether to make periodic attempts to update those third-party components that may get obsolete fast and for
+    // which updates are possible.
+    "enable": false,
+
+    // The minimum amount of time that should pass after a successful update and before another update is attempted, in
+    // days.
+    "minTimeBetweenDoUpdatesDays": 30,
+
+    "components":
+    {
+        // The Browser Capabilities Project.
+        // http://browscap.org/
+        "browsCap":
+        {
+            // Whether to skip updating this component.
+            "skip": false,
+
+            // The URL of the "php_browscap.ini" lookup file.
+            "lookupFileUrl": "http://browscap.org/stream?q=PHP_BrowsCapINI"
+        }
+    },
+
+    // Logging options for maintaining a log about updates.
+    "logging":
+    {
+        // Whether to log events and messages during updates.
+        "enable": false,
+
+        // If logging is enabled, the value below is the path to the error log file.
+        "logFilePath": "{{PHRED_PATH_TO_APP}}/Storage/Logs/Updates.txt"
+    },
+
+    // Mailing.
+    "mailing":
+    {
+        "enable": false
+    },
+
+    // OOP wrapping of third-party components.
+    "thirdPartyOopWrappingIgnorePackages":
+    [
+        "bin",
+        "browscap",
+        "composer",
+        "mockery",
+        "nikic/php-parser",
+        "phpunit",
+        "swiftmailer"
+    ],
+    "thirdPartyOopWrappingInProtectedMethods": true,
+    "thirdPartyOopWrappingInPrivateMethods": false
+}

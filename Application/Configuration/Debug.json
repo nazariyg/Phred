@@ -1,0 +1,71 @@
+{
+    // See also: Environments/pro/Debug.json
+
+    // Whether to show messages about occurred errors in the output. When the application is run in the production
+    // environment, this option is overridden by the debug configuration located in the Environments/pro directory and,
+    // by default, is set to `false`.
+    "displayErrors": true,
+
+    // Whether to enable semantic checks, which are used ubiquitously by Phred in the form of assertions. If enabled,
+    // assertions are kept active either permanently or periodically, based on a time condition, e.g. only for a few
+    // hours a week.
+    "enableAssertions": true,
+
+    // Even when assertions are disabled, the PHP runtime can still encounter errors on its own, such as a call to an
+    // undefined method or function (because of a typo), a missing argument for a method or function, the use of an
+    // undefined variable or object property, and others. Whether an error was risen by an assertion or encountered by
+    // the runtime, the error message can be logged into a file or sent to the administrator by mail if the respective
+    // option is turned on.
+
+    // Logging options.
+    "logging":
+    {
+        // Whether to log any error message about a failed assertion or an error encountered by the PHP runtime.
+        "enable": false,
+
+        // If logging is enabled, the value below is the path to the error log file.
+        "logFilePath": "{{PHRED_PATH_TO_APP}}/Storage/Logs/Errors.txt"
+    },
+
+    // Mailing options.
+    "mailing":
+    {
+        // Whether to send a mail about a failed assertion or an error encountered by the PHP runtime, along with the
+        // latest error log entries if logging is enabled. If enabled, the mail options in Admin.json should be set.
+        "enable": false,
+
+        // The minimum amount of time that should pass after a mail is sent and before another mail is allowed to be
+        // sent, in hours.
+        "minTimeBetweenSendMailHours": 3
+    },
+
+    // The condition on which assertions, if enabled, get active.
+    // Possible values: "always", "hour", "dayOfWeek", "dayOfYear".
+    "assertionsAreActiveBasedOn": "always",
+
+    // The name of the reference time zone for the time conditions below, e.g. "America/Los_Angeles" or "UTC".
+    // The available time zone names can be listed with `CTimeZone::knownNames()`. The default time zone is UTC.
+    "referenceTimeZone": "",
+
+    // If assertions are active based on the hour, the value below is an array where the first element is the number of
+    // the first hour in the time range when assertions should be active and the second element is the number of the
+    // last such hour, inclusive, e.g. [0, 7]. The value can also be an array of ranges, e.g. [[21, 23], [0, 2]].
+    // Possible values for a range component: 0 through 23.
+    "assertionsAreActiveWithinHourRange": [null, null],
+
+    // If assertions are active based on the day of week, the value below is an array with the names of the days of
+    // week on which assertions should be active, e.g. ["sun", "sat"].
+    // Possible values for an array element: "sun", "mon", "tue", "wed", "thu", "fri", "sat".
+    "assertionsAreActiveOnDaysOfWeek": [""],
+
+    // If assertions are active based on the day of year, they are active on every day the number of which is a
+    // multiple of the value below.
+    "assertionsAreActiveOnEveryDayOfYearMultipleOf": null,
+
+    // Whether to enable the advanced assertions that are likely to take more time compared to the regular ones.
+    "enableAssertionsLevel2": false,
+
+    // The error reporting level.
+    // http://www.php.net/manual/en/errorfunc.constants.php
+    "errorReportingLevel": "E_ALL"
+}

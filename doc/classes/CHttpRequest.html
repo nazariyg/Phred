@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>Phred API</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet" media="all"/>
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Phred API</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">426</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-919663094"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-919663094" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/ICopyingStatic.html">ICopyingStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEquality.html">IEquality</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrder.html">IEqualityAndOrder</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrderStatic.html">IEqualityAndOrderStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityStatic.html">IEqualityStatic</a></li>
+                                                                                                    <li class="class"><a href="../classes/array.html">array</a></li>
+                                                    <li class="class"><a href="../classes/bitfield.html">bitfield</a></li>
+                                                    <li class="class"><a href="../classes/CArray.html">CArray</a></li>
+                                                    <li class="class"><a href="../classes/CArrayObject.html">CArrayObject</a></li>
+                                                    <li class="class"><a href="../classes/CBase64.html">CBase64</a></li>
+                                                    <li class="class"><a href="../classes/CBitField.html">CBitField</a></li>
+                                                    <li class="class"><a href="../classes/CComparator.html">CComparator</a></li>
+                                                    <li class="class"><a href="../classes/CConfiguration.html">CConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CCookie.html">CCookie</a></li>
+                                                    <li class="class"><a href="../classes/CEString.html">CEString</a></li>
+                                                    <li class="class"><a href="../classes/CFile.html">CFile</a></li>
+                                                    <li class="class"><a href="../classes/CFilePath.html">CFilePath</a></li>
+                                                    <li class="class"><a href="../classes/CGZip.html">CGZip</a></li>
+                                                    <li class="class"><a href="../classes/CHash.html">CHash</a></li>
+                                                    <li class="class"><a href="../classes/CHtml.html">CHtml</a></li>
+                                                    <li class="class"><a href="../classes/CHttpRequest.html">CHttpRequest</a></li>
+                                                    <li class="class"><a href="../classes/CHttpResponse.html">CHttpResponse</a></li>
+                                                    <li class="class"><a href="../classes/CInetRequest.html">CInetRequest</a></li>
+                                                    <li class="class"><a href="../classes/CInetSession.html">CInetSession</a></li>
+                                                    <li class="class"><a href="../classes/CInputFilter.html">CInputFilter</a></li>
+                                                    <li class="class"><a href="../classes/CIp.html">CIp</a></li>
+                                                    <li class="class"><a href="../classes/CJson.html">CJson</a></li>
+                                                    <li class="class"><a href="../classes/CMail.html">CMail</a></li>
+                                                    <li class="class"><a href="../classes/CMap.html">CMap</a></li>
+                                                    <li class="class"><a href="../classes/CMapObject.html">CMapObject</a></li>
+                                                    <li class="class"><a href="../classes/CMathf.html">CMathf</a></li>
+                                                    <li class="class"><a href="../classes/CMathi.html">CMathi</a></li>
+                                                    <li class="class"><a href="../classes/CMimeType.html">CMimeType</a></li>
+                                                    <li class="class"><a href="../classes/CRegex.html">CRegex</a></li>
+                                                    <li class="class"><a href="../classes/CRequest.html">CRequest</a></li>
+                                                    <li class="class"><a href="../classes/CResponse.html">CResponse</a></li>
+                                                    <li class="class"><a href="../classes/CShell.html">CShell</a></li>
+                                                    <li class="class"><a href="../classes/CString.html">CString</a></li>
+                                                    <li class="class"><a href="../classes/CSystem.html">CSystem</a></li>
+                                                    <li class="class"><a href="../classes/CTime.html">CTime</a></li>
+                                                    <li class="class"><a href="../classes/CTimeZone.html">CTimeZone</a></li>
+                                                    <li class="class"><a href="../classes/CUFormat.html">CUFormat</a></li>
+                                                    <li class="class"><a href="../classes/CULocale.html">CULocale</a></li>
+                                                    <li class="class"><a href="../classes/CUrl.html">CUrl</a></li>
+                                                    <li class="class"><a href="../classes/CUrlPath.html">CUrlPath</a></li>
+                                                    <li class="class"><a href="../classes/CUrlQuery.html">CUrlQuery</a></li>
+                                                    <li class="class"><a href="../classes/CUString.html">CUString</a></li>
+                                                    <li class="class"><a href="../classes/CUStringObject.html">CUStringObject</a></li>
+                                                    <li class="class"><a href="../classes/CUUnit.html">CUUnit</a></li>
+                                                    <li class="class"><a href="../classes/CXml.html">CXml</a></li>
+                                                    <li class="class"><a href="../classes/enum.html">enum</a></li>
+                                                    <li class="class"><a href="../classes/map.html">map</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span12 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <!--
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    -->
+                    <br/ >
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><!-- <small>\</small> -->CHttpRequest</h1>
+                    <p><em><p>The class that enumerates the HTTP methods and HTTP request headers. This is also the base class for the CRequest
+class.</p></em></p>
+                    
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methodsum">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/CHttpRequest.html#method___construct" class="">__construct()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CHttpRequest.html#constant_GET" class="">GET</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_HEAD" class="">HEAD</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_POST" class="">POST</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_PUT" class="">PUT</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_DELETE" class="">DELETE</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_OPTIONS" class="">OPTIONS</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_TRACE" class="">TRACE</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_CONNECT" class="">CONNECT</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_UNKNOWN" class="">UNKNOWN</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_ACCEPT" class="">ACCEPT</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_ACCEPT_CHARSET" class="">ACCEPT_CHARSET</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_ACCEPT_DATETIME" class="">ACCEPT_DATETIME</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_ACCEPT_ENCODING" class="">ACCEPT_ENCODING</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_ACCEPT_LANGUAGE" class="">ACCEPT_LANGUAGE</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_AUTHORIZATION" class="">AUTHORIZATION</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_CACHE_CONTROL" class="">CACHE_CONTROL</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_CONNECTION" class="">CONNECTION</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_CONTENT_LENGTH" class="">CONTENT_LENGTH</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_CONTENT_MD5" class="">CONTENT_MD5</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_CONTENT_TYPE" class="">CONTENT_TYPE</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_COOKIE" class="">COOKIE</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_DATE" class="">DATE</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_DNT" class="">DNT</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_EXPECT" class="">EXPECT</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_FROM" class="">FROM</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_HOST" class="">HOST</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_IF_MATCH" class="">IF_MATCH</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_IF_MODIFIED_SINCE" class="">IF_MODIFIED_SINCE</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_IF_NONE_MATCH" class="">IF_NONE_MATCH</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_IF_RANGE" class="">IF_RANGE</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_IF_UNMODIFIED_SINCE" class="">IF_UNMODIFIED_SINCE</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_MAX_FORWARDS" class="">MAX_FORWARDS</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_ORIGIN" class="">ORIGIN</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_PRAGMA" class="">PRAGMA</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_PROXY_AUTHORIZATION" class="">PROXY_AUTHORIZATION</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_RANGE" class="">RANGE</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_REFERER" class="">REFERER</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_TE" class="">TE</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_UPGRADE" class="">UPGRADE</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_USER_AGENT" class="">USER_AGENT</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_VIA" class="">VIA</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_WARNING" class="">WARNING</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_X_FORWARDED_FOR" class="">X_FORWARDED_FOR</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_X_FORWARDED_PROTO" class="">X_FORWARDED_PROTO</a><br />
+                                                                    <a href="../classes/CHttpRequest.html#constant_X_REQUESTED_WITH" class="">X_REQUESTED_WITH</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties</em>
+                                                            </section>
+                        </section>
+                        <!--
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                        </section>
+                        -->
+                    </section>
+                </div>
+                <aside class="span2 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Classes.Http.CHttpRequest.php.html"><div class="path-wrapper">Classes/Http/CHttpRequest.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper"></div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\CRootClass</div>
+                                                                                                    <div class="namespace-wrapper">\CHttpRequest</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2 style="visibility: hidden">Tags</h2>
+                    <table class="table table-condensed" style="visibility: hidden">
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+            <a id="methodsum" name="methodsum"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Method Summary</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/CHttpRequest.html#method___construct" class="">__construct()</a></td>
+                            <td><p>Currently no-op.</p></td>
+                        </tr>
+                                        </table>
+                </div>
+                <aside class="span2 detailsbar"> </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_GET" name="constant_GET" class="anchor"></a>
+            <article id="constant_GET" class="constant">
+                <h3 class="">GET</h3>
+                <pre class="signature">GET</pre>
+                <p><p><code>enum</code> GET method.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HEAD" name="constant_HEAD" class="anchor"></a>
+            <article id="constant_HEAD" class="constant">
+                <h3 class="">HEAD</h3>
+                <pre class="signature">HEAD</pre>
+                <p><p><code>enum</code> HEAD method.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_POST" name="constant_POST" class="anchor"></a>
+            <article id="constant_POST" class="constant">
+                <h3 class="">POST</h3>
+                <pre class="signature">POST</pre>
+                <p><p><code>enum</code> POST method.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_PUT" name="constant_PUT" class="anchor"></a>
+            <article id="constant_PUT" class="constant">
+                <h3 class="">PUT</h3>
+                <pre class="signature">PUT</pre>
+                <p><p><code>enum</code> PUT method.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DELETE" name="constant_DELETE" class="anchor"></a>
+            <article id="constant_DELETE" class="constant">
+                <h3 class="">DELETE</h3>
+                <pre class="signature">DELETE</pre>
+                <p><p><code>enum</code> DELETE method.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_OPTIONS" name="constant_OPTIONS" class="anchor"></a>
+            <article id="constant_OPTIONS" class="constant">
+                <h3 class="">OPTIONS</h3>
+                <pre class="signature">OPTIONS</pre>
+                <p><p><code>enum</code> OPTIONS method.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TRACE" name="constant_TRACE" class="anchor"></a>
+            <article id="constant_TRACE" class="constant">
+                <h3 class="">TRACE</h3>
+                <pre class="signature">TRACE</pre>
+                <p><p><code>enum</code> TRACE method.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CONNECT" name="constant_CONNECT" class="anchor"></a>
+            <article id="constant_CONNECT" class="constant">
+                <h3 class="">CONNECT</h3>
+                <pre class="signature">CONNECT</pre>
+                <p><p><code>enum</code> CONNECT method.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_UNKNOWN" name="constant_UNKNOWN" class="anchor"></a>
+            <article id="constant_UNKNOWN" class="constant">
+                <h3 class="">UNKNOWN</h3>
+                <pre class="signature">UNKNOWN</pre>
+                <p><p><code>enum</code> UNKNOWN method.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ACCEPT" name="constant_ACCEPT" class="anchor"></a>
+            <article id="constant_ACCEPT" class="constant">
+                <h3 class="">ACCEPT</h3>
+                <pre class="signature">ACCEPT</pre>
+                <p><p><code>string</code> "Accept" Types that are acceptable,
+e.g. "text/html,application/xhtml+xml,application/xml;q=0.9,text/*;q=0.8".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ACCEPT_CHARSET" name="constant_ACCEPT_CHARSET" class="anchor"></a>
+            <article id="constant_ACCEPT_CHARSET" class="constant">
+                <h3 class="">ACCEPT_CHARSET</h3>
+                <pre class="signature">ACCEPT_CHARSET</pre>
+                <p><p><code>string</code> "Accept-Charset" Character sets that are acceptable, e.g. "utf-8".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ACCEPT_DATETIME" name="constant_ACCEPT_DATETIME" class="anchor"></a>
+            <article id="constant_ACCEPT_DATETIME" class="constant">
+                <h3 class="">ACCEPT_DATETIME</h3>
+                <pre class="signature">ACCEPT_DATETIME</pre>
+                <p><p><code>string</code> "Accept-Datetime" Acceptable version in time, e.g. "Thu, 31 May 2007 20:35:00 GMT".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ACCEPT_ENCODING" name="constant_ACCEPT_ENCODING" class="anchor"></a>
+            <article id="constant_ACCEPT_ENCODING" class="constant">
+                <h3 class="">ACCEPT_ENCODING</h3>
+                <pre class="signature">ACCEPT_ENCODING</pre>
+                <p><p><code>string</code> "Accept-Encoding" List of acceptable encodings, e.g. "gzip, deflate".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ACCEPT_LANGUAGE" name="constant_ACCEPT_LANGUAGE" class="anchor"></a>
+            <article id="constant_ACCEPT_LANGUAGE" class="constant">
+                <h3 class="">ACCEPT_LANGUAGE</h3>
+                <pre class="signature">ACCEPT_LANGUAGE</pre>
+                <p><p><code>string</code> "Accept-Language" List of acceptable human languages for response, e.g. "en-US,en;q=0.5".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_AUTHORIZATION" name="constant_AUTHORIZATION" class="anchor"></a>
+            <article id="constant_AUTHORIZATION" class="constant">
+                <h3 class="">AUTHORIZATION</h3>
+                <pre class="signature">AUTHORIZATION</pre>
+                <p><p><code>string</code> "Authorization" Authentication credentials for HTTP authentication,
+e.g. "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CACHE_CONTROL" name="constant_CACHE_CONTROL" class="anchor"></a>
+            <article id="constant_CACHE_CONTROL" class="constant">
+                <h3 class="">CACHE_CONTROL</h3>
+                <pre class="signature">CACHE_CONTROL</pre>
+                <p><p><code>string</code> "Cache-Control" Directives that must be obeyed along the request/response chain, e.g. "no-cache".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CONNECTION" name="constant_CONNECTION" class="anchor"></a>
+            <article id="constant_CONNECTION" class="constant">
+                <h3 class="">CONNECTION</h3>
+                <pre class="signature">CONNECTION</pre>
+                <p><p><code>string</code> "Connection" What type of connection the user-agent would prefer, e.g. "keep-alive".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CONTENT_LENGTH" name="constant_CONTENT_LENGTH" class="anchor"></a>
+            <article id="constant_CONTENT_LENGTH" class="constant">
+                <h3 class="">CONTENT_LENGTH</h3>
+                <pre class="signature">CONTENT_LENGTH</pre>
+                <p><p><code>string</code> "Content-Length" The length of the request body in bytes, e.g. "348".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CONTENT_MD5" name="constant_CONTENT_MD5" class="anchor"></a>
+            <article id="constant_CONTENT_MD5" class="constant">
+                <h3 class="">CONTENT_MD5</h3>
+                <pre class="signature">CONTENT_MD5</pre>
+                <p><p><code>string</code> "Content-MD5" A Base64-encoded binary MD5 sum of the content of the request body,
+e.g. "Q2hlY2sgSW50ZWdyaXR5IQ==".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CONTENT_TYPE" name="constant_CONTENT_TYPE" class="anchor"></a>
+            <article id="constant_CONTENT_TYPE" class="constant">
+                <h3 class="">CONTENT_TYPE</h3>
+                <pre class="signature">CONTENT_TYPE</pre>
+                <p><p><code>string</code> "Content-Type" The MIME type of the body of the request (for POST and PUT),
+e.g. "application/x-www-form-urlencoded".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_COOKIE" name="constant_COOKIE" class="anchor"></a>
+            <article id="constant_COOKIE" class="constant">
+                <h3 class="">COOKIE</h3>
+                <pre class="signature">COOKIE</pre>
+                <p><p><code>string</code> "Cookie" An HTTP cookie previously sent by the server with Set-Cookie, e.g. "version=1; skin=new".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DATE" name="constant_DATE" class="anchor"></a>
+            <article id="constant_DATE" class="constant">
+                <h3 class="">DATE</h3>
+                <pre class="signature">DATE</pre>
+                <p><p><code>string</code> "Date" The date and time that the message was sent, e.g. "Thu, 31 May 2007 20:35:00 GMT".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DNT" name="constant_DNT" class="anchor"></a>
+            <article id="constant_DNT" class="constant">
+                <h3 class="">DNT</h3>
+                <pre class="signature">DNT</pre>
+                <p><p><code>string</code> "DNT" Requests a web application to disable their tracking of a user, e.g. "1".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_EXPECT" name="constant_EXPECT" class="anchor"></a>
+            <article id="constant_EXPECT" class="constant">
+                <h3 class="">EXPECT</h3>
+                <pre class="signature">EXPECT</pre>
+                <p><p><code>string</code> "Expect" Indicates that particular server behaviors are required by the client, e.g. "100-continue".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FROM" name="constant_FROM" class="anchor"></a>
+            <article id="constant_FROM" class="constant">
+                <h3 class="">FROM</h3>
+                <pre class="signature">FROM</pre>
+                <p><p><code>string</code> "From" The email address of the user making the request, e.g. "user@example.com".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HOST" name="constant_HOST" class="anchor"></a>
+            <article id="constant_HOST" class="constant">
+                <h3 class="">HOST</h3>
+                <pre class="signature">HOST</pre>
+                <p><p><code>string</code> "Host" The target domain name, with or without the port number, e.g. "www.example.com:80"; required.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_IF_MATCH" name="constant_IF_MATCH" class="anchor"></a>
+            <article id="constant_IF_MATCH" class="constant">
+                <h3 class="">IF_MATCH</h3>
+                <pre class="signature">IF_MATCH</pre>
+                <p><p><code>string</code> "If-Match" Ignore the request if the ETag doesn't match (for PUT),
+e.g. ""737060cd8c284d8af7ad3082f209582d"".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_IF_MODIFIED_SINCE" name="constant_IF_MODIFIED_SINCE" class="anchor"></a>
+            <article id="constant_IF_MODIFIED_SINCE" class="constant">
+                <h3 class="">IF_MODIFIED_SINCE</h3>
+                <pre class="signature">IF_MODIFIED_SINCE</pre>
+                <p><p><code>string</code> "If-Modified-Since" Allows 304 Not Modified to be returned if content is same,
+e.g. "Thu, 31 May 2007 20:35:00 GMT".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_IF_NONE_MATCH" name="constant_IF_NONE_MATCH" class="anchor"></a>
+            <article id="constant_IF_NONE_MATCH" class="constant">
+                <h3 class="">IF_NONE_MATCH</h3>
+                <pre class="signature">IF_NONE_MATCH</pre>
+                <p><p><code>string</code> "If-None-Match" Allows 304 Not Modified to be returned if content is same,
+e.g. ""737060cd8c284d8af7ad3082f209582d"".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_IF_RANGE" name="constant_IF_RANGE" class="anchor"></a>
+            <article id="constant_IF_RANGE" class="constant">
+                <h3 class="">IF_RANGE</h3>
+                <pre class="signature">IF_RANGE</pre>
+                <p><p><code>string</code> "If-Range" If unchanged, send the range, or entire entity otherwise,
+e.g. ""737060cd8c284d8af7ad3082f209582d"".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_IF_UNMODIFIED_SINCE" name="constant_IF_UNMODIFIED_SINCE" class="anchor"></a>
+            <article id="constant_IF_UNMODIFIED_SINCE" class="constant">
+                <h3 class="">IF_UNMODIFIED_SINCE</h3>
+                <pre class="signature">IF_UNMODIFIED_SINCE</pre>
+                <p><p><code>string</code> "If-Unmodified-Since" Only respond if the entity hasn't been modified since this time,
+e.g. "Thu, 31 May 2007 20:35:00 GMT".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MAX_FORWARDS" name="constant_MAX_FORWARDS" class="anchor"></a>
+            <article id="constant_MAX_FORWARDS" class="constant">
+                <h3 class="">MAX_FORWARDS</h3>
+                <pre class="signature">MAX_FORWARDS</pre>
+                <p><p><code>string</code> "Max-Forwards" Maximum number of times the message can be forwarded through proxies or gateways,
+e.g. "10".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ORIGIN" name="constant_ORIGIN" class="anchor"></a>
+            <article id="constant_ORIGIN" class="constant">
+                <h3 class="">ORIGIN</h3>
+                <pre class="signature">ORIGIN</pre>
+                <p><p><code>string</code> "Origin" Initiates a request for cross-origin resource sharing,
+e.g. "http://www.example-social-network.com".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_PRAGMA" name="constant_PRAGMA" class="anchor"></a>
+            <article id="constant_PRAGMA" class="constant">
+                <h3 class="">PRAGMA</h3>
+                <pre class="signature">PRAGMA</pre>
+                <p><p><code>string</code> "Pragma" Implementation-specific values for anywhere along the request-response chain, e.g. "no-cache".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_PROXY_AUTHORIZATION" name="constant_PROXY_AUTHORIZATION" class="anchor"></a>
+            <article id="constant_PROXY_AUTHORIZATION" class="constant">
+                <h3 class="">PROXY_AUTHORIZATION</h3>
+                <pre class="signature">PROXY_AUTHORIZATION</pre>
+                <p><p><code>string</code> "Proxy-Authorization" Authorization credentials for connecting to a proxy,
+e.g. "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RANGE" name="constant_RANGE" class="anchor"></a>
+            <article id="constant_RANGE" class="constant">
+                <h3 class="">RANGE</h3>
+                <pre class="signature">RANGE</pre>
+                <p><p><code>string</code> "Range" Request only a part of the entity, e.g. "bytes=500-999".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_REFERER" name="constant_REFERER" class="anchor"></a>
+            <article id="constant_REFERER" class="constant">
+                <h3 class="">REFERER</h3>
+                <pre class="signature">REFERER</pre>
+                <p><p><code>string</code> "Referer" The URL from which the request was followed, e.g. "http://example.com/links".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TE" name="constant_TE" class="anchor"></a>
+            <article id="constant_TE" class="constant">
+                <h3 class="">TE</h3>
+                <pre class="signature">TE</pre>
+                <p><p><code>string</code> "TE" The transfer encodings the user agent is willing to accept, e.g. "trailers, deflate".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_UPGRADE" name="constant_UPGRADE" class="anchor"></a>
+            <article id="constant_UPGRADE" class="constant">
+                <h3 class="">UPGRADE</h3>
+                <pre class="signature">UPGRADE</pre>
+                <p><p><code>string</code> "Upgrade" Ask the server to upgrade to another protocol, e.g. "HTTP/1.1".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_USER_AGENT" name="constant_USER_AGENT" class="anchor"></a>
+            <article id="constant_USER_AGENT" class="constant">
+                <h3 class="">USER_AGENT</h3>
+                <pre class="signature">USER_AGENT</pre>
+                <p><p><code>string</code> "User-Agent" The user agent string of the user agent, e.g. "Mozilla/5.0 Gecko/20100101 Firefox/25.0".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_VIA" name="constant_VIA" class="anchor"></a>
+            <article id="constant_VIA" class="constant">
+                <h3 class="">VIA</h3>
+                <pre class="signature">VIA</pre>
+                <p><p><code>string</code> "Via" The proxies through which the request was sent, e.g. "1.0 fred, 1.1 example.com".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_WARNING" name="constant_WARNING" class="anchor"></a>
+            <article id="constant_WARNING" class="constant">
+                <h3 class="">WARNING</h3>
+                <pre class="signature">WARNING</pre>
+                <p><p><code>string</code> "Warning" A general warning, e.g. "199 Miscellaneous warning".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_X_FORWARDED_FOR" name="constant_X_FORWARDED_FOR" class="anchor"></a>
+            <article id="constant_X_FORWARDED_FOR" class="constant">
+                <h3 class="">X_FORWARDED_FOR</h3>
+                <pre class="signature">X_FORWARDED_FOR</pre>
+                <p><p><code>string</code> "X-Forwarded-For" The originating IP address if the client is connecting through a proxy/balancer,
+e.g. "129.78.138.66".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_X_FORWARDED_PROTO" name="constant_X_FORWARDED_PROTO" class="anchor"></a>
+            <article id="constant_X_FORWARDED_PROTO" class="constant">
+                <h3 class="">X_FORWARDED_PROTO</h3>
+                <pre class="signature">X_FORWARDED_PROTO</pre>
+                <p><p><code>string</code> "X-Forwarded-Proto" The originating protocol of a request, e.g. "https".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_X_REQUESTED_WITH" name="constant_X_REQUESTED_WITH" class="anchor"></a>
+            <article id="constant_X_REQUESTED_WITH" class="constant">
+                <h3 class="">X_REQUESTED_WITH</h3>
+                <pre class="signature">X_REQUESTED_WITH</pre>
+                <p><p><code>string</code> "X-Requested-With" Mainly used to identify Ajax requests, e.g. "XMLHttpRequest".</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+            <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct ()</pre>
+                <p><em><p>Currently no-op.</p></em></p>
+                
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                <!--
+                                                -->
+            
+            <!--
+                                    -->
+        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">CHttpRequest.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Classes/Http/CHttpRequest.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4" style="visibility: hidden">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 13th, 2014 at 18:15.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

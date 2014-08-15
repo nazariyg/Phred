@@ -1,0 +1,3406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>Phred API</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet" media="all"/>
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Phred API</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">426</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1599043433"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1599043433" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/ICopyingStatic.html">ICopyingStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEquality.html">IEquality</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrder.html">IEqualityAndOrder</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrderStatic.html">IEqualityAndOrderStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityStatic.html">IEqualityStatic</a></li>
+                                                                                                    <li class="class"><a href="../classes/array.html">array</a></li>
+                                                    <li class="class"><a href="../classes/bitfield.html">bitfield</a></li>
+                                                    <li class="class"><a href="../classes/CArray.html">CArray</a></li>
+                                                    <li class="class"><a href="../classes/CArrayObject.html">CArrayObject</a></li>
+                                                    <li class="class"><a href="../classes/CBase64.html">CBase64</a></li>
+                                                    <li class="class"><a href="../classes/CBitField.html">CBitField</a></li>
+                                                    <li class="class"><a href="../classes/CComparator.html">CComparator</a></li>
+                                                    <li class="class"><a href="../classes/CConfiguration.html">CConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CCookie.html">CCookie</a></li>
+                                                    <li class="class"><a href="../classes/CEString.html">CEString</a></li>
+                                                    <li class="class"><a href="../classes/CFile.html">CFile</a></li>
+                                                    <li class="class"><a href="../classes/CFilePath.html">CFilePath</a></li>
+                                                    <li class="class"><a href="../classes/CGZip.html">CGZip</a></li>
+                                                    <li class="class"><a href="../classes/CHash.html">CHash</a></li>
+                                                    <li class="class"><a href="../classes/CHtml.html">CHtml</a></li>
+                                                    <li class="class"><a href="../classes/CHttpRequest.html">CHttpRequest</a></li>
+                                                    <li class="class"><a href="../classes/CHttpResponse.html">CHttpResponse</a></li>
+                                                    <li class="class"><a href="../classes/CInetRequest.html">CInetRequest</a></li>
+                                                    <li class="class"><a href="../classes/CInetSession.html">CInetSession</a></li>
+                                                    <li class="class"><a href="../classes/CInputFilter.html">CInputFilter</a></li>
+                                                    <li class="class"><a href="../classes/CIp.html">CIp</a></li>
+                                                    <li class="class"><a href="../classes/CJson.html">CJson</a></li>
+                                                    <li class="class"><a href="../classes/CMail.html">CMail</a></li>
+                                                    <li class="class"><a href="../classes/CMap.html">CMap</a></li>
+                                                    <li class="class"><a href="../classes/CMapObject.html">CMapObject</a></li>
+                                                    <li class="class"><a href="../classes/CMathf.html">CMathf</a></li>
+                                                    <li class="class"><a href="../classes/CMathi.html">CMathi</a></li>
+                                                    <li class="class"><a href="../classes/CMimeType.html">CMimeType</a></li>
+                                                    <li class="class"><a href="../classes/CRegex.html">CRegex</a></li>
+                                                    <li class="class"><a href="../classes/CRequest.html">CRequest</a></li>
+                                                    <li class="class"><a href="../classes/CResponse.html">CResponse</a></li>
+                                                    <li class="class"><a href="../classes/CShell.html">CShell</a></li>
+                                                    <li class="class"><a href="../classes/CString.html">CString</a></li>
+                                                    <li class="class"><a href="../classes/CSystem.html">CSystem</a></li>
+                                                    <li class="class"><a href="../classes/CTime.html">CTime</a></li>
+                                                    <li class="class"><a href="../classes/CTimeZone.html">CTimeZone</a></li>
+                                                    <li class="class"><a href="../classes/CUFormat.html">CUFormat</a></li>
+                                                    <li class="class"><a href="../classes/CULocale.html">CULocale</a></li>
+                                                    <li class="class"><a href="../classes/CUrl.html">CUrl</a></li>
+                                                    <li class="class"><a href="../classes/CUrlPath.html">CUrlPath</a></li>
+                                                    <li class="class"><a href="../classes/CUrlQuery.html">CUrlQuery</a></li>
+                                                    <li class="class"><a href="../classes/CUString.html">CUString</a></li>
+                                                    <li class="class"><a href="../classes/CUStringObject.html">CUStringObject</a></li>
+                                                    <li class="class"><a href="../classes/CUUnit.html">CUUnit</a></li>
+                                                    <li class="class"><a href="../classes/CXml.html">CXml</a></li>
+                                                    <li class="class"><a href="../classes/enum.html">enum</a></li>
+                                                    <li class="class"><a href="../classes/map.html">map</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span12 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <!--
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    -->
+                    <br/ >
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><!-- <small>\</small> -->CUUnit</h1>
+                    <p><em><p>A collection of static methods that convert amounts of digital storage, time, length, speed, temperature, area,
+volume, and mass from one measurement unit into another.</p></em></p>
+                    <p>Those methods that end with an "i" take an integer value for input and return an integer value for output. Likewise,
+those methods that end with an "f" take a floating-point value for input and return a floating-point value for
+output. Integer conversion works best when the source unit is known to be integrally representable in the
+destination unit without any (or little) loss of information, e.g. when converting from megabytes to bytes, while
+floating-point conversion is usually more preferable in other cases.</p>
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methodsum">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/CUUnit.html#method_convertStoragei" class="">convertStoragei()</a><br />
+                                                                    <a href="../classes/CUUnit.html#method_convertStoragef" class="">convertStoragef()</a><br />
+                                                                    <a href="../classes/CUUnit.html#method_convertTimei" class="">convertTimei()</a><br />
+                                                                    <a href="../classes/CUUnit.html#method_convertTimef" class="">convertTimef()</a><br />
+                                                                    <a href="../classes/CUUnit.html#method_convertLengthi" class="">convertLengthi()</a><br />
+                                                                    <a href="../classes/CUUnit.html#method_convertLengthf" class="">convertLengthf()</a><br />
+                                                                    <a href="../classes/CUUnit.html#method_convertSpeedi" class="">convertSpeedi()</a><br />
+                                                                    <a href="../classes/CUUnit.html#method_convertSpeedf" class="">convertSpeedf()</a><br />
+                                                                    <a href="../classes/CUUnit.html#method_convertTemperaturei" class="">convertTemperaturei()</a><br />
+                                                                    <a href="../classes/CUUnit.html#method_convertTemperaturef" class="">convertTemperaturef()</a><br />
+                                                                    <a href="../classes/CUUnit.html#method_convertAreai" class="">convertAreai()</a><br />
+                                                                    <a href="../classes/CUUnit.html#method_convertAreaf" class="">convertAreaf()</a><br />
+                                                                    <a href="../classes/CUUnit.html#method_convertVolumei" class="">convertVolumei()</a><br />
+                                                                    <a href="../classes/CUUnit.html#method_convertVolumef" class="">convertVolumef()</a><br />
+                                                                    <a href="../classes/CUUnit.html#method_convertMassi" class="">convertMassi()</a><br />
+                                                                    <a href="../classes/CUUnit.html#method_convertMassf" class="">convertMassf()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CUUnit.html#constant_BIT" class="">BIT</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_BYTE" class="">BYTE</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_KILOBIT" class="">KILOBIT</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_KILOBYTE" class="">KILOBYTE</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_MEGABIT" class="">MEGABIT</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_MEGABYTE" class="">MEGABYTE</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_GIGABIT" class="">GIGABIT</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_GIGABYTE" class="">GIGABYTE</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_TERABIT" class="">TERABIT</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_TERABYTE" class="">TERABYTE</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_PETABIT" class="">PETABIT</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_PETABYTE" class="">PETABYTE</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_MILLISECOND" class="">MILLISECOND</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_SECOND" class="">SECOND</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_MINUTE" class="">MINUTE</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_HOUR" class="">HOUR</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_DAY" class="">DAY</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_WEEK" class="">WEEK</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_MONTH" class="">MONTH</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_YEAR" class="">YEAR</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_DECADE" class="">DECADE</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_MILLIMETER" class="">MILLIMETER</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_CENTIMETER" class="">CENTIMETER</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_METER" class="">METER</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_KILOMETER" class="">KILOMETER</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_INCH" class="">INCH</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_FOOT" class="">FOOT</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_YARD" class="">YARD</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_MILE" class="">MILE</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_NAUTICAL_MILE" class="">NAUTICAL_MILE</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_METERS_PER_SECOND" class="">METERS_PER_SECOND</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_KILOMETERS_PER_HOUR" class="">KILOMETERS_PER_HOUR</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_FEET_PER_SECOND" class="">FEET_PER_SECOND</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_MILES_PER_HOUR" class="">MILES_PER_HOUR</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_KNOT" class="">KNOT</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_CELSIUS" class="">CELSIUS</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_FAHRENHEIT" class="">FAHRENHEIT</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_KELVIN" class="">KELVIN</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_SQUARE_METER" class="">SQUARE_METER</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_HECTARE" class="">HECTARE</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_SQUARE_KILOMETER" class="">SQUARE_KILOMETER</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_SQUARE_INCH" class="">SQUARE_INCH</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_SQUARE_FOOT" class="">SQUARE_FOOT</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_SQUARE_YARD" class="">SQUARE_YARD</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_ACRE" class="">ACRE</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_SQUARE_MILE" class="">SQUARE_MILE</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_MILLILITER" class="">MILLILITER</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_LITER" class="">LITER</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_CUBIC_METER" class="">CUBIC_METER</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_CUBIC_INCH" class="">CUBIC_INCH</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_CUBIC_FOOT" class="">CUBIC_FOOT</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_US_TEASPOON" class="">US_TEASPOON</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_US_TABLESPOON" class="">US_TABLESPOON</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_US_FLUID_OUNCE" class="">US_FLUID_OUNCE</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_US_CUP" class="">US_CUP</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_US_PINT" class="">US_PINT</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_US_QUART" class="">US_QUART</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_US_GALLON" class="">US_GALLON</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_IMPERIAL_TEASPOON" class="">IMPERIAL_TEASPOON</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_IMPERIAL_TABLESPOON" class="">IMPERIAL_TABLESPOON</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_IMPERIAL_FLUID_OUNCE" class="">IMPERIAL_FLUID_OUNCE</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_IMPERIAL_PINT" class="">IMPERIAL_PINT</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_IMPERIAL_QUART" class="">IMPERIAL_QUART</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_IMPERIAL_GALLON" class="">IMPERIAL_GALLON</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_MILLIGRAM" class="">MILLIGRAM</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_GRAM" class="">GRAM</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_KILOGRAM" class="">KILOGRAM</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_TON" class="">TON</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_OUNCE" class="">OUNCE</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_POUND" class="">POUND</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_STONE" class="">STONE</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_SHORT_TON" class="">SHORT_TON</a><br />
+                                                                    <a href="../classes/CUUnit.html#constant_LONG_TON" class="">LONG_TON</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties</em>
+                                                            </section>
+                        </section>
+                        <!--
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                        </section>
+                        -->
+                    </section>
+                </div>
+                <aside class="span2 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Classes.U14n.CUUnit.php.html"><div class="path-wrapper">Classes/U14n/CUUnit.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper"></div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\CRootClass</div>
+                                                                                                    <div class="namespace-wrapper">\CUUnit</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2 style="visibility: hidden">Tags</h2>
+                    <table class="table table-condensed" style="visibility: hidden">
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+            <a id="methodsum" name="methodsum"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Method Summary</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/CUUnit.html#method_convertStoragei" class="">convertStoragei()</a></td>
+                            <td><p>Converts an integer quantity of digital storage from one unit into another and returns the result.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUUnit.html#method_convertStoragef" class="">convertStoragef()</a></td>
+                            <td><p>Converts a floating-point quantity of digital storage from one unit into another and returns the result.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUUnit.html#method_convertTimei" class="">convertTimei()</a></td>
+                            <td><p>Converts an integer quantity of time from one unit into another and returns the result.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUUnit.html#method_convertTimef" class="">convertTimef()</a></td>
+                            <td><p>Converts a floating-point quantity of time from one unit into another and returns the result.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUUnit.html#method_convertLengthi" class="">convertLengthi()</a></td>
+                            <td><p>Converts an integer quantity of length from one unit into another and returns the result.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUUnit.html#method_convertLengthf" class="">convertLengthf()</a></td>
+                            <td><p>Converts a floating-point quantity of length from one unit into another and returns the result.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUUnit.html#method_convertSpeedi" class="">convertSpeedi()</a></td>
+                            <td><p>Converts an integer quantity of speed from one unit into another and returns the result.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUUnit.html#method_convertSpeedf" class="">convertSpeedf()</a></td>
+                            <td><p>Converts a floating-point quantity of speed from one unit into another and returns the result.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUUnit.html#method_convertTemperaturei" class="">convertTemperaturei()</a></td>
+                            <td><p>Converts an integer quantity of temperature from one unit into another and returns the result.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUUnit.html#method_convertTemperaturef" class="">convertTemperaturef()</a></td>
+                            <td><p>Converts a floating-point quantity of temperature from one unit into another and returns the result.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUUnit.html#method_convertAreai" class="">convertAreai()</a></td>
+                            <td><p>Converts an integer quantity of area from one unit into another and returns the result.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUUnit.html#method_convertAreaf" class="">convertAreaf()</a></td>
+                            <td><p>Converts a floating-point quantity of area from one unit into another and returns the result.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUUnit.html#method_convertVolumei" class="">convertVolumei()</a></td>
+                            <td><p>Converts an integer quantity of volume from one unit into another and returns the result.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUUnit.html#method_convertVolumef" class="">convertVolumef()</a></td>
+                            <td><p>Converts a floating-point quantity of volume from one unit into another and returns the result.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUUnit.html#method_convertMassi" class="">convertMassi()</a></td>
+                            <td><p>Converts an integer quantity of mass from one unit into another and returns the result.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUUnit.html#method_convertMassf" class="">convertMassf()</a></td>
+                            <td><p>Converts a floating-point quantity of mass from one unit into another and returns the result.</p></td>
+                        </tr>
+                                        </table>
+                </div>
+                <aside class="span2 detailsbar"> </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_BIT" name="constant_BIT" class="anchor"></a>
+            <article id="constant_BIT" class="constant">
+                <h3 class="">BIT</h3>
+                <pre class="signature">BIT</pre>
+                <p><p><code>enum</code> Bit.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_BYTE" name="constant_BYTE" class="anchor"></a>
+            <article id="constant_BYTE" class="constant">
+                <h3 class="">BYTE</h3>
+                <pre class="signature">BYTE</pre>
+                <p><p><code>enum</code> Byte.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_KILOBIT" name="constant_KILOBIT" class="anchor"></a>
+            <article id="constant_KILOBIT" class="constant">
+                <h3 class="">KILOBIT</h3>
+                <pre class="signature">KILOBIT</pre>
+                <p><p><code>enum</code> Kilobit.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_KILOBYTE" name="constant_KILOBYTE" class="anchor"></a>
+            <article id="constant_KILOBYTE" class="constant">
+                <h3 class="">KILOBYTE</h3>
+                <pre class="signature">KILOBYTE</pre>
+                <p><p><code>enum</code> Kilobyte.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MEGABIT" name="constant_MEGABIT" class="anchor"></a>
+            <article id="constant_MEGABIT" class="constant">
+                <h3 class="">MEGABIT</h3>
+                <pre class="signature">MEGABIT</pre>
+                <p><p><code>enum</code> Megabit.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MEGABYTE" name="constant_MEGABYTE" class="anchor"></a>
+            <article id="constant_MEGABYTE" class="constant">
+                <h3 class="">MEGABYTE</h3>
+                <pre class="signature">MEGABYTE</pre>
+                <p><p><code>enum</code> Megabyte.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_GIGABIT" name="constant_GIGABIT" class="anchor"></a>
+            <article id="constant_GIGABIT" class="constant">
+                <h3 class="">GIGABIT</h3>
+                <pre class="signature">GIGABIT</pre>
+                <p><p><code>enum</code> Gigabit.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_GIGABYTE" name="constant_GIGABYTE" class="anchor"></a>
+            <article id="constant_GIGABYTE" class="constant">
+                <h3 class="">GIGABYTE</h3>
+                <pre class="signature">GIGABYTE</pre>
+                <p><p><code>enum</code> Gigabyte.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TERABIT" name="constant_TERABIT" class="anchor"></a>
+            <article id="constant_TERABIT" class="constant">
+                <h3 class="">TERABIT</h3>
+                <pre class="signature">TERABIT</pre>
+                <p><p><code>enum</code> Terabit.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TERABYTE" name="constant_TERABYTE" class="anchor"></a>
+            <article id="constant_TERABYTE" class="constant">
+                <h3 class="">TERABYTE</h3>
+                <pre class="signature">TERABYTE</pre>
+                <p><p><code>enum</code> Terabyte.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_PETABIT" name="constant_PETABIT" class="anchor"></a>
+            <article id="constant_PETABIT" class="constant">
+                <h3 class="">PETABIT</h3>
+                <pre class="signature">PETABIT</pre>
+                <p><p><code>enum</code> Petabit.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_PETABYTE" name="constant_PETABYTE" class="anchor"></a>
+            <article id="constant_PETABYTE" class="constant">
+                <h3 class="">PETABYTE</h3>
+                <pre class="signature">PETABYTE</pre>
+                <p><p><code>enum</code> Petabyte.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MILLISECOND" name="constant_MILLISECOND" class="anchor"></a>
+            <article id="constant_MILLISECOND" class="constant">
+                <h3 class="">MILLISECOND</h3>
+                <pre class="signature">MILLISECOND</pre>
+                <p><p><code>enum</code> Millisecond.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SECOND" name="constant_SECOND" class="anchor"></a>
+            <article id="constant_SECOND" class="constant">
+                <h3 class="">SECOND</h3>
+                <pre class="signature">SECOND</pre>
+                <p><p><code>enum</code> Second.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MINUTE" name="constant_MINUTE" class="anchor"></a>
+            <article id="constant_MINUTE" class="constant">
+                <h3 class="">MINUTE</h3>
+                <pre class="signature">MINUTE</pre>
+                <p><p><code>enum</code> Minute.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HOUR" name="constant_HOUR" class="anchor"></a>
+            <article id="constant_HOUR" class="constant">
+                <h3 class="">HOUR</h3>
+                <pre class="signature">HOUR</pre>
+                <p><p><code>enum</code> Hour.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DAY" name="constant_DAY" class="anchor"></a>
+            <article id="constant_DAY" class="constant">
+                <h3 class="">DAY</h3>
+                <pre class="signature">DAY</pre>
+                <p><p><code>enum</code> Day.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_WEEK" name="constant_WEEK" class="anchor"></a>
+            <article id="constant_WEEK" class="constant">
+                <h3 class="">WEEK</h3>
+                <pre class="signature">WEEK</pre>
+                <p><p><code>enum</code> Week.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MONTH" name="constant_MONTH" class="anchor"></a>
+            <article id="constant_MONTH" class="constant">
+                <h3 class="">MONTH</h3>
+                <pre class="signature">MONTH</pre>
+                <p><p><code>enum</code> Month.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_YEAR" name="constant_YEAR" class="anchor"></a>
+            <article id="constant_YEAR" class="constant">
+                <h3 class="">YEAR</h3>
+                <pre class="signature">YEAR</pre>
+                <p><p><code>enum</code> Year.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DECADE" name="constant_DECADE" class="anchor"></a>
+            <article id="constant_DECADE" class="constant">
+                <h3 class="">DECADE</h3>
+                <pre class="signature">DECADE</pre>
+                <p><p><code>enum</code> Decade.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MILLIMETER" name="constant_MILLIMETER" class="anchor"></a>
+            <article id="constant_MILLIMETER" class="constant">
+                <h3 class="">MILLIMETER</h3>
+                <pre class="signature">MILLIMETER</pre>
+                <p><p><code>enum</code> Millimeter.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CENTIMETER" name="constant_CENTIMETER" class="anchor"></a>
+            <article id="constant_CENTIMETER" class="constant">
+                <h3 class="">CENTIMETER</h3>
+                <pre class="signature">CENTIMETER</pre>
+                <p><p><code>enum</code> Centimeter.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_METER" name="constant_METER" class="anchor"></a>
+            <article id="constant_METER" class="constant">
+                <h3 class="">METER</h3>
+                <pre class="signature">METER</pre>
+                <p><p><code>enum</code> Meter.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_KILOMETER" name="constant_KILOMETER" class="anchor"></a>
+            <article id="constant_KILOMETER" class="constant">
+                <h3 class="">KILOMETER</h3>
+                <pre class="signature">KILOMETER</pre>
+                <p><p><code>enum</code> Kilometer.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_INCH" name="constant_INCH" class="anchor"></a>
+            <article id="constant_INCH" class="constant">
+                <h3 class="">INCH</h3>
+                <pre class="signature">INCH</pre>
+                <p><p><code>enum</code> Inch.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FOOT" name="constant_FOOT" class="anchor"></a>
+            <article id="constant_FOOT" class="constant">
+                <h3 class="">FOOT</h3>
+                <pre class="signature">FOOT</pre>
+                <p><p><code>enum</code> Foot.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_YARD" name="constant_YARD" class="anchor"></a>
+            <article id="constant_YARD" class="constant">
+                <h3 class="">YARD</h3>
+                <pre class="signature">YARD</pre>
+                <p><p><code>enum</code> Yard.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MILE" name="constant_MILE" class="anchor"></a>
+            <article id="constant_MILE" class="constant">
+                <h3 class="">MILE</h3>
+                <pre class="signature">MILE</pre>
+                <p><p><code>enum</code> Mile.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_NAUTICAL_MILE" name="constant_NAUTICAL_MILE" class="anchor"></a>
+            <article id="constant_NAUTICAL_MILE" class="constant">
+                <h3 class="">NAUTICAL_MILE</h3>
+                <pre class="signature">NAUTICAL_MILE</pre>
+                <p><p><code>enum</code> Nautical mile.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_METERS_PER_SECOND" name="constant_METERS_PER_SECOND" class="anchor"></a>
+            <article id="constant_METERS_PER_SECOND" class="constant">
+                <h3 class="">METERS_PER_SECOND</h3>
+                <pre class="signature">METERS_PER_SECOND</pre>
+                <p><p><code>enum</code> Meters per second.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_KILOMETERS_PER_HOUR" name="constant_KILOMETERS_PER_HOUR" class="anchor"></a>
+            <article id="constant_KILOMETERS_PER_HOUR" class="constant">
+                <h3 class="">KILOMETERS_PER_HOUR</h3>
+                <pre class="signature">KILOMETERS_PER_HOUR</pre>
+                <p><p><code>enum</code> Kilometers per hour.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FEET_PER_SECOND" name="constant_FEET_PER_SECOND" class="anchor"></a>
+            <article id="constant_FEET_PER_SECOND" class="constant">
+                <h3 class="">FEET_PER_SECOND</h3>
+                <pre class="signature">FEET_PER_SECOND</pre>
+                <p><p><code>enum</code> Feet per second.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MILES_PER_HOUR" name="constant_MILES_PER_HOUR" class="anchor"></a>
+            <article id="constant_MILES_PER_HOUR" class="constant">
+                <h3 class="">MILES_PER_HOUR</h3>
+                <pre class="signature">MILES_PER_HOUR</pre>
+                <p><p><code>enum</code> Miles per hour.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_KNOT" name="constant_KNOT" class="anchor"></a>
+            <article id="constant_KNOT" class="constant">
+                <h3 class="">KNOT</h3>
+                <pre class="signature">KNOT</pre>
+                <p><p><code>enum</code> Knot.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CELSIUS" name="constant_CELSIUS" class="anchor"></a>
+            <article id="constant_CELSIUS" class="constant">
+                <h3 class="">CELSIUS</h3>
+                <pre class="signature">CELSIUS</pre>
+                <p><p><code>enum</code> Celsius.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FAHRENHEIT" name="constant_FAHRENHEIT" class="anchor"></a>
+            <article id="constant_FAHRENHEIT" class="constant">
+                <h3 class="">FAHRENHEIT</h3>
+                <pre class="signature">FAHRENHEIT</pre>
+                <p><p><code>enum</code> Fahrenheit.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_KELVIN" name="constant_KELVIN" class="anchor"></a>
+            <article id="constant_KELVIN" class="constant">
+                <h3 class="">KELVIN</h3>
+                <pre class="signature">KELVIN</pre>
+                <p><p><code>enum</code> Kelvin.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SQUARE_METER" name="constant_SQUARE_METER" class="anchor"></a>
+            <article id="constant_SQUARE_METER" class="constant">
+                <h3 class="">SQUARE_METER</h3>
+                <pre class="signature">SQUARE_METER</pre>
+                <p><p><code>enum</code> Square meter.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HECTARE" name="constant_HECTARE" class="anchor"></a>
+            <article id="constant_HECTARE" class="constant">
+                <h3 class="">HECTARE</h3>
+                <pre class="signature">HECTARE</pre>
+                <p><p><code>enum</code> Hectare.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SQUARE_KILOMETER" name="constant_SQUARE_KILOMETER" class="anchor"></a>
+            <article id="constant_SQUARE_KILOMETER" class="constant">
+                <h3 class="">SQUARE_KILOMETER</h3>
+                <pre class="signature">SQUARE_KILOMETER</pre>
+                <p><p><code>enum</code> Square kilometer.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SQUARE_INCH" name="constant_SQUARE_INCH" class="anchor"></a>
+            <article id="constant_SQUARE_INCH" class="constant">
+                <h3 class="">SQUARE_INCH</h3>
+                <pre class="signature">SQUARE_INCH</pre>
+                <p><p><code>enum</code> Square inch.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SQUARE_FOOT" name="constant_SQUARE_FOOT" class="anchor"></a>
+            <article id="constant_SQUARE_FOOT" class="constant">
+                <h3 class="">SQUARE_FOOT</h3>
+                <pre class="signature">SQUARE_FOOT</pre>
+                <p><p><code>enum</code> Square foot.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SQUARE_YARD" name="constant_SQUARE_YARD" class="anchor"></a>
+            <article id="constant_SQUARE_YARD" class="constant">
+                <h3 class="">SQUARE_YARD</h3>
+                <pre class="signature">SQUARE_YARD</pre>
+                <p><p><code>enum</code> Square yard.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ACRE" name="constant_ACRE" class="anchor"></a>
+            <article id="constant_ACRE" class="constant">
+                <h3 class="">ACRE</h3>
+                <pre class="signature">ACRE</pre>
+                <p><p><code>enum</code> Acre.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SQUARE_MILE" name="constant_SQUARE_MILE" class="anchor"></a>
+            <article id="constant_SQUARE_MILE" class="constant">
+                <h3 class="">SQUARE_MILE</h3>
+                <pre class="signature">SQUARE_MILE</pre>
+                <p><p><code>enum</code> Square mile.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MILLILITER" name="constant_MILLILITER" class="anchor"></a>
+            <article id="constant_MILLILITER" class="constant">
+                <h3 class="">MILLILITER</h3>
+                <pre class="signature">MILLILITER</pre>
+                <p><p><code>enum</code> Milliliter.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_LITER" name="constant_LITER" class="anchor"></a>
+            <article id="constant_LITER" class="constant">
+                <h3 class="">LITER</h3>
+                <pre class="signature">LITER</pre>
+                <p><p><code>enum</code> Liter.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CUBIC_METER" name="constant_CUBIC_METER" class="anchor"></a>
+            <article id="constant_CUBIC_METER" class="constant">
+                <h3 class="">CUBIC_METER</h3>
+                <pre class="signature">CUBIC_METER</pre>
+                <p><p><code>enum</code> Cubic meter.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CUBIC_INCH" name="constant_CUBIC_INCH" class="anchor"></a>
+            <article id="constant_CUBIC_INCH" class="constant">
+                <h3 class="">CUBIC_INCH</h3>
+                <pre class="signature">CUBIC_INCH</pre>
+                <p><p><code>enum</code> Cubic inch.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CUBIC_FOOT" name="constant_CUBIC_FOOT" class="anchor"></a>
+            <article id="constant_CUBIC_FOOT" class="constant">
+                <h3 class="">CUBIC_FOOT</h3>
+                <pre class="signature">CUBIC_FOOT</pre>
+                <p><p><code>enum</code> Cubic foot.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_US_TEASPOON" name="constant_US_TEASPOON" class="anchor"></a>
+            <article id="constant_US_TEASPOON" class="constant">
+                <h3 class="">US_TEASPOON</h3>
+                <pre class="signature">US_TEASPOON</pre>
+                <p><p><code>enum</code> U.S. teaspoon.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_US_TABLESPOON" name="constant_US_TABLESPOON" class="anchor"></a>
+            <article id="constant_US_TABLESPOON" class="constant">
+                <h3 class="">US_TABLESPOON</h3>
+                <pre class="signature">US_TABLESPOON</pre>
+                <p><p><code>enum</code> U.S. tablespoon.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_US_FLUID_OUNCE" name="constant_US_FLUID_OUNCE" class="anchor"></a>
+            <article id="constant_US_FLUID_OUNCE" class="constant">
+                <h3 class="">US_FLUID_OUNCE</h3>
+                <pre class="signature">US_FLUID_OUNCE</pre>
+                <p><p><code>enum</code> U.S. fluid ounce.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_US_CUP" name="constant_US_CUP" class="anchor"></a>
+            <article id="constant_US_CUP" class="constant">
+                <h3 class="">US_CUP</h3>
+                <pre class="signature">US_CUP</pre>
+                <p><p><code>enum</code> U.S. cup.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_US_PINT" name="constant_US_PINT" class="anchor"></a>
+            <article id="constant_US_PINT" class="constant">
+                <h3 class="">US_PINT</h3>
+                <pre class="signature">US_PINT</pre>
+                <p><p><code>enum</code> U.S. pint.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_US_QUART" name="constant_US_QUART" class="anchor"></a>
+            <article id="constant_US_QUART" class="constant">
+                <h3 class="">US_QUART</h3>
+                <pre class="signature">US_QUART</pre>
+                <p><p><code>enum</code> U.S. quart.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_US_GALLON" name="constant_US_GALLON" class="anchor"></a>
+            <article id="constant_US_GALLON" class="constant">
+                <h3 class="">US_GALLON</h3>
+                <pre class="signature">US_GALLON</pre>
+                <p><p><code>enum</code> U.S. gallon.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_IMPERIAL_TEASPOON" name="constant_IMPERIAL_TEASPOON" class="anchor"></a>
+            <article id="constant_IMPERIAL_TEASPOON" class="constant">
+                <h3 class="">IMPERIAL_TEASPOON</h3>
+                <pre class="signature">IMPERIAL_TEASPOON</pre>
+                <p><p><code>enum</code> Imperial teaspoon.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_IMPERIAL_TABLESPOON" name="constant_IMPERIAL_TABLESPOON" class="anchor"></a>
+            <article id="constant_IMPERIAL_TABLESPOON" class="constant">
+                <h3 class="">IMPERIAL_TABLESPOON</h3>
+                <pre class="signature">IMPERIAL_TABLESPOON</pre>
+                <p><p><code>enum</code> Imperial tablespoon.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_IMPERIAL_FLUID_OUNCE" name="constant_IMPERIAL_FLUID_OUNCE" class="anchor"></a>
+            <article id="constant_IMPERIAL_FLUID_OUNCE" class="constant">
+                <h3 class="">IMPERIAL_FLUID_OUNCE</h3>
+                <pre class="signature">IMPERIAL_FLUID_OUNCE</pre>
+                <p><p><code>enum</code> Imperial fluid ounce.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_IMPERIAL_PINT" name="constant_IMPERIAL_PINT" class="anchor"></a>
+            <article id="constant_IMPERIAL_PINT" class="constant">
+                <h3 class="">IMPERIAL_PINT</h3>
+                <pre class="signature">IMPERIAL_PINT</pre>
+                <p><p><code>enum</code> Imperial pint.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_IMPERIAL_QUART" name="constant_IMPERIAL_QUART" class="anchor"></a>
+            <article id="constant_IMPERIAL_QUART" class="constant">
+                <h3 class="">IMPERIAL_QUART</h3>
+                <pre class="signature">IMPERIAL_QUART</pre>
+                <p><p><code>enum</code> Imperial quart.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_IMPERIAL_GALLON" name="constant_IMPERIAL_GALLON" class="anchor"></a>
+            <article id="constant_IMPERIAL_GALLON" class="constant">
+                <h3 class="">IMPERIAL_GALLON</h3>
+                <pre class="signature">IMPERIAL_GALLON</pre>
+                <p><p><code>enum</code> Imperial gallon.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MILLIGRAM" name="constant_MILLIGRAM" class="anchor"></a>
+            <article id="constant_MILLIGRAM" class="constant">
+                <h3 class="">MILLIGRAM</h3>
+                <pre class="signature">MILLIGRAM</pre>
+                <p><p><code>enum</code> Milligram.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_GRAM" name="constant_GRAM" class="anchor"></a>
+            <article id="constant_GRAM" class="constant">
+                <h3 class="">GRAM</h3>
+                <pre class="signature">GRAM</pre>
+                <p><p><code>enum</code> Gram.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_KILOGRAM" name="constant_KILOGRAM" class="anchor"></a>
+            <article id="constant_KILOGRAM" class="constant">
+                <h3 class="">KILOGRAM</h3>
+                <pre class="signature">KILOGRAM</pre>
+                <p><p><code>enum</code> Kilogram.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TON" name="constant_TON" class="anchor"></a>
+            <article id="constant_TON" class="constant">
+                <h3 class="">TON</h3>
+                <pre class="signature">TON</pre>
+                <p><p><code>enum</code> Ton.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_OUNCE" name="constant_OUNCE" class="anchor"></a>
+            <article id="constant_OUNCE" class="constant">
+                <h3 class="">OUNCE</h3>
+                <pre class="signature">OUNCE</pre>
+                <p><p><code>enum</code> Ounce.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_POUND" name="constant_POUND" class="anchor"></a>
+            <article id="constant_POUND" class="constant">
+                <h3 class="">POUND</h3>
+                <pre class="signature">POUND</pre>
+                <p><p><code>enum</code> Pound.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_STONE" name="constant_STONE" class="anchor"></a>
+            <article id="constant_STONE" class="constant">
+                <h3 class="">STONE</h3>
+                <pre class="signature">STONE</pre>
+                <p><p><code>enum</code> Stone.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SHORT_TON" name="constant_SHORT_TON" class="anchor"></a>
+            <article id="constant_SHORT_TON" class="constant">
+                <h3 class="">SHORT_TON</h3>
+                <pre class="signature">SHORT_TON</pre>
+                <p><p><code>enum</code> Short ton.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_LONG_TON" name="constant_LONG_TON" class="anchor"></a>
+            <article id="constant_LONG_TON" class="constant">
+                <h3 class="">LONG_TON</h3>
+                <pre class="signature">LONG_TON</pre>
+                <p><p><code>enum</code> Long ton.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+            <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convertStoragei" name="method_convertStoragei" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">convertStoragei()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertStoragei (int&nbsp;<span class="argument">$iQuantity</span>, enum&nbsp;<span class="argument">$eFromUnit</span>, enum&nbsp;<span class="argument">$eToUnit</span>) : int</pre>
+                <p><em><p>Converts an integer quantity of digital storage from one unit into another and returns the result.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$iQuantity</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
+                                <td><p>The quantity to be converted.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eFromUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The source unit.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eToUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The destination unit.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The converted quantity, after rounding to the nearest integer.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convertStoragef" name="method_convertStoragef" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">convertStoragef()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertStoragef (float&nbsp;<span class="argument">$fQuantity</span>, enum&nbsp;<span class="argument">$eFromUnit</span>, enum&nbsp;<span class="argument">$eToUnit</span>) : float</pre>
+                <p><em><p>Converts a floating-point quantity of digital storage from one unit into another and returns the result.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$fQuantity</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">float</code></td>
+                                <td><p>The quantity to be converted.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eFromUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The source unit.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eToUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The destination unit.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    float
+                    <!-- </code> -->
+                                            &mdash; <p>The converted quantity.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convertTimei" name="method_convertTimei" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">convertTimei()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertTimei (int&nbsp;<span class="argument">$iQuantity</span>, enum&nbsp;<span class="argument">$eFromUnit</span>, enum&nbsp;<span class="argument">$eToUnit</span>) : int</pre>
+                <p><em><p>Converts an integer quantity of time from one unit into another and returns the result.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$iQuantity</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
+                                <td><p>The quantity to be converted.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eFromUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The source unit.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eToUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The destination unit.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The converted quantity, after rounding to the nearest integer.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convertTimef" name="method_convertTimef" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">convertTimef()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertTimef (float&nbsp;<span class="argument">$fQuantity</span>, enum&nbsp;<span class="argument">$eFromUnit</span>, enum&nbsp;<span class="argument">$eToUnit</span>) : float</pre>
+                <p><em><p>Converts a floating-point quantity of time from one unit into another and returns the result.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$fQuantity</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">float</code></td>
+                                <td><p>The quantity to be converted.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eFromUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The source unit.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eToUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The destination unit.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    float
+                    <!-- </code> -->
+                                            &mdash; <p>The converted quantity.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convertLengthi" name="method_convertLengthi" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">convertLengthi()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertLengthi (int&nbsp;<span class="argument">$iQuantity</span>, enum&nbsp;<span class="argument">$eFromUnit</span>, enum&nbsp;<span class="argument">$eToUnit</span>) : int</pre>
+                <p><em><p>Converts an integer quantity of length from one unit into another and returns the result.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$iQuantity</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
+                                <td><p>The quantity to be converted.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eFromUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The source unit.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eToUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The destination unit.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The converted quantity, after rounding to the nearest integer.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convertLengthf" name="method_convertLengthf" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">convertLengthf()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertLengthf (float&nbsp;<span class="argument">$fQuantity</span>, enum&nbsp;<span class="argument">$eFromUnit</span>, enum&nbsp;<span class="argument">$eToUnit</span>) : float</pre>
+                <p><em><p>Converts a floating-point quantity of length from one unit into another and returns the result.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$fQuantity</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">float</code></td>
+                                <td><p>The quantity to be converted.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eFromUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The source unit.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eToUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The destination unit.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    float
+                    <!-- </code> -->
+                                            &mdash; <p>The converted quantity.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convertSpeedi" name="method_convertSpeedi" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">convertSpeedi()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertSpeedi (int&nbsp;<span class="argument">$iQuantity</span>, enum&nbsp;<span class="argument">$eFromUnit</span>, enum&nbsp;<span class="argument">$eToUnit</span>) : int</pre>
+                <p><em><p>Converts an integer quantity of speed from one unit into another and returns the result.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$iQuantity</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
+                                <td><p>The quantity to be converted.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eFromUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The source unit.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eToUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The destination unit.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The converted quantity, after rounding to the nearest integer.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convertSpeedf" name="method_convertSpeedf" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">convertSpeedf()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertSpeedf (float&nbsp;<span class="argument">$fQuantity</span>, enum&nbsp;<span class="argument">$eFromUnit</span>, enum&nbsp;<span class="argument">$eToUnit</span>) : float</pre>
+                <p><em><p>Converts a floating-point quantity of speed from one unit into another and returns the result.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$fQuantity</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">float</code></td>
+                                <td><p>The quantity to be converted.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eFromUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The source unit.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eToUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The destination unit.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    float
+                    <!-- </code> -->
+                                            &mdash; <p>The converted quantity.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convertTemperaturei" name="method_convertTemperaturei" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">convertTemperaturei()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertTemperaturei (int&nbsp;<span class="argument">$iQuantity</span>, enum&nbsp;<span class="argument">$eFromUnit</span>, enum&nbsp;<span class="argument">$eToUnit</span>) : int</pre>
+                <p><em><p>Converts an integer quantity of temperature from one unit into another and returns the result.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$iQuantity</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
+                                <td><p>The quantity to be converted.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eFromUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The source unit.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eToUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The destination unit.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The converted quantity, after rounding to the nearest integer.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convertTemperaturef" name="method_convertTemperaturef" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">convertTemperaturef()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertTemperaturef (float&nbsp;<span class="argument">$fQuantity</span>, enum&nbsp;<span class="argument">$eFromUnit</span>, enum&nbsp;<span class="argument">$eToUnit</span>) : float</pre>
+                <p><em><p>Converts a floating-point quantity of temperature from one unit into another and returns the result.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$fQuantity</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">float</code></td>
+                                <td><p>The quantity to be converted.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eFromUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The source unit.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eToUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The destination unit.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    float
+                    <!-- </code> -->
+                                            &mdash; <p>The converted quantity.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convertAreai" name="method_convertAreai" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">convertAreai()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertAreai (int&nbsp;<span class="argument">$iQuantity</span>, enum&nbsp;<span class="argument">$eFromUnit</span>, enum&nbsp;<span class="argument">$eToUnit</span>) : int</pre>
+                <p><em><p>Converts an integer quantity of area from one unit into another and returns the result.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$iQuantity</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
+                                <td><p>The quantity to be converted.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eFromUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The source unit.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eToUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The destination unit.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The converted quantity, after rounding to the nearest integer.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convertAreaf" name="method_convertAreaf" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">convertAreaf()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertAreaf (float&nbsp;<span class="argument">$fQuantity</span>, enum&nbsp;<span class="argument">$eFromUnit</span>, enum&nbsp;<span class="argument">$eToUnit</span>) : float</pre>
+                <p><em><p>Converts a floating-point quantity of area from one unit into another and returns the result.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$fQuantity</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">float</code></td>
+                                <td><p>The quantity to be converted.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eFromUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The source unit.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eToUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The destination unit.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    float
+                    <!-- </code> -->
+                                            &mdash; <p>The converted quantity.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convertVolumei" name="method_convertVolumei" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">convertVolumei()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertVolumei (int&nbsp;<span class="argument">$iQuantity</span>, enum&nbsp;<span class="argument">$eFromUnit</span>, enum&nbsp;<span class="argument">$eToUnit</span>) : int</pre>
+                <p><em><p>Converts an integer quantity of volume from one unit into another and returns the result.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$iQuantity</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
+                                <td><p>The quantity to be converted.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eFromUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The source unit.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eToUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The destination unit.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The converted quantity, after rounding to the nearest integer.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convertVolumef" name="method_convertVolumef" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">convertVolumef()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertVolumef (float&nbsp;<span class="argument">$fQuantity</span>, enum&nbsp;<span class="argument">$eFromUnit</span>, enum&nbsp;<span class="argument">$eToUnit</span>) : float</pre>
+                <p><em><p>Converts a floating-point quantity of volume from one unit into another and returns the result.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$fQuantity</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">float</code></td>
+                                <td><p>The quantity to be converted.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eFromUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The source unit.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eToUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The destination unit.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    float
+                    <!-- </code> -->
+                                            &mdash; <p>The converted quantity.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convertMassi" name="method_convertMassi" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">convertMassi()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertMassi (int&nbsp;<span class="argument">$iQuantity</span>, enum&nbsp;<span class="argument">$eFromUnit</span>, enum&nbsp;<span class="argument">$eToUnit</span>) : int</pre>
+                <p><em><p>Converts an integer quantity of mass from one unit into another and returns the result.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$iQuantity</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
+                                <td><p>The quantity to be converted.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eFromUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The source unit.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eToUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The destination unit.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The converted quantity, after rounding to the nearest integer.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_convertMassf" name="method_convertMassf" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">convertMassf()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertMassf (float&nbsp;<span class="argument">$fQuantity</span>, enum&nbsp;<span class="argument">$eFromUnit</span>, enum&nbsp;<span class="argument">$eToUnit</span>) : float</pre>
+                <p><em><p>Converts a floating-point quantity of mass from one unit into another and returns the result.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$fQuantity</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">float</code></td>
+                                <td><p>The quantity to be converted.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eFromUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The source unit.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eToUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The destination unit.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    float
+                    <!-- </code> -->
+                                            &mdash; <p>The converted quantity.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                <!--
+                                                -->
+            
+            <!--
+                                    -->
+        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">CUUnit.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Classes/U14n/CUUnit.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4" style="visibility: hidden">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 13th, 2014 at 18:15.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

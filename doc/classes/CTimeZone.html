@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>Phred API</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet" media="all"/>
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Phred API</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">426</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1513507663"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1513507663" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/ICopyingStatic.html">ICopyingStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEquality.html">IEquality</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrder.html">IEqualityAndOrder</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrderStatic.html">IEqualityAndOrderStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityStatic.html">IEqualityStatic</a></li>
+                                                                                                    <li class="class"><a href="../classes/array.html">array</a></li>
+                                                    <li class="class"><a href="../classes/bitfield.html">bitfield</a></li>
+                                                    <li class="class"><a href="../classes/CArray.html">CArray</a></li>
+                                                    <li class="class"><a href="../classes/CArrayObject.html">CArrayObject</a></li>
+                                                    <li class="class"><a href="../classes/CBase64.html">CBase64</a></li>
+                                                    <li class="class"><a href="../classes/CBitField.html">CBitField</a></li>
+                                                    <li class="class"><a href="../classes/CComparator.html">CComparator</a></li>
+                                                    <li class="class"><a href="../classes/CConfiguration.html">CConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CCookie.html">CCookie</a></li>
+                                                    <li class="class"><a href="../classes/CEString.html">CEString</a></li>
+                                                    <li class="class"><a href="../classes/CFile.html">CFile</a></li>
+                                                    <li class="class"><a href="../classes/CFilePath.html">CFilePath</a></li>
+                                                    <li class="class"><a href="../classes/CGZip.html">CGZip</a></li>
+                                                    <li class="class"><a href="../classes/CHash.html">CHash</a></li>
+                                                    <li class="class"><a href="../classes/CHtml.html">CHtml</a></li>
+                                                    <li class="class"><a href="../classes/CHttpRequest.html">CHttpRequest</a></li>
+                                                    <li class="class"><a href="../classes/CHttpResponse.html">CHttpResponse</a></li>
+                                                    <li class="class"><a href="../classes/CInetRequest.html">CInetRequest</a></li>
+                                                    <li class="class"><a href="../classes/CInetSession.html">CInetSession</a></li>
+                                                    <li class="class"><a href="../classes/CInputFilter.html">CInputFilter</a></li>
+                                                    <li class="class"><a href="../classes/CIp.html">CIp</a></li>
+                                                    <li class="class"><a href="../classes/CJson.html">CJson</a></li>
+                                                    <li class="class"><a href="../classes/CMail.html">CMail</a></li>
+                                                    <li class="class"><a href="../classes/CMap.html">CMap</a></li>
+                                                    <li class="class"><a href="../classes/CMapObject.html">CMapObject</a></li>
+                                                    <li class="class"><a href="../classes/CMathf.html">CMathf</a></li>
+                                                    <li class="class"><a href="../classes/CMathi.html">CMathi</a></li>
+                                                    <li class="class"><a href="../classes/CMimeType.html">CMimeType</a></li>
+                                                    <li class="class"><a href="../classes/CRegex.html">CRegex</a></li>
+                                                    <li class="class"><a href="../classes/CRequest.html">CRequest</a></li>
+                                                    <li class="class"><a href="../classes/CResponse.html">CResponse</a></li>
+                                                    <li class="class"><a href="../classes/CShell.html">CShell</a></li>
+                                                    <li class="class"><a href="../classes/CString.html">CString</a></li>
+                                                    <li class="class"><a href="../classes/CSystem.html">CSystem</a></li>
+                                                    <li class="class"><a href="../classes/CTime.html">CTime</a></li>
+                                                    <li class="class"><a href="../classes/CTimeZone.html">CTimeZone</a></li>
+                                                    <li class="class"><a href="../classes/CUFormat.html">CUFormat</a></li>
+                                                    <li class="class"><a href="../classes/CULocale.html">CULocale</a></li>
+                                                    <li class="class"><a href="../classes/CUrl.html">CUrl</a></li>
+                                                    <li class="class"><a href="../classes/CUrlPath.html">CUrlPath</a></li>
+                                                    <li class="class"><a href="../classes/CUrlQuery.html">CUrlQuery</a></li>
+                                                    <li class="class"><a href="../classes/CUString.html">CUString</a></li>
+                                                    <li class="class"><a href="../classes/CUStringObject.html">CUStringObject</a></li>
+                                                    <li class="class"><a href="../classes/CUUnit.html">CUUnit</a></li>
+                                                    <li class="class"><a href="../classes/CXml.html">CXml</a></li>
+                                                    <li class="class"><a href="../classes/enum.html">enum</a></li>
+                                                    <li class="class"><a href="../classes/map.html">map</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span12 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <!--
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    -->
+                    <br/ >
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><!-- <small>\</small> -->CTimeZone</h1>
+                    <p><em><p>The class that represents time zones around the world and is the best friend to the CTime class.</p></em></p>
+                    <p><strong>You can refer to this class by its alias, which is</strong> <code>Tz</code>.</p>
+<p>Time zones is the reason why the local time in Finland is always different from that in California. And time
+differences are not determined by just the distance between geographical locations but also by the time keeping
+policies used by the countries to which the locations belong, such as daylight saving time. Because of this variety
+in local times, a special time zone exists, called universal time or UTC (short for Coordinated Universal Time), and
+it usually serves as the reference time zone for any moments in time to be compared with one another. You can create
+a UTC time zone with a convenience method, which is <code>makeUtc</code> static method of the class.</p>
+<p>A time zone is primarily identified by its name and the same time zone can have multiple names. Unlike locale names,
+time zone names are case-sensitive. You can find out the known time zone names with <code>knownNames</code> static method. Most
+of the time zone names are organized into regions, which are the Americas, Europe, Asia and so on. The known time
+zone regions can be obtained with <code>knownRegions</code> static method or by simply looking at the constants of the class
+that start with <code>REGION</code>.</p>
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methodsum">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/CTimeZone.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/CTimeZone.html#method_makeUtc" class="">makeUtc()</a><br />
+                                                                    <a href="../classes/CTimeZone.html#method_name" class="">name()</a><br />
+                                                                    <a href="../classes/CTimeZone.html#method_dispName" class="">dispName()</a><br />
+                                                                    <a href="../classes/CTimeZone.html#method_dispEnName" class="">dispEnName()</a><br />
+                                                                    <a href="../classes/CTimeZone.html#method_dispEnNameWithoutRegion" class="">dispEnNameWithoutRegion()</a><br />
+                                                                    <a href="../classes/CTimeZone.html#method_currentOffsetSeconds" class="">currentOffsetSeconds()</a><br />
+                                                                    <a href="../classes/CTimeZone.html#method_standardOffsetSeconds" class="">standardOffsetSeconds()</a><br />
+                                                                    <a href="../classes/CTimeZone.html#method_equals" class="">equals()</a><br />
+                                                                    <a href="../classes/CTimeZone.html#method_dispEnRegion" class="">dispEnRegion()</a><br />
+                                                                    <a href="../classes/CTimeZone.html#method_knownRegions" class="">knownRegions()</a><br />
+                                                                    <a href="../classes/CTimeZone.html#method_knownNames" class="">knownNames()</a><br />
+                                                                    <a href="../classes/CTimeZone.html#method_knownNamesWithBc" class="">knownNamesWithBc()</a><br />
+                                                                    <a href="../classes/CTimeZone.html#method_knownNamesForRegion" class="">knownNamesForRegion()</a><br />
+                                                                    <a href="../classes/CTimeZone.html#method_knownNamesForCountry" class="">knownNamesForCountry()</a><br />
+                                                                    <a href="../classes/CTimeZone.html#method_isNameKnown" class="">isNameKnown()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CTimeZone.html#constant_UTC" class="">UTC</a><br />
+                                                                    <a href="../classes/CTimeZone.html#constant_REGION_AFRICA" class="">REGION_AFRICA</a><br />
+                                                                    <a href="../classes/CTimeZone.html#constant_REGION_AMERICA" class="">REGION_AMERICA</a><br />
+                                                                    <a href="../classes/CTimeZone.html#constant_REGION_ANTARCTICA" class="">REGION_ANTARCTICA</a><br />
+                                                                    <a href="../classes/CTimeZone.html#constant_REGION_ARCTIC" class="">REGION_ARCTIC</a><br />
+                                                                    <a href="../classes/CTimeZone.html#constant_REGION_ASIA" class="">REGION_ASIA</a><br />
+                                                                    <a href="../classes/CTimeZone.html#constant_REGION_ATLANTIC" class="">REGION_ATLANTIC</a><br />
+                                                                    <a href="../classes/CTimeZone.html#constant_REGION_AUSTRALIA" class="">REGION_AUSTRALIA</a><br />
+                                                                    <a href="../classes/CTimeZone.html#constant_REGION_EUROPE" class="">REGION_EUROPE</a><br />
+                                                                    <a href="../classes/CTimeZone.html#constant_REGION_INDIAN" class="">REGION_INDIAN</a><br />
+                                                                    <a href="../classes/CTimeZone.html#constant_REGION_PACIFIC" class="">REGION_PACIFIC</a><br />
+                                                                    <a href="../classes/CTimeZone.html#constant_STYLE_SHORT" class="">STYLE_SHORT</a><br />
+                                                                    <a href="../classes/CTimeZone.html#constant_STYLE_LONG" class="">STYLE_LONG</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties</em>
+                                                            </section>
+                        </section>
+                        <!--
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/CTimeZone.html#method_makeEnName" class="">makeEnName()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CTimeZone.html#property_m_oDtz" class="">$m_oDtz</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                        </section>
+                        -->
+                    </section>
+                </div>
+                <aside class="span2 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Classes.Time.CTimeZone.php.html"><div class="path-wrapper">Classes/Time/CTimeZone.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper"></div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\CRootClass</div>
+                                                                                                    <div class="namespace-wrapper">\CTimeZone</div>
+                            </dd>
+
+                                                                            <dt>Implements</dt>
+                                                        <dd><a href="../classes/IEquality.html"><div class="namespace-wrapper">\IEquality</div></a></dd>
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2 style="visibility: hidden">Tags</h2>
+                    <table class="table table-condensed" style="visibility: hidden">
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+            <a id="methodsum" name="methodsum"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Method Summary</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/CTimeZone.html#method___construct" class="">__construct()</a></td>
+                            <td><p>Creates a time zone with a specified name.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CTimeZone.html#method_makeUtc" class="">makeUtc()</a></td>
+                            <td><p>Creates and returns a UTC time zone.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CTimeZone.html#method_name" class="">name()</a></td>
+                            <td><p>Returns the name of a time zone.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CTimeZone.html#method_dispName" class="">dispName()</a></td>
+                            <td><p>Returns the human-readable name of a time zone, written in the language of a specified locale.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CTimeZone.html#method_dispEnName" class="">dispEnName()</a></td>
+                            <td><p>Returns the human-readable name of a time zone, deriving it from the technical English name.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CTimeZone.html#method_dispEnNameWithoutRegion" class="">dispEnNameWithoutRegion()</a></td>
+                            <td><p>Returns the human-readable name of a time zone, deriving it from the technical English name and leaving out the
+region part.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CTimeZone.html#method_currentOffsetSeconds" class="">currentOffsetSeconds()</a></td>
+                            <td><p>Returns the offset of a time zone from UTC, as it is at the time being, adjusting the offset for daylight saving
+time if it's currently effective in the time zone.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CTimeZone.html#method_standardOffsetSeconds" class="">standardOffsetSeconds()</a></td>
+                            <td><p>Returns the offset of a time zone from UTC, without adjusting it for daylight saving time.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CTimeZone.html#method_equals" class="">equals()</a></td>
+                            <td><p>Determines if a time zone is equal to another time zone, comparing them by name.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CTimeZone.html#method_dispEnRegion" class="">dispEnRegion()</a></td>
+                            <td><p>Returns the human-readable name of a time zone region, in English.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CTimeZone.html#method_knownRegions" class="">knownRegions()</a></td>
+                            <td><p>Returns the known time zone regions.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CTimeZone.html#method_knownNames" class="">knownNames()</a></td>
+                            <td><p>Returns the known time zone names.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CTimeZone.html#method_knownNamesWithBc" class="">knownNamesWithBc()</a></td>
+                            <td><p>Returns the known time zone names, together with the backward compatible ones.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CTimeZone.html#method_knownNamesForRegion" class="">knownNamesForRegion()</a></td>
+                            <td><p>Returns the names of the time zones that are known for a specified region.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CTimeZone.html#method_knownNamesForCountry" class="">knownNamesForCountry()</a></td>
+                            <td><p>Returns the names of the time zones that are known for a specified country.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CTimeZone.html#method_isNameKnown" class="">isNameKnown()</a></td>
+                            <td><p>Determines if a time zone name is a known one.</p></td>
+                        </tr>
+                                        </table>
+                </div>
+                <aside class="span2 detailsbar"> </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_UTC" name="constant_UTC" class="anchor"></a>
+            <article id="constant_UTC" class="constant">
+                <h3 class="">UTC</h3>
+                <pre class="signature">UTC</pre>
+                <p><p><code>string</code> "UTC" The name of the UTC time zone.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_REGION_AFRICA" name="constant_REGION_AFRICA" class="anchor"></a>
+            <article id="constant_REGION_AFRICA" class="constant">
+                <h3 class="">REGION_AFRICA</h3>
+                <pre class="signature">REGION_AFRICA</pre>
+                <p><p><code>enum</code> Africa.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_REGION_AMERICA" name="constant_REGION_AMERICA" class="anchor"></a>
+            <article id="constant_REGION_AMERICA" class="constant">
+                <h3 class="">REGION_AMERICA</h3>
+                <pre class="signature">REGION_AMERICA</pre>
+                <p><p><code>enum</code> The Americas.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_REGION_ANTARCTICA" name="constant_REGION_ANTARCTICA" class="anchor"></a>
+            <article id="constant_REGION_ANTARCTICA" class="constant">
+                <h3 class="">REGION_ANTARCTICA</h3>
+                <pre class="signature">REGION_ANTARCTICA</pre>
+                <p><p><code>enum</code> Antarctica.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_REGION_ARCTIC" name="constant_REGION_ARCTIC" class="anchor"></a>
+            <article id="constant_REGION_ARCTIC" class="constant">
+                <h3 class="">REGION_ARCTIC</h3>
+                <pre class="signature">REGION_ARCTIC</pre>
+                <p><p><code>enum</code> Arctic.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_REGION_ASIA" name="constant_REGION_ASIA" class="anchor"></a>
+            <article id="constant_REGION_ASIA" class="constant">
+                <h3 class="">REGION_ASIA</h3>
+                <pre class="signature">REGION_ASIA</pre>
+                <p><p><code>enum</code> Asia.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_REGION_ATLANTIC" name="constant_REGION_ATLANTIC" class="anchor"></a>
+            <article id="constant_REGION_ATLANTIC" class="constant">
+                <h3 class="">REGION_ATLANTIC</h3>
+                <pre class="signature">REGION_ATLANTIC</pre>
+                <p><p><code>enum</code> The Atlantic Ocean.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_REGION_AUSTRALIA" name="constant_REGION_AUSTRALIA" class="anchor"></a>
+            <article id="constant_REGION_AUSTRALIA" class="constant">
+                <h3 class="">REGION_AUSTRALIA</h3>
+                <pre class="signature">REGION_AUSTRALIA</pre>
+                <p><p><code>enum</code> Australia.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_REGION_EUROPE" name="constant_REGION_EUROPE" class="anchor"></a>
+            <article id="constant_REGION_EUROPE" class="constant">
+                <h3 class="">REGION_EUROPE</h3>
+                <pre class="signature">REGION_EUROPE</pre>
+                <p><p><code>enum</code> Europe.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_REGION_INDIAN" name="constant_REGION_INDIAN" class="anchor"></a>
+            <article id="constant_REGION_INDIAN" class="constant">
+                <h3 class="">REGION_INDIAN</h3>
+                <pre class="signature">REGION_INDIAN</pre>
+                <p><p><code>enum</code> The Indian Ocean.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_REGION_PACIFIC" name="constant_REGION_PACIFIC" class="anchor"></a>
+            <article id="constant_REGION_PACIFIC" class="constant">
+                <h3 class="">REGION_PACIFIC</h3>
+                <pre class="signature">REGION_PACIFIC</pre>
+                <p><p><code>enum</code> The Pacific Ocean.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_STYLE_SHORT" name="constant_STYLE_SHORT" class="anchor"></a>
+            <article id="constant_STYLE_SHORT" class="constant">
+                <h3 class="">STYLE_SHORT</h3>
+                <pre class="signature">STYLE_SHORT</pre>
+                <p><p><code>enum</code> Use the short style for the name of a time zone when displaying it in a locale.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_STYLE_LONG" name="constant_STYLE_LONG" class="anchor"></a>
+            <article id="constant_STYLE_LONG" class="constant">
+                <h3 class="">STYLE_LONG</h3>
+                <pre class="signature">STYLE_LONG</pre>
+                <p><p><code>enum</code> Use the long style for the name of a time zone when displaying it in a locale.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+            <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (string&nbsp;<span class="argument">$sName</span>)</pre>
+                <p><em><p>Creates a time zone with a specified name.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the time zone (case-sensitive).</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeUtc" name="method_makeUtc" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeUtc()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> makeUtc () : CTimeZone</pre>
+                <p><em><p>Creates and returns a UTC time zone.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CTimeZone.html">CTimeZone</a>
+                    <!-- </code> -->
+                                            &mdash; <p>A UTC time zone.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_name" name="method_name" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">name()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">name () : OOPString</pre>
+                <p><em><p>Returns the name of a time zone.</p></em></p>
+                <p>A returned name is a technical one and is not always suitable for displaying to a human. If the time zone's name
+needs to be shown on a screen, consider using <code>dispName</code> method instead.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The name of the time zone.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="#method_dispName"><span class="namespace-wrapper">dispName</span></a></dd>
+                                                                </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_dispName" name="method_dispName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">dispName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">dispName (<span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eStyle</span></span>, <span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$oInLocale</span></span>) : OOPString</pre>
+                <p><em><p>Returns the human-readable name of a time zone, written in the language of a specified locale.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eStyle</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>STYLE_LONG</code>. The display style of the name. The available styles
+are <code>STYLE_SHORT</code> and <code>STYLE_LONG</code>.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$oInLocale</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CULocale.html">CULocale</a></code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <em>the application's default locale</em>. The locale in which the
+name is to be displayed.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The human-readable name of the time zone.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_dispEnName" name="method_dispEnName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">dispEnName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">dispEnName () : OOPString</pre>
+                <p><em><p>Returns the human-readable name of a time zone, deriving it from the technical English name.</p></em></p>
+                <p>For example, if the name of the time zone is "Europe/Helsinki", this method returns "Europe, Helsinki" (the
+order of components is not reversed for better sorting).</p>
+<p>You may also consider using <code>dispName</code> method.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The human-readable name of the time zone.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="#method_dispName"><span class="namespace-wrapper">dispName</span></a></dd>
+                                                                </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_dispEnNameWithoutRegion" name="method_dispEnNameWithoutRegion" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">dispEnNameWithoutRegion()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">dispEnNameWithoutRegion () : OOPString</pre>
+                <p><em><p>Returns the human-readable name of a time zone, deriving it from the technical English name and leaving out the
+region part.</p></em></p>
+                <p>For example, if the name of the time zone is "Europe/Helsinki", this method returns "Helsinki".</p>
+<p>You may also consider using <code>dispName</code> method.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The human-readable name of the time zone.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="#method_dispName"><span class="namespace-wrapper">dispName</span></a></dd>
+                                                                </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_currentOffsetSeconds" name="method_currentOffsetSeconds" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">currentOffsetSeconds()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">currentOffsetSeconds () : int</pre>
+                <p><em><p>Returns the offset of a time zone from UTC, as it is at the time being, adjusting the offset for daylight saving
+time if it's currently effective in the time zone.</p></em></p>
+                <p>The offset is negative for the time zones located west of UTC (Greenwich, UK) and positive for the eastern ones.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The time zone's current offset from UTC, in seconds.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_standardOffsetSeconds" name="method_standardOffsetSeconds" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">standardOffsetSeconds()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">standardOffsetSeconds () : int</pre>
+                <p><em><p>Returns the offset of a time zone from UTC, without adjusting it for daylight saving time.</p></em></p>
+                <p>The offset is negative for the time zones located west of UTC (Greenwich, UK) and positive for the eastern ones.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The time zone's standard offset from UTC, in seconds.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_equals" name="method_equals" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">equals()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">equals (CTimeZone&nbsp;<span class="argument">$oToTimeZone</span>) : bool</pre>
+                <p><em><p>Determines if a time zone is equal to another time zone, comparing them by name.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$oToTimeZone</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CTimeZone.html">CTimeZone</a></code></td>
+                                <td><p>The second time zone for comparison.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if <em>this</em> time zone is equal to the second time zone, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_dispEnRegion" name="method_dispEnRegion" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">dispEnRegion()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> dispEnRegion (enum&nbsp;<span class="argument">$eRegion</span>) : OOPString</pre>
+                <p><em><p>Returns the human-readable name of a time zone region, in English.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eRegion</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The time zone region (see <a href="#summary">Summary</a>).</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The human-readable name of the time zone region.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_knownRegions" name="method_knownRegions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">knownRegions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> knownRegions () : OOPArray</pre>
+                <p><em><p>Returns the known time zone regions.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CArrayObject.html"><span class="label label-info">OOP Array</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The known time zone regions of type <code>enum</code> (see <a href="#summary">Summary</a>).</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_knownNames" name="method_knownNames" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">knownNames()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> knownNames () : OOPArray</pre>
+                <p><em><p>Returns the known time zone names.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CArrayObject.html"><span class="label label-info">OOP Array</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The known time zone names of type <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_knownNamesWithBc" name="method_knownNamesWithBc" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">knownNamesWithBc()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> knownNamesWithBc () : OOPArray</pre>
+                <p><em><p>Returns the known time zone names, together with the backward compatible ones.</p></em></p>
+                <p>The backward compatible time zone names are those names that are out of common use but are still (partially)
+supported.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CArrayObject.html"><span class="label label-info">OOP Array</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The known time zone names, including the backward compatible ones, all of type
+<a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_knownNamesForRegion" name="method_knownNamesForRegion" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">knownNamesForRegion()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> knownNamesForRegion (enum&nbsp;<span class="argument">$eRegion</span>) : OOPArray</pre>
+                <p><em><p>Returns the names of the time zones that are known for a specified region.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eRegion</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The time zone region (see <a href="#summary">Summary</a>).</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CArrayObject.html"><span class="label label-info">OOP Array</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The known time zone names for the region specified, of type <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_knownNamesForCountry" name="method_knownNamesForCountry" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">knownNamesForCountry()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> knownNamesForCountry (string&nbsp;<span class="argument">$sCountryCode</span>) : OOPArray</pre>
+                <p><em><p>Returns the names of the time zones that are known for a specified country.</p></em></p>
+                <p>If the country's code is not recognized for any reason, the entire list of the known time zone names is
+returned.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sCountryCode</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The two-letter code of the country, as provided by ISO 3166.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CArrayObject.html"><span class="label label-info">OOP Array</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The known time zone names for the country specified, of type <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isNameKnown" name="method_isNameKnown" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isNameKnown()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isNameKnown (string&nbsp;<span class="argument">$sName</span>) : bool</pre>
+                <p><em><p>Determines if a time zone name is a known one.</p></em></p>
+                <p>The method also searches among the backward compatible names.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The time zone name to be looked for (case-sensitive).</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the name is known, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                <!--
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeEnName" name="method_makeEnName" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">makeEnName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> makeEnName (&nbsp;<span class="argument">$sName</span>)</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                -->
+            
+            <!--
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_oDtz" name="property_m_oDtz" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_oDtz</h3>
+                <pre class="signature">$m_oDtz</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                        -->
+        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">CTimeZone.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Classes/Time/CTimeZone.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4" style="visibility: hidden">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 13th, 2014 at 18:15.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

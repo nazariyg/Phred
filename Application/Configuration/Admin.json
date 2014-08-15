@@ -1,0 +1,24 @@
+{
+    "mail":
+    {
+        // The email address of the administrator.
+        "to": "",
+
+        // The email address on behalf of which mail is sent (typically, this can be any valid email address).
+        "from": "",
+
+        // The email transport.
+        // Possible values: "smtp", "system".
+        "transport": "",
+
+        // If the transport is SMTP, the value below is the address of the outgoing SMTP server,
+        // e.g. "smtp.googlemail.com".
+        "smtpOutgoingServer": "",
+
+        // If the transport is SMTP, the value below is the username of the account on the mail server.
+        "smtpUsername": "",
+
+        // If the transport is SMTP, the value below is the password to the mail account.
+        "smtpPassword": ""
+    }
+}

@@ -1,0 +1,2781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>Phred API</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet" media="all"/>
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Phred API</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">426</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1430587693"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1430587693" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/ICopyingStatic.html">ICopyingStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEquality.html">IEquality</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrder.html">IEqualityAndOrder</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrderStatic.html">IEqualityAndOrderStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityStatic.html">IEqualityStatic</a></li>
+                                                                                                    <li class="class"><a href="../classes/array.html">array</a></li>
+                                                    <li class="class"><a href="../classes/bitfield.html">bitfield</a></li>
+                                                    <li class="class"><a href="../classes/CArray.html">CArray</a></li>
+                                                    <li class="class"><a href="../classes/CArrayObject.html">CArrayObject</a></li>
+                                                    <li class="class"><a href="../classes/CBase64.html">CBase64</a></li>
+                                                    <li class="class"><a href="../classes/CBitField.html">CBitField</a></li>
+                                                    <li class="class"><a href="../classes/CComparator.html">CComparator</a></li>
+                                                    <li class="class"><a href="../classes/CConfiguration.html">CConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CCookie.html">CCookie</a></li>
+                                                    <li class="class"><a href="../classes/CEString.html">CEString</a></li>
+                                                    <li class="class"><a href="../classes/CFile.html">CFile</a></li>
+                                                    <li class="class"><a href="../classes/CFilePath.html">CFilePath</a></li>
+                                                    <li class="class"><a href="../classes/CGZip.html">CGZip</a></li>
+                                                    <li class="class"><a href="../classes/CHash.html">CHash</a></li>
+                                                    <li class="class"><a href="../classes/CHtml.html">CHtml</a></li>
+                                                    <li class="class"><a href="../classes/CHttpRequest.html">CHttpRequest</a></li>
+                                                    <li class="class"><a href="../classes/CHttpResponse.html">CHttpResponse</a></li>
+                                                    <li class="class"><a href="../classes/CInetRequest.html">CInetRequest</a></li>
+                                                    <li class="class"><a href="../classes/CInetSession.html">CInetSession</a></li>
+                                                    <li class="class"><a href="../classes/CInputFilter.html">CInputFilter</a></li>
+                                                    <li class="class"><a href="../classes/CIp.html">CIp</a></li>
+                                                    <li class="class"><a href="../classes/CJson.html">CJson</a></li>
+                                                    <li class="class"><a href="../classes/CMail.html">CMail</a></li>
+                                                    <li class="class"><a href="../classes/CMap.html">CMap</a></li>
+                                                    <li class="class"><a href="../classes/CMapObject.html">CMapObject</a></li>
+                                                    <li class="class"><a href="../classes/CMathf.html">CMathf</a></li>
+                                                    <li class="class"><a href="../classes/CMathi.html">CMathi</a></li>
+                                                    <li class="class"><a href="../classes/CMimeType.html">CMimeType</a></li>
+                                                    <li class="class"><a href="../classes/CRegex.html">CRegex</a></li>
+                                                    <li class="class"><a href="../classes/CRequest.html">CRequest</a></li>
+                                                    <li class="class"><a href="../classes/CResponse.html">CResponse</a></li>
+                                                    <li class="class"><a href="../classes/CShell.html">CShell</a></li>
+                                                    <li class="class"><a href="../classes/CString.html">CString</a></li>
+                                                    <li class="class"><a href="../classes/CSystem.html">CSystem</a></li>
+                                                    <li class="class"><a href="../classes/CTime.html">CTime</a></li>
+                                                    <li class="class"><a href="../classes/CTimeZone.html">CTimeZone</a></li>
+                                                    <li class="class"><a href="../classes/CUFormat.html">CUFormat</a></li>
+                                                    <li class="class"><a href="../classes/CULocale.html">CULocale</a></li>
+                                                    <li class="class"><a href="../classes/CUrl.html">CUrl</a></li>
+                                                    <li class="class"><a href="../classes/CUrlPath.html">CUrlPath</a></li>
+                                                    <li class="class"><a href="../classes/CUrlQuery.html">CUrlQuery</a></li>
+                                                    <li class="class"><a href="../classes/CUString.html">CUString</a></li>
+                                                    <li class="class"><a href="../classes/CUStringObject.html">CUStringObject</a></li>
+                                                    <li class="class"><a href="../classes/CUUnit.html">CUUnit</a></li>
+                                                    <li class="class"><a href="../classes/CXml.html">CXml</a></li>
+                                                    <li class="class"><a href="../classes/enum.html">enum</a></li>
+                                                    <li class="class"><a href="../classes/map.html">map</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span12 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <!--
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    -->
+                    <br/ >
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><!-- <small>\</small> -->CInputFilter</h1>
+                    <p><em><p>The class that takes all the surprise out of communicating with users and the rest of the outer world by ensuring
+that any string that is expected to represent a boolean, integer, or floating-point value, an ASCII or Unicode
+string, an email, a URL etc. does exactly that, also being able to validate and sanitize values by various
+parameters in the process of filtering.</p></em></p>
+                    <p><strong>You can refer to this class by its alias, which is</strong> <code>IFi</code>.</p>
+<p>An input filter works by taking a string or an array or map containing strings as an input for <code>filter</code> method and,
+after the validation and sanitization of the string(s), outputting the value(s) represented by the string(s) in
+accordance with the expected output type(s) that you provided to the constructor when creating the filter's object.</p>
+<p>For all output types but <code>CSTRING</code> (ASCII string) and <code>CUSTRING</code> (Unicode/ASCII string), an input string is trimmed
+from whitespace (including any Unicode whitespace) on both sides as an initial step. An input string is recognized
+as a valid boolean value for "1", "true", "yes", and "on", as well as for "0", "false", "no", and "off",
+case-insensitively. An ASCII string containing a byte with a value greater than 127 is not considered to be valid.
+If the filter is set to ignore protocol absence in URLs, any valid URL with a missing protocol is filtered to the
+same URL but with the default protocol indicated (based on the value of <code>CUrl::DEFAULT_PROTOCOL</code>).</p>
+<p><strong>Defaults for validation:</strong></p>
+<ul>
+<li>Allow leading zeros in a valid integer or floating-point value is <code>true</code>.</li>
+<li>Allow a valid integer to be in the hex notation, i.e. "0x" followed by hex digits, is <code>false</code>.</li>
+<li>Allow thousand groups in a valid integer or floating-point value to be separated with commas is <code>true</code>.</li>
+<li>Ignore protocol absence when validating a URL is <code>true</code>.</li>
+<li>Validate an IP as IPv6 instead of IPv4 is <code>false</code>.</li>
+<li>Validate an IP as either IPv4 or IPv6 is <code>false</code>.</li>
+<li>Allow a valid IP to be in a private IP range is <code>true</code>.</li>
+<li>Allow a valid IP to be in a reserved IP range is <code>true</code>.</li>
+</ul>
+<p><strong>Defaults for sanitization:</strong></p>
+<ul>
+<li>Keep abnormal newlines (that are not LF) in a string value is <code>false</code>.</li>
+<li>Keep non-printable characters in a string value is <code>false</code>.</li>
+<li>Keep tabs and newlines in a string value is <code>true</code>.</li>
+<li>Keep whitespace on both sides of a string value is <code>true</code>.</li>
+<li>Keep consecutive whitespace characters in a string value and do not shrink them to a single space is <code>true</code>.</li>
+</ul>
+<p><strong>Other defaults:</strong></p>
+<ul>
+<li>JSON strictness for array/map decoding is <code>CJson::STRICT</code>.</li>
+</ul>
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methodsum">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/CInputFilter.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setDefault" class="">setDefault()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setJsonStrictness" class="">setJsonStrictness()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_expectedType" class="">expectedType()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_defaultValue" class="">defaultValue()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_collectionInputFilters" class="">collectionInputFilters()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setValidMin" class="">setValidMin()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setValidMax" class="">setValidMax()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setValidMinMax" class="">setValidMinMax()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setAllowLeadingZeros" class="">setAllowLeadingZeros()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setAllowComma" class="">setAllowComma()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setIgnoreProtocolAbsence" class="">setIgnoreProtocolAbsence()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setAllowHex" class="">setAllowHex()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setIpV6" class="">setIpV6()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setIpV4OrV6" class="">setIpV4OrV6()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setAllowPrivateRange" class="">setAllowPrivateRange()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setAllowReservedRange" class="">setAllowReservedRange()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setClampingMin" class="">setClampingMin()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setClampingMax" class="">setClampingMax()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setClampingMinMax" class="">setClampingMinMax()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setKeepAbnormalNewlines" class="">setKeepAbnormalNewlines()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setKeepNonPrintable" class="">setKeepNonPrintable()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setKeepTabsAndNewlines" class="">setKeepTabsAndNewlines()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setKeepSideSpacing" class="">setKeepSideSpacing()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_setKeepExtraSpacing" class="">setKeepExtraSpacing()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_filter" class="">filter()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CInputFilter.html#constant_BOOL" class="">BOOL</a><br />
+                                                                    <a href="../classes/CInputFilter.html#constant_INT" class="">INT</a><br />
+                                                                    <a href="../classes/CInputFilter.html#constant_FLOAT" class="">FLOAT</a><br />
+                                                                    <a href="../classes/CInputFilter.html#constant_CSTRING" class="">CSTRING</a><br />
+                                                                    <a href="../classes/CInputFilter.html#constant_CUSTRING" class="">CUSTRING</a><br />
+                                                                    <a href="../classes/CInputFilter.html#constant_CARRAY" class="">CARRAY</a><br />
+                                                                    <a href="../classes/CInputFilter.html#constant_CMAP" class="">CMAP</a><br />
+                                                                    <a href="../classes/CInputFilter.html#constant_EMAIL" class="">EMAIL</a><br />
+                                                                    <a href="../classes/CInputFilter.html#constant_URL" class="">URL</a><br />
+                                                                    <a href="../classes/CInputFilter.html#constant_IP" class="">IP</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties</em>
+                                                            </section>
+                        </section>
+                        <!--
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/CInputFilter.html#method_recurseCollectionFiltering" class="">recurseCollectionFiltering()</a><br />
+                                                                    <a href="../classes/CInputFilter.html#method_collectionElementToString" class="">collectionElementToString()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CInputFilter.html#property_m_eExpectedType" class="">$m_eExpectedType</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_xCollectionInputFilters" class="">$m_xCollectionInputFilters</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_xDefaultValue" class="">$m_xDefaultValue</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_eJsonStrictness" class="">$m_eJsonStrictness</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_iValidMin" class="">$m_iValidMin</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_iValidMax" class="">$m_iValidMax</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_fValidMin" class="">$m_fValidMin</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_fValidMax" class="">$m_fValidMax</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_bAllowLeadingZeros" class="">$m_bAllowLeadingZeros</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_bAllowHex" class="">$m_bAllowHex</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_bAllowComma" class="">$m_bAllowComma</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_bIgnoreProtocolAbsence" class="">$m_bIgnoreProtocolAbsence</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_bIpV6" class="">$m_bIpV6</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_bIpV4OrV6" class="">$m_bIpV4OrV6</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_bAllowPrivateRange" class="">$m_bAllowPrivateRange</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_bAllowReservedRange" class="">$m_bAllowReservedRange</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_iClampingMin" class="">$m_iClampingMin</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_iClampingMax" class="">$m_iClampingMax</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_fClampingMin" class="">$m_fClampingMin</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_fClampingMax" class="">$m_fClampingMax</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_bKeepAbnormalNewlines" class="">$m_bKeepAbnormalNewlines</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_bKeepNonPrintable" class="">$m_bKeepNonPrintable</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_bKeepTabsAndNewlines" class="">$m_bKeepTabsAndNewlines</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_bKeepSideSpacing" class="">$m_bKeepSideSpacing</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_m_bKeepExtraSpacing" class="">$m_bKeepExtraSpacing</a><br />
+                                                                    <a href="../classes/CInputFilter.html#property_ms_iMaxRecursionDepth" class="">$ms_iMaxRecursionDepth</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                        </section>
+                        -->
+                    </section>
+                </div>
+                <aside class="span2 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Classes.Io.CInputFilter.php.html"><div class="path-wrapper">Classes/Io/CInputFilter.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper"></div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\CRootClass</div>
+                                                                                                    <div class="namespace-wrapper">\CInputFilter</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2 style="visibility: hidden">Tags</h2>
+                    <table class="table table-condensed" style="visibility: hidden">
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+            <a id="methodsum" name="methodsum"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Method Summary</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method___construct" class="">__construct()</a></td>
+                            <td><p>Creates a filter suited for a specified data type to be outputted.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setDefault" class="">setDefault()</a></td>
+                            <td><p>Sets the default value to be returned by <code>filter</code> method in case if the input value does not pass the filtering
+process.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setJsonStrictness" class="">setJsonStrictness()</a></td>
+                            <td><p>Sets the JSON decoding strictness to be used for JSON input.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_expectedType" class="">expectedType()</a></td>
+                            <td><p>Returns the output data type of a filter.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_defaultValue" class="">defaultValue()</a></td>
+                            <td><p>Returns the default value of a filter.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_collectionInputFilters" class="">collectionInputFilters()</a></td>
+                            <td><p>Returns the array or map containing the filters associated with the values in the input array or map for a
+filter.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setValidMin" class="">setValidMin()</a></td>
+                            <td><p>For <code>INT</code> and <code>FLOAT</code> output types, sets the minimum acceptable value for an input value to be considered valid.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setValidMax" class="">setValidMax()</a></td>
+                            <td><p>For <code>INT</code> and <code>FLOAT</code> output types, sets the maximum acceptable value for an input value to be considered valid.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setValidMinMax" class="">setValidMinMax()</a></td>
+                            <td><p>For <code>INT</code> and <code>FLOAT</code> output types, sets the minimum and maximum acceptable values for an input value to be
+considered valid.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setAllowLeadingZeros" class="">setAllowLeadingZeros()</a></td>
+                            <td><p>For <code>INT</code> and <code>FLOAT</code> output types, allows or disallows a string with an input value to start with one or more
+zeros.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setAllowComma" class="">setAllowComma()</a></td>
+                            <td><p>For <code>INT</code> and <code>FLOAT</code> output types, allows or disallows the thousand groups in a string with an input value to
+be separated with commas.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setIgnoreProtocolAbsence" class="">setIgnoreProtocolAbsence()</a></td>
+                            <td><p>For <code>URL</code> output type, sets whether to ignore the absence of a protocol in an input URL.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setAllowHex" class="">setAllowHex()</a></td>
+                            <td><p>For <code>INT</code> output type, allows or disallows a string with an input value to be a hexadecimal integer prefixed
+with "0x".</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setIpV6" class="">setIpV6()</a></td>
+                            <td><p>For <code>IP</code> output type, sets whether an input IP is expected to be IPv6 only.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setIpV4OrV6" class="">setIpV4OrV6()</a></td>
+                            <td><p>For <code>IP</code> output type, sets whether an input IP is allowed to be IPv6 in addition to IPv4.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setAllowPrivateRange" class="">setAllowPrivateRange()</a></td>
+                            <td><p>For <code>IP</code> output type, allows or disallows an input IP to be in a private IP range.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setAllowReservedRange" class="">setAllowReservedRange()</a></td>
+                            <td><p>For <code>IP</code> output type, allows or disallows an input IP to be in a reserved IP range.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setClampingMin" class="">setClampingMin()</a></td>
+                            <td><p>For <code>INT</code> and <code>FLOAT</code> output types, sets the minimum acceptable value to which an input value should be clamped
+if needed.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setClampingMax" class="">setClampingMax()</a></td>
+                            <td><p>For <code>INT</code> and <code>FLOAT</code> output types, sets the maximum acceptable value to which an input value should be clamped
+if needed.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setClampingMinMax" class="">setClampingMinMax()</a></td>
+                            <td><p>For <code>INT</code> and <code>FLOAT</code> output types, sets the minimum and maximum acceptable values to which an input value
+should be clamped if needed.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setKeepAbnormalNewlines" class="">setKeepAbnormalNewlines()</a></td>
+                            <td><p>For <code>CSTRING</code> and <code>CUSTRING</code> output types, sets whether to keep any non-LF newlines in the output string or
+convert any such newlines to LF instead.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setKeepNonPrintable" class="">setKeepNonPrintable()</a></td>
+                            <td><p>For <code>CSTRING</code> and <code>CUSTRING</code> output types, sets whether to keep any non-printable characters in the output
+string or remove any such characters.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setKeepTabsAndNewlines" class="">setKeepTabsAndNewlines()</a></td>
+                            <td><p>For <code>CSTRING</code> and <code>CUSTRING</code> output types, sets whether to keep any tabs and newlines in the output string or to
+remove them.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setKeepSideSpacing" class="">setKeepSideSpacing()</a></td>
+                            <td><p>For <code>CSTRING</code> and <code>CUSTRING</code> output types, sets whether to keep any whitespace at the both sides of the output
+string or to trim it.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_setKeepExtraSpacing" class="">setKeepExtraSpacing()</a></td>
+                            <td><p>For <code>CSTRING</code> and <code>CUSTRING</code> output types, sets whether to keep any whitespace at the both sides of the output
+string and to keep any sequence of whitespace characters within the string as-is or to trim the string from
+whitespace on both sides and to replace any sequence of whitespace characters with a single space character.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CInputFilter.html#method_filter" class="">filter()</a></td>
+                            <td><p>Filters a string or a collection of strings according to the expected output type(s) and returns the output
+value(s).</p></td>
+                        </tr>
+                                        </table>
+                </div>
+                <aside class="span2 detailsbar"> </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_BOOL" name="constant_BOOL" class="anchor"></a>
+            <article id="constant_BOOL" class="constant">
+                <h3 class="">BOOL</h3>
+                <pre class="signature">BOOL</pre>
+                <p><p><code>enum</code> Boolean type.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_INT" name="constant_INT" class="anchor"></a>
+            <article id="constant_INT" class="constant">
+                <h3 class="">INT</h3>
+                <pre class="signature">INT</pre>
+                <p><p><code>enum</code> Integer type.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FLOAT" name="constant_FLOAT" class="anchor"></a>
+            <article id="constant_FLOAT" class="constant">
+                <h3 class="">FLOAT</h3>
+                <pre class="signature">FLOAT</pre>
+                <p><p><code>enum</code> Floating-point type.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CSTRING" name="constant_CSTRING" class="anchor"></a>
+            <article id="constant_CSTRING" class="constant">
+                <h3 class="">CSTRING</h3>
+                <pre class="signature">CSTRING</pre>
+                <p><p><code>enum</code> ASCII string.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CUSTRING" name="constant_CUSTRING" class="anchor"></a>
+            <article id="constant_CUSTRING" class="constant">
+                <h3 class="">CUSTRING</h3>
+                <pre class="signature">CUSTRING</pre>
+                <p><p><code>enum</code> Unicode string or ASCII string.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CARRAY" name="constant_CARRAY" class="anchor"></a>
+            <article id="constant_CARRAY" class="constant">
+                <h3 class="">CARRAY</h3>
+                <pre class="signature">CARRAY</pre>
+                <p><p><code>enum</code> Array containing values of the supported types, other arrays, or maps.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CMAP" name="constant_CMAP" class="anchor"></a>
+            <article id="constant_CMAP" class="constant">
+                <h3 class="">CMAP</h3>
+                <pre class="signature">CMAP</pre>
+                <p><p><code>enum</code> Map containing values of the supported types, arrays, or other maps.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_EMAIL" name="constant_EMAIL" class="anchor"></a>
+            <article id="constant_EMAIL" class="constant">
+                <h3 class="">EMAIL</h3>
+                <pre class="signature">EMAIL</pre>
+                <p><p><code>enum</code> Email address.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_URL" name="constant_URL" class="anchor"></a>
+            <article id="constant_URL" class="constant">
+                <h3 class="">URL</h3>
+                <pre class="signature">URL</pre>
+                <p><p><code>enum</code> URL address.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_IP" name="constant_IP" class="anchor"></a>
+            <article id="constant_IP" class="constant">
+                <h3 class="">IP</h3>
+                <pre class="signature">IP</pre>
+                <p><p><code>enum</code> IP address.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+            <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (enum&nbsp;<span class="argument">$eExpectedType</span>, <span style="color: rgb(144, 144, 144)">mixed&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$xCollectionInputFilters</span></span>)</pre>
+                <p><em><p>Creates a filter suited for a specified data type to be outputted.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eExpectedType</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The output data type that is expected (see <a href="#summary">Summary</a>).</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xCollectionInputFilters</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
+                                <td><p><strong>OPTIONAL.</strong> <em>Required only when the expected type is <code>CARRAY</code> or
+<code>CMAP</code></em>. The array or map containing the filters to be applied to the elements in the input array if the
+expected type is <code>CARRAY</code> or to the values in the input map if the expected type is <code>CMAP</code>. If the input value
+is going to be an array, the number of filters in this parameter should match the length of the input array, and
+if the input value is going to be a map, the keys in this parameter should match the keys in the input map. Same
+as input arrays and maps, this parameter can be multidimensional in order to correspond with the input value.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setDefault" name="method_setDefault" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setDefault()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setDefault (mixed&nbsp;<span class="argument">$xValue</span>) : void</pre>
+                <p><em><p>Sets the default value to be returned by <code>filter</code> method in case if the input value does not pass the filtering
+process.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xValue</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
+                                <td><p>The default value for the filter.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setJsonStrictness" name="method_setJsonStrictness" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setJsonStrictness()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setJsonStrictness (enum&nbsp;<span class="argument">$eStrictness</span>) : void</pre>
+                <p><em><p>Sets the JSON decoding strictness to be used for JSON input.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eStrictness</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The JSON decoding strictness (see <a href="CJson.html#summary">CJson Summary</a>).</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_expectedType" name="method_expectedType" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">expectedType()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">expectedType () : enum</pre>
+                <p><em><p>Returns the output data type of a filter.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/enum.html">enum</a>
+                    <!-- </code> -->
+                                            &mdash; <p>The filter's output data type.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_defaultValue" name="method_defaultValue" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">defaultValue()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">defaultValue () : mixed</pre>
+                <p><em><p>Returns the default value of a filter.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    mixed
+                    <!-- </code> -->
+                                            &mdash; <p>The filter's default value.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_collectionInputFilters" name="method_collectionInputFilters" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">collectionInputFilters()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">collectionInputFilters () : mixed</pre>
+                <p><em><p>Returns the array or map containing the filters associated with the values in the input array or map for a
+filter.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    mixed
+                    <!-- </code> -->
+                                            &mdash; <p>The array or map containing the filters associated with the values in the input array or map.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setValidMin" name="method_setValidMin" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setValidMin()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setValidMin (mixed&nbsp;<span class="argument">$xMin</span>) : void</pre>
+                <p><em><p>For <code>INT</code> and <code>FLOAT</code> output types, sets the minimum acceptable value for an input value to be considered valid.</p></em></p>
+                <p>This method is one of the validation methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xMin</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
+                                <td><p>The minimum acceptable value. The parameter's type should match the expected output type.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setValidMax" name="method_setValidMax" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setValidMax()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setValidMax (mixed&nbsp;<span class="argument">$xMax</span>) : void</pre>
+                <p><em><p>For <code>INT</code> and <code>FLOAT</code> output types, sets the maximum acceptable value for an input value to be considered valid.</p></em></p>
+                <p>This method is one of the validation methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xMax</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
+                                <td><p>The maximum acceptable value. The parameter's type should match the expected output type.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setValidMinMax" name="method_setValidMinMax" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setValidMinMax()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setValidMinMax (mixed&nbsp;<span class="argument">$xMin</span>, mixed&nbsp;<span class="argument">$xMax</span>) : void</pre>
+                <p><em><p>For <code>INT</code> and <code>FLOAT</code> output types, sets the minimum and maximum acceptable values for an input value to be
+considered valid.</p></em></p>
+                <p>This method is one of the validation methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xMin</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
+                                <td><p>The minimum acceptable value. The parameter's type should match the expected output type.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xMax</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
+                                <td><p>The maximum acceptable value. The parameter's type should match the expected output type.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setAllowLeadingZeros" name="method_setAllowLeadingZeros" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setAllowLeadingZeros()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setAllowLeadingZeros (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <p><em><p>For <code>INT</code> and <code>FLOAT</code> output types, allows or disallows a string with an input value to start with one or more
+zeros.</p></em></p>
+                <p>This method is one of the validation methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><code>true</code> to allow an input value to contain leading zeros, <code>false</code> otherwise.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setAllowComma" name="method_setAllowComma" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setAllowComma()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setAllowComma (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <p><em><p>For <code>INT</code> and <code>FLOAT</code> output types, allows or disallows the thousand groups in a string with an input value to
+be separated with commas.</p></em></p>
+                <p>This method is one of the validation methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><code>true</code> to allow an input value to contain commas, <code>false</code> otherwise.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setIgnoreProtocolAbsence" name="method_setIgnoreProtocolAbsence" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setIgnoreProtocolAbsence()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setIgnoreProtocolAbsence (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <p><em><p>For <code>URL</code> output type, sets whether to ignore the absence of a protocol in an input URL.</p></em></p>
+                <p>This method is one of the validation methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><code>true</code> to ignore the absence of a protocol in an input URL, <code>false</code> otherwise.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setAllowHex" name="method_setAllowHex" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setAllowHex()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setAllowHex (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <p><em><p>For <code>INT</code> output type, allows or disallows a string with an input value to be a hexadecimal integer prefixed
+with "0x".</p></em></p>
+                <p>This method is one of the validation methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><code>true</code> to allow an input value to be a hexadecimal integer prefixed with "0x", <code>false</code>
+otherwise.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setIpV6" name="method_setIpV6" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setIpV6()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setIpV6 (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <p><em><p>For <code>IP</code> output type, sets whether an input IP is expected to be IPv6 only.</p></em></p>
+                <p>This method is one of the validation methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><code>true</code> if an input IP is expected to be IPv6 only, <code>false</code> otherwise.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setIpV4OrV6" name="method_setIpV4OrV6" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setIpV4OrV6()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setIpV4OrV6 (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <p><em><p>For <code>IP</code> output type, sets whether an input IP is allowed to be IPv6 in addition to IPv4.</p></em></p>
+                <p>This method is one of the validation methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><code>true</code> if an input IP is allowed to be IPv6 in addition to IPv4, <code>false</code> otherwise.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setAllowPrivateRange" name="method_setAllowPrivateRange" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setAllowPrivateRange()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setAllowPrivateRange (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <p><em><p>For <code>IP</code> output type, allows or disallows an input IP to be in a private IP range.</p></em></p>
+                <p>This method is one of the validation methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><code>true</code> to allow an input IP to be in a private IP range, <code>false</code> otherwise.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setAllowReservedRange" name="method_setAllowReservedRange" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setAllowReservedRange()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setAllowReservedRange (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <p><em><p>For <code>IP</code> output type, allows or disallows an input IP to be in a reserved IP range.</p></em></p>
+                <p>This method is one of the validation methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><code>true</code> to allow an input IP to be in a reserved IP range, <code>false</code> otherwise.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setClampingMin" name="method_setClampingMin" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setClampingMin()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setClampingMin (mixed&nbsp;<span class="argument">$xMin</span>) : void</pre>
+                <p><em><p>For <code>INT</code> and <code>FLOAT</code> output types, sets the minimum acceptable value to which an input value should be clamped
+if needed.</p></em></p>
+                <p>This method is one of the sanitization methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xMin</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
+                                <td><p>The minimum acceptable value. The parameter's type should match the expected output type.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setClampingMax" name="method_setClampingMax" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setClampingMax()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setClampingMax (mixed&nbsp;<span class="argument">$xMax</span>) : void</pre>
+                <p><em><p>For <code>INT</code> and <code>FLOAT</code> output types, sets the maximum acceptable value to which an input value should be clamped
+if needed.</p></em></p>
+                <p>This method is one of the sanitization methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xMax</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
+                                <td><p>The maximum acceptable value. The parameter's type should match the expected output type.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setClampingMinMax" name="method_setClampingMinMax" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setClampingMinMax()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setClampingMinMax (mixed&nbsp;<span class="argument">$xMin</span>, mixed&nbsp;<span class="argument">$xMax</span>) : void</pre>
+                <p><em><p>For <code>INT</code> and <code>FLOAT</code> output types, sets the minimum and maximum acceptable values to which an input value
+should be clamped if needed.</p></em></p>
+                <p>This method is one of the sanitization methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xMin</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
+                                <td><p>The minimum acceptable value. The parameter's type should match the expected output type.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xMax</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
+                                <td><p>The maximum acceptable value. The parameter's type should match the expected output type.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setKeepAbnormalNewlines" name="method_setKeepAbnormalNewlines" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setKeepAbnormalNewlines()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setKeepAbnormalNewlines (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <p><em><p>For <code>CSTRING</code> and <code>CUSTRING</code> output types, sets whether to keep any non-LF newlines in the output string or
+convert any such newlines to LF instead.</p></em></p>
+                <p>This method is one of the sanitization methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><code>true</code> to keep any non-LF newlines in the output string, <code>false</code> to convert any such
+newlines to LF.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setKeepNonPrintable" name="method_setKeepNonPrintable" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setKeepNonPrintable()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setKeepNonPrintable (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <p><em><p>For <code>CSTRING</code> and <code>CUSTRING</code> output types, sets whether to keep any non-printable characters in the output
+string or remove any such characters.</p></em></p>
+                <p>An ASCII or Unicode space is treated as a printable character in the context of this method.</p>
+<p>This method is one of the sanitization methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><code>true</code> to keep any non-printable characters in the output string, <code>false</code> to remove any
+such characters.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setKeepTabsAndNewlines" name="method_setKeepTabsAndNewlines" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setKeepTabsAndNewlines()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setKeepTabsAndNewlines (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <p><em><p>For <code>CSTRING</code> and <code>CUSTRING</code> output types, sets whether to keep any tabs and newlines in the output string or to
+remove them.</p></em></p>
+                <p>This method is one of the sanitization methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><code>true</code> to keep any tabs and newlines in the output string, <code>false</code> to remove them.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setKeepSideSpacing" name="method_setKeepSideSpacing" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setKeepSideSpacing()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setKeepSideSpacing (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <p><em><p>For <code>CSTRING</code> and <code>CUSTRING</code> output types, sets whether to keep any whitespace at the both sides of the output
+string or to trim it.</p></em></p>
+                <p>This method is one of the sanitization methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><code>true</code> to keep any whitespace at the both sides of the output string, <code>false</code> to trim it.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setKeepExtraSpacing" name="method_setKeepExtraSpacing" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setKeepExtraSpacing()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setKeepExtraSpacing (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <p><em><p>For <code>CSTRING</code> and <code>CUSTRING</code> output types, sets whether to keep any whitespace at the both sides of the output
+string and to keep any sequence of whitespace characters within the string as-is or to trim the string from
+whitespace on both sides and to replace any sequence of whitespace characters with a single space character.</p></em></p>
+                <p>This method is one of the sanitization methods.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><code>true</code> to keep any whitespace at the both sides of the output string and to keep any
+sequence of whitespace characters within the string as-is, <code>false</code> to trim the string from whitespace on both
+sides and to replace any sequence of whitespace characters with a single space character.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filter" name="method_filter" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">filter (mixed&nbsp;<span class="argument">$xInputStringOrDecodedCollection</span>, reference&nbsp;<span class="argument">$rbSuccess</span>) : mixed</pre>
+                <p><em><p>Filters a string or a collection of strings according to the expected output type(s) and returns the output
+value(s).</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xInputStringOrDecodedCollection</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
+                                <td><p>The string to be filtered or the array or map containing the
+strings to be filtered. If the parameter's value is a JSON-encoded string, the output value is going to be
+either an array or map.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$rbSuccess</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
+                                <td><p><strong>OUTPUT.</strong> After the method is called, the value of this parameter tells whether
+the filtering was successful.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    mixed
+                    <!-- </code> -->
+                                            &mdash; <p>The output value or a collection of values of the expected type(s) after having been put through
+the filter.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                <!--
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_recurseCollectionFiltering" name="method_recurseCollectionFiltering" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">recurseCollectionFiltering()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseCollectionFiltering (&nbsp;<span class="argument">$xInputCollection</span>, &nbsp;<span class="argument">$xFilterOrFilterCollection</span>, &nbsp;<span class="argument">$rbSuccess</span>, &nbsp;<span class="argument">$iCurrDepth</span>)</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xInputCollection</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xFilterOrFilterCollection</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$rbSuccess</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$iCurrDepth</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_collectionElementToString" name="method_collectionElementToString" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">collectionElementToString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> collectionElementToString (&nbsp;<span class="argument">$xElementValue</span>, &nbsp;<span class="argument">$rbSuccess</span>)</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xElementValue</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$rbSuccess</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                -->
+            
+            <!--
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_eExpectedType" name="property_m_eExpectedType" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_eExpectedType</h3>
+                <pre class="signature">$m_eExpectedType</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_xCollectionInputFilters" name="property_m_xCollectionInputFilters" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_xCollectionInputFilters</h3>
+                <pre class="signature">$m_xCollectionInputFilters</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_xDefaultValue" name="property_m_xDefaultValue" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_xDefaultValue</h3>
+                <pre class="signature">$m_xDefaultValue</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_eJsonStrictness" name="property_m_eJsonStrictness" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_eJsonStrictness</h3>
+                <pre class="signature">$m_eJsonStrictness</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_iValidMin" name="property_m_iValidMin" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_iValidMin</h3>
+                <pre class="signature">$m_iValidMin</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_iValidMax" name="property_m_iValidMax" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_iValidMax</h3>
+                <pre class="signature">$m_iValidMax</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_fValidMin" name="property_m_fValidMin" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_fValidMin</h3>
+                <pre class="signature">$m_fValidMin</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_fValidMax" name="property_m_fValidMax" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_fValidMax</h3>
+                <pre class="signature">$m_fValidMax</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bAllowLeadingZeros" name="property_m_bAllowLeadingZeros" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bAllowLeadingZeros</h3>
+                <pre class="signature">$m_bAllowLeadingZeros</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bAllowHex" name="property_m_bAllowHex" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bAllowHex</h3>
+                <pre class="signature">$m_bAllowHex</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bAllowComma" name="property_m_bAllowComma" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bAllowComma</h3>
+                <pre class="signature">$m_bAllowComma</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bIgnoreProtocolAbsence" name="property_m_bIgnoreProtocolAbsence" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bIgnoreProtocolAbsence</h3>
+                <pre class="signature">$m_bIgnoreProtocolAbsence</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bIpV6" name="property_m_bIpV6" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bIpV6</h3>
+                <pre class="signature">$m_bIpV6</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bIpV4OrV6" name="property_m_bIpV4OrV6" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bIpV4OrV6</h3>
+                <pre class="signature">$m_bIpV4OrV6</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bAllowPrivateRange" name="property_m_bAllowPrivateRange" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bAllowPrivateRange</h3>
+                <pre class="signature">$m_bAllowPrivateRange</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bAllowReservedRange" name="property_m_bAllowReservedRange" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bAllowReservedRange</h3>
+                <pre class="signature">$m_bAllowReservedRange</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_iClampingMin" name="property_m_iClampingMin" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_iClampingMin</h3>
+                <pre class="signature">$m_iClampingMin</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_iClampingMax" name="property_m_iClampingMax" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_iClampingMax</h3>
+                <pre class="signature">$m_iClampingMax</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_fClampingMin" name="property_m_fClampingMin" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_fClampingMin</h3>
+                <pre class="signature">$m_fClampingMin</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_fClampingMax" name="property_m_fClampingMax" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_fClampingMax</h3>
+                <pre class="signature">$m_fClampingMax</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bKeepAbnormalNewlines" name="property_m_bKeepAbnormalNewlines" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bKeepAbnormalNewlines</h3>
+                <pre class="signature">$m_bKeepAbnormalNewlines</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bKeepNonPrintable" name="property_m_bKeepNonPrintable" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bKeepNonPrintable</h3>
+                <pre class="signature">$m_bKeepNonPrintable</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bKeepTabsAndNewlines" name="property_m_bKeepTabsAndNewlines" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bKeepTabsAndNewlines</h3>
+                <pre class="signature">$m_bKeepTabsAndNewlines</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bKeepSideSpacing" name="property_m_bKeepSideSpacing" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bKeepSideSpacing</h3>
+                <pre class="signature">$m_bKeepSideSpacing</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bKeepExtraSpacing" name="property_m_bKeepExtraSpacing" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bKeepExtraSpacing</h3>
+                <pre class="signature">$m_bKeepExtraSpacing</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_ms_iMaxRecursionDepth" name="property_ms_iMaxRecursionDepth" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$ms_iMaxRecursionDepth</h3>
+                <pre class="signature">$ms_iMaxRecursionDepth</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                        -->
+        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">CInputFilter.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Classes/Io/CInputFilter.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4" style="visibility: hidden">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 13th, 2014 at 18:15.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

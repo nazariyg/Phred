@@ -1,0 +1,20 @@
+<?php
+
+// This class is to serve documentation only and is never actually declared.
+
+if ( false )
+{
+
+    /**
+     * **Any of the map types.**
+     *
+     * This is either an `CMapObject` or, if the OOP mode is off, a PHP's associative array.
+     */
+
+    class map
+    {
+        // Empty.
+    }
+
+}
+

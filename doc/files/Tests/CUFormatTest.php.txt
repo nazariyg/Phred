@@ -1,0 +1,180 @@
+<?php
+
+/**
+ * @ignore
+ */
+
+class CUFormatTest extends CTestCase
+{
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public function testNumber ()
+    {
+        $this->assertTrue(CUFormat::number(1234, new CULocale(CULocale::ENGLISH_UNITED_STATES_COMPUTER))->equals(
+            "1234"));
+        $this->assertTrue(CUFormat::number(1234, new CULocale(CULocale::ENGLISH_UNITED_STATES))->equals("1,234"));
+        $this->assertTrue(CUFormat::number(1234, new CULocale(CULocale::GERMAN_GERMANY))->equals("1.234"));
+        $this->assertTrue(CUFormat::number(1234, new CULocale(CULocale::FRENCH_FRANCE))->equals("1 234"));
+
+        $this->assertTrue(CUFormat::number(1234.5, new CULocale(CULocale::ENGLISH_UNITED_STATES_COMPUTER))->equals(
+            "1234.5"));
+        $this->assertTrue(CUFormat::number(1234.5, new CULocale(CULocale::ENGLISH_UNITED_STATES))->equals("1,234.5"));
+        $this->assertTrue(CUFormat::number(1234.5, new CULocale(CULocale::GERMAN_GERMANY))->equals("1.234,5"));
+        $this->assertTrue(CUFormat::number(1234.5, new CULocale(CULocale::FRENCH_FRANCE))->equals("1 234,5"));
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public function testNumberWithoutGrouping ()
+    {
+        $this->assertTrue(CUFormat::numberWithoutGrouping(1234,
+            new CULocale(CULocale::ENGLISH_UNITED_STATES_COMPUTER))->equals("1234"));
+        $this->assertTrue(CUFormat::numberWithoutGrouping(1234,
+            new CULocale(CULocale::ENGLISH_UNITED_STATES))->equals("1234"));
+        $this->assertTrue(CUFormat::numberWithoutGrouping(1234,
+            new CULocale(CULocale::GERMAN_GERMANY))->equals("1234"));
+        $this->assertTrue(CUFormat::numberWithoutGrouping(1234,
+            new CULocale(CULocale::FRENCH_FRANCE))->equals("1234"));
+
+        $this->assertTrue(CUFormat::numberWithoutGrouping(1234.5,
+            new CULocale(CULocale::ENGLISH_UNITED_STATES_COMPUTER))->equals("1234.5"));
+        $this->assertTrue(CUFormat::numberWithoutGrouping(1234.5,
+            new CULocale(CULocale::ENGLISH_UNITED_STATES))->equals("1234.5"));
+        $this->assertTrue(CUFormat::numberWithoutGrouping(1234.5,
+            new CULocale(CULocale::GERMAN_GERMANY))->equals("1234,5"));
+        $this->assertTrue(CUFormat::numberWithoutGrouping(1234.5,
+            new CULocale(CULocale::FRENCH_FRANCE))->equals("1234,5"));
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public function testNumberScientific ()
+    {
+        $this->assertTrue(CUFormat::numberScientific(1234,
+            new CULocale(CULocale::ENGLISH_UNITED_STATES_COMPUTER))->equals("1.234E+003"));
+        $this->assertTrue(CUFormat::numberScientific(1234,
+            new CULocale(CULocale::ENGLISH_UNITED_STATES))->equals("1.234E3"));
+        $this->assertTrue(CUFormat::numberScientific(1234,
+            new CULocale(CULocale::GERMAN_GERMANY))->equals("1,234E3"));
+        $this->assertTrue(CUFormat::numberScientific(1234,
+            new CULocale(CULocale::FRENCH_FRANCE))->equals("1,234E3"));
+
+        $this->assertTrue(CUFormat::numberScientific(1234.5,
+            new CULocale(CULocale::ENGLISH_UNITED_STATES_COMPUTER))->equals("1.2345E+003"));
+        $this->assertTrue(CUFormat::numberScientific(1234.5,
+            new CULocale(CULocale::ENGLISH_UNITED_STATES))->equals("1.2345E3"));
+        $this->assertTrue(CUFormat::numberScientific(1234.5,
+            new CULocale(CULocale::GERMAN_GERMANY))->equals("1,2345E3"));
+        $this->assertTrue(CUFormat::numberScientific(1234.5,
+            new CULocale(CULocale::FRENCH_FRANCE))->equals("1,2345E3"));
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public function testNumberOrdinal ()
+    {
+        // $this->assertTrue(CUFormat::numberOrdinal(5,
+        //     new CULocale(CULocale::ENGLISH_UNITED_STATES_COMPUTER))->equals("5th"));
+        // $this->assertTrue(CUFormat::numberOrdinal(5,
+        //     new CULocale(CULocale::ENGLISH_UNITED_STATES))->equals("5th"));
+        // $this->assertTrue(CUFormat::numberOrdinal(5,
+        //     new CULocale(CULocale::GERMAN_GERMANY))->equals("5."));
+        // $this->assertTrue(CUFormat::numberOrdinal(5,
+        //     new CULocale(CULocale::FRENCH_FRANCE))->equals("5e"));
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public function testNumberSpellOut ()
+    {
+        // $this->assertTrue(CUFormat::numberSpellOut(1234,
+        //     new CULocale(CULocale::ENGLISH_UNITED_STATES_COMPUTER))->equals("one thousand two hundred thirty-four"));
+        // $this->assertTrue(CUFormat::numberSpellOut(1234,
+        //     new CULocale(CULocale::ENGLISH_UNITED_STATES))->equals("one thousand two hundred thirty-four"));
+        // $this->assertTrue(CUFormat::numberSpellOut(1234,
+        //     new CULocale(CULocale::GERMAN_GERMANY))->equals("ein­tausend­zwei­hundert­vier­und­dreißig"));
+        // $this->assertTrue(CUFormat::numberSpellOut(1234,
+        //     new CULocale(CULocale::FRENCH_FRANCE))->equals("mille deux cent trente-quatre"));
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public function testPercent ()
+    {
+        $this->assertTrue(CUFormat::percent(0.5,
+            new CULocale(CULocale::ENGLISH_UNITED_STATES_COMPUTER))->equals("50%"));
+        $this->assertTrue(CUFormat::percent(0.5,
+            new CULocale(CULocale::ENGLISH_UNITED_STATES))->equals("50%"));
+        $this->assertTrue(CUFormat::percent(0.5,
+            new CULocale(CULocale::GERMAN_GERMANY))->equals("50 %"));
+        $this->assertTrue(CUFormat::percent(0.5,
+            new CULocale(CULocale::FRENCH_FRANCE))->equals("50 %"));
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public function testCurrency ()
+    {
+        $this->assertTrue(CUFormat::currency(12.34,
+            new CULocale(CULocale::ENGLISH_UNITED_STATES_COMPUTER))->equals("\$ 12.34"));
+        $this->assertTrue(CUFormat::currency(12.34,
+            new CULocale(CULocale::ENGLISH_UNITED_STATES))->equals("$12.34"));
+        $this->assertTrue(CUFormat::currency(12.34,
+            new CULocale(CULocale::GERMAN_GERMANY))->equals("12,34 €"));
+        $this->assertTrue(CUFormat::currency(12.34,
+            new CULocale(CULocale::FRENCH_FRANCE))->equals("12,34 €"));
+
+        $this->assertTrue(CUFormat::currency(12.34,
+            new CULocale(CULocale::ENGLISH_UNITED_STATES_COMPUTER), "EUR")->equals("€ 12.34"));
+        $this->assertTrue(CUFormat::currency(12.34,
+            new CULocale(CULocale::ENGLISH_UNITED_STATES), "EUR")->equals("€12.34"));
+        $this->assertTrue(CUFormat::currency(12.34,
+            new CULocale(CULocale::GERMAN_GERMANY), "USD")->equals("12,34 $"));
+        $this->assertTrue(CUFormat::currency(12.34,
+            new CULocale(CULocale::FRENCH_FRANCE), "USD")->equals("12,34 \$US"));
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public function testTimeWithStyles ()
+    {
+        // $this->assertTrue(CUFormat::timeWithStyles(new CTime(1234567890), new CTimeZone("Europe/Helsinki"),
+        //     CUFormat::STYLE_SHORT, CUFormat::STYLE_SHORT,
+        //     new CULocale(CULocale::ENGLISH_UNITED_STATES))->equals("2/14/09 1:31 AM"));
+        // $this->assertTrue(CUFormat::timeWithStyles(new CTime(1234567890), new CTimeZone("Europe/Helsinki"),
+        //     CUFormat::STYLE_MEDIUM, CUFormat::STYLE_MEDIUM,
+        //     new CULocale(CULocale::ENGLISH_UNITED_STATES))->equals("Feb 14, 2009 1:31:30 AM"));
+        // $this->assertTrue(CUFormat::timeWithStyles(new CTime(1234567890), new CTimeZone("Europe/Helsinki"),
+        //     CUFormat::STYLE_LONG, CUFormat::STYLE_LONG,
+        //     new CULocale(CULocale::ENGLISH_UNITED_STATES))->equals("February 14, 2009 1:31:30 AM GMT+02:00"));
+        // $this->assertTrue(CUFormat::timeWithStyles(new CTime(1234567890), new CTimeZone("Europe/Helsinki"),
+        //     CUFormat::STYLE_FULL, CUFormat::STYLE_FULL,
+        //     new CULocale(CULocale::ENGLISH_UNITED_STATES))->equals(
+        //     "Saturday, February 14, 2009 1:31:30 AM Eastern European Time"));
+
+        // $this->assertTrue(CUFormat::timeWithStyles(new CTime(1234567890), new CTimeZone("Europe/Helsinki"),
+        //     CUFormat::STYLE_SHORT, CUFormat::STYLE_SHORT,
+        //     new CULocale(CULocale::GERMAN_GERMANY))->equals("14.02.09 01:31"));
+        // $this->assertTrue(CUFormat::timeWithStyles(new CTime(1234567890), new CTimeZone("Europe/Helsinki"),
+        //     CUFormat::STYLE_MEDIUM, CUFormat::STYLE_MEDIUM,
+        //     new CULocale(CULocale::GERMAN_GERMANY))->equals("14.02.2009 01:31:30"));
+        // $this->assertTrue(CUFormat::timeWithStyles(new CTime(1234567890), new CTimeZone("Europe/Helsinki"),
+        //     CUFormat::STYLE_LONG, CUFormat::STYLE_LONG,
+        //     new CULocale(CULocale::GERMAN_GERMANY))->equals("14. Februar 2009 01:31:30 GMT+02:00"));
+        // $this->assertTrue(CUFormat::timeWithStyles(new CTime(1234567890), new CTimeZone("Europe/Helsinki"),
+        //     CUFormat::STYLE_FULL, CUFormat::STYLE_FULL,
+        //     new CULocale(CULocale::GERMAN_GERMANY))->equals(
+        //     "Samstag, 14. Februar 2009 01:31:30 Osteuropäische Zeit"));
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public function testTimeWithPattern ()
+    {
+        // $this->assertTrue(CUFormat::timeWithPattern(new CTime(1234567890), new CTimeZone("Europe/Helsinki"),
+        //     "yyyy.MM.dd G 'at' HH:mm:ss zzz",
+        //     new CULocale(CULocale::ENGLISH_UNITED_STATES))->equals("2009.02.14 AD at 01:31:30 GMT+02:00"));
+        // $this->assertTrue(CUFormat::timeWithPattern(new CTime(1234567890), new CTimeZone("Europe/Helsinki"),
+        //     "yyyyy.MMMM.dd GGG hh:mm aaa",
+        //     new CULocale(CULocale::ENGLISH_UNITED_STATES))->equals("02009.February.14 AD 01:31 AM"));
+
+        // $this->assertTrue(CUFormat::timeWithPattern(new CTime(1234567890), new CTimeZone("Europe/Helsinki"),
+        //     "yyyy.MM.dd G 'at' HH:mm:ss zzz",
+        //     new CULocale(CULocale::GERMAN_GERMANY))->equals("2009.02.14 n. Chr. at 01:31:30 GMT+02:00"));
+        // $this->assertTrue(CUFormat::timeWithPattern(new CTime(1234567890), new CTimeZone("Europe/Helsinki"),
+        //     "yyyyy.MMMM.dd GGG hh:mm aaa",
+        //     new CULocale(CULocale::GERMAN_GERMANY))->equals("02009.Februar.14 n. Chr. 01:31 vorm."));
+
+        // $this->assertTrue(CUFormat::timeWithPattern(new CTime(1234567890), new CTimeZone("Europe/Helsinki"),
+        //     "yyyy.MM.dd G 'at' HH:mm:ss zzz",
+        //     new CULocale(CULocale::FRENCH_FRANCE))->equals("2009.02.14 ap. J.-C. at 01:31:30 HEE"));
+        // $this->assertTrue(CUFormat::timeWithPattern(new CTime(1234567890), new CTimeZone("Europe/Helsinki"),
+        //     "yyyyy.MMMM.dd GGG hh:mm aaa",
+        //     new CULocale(CULocale::FRENCH_FRANCE))->equals("02009.février.14 ap. J.-C. 01:31 AM"));
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+}
+

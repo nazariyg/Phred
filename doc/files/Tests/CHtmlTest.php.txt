@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @ignore
+ */
+
+class CHtmlTest extends CTestCase
+{
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public function testPrependNewlinesWithBr ()
+    {
+        $this->assertTrue(CHtml::prependNewlinesWithBr("Hello\nthere\n\n!")->equals(
+            "Hello<br />\nthere<br />\n<br />\n!"));
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public function testStripTags ()
+    {
+        $this->assertTrue(CHtml::stripTags(
+            "<p>Test paragraph.</p><!-- Comment --> <a href='#fragment'>Other text</a>")->equals(
+            "Test paragraph. Other text"));
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+}
+

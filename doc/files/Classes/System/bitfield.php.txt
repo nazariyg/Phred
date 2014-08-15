@@ -1,0 +1,24 @@
+<?php
+
+// This class is to serve documentation only and is never actually declared.
+
+if ( false )
+{
+
+    /**
+     * **A value of this type is simply an integer.**
+     *
+     * It makes little bit more sense to use word "bitfield" when referring to integers with which you don't do any
+     * arithmetics at all and only use them to store boolean values as bits. See the [CBitField](CBitField.html) class
+     * for more information.
+     *
+     * @link CBitField.html CBitField
+     */
+
+    class bitfield
+    {
+        // Empty.
+    }
+
+}
+

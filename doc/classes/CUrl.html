@@ -1,0 +1,3000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>Phred API</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet" media="all"/>
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Phred API</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">426</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-760160624"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-760160624" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/ICopyingStatic.html">ICopyingStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEquality.html">IEquality</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrder.html">IEqualityAndOrder</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrderStatic.html">IEqualityAndOrderStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityStatic.html">IEqualityStatic</a></li>
+                                                                                                    <li class="class"><a href="../classes/array.html">array</a></li>
+                                                    <li class="class"><a href="../classes/bitfield.html">bitfield</a></li>
+                                                    <li class="class"><a href="../classes/CArray.html">CArray</a></li>
+                                                    <li class="class"><a href="../classes/CArrayObject.html">CArrayObject</a></li>
+                                                    <li class="class"><a href="../classes/CBase64.html">CBase64</a></li>
+                                                    <li class="class"><a href="../classes/CBitField.html">CBitField</a></li>
+                                                    <li class="class"><a href="../classes/CComparator.html">CComparator</a></li>
+                                                    <li class="class"><a href="../classes/CConfiguration.html">CConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CCookie.html">CCookie</a></li>
+                                                    <li class="class"><a href="../classes/CEString.html">CEString</a></li>
+                                                    <li class="class"><a href="../classes/CFile.html">CFile</a></li>
+                                                    <li class="class"><a href="../classes/CFilePath.html">CFilePath</a></li>
+                                                    <li class="class"><a href="../classes/CGZip.html">CGZip</a></li>
+                                                    <li class="class"><a href="../classes/CHash.html">CHash</a></li>
+                                                    <li class="class"><a href="../classes/CHtml.html">CHtml</a></li>
+                                                    <li class="class"><a href="../classes/CHttpRequest.html">CHttpRequest</a></li>
+                                                    <li class="class"><a href="../classes/CHttpResponse.html">CHttpResponse</a></li>
+                                                    <li class="class"><a href="../classes/CInetRequest.html">CInetRequest</a></li>
+                                                    <li class="class"><a href="../classes/CInetSession.html">CInetSession</a></li>
+                                                    <li class="class"><a href="../classes/CInputFilter.html">CInputFilter</a></li>
+                                                    <li class="class"><a href="../classes/CIp.html">CIp</a></li>
+                                                    <li class="class"><a href="../classes/CJson.html">CJson</a></li>
+                                                    <li class="class"><a href="../classes/CMail.html">CMail</a></li>
+                                                    <li class="class"><a href="../classes/CMap.html">CMap</a></li>
+                                                    <li class="class"><a href="../classes/CMapObject.html">CMapObject</a></li>
+                                                    <li class="class"><a href="../classes/CMathf.html">CMathf</a></li>
+                                                    <li class="class"><a href="../classes/CMathi.html">CMathi</a></li>
+                                                    <li class="class"><a href="../classes/CMimeType.html">CMimeType</a></li>
+                                                    <li class="class"><a href="../classes/CRegex.html">CRegex</a></li>
+                                                    <li class="class"><a href="../classes/CRequest.html">CRequest</a></li>
+                                                    <li class="class"><a href="../classes/CResponse.html">CResponse</a></li>
+                                                    <li class="class"><a href="../classes/CShell.html">CShell</a></li>
+                                                    <li class="class"><a href="../classes/CString.html">CString</a></li>
+                                                    <li class="class"><a href="../classes/CSystem.html">CSystem</a></li>
+                                                    <li class="class"><a href="../classes/CTime.html">CTime</a></li>
+                                                    <li class="class"><a href="../classes/CTimeZone.html">CTimeZone</a></li>
+                                                    <li class="class"><a href="../classes/CUFormat.html">CUFormat</a></li>
+                                                    <li class="class"><a href="../classes/CULocale.html">CULocale</a></li>
+                                                    <li class="class"><a href="../classes/CUrl.html">CUrl</a></li>
+                                                    <li class="class"><a href="../classes/CUrlPath.html">CUrlPath</a></li>
+                                                    <li class="class"><a href="../classes/CUrlQuery.html">CUrlQuery</a></li>
+                                                    <li class="class"><a href="../classes/CUString.html">CUString</a></li>
+                                                    <li class="class"><a href="../classes/CUStringObject.html">CUStringObject</a></li>
+                                                    <li class="class"><a href="../classes/CUUnit.html">CUUnit</a></li>
+                                                    <li class="class"><a href="../classes/CXml.html">CXml</a></li>
+                                                    <li class="class"><a href="../classes/enum.html">enum</a></li>
+                                                    <li class="class"><a href="../classes/map.html">map</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span12 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <!--
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    -->
+                    <br/ >
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><!-- <small>\</small> -->CUrl</h1>
+                    <p><em><p>This class lets you parse URLs into constituting parts, normalize and compare URLs, compose URLs from parts, ensure
+protocols for URLs, validate URLs, and put strings through percent-encoding (URL encoding) in either direction.</p></em></p>
+                    <p>To parse a URL, you would construct an object of this class from a URL string, and to compose a URL string, you
+would use <code>makeUrlString</code> static method.</p>
+<p>URL normalization, which is the concern of <code>normalizedUrlWithoutFragmentId</code> and <code>normalizedUrl</code> methods and of
+<code>normalize</code> static method, can be useful in URL comparison and collation. The normalization includes converting the
+protocol and host parts into lowercase, decoding any percent-encoded characters for which being encoded is not
+required by the URL standard, ensuring that hexadecimal letters in percent-encoded characters appear uppercased,
+removing duplicate fields from the query string and adding "=" after any field name that goes without a value and is
+not followed by "=", sorting fields in the query string, and removing the port number if that number is the default
+one for the URL's protocol. Removing dot-segments ("..", ".") from the path part is avoided as it may completely
+change semantics for URLs that, instead of pointing to a file or directory on the server, use the path's components
+as messages to the server's software.</p>
+<p>When parsing a URL string into parts, <code>normalizedProtocol</code> method can be called even if the URL appears without a
+protocol, in which case the method will return the default protocol ("http"). Likewise, <code>normalizedPathString</code> and
+<code>path</code> methods can be called and will return "/" path even if the URL does not specify any path.</p>
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methodsum">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/CUrl.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_url" class="">url()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_hasProtocol" class="">hasProtocol()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_protocol" class="">protocol()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_normalizedProtocol" class="">normalizedProtocol()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_host" class="">host()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_normalizedHost" class="">normalizedHost()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_hasPort" class="">hasPort()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_port" class="">port()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_hasPath" class="">hasPath()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_pathString" class="">pathString()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_normalizedPathString" class="">normalizedPathString()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_path" class="">path()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_hasQuery" class="">hasQuery()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_queryString" class="">queryString()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_normalizedQueryString" class="">normalizedQueryString()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_query" class="">query()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_hasFragmentId" class="">hasFragmentId()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_fragmentId" class="">fragmentId()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_normalizedFragmentId" class="">normalizedFragmentId()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_hasUser" class="">hasUser()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_user" class="">user()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_hasPassword" class="">hasPassword()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_password" class="">password()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_normalizedUrlWithoutFragmentId" class="">normalizedUrlWithoutFragmentId()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_normalizedUrl" class="">normalizedUrl()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_equals" class="">equals()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_ensureProtocol" class="">ensureProtocol()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_isValid" class="">isValid()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_normalize" class="">normalize()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_makeUrlString" class="">makeUrlString()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_enterTdNew" class="">enterTdNew()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_leaveTdNew" class="">leaveTdNew()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_enterTdOld" class="">enterTdOld()</a><br />
+                                                                    <a href="../classes/CUrl.html#method_leaveTdOld" class="">leaveTdOld()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CUrl.html#constant_DEFAULT_PROTOCOL" class="">DEFAULT_PROTOCOL</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties</em>
+                                                            </section>
+                        </section>
+                        <!--
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CUrl.html#property_m_sUrl" class="">$m_sUrl</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_bHasProtocol" class="">$m_bHasProtocol</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_sProtocol" class="">$m_sProtocol</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_sNormProtocol" class="">$m_sNormProtocol</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_bHostIsInBrackets" class="">$m_bHostIsInBrackets</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_sHost" class="">$m_sHost</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_sNormHost" class="">$m_sNormHost</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_bHasPort" class="">$m_bHasPort</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_iPort" class="">$m_iPort</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_bHasPath" class="">$m_bHasPath</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_sPath" class="">$m_sPath</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_sNormPath" class="">$m_sNormPath</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_oUrlPath" class="">$m_oUrlPath</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_bHasQuery" class="">$m_bHasQuery</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_sQueryString" class="">$m_sQueryString</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_sNormQueryString" class="">$m_sNormQueryString</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_oUrlQuery" class="">$m_oUrlQuery</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_bHasFragmentId" class="">$m_bHasFragmentId</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_sFragmentId" class="">$m_sFragmentId</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_sNormFragmentId" class="">$m_sNormFragmentId</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_bHasUser" class="">$m_bHasUser</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_sUser" class="">$m_sUser</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_bHasPassword" class="">$m_bHasPassword</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_sPassword" class="">$m_sPassword</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_sNormUrlWithoutFragmentId" class="">$m_sNormUrlWithoutFragmentId</a><br />
+                                                                    <a href="../classes/CUrl.html#property_m_sNormUrl" class="">$m_sNormUrl</a><br />
+                                                                    <a href="../classes/CUrl.html#property_ms_mKnownProtocolToDefaultPort" class="">$ms_mKnownProtocolToDefaultPort</a><br />
+                                                                    <a href="../classes/CUrl.html#property_ms_sDelimiters" class="">$ms_sDelimiters</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                        </section>
+                        -->
+                    </section>
+                </div>
+                <aside class="span2 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Classes.Url.CUrl.php.html"><div class="path-wrapper">Classes/Url/CUrl.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper"></div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\CRootClass</div>
+                                                                                                    <div class="namespace-wrapper">\CUrl</div>
+                            </dd>
+
+                                                                            <dt>Implements</dt>
+                                                        <dd><a href="../classes/IEquality.html"><div class="namespace-wrapper">\IEquality</div></a></dd>
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2 style="visibility: hidden">Tags</h2>
+                    <table class="table table-condensed" style="visibility: hidden">
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+            <a id="methodsum" name="methodsum"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Method Summary</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method___construct" class="">__construct()</a></td>
+                            <td><p>Creates a parsed URL from a URL string.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_url" class="">url()</a></td>
+                            <td><p>Returns the original URL string from which a URL object was constructed.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_hasProtocol" class="">hasProtocol()</a></td>
+                            <td><p>Determines if a URL specifies a protocol.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_protocol" class="">protocol()</a></td>
+                            <td><p>Returns the protocol of a URL.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_normalizedProtocol" class="">normalizedProtocol()</a></td>
+                            <td><p>Returns the normalized protocol of a URL.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_host" class="">host()</a></td>
+                            <td><p>Returns the host part of a URL.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_normalizedHost" class="">normalizedHost()</a></td>
+                            <td><p>Returns the normalized host part of a URL.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_hasPort" class="">hasPort()</a></td>
+                            <td><p>Determines if a URL specifies a destination port.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_port" class="">port()</a></td>
+                            <td><p>Returns the number of the destination port of a URL.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_hasPath" class="">hasPath()</a></td>
+                            <td><p>Determines if a URL specifies a path.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_pathString" class="">pathString()</a></td>
+                            <td><p>Returns the path string of a URL.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_normalizedPathString" class="">normalizedPathString()</a></td>
+                            <td><p>Returns the normalized path string of a URL.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_path" class="">path()</a></td>
+                            <td><p>Returns the path of a URL as a CUrlPath object.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_hasQuery" class="">hasQuery()</a></td>
+                            <td><p>Determines if a URL specifies a query.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_queryString" class="">queryString()</a></td>
+                            <td><p>Returns the query string of a URL.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_normalizedQueryString" class="">normalizedQueryString()</a></td>
+                            <td><p>Returns the normalized query string of a URL.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_query" class="">query()</a></td>
+                            <td><p>Returns the query of a URL as a CUrlQuery object.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_hasFragmentId" class="">hasFragmentId()</a></td>
+                            <td><p>Determines if a URL specifies a fragment ID.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_fragmentId" class="">fragmentId()</a></td>
+                            <td><p>Returns the fragment ID of a URL.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_normalizedFragmentId" class="">normalizedFragmentId()</a></td>
+                            <td><p>Returns the normalized fragment ID of a URL.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_hasUser" class="">hasUser()</a></td>
+                            <td><p>Determines if a URL specifies a user name.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_user" class="">user()</a></td>
+                            <td><p>Returns the user name specified by a URL.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_hasPassword" class="">hasPassword()</a></td>
+                            <td><p>Determines if a URL specifies a password.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_password" class="">password()</a></td>
+                            <td><p>Returns the password specified by a URL.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_normalizedUrlWithoutFragmentId" class="">normalizedUrlWithoutFragmentId()</a></td>
+                            <td><p>Returns the normalized URL string of a URL, without any fragment ID.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_normalizedUrl" class="">normalizedUrl()</a></td>
+                            <td><p>Returns the normalized URL string of a URL, together with the fragment ID, if any.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_equals" class="">equals()</a></td>
+                            <td><p>Determines if a URL is equal to another URL, comparing them by normalized URL strings.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_ensureProtocol" class="">ensureProtocol()</a></td>
+                            <td><p>Assigns the default protocol to a specified URL string if it does not indicate any or leaves the URL string
+unchanged if it does, and returns the URL string.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_isValid" class="">isValid()</a></td>
+                            <td><p>Determines if the URL in a specified string is valid.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_normalize" class="">normalize()</a></td>
+                            <td><p>Normalizes the URL in a specified string and returns the new string.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_makeUrlString" class="">makeUrlString()</a></td>
+                            <td><p>Composes a URL string from specified URL parts and returns it.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_enterTdNew" class="">enterTdNew()</a></td>
+                            <td><p>In a string, applies percent-encoding (URL encoding) to all characters that would be invalid in the URL text
+domain with their literal representations according to the newer flavor of percent-encoding and returns the new
+string.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_leaveTdNew" class="">leaveTdNew()</a></td>
+                            <td><p>In a string, removes percent-encoding (URL encoding) from all characters encoded according to the newer flavor
+of percent-encoding and returns the new string.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_enterTdOld" class="">enterTdOld()</a></td>
+                            <td><p>In a string, applies percent-encoding (URL encoding) to all characters that would be invalid in the URL text
+domain with their literal representations according to the older flavor of percent-encoding and returns the new
+string.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CUrl.html#method_leaveTdOld" class="">leaveTdOld()</a></td>
+                            <td><p>In a string, removes percent-encoding (URL encoding) from all characters encoded according to the older flavor
+of percent-encoding and returns the new string.</p></td>
+                        </tr>
+                                        </table>
+                </div>
+                <aside class="span2 detailsbar"> </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DEFAULT_PROTOCOL" name="constant_DEFAULT_PROTOCOL" class="anchor"></a>
+            <article id="constant_DEFAULT_PROTOCOL" class="constant">
+                <h3 class="">DEFAULT_PROTOCOL</h3>
+                <pre class="signature">DEFAULT_PROTOCOL</pre>
+                <p><p><code>string</code> "http" The default protocol used in the parsing and composing of URLs whenever needed.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+            <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (string&nbsp;<span class="argument">$sUrl</span>)</pre>
+                <p><em><p>Creates a parsed URL from a URL string.</p></em></p>
+                <p>The URL string is expected to be by all means valid, with characters being percent-encoded where it is required
+by the URL standard and without any leading or trailing whitespace. It is only when the URL string does not
+indicate any protocol that the URL may still be considered valid and the default protocol is assigned to the
+URL, which is "http".</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sUrl</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The URL string.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_url" name="method_url" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">url()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">url () : OOPString</pre>
+                <p><em><p>Returns the original URL string from which a URL object was constructed.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The original URL string.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasProtocol" name="method_hasProtocol" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasProtocol()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">hasProtocol () : bool</pre>
+                <p><em><p>Determines if a URL specifies a protocol.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the URL specifies a protocol, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_protocol" name="method_protocol" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">protocol()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">protocol () : OOPString</pre>
+                <p><em><p>Returns the protocol of a URL.</p></em></p>
+                <p>This method returns the protocol as it was specified originally. For the normalized protocol, where all
+characters are always in lowercase, you can call <code>normalizedProtocol</code> method.</p>
+<p>This method should not be called if <code>hasProtocol</code> method reports <code>false</code>.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The URL's protocol.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="#method_hasProtocol"><span class="namespace-wrapper">hasProtocol</span></a></dd>
+                                            <dd><a href="#method_normalizedProtocol"><span class="namespace-wrapper">normalizedProtocol</span></a></dd>
+                                                                </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_normalizedProtocol" name="method_normalizedProtocol" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">normalizedProtocol()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">normalizedProtocol () : OOPString</pre>
+                <p><em><p>Returns the normalized protocol of a URL.</p></em></p>
+                <p>In a normalized protocol, all characters appear in lowercase.</p>
+<p>This method can be called even if <code>hasProtocol</code> method reports <code>false</code>, in which case it will return the default
+protocol ("http").</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The URL's protocol after normalization.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_host" name="method_host" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">host()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">host () : OOPString</pre>
+                <p><em><p>Returns the host part of a URL.</p></em></p>
+                <p>The host part of a URL includes the domain as well as the subdomains, if any. For the normalized host, where all
+characters are always in lowercase, you can call <code>normalizedHost</code> method.</p>
+<p>If the host is an IPv6, which usually appears enclosed in square brackets, the method returns just the IP
+address, without any brackets.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The URL's host.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="#method_normalizedHost"><span class="namespace-wrapper">normalizedHost</span></a></dd>
+                                                                </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_normalizedHost" name="method_normalizedHost" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">normalizedHost()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">normalizedHost () : OOPString</pre>
+                <p><em><p>Returns the normalized host part of a URL.</p></em></p>
+                <p>The host part of a URL includes the domain as well as the subdomains, if any. In a normalized host, all
+characters appear in lowercase.</p>
+<p>If the host is an IPv6, which usually appears enclosed in square brackets, the method returns just the IP
+address, without any brackets.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The URL's host after normalization.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasPort" name="method_hasPort" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasPort()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">hasPort () : bool</pre>
+                <p><em><p>Determines if a URL specifies a destination port.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the URL specifies a destination port, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_port" name="method_port" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">port()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">port () : int</pre>
+                <p><em><p>Returns the number of the destination port of a URL.</p></em></p>
+                <p>This method should not be called if <code>hasPort</code> method reports <code>false</code>.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The URL's destination port.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="#method_hasPort"><span class="namespace-wrapper">hasPort</span></a></dd>
+                                                                </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasPath" name="method_hasPath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasPath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">hasPath () : bool</pre>
+                <p><em><p>Determines if a URL specifies a path.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the URL specifies a path, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_pathString" name="method_pathString" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">pathString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">pathString (<span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bDecode</span></span>) : OOPString</pre>
+                <p><em><p>Returns the path string of a URL.</p></em></p>
+                <p>For the normalized path string, where only those characters are percent-encoded for which it is required by the
+URL standard and where hexadecimal letters in percent-encoded characters are always uppercased, you can call
+<code>normalizedPathString</code> method.</p>
+<p>This method should not be called if <code>hasPath</code> method reports <code>false</code>.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bDecode</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether all percent-encoded characters in the path
+string should be decoded into their literal representations.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The URL's path string.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="#method_hasPath"><span class="namespace-wrapper">hasPath</span></a></dd>
+                                            <dd><a href="#method_normalizedPathString"><span class="namespace-wrapper">normalizedPathString</span></a></dd>
+                                                                </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_normalizedPathString" name="method_normalizedPathString" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">normalizedPathString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">normalizedPathString (<span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bDecode</span></span>) : OOPString</pre>
+                <p><em><p>Returns the normalized path string of a URL.</p></em></p>
+                <p>In a normalized path string, only those characters are percent-encoded for which it is required by the URL
+standard and hexadecimal letters in percent-encoded characters appear in uppercase.</p>
+<p>This method can be called even if <code>hasPath</code> method reports <code>false</code>, in which case it will return "/".</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bDecode</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether all percent-encoded characters in the path
+string should be decoded into their literal representations.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The URL's path string after normalization.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_path" name="method_path" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">path()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">path () : CUrlPath</pre>
+                <p><em><p>Returns the path of a URL as a CUrlPath object.</p></em></p>
+                <p>This method can be called even if <code>hasPath</code> method reports <code>false</code>, in which case the path is "/".</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUrlPath.html">CUrlPath</a>
+                    <!-- </code> -->
+                                            &mdash; <p>The URL's path.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasQuery" name="method_hasQuery" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasQuery()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">hasQuery () : bool</pre>
+                <p><em><p>Determines if a URL specifies a query.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the URL specifies a query, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_queryString" name="method_queryString" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">queryString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">queryString (<span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bDecode</span></span>) : OOPString</pre>
+                <p><em><p>Returns the query string of a URL.</p></em></p>
+                <p>For the normalized query string, where only those characters are percent-encoded for which it is required by the
+URL standard and where hexadecimal letters in percent-encoded characters are always uppercased, you can call
+<code>normalizedQueryString</code> method.</p>
+<p>This method should not be called if <code>hasQuery</code> method reports <code>false</code>.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bDecode</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether all percent-encoded characters in the
+query string should be decoded into their literal representations.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The URL's query string.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="#method_hasQuery"><span class="namespace-wrapper">hasQuery</span></a></dd>
+                                            <dd><a href="#method_normalizedQueryString"><span class="namespace-wrapper">normalizedQueryString</span></a></dd>
+                                                                </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_normalizedQueryString" name="method_normalizedQueryString" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">normalizedQueryString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">normalizedQueryString (<span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bDecode</span></span>) : OOPString</pre>
+                <p><em><p>Returns the normalized query string of a URL.</p></em></p>
+                <p>In a normalized query string, only those characters are percent-encoded for which it is required by the URL
+standard and hexadecimal letters in percent-encoded characters appear in uppercase. Also, no duplicate fields
+are produced in the normalized query string and "=" is added after any field name that goes without a value and
+is not followed by "=".</p>
+<p>This method should not be called if <code>hasQuery</code> method reports <code>false</code>.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bDecode</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether all percent-encoded characters in the
+query string should be decoded into their literal representations.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The URL's query string after normalization.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="#method_hasQuery"><span class="namespace-wrapper">hasQuery</span></a></dd>
+                                                                </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_query" name="method_query" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">query()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">query () : CUrlQuery</pre>
+                <p><em><p>Returns the query of a URL as a CUrlQuery object.</p></em></p>
+                <p>This method should not be called if <code>hasQuery</code> method reports <code>false</code>.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUrlQuery.html">CUrlQuery</a>
+                    <!-- </code> -->
+                                            &mdash; <p>The URL's query.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="#method_hasQuery"><span class="namespace-wrapper">hasQuery</span></a></dd>
+                                                                </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasFragmentId" name="method_hasFragmentId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasFragmentId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">hasFragmentId () : bool</pre>
+                <p><em><p>Determines if a URL specifies a fragment ID.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the URL specifies a fragment ID, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fragmentId" name="method_fragmentId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fragmentId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">fragmentId (<span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bDecode</span></span>) : OOPString</pre>
+                <p><em><p>Returns the fragment ID of a URL.</p></em></p>
+                <p>For the normalized fragment ID, where only those characters are percent-encoded for which it is required by the
+URL standard and where hexadecimal letters in percent-encoded characters are always uppercased, you can call
+<code>normalizedFragmentId</code> method.</p>
+<p>This method should not be called if <code>hasFragmentId</code> method reports <code>false</code>.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bDecode</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether all percent-encoded characters in the
+fragment ID should be decoded into their literal representations.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The URL's fragment ID.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="#method_hasFragmentId"><span class="namespace-wrapper">hasFragmentId</span></a></dd>
+                                            <dd><a href="#method_normalizedFragmentId"><span class="namespace-wrapper">normalizedFragmentId</span></a></dd>
+                                                                </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_normalizedFragmentId" name="method_normalizedFragmentId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">normalizedFragmentId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">normalizedFragmentId (<span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bDecode</span></span>) : OOPString</pre>
+                <p><em><p>Returns the normalized fragment ID of a URL.</p></em></p>
+                <p>In a normalized fragment ID, only those characters are percent-encoded for which it is required by the URL
+standard and hexadecimal letters in percent-encoded characters appear in uppercase.</p>
+<p>This method should not be called if <code>hasFragmentId</code> method reports <code>false</code>.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bDecode</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether all percent-encoded characters in the
+fragment ID should be decoded into their literal representations.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The URL's fragment ID after normalization.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="#method_hasFragmentId"><span class="namespace-wrapper">hasFragmentId</span></a></dd>
+                                                                </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasUser" name="method_hasUser" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasUser()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">hasUser () : bool</pre>
+                <p><em><p>Determines if a URL specifies a user name.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the URL specifies a user name, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_user" name="method_user" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">user()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">user () : OOPString</pre>
+                <p><em><p>Returns the user name specified by a URL.</p></em></p>
+                <p>This method should not be called if <code>hasUser</code> method reports <code>false</code>.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The user name specified by the URL.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="#method_hasUser"><span class="namespace-wrapper">hasUser</span></a></dd>
+                                                                </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasPassword" name="method_hasPassword" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasPassword()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">hasPassword () : bool</pre>
+                <p><em><p>Determines if a URL specifies a password.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the URL specifies a password, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_password" name="method_password" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">password()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">password () : OOPString</pre>
+                <p><em><p>Returns the password specified by a URL.</p></em></p>
+                <p>This method should not be called if <code>hasPassword</code> method reports <code>false</code>.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The password specified by the URL.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="#method_hasPassword"><span class="namespace-wrapper">hasPassword</span></a></dd>
+                                                                </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_normalizedUrlWithoutFragmentId" name="method_normalizedUrlWithoutFragmentId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">normalizedUrlWithoutFragmentId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">normalizedUrlWithoutFragmentId () : OOPString</pre>
+                <p><em><p>Returns the normalized URL string of a URL, without any fragment ID.</p></em></p>
+                <p>Since fragment IDs in URLs are typically used to tell the browser the place to which the page needs to be
+scrolled on the initial view, which is only a matter of presentation, it makes the comparison of URLs by their
+normalized strings more consistent if fragment IDs are not taken into account.</p>
+<p>In a normalized URL string, the protocol is always indicated and always in lowercase, with "http" protocol being
+the default one, the host part is always in lowercase too, a path is always present, with the default path being
+"/", and the query string does not contain duplicate fields and "=" is added in the query string after any field
+name that goes without a value and is not followed by "=". Also in a normalized URL string, only those
+characters are percent-encoded for which it is required by the URL standard and hexadecimal letters in
+percent-encoded characters appear in uppercase. For instance, "WWW.EXAMPLE.COM" is normalized to
+"http://www.example.com/" and "HTTP: //www.example.com/path/to/some%3dite%6D" is normalized to
+"http://www.example.com/path/to/some%3Ditem".</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The normalized URL string of the URL.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_normalizedUrl" name="method_normalizedUrl" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">normalizedUrl()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">normalizedUrl () : OOPString</pre>
+                <p><em><p>Returns the normalized URL string of a URL, together with the fragment ID, if any.</p></em></p>
+                <p>In a normalized URL string, the protocol is always indicated and always in lowercase, with "http" protocol being
+the default one, the host part is always in lowercase too, a path is always present, with the default path being
+"/", and the query string does not contain duplicate fields and "=" is added in the query string after any field
+name that goes without a value and is not followed by "=". Also in a normalized URL string, only those
+characters are percent-encoded for which it is required by the URL standard and hexadecimal letters in
+percent-encoded characters appear in uppercase. For instance, "WWW.EXAMPLE.COM" is normalized to
+"http://www.example.com/" and "HTTP: //www.example.com/path/to/some%3dite%6D" is normalized to
+"http://www.example.com/path/to/some%3Ditem".</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The normalized URL string of the URL.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_equals" name="method_equals" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">equals()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">equals (CUrl&nbsp;<span class="argument">$oToUrl</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bIgnoreFragmentId</span></span>) : bool</pre>
+                <p><em><p>Determines if a URL is equal to another URL, comparing them by normalized URL strings.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$oToUrl</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CUrl.html">CUrl</a></code></td>
+                                <td><p>The second URL for comparison.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bIgnoreFragmentId</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>true</code>. Tells whether the fragment IDs of the URLs, if
+any, should be ignored during the comparison.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if <em>this</em> URL is equal to the second URL, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_ensureProtocol" name="method_ensureProtocol" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">ensureProtocol()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> ensureProtocol (string&nbsp;<span class="argument">$sUrl</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sDefaultProtocol</span></span>) : OOPString</pre>
+                <p><em><p>Assigns the default protocol to a specified URL string if it does not indicate any or leaves the URL string
+unchanged if it does, and returns the URL string.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sUrl</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The URL string.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sDefaultProtocol</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> "http". The default protocol to be used if the URL
+string doesn't indicate any.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The processed URL string.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isValid" name="method_isValid" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isValid()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isValid (string&nbsp;<span class="argument">$sUrl</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bIgnoreProtocolAbsence</span></span>) : bool</pre>
+                <p><em><p>Determines if the URL in a specified string is valid.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sUrl</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The URL string to be looked into.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bIgnoreProtocolAbsence</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the URL in the string may
+still be considered valid even if it does not indicate any protocol.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the URL in the string is valid, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_normalize" name="method_normalize" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">normalize()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> normalize (string&nbsp;<span class="argument">$sUrl</span>, bool&nbsp;<span class="argument">$bKeepFragmentId</span>) : OOPString</pre>
+                <p><em><p>Normalizes the URL in a specified string and returns the new string.</p></em></p>
+                <p>In a normalized URL string, the protocol is always indicated and always in lowercase, with "http" protocol being
+the default one, the host part is always in lowercase too, a path is always present, with the default path being
+"/", and the query string does not contain duplicate fields and "=" is added in the query string after any field
+name that goes without a value and is not followed by "=". Also in a normalized URL string, only those
+characters are percent-encoded for which it is required by the URL standard and hexadecimal letters in
+percent-encoded characters appear in uppercase. For instance, "WWW.EXAMPLE.COM" is normalized to
+"http://www.example.com/" and "HTTP: //www.example.com/path/to/some%3dite%6D" is normalized to
+"http://www.example.com/path/to/some%3Ditem".</p>
+<p>Since fragment IDs in URLs are typically used to tell the browser the place to which the page needs to be
+scrolled on the initial view, which is only a matter of presentation, it makes the comparison of URLs by their
+normalized strings more consistent if fragment IDs are not taken into account.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sUrl</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The string with the URL to be normalized.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bKeepFragmentId</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p>Tells whether the fragment ID, if the URL contains any, should be normalized too
+and put into the normalized URL.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>A string with the normalized URL.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeUrlString" name="method_makeUrlString" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeUrlString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> makeUrlString (string&nbsp;<span class="argument">$sHost</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sProtocol</span></span>, <span style="color: rgb(144, 144, 144)">string|CUrlPath&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$xPath</span></span>, <span style="color: rgb(144, 144, 144)">string|CUrlQuery&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$xQuery</span></span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sFragmentId</span></span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$iPort</span></span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sUser</span></span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sPassword</span></span>) : OOPString</pre>
+                <p><em><p>Composes a URL string from specified URL parts and returns it.</p></em></p>
+                <p>If the URL string needs to be normalized after having been composed, you can use <code>normalize</code> static method for
+that.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sHost</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The host part. This includes the domain and the subdomains, if any.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sProtocol</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> "http". The protocol.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xPath</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string|<a href="../classes/CUrlPath.html">CUrlPath</a></code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> "/". The path. Should start with "/".</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xQuery</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string|<a href="../classes/CUrlQuery.html">CUrlQuery</a></code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <em>none</em>. The query.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sFragmentId</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <em>none</em>. The fragment ID.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$iPort</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <em>none</em>. The number of the destination port.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sUser</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <em>none</em>. The user name.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sPassword</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <em>none</em>. The password.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The composed URL string.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="#method_normalize"><span class="namespace-wrapper">normalize</span></a></dd>
+                                                                </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_enterTdNew" name="method_enterTdNew" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">enterTdNew()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> enterTdNew (string&nbsp;<span class="argument">$sString</span>) : OOPString</pre>
+                <p><em><p>In a string, applies percent-encoding (URL encoding) to all characters that would be invalid in the URL text
+domain with their literal representations according to the newer flavor of percent-encoding and returns the new
+string.</p></em></p>
+                <p>According to the newer flavor of percent-encoding, the space character is encoded as "%20", "+" as "%2B", and
+"~" is not encoded.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The string to be translated into the URL text domain.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The translated string.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_leaveTdNew" name="method_leaveTdNew" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">leaveTdNew()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> leaveTdNew (string&nbsp;<span class="argument">$sString</span>) : OOPString</pre>
+                <p><em><p>In a string, removes percent-encoding (URL encoding) from all characters encoded according to the newer flavor
+of percent-encoding and returns the new string.</p></em></p>
+                <p>According to the newer flavor of percent-encoding, the space character is decoded from "%20" only (literal
+spaces are not permitted in a valid URL), "+" from either "%2B" or "+", and "~" from either "~" or "%7E".</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The string to be translated out of the URL text domain.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The translated string.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_enterTdOld" name="method_enterTdOld" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">enterTdOld()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> enterTdOld (string&nbsp;<span class="argument">$sString</span>) : OOPString</pre>
+                <p><em><p>In a string, applies percent-encoding (URL encoding) to all characters that would be invalid in the URL text
+domain with their literal representations according to the older flavor of percent-encoding and returns the new
+string.</p></em></p>
+                <p>According to the older flavor of percent-encoding, the space character is encoded as "+", "+" as "%2B", and "~"
+as "%7E". This flavor of percent-encoding is primarily used with query strings in URLs and with
+"application/x-www-form-urlencoded" data in POST requests. In any other place, the newer flavor of
+percent-encoding is usually preferred.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The string to be translated into the URL text domain.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The translated string.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_leaveTdOld" name="method_leaveTdOld" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">leaveTdOld()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> leaveTdOld (string&nbsp;<span class="argument">$sString</span>) : OOPString</pre>
+                <p><em><p>In a string, removes percent-encoding (URL encoding) from all characters encoded according to the older flavor
+of percent-encoding and returns the new string.</p></em></p>
+                <p>According to the older flavor of percent-encoding, the space character is decoded from either "+" or "%20"
+(literal spaces are not permitted in a valid URL), "+" from "%2B" only, and "~" from either "%7E" or "~". This
+flavor of percent-encoding is primarily used with query strings in URLs and with
+"application/x-www-form-urlencoded" data in POST requests. In any other place, the newer flavor of
+percent-encoding is usually preferred.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The string to be translated out of the URL text domain.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The translated string.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                <!--
+                                                -->
+            
+            <!--
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sUrl" name="property_m_sUrl" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sUrl</h3>
+                <pre class="signature">$m_sUrl</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bHasProtocol" name="property_m_bHasProtocol" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bHasProtocol</h3>
+                <pre class="signature">$m_bHasProtocol</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sProtocol" name="property_m_sProtocol" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sProtocol</h3>
+                <pre class="signature">$m_sProtocol</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sNormProtocol" name="property_m_sNormProtocol" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sNormProtocol</h3>
+                <pre class="signature">$m_sNormProtocol</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bHostIsInBrackets" name="property_m_bHostIsInBrackets" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bHostIsInBrackets</h3>
+                <pre class="signature">$m_bHostIsInBrackets</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sHost" name="property_m_sHost" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sHost</h3>
+                <pre class="signature">$m_sHost</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sNormHost" name="property_m_sNormHost" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sNormHost</h3>
+                <pre class="signature">$m_sNormHost</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bHasPort" name="property_m_bHasPort" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bHasPort</h3>
+                <pre class="signature">$m_bHasPort</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_iPort" name="property_m_iPort" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_iPort</h3>
+                <pre class="signature">$m_iPort</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bHasPath" name="property_m_bHasPath" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bHasPath</h3>
+                <pre class="signature">$m_bHasPath</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sPath" name="property_m_sPath" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sPath</h3>
+                <pre class="signature">$m_sPath</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sNormPath" name="property_m_sNormPath" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sNormPath</h3>
+                <pre class="signature">$m_sNormPath</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_oUrlPath" name="property_m_oUrlPath" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_oUrlPath</h3>
+                <pre class="signature">$m_oUrlPath</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bHasQuery" name="property_m_bHasQuery" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bHasQuery</h3>
+                <pre class="signature">$m_bHasQuery</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sQueryString" name="property_m_sQueryString" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sQueryString</h3>
+                <pre class="signature">$m_sQueryString</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sNormQueryString" name="property_m_sNormQueryString" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sNormQueryString</h3>
+                <pre class="signature">$m_sNormQueryString</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_oUrlQuery" name="property_m_oUrlQuery" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_oUrlQuery</h3>
+                <pre class="signature">$m_oUrlQuery</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bHasFragmentId" name="property_m_bHasFragmentId" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bHasFragmentId</h3>
+                <pre class="signature">$m_bHasFragmentId</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sFragmentId" name="property_m_sFragmentId" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sFragmentId</h3>
+                <pre class="signature">$m_sFragmentId</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sNormFragmentId" name="property_m_sNormFragmentId" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sNormFragmentId</h3>
+                <pre class="signature">$m_sNormFragmentId</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bHasUser" name="property_m_bHasUser" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bHasUser</h3>
+                <pre class="signature">$m_bHasUser</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sUser" name="property_m_sUser" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sUser</h3>
+                <pre class="signature">$m_sUser</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bHasPassword" name="property_m_bHasPassword" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bHasPassword</h3>
+                <pre class="signature">$m_bHasPassword</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sPassword" name="property_m_sPassword" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sPassword</h3>
+                <pre class="signature">$m_sPassword</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sNormUrlWithoutFragmentId" name="property_m_sNormUrlWithoutFragmentId" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sNormUrlWithoutFragmentId</h3>
+                <pre class="signature">$m_sNormUrlWithoutFragmentId</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sNormUrl" name="property_m_sNormUrl" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sNormUrl</h3>
+                <pre class="signature">$m_sNormUrl</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_ms_mKnownProtocolToDefaultPort" name="property_ms_mKnownProtocolToDefaultPort" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$ms_mKnownProtocolToDefaultPort</h3>
+                <pre class="signature">$ms_mKnownProtocolToDefaultPort</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_ms_sDelimiters" name="property_ms_sDelimiters" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$ms_sDelimiters</h3>
+                <pre class="signature">$ms_sDelimiters</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                        -->
+        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">CUrl.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Classes/Url/CUrl.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4" style="visibility: hidden">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 13th, 2014 at 18:15.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

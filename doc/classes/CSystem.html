@@ -1,0 +1,2892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>Phred API</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet" media="all"/>
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Phred API</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">426</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-855930092"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-855930092" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/ICopyingStatic.html">ICopyingStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEquality.html">IEquality</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrder.html">IEqualityAndOrder</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrderStatic.html">IEqualityAndOrderStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityStatic.html">IEqualityStatic</a></li>
+                                                                                                    <li class="class"><a href="../classes/array.html">array</a></li>
+                                                    <li class="class"><a href="../classes/bitfield.html">bitfield</a></li>
+                                                    <li class="class"><a href="../classes/CArray.html">CArray</a></li>
+                                                    <li class="class"><a href="../classes/CArrayObject.html">CArrayObject</a></li>
+                                                    <li class="class"><a href="../classes/CBase64.html">CBase64</a></li>
+                                                    <li class="class"><a href="../classes/CBitField.html">CBitField</a></li>
+                                                    <li class="class"><a href="../classes/CComparator.html">CComparator</a></li>
+                                                    <li class="class"><a href="../classes/CConfiguration.html">CConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CCookie.html">CCookie</a></li>
+                                                    <li class="class"><a href="../classes/CEString.html">CEString</a></li>
+                                                    <li class="class"><a href="../classes/CFile.html">CFile</a></li>
+                                                    <li class="class"><a href="../classes/CFilePath.html">CFilePath</a></li>
+                                                    <li class="class"><a href="../classes/CGZip.html">CGZip</a></li>
+                                                    <li class="class"><a href="../classes/CHash.html">CHash</a></li>
+                                                    <li class="class"><a href="../classes/CHtml.html">CHtml</a></li>
+                                                    <li class="class"><a href="../classes/CHttpRequest.html">CHttpRequest</a></li>
+                                                    <li class="class"><a href="../classes/CHttpResponse.html">CHttpResponse</a></li>
+                                                    <li class="class"><a href="../classes/CInetRequest.html">CInetRequest</a></li>
+                                                    <li class="class"><a href="../classes/CInetSession.html">CInetSession</a></li>
+                                                    <li class="class"><a href="../classes/CInputFilter.html">CInputFilter</a></li>
+                                                    <li class="class"><a href="../classes/CIp.html">CIp</a></li>
+                                                    <li class="class"><a href="../classes/CJson.html">CJson</a></li>
+                                                    <li class="class"><a href="../classes/CMail.html">CMail</a></li>
+                                                    <li class="class"><a href="../classes/CMap.html">CMap</a></li>
+                                                    <li class="class"><a href="../classes/CMapObject.html">CMapObject</a></li>
+                                                    <li class="class"><a href="../classes/CMathf.html">CMathf</a></li>
+                                                    <li class="class"><a href="../classes/CMathi.html">CMathi</a></li>
+                                                    <li class="class"><a href="../classes/CMimeType.html">CMimeType</a></li>
+                                                    <li class="class"><a href="../classes/CRegex.html">CRegex</a></li>
+                                                    <li class="class"><a href="../classes/CRequest.html">CRequest</a></li>
+                                                    <li class="class"><a href="../classes/CResponse.html">CResponse</a></li>
+                                                    <li class="class"><a href="../classes/CShell.html">CShell</a></li>
+                                                    <li class="class"><a href="../classes/CString.html">CString</a></li>
+                                                    <li class="class"><a href="../classes/CSystem.html">CSystem</a></li>
+                                                    <li class="class"><a href="../classes/CTime.html">CTime</a></li>
+                                                    <li class="class"><a href="../classes/CTimeZone.html">CTimeZone</a></li>
+                                                    <li class="class"><a href="../classes/CUFormat.html">CUFormat</a></li>
+                                                    <li class="class"><a href="../classes/CULocale.html">CULocale</a></li>
+                                                    <li class="class"><a href="../classes/CUrl.html">CUrl</a></li>
+                                                    <li class="class"><a href="../classes/CUrlPath.html">CUrlPath</a></li>
+                                                    <li class="class"><a href="../classes/CUrlQuery.html">CUrlQuery</a></li>
+                                                    <li class="class"><a href="../classes/CUString.html">CUString</a></li>
+                                                    <li class="class"><a href="../classes/CUStringObject.html">CUStringObject</a></li>
+                                                    <li class="class"><a href="../classes/CUUnit.html">CUUnit</a></li>
+                                                    <li class="class"><a href="../classes/CXml.html">CXml</a></li>
+                                                    <li class="class"><a href="../classes/enum.html">enum</a></li>
+                                                    <li class="class"><a href="../classes/map.html">map</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span12 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <!--
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    -->
+                    <br/ >
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><!-- <small>\</small> -->CSystem</h1>
+                    <p><em><p>The class that lets you obtain various information on the system that PHP is running on, access PHP's configuration
+options, set locks on files to ensure that a certain operation can be performed by only one script at a time, and
+more.</p></em></p>
+                    <p><strong>You can refer to this class by its alias, which is</strong> <code>Sys</code>.</p>
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methodsum">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/CSystem.html#method_startTime" class="">startTime()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_documentRootDp" class="">documentRootDp()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_temporaryFilesDp" class="">temporaryFilesDp()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_initScriptFp" class="">initScriptFp()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_initScriptFn" class="">initScriptFn()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_initScriptRelFp" class="">initScriptRelFp()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_cd" class="">cd()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_pwd" class="">pwd()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_setLock" class="">setLock()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_unsetLock" class="">unsetLock()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_numFreeDiskBytes" class="">numFreeDiskBytes()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_numTotalDiskBytes" class="">numTotalDiskBytes()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_executionTimeLimit" class="">executionTimeLimit()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_setExecutionTimeLimit" class="">setExecutionTimeLimit()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_removeExecutionTimeLimit" class="">removeExecutionTimeLimit()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_currentMemoryUsageInt" class="">currentMemoryUsageInt()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_currentMemoryUsageFloat" class="">currentMemoryUsageFloat()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_peakMemoryUsageInt" class="">peakMemoryUsageInt()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_peakMemoryUsageFloat" class="">peakMemoryUsageFloat()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_setMemoryUsageLimit" class="">setMemoryUsageLimit()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_hasConfigOption" class="">hasConfigOption()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_configOption" class="">configOption()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_configOptionBool" class="">configOptionBool()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_configOptionInt" class="">configOptionInt()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_configOptionFloat" class="">configOptionFloat()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_configOptionStorageInt" class="">configOptionStorageInt()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_configOptionStorageFloat" class="">configOptionStorageFloat()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_configOptionOrig" class="">configOptionOrig()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_configOptionOrigBool" class="">configOptionOrigBool()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_configOptionOrigInt" class="">configOptionOrigInt()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_configOptionOrigFloat" class="">configOptionOrigFloat()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_configOptionOrigStorageInt" class="">configOptionOrigStorageInt()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_configOptionOrigStorageFloat" class="">configOptionOrigStorageFloat()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_setConfigOption" class="">setConfigOption()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_setConfigOptionBool" class="">setConfigOptionBool()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_setConfigOptionInt" class="">setConfigOptionInt()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_setConfigOptionFloat" class="">setConfigOptionFloat()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_restoreConfigOption" class="">restoreConfigOption()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_isInCliMode" class="">isInCliMode()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_hostName" class="">hostName()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_hostIp" class="">hostIp()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_httpServerName" class="">httpServerName()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_gatewayInterface" class="">gatewayInterface()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_langVersion" class="">langVersion()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_langSapi" class="">langSapi()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_langInfo" class="">langInfo()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_langExeBinaryFp" class="">langExeBinaryFp()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_osName" class="">osName()</a><br />
+                                                                    <a href="../classes/CSystem.html#method_osInfo" class="">osInfo()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CSystem.html#constant_DEFAULT_MAX_RECURSION_DEPTH" class="">DEFAULT_MAX_RECURSION_DEPTH</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties</em>
+                                                            </section>
+                        </section>
+                        <!--
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/CSystem.html#method_storageUnitFromOptionValue" class="">storageUnitFromOptionValue()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CSystem.html#property_ms_mFhFromLockFp" class="">$ms_mFhFromLockFp</a><br />
+                                                                    <a href="../classes/CSystem.html#property_ms_sThirdPartyLastUpdateTimeFn" class="">$ms_sThirdPartyLastUpdateTimeFn</a><br />
+                                                                    <a href="../classes/CSystem.html#property_ms_sThirdPartyConcurrLockFn" class="">$ms_sThirdPartyConcurrLockFn</a><br />
+                                                                    <a href="../classes/CSystem.html#property_ms_sThirdPartyAlreadyOopWrappedMark" class="">$ms_sThirdPartyAlreadyOopWrappedMark</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                        </section>
+                        -->
+                    </section>
+                </div>
+                <aside class="span2 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Classes.System.CSystem.php.html"><div class="path-wrapper">Classes/System/CSystem.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper"></div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\CRootClass</div>
+                                                                                                    <div class="namespace-wrapper">\CSystem</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2 style="visibility: hidden">Tags</h2>
+                    <table class="table table-condensed" style="visibility: hidden">
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+            <a id="methodsum" name="methodsum"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Method Summary</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_startTime" class="">startTime()</a></td>
+                            <td><p>Returns the point in time when the initial script started to execute.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_documentRootDp" class="">documentRootDp()</a></td>
+                            <td><p>Returns the path to the Document Root directory.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_temporaryFilesDp" class="">temporaryFilesDp()</a></td>
+                            <td><p>Returns the path to the default directory for temporary files.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_initScriptFp" class="">initScriptFp()</a></td>
+                            <td><p>Returns the path to the file of the initially run script.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_initScriptFn" class="">initScriptFn()</a></td>
+                            <td><p>Returns the name of the file of the initially run script.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_initScriptRelFp" class="">initScriptRelFp()</a></td>
+                            <td><p>Returns the path to the file of the initially run script, relative to the Document Root directory.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_cd" class="">cd()</a></td>
+                            <td><p>Changes the current working directory to a specified path.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_pwd" class="">pwd()</a></td>
+                            <td><p>Returns the path to the current working directory.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_setLock" class="">setLock()</a></td>
+                            <td><p>Tries to set a lock on a file so that any other process that attempts to lock the same file either waits for the
+file to get unlocked or continues without the lock.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_unsetLock" class="">unsetLock()</a></td>
+                            <td><p>Removes the lock that was previously set on a file.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_numFreeDiskBytes" class="">numFreeDiskBytes()</a></td>
+                            <td><p>Returns the amount of free space available on the filesystem or a disk partition.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_numTotalDiskBytes" class="">numTotalDiskBytes()</a></td>
+                            <td><p>Returns the amount of total space on the filesystem or a disk partition.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_executionTimeLimit" class="">executionTimeLimit()</a></td>
+                            <td><p>Returns the maximum amount of time for which the script is allowed to execute.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_setExecutionTimeLimit" class="">setExecutionTimeLimit()</a></td>
+                            <td><p>Sets the maximum amount of time for which the script is allowed to execute.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_removeExecutionTimeLimit" class="">removeExecutionTimeLimit()</a></td>
+                            <td><p>Removes any limit that is set on the amount of time for which the script is allowed to execute.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_currentMemoryUsageInt" class="">currentMemoryUsageInt()</a></td>
+                            <td><p>Returns the amount of memory currently allocated to PHP, as an integer value.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_currentMemoryUsageFloat" class="">currentMemoryUsageFloat()</a></td>
+                            <td><p>Returns the amount of memory currently allocated to PHP, as a floating-point value.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_peakMemoryUsageInt" class="">peakMemoryUsageInt()</a></td>
+                            <td><p>Returns the peak amount of memory allocated to PHP to this moment, as an integer value.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_peakMemoryUsageFloat" class="">peakMemoryUsageFloat()</a></td>
+                            <td><p>Returns the peak amount of memory allocated to PHP to this moment, as a floating-point value.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_setMemoryUsageLimit" class="">setMemoryUsageLimit()</a></td>
+                            <td><p>Sets the maximum amount of memory the script is allowed to allocate.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_hasConfigOption" class="">hasConfigOption()</a></td>
+                            <td><p>Determines if the PHP's configuration options include an option with a specified name.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_configOption" class="">configOption()</a></td>
+                            <td><p>Returns the value of a specified PHP's configuration option, as a string.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_configOptionBool" class="">configOptionBool()</a></td>
+                            <td><p>Returns the value of a specified PHP's configuration option, as a boolean value.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_configOptionInt" class="">configOptionInt()</a></td>
+                            <td><p>Returns the value of a specified PHP's configuration option, as an integer value.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_configOptionFloat" class="">configOptionFloat()</a></td>
+                            <td><p>Returns the value of a specified PHP's configuration option, as a floating-point value.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_configOptionStorageInt" class="">configOptionStorageInt()</a></td>
+                            <td><p>Returns the value of a specified PHP's configuration option that is related to digital storage, as an integer
+value.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_configOptionStorageFloat" class="">configOptionStorageFloat()</a></td>
+                            <td><p>Returns the value of a specified PHP's configuration option that is related to digital storage, as a
+floating-point value.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_configOptionOrig" class="">configOptionOrig()</a></td>
+                            <td><p>Returns the original value of a specified PHP's configuration option, as a string.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_configOptionOrigBool" class="">configOptionOrigBool()</a></td>
+                            <td><p>Returns the original value of a specified PHP's configuration option, as a boolean value.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_configOptionOrigInt" class="">configOptionOrigInt()</a></td>
+                            <td><p>Returns the original value of a specified PHP's configuration option, as an integer value.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_configOptionOrigFloat" class="">configOptionOrigFloat()</a></td>
+                            <td><p>Returns the original value of a specified PHP's configuration option, as a floating-point value.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_configOptionOrigStorageInt" class="">configOptionOrigStorageInt()</a></td>
+                            <td><p>Returns the original value of a specified PHP's configuration option that is related to digital storage, as an
+integer value.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_configOptionOrigStorageFloat" class="">configOptionOrigStorageFloat()</a></td>
+                            <td><p>Returns the original value of a specified PHP's configuration option that is related to digital storage, as a
+floating-point value.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_setConfigOption" class="">setConfigOption()</a></td>
+                            <td><p>Sets the value of a PHP's configuration option to a string.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_setConfigOptionBool" class="">setConfigOptionBool()</a></td>
+                            <td><p>Sets the value of a PHP's configuration option to a boolean value.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_setConfigOptionInt" class="">setConfigOptionInt()</a></td>
+                            <td><p>Sets the value of a PHP's configuration option to an integer value.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_setConfigOptionFloat" class="">setConfigOptionFloat()</a></td>
+                            <td><p>Sets the value of a PHP's configuration option to a floating-point value.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_restoreConfigOption" class="">restoreConfigOption()</a></td>
+                            <td><p>Restores a PHP's configuration option to its original value.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_isInCliMode" class="">isInCliMode()</a></td>
+                            <td><p>Determines if the script is running in the CLI mode.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_hostName" class="">hostName()</a></td>
+                            <td><p>Returns the hostname of the local server.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_hostIp" class="">hostIp()</a></td>
+                            <td><p>Returns the IP address of the local server.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_httpServerName" class="">httpServerName()</a></td>
+                            <td><p>Returns the name of the front-end software used to handle HTTP requests on the server.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_gatewayInterface" class="">gatewayInterface()</a></td>
+                            <td><p>Returns the version of the CGI specification used by the HTTP server.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_langVersion" class="">langVersion()</a></td>
+                            <td><p>Returns the used version of PHP language.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_langSapi" class="">langSapi()</a></td>
+                            <td><p>Returns the name of the PHP's Server API.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_langInfo" class="">langInfo()</a></td>
+                            <td><p>Returns the "phpinfo" about the used installation of PHP.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_langExeBinaryFp" class="">langExeBinaryFp()</a></td>
+                            <td><p>Returns the path to the PHP's executable.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_osName" class="">osName()</a></td>
+                            <td><p>Returns the name of the operating system PHP was built on.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CSystem.html#method_osInfo" class="">osInfo()</a></td>
+                            <td><p>Returns information about the operating system PHP is running on.</p></td>
+                        </tr>
+                                        </table>
+                </div>
+                <aside class="span2 detailsbar"> </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DEFAULT_MAX_RECURSION_DEPTH" name="constant_DEFAULT_MAX_RECURSION_DEPTH" class="anchor"></a>
+            <article id="constant_DEFAULT_MAX_RECURSION_DEPTH" class="constant">
+                <h3 class="">DEFAULT_MAX_RECURSION_DEPTH</h3>
+                <pre class="signature">DEFAULT_MAX_RECURSION_DEPTH</pre>
+                <p><p><code>int</code> <code>64</code> If xdebug is being used, this constant should be correlated with the value of the xdebug's
+"xdebug.max_nesting_level" option.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+            <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_startTime" name="method_startTime" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">startTime()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> startTime () : CTime</pre>
+                <p><em><p>Returns the point in time when the initial script started to execute.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CTime.html">CTime</a>
+                    <!-- </code> -->
+                                            &mdash; <p>The point in time when the initial script started to execute.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_documentRootDp" name="method_documentRootDp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">documentRootDp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> documentRootDp () : OOPString</pre>
+                <p><em><p>Returns the path to the Document Root directory.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The path to the Document Root directory.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_temporaryFilesDp" name="method_temporaryFilesDp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">temporaryFilesDp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> temporaryFilesDp () : OOPString</pre>
+                <p><em><p>Returns the path to the default directory for temporary files.</p></em></p>
+                <p>The returned path is the path to either the OS's temporary files directory or the directory specified in the
+application's configuration.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The path to the default directory for temporary files.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_initScriptFp" name="method_initScriptFp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">initScriptFp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> initScriptFp () : OOPString</pre>
+                <p><em><p>Returns the path to the file of the initially run script.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The path to the file of the initially run script.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_initScriptFn" name="method_initScriptFn" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">initScriptFn()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> initScriptFn () : OOPString</pre>
+                <p><em><p>Returns the name of the file of the initially run script.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The name of the file of the initially run script.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_initScriptRelFp" name="method_initScriptRelFp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">initScriptRelFp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> initScriptRelFp () : OOPString</pre>
+                <p><em><p>Returns the path to the file of the initially run script, relative to the Document Root directory.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The path to the file of the initially run script, relative to the Document Root
+directory.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_cd" name="method_cd" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">cd()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> cd (string&nbsp;<span class="argument">$sDirectoryPath</span>) : void</pre>
+                <p><em><p>Changes the current working directory to a specified path.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The path to the new current working directory.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_pwd" name="method_pwd" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">pwd()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> pwd () : OOPString</pre>
+                <p><em><p>Returns the path to the current working directory.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The path to the current working directory.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLock" name="method_setLock" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setLock()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setLock (string&nbsp;<span class="argument">$sLockFp</span>, bool&nbsp;<span class="argument">$bWait</span>) : bool</pre>
+                <p><em><p>Tries to set a lock on a file so that any other process that attempts to lock the same file either waits for the
+file to get unlocked or continues without the lock.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sLockFp</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The path to the file to be locked.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bWait</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p>If the file appears to be already locked, this parameter tells whether to wait for the file
+to get unlocked (<code>true</code>) or to return immediately (<code>false</code>).</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the file was successfully locked, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_unsetLock" name="method_unsetLock" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">unsetLock()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> unsetLock (string&nbsp;<span class="argument">$sLockFp</span>) : void</pre>
+                <p><em><p>Removes the lock that was previously set on a file.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sLockFp</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The path to the file to be unlocked.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_numFreeDiskBytes" name="method_numFreeDiskBytes" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">numFreeDiskBytes()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> numFreeDiskBytes (<span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sReferenceDp</span></span>) : int</pre>
+                <p><em><p>Returns the amount of free space available on the filesystem or a disk partition.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sReferenceDp</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> ".". The path to the reference directory on the filesystem
+or the disk partition of interest.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The amount of free space available on the filesystem or the disk partition, in bytes.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_numTotalDiskBytes" name="method_numTotalDiskBytes" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">numTotalDiskBytes()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> numTotalDiskBytes (<span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sReferenceDp</span></span>) : int</pre>
+                <p><em><p>Returns the amount of total space on the filesystem or a disk partition.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sReferenceDp</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> ".". The path to the reference directory on the filesystem
+or the disk partition of interest.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The amount of total space on the filesystem or the disk partition, in bytes.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_executionTimeLimit" name="method_executionTimeLimit" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">executionTimeLimit()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> executionTimeLimit () : int</pre>
+                <p><em><p>Returns the maximum amount of time for which the script is allowed to execute.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The maximum amount of time for which the script is allowed to execute, in seconds.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setExecutionTimeLimit" name="method_setExecutionTimeLimit" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setExecutionTimeLimit()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setExecutionTimeLimit (int&nbsp;<span class="argument">$iNumSeconds</span>) : void</pre>
+                <p><em><p>Sets the maximum amount of time for which the script is allowed to execute.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$iNumSeconds</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
+                                <td><p>The maximum amount of time for which the script is allowed to execute, in seconds.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_removeExecutionTimeLimit" name="method_removeExecutionTimeLimit" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">removeExecutionTimeLimit()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> removeExecutionTimeLimit () : void</pre>
+                <p><em><p>Removes any limit that is set on the amount of time for which the script is allowed to execute.</p></em></p>
+                
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_currentMemoryUsageInt" name="method_currentMemoryUsageInt" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">currentMemoryUsageInt()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> currentMemoryUsageInt (<span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eInUnit</span></span>) : int</pre>
+                <p><em><p>Returns the amount of memory currently allocated to PHP, as an integer value.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eInUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>CUUnit::BYTE</code>. The storage unit for the output value.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The amount of memory currently allocated to PHP.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_currentMemoryUsageFloat" name="method_currentMemoryUsageFloat" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">currentMemoryUsageFloat()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> currentMemoryUsageFloat (<span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eInUnit</span></span>) : float</pre>
+                <p><em><p>Returns the amount of memory currently allocated to PHP, as a floating-point value.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eInUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>CUUnit::BYTE</code>. The storage unit for the output value.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    float
+                    <!-- </code> -->
+                                            &mdash; <p>The amount of memory currently allocated to PHP.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_peakMemoryUsageInt" name="method_peakMemoryUsageInt" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">peakMemoryUsageInt()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> peakMemoryUsageInt (<span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eInUnit</span></span>) : int</pre>
+                <p><em><p>Returns the peak amount of memory allocated to PHP to this moment, as an integer value.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eInUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>CUUnit::BYTE</code>. The storage unit for the output value.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The peak amount of memory allocated to PHP to this moment.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_peakMemoryUsageFloat" name="method_peakMemoryUsageFloat" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">peakMemoryUsageFloat()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> peakMemoryUsageFloat (<span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eInUnit</span></span>) : float</pre>
+                <p><em><p>Returns the peak amount of memory allocated to PHP to this moment, as a floating-point value.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eInUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>CUUnit::BYTE</code>. The storage unit for the output value.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    float
+                    <!-- </code> -->
+                                            &mdash; <p>The peak amount of memory allocated to PHP to this moment.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setMemoryUsageLimit" name="method_setMemoryUsageLimit" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setMemoryUsageLimit()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setMemoryUsageLimit (int&nbsp;<span class="argument">$iNumBytes</span>) : void</pre>
+                <p><em><p>Sets the maximum amount of memory the script is allowed to allocate.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$iNumBytes</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
+                                <td><p>The maximum amount of memory the script is allowed to allocate, in bytes.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasConfigOption" name="method_hasConfigOption" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasConfigOption()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> hasConfigOption (string&nbsp;<span class="argument">$sOptionName</span>) : bool</pre>
+                <p><em><p>Determines if the PHP's configuration options include an option with a specified name.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the option to be looked for.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the PHP's configuration options include an option with the name specified, <code>false</code>
+otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_configOption" name="method_configOption" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">configOption()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOption (string&nbsp;<span class="argument">$sOptionName</span>) : OOPString</pre>
+                <p><em><p>Returns the value of a specified PHP's configuration option, as a string.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the option.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The value of the option.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_configOptionBool" name="method_configOptionBool" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">configOptionBool()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionBool (string&nbsp;<span class="argument">$sOptionName</span>) : bool</pre>
+                <p><em><p>Returns the value of a specified PHP's configuration option, as a boolean value.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the option.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p>The value of the option.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_configOptionInt" name="method_configOptionInt" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">configOptionInt()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionInt (string&nbsp;<span class="argument">$sOptionName</span>) : int</pre>
+                <p><em><p>Returns the value of a specified PHP's configuration option, as an integer value.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the option.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The value of the option.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_configOptionFloat" name="method_configOptionFloat" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">configOptionFloat()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionFloat (string&nbsp;<span class="argument">$sOptionName</span>) : float</pre>
+                <p><em><p>Returns the value of a specified PHP's configuration option, as a floating-point value.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the option.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    float
+                    <!-- </code> -->
+                                            &mdash; <p>The value of the option.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_configOptionStorageInt" name="method_configOptionStorageInt" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">configOptionStorageInt()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionStorageInt (string&nbsp;<span class="argument">$sOptionName</span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eInUnit</span></span>) : int</pre>
+                <p><em><p>Returns the value of a specified PHP's configuration option that is related to digital storage, as an integer
+value.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the option.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eInUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>CUUnit::BYTE</code>. The storage unit for the output value.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The value of the option.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_configOptionStorageFloat" name="method_configOptionStorageFloat" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">configOptionStorageFloat()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionStorageFloat (string&nbsp;<span class="argument">$sOptionName</span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eInUnit</span></span>) : float</pre>
+                <p><em><p>Returns the value of a specified PHP's configuration option that is related to digital storage, as a
+floating-point value.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the option.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eInUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>CUUnit::BYTE</code>. The storage unit for the output value.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    float
+                    <!-- </code> -->
+                                            &mdash; <p>The value of the option.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_configOptionOrig" name="method_configOptionOrig" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">configOptionOrig()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionOrig (string&nbsp;<span class="argument">$sOptionName</span>) : OOPString</pre>
+                <p><em><p>Returns the original value of a specified PHP's configuration option, as a string.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the option.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The value of the option.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_configOptionOrigBool" name="method_configOptionOrigBool" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">configOptionOrigBool()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionOrigBool (string&nbsp;<span class="argument">$sOptionName</span>) : bool</pre>
+                <p><em><p>Returns the original value of a specified PHP's configuration option, as a boolean value.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the option.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p>The value of the option.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_configOptionOrigInt" name="method_configOptionOrigInt" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">configOptionOrigInt()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionOrigInt (string&nbsp;<span class="argument">$sOptionName</span>) : int</pre>
+                <p><em><p>Returns the original value of a specified PHP's configuration option, as an integer value.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the option.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The value of the option.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_configOptionOrigFloat" name="method_configOptionOrigFloat" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">configOptionOrigFloat()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionOrigFloat (string&nbsp;<span class="argument">$sOptionName</span>) : float</pre>
+                <p><em><p>Returns the original value of a specified PHP's configuration option, as a floating-point value.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the option.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    float
+                    <!-- </code> -->
+                                            &mdash; <p>The value of the option.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_configOptionOrigStorageInt" name="method_configOptionOrigStorageInt" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">configOptionOrigStorageInt()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionOrigStorageInt (string&nbsp;<span class="argument">$sOptionName</span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eInUnit</span></span>) : int</pre>
+                <p><em><p>Returns the original value of a specified PHP's configuration option that is related to digital storage, as an
+integer value.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the option.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eInUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>CUUnit::BYTE</code>. The storage unit for the output value.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The value of the option.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_configOptionOrigStorageFloat" name="method_configOptionOrigStorageFloat" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">configOptionOrigStorageFloat()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionOrigStorageFloat (string&nbsp;<span class="argument">$sOptionName</span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eInUnit</span></span>) : float</pre>
+                <p><em><p>Returns the original value of a specified PHP's configuration option that is related to digital storage, as a
+floating-point value.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the option.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eInUnit</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>CUUnit::BYTE</code>. The storage unit for the output value.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    float
+                    <!-- </code> -->
+                                            &mdash; <p>The value of the option.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setConfigOption" name="method_setConfigOption" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setConfigOption()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setConfigOption (string&nbsp;<span class="argument">$sOptionName</span>, string&nbsp;<span class="argument">$sOptionValue</span>) : void</pre>
+                <p><em><p>Sets the value of a PHP's configuration option to a string.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the option.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionValue</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The option's new value.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setConfigOptionBool" name="method_setConfigOptionBool" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setConfigOptionBool()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setConfigOptionBool (string&nbsp;<span class="argument">$sOptionName</span>, bool&nbsp;<span class="argument">$bOptionValue</span>) : void</pre>
+                <p><em><p>Sets the value of a PHP's configuration option to a boolean value.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the option.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bOptionValue</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p>The option's new value.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setConfigOptionInt" name="method_setConfigOptionInt" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setConfigOptionInt()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setConfigOptionInt (string&nbsp;<span class="argument">$sOptionName</span>, int&nbsp;<span class="argument">$iOptionValue</span>) : void</pre>
+                <p><em><p>Sets the value of a PHP's configuration option to an integer value.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the option.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$iOptionValue</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
+                                <td><p>The option's new value.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setConfigOptionFloat" name="method_setConfigOptionFloat" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setConfigOptionFloat()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setConfigOptionFloat (string&nbsp;<span class="argument">$sOptionName</span>, float&nbsp;<span class="argument">$fOptionValue</span>) : void</pre>
+                <p><em><p>Sets the value of a PHP's configuration option to a floating-point value.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the option.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$fOptionValue</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">float</code></td>
+                                <td><p>The option's new value.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_restoreConfigOption" name="method_restoreConfigOption" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">restoreConfigOption()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> restoreConfigOption (string&nbsp;<span class="argument">$sOptionName</span>) : void</pre>
+                <p><em><p>Restores a PHP's configuration option to its original value.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name of the option.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isInCliMode" name="method_isInCliMode" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isInCliMode()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isInCliMode () : bool</pre>
+                <p><em><p>Determines if the script is running in the CLI mode.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the script is running in the CLI mode, <code>false</code> if not.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hostName" name="method_hostName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hostName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> hostName () : OOPString</pre>
+                <p><em><p>Returns the hostname of the local server.</p></em></p>
+                <p>The returned value is usually different for each virtual host.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The hostname of the local server.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hostIp" name="method_hostIp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hostIp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> hostIp () : OOPString</pre>
+                <p><em><p>Returns the IP address of the local server.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The IP address of the local server.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_httpServerName" name="method_httpServerName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">httpServerName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> httpServerName () : OOPString</pre>
+                <p><em><p>Returns the name of the front-end software used to handle HTTP requests on the server.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The name of the HTTP server.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_gatewayInterface" name="method_gatewayInterface" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">gatewayInterface()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> gatewayInterface () : OOPString</pre>
+                <p><em><p>Returns the version of the CGI specification used by the HTTP server.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The version of the CGI specification used by the HTTP server.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_langVersion" name="method_langVersion" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">langVersion()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> langVersion () : OOPString</pre>
+                <p><em><p>Returns the used version of PHP language.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The used version of PHP language.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_langSapi" name="method_langSapi" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">langSapi()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> langSapi () : OOPString</pre>
+                <p><em><p>Returns the name of the PHP's Server API.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The name of the PHP's Server API.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_langInfo" name="method_langInfo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">langInfo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> langInfo () : OOPString</pre>
+                <p><em><p>Returns the "phpinfo" about the used installation of PHP.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The "phpinfo" about the used installation of PHP.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_langExeBinaryFp" name="method_langExeBinaryFp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">langExeBinaryFp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> langExeBinaryFp () : OOPString</pre>
+                <p><em><p>Returns the path to the PHP's executable.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The path to the PHP's executable.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_osName" name="method_osName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">osName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> osName () : OOPString</pre>
+                <p><em><p>Returns the name of the operating system PHP was built on.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The name of the operating system PHP was built on.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_osInfo" name="method_osInfo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">osInfo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> osInfo () : OOPString</pre>
+                <p><em><p>Returns information about the operating system PHP is running on.</p></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>Information about the operating system PHP is running on.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                <!--
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_storageUnitFromOptionValue" name="method_storageUnitFromOptionValue" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">storageUnitFromOptionValue()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> storageUnitFromOptionValue (&nbsp;<span class="argument">$sOptionValue</span>)</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOptionValue</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                -->
+            
+            <!--
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_ms_mFhFromLockFp" name="property_ms_mFhFromLockFp" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$ms_mFhFromLockFp</h3>
+                <pre class="signature">$ms_mFhFromLockFp</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_ms_sThirdPartyLastUpdateTimeFn" name="property_ms_sThirdPartyLastUpdateTimeFn" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$ms_sThirdPartyLastUpdateTimeFn</h3>
+                <pre class="signature">$ms_sThirdPartyLastUpdateTimeFn</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_ms_sThirdPartyConcurrLockFn" name="property_ms_sThirdPartyConcurrLockFn" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$ms_sThirdPartyConcurrLockFn</h3>
+                <pre class="signature">$ms_sThirdPartyConcurrLockFn</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_ms_sThirdPartyAlreadyOopWrappedMark" name="property_ms_sThirdPartyAlreadyOopWrappedMark" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$ms_sThirdPartyAlreadyOopWrappedMark</h3>
+                <pre class="signature">$ms_sThirdPartyAlreadyOopWrappedMark</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                        -->
+        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">CSystem.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Classes/System/CSystem.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4" style="visibility: hidden">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 13th, 2014 at 18:15.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

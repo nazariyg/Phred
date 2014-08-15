@@ -1,0 +1,144 @@
+<?php
+
+/**
+ * @ignore
+ */
+
+class CComparatorTest extends CTestCase
+{
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public function testEquality ()
+    {
+        $this->assertTrue(CComparator::equality(u("Hello there!"), u("Hello there!")));
+        $this->assertFalse(CComparator::equality(u("Hello there!"), u("Hello there?")));
+        $this->assertTrue(CComparator::equality(u("¡Hola señor!"), u("¡Hola señor!")));
+        $this->assertFalse(CComparator::equality(u("¡Hola señor!"), u("¡Hola senor!")));
+        $this->assertTrue(CComparator::equality(a("a", "b", "c"), a("a", "b", "c")));
+        $this->assertFalse(CComparator::equality(a("a", "b", "c"), a("a", "b", "d")));
+        $this->assertTrue(CComparator::equality(
+            m(["one" => "a", "two" => "b", "three" => "c"]), m(["one" => "a", "two" => "b", "three" => "c"])));
+        $this->assertFalse(CComparator::equality(
+            m(["one" => "a", "two" => "b", "three" => "c"]), m(["one" => "a", "two" => "b", "three" => "d"])));
+        $this->assertTrue(CComparator::equality(
+            CTime::fromString("11/5/1955 12:00:00 PST"), CTime::fromString("11/5/1955 12:00:00 PST")));
+        $this->assertTrue(CComparator::equality(new CTimeZone("UTC"), new CTimeZone("UTC")));
+        $this->assertTrue(CComparator::equality(new CULocale(CULocale::GERMAN_GERMANY),
+            new CULocale(CULocale::GERMAN_GERMANY)));
+
+        $this->assertTrue(CComparator::equality(true, true));
+        $this->assertFalse(CComparator::equality(true, false));
+        $this->assertTrue(CComparator::equality(1234, 1234));
+        $this->assertFalse(CComparator::equality(1234, 5678));
+        $this->assertTrue(CComparator::equality(12.34, 12.34));
+        $this->assertFalse(CComparator::equality(12.34, 56.78));
+        $this->assertTrue(CComparator::equality(null, null));
+        $this->assertFalse(CComparator::equality(null, 0));
+
+        $this->assertTrue(CComparator::equality("Hello there!", "Hello there!"));
+        $this->assertFalse(CComparator::equality("Hello there!", "HELLO THERE!"));
+        $this->assertTrue(CComparator::equality(
+            CArray::fromElements("a", "b", "c"), CArray::fromElements("a", "b", "c")));
+        $this->assertTrue(CComparator::equality(
+            ["one" => "a", "two" => "b", "three" => "c"], ["one" => "a", "two" => "b", "three" => "c"]));
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public function testOrderAsc ()
+    {
+        $this->assertTrue( CComparator::orderAsc(u("Hello there!"), u("Hello there!")) == 0 );
+        $this->assertTrue( CComparator::orderAsc(u("A"), u("B")) < 0 );
+        $this->assertTrue( CComparator::orderAsc(u("C"), u("B")) > 0 );
+        $this->assertTrue( CComparator::orderAsc(u("¡Hola señor!"), u("¡Hola señor!")) == 0 );
+        $this->assertTrue( CComparator::orderAsc(u("A"), u("B")) < 0 );
+        $this->assertTrue( CComparator::orderAsc(u("C"), u("B")) > 0 );
+        $this->assertTrue( CComparator::orderAsc(a("a", "b", "c"), a("a", "b", "c")) == 0 );
+        $this->assertTrue( CComparator::orderAsc(a("b", "b", "c"), a("a", "b", "c")) > 0 );
+        $this->assertTrue( CComparator::orderAsc(
+            m(["one" => "a", "two" => "b", "three" => "c"]), m(["one" => "a", "two" => "b", "three" => "c"])) == 0 );
+        $this->assertTrue( CComparator::orderAsc(
+            m(["one" => "b", "two" => "b", "three" => "c"]), m(["one" => "a", "two" => "b", "three" => "c"])) > 0 );
+        $this->assertTrue( CComparator::orderAsc(
+            CTime::fromString("11/5/1955 12:00:00 PST"), CTime::fromString("11/5/1955 12:00:00 PST")) == 0 );
+        $this->assertTrue( CComparator::orderAsc(
+            CTime::fromString("11/5/1955 12:00:00 PST"), CTime::fromString("11/5/1985 12:00:00 PST")) < 0 );
+        $this->assertTrue( CComparator::orderAsc(
+            CTime::fromString("11/5/1985 12:00:01 PST"), CTime::fromString("11/5/1985 12:00:00 PST")) > 0 );
+
+        $this->assertTrue( CComparator::orderAsc(true, true) == 0 );
+        $this->assertTrue( CComparator::orderAsc(false, true) < 0 );
+        $this->assertTrue( CComparator::orderAsc(true, false) > 0 );
+        $this->assertTrue( CComparator::orderAsc(1234, 1234) == 0 );
+        $this->assertTrue( CComparator::orderAsc(1234, 5678) < 0 );
+        $this->assertTrue( CComparator::orderAsc(5678, 1234) > 0 );
+        $this->assertTrue( CComparator::orderAsc(12.34, 12.34) == 0 );
+        $this->assertTrue( CComparator::orderAsc(12.34, 56.78) < 0 );
+        $this->assertTrue( CComparator::orderAsc(56.78, 12.34) > 0 );
+        $this->assertTrue( CComparator::orderAsc(null, null) == 0 );
+
+        $this->assertTrue( CComparator::orderAsc("Hello there!", "Hello there!") == 0 );
+        $this->assertTrue( CComparator::orderAsc("A", "B") < 0 );
+        $this->assertTrue( CComparator::orderAsc("C", "B") > 0 );
+        $this->assertTrue( CComparator::orderAsc(
+            CArray::fromElements("a", "b", "c"), CArray::fromElements("a", "b", "c")) == 0 );
+        $this->assertTrue( CComparator::orderAsc(
+            CArray::fromElements("a", "b", "c"), CArray::fromElements("b", "b", "c")) < 0 );
+        $this->assertTrue( CComparator::orderAsc(
+            CArray::fromElements("b", "b", "c"), CArray::fromElements("a", "b", "c")) > 0 );
+        $this->assertTrue( CComparator::orderAsc(
+            ["one" => "a", "two" => "b", "three" => "c"], ["one" => "a", "two" => "b", "three" => "c"]) == 0 );
+        $this->assertTrue( CComparator::orderAsc(
+            ["one" => "a", "two" => "b", "three" => "c"], ["one" => "b", "two" => "b", "three" => "c"]) < 0 );
+        $this->assertTrue( CComparator::orderAsc(
+            ["one" => "b", "two" => "b", "three" => "c"], ["one" => "a", "two" => "b", "three" => "c"]) > 0 );
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    public function testOrderDesc ()
+    {
+        $this->assertTrue( CComparator::orderDesc(u("Hello there!"), u("Hello there!")) == 0 );
+        $this->assertTrue( CComparator::orderDesc(u("A"), u("B")) > 0 );
+        $this->assertTrue( CComparator::orderDesc(u("C"), u("B")) < 0 );
+        $this->assertTrue( CComparator::orderDesc(u("¡Hola señor!"), u("¡Hola señor!")) == 0 );
+        $this->assertTrue( CComparator::orderDesc(u("A"), u("B")) > 0 );
+        $this->assertTrue( CComparator::orderDesc(u("C"), u("B")) < 0 );
+        $this->assertTrue( CComparator::orderDesc(a("a", "b", "c"), a("a", "b", "c")) == 0 );
+        $this->assertTrue( CComparator::orderDesc(a("b", "b", "c"), a("a", "b", "c")) < 0 );
+        $this->assertTrue( CComparator::orderDesc(
+            m(["one" => "a", "two" => "b", "three" => "c"]), m(["one" => "a", "two" => "b", "three" => "c"])) == 0 );
+        $this->assertTrue( CComparator::orderDesc(
+            m(["one" => "b", "two" => "b", "three" => "c"]), m(["one" => "a", "two" => "b", "three" => "c"])) < 0 );
+        $this->assertTrue( CComparator::orderDesc(
+            CTime::fromString("11/5/1955 12:00:00 PST"), CTime::fromString("11/5/1955 12:00:00 PST")) == 0 );
+        $this->assertTrue( CComparator::orderDesc(
+            CTime::fromString("11/5/1955 12:00:00 PST"), CTime::fromString("11/5/1985 12:00:00 PST")) > 0 );
+        $this->assertTrue( CComparator::orderDesc(
+            CTime::fromString("11/5/1985 12:00:01 PST"), CTime::fromString("11/5/1985 12:00:00 PST")) < 0 );
+
+        $this->assertTrue( CComparator::orderDesc(true, true) == 0 );
+        $this->assertTrue( CComparator::orderDesc(false, true) > 0 );
+        $this->assertTrue( CComparator::orderDesc(true, false) < 0 );
+        $this->assertTrue( CComparator::orderDesc(1234, 1234) == 0 );
+        $this->assertTrue( CComparator::orderDesc(1234, 5678) > 0 );
+        $this->assertTrue( CComparator::orderDesc(5678, 1234) < 0 );
+        $this->assertTrue( CComparator::orderDesc(12.34, 12.34) == 0 );
+        $this->assertTrue( CComparator::orderDesc(12.34, 56.78) > 0 );
+        $this->assertTrue( CComparator::orderDesc(56.78, 12.34) < 0 );
+        $this->assertTrue( CComparator::orderDesc(null, null) == 0 );
+
+        $this->assertTrue( CComparator::orderDesc("Hello there!", "Hello there!") == 0 );
+        $this->assertTrue( CComparator::orderDesc("A", "B") > 0 );
+        $this->assertTrue( CComparator::orderDesc("C", "B") < 0 );
+        $this->assertTrue( CComparator::orderDesc(
+            CArray::fromElements("a", "b", "c"), CArray::fromElements("a", "b", "c")) == 0 );
+        $this->assertTrue( CComparator::orderDesc(
+            CArray::fromElements("a", "b", "c"), CArray::fromElements("b", "b", "c")) > 0 );
+        $this->assertTrue( CComparator::orderDesc(
+            CArray::fromElements("b", "b", "c"), CArray::fromElements("a", "b", "c")) < 0 );
+        $this->assertTrue( CComparator::orderDesc(
+            ["one" => "a", "two" => "b", "three" => "c"], ["one" => "a", "two" => "b", "three" => "c"]) == 0 );
+        $this->assertTrue( CComparator::orderDesc(
+            ["one" => "a", "two" => "b", "three" => "c"], ["one" => "b", "two" => "b", "three" => "c"]) > 0 );
+        $this->assertTrue( CComparator::orderDesc(
+            ["one" => "b", "two" => "b", "three" => "c"], ["one" => "a", "two" => "b", "three" => "c"]) < 0 );
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+}
+

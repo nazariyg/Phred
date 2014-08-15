@@ -1,0 +1,2409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>Phred API</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet" media="all"/>
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Phred API</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">426</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1712660349"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1712660349" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/ICopyingStatic.html">ICopyingStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEquality.html">IEquality</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrder.html">IEqualityAndOrder</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrderStatic.html">IEqualityAndOrderStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityStatic.html">IEqualityStatic</a></li>
+                                                                                                    <li class="class"><a href="../classes/array.html">array</a></li>
+                                                    <li class="class"><a href="../classes/bitfield.html">bitfield</a></li>
+                                                    <li class="class"><a href="../classes/CArray.html">CArray</a></li>
+                                                    <li class="class"><a href="../classes/CArrayObject.html">CArrayObject</a></li>
+                                                    <li class="class"><a href="../classes/CBase64.html">CBase64</a></li>
+                                                    <li class="class"><a href="../classes/CBitField.html">CBitField</a></li>
+                                                    <li class="class"><a href="../classes/CComparator.html">CComparator</a></li>
+                                                    <li class="class"><a href="../classes/CConfiguration.html">CConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CCookie.html">CCookie</a></li>
+                                                    <li class="class"><a href="../classes/CEString.html">CEString</a></li>
+                                                    <li class="class"><a href="../classes/CFile.html">CFile</a></li>
+                                                    <li class="class"><a href="../classes/CFilePath.html">CFilePath</a></li>
+                                                    <li class="class"><a href="../classes/CGZip.html">CGZip</a></li>
+                                                    <li class="class"><a href="../classes/CHash.html">CHash</a></li>
+                                                    <li class="class"><a href="../classes/CHtml.html">CHtml</a></li>
+                                                    <li class="class"><a href="../classes/CHttpRequest.html">CHttpRequest</a></li>
+                                                    <li class="class"><a href="../classes/CHttpResponse.html">CHttpResponse</a></li>
+                                                    <li class="class"><a href="../classes/CInetRequest.html">CInetRequest</a></li>
+                                                    <li class="class"><a href="../classes/CInetSession.html">CInetSession</a></li>
+                                                    <li class="class"><a href="../classes/CInputFilter.html">CInputFilter</a></li>
+                                                    <li class="class"><a href="../classes/CIp.html">CIp</a></li>
+                                                    <li class="class"><a href="../classes/CJson.html">CJson</a></li>
+                                                    <li class="class"><a href="../classes/CMail.html">CMail</a></li>
+                                                    <li class="class"><a href="../classes/CMap.html">CMap</a></li>
+                                                    <li class="class"><a href="../classes/CMapObject.html">CMapObject</a></li>
+                                                    <li class="class"><a href="../classes/CMathf.html">CMathf</a></li>
+                                                    <li class="class"><a href="../classes/CMathi.html">CMathi</a></li>
+                                                    <li class="class"><a href="../classes/CMimeType.html">CMimeType</a></li>
+                                                    <li class="class"><a href="../classes/CRegex.html">CRegex</a></li>
+                                                    <li class="class"><a href="../classes/CRequest.html">CRequest</a></li>
+                                                    <li class="class"><a href="../classes/CResponse.html">CResponse</a></li>
+                                                    <li class="class"><a href="../classes/CShell.html">CShell</a></li>
+                                                    <li class="class"><a href="../classes/CString.html">CString</a></li>
+                                                    <li class="class"><a href="../classes/CSystem.html">CSystem</a></li>
+                                                    <li class="class"><a href="../classes/CTime.html">CTime</a></li>
+                                                    <li class="class"><a href="../classes/CTimeZone.html">CTimeZone</a></li>
+                                                    <li class="class"><a href="../classes/CUFormat.html">CUFormat</a></li>
+                                                    <li class="class"><a href="../classes/CULocale.html">CULocale</a></li>
+                                                    <li class="class"><a href="../classes/CUrl.html">CUrl</a></li>
+                                                    <li class="class"><a href="../classes/CUrlPath.html">CUrlPath</a></li>
+                                                    <li class="class"><a href="../classes/CUrlQuery.html">CUrlQuery</a></li>
+                                                    <li class="class"><a href="../classes/CUString.html">CUString</a></li>
+                                                    <li class="class"><a href="../classes/CUStringObject.html">CUStringObject</a></li>
+                                                    <li class="class"><a href="../classes/CUUnit.html">CUUnit</a></li>
+                                                    <li class="class"><a href="../classes/CXml.html">CXml</a></li>
+                                                    <li class="class"><a href="../classes/enum.html">enum</a></li>
+                                                    <li class="class"><a href="../classes/map.html">map</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span12 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <!--
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    -->
+                    <br/ >
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><!-- <small>\</small> -->CHash</h1>
+                    <p><em><p>The class that lets you compute hashes on data and files in one piece as well as incremental hashes.</p></em></p>
+                    
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methodsum">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/CHash.html#method_compute" class="">compute()</a><br />
+                                                                    <a href="../classes/CHash.html#method_computeFromFile" class="">computeFromFile()</a><br />
+                                                                    <a href="../classes/CHash.html#method_computeHmac" class="">computeHmac()</a><br />
+                                                                    <a href="../classes/CHash.html#method_computeHmacFromFile" class="">computeHmacFromFile()</a><br />
+                                                                    <a href="../classes/CHash.html#method_computeForPassword" class="">computeForPassword()</a><br />
+                                                                    <a href="../classes/CHash.html#method_matchPasswordWithHash" class="">matchPasswordWithHash()</a><br />
+                                                                    <a href="../classes/CHash.html#method_doesPasswordNeedRehashing" class="">doesPasswordNeedRehashing()</a><br />
+                                                                    <a href="../classes/CHash.html#method_computePbkdf2" class="">computePbkdf2()</a><br />
+                                                                    <a href="../classes/CHash.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/CHash.html#method_computeMore" class="">computeMore()</a><br />
+                                                                    <a href="../classes/CHash.html#method_computeMoreFromFile" class="">computeMoreFromFile()</a><br />
+                                                                    <a href="../classes/CHash.html#method_computeMoreFromStream" class="">computeMoreFromStream()</a><br />
+                                                                    <a href="../classes/CHash.html#method_finalize" class="">finalize()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CHash.html#constant_MD2" class="">MD2</a><br />
+                                                                    <a href="../classes/CHash.html#constant_MD4" class="">MD4</a><br />
+                                                                    <a href="../classes/CHash.html#constant_MD5" class="">MD5</a><br />
+                                                                    <a href="../classes/CHash.html#constant_SHA1" class="">SHA1</a><br />
+                                                                    <a href="../classes/CHash.html#constant_SHA224" class="">SHA224</a><br />
+                                                                    <a href="../classes/CHash.html#constant_SHA256" class="">SHA256</a><br />
+                                                                    <a href="../classes/CHash.html#constant_SHA384" class="">SHA384</a><br />
+                                                                    <a href="../classes/CHash.html#constant_SHA512" class="">SHA512</a><br />
+                                                                    <a href="../classes/CHash.html#constant_RIPEMD128" class="">RIPEMD128</a><br />
+                                                                    <a href="../classes/CHash.html#constant_RIPEMD160" class="">RIPEMD160</a><br />
+                                                                    <a href="../classes/CHash.html#constant_RIPEMD256" class="">RIPEMD256</a><br />
+                                                                    <a href="../classes/CHash.html#constant_RIPEMD320" class="">RIPEMD320</a><br />
+                                                                    <a href="../classes/CHash.html#constant_WHIRLPOOL" class="">WHIRLPOOL</a><br />
+                                                                    <a href="../classes/CHash.html#constant_TIGER128_3" class="">TIGER128_3</a><br />
+                                                                    <a href="../classes/CHash.html#constant_TIGER160_3" class="">TIGER160_3</a><br />
+                                                                    <a href="../classes/CHash.html#constant_TIGER192_3" class="">TIGER192_3</a><br />
+                                                                    <a href="../classes/CHash.html#constant_TIGER128_4" class="">TIGER128_4</a><br />
+                                                                    <a href="../classes/CHash.html#constant_TIGER160_4" class="">TIGER160_4</a><br />
+                                                                    <a href="../classes/CHash.html#constant_TIGER192_4" class="">TIGER192_4</a><br />
+                                                                    <a href="../classes/CHash.html#constant_SNEFRU" class="">SNEFRU</a><br />
+                                                                    <a href="../classes/CHash.html#constant_SNEFRU256" class="">SNEFRU256</a><br />
+                                                                    <a href="../classes/CHash.html#constant_GOST" class="">GOST</a><br />
+                                                                    <a href="../classes/CHash.html#constant_ADLER32" class="">ADLER32</a><br />
+                                                                    <a href="../classes/CHash.html#constant_CRC32" class="">CRC32</a><br />
+                                                                    <a href="../classes/CHash.html#constant_CRC32B" class="">CRC32B</a><br />
+                                                                    <a href="../classes/CHash.html#constant_FNV132" class="">FNV132</a><br />
+                                                                    <a href="../classes/CHash.html#constant_FNV164" class="">FNV164</a><br />
+                                                                    <a href="../classes/CHash.html#constant_JOAAT" class="">JOAAT</a><br />
+                                                                    <a href="../classes/CHash.html#constant_HAVAL128_3" class="">HAVAL128_3</a><br />
+                                                                    <a href="../classes/CHash.html#constant_HAVAL160_3" class="">HAVAL160_3</a><br />
+                                                                    <a href="../classes/CHash.html#constant_HAVAL192_3" class="">HAVAL192_3</a><br />
+                                                                    <a href="../classes/CHash.html#constant_HAVAL224_3" class="">HAVAL224_3</a><br />
+                                                                    <a href="../classes/CHash.html#constant_HAVAL256_3" class="">HAVAL256_3</a><br />
+                                                                    <a href="../classes/CHash.html#constant_HAVAL128_4" class="">HAVAL128_4</a><br />
+                                                                    <a href="../classes/CHash.html#constant_HAVAL160_4" class="">HAVAL160_4</a><br />
+                                                                    <a href="../classes/CHash.html#constant_HAVAL192_4" class="">HAVAL192_4</a><br />
+                                                                    <a href="../classes/CHash.html#constant_HAVAL224_4" class="">HAVAL224_4</a><br />
+                                                                    <a href="../classes/CHash.html#constant_HAVAL256_4" class="">HAVAL256_4</a><br />
+                                                                    <a href="../classes/CHash.html#constant_HAVAL128_5" class="">HAVAL128_5</a><br />
+                                                                    <a href="../classes/CHash.html#constant_HAVAL160_5" class="">HAVAL160_5</a><br />
+                                                                    <a href="../classes/CHash.html#constant_HAVAL192_5" class="">HAVAL192_5</a><br />
+                                                                    <a href="../classes/CHash.html#constant_HAVAL224_5" class="">HAVAL224_5</a><br />
+                                                                    <a href="../classes/CHash.html#constant_HAVAL256_5" class="">HAVAL256_5</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties</em>
+                                                            </section>
+                        </section>
+                        <!--
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/CHash.html#method_hashTypeToString" class="">hashTypeToString()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CHash.html#property_m_rcHashingContext" class="">$m_rcHashingContext</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                        </section>
+                        -->
+                    </section>
+                </div>
+                <aside class="span2 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Classes.Info.CHash.php.html"><div class="path-wrapper">Classes/Info/CHash.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper"></div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\CRootClass</div>
+                                                                                                    <div class="namespace-wrapper">\CHash</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2 style="visibility: hidden">Tags</h2>
+                    <table class="table table-condensed" style="visibility: hidden">
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+            <a id="methodsum" name="methodsum"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Method Summary</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/CHash.html#method_compute" class="">compute()</a></td>
+                            <td><p>From a data, computes a hash string using a specified hashing algorithm and returns it.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CHash.html#method_computeFromFile" class="">computeFromFile()</a></td>
+                            <td><p>From a file, computes a hash string using a specified hashing algorithm and returns it.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CHash.html#method_computeHmac" class="">computeHmac()</a></td>
+                            <td><p>From a data, computes a keyed hash string using a specified hashing algorithm combined with the HMAC method and
+returns it.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CHash.html#method_computeHmacFromFile" class="">computeHmacFromFile()</a></td>
+                            <td><p>From a file, computes a keyed hash string using a specified hashing algorithm combined with the HMAC method and
+returns it.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CHash.html#method_computeForPassword" class="">computeForPassword()</a></td>
+                            <td><p>From a password, computes a salted hash string that can be safely stored in a database or other places and
+returns it.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CHash.html#method_matchPasswordWithHash" class="">matchPasswordWithHash()</a></td>
+                            <td><p>Determines if a password matches a salted hash.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CHash.html#method_doesPasswordNeedRehashing" class="">doesPasswordNeedRehashing()</a></td>
+                            <td><p>Tells whether a salted hash that was computed from a password needs to be refreshed due to an update to the
+hash computing algorithm.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CHash.html#method_computePbkdf2" class="">computePbkdf2()</a></td>
+                            <td><p>Computes a hash string that is a PBKDF2 key derivation of a password, using a specified hashing algorithm, and
+returns it.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CHash.html#method___construct" class="">__construct()</a></td>
+                            <td><p>Creates an object for incremental hashing.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CHash.html#method_computeMore" class="">computeMore()</a></td>
+                            <td><p>Computes more of the hash from a data.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CHash.html#method_computeMoreFromFile" class="">computeMoreFromFile()</a></td>
+                            <td><p>Computes more of the hash from a file.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CHash.html#method_computeMoreFromStream" class="">computeMoreFromStream()</a></td>
+                            <td><p>Computes more of the hash from a stream.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CHash.html#method_finalize" class="">finalize()</a></td>
+                            <td><p>Finalizes the incremental hashing and returns the computed hash.</p></td>
+                        </tr>
+                                        </table>
+                </div>
+                <aside class="span2 detailsbar"> </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MD2" name="constant_MD2" class="anchor"></a>
+            <article id="constant_MD2" class="constant">
+                <h3 class="">MD2</h3>
+                <pre class="signature">MD2</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MD4" name="constant_MD4" class="anchor"></a>
+            <article id="constant_MD4" class="constant">
+                <h3 class="">MD4</h3>
+                <pre class="signature">MD4</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_MD5" name="constant_MD5" class="anchor"></a>
+            <article id="constant_MD5" class="constant">
+                <h3 class="">MD5</h3>
+                <pre class="signature">MD5</pre>
+                <p><p><code>enum</code> 32 characters.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SHA1" name="constant_SHA1" class="anchor"></a>
+            <article id="constant_SHA1" class="constant">
+                <h3 class="">SHA1</h3>
+                <pre class="signature">SHA1</pre>
+                <p><p><code>enum</code> 40 characters.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SHA224" name="constant_SHA224" class="anchor"></a>
+            <article id="constant_SHA224" class="constant">
+                <h3 class="">SHA224</h3>
+                <pre class="signature">SHA224</pre>
+                <p><p><code>enum</code> 56 characters.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SHA256" name="constant_SHA256" class="anchor"></a>
+            <article id="constant_SHA256" class="constant">
+                <h3 class="">SHA256</h3>
+                <pre class="signature">SHA256</pre>
+                <p><p><code>enum</code> 64 characters.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SHA384" name="constant_SHA384" class="anchor"></a>
+            <article id="constant_SHA384" class="constant">
+                <h3 class="">SHA384</h3>
+                <pre class="signature">SHA384</pre>
+                <p><p><code>enum</code> 96 characters.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SHA512" name="constant_SHA512" class="anchor"></a>
+            <article id="constant_SHA512" class="constant">
+                <h3 class="">SHA512</h3>
+                <pre class="signature">SHA512</pre>
+                <p><p><code>enum</code> 128 characters.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RIPEMD128" name="constant_RIPEMD128" class="anchor"></a>
+            <article id="constant_RIPEMD128" class="constant">
+                <h3 class="">RIPEMD128</h3>
+                <pre class="signature">RIPEMD128</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RIPEMD160" name="constant_RIPEMD160" class="anchor"></a>
+            <article id="constant_RIPEMD160" class="constant">
+                <h3 class="">RIPEMD160</h3>
+                <pre class="signature">RIPEMD160</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RIPEMD256" name="constant_RIPEMD256" class="anchor"></a>
+            <article id="constant_RIPEMD256" class="constant">
+                <h3 class="">RIPEMD256</h3>
+                <pre class="signature">RIPEMD256</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RIPEMD320" name="constant_RIPEMD320" class="anchor"></a>
+            <article id="constant_RIPEMD320" class="constant">
+                <h3 class="">RIPEMD320</h3>
+                <pre class="signature">RIPEMD320</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_WHIRLPOOL" name="constant_WHIRLPOOL" class="anchor"></a>
+            <article id="constant_WHIRLPOOL" class="constant">
+                <h3 class="">WHIRLPOOL</h3>
+                <pre class="signature">WHIRLPOOL</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TIGER128_3" name="constant_TIGER128_3" class="anchor"></a>
+            <article id="constant_TIGER128_3" class="constant">
+                <h3 class="">TIGER128_3</h3>
+                <pre class="signature">TIGER128_3</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TIGER160_3" name="constant_TIGER160_3" class="anchor"></a>
+            <article id="constant_TIGER160_3" class="constant">
+                <h3 class="">TIGER160_3</h3>
+                <pre class="signature">TIGER160_3</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TIGER192_3" name="constant_TIGER192_3" class="anchor"></a>
+            <article id="constant_TIGER192_3" class="constant">
+                <h3 class="">TIGER192_3</h3>
+                <pre class="signature">TIGER192_3</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TIGER128_4" name="constant_TIGER128_4" class="anchor"></a>
+            <article id="constant_TIGER128_4" class="constant">
+                <h3 class="">TIGER128_4</h3>
+                <pre class="signature">TIGER128_4</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TIGER160_4" name="constant_TIGER160_4" class="anchor"></a>
+            <article id="constant_TIGER160_4" class="constant">
+                <h3 class="">TIGER160_4</h3>
+                <pre class="signature">TIGER160_4</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TIGER192_4" name="constant_TIGER192_4" class="anchor"></a>
+            <article id="constant_TIGER192_4" class="constant">
+                <h3 class="">TIGER192_4</h3>
+                <pre class="signature">TIGER192_4</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SNEFRU" name="constant_SNEFRU" class="anchor"></a>
+            <article id="constant_SNEFRU" class="constant">
+                <h3 class="">SNEFRU</h3>
+                <pre class="signature">SNEFRU</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SNEFRU256" name="constant_SNEFRU256" class="anchor"></a>
+            <article id="constant_SNEFRU256" class="constant">
+                <h3 class="">SNEFRU256</h3>
+                <pre class="signature">SNEFRU256</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_GOST" name="constant_GOST" class="anchor"></a>
+            <article id="constant_GOST" class="constant">
+                <h3 class="">GOST</h3>
+                <pre class="signature">GOST</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ADLER32" name="constant_ADLER32" class="anchor"></a>
+            <article id="constant_ADLER32" class="constant">
+                <h3 class="">ADLER32</h3>
+                <pre class="signature">ADLER32</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CRC32" name="constant_CRC32" class="anchor"></a>
+            <article id="constant_CRC32" class="constant">
+                <h3 class="">CRC32</h3>
+                <pre class="signature">CRC32</pre>
+                <p><p><code>enum</code> 8 characters.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CRC32B" name="constant_CRC32B" class="anchor"></a>
+            <article id="constant_CRC32B" class="constant">
+                <h3 class="">CRC32B</h3>
+                <pre class="signature">CRC32B</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FNV132" name="constant_FNV132" class="anchor"></a>
+            <article id="constant_FNV132" class="constant">
+                <h3 class="">FNV132</h3>
+                <pre class="signature">FNV132</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FNV164" name="constant_FNV164" class="anchor"></a>
+            <article id="constant_FNV164" class="constant">
+                <h3 class="">FNV164</h3>
+                <pre class="signature">FNV164</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_JOAAT" name="constant_JOAAT" class="anchor"></a>
+            <article id="constant_JOAAT" class="constant">
+                <h3 class="">JOAAT</h3>
+                <pre class="signature">JOAAT</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HAVAL128_3" name="constant_HAVAL128_3" class="anchor"></a>
+            <article id="constant_HAVAL128_3" class="constant">
+                <h3 class="">HAVAL128_3</h3>
+                <pre class="signature">HAVAL128_3</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HAVAL160_3" name="constant_HAVAL160_3" class="anchor"></a>
+            <article id="constant_HAVAL160_3" class="constant">
+                <h3 class="">HAVAL160_3</h3>
+                <pre class="signature">HAVAL160_3</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HAVAL192_3" name="constant_HAVAL192_3" class="anchor"></a>
+            <article id="constant_HAVAL192_3" class="constant">
+                <h3 class="">HAVAL192_3</h3>
+                <pre class="signature">HAVAL192_3</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HAVAL224_3" name="constant_HAVAL224_3" class="anchor"></a>
+            <article id="constant_HAVAL224_3" class="constant">
+                <h3 class="">HAVAL224_3</h3>
+                <pre class="signature">HAVAL224_3</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HAVAL256_3" name="constant_HAVAL256_3" class="anchor"></a>
+            <article id="constant_HAVAL256_3" class="constant">
+                <h3 class="">HAVAL256_3</h3>
+                <pre class="signature">HAVAL256_3</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HAVAL128_4" name="constant_HAVAL128_4" class="anchor"></a>
+            <article id="constant_HAVAL128_4" class="constant">
+                <h3 class="">HAVAL128_4</h3>
+                <pre class="signature">HAVAL128_4</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HAVAL160_4" name="constant_HAVAL160_4" class="anchor"></a>
+            <article id="constant_HAVAL160_4" class="constant">
+                <h3 class="">HAVAL160_4</h3>
+                <pre class="signature">HAVAL160_4</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HAVAL192_4" name="constant_HAVAL192_4" class="anchor"></a>
+            <article id="constant_HAVAL192_4" class="constant">
+                <h3 class="">HAVAL192_4</h3>
+                <pre class="signature">HAVAL192_4</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HAVAL224_4" name="constant_HAVAL224_4" class="anchor"></a>
+            <article id="constant_HAVAL224_4" class="constant">
+                <h3 class="">HAVAL224_4</h3>
+                <pre class="signature">HAVAL224_4</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HAVAL256_4" name="constant_HAVAL256_4" class="anchor"></a>
+            <article id="constant_HAVAL256_4" class="constant">
+                <h3 class="">HAVAL256_4</h3>
+                <pre class="signature">HAVAL256_4</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HAVAL128_5" name="constant_HAVAL128_5" class="anchor"></a>
+            <article id="constant_HAVAL128_5" class="constant">
+                <h3 class="">HAVAL128_5</h3>
+                <pre class="signature">HAVAL128_5</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HAVAL160_5" name="constant_HAVAL160_5" class="anchor"></a>
+            <article id="constant_HAVAL160_5" class="constant">
+                <h3 class="">HAVAL160_5</h3>
+                <pre class="signature">HAVAL160_5</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HAVAL192_5" name="constant_HAVAL192_5" class="anchor"></a>
+            <article id="constant_HAVAL192_5" class="constant">
+                <h3 class="">HAVAL192_5</h3>
+                <pre class="signature">HAVAL192_5</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HAVAL224_5" name="constant_HAVAL224_5" class="anchor"></a>
+            <article id="constant_HAVAL224_5" class="constant">
+                <h3 class="">HAVAL224_5</h3>
+                <pre class="signature">HAVAL224_5</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HAVAL256_5" name="constant_HAVAL256_5" class="anchor"></a>
+            <article id="constant_HAVAL256_5" class="constant">
+                <h3 class="">HAVAL256_5</h3>
+                <pre class="signature">HAVAL256_5</pre>
+                <p><p><code>enum</code></p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+            <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_compute" name="method_compute" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">compute()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> compute (data&nbsp;<span class="argument">$byData</span>, enum&nbsp;<span class="argument">$eHashType</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bAsBinary</span></span>) : OOPString</pre>
+                <p><em><p>From a data, computes a hash string using a specified hashing algorithm and returns it.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$byData</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">data</code></td>
+                                <td><p>The source data.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eHashType</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The hashing algorithm to be used (see <a href="#summary">Summary</a>).</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bAsBinary</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the hash should be returned as a raw
+binary data.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The computed hash.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_computeFromFile" name="method_computeFromFile" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">computeFromFile()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> computeFromFile (string&nbsp;<span class="argument">$sDataFp</span>, enum&nbsp;<span class="argument">$eHashType</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bAsBinary</span></span>) : OOPString</pre>
+                <p><em><p>From a file, computes a hash string using a specified hashing algorithm and returns it.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sDataFp</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The path to the source file.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eHashType</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The hashing algorithm to be used (see <a href="#summary">Summary</a>).</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bAsBinary</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the hash should be returned as a raw
+binary data.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The computed hash.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_computeHmac" name="method_computeHmac" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">computeHmac()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> computeHmac (data&nbsp;<span class="argument">$byData</span>, enum&nbsp;<span class="argument">$eHashType</span>, string&nbsp;<span class="argument">$sKey</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bAsBinary</span></span>) : OOPString</pre>
+                <p><em><p>From a data, computes a keyed hash string using a specified hashing algorithm combined with the HMAC method and
+returns it.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$byData</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">data</code></td>
+                                <td><p>The source data.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eHashType</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The hashing algorithm to be used (see <a href="#summary">Summary</a>).</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sKey</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The shared secret key.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bAsBinary</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the hash should be returned as a raw
+binary data.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The computed hash.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_computeHmacFromFile" name="method_computeHmacFromFile" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">computeHmacFromFile()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> computeHmacFromFile (string&nbsp;<span class="argument">$sDataFp</span>, enum&nbsp;<span class="argument">$eHashType</span>, string&nbsp;<span class="argument">$sKey</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bAsBinary</span></span>) : OOPString</pre>
+                <p><em><p>From a file, computes a keyed hash string using a specified hashing algorithm combined with the HMAC method and
+returns it.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sDataFp</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The path to the source file.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eHashType</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The hashing algorithm to be used (see <a href="#summary">Summary</a>).</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sKey</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The shared secret key.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bAsBinary</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the hash should be returned as a raw
+binary data.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The computed hash.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_computeForPassword" name="method_computeForPassword" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">computeForPassword()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> computeForPassword (string&nbsp;<span class="argument">$sPassword</span>) : OOPString</pre>
+                <p><em><p>From a password, computes a salted hash string that can be safely stored in a database or other places and
+returns it.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sPassword</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The password to be hashed.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The computed hash.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_matchPasswordWithHash" name="method_matchPasswordWithHash" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">matchPasswordWithHash()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> matchPasswordWithHash (string&nbsp;<span class="argument">$sPassword</span>, string&nbsp;<span class="argument">$sHash</span>) : bool</pre>
+                <p><em><p>Determines if a password matches a salted hash.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sPassword</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The password to be verified.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sHash</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The salted hash against which the password is to be verified.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the password matches the hash, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_doesPasswordNeedRehashing" name="method_doesPasswordNeedRehashing" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">doesPasswordNeedRehashing()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> doesPasswordNeedRehashing (string&nbsp;<span class="argument">$sPasswordHash</span>) : bool</pre>
+                <p><em><p>Tells whether a salted hash that was computed from a password needs to be refreshed due to an update to the
+hash computing algorithm.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sPasswordHash</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The salted hash to be looked into.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    bool
+                    <!-- </code> -->
+                                            &mdash; <p><code>true</code> if the password that is associated with the hash needs to be rehashed, <code>false</code> otherwise.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_computePbkdf2" name="method_computePbkdf2" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">computePbkdf2()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> computePbkdf2 (string&nbsp;<span class="argument">$sPassword</span>, enum&nbsp;<span class="argument">$eHashType</span>, string&nbsp;<span class="argument">$sSalt</span>, int&nbsp;<span class="argument">$iNumIterations</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$iOutputLength</span></span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bAsBinary</span></span>) : OOPString</pre>
+                <p><em><p>Computes a hash string that is a PBKDF2 key derivation of a password, using a specified hashing algorithm, and
+returns it.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sPassword</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The password to be used for derivation.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eHashType</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The hashing algorithm to be used (see <a href="#summary">Summary</a>).</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sSalt</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The salt to be used for derivation.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$iNumIterations</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
+                                <td><p>The number of internal iterations to be performed in the process of derivation.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$iOutputLength</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <em>unlimited</em>. The length of the resulting string.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bAsBinary</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the hash should be returned as a raw
+binary data.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The computed hash.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (enum&nbsp;<span class="argument">$eHashType</span>)</pre>
+                <p><em><p>Creates an object for incremental hashing.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eHashType</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The hashing algorithm to be used (see <a href="#summary">Summary</a>).</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_computeMore" name="method_computeMore" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">computeMore()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">computeMore (data&nbsp;<span class="argument">$byData</span>) : void</pre>
+                <p><em><p>Computes more of the hash from a data.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$byData</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">data</code></td>
+                                <td><p>The source data.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_computeMoreFromFile" name="method_computeMoreFromFile" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">computeMoreFromFile()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">computeMoreFromFile (string&nbsp;<span class="argument">$sDataFp</span>) : void</pre>
+                <p><em><p>Computes more of the hash from a file.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sDataFp</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The path to the source file.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_computeMoreFromStream" name="method_computeMoreFromStream" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">computeMoreFromStream()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">computeMoreFromStream (resource&nbsp;<span class="argument">$rcStream</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$iMaxNumInputBytes</span></span>) : int</pre>
+                <p><em><p>Computes more of the hash from a stream.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$rcStream</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">resource</code></td>
+                                <td><p>The handle of an open stream.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$iMaxNumInputBytes</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <em>determine automatically</em>. The maximum number of bytes
+to be processed from the stream.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The actual number of bytes that were processed from the stream.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_finalize" name="method_finalize" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">finalize()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">finalize (<span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bAsBinary</span></span>) : OOPString</pre>
+                <p><em><p>Finalizes the incremental hashing and returns the computed hash.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$bAsBinary</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the hash should be returned as a raw
+binary data.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The computed hash.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                <!--
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hashTypeToString" name="method_hashTypeToString" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">hashTypeToString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> hashTypeToString (&nbsp;<span class="argument">$eHashType</span>)</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eHashType</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                -->
+            
+            <!--
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_rcHashingContext" name="property_m_rcHashingContext" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_rcHashingContext</h3>
+                <pre class="signature">$m_rcHashingContext</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                        -->
+        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">CHash.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Classes/Info/CHash.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4" style="visibility: hidden">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 13th, 2014 at 18:15.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

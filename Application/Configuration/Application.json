@@ -1,0 +1,15 @@
+{
+    // The configuration environment. Possible values: "dev", "pro", "tst".
+    "environment": "dev",
+
+    // Due to some peculiarities of intl/ICU, "en_US" is preferred over "en_US_POSIX".
+    "defaultLocale": "en_US",
+
+    // The absolute path to the directory where temporary files should be placed. If not specified, the operating
+    // system's default temporary files directory is used. In case of a custom directory, make sure that the directory
+    // has necessary permissions set on it to allow creation of new files.
+    "customTemporaryFilesDirectoryPath": "",
+
+    // Changing this option in run time has no effect.
+    "enableOop": true
+}

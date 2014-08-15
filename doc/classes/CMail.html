@@ -1,0 +1,2463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>Phred API</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet" media="all"/>
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Phred API</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">426</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-263293503"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-263293503" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/ICopyingStatic.html">ICopyingStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEquality.html">IEquality</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrder.html">IEqualityAndOrder</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityAndOrderStatic.html">IEqualityAndOrderStatic</a></li>
+                                                    <li class="interface"><a href="../classes/IEqualityStatic.html">IEqualityStatic</a></li>
+                                                                                                    <li class="class"><a href="../classes/array.html">array</a></li>
+                                                    <li class="class"><a href="../classes/bitfield.html">bitfield</a></li>
+                                                    <li class="class"><a href="../classes/CArray.html">CArray</a></li>
+                                                    <li class="class"><a href="../classes/CArrayObject.html">CArrayObject</a></li>
+                                                    <li class="class"><a href="../classes/CBase64.html">CBase64</a></li>
+                                                    <li class="class"><a href="../classes/CBitField.html">CBitField</a></li>
+                                                    <li class="class"><a href="../classes/CComparator.html">CComparator</a></li>
+                                                    <li class="class"><a href="../classes/CConfiguration.html">CConfiguration</a></li>
+                                                    <li class="class"><a href="../classes/CCookie.html">CCookie</a></li>
+                                                    <li class="class"><a href="../classes/CEString.html">CEString</a></li>
+                                                    <li class="class"><a href="../classes/CFile.html">CFile</a></li>
+                                                    <li class="class"><a href="../classes/CFilePath.html">CFilePath</a></li>
+                                                    <li class="class"><a href="../classes/CGZip.html">CGZip</a></li>
+                                                    <li class="class"><a href="../classes/CHash.html">CHash</a></li>
+                                                    <li class="class"><a href="../classes/CHtml.html">CHtml</a></li>
+                                                    <li class="class"><a href="../classes/CHttpRequest.html">CHttpRequest</a></li>
+                                                    <li class="class"><a href="../classes/CHttpResponse.html">CHttpResponse</a></li>
+                                                    <li class="class"><a href="../classes/CInetRequest.html">CInetRequest</a></li>
+                                                    <li class="class"><a href="../classes/CInetSession.html">CInetSession</a></li>
+                                                    <li class="class"><a href="../classes/CInputFilter.html">CInputFilter</a></li>
+                                                    <li class="class"><a href="../classes/CIp.html">CIp</a></li>
+                                                    <li class="class"><a href="../classes/CJson.html">CJson</a></li>
+                                                    <li class="class"><a href="../classes/CMail.html">CMail</a></li>
+                                                    <li class="class"><a href="../classes/CMap.html">CMap</a></li>
+                                                    <li class="class"><a href="../classes/CMapObject.html">CMapObject</a></li>
+                                                    <li class="class"><a href="../classes/CMathf.html">CMathf</a></li>
+                                                    <li class="class"><a href="../classes/CMathi.html">CMathi</a></li>
+                                                    <li class="class"><a href="../classes/CMimeType.html">CMimeType</a></li>
+                                                    <li class="class"><a href="../classes/CRegex.html">CRegex</a></li>
+                                                    <li class="class"><a href="../classes/CRequest.html">CRequest</a></li>
+                                                    <li class="class"><a href="../classes/CResponse.html">CResponse</a></li>
+                                                    <li class="class"><a href="../classes/CShell.html">CShell</a></li>
+                                                    <li class="class"><a href="../classes/CString.html">CString</a></li>
+                                                    <li class="class"><a href="../classes/CSystem.html">CSystem</a></li>
+                                                    <li class="class"><a href="../classes/CTime.html">CTime</a></li>
+                                                    <li class="class"><a href="../classes/CTimeZone.html">CTimeZone</a></li>
+                                                    <li class="class"><a href="../classes/CUFormat.html">CUFormat</a></li>
+                                                    <li class="class"><a href="../classes/CULocale.html">CULocale</a></li>
+                                                    <li class="class"><a href="../classes/CUrl.html">CUrl</a></li>
+                                                    <li class="class"><a href="../classes/CUrlPath.html">CUrlPath</a></li>
+                                                    <li class="class"><a href="../classes/CUrlQuery.html">CUrlQuery</a></li>
+                                                    <li class="class"><a href="../classes/CUString.html">CUString</a></li>
+                                                    <li class="class"><a href="../classes/CUStringObject.html">CUStringObject</a></li>
+                                                    <li class="class"><a href="../classes/CUUnit.html">CUUnit</a></li>
+                                                    <li class="class"><a href="../classes/CXml.html">CXml</a></li>
+                                                    <li class="class"><a href="../classes/enum.html">enum</a></li>
+                                                    <li class="class"><a href="../classes/map.html">map</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span12 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <!--
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    -->
+                    <br/ >
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><!-- <small>\</small> -->CMail</h1>
+                    <p><em><p>The class that lets you send plain-text and HTML emails with attached content, embedded content, and with support
+for other email features and do it in the simplest way possible.</p></em></p>
+                    <p><strong>You can refer to this class by its alias, which is</strong> <code>Ml</code>.</p>
+<p>To create an email message, you can use <code>makeSmtp</code> or <code>makeSystem</code> static method. And in order for a message to be
+sent, specifying any email field other than "From" and "To" is optional. Setting the "From" field can also be
+optional if the "Sender" or "Return Address" field is specified. Setting the "To" field is not required if the "Cc"
+or "Bcc" field is set. The "From" and "To" fields can be set either when creating an email message or afterwards
+with the appropriate <code>set...</code> or <code>add...</code> method.</p>
+<p><strong>Defaults:</strong></p>
+<ul>
+<li>Word wrapping of the text in a message's body is <code>true</code>.</li>
+</ul>
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methodsum">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/CMail.html#method_makeSmtp" class="">makeSmtp()</a><br />
+                                                                    <a href="../classes/CMail.html#method_makeSystem" class="">makeSystem()</a><br />
+                                                                    <a href="../classes/CMail.html#method_makeGmail" class="">makeGmail()</a><br />
+                                                                    <a href="../classes/CMail.html#method_setFrom" class="">setFrom()</a><br />
+                                                                    <a href="../classes/CMail.html#method_addFrom" class="">addFrom()</a><br />
+                                                                    <a href="../classes/CMail.html#method_setTo" class="">setTo()</a><br />
+                                                                    <a href="../classes/CMail.html#method_addTo" class="">addTo()</a><br />
+                                                                    <a href="../classes/CMail.html#method_addCc" class="">addCc()</a><br />
+                                                                    <a href="../classes/CMail.html#method_addBcc" class="">addBcc()</a><br />
+                                                                    <a href="../classes/CMail.html#method_setSender" class="">setSender()</a><br />
+                                                                    <a href="../classes/CMail.html#method_setReturnAddress" class="">setReturnAddress()</a><br />
+                                                                    <a href="../classes/CMail.html#method_setReplyAddress" class="">setReplyAddress()</a><br />
+                                                                    <a href="../classes/CMail.html#method_setSubject" class="">setSubject()</a><br />
+                                                                    <a href="../classes/CMail.html#method_setBody" class="">setBody()</a><br />
+                                                                    <a href="../classes/CMail.html#method_addAltBody" class="">addAltBody()</a><br />
+                                                                    <a href="../classes/CMail.html#method_disableWordWrapping" class="">disableWordWrapping()</a><br />
+                                                                    <a href="../classes/CMail.html#method_setWordWrapping" class="">setWordWrapping()</a><br />
+                                                                    <a href="../classes/CMail.html#method_attachFile" class="">attachFile()</a><br />
+                                                                    <a href="../classes/CMail.html#method_attachFileWithFilename" class="">attachFileWithFilename()</a><br />
+                                                                    <a href="../classes/CMail.html#method_attachData" class="">attachData()</a><br />
+                                                                    <a href="../classes/CMail.html#method_embeddableCidForFile" class="">embeddableCidForFile()</a><br />
+                                                                    <a href="../classes/CMail.html#method_embeddableCidForData" class="">embeddableCidForData()</a><br />
+                                                                    <a href="../classes/CMail.html#method_setTime" class="">setTime()</a><br />
+                                                                    <a href="../classes/CMail.html#method_setPriority" class="">setPriority()</a><br />
+                                                                    <a href="../classes/CMail.html#method_send" class="">send()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CMail.html#constant_SECURITY_NONE" class="">SECURITY_NONE</a><br />
+                                                                    <a href="../classes/CMail.html#constant_SECURITY_STARTTLS" class="">SECURITY_STARTTLS</a><br />
+                                                                    <a href="../classes/CMail.html#constant_SECURITY_SSL_TLS" class="">SECURITY_SSL_TLS</a><br />
+                                                                    <a href="../classes/CMail.html#constant_PRIORITY_HIGHEST" class="">PRIORITY_HIGHEST</a><br />
+                                                                    <a href="../classes/CMail.html#constant_PRIORITY_HIGH" class="">PRIORITY_HIGH</a><br />
+                                                                    <a href="../classes/CMail.html#constant_PRIORITY_NORMAL" class="">PRIORITY_NORMAL</a><br />
+                                                                    <a href="../classes/CMail.html#constant_PRIORITY_LOW" class="">PRIORITY_LOW</a><br />
+                                                                    <a href="../classes/CMail.html#constant_PRIORITY_LOWEST" class="">PRIORITY_LOWEST</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties</em>
+                                                            </section>
+                        </section>
+                        <!--
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/CMail.html#method_maybeWrapText" class="">maybeWrapText()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/CMail.html#property_m_oSwiftMailer" class="">$m_oSwiftMailer</a><br />
+                                                                    <a href="../classes/CMail.html#property_m_oSwiftMessage" class="">$m_oSwiftMessage</a><br />
+                                                                    <a href="../classes/CMail.html#property_m_xFrom" class="">$m_xFrom</a><br />
+                                                                    <a href="../classes/CMail.html#property_m_xTo" class="">$m_xTo</a><br />
+                                                                    <a href="../classes/CMail.html#property_m_xCc" class="">$m_xCc</a><br />
+                                                                    <a href="../classes/CMail.html#property_m_xBcc" class="">$m_xBcc</a><br />
+                                                                    <a href="../classes/CMail.html#property_m_xSender" class="">$m_xSender</a><br />
+                                                                    <a href="../classes/CMail.html#property_m_sReturnAddress" class="">$m_sReturnAddress</a><br />
+                                                                    <a href="../classes/CMail.html#property_m_sReplyAddress" class="">$m_sReplyAddress</a><br />
+                                                                    <a href="../classes/CMail.html#property_m_iBodyWordWrappingWidth" class="">$m_iBodyWordWrappingWidth</a><br />
+                                                                    <a href="../classes/CMail.html#property_m_bBodyWordWrappingIsDisabled" class="">$m_bBodyWordWrappingIsDisabled</a><br />
+                                                                    <a href="../classes/CMail.html#property_m_sBody" class="">$m_sBody</a><br />
+                                                                    <a href="../classes/CMail.html#property_m_sBodyType" class="">$m_sBodyType</a><br />
+                                                                    <a href="../classes/CMail.html#property_m_aAltBodiesAndTypes" class="">$m_aAltBodiesAndTypes</a><br />
+                                                                    <a href="../classes/CMail.html#property_ms_sDefaultSubject" class="">$ms_sDefaultSubject</a><br />
+                                                                    <a href="../classes/CMail.html#property_ms_iDefaultWordWrappingWidth" class="">$ms_iDefaultWordWrappingWidth</a><br />
+                                                                    <a href="../classes/CMail.html#property_ms_bAllAttachmentsAreInline" class="">$ms_bAllAttachmentsAreInline</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                        </section>
+                        -->
+                    </section>
+                </div>
+                <aside class="span2 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Classes.Io.CMail.php.html"><div class="path-wrapper">Classes/Io/CMail.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper"></div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\CRootClass</div>
+                                                                                                    <div class="namespace-wrapper">\CMail</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2 style="visibility: hidden">Tags</h2>
+                    <table class="table table-condensed" style="visibility: hidden">
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+            <a id="methodsum" name="methodsum"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Method Summary</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_makeSmtp" class="">makeSmtp()</a></td>
+                            <td><p>Creates an email message to be sent via an account on a remote or local SMTP server and returns it.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_makeSystem" class="">makeSystem()</a></td>
+                            <td><p>Creates an email message to be sent via the OS's emailing facility and returns it.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_makeGmail" class="">makeGmail()</a></td>
+                            <td><p>Creates an email message to be sent via a Gmail account.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_setFrom" class="">setFrom()</a></td>
+                            <td><p>Sets the email address and, optionally, the name of the sender on whose behalf a message is composed.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_addFrom" class="">addFrom()</a></td>
+                            <td><p>Adds the email address and, optionally, the name of a sender on whose behalf a message is composed to the list
+of other senders.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_setTo" class="">setTo()</a></td>
+                            <td><p>Sets the email address and, optionally, the name of the recipient to whom a message is composed.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_addTo" class="">addTo()</a></td>
+                            <td><p>Adds the email address and, optionally, the name of a recipient to whom a message is composed to the list of
+other recipients.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_addCc" class="">addCc()</a></td>
+                            <td><p>Adds the email address and, optionally, the name of a "carbon copy" recipient who should receive a copy of a
+message so that this recipient is visible to all other recipients.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_addBcc" class="">addBcc()</a></td>
+                            <td><p>Adds the email address and, optionally, the name of a "blind carbon copy" recipient who should receive a copy of
+a message so that this recipient is not visible to any other recipients.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_setSender" class="">setSender()</a></td>
+                            <td><p>Sets the email address and, optionally, the name of the sender who should be known as the actual sender of a
+message.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_setReturnAddress" class="">setReturnAddress()</a></td>
+                            <td><p>Sets the email address to which a message should be "bounced" if it could not be properly delivered.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_setReplyAddress" class="">setReplyAddress()</a></td>
+                            <td><p>Sets the email address to which any replies to a message should be sent.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_setSubject" class="">setSubject()</a></td>
+                            <td><p>Sets the subject line of a message.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_setBody" class="">setBody()</a></td>
+                            <td><p>Sets the body of a message.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_addAltBody" class="">addAltBody()</a></td>
+                            <td><p>Sets the alternative body of a message to be used if the primary body cannot be displayed.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_disableWordWrapping" class="">disableWordWrapping()</a></td>
+                            <td><p>Disables word wrapping for the body of a message.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_setWordWrapping" class="">setWordWrapping()</a></td>
+                            <td><p>Sets the width to which the text in the body of a message should be wrapped.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_attachFile" class="">attachFile()</a></td>
+                            <td><p>Attaches a file to a message.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_attachFileWithFilename" class="">attachFileWithFilename()</a></td>
+                            <td><p>Attaches a file to a message, also assigning a custom name to the attached file.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_attachData" class="">attachData()</a></td>
+                            <td><p>Attaches a data to a message.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_embeddableCidForFile" class="">embeddableCidForFile()</a></td>
+                            <td><p>Generates a CID for a file by which the file can be embedded into the body of a message.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_embeddableCidForData" class="">embeddableCidForData()</a></td>
+                            <td><p>Generates a CID for a data by which the data can be embedded into the body of a message.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_setTime" class="">setTime()</a></td>
+                            <td><p>Sets the declarative time when a message was sent.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_setPriority" class="">setPriority()</a></td>
+                            <td><p>Sets the priority of a message.</p></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/CMail.html#method_send" class="">send()</a></td>
+                            <td><p>Sends a message to the recipient(s).</p></td>
+                        </tr>
+                                        </table>
+                </div>
+                <aside class="span2 detailsbar"> </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SECURITY_NONE" name="constant_SECURITY_NONE" class="anchor"></a>
+            <article id="constant_SECURITY_NONE" class="constant">
+                <h3 class="">SECURITY_NONE</h3>
+                <pre class="signature">SECURITY_NONE</pre>
+                <p><p><code>enum</code> Unencrypted connection.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SECURITY_STARTTLS" name="constant_SECURITY_STARTTLS" class="anchor"></a>
+            <article id="constant_SECURITY_STARTTLS" class="constant">
+                <h3 class="">SECURITY_STARTTLS</h3>
+                <pre class="signature">SECURITY_STARTTLS</pre>
+                <p><p><code>enum</code> STARTTLS security.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SECURITY_SSL_TLS" name="constant_SECURITY_SSL_TLS" class="anchor"></a>
+            <article id="constant_SECURITY_SSL_TLS" class="constant">
+                <h3 class="">SECURITY_SSL_TLS</h3>
+                <pre class="signature">SECURITY_SSL_TLS</pre>
+                <p><p><code>enum</code> SSL/TLS security.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_PRIORITY_HIGHEST" name="constant_PRIORITY_HIGHEST" class="anchor"></a>
+            <article id="constant_PRIORITY_HIGHEST" class="constant">
+                <h3 class="">PRIORITY_HIGHEST</h3>
+                <pre class="signature">PRIORITY_HIGHEST</pre>
+                <p><p><code>enum</code> Highest message priority.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_PRIORITY_HIGH" name="constant_PRIORITY_HIGH" class="anchor"></a>
+            <article id="constant_PRIORITY_HIGH" class="constant">
+                <h3 class="">PRIORITY_HIGH</h3>
+                <pre class="signature">PRIORITY_HIGH</pre>
+                <p><p><code>enum</code> High message priority.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_PRIORITY_NORMAL" name="constant_PRIORITY_NORMAL" class="anchor"></a>
+            <article id="constant_PRIORITY_NORMAL" class="constant">
+                <h3 class="">PRIORITY_NORMAL</h3>
+                <pre class="signature">PRIORITY_NORMAL</pre>
+                <p><p><code>enum</code> Normal message priority.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_PRIORITY_LOW" name="constant_PRIORITY_LOW" class="anchor"></a>
+            <article id="constant_PRIORITY_LOW" class="constant">
+                <h3 class="">PRIORITY_LOW</h3>
+                <pre class="signature">PRIORITY_LOW</pre>
+                <p><p><code>enum</code> Low message priority.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_PRIORITY_LOWEST" name="constant_PRIORITY_LOWEST" class="anchor"></a>
+            <article id="constant_PRIORITY_LOWEST" class="constant">
+                <h3 class="">PRIORITY_LOWEST</h3>
+                <pre class="signature">PRIORITY_LOWEST</pre>
+                <p><p><code>enum</code> Lowest message priority.</p></p>
+                
+            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+            <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeSmtp" name="method_makeSmtp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeSmtp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> makeSmtp (string&nbsp;<span class="argument">$sOutgoingServer</span>, string&nbsp;<span class="argument">$sUsername</span>, string&nbsp;<span class="argument">$sPassword</span>, <span style="color: rgb(144, 144, 144)">mixed&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$xFrom</span></span>, <span style="color: rgb(144, 144, 144)">mixed&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$xTo</span></span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eSecurity</span></span>) : CMail</pre>
+                <p><em><p>Creates an email message to be sent via an account on a remote or local SMTP server and returns it.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sOutgoingServer</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The address of the SMTP server.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sUsername</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The username of the account.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sPassword</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The password to the account.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xFrom</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
+                                <td><p><strong>OPTIONAL.</strong> The email address of the sender on whose behalf the message is composed or
+multiple such addresses. This can be a string, an array of strings, or a map where a key is an email address and
+the associated value is the name of the sender with that address. In case of a map, it's not required that all
+the keys have values associated with them.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xTo</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
+                                <td><p><strong>OPTIONAL.</strong> The email address of the recipient to whom the message is composed or multiple
+such addresses. This can be a string, an array of strings, or a map where a key is an email address and the
+associated value is the name of the recipient with that address. In case of a map, it's not required that all
+the keys have values associated with them.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$eSecurity</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>SECURITY_STARTTLS</code>. The security to be used for the
+connection. Can be <code>SECURITY_NONE</code>, <code>SECURITY_STARTTLS</code>, or <code>SECURITY_SSL_TLS</code>.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CMail.html">CMail</a>
+                    <!-- </code> -->
+                                            &mdash; <p>A new email message ready for content to be added.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeSystem" name="method_makeSystem" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeSystem()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> makeSystem (<span style="color: rgb(144, 144, 144)">mixed&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$xFrom</span></span>, <span style="color: rgb(144, 144, 144)">mixed&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$xTo</span></span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sSendmailCommand</span></span>) : CMail</pre>
+                <p><em><p>Creates an email message to be sent via the OS's emailing facility and returns it.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xFrom</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
+                                <td><p><strong>OPTIONAL.</strong> The email address of the sender on whose behalf the message is composed or
+multiple such addresses. This can be a string, an array of strings, or a map where a key is an email address and
+the associated value is the name of the sender with that address. In case of a map, it's not required that all
+the keys have values associated with them.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xTo</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
+                                <td><p><strong>OPTIONAL.</strong> The email address of the recipient to whom the message is composed or multiple
+such addresses. This can be a string, an array of strings, or a map where a key is an email address and the
+associated value is the name of the recipient with that address. In case of a map, it's not required that all
+the keys have values associated with them.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sSendmailCommand</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <em>OS's default</em>. The custom command to be used for
+sending the message, e.g. <code>/usr/sbin/sendmail -oi -t</code>.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CMail.html">CMail</a>
+                    <!-- </code> -->
+                                            &mdash; <p>A new email message ready for content to be added.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_makeGmail" name="method_makeGmail" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">makeGmail()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> makeGmail (string&nbsp;<span class="argument">$sUsername</span>, string&nbsp;<span class="argument">$sPassword</span>, <span style="color: rgb(144, 144, 144)">mixed&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$xFrom</span></span>, <span style="color: rgb(144, 144, 144)">mixed&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$xTo</span></span>) : CMail</pre>
+                <p><em><p>Creates an email message to be sent via a Gmail account.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sUsername</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The username of the account.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sPassword</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The password to the account.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xFrom</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
+                                <td><p><strong>OPTIONAL.</strong> The email address of the sender on whose behalf the message is composed or
+multiple such addresses. This can be a string, an array of strings, or a map where a key is an email address and
+the associated value is the name of the sender with that address. In case of a map, it's not required that all
+the keys have values associated with them.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$xTo</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
+                                <td><p><strong>OPTIONAL.</strong> The email address of the recipient to whom the message is composed or multiple
+such addresses. This can be a string, an array of strings, or a map where a key is an email address and the
+associated value is the name of the recipient with that address. In case of a map, it's not required that all
+the keys have values associated with them.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CMail.html">CMail</a>
+                    <!-- </code> -->
+                                            &mdash; <p>A new email message ready for content to be added.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setFrom" name="method_setFrom" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setFrom()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setFrom (string&nbsp;<span class="argument">$sAddress</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sName</span></span>) : void</pre>
+                <p><em><p>Sets the email address and, optionally, the name of the sender on whose behalf a message is composed.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sAddress</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The email address of the sender.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL.</strong> The name of the sender.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addFrom" name="method_addFrom" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addFrom()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">addFrom (string&nbsp;<span class="argument">$sAddress</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sName</span></span>) : void</pre>
+                <p><em><p>Adds the email address and, optionally, the name of a sender on whose behalf a message is composed to the list
+of other senders.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sAddress</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The email address of the sender.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL.</strong> The name of the sender.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setTo" name="method_setTo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setTo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setTo (string&nbsp;<span class="argument">$sAddress</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sName</span></span>) : void</pre>
+                <p><em><p>Sets the email address and, optionally, the name of the recipient to whom a message is composed.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sAddress</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The email address of the recipient.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL.</strong> The name of the recipient.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addTo" name="method_addTo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addTo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">addTo (string&nbsp;<span class="argument">$sAddress</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sName</span></span>) : void</pre>
+                <p><em><p>Adds the email address and, optionally, the name of a recipient to whom a message is composed to the list of
+other recipients.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sAddress</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The email address of the recipient.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL.</strong> The name of the recipient.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addCc" name="method_addCc" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addCc()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">addCc (string&nbsp;<span class="argument">$sAddress</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sName</span></span>) : void</pre>
+                <p><em><p>Adds the email address and, optionally, the name of a "carbon copy" recipient who should receive a copy of a
+message so that this recipient is visible to all other recipients.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sAddress</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The email address of the recipient.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL.</strong> The name of the recipient.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addBcc" name="method_addBcc" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addBcc()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">addBcc (string&nbsp;<span class="argument">$sAddress</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sName</span></span>) : void</pre>
+                <p><em><p>Adds the email address and, optionally, the name of a "blind carbon copy" recipient who should receive a copy of
+a message so that this recipient is not visible to any other recipients.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sAddress</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The email address of the recipient.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL.</strong> The name of the recipient.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setSender" name="method_setSender" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setSender()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setSender (string&nbsp;<span class="argument">$sAddress</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sName</span></span>) : void</pre>
+                <p><em><p>Sets the email address and, optionally, the name of the sender who should be known as the actual sender of a
+message.</p></em></p>
+                <p>This field has a higher precedence than the regular "From" sender(s).</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sAddress</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The email address of the sender.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL.</strong> The name of the sender.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setReturnAddress" name="method_setReturnAddress" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setReturnAddress()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setReturnAddress (string&nbsp;<span class="argument">$sAddress</span>) : void</pre>
+                <p><em><p>Sets the email address to which a message should be "bounced" if it could not be properly delivered.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sAddress</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The email address to which the message should be "bounced" if it could not be properly
+delivered.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setReplyAddress" name="method_setReplyAddress" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setReplyAddress()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setReplyAddress (string&nbsp;<span class="argument">$sAddress</span>) : void</pre>
+                <p><em><p>Sets the email address to which any replies to a message should be sent.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sAddress</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The email address to which any replies to the message should be sent.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setSubject" name="method_setSubject" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setSubject()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setSubject (string&nbsp;<span class="argument">$sSubject</span>) : void</pre>
+                <p><em><p>Sets the subject line of a message.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sSubject</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The subject line of the message.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setBody" name="method_setBody" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setBody()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setBody (string&nbsp;<span class="argument">$sBody</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sType</span></span>) : void</pre>
+                <p><em><p>Sets the body of a message.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sBody</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The body of the message.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sType</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>CMimeType::PLAIN_TEXT</code>. The MIME type of the body.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addAltBody" name="method_addAltBody" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addAltBody()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">addAltBody (string&nbsp;<span class="argument">$sBody</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sType</span></span>) : void</pre>
+                <p><em><p>Sets the alternative body of a message to be used if the primary body cannot be displayed.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sBody</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The alternative body of the message.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sType</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>CMimeType::PLAIN_TEXT</code>. The MIME type of the alternative body.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_disableWordWrapping" name="method_disableWordWrapping" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">disableWordWrapping()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">disableWordWrapping () : void</pre>
+                <p><em><p>Disables word wrapping for the body of a message.</p></em></p>
+                
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setWordWrapping" name="method_setWordWrapping" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setWordWrapping()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setWordWrapping (int&nbsp;<span class="argument">$iWidth</span>) : void</pre>
+                <p><em><p>Sets the width to which the text in the body of a message should be wrapped.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$iWidth</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
+                                <td><p>The wrapping width, in characters.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_attachFile" name="method_attachFile" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">attachFile()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">attachFile (string&nbsp;<span class="argument">$sAttachmentFp</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sType</span></span>) : void</pre>
+                <p><em><p>Attaches a file to a message.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sAttachmentFp</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The path to the file to be attached.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sType</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL.</strong> The MIME type of the file's contents.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_attachFileWithFilename" name="method_attachFileWithFilename" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">attachFileWithFilename()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">attachFileWithFilename (string&nbsp;<span class="argument">$sAttachmentFp</span>, string&nbsp;<span class="argument">$sFilename</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sType</span></span>) : void</pre>
+                <p><em><p>Attaches a file to a message, also assigning a custom name to the attached file.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sAttachmentFp</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The path to the file to be attached.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sFilename</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The custom name for the file.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sType</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p><strong>OPTIONAL.</strong> The MIME type of the file's contents.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_attachData" name="method_attachData" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">attachData()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">attachData (data&nbsp;<span class="argument">$byData</span>, string&nbsp;<span class="argument">$sFilename</span>, string&nbsp;<span class="argument">$sType</span>) : void</pre>
+                <p><em><p>Attaches a data to a message.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$byData</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">data</code></td>
+                                <td><p>The data to be attached.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sFilename</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The name by which the data is to be seen as a file by the recipient(s).</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sType</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The MIME type of the data's contents.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_embeddableCidForFile" name="method_embeddableCidForFile" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">embeddableCidForFile()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">embeddableCidForFile (string&nbsp;<span class="argument">$sEmbedFp</span>) : OOPString</pre>
+                <p><em><p>Generates a CID for a file by which the file can be embedded into the body of a message.</p></em></p>
+                <p>The same CID can be used to embed a file in more than one place.</p>
+<p>For example, an image for which a CID was generated and put into <code>$cid</code> variable can be embedded into a message
+with HTML type of body by <code>&lt;img src="' . $cid . '" alt="Title" /&gt;</code>.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sEmbedFp</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The path to the file to be embedded.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The embeddable CID of the file.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_embeddableCidForData" name="method_embeddableCidForData" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">embeddableCidForData()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">embeddableCidForData (data&nbsp;<span class="argument">$byData</span>, string&nbsp;<span class="argument">$sFilename</span>, string&nbsp;<span class="argument">$sType</span>) : OOPString</pre>
+                <p><em><p>Generates a CID for a data by which the data can be embedded into the body of a message.</p></em></p>
+                <p>The same CID can be used to embed a data in more than one place.</p>
+<p>For example, an image for which a CID was generated and put into <code>$cid</code> variable can be embedded into a message
+with HTML type of body by <code>&lt;img src="' . $cid . '" alt="Title" /&gt;</code>.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$byData</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">data</code></td>
+                                <td><p>The data to be embedded.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sFilename</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The filename to be associated with the embedded data.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sType</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
+                                <td><p>The MIME type of the data's contents.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
+                    <!-- </code> -->
+                                            &mdash; <p>The embeddable CID of the data.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setTime" name="method_setTime" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setTime()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setTime (CTime&nbsp;<span class="argument">$oTime</span>) : void</pre>
+                <p><em><p>Sets the declarative time when a message was sent.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$oTime</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CTime.html">CTime</a></code></td>
+                                <td><p>The point in time to be declared as the moment of the message's dispatching.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setPriority" name="method_setPriority" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setPriority()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setPriority (enum&nbsp;<span class="argument">$ePriority</span>) : void</pre>
+                <p><em><p>Sets the priority of a message.</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$ePriority</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
+                                <td><p>The priority of the message. Can be <code>PRIORITY_HIGHEST</code>, <code>PRIORITY_HIGH</code>,
+<code>PRIORITY_NORMAL</code>, <code>PRIORITY_LOW</code>, or <code>PRIORITY_LOWEST</code>.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_send" name="method_send" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">send()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">send (<span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$raFailedAddresses</span></span>) : int</pre>
+                <p><em><p>Sends a message to the recipient(s).</p></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$raFailedAddresses</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
+                                <td><p><strong>OPTIONAL. OUTPUT.</strong> After the method is called with this parameter
+provided, the parameter's value, which is of type <a href="../classes/CArrayObject.html"><span class="label label-info">OOP Array</span></a>, is an array containing the email addresses of
+the recipients who failed to receive the message.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <!-- <code style="border: none; background: none"> -->
+                    int
+                    <!-- </code> -->
+                                            &mdash; <p>The number of recipients who have successfully received the message.</p>
+                                                </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                <!--
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_maybeWrapText" name="method_maybeWrapText" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">maybeWrapText()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">maybeWrapText (&nbsp;<span class="argument">$sText</span>)</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><code style="border: none; background: none">$sText</code> </td>
+                                <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                -->
+            
+            <!--
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span2 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_oSwiftMailer" name="property_m_oSwiftMailer" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_oSwiftMailer</h3>
+                <pre class="signature">$m_oSwiftMailer</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_oSwiftMessage" name="property_m_oSwiftMessage" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_oSwiftMessage</h3>
+                <pre class="signature">$m_oSwiftMessage</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_xFrom" name="property_m_xFrom" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_xFrom</h3>
+                <pre class="signature">$m_xFrom</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_xTo" name="property_m_xTo" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_xTo</h3>
+                <pre class="signature">$m_xTo</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_xCc" name="property_m_xCc" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_xCc</h3>
+                <pre class="signature">$m_xCc</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_xBcc" name="property_m_xBcc" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_xBcc</h3>
+                <pre class="signature">$m_xBcc</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_xSender" name="property_m_xSender" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_xSender</h3>
+                <pre class="signature">$m_xSender</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sReturnAddress" name="property_m_sReturnAddress" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sReturnAddress</h3>
+                <pre class="signature">$m_sReturnAddress</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sReplyAddress" name="property_m_sReplyAddress" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sReplyAddress</h3>
+                <pre class="signature">$m_sReplyAddress</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_iBodyWordWrappingWidth" name="property_m_iBodyWordWrappingWidth" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_iBodyWordWrappingWidth</h3>
+                <pre class="signature">$m_iBodyWordWrappingWidth</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_bBodyWordWrappingIsDisabled" name="property_m_bBodyWordWrappingIsDisabled" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_bBodyWordWrappingIsDisabled</h3>
+                <pre class="signature">$m_bBodyWordWrappingIsDisabled</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sBody" name="property_m_sBody" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sBody</h3>
+                <pre class="signature">$m_sBody</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_sBodyType" name="property_m_sBodyType" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_sBodyType</h3>
+                <pre class="signature">$m_sBodyType</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_m_aAltBodiesAndTypes" name="property_m_aAltBodiesAndTypes" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$m_aAltBodiesAndTypes</h3>
+                <pre class="signature">$m_aAltBodiesAndTypes</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_ms_sDefaultSubject" name="property_ms_sDefaultSubject" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$ms_sDefaultSubject</h3>
+                <pre class="signature">$ms_sDefaultSubject</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_ms_iDefaultWordWrappingWidth" name="property_ms_iDefaultWordWrappingWidth" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$ms_iDefaultWordWrappingWidth</h3>
+                <pre class="signature">$ms_iDefaultWordWrappingWidth</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_ms_bAllAttachmentsAreInline" name="property_ms_bAllAttachmentsAreInline" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$ms_bAllAttachmentsAreInline</h3>
+                <pre class="signature">$ms_bAllAttachmentsAreInline</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span2 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2 style="visibility: hidden">Tags</h2>
+            <table class="table table-condensed" style="visibility: hidden">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                        -->
+        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">CMail.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Classes/Io/CMail.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4" style="visibility: hidden">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 13th, 2014 at 18:15.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
