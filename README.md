@@ -10,7 +10,9 @@ Phred is also outlining a web application framework to let developers take the m
 
 One of the Phred's prime efforts is to maintain a clear and thorough [documentation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/index.html).
 
-Phred is striving to transform PHP into a cutting-edge, fully-featured, and easy-to-use tool for contemporary web development, while remaining free for all and well-documented. And Phred is many months of work that has already been done and that still needs to be accomplished. *You can help Phred carry on and improve in quality by making a [donation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html).*
+Phred is striving to transform PHP into a cutting-edge, fully-featured, and easy-to-use tool for contemporary web development, while remaining free for all and well-documented. And Phred is many months of work that has already been done and that still needs to be accomplished.
+
+*You can help Phred carry on and improve in quality by making a [donation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html).*
 
 ## At a Glance
 
@@ -69,7 +71,7 @@ echo strtoupper($str);      // Никита Попов
 
 # Preface
 
-Any web developer is familiar with JavaScript. Highly object-oriented, elegant, and with Unicode done right, JavaScript just feels comfortable to work in on the client side and it has even made it to the server side with Node.js. Same kind of sentiments might go to other languages that were also designed with a vision in mind, such as Python, Ruby, and Scala.
+Any web developer is of course familiar with JavaScript. Highly object-oriented and with Unicode done right, JavaScript just feels comfortable to work in when developing for the client side and it has even made it to the server side with Node.js. Same kind of sentiments might go to other languages that were also designed with a vision in mind, such as Python, Ruby, and Scala.
 
 But while the quality standards of web development have evolved over the past decade to match the increasing demands for clean, readable, and comprehensible code that can be efficiently shared with other people on the team or made public, PHP has remained mostly immature. This may be especially noticeable if you are a PHP developer trying to create an innovative web application that is required to offer a substantial value to many users all over the globe. It even seems bit unfair that PHP, which is the most popular language used on the server side with a share of about [80%](http://w3techs.com/technologies/history_overview/programming_language/ms/y), is not superior to JavaScript, even though the control flow of a web application may imply the opposite.
 
