@@ -163,11 +163,11 @@ The classes used in the above example are [OOP string](http://htmlpreview.github
 
 Phred is currently available for the Linux/Unix platform running at least 5.6 version of PHP.
 
-If you still are using an older version and your system is **Ubuntu** or **Debian**, you could follow these simple steps to install PHP.
+If you are still using an older version of PHP and your system is **Ubuntu** or **Debian**, you can follow the simple steps given below to install PHP 5.6 and then Phred.
 
 ## Getting the Latest PHP Version
 
-Add the repository where PHP 5.6 is contained and update the package list:
+Add the repository where PHP 5.6 packages are maintained and update the package list:
 
 ```sh
 sudo add-apt-repository ppa:ondrej/php5-5.6
@@ -180,13 +180,13 @@ Install PHP:
 sudo apt-get install php5 php5-cli php5-dev php5-intl php5-curl php5-cgi php5-fpm
 ```
 
-After the installation is complete, you can check on the PHP version you've got:
+After the installation is complete, you can check the PHP version you've got:
 
 ```sh
 php -v
 ```
 
-You would also need to install a small PHP extension that Phred relies on with PHP 5.6. This extension is authored by a core PHP contributor and, as a part of a larger contribution, it was [accepted](https://wiki.php.net/rfc/uniform_variable_syntax) for inclusion into PHP 7. So, while PHP 7 is still being prepared for release, let's download the extension via `git` and install it.
+You would also need to install a small PHP extension that Phred depends on when used with PHP 5.6. This extension is authored by a core PHP contributor and, as a part of a larger contribution, it was [accepted](https://wiki.php.net/rfc/uniform_variable_syntax) for inclusion into PHP 7. So, while PHP 7 is still being prepared for release, let's download the extension via `git` and install it.
 
 Still don't have `git` on your system? On Ubuntu/Debian, you can install `git` as follows:
 
