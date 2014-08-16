@@ -4,15 +4,13 @@
 
 ***
 
-Phred is an open-source initiative aimed at providing PHP with a consistent, completely object-oriented coding standard that enjoys a comfortable API for creating modern-day web applications with integrated support for Unicode, with components for internationalization and localization, clear-cut fundamental data types focused on performance and reliability, enhanced testing and debugging, and other features.
+Phred is an open-source initiative aimed at providing PHP with a consistent, completely object-oriented coding standard that enjoys a comfortable API for creating modern-day web applications with native support for Unicode, with components for internationalization and localization, clear-cut fundamental data types focused on performance and reliability, enhanced testing and debugging, and other features.
 
 Phred is also outlining a web application framework to let developers take the most advantage of the improved PHP in their projects as well as to ensure backward compatibility with the whole multitude of existing libraries and APIs.
 
 One of the Phred's prime efforts is maintaining a clear and thorough [documentation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/index.html).
 
-Phred strives to transform PHP into a cutting-edge, fully-featured, and easy-to-use tool for contemporary web development, while remaining free for all and well-documented.
-
-And Phred is many months of work that has already been done and that still needs to be accomplished. *You can help Phred carry on and improve in quality by making a [donation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html).*
+Phred strives to transform PHP into a cutting-edge, fully-featured, and easy-to-use tool for contemporary web development, while remaining free for all and well-documented. And Phred is many months of work that has already been done and that still needs to be accomplished. *You can help Phred carry on and improve in quality by making a [donation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html).*
 
 ## At a Glance
 
@@ -20,16 +18,16 @@ And Phred is many months of work that has already been done and that still needs
 // An OOP Unicode string.
 $str = "Никита Попов";
 
-echo $str->length();          // 12
-echo $str->toUpperCase();     // НИКИТА ПОПОВ
+echo $str->length();        // 12
+echo $str->toUpperCase();   // НИКИТА ПОПОВ
 
 $array = $str->split(" ");
-echo $array->join(", ");      // Никита, Попов
+echo $array->join(", ");    // Никита, Попов
 $array->sortOn("length");
-echo $array->join(", ");      // Попов, Никита
+echo $array->join(", ");    // Попов, Никита
 
-echo strlen($str);            // 23
-echo strtoupper($str);        // Никита Попов
+echo strlen($str);          // 23
+echo strtoupper($str);      // Никита Попов
 ```
 
 ***
