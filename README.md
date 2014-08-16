@@ -4,13 +4,15 @@
 
 ***
 
-Phred is an open-source initiative aimed at providing PHP with a consistent, completely object-oriented coding standard that offers a comfortable API for creating modern-day web applications with integrated support for Unicode, with components for internationalization and localization, clear-cut fundamental data types focused on performance and reliability, enhanced testing and debugging, and other features.
+Phred is an open-source initiative aimed at providing PHP with a consistent, completely object-oriented coding standard that enjoys a comfortable API for creating modern-day web applications with integrated support for Unicode, with components for internationalization and localization, clear-cut fundamental data types focused on performance and reliability, enhanced testing and debugging, and other features.
 
 Phred is also outlining a web application framework to let developers take the most advantage of the improved PHP in their projects as well as to ensure backward compatibility with the whole multitude of existing libraries and APIs.
 
 One of the Phred's prime efforts is maintaining a clear and thorough [documentation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/index.html).
 
-Phred strives to transform PHP into a cutting-edge, fully-featured, and easy-to-use tool for contemporary web development, while remaining free for all and well-documented. And Phred is many months of work that has already been done and that still needs to be accomplished. *You can help Phred carry on and improve in quality by making a [donation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html).*
+Phred strives to transform PHP into a cutting-edge, fully-featured, and easy-to-use tool for contemporary web development, while remaining free for all and well-documented.
+
+And Phred is many months of work that has already been done and that still needs to be accomplished. *You can help Phred carry on and improve in quality by making a [donation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html).*
 
 ## At a Glance
 
@@ -1219,10 +1221,12 @@ The following is a non-exhaustive TODO list for Phred:
 * Let input filters alternatively validate and sanitize values with text-bases constraints so that, for example, "int|minmax[1,10]|..." would be validating the value as an integer number and then clamping it to [1, 10] range if needed. Make the constraints to be easy to remember and consistent. Support new types of input with added constraints, such as "alpha", "alphanum", "alphanumdash", "phone", "ssn", "nonempty" and more.
 * Add support for caching. Provide the developer with a choice between multiple caching engines and lay the foundation for the caching of generated HTML content, perhaps with micro-caching for small HTML fragments. Improve the response time by caching the information read from the configuration files.
 * Implement support for request routing. Probably don't go into creating any new semantics that developers would have to learn before writing routs and try adapting regular expressions instead.
+* Possibly make the methods in the request and response classes non-static.
 * Add support for a templating engine. Let the developer choose without freely between the templating engine and the PHP's built-in capabilities for HTML rendering.
 * Add support for high-quality and comprehensible ORM. Consider adding a query builder as well.
 * Address the main security vulnerabilities that any web application should look out for, such as XSS, CSRF, and others.
 * Let developers run unit tests on requests and responses locally by implementing all necessary mechanics for request emulation.
+* Add a dependency container for unit testing.
 * Add support for code profiling and benchmarking.
 * Consider making the request flow partially or entirely event-based.
 * Facilitate the reception and validation of user-sent files with one or more dedicated classes.
