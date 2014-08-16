@@ -125,7 +125,7 @@ if (!$userName->isEmpty()) {
             $userNameT = $userName->transliterateFromAny("latin")->toLowerCase();
             // "たかし やまもと" becomes "takashi yamamoto".
 
-            // Store the names to the database.
+            // Store the names and the rest of the profile info to the database.
             // ...
 
             // Let's see how many days we are currently away from the user's birthday.
@@ -146,7 +146,7 @@ if (!$userName->isEmpty()) {
 }
 ```
 
-The classes used in the above code are [OOP string](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CUStringObject.html), [OOP array](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CArrayObject.html), and the [time class](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CTime.html).
+The classes used in the above example are [OOP string](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CUStringObject.html), [OOP array](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CArrayObject.html), and the [time class](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CTime.html).
 
 ## The Zen of Phred
 
