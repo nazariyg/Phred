@@ -194,7 +194,7 @@ Still don't have `git` on your system? On Ubuntu/Debian, you can install `git` a
 sudo apt-get install git
 ```
 
-Download and install the "scalar_objects" extension:
+Download and install the extension:
 
 ```sh
 git clone https://github.com/nikic/scalar_objects.git
@@ -211,7 +211,7 @@ And let's not forget to enable the installed extension. Simply go into `/etc/php
 extension = scalar_objects.so
 ```
 
-To enable the extension when PHP is used by your web server software in addition to when PHP is run from CLI as a command, also add the above line to the end of `/etc/php5/fpm/php.ini` and restart PHP-FPM with:
+To have the extension enabled when PHP is used by your web server software, also add the above line at the end of `/etc/php5/fpm/php.ini` and restart PHP-FPM with:
 
 ```sh
 sudo service php5-fpm restart
@@ -219,31 +219,31 @@ sudo service php5-fpm restart
 
 ## Installing Phred
 
-After everything is in order, you can `cd` to the directory where you'd like to see Phred located and install Phred via Composer, which is a commonly used package manager for PHP:
+Now you can `cd` into a directory where you'd like to see the Phred's directory located and install Phred via Composer, which is the most commonly used package manager for PHP:
 
 ```sh
 curl -sS http://getcomposer.org/installer | php
 php composer.phar create-project phred/phred phred 0.4.*@dev --prefer-dist
 ```
 
-At this point, Phred is inhabiting `phred` directory inside your current working directory.
+At this point, Phred inhabits `phred` directory inside your current working directory.
 
 ## Running Unit Tests
 
-Phred is an extensively tested environment and currently goes together with thousands of individual checks relying on the great PHPUnit testing framework.
+Phred is an extensively tested coding environment and goes accompanied with thousands of individual checks written in the great PHPUnit testing framework.
 
-You can run Phred's unit tests in mass with a ready-made PHP script:
+You can run the Phred's unit tests in mass with a ready-made PHP script:
 
 ```sh
 cd phred
 php run-unit-tests.php
 ```
 
-If everything went fine, you should see PHPUnit eventually reporting "OK" against a green bar.
+If everything went fine, you should see PHPUnit reporting "OK" against a green bar.
 
-But it took quite some time to complete, didn't it? Was it because PHPUnit is not fast enough or was simply given too many tests? Well, it's neither. What is actually causing the unit tests being slow by default is that, in addition to the unit tests located in [Tests](PhredParty/Tests/) directory, PHPUnit is indirectly invoking a good quantity of a different kind of tests, which are semantic checks embedded in practically every method of every Phred class in the form of assertions.
+But it took quite some time to complete, didn't it? Was it because PHPUnit is not fast enough or was given too many tests? Well, it's neither. What is actually causing the unit tests being slow by default is that PHPUnit is indirectly invoking a large quantity of a different kind of tests on top. These additional tests are semantic checks embedded in practically every method of every Phred class in the form of assertions. This can be easily shown by going to `Application/Configuration/` directory inside `phred`, opening Debug.json configuration file, and changing the value of `enableAssertions` option from `true` to `false`, and then running the unit tests once again.
 
-This can be easily shown by going to Application/Configuration/ directory inside phred directory, opening Debug.json configuration file, and changing the value of `enableAssertions` option from `true` to `false`, and then running the unit tests once again. What this means is that you can have the semantic checks enabled for your development environment but disabled for your production environment, which is something that Phred has already done for you if you look into Application/Configuration/Environments/pro/Debug.json file that overrides the default configuration options when Phred is put into the production environment. With the Phred's flexible configuration, you can also have the semantic checks activated for the production environment based on a time condition.
+What this means is that you can have the semantic checks enabled for your development environment but disabled for your production environment, which is something that Phred has already done for you if you look into `Application/Configuration/Environments/pro/Debug.json` file that overrides the default configuration options when Phred is put into the production environment. With the Phred's flexible configuration, you can also have the semantic checks activated for the production environment based on a time condition.
 
 # Fundamental Types
 
