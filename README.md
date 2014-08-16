@@ -127,8 +127,7 @@ if (!$userName->isEmpty()) {
             // full name to the database.
             // ...
 
-            // Let's see how many days we are currently away from the user's
-            // birthday.
+            // Let's see how many days we are currently away from the user's birthday.
             $currTime = Tm::now();
             $birthday = new Tm($inputBirthday);
             $currYear = $currTime->yearUtc();
