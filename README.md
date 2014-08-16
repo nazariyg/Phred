@@ -170,11 +170,11 @@ If you still are using an older version and your system is **Ubuntu** or **Debia
 Add the repository where PHP 5.6 is contained and update the package list:
 
 ```sh
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key E5267A6C
+sudo add-apt-repository ppa:ondrej/php5-5.6
 sudo apt-get update
 ```
 
-Install PHP 5.6:
+Install PHP:
 
 ```sh
 sudo apt-get install php5 php5-cli php5-dev php5-intl php5-curl php5-cgi php5-fpm
@@ -186,9 +186,9 @@ After the installation is complete, you can check on the PHP version you've got:
 php -v
 ```
 
-You would also need to install a small PHP extension that Phred relies on with PHP 5.6. This extension is authored by a core PHP contributor and, as a part of a larger contribution, it was [accepted](https://wiki.php.net/rfc/uniform_variable_syntax) for inclusion into PHP 7. So let's download the extension via `git` and install it.
+You would also need to install a small PHP extension that Phred relies on with PHP 5.6. This extension is authored by a core PHP contributor and, as a part of a larger contribution, it was [accepted](https://wiki.php.net/rfc/uniform_variable_syntax) for inclusion into PHP 7. So, while PHP 7 is still being prepared for release, let's download the extension via `git` and install it.
 
-Still don't have `git` on your system? With Ubuntu/Debian, you can install `git` as follows:
+Still don't have `git` on your system? On Ubuntu/Debian, you can install `git` as follows:
 
 ```sh
 sudo apt-get install git
@@ -219,18 +219,18 @@ sudo service php5-fpm restart
 
 ## Installing Phred
 
-Finally, after everything is in order, you can `cd` to the directory where you'd like to see Phred located and install Phred via Composer:
+After everything is in order, you can `cd` to the directory where you'd like to see Phred located and install Phred via Composer, which is a commonly used package manager for PHP:
 
 ```sh
 curl -sS http://getcomposer.org/installer | php
-php composer.phar create-project phred/phred phred 0.4.*@dev
+php composer.phar create-project phred/phred phred 0.4.*@dev --prefer-dist
 ```
 
 At this point, Phred is inhabiting `phred` directory inside your current working directory.
 
 ## Running Unit Tests
 
-Phred is an extensively tested environment and currently goes together with a few thousands of individual checks relying on the great PHPUnit testing framework.
+Phred is an extensively tested environment and currently goes together with thousands of individual checks relying on the great PHPUnit testing framework.
 
 You can run Phred's unit tests in mass with a ready-made PHP script:
 
@@ -241,9 +241,9 @@ php run-unit-tests.php
 
 If everything went fine, you should see PHPUnit eventually reporting "OK" against a green bar.
 
-But it took quite some time to complete, didn't it? Was it because PHPUnit is not fast enough or was simply given too many tests? Well, it's neither. What is actually causing the unit tests being slow by default is that, in addition to the unit tests located in [Tests](PhredParty/Tests/) directory, PHPUnit is indirectly running a good quantity of a different kind of tests, which are semantic checks embedded in practically every method of every Phred class in the form of assertions.
+But it took quite some time to complete, didn't it? Was it because PHPUnit is not fast enough or was simply given too many tests? Well, it's neither. What is actually causing the unit tests being slow by default is that, in addition to the unit tests located in [Tests](PhredParty/Tests/) directory, PHPUnit is indirectly invoking a good quantity of a different kind of tests, which are semantic checks embedded in practically every method of every Phred class in the form of assertions.
 
-This can be easily shown by going to Application/Configuration/ directory inside phred directory, opening Debug.json configuration file, and changing the value of `enableAssertions` key from `true` to `false`, and then running the unit tests once again. What this means is that you can have the semantic checks enabled for your development environment but disabled for your production environment, which is something that Phred has already done for you if you look into Application/Configuration/Environments/pro/Debug.json file that overrides the default configuration options when Phred is put into the production environment. With the Phred's flexible configuration, you can also have the semantic checks activated for the production environment based on a time condition.
+This can be easily shown by going to Application/Configuration/ directory inside phred directory, opening Debug.json configuration file, and changing the value of `enableAssertions` option from `true` to `false`, and then running the unit tests once again. What this means is that you can have the semantic checks enabled for your development environment but disabled for your production environment, which is something that Phred has already done for you if you look into Application/Configuration/Environments/pro/Debug.json file that overrides the default configuration options when Phred is put into the production environment. With the Phred's flexible configuration, you can also have the semantic checks activated for the production environment based on a time condition.
 
 # Fundamental Types
 
