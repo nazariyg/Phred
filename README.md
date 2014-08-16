@@ -6,11 +6,11 @@
 
 Phred is an open-source initiative aimed at providing PHP with a consistent, completely object-oriented coding standard that enjoys a comfortable API for creating modern-day web applications with native support for Unicode, with components for internationalization and localization, clear-cut fundamental data types focused on performance and reliability, enhanced testing and debugging, and other features.
 
-Phred is also outlining a web application framework to let developers take the most advantage of the improved PHP in their projects as well as to ensure backward compatibility with the whole multitude of existing libraries and APIs.
+Phred is also outlining a web application framework to let developers take the most advantage of the improved PHP in their projects as well as to ensure backward compatibility with the whole multitude of the existing PHP libraries and APIs.
 
-One of the Phred's prime efforts is maintaining a clear and thorough [documentation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/index.html).
+One of the Phred's prime efforts is to maintain a clear and thorough [documentation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/index.html).
 
-Phred strives to transform PHP into a cutting-edge, fully-featured, and easy-to-use tool for contemporary web development, while remaining free for all and well-documented. And Phred is many months of work that has already been done and that still needs to be accomplished. *You can help Phred carry on and improve in quality by making a [donation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html).*
+Phred is striving to transform PHP into a cutting-edge, fully-featured, and easy-to-use tool for contemporary web development, while remaining free for all and well-documented. And Phred is many months of work that has already been done and that still needs to be accomplished. *You can help Phred carry on and improve in quality by making a [donation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html).*
 
 ## At a Glance
 
@@ -49,7 +49,7 @@ echo strtoupper($str);      // Никита Попов
     * [OOP Map](#oop-map)
     * [Time and Time Zones](#time-and-time-zones)
     * [Comparison and Sorting](#comparison-and-sorting)
-* [Enhanced Debugging](#enhanced-debugging)
+* [Enhanced Testing and Debugging](#enhanced-testing-and-debugging)
     * [Semantic Checks](#semantic-checks)
     * [Bug Tracking and Reporting](#bug-tracking-and-reporting)
 * [U14n](#u14n)
@@ -765,7 +765,7 @@ $array->sortUStrings(UStr::COLLATION_DEFAULT, new ULoc("de_DE"));
 // "ö", "z"
 ```
 
-# Enhanced Debugging
+# Enhanced Testing and Debugging
 
 Phred takes the reliability of your applications exceptionally serious. Consideration was given to how bugs can be best detected, tracked, are reported.
 
