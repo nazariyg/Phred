@@ -10,7 +10,7 @@ Phred is also outlining a web application framework to let developers take the m
 
 One of the Phred's prime efforts is to maintain a clear and thorough [documentation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/index.html).
 
-Phred is striving to transform PHP into a cutting-edge, fully-featured, and easy-to-use tool for contemporary web development, while remaining free for all and well-documented. And Phred is many months of work that has already been done and that still needs to be accomplished. *You can help Phred carry on and improve in its service to PHP developers by making a [donation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html).*
+Phred is striving to transform PHP into a cutting-edge, fully-featured, and easy-to-use tool for contemporary web development, while remaining free for all and well-documented. And Phred is many months of work that has already been done and that still needs to be accomplished. *You can help Phred carry on and improve in its envisaged service to PHP developers by making a [donation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html).*
 
 ***
 
@@ -93,11 +93,11 @@ With the advent of PHP 7, the mainstream implementation of PHP (called Zend Engi
 
 ## こんにちは, Phred
 
-The idea of Phred is resonating with the principle of separation of concerns: let the PHP's core developers focus on the PHP's underpinnings and further improve the core language to make it even faster in order to provide a high-performance foundation upon which a consistent and completely object-oriented coding standard can be implemented by PHP developers themselves.
+The idea of Phred is resonating with the principle of separation of concerns: let the PHP's core developers focus on the PHP's underpinnings and further improve the core language to make it even faster, while providing a high-performance foundation upon which a consistent and completely object-oriented coding standard can be implemented by PHP developers themselves.
 
-Fortunately, the OOP-related features that are already present in PHP have made this leap possible. And not to forget the vital OOP infusions that were faithfully made into PHP by some of the core contributors, most notably Nikita Popov.
+Extending the twice as fast PHP 7, Phred enables PHP with an entirely object-oriented and cleaner way of coding for creating sophisticated web sites and applications to be used by people all over the world, while keeping performance up at a high level. Fortunately, the OOP-related features that are already present in PHP 5.6 and PHP 7 have made this all possible. And not to forget the vital OOP infusions that were faithfully made into PHP by some of its core contributors, most notably Nikita Popov.
 
-The following is a simplified example of how Phred looks like:
+The following is an example of how Phred may look like at work:
 
 ```php
 // Sign up a new user by processing an Ajax request.
