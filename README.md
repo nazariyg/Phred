@@ -12,8 +12,6 @@ One of the Phred's prime efforts is to maintain a clear and thorough [documentat
 
 Phred is striving to transform PHP into a cutting-edge, fully-featured, and easy-to-use tool for contemporary web development, while remaining free for all and well-documented. And Phred is many months of work that has already been done and that still needs to be accomplished. *You can help Phred carry on and improve in its service to PHP developers by making a [donation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html).*
 
-***
-
 ## At a Glance
 
 ```php
@@ -151,15 +149,15 @@ The classes used in the above example are [OOP string](http://htmlpreview.github
 ## The Zen of Phred
 
 * In the world of open-source development where most of the code is shared, code clarity and readability is important.
-* Object-oriented code architecture allows for much higher clarity and readability than procedural one.
+* Object-oriented code architecture allows for much higher clarity and readability than procedural one, especially in complex code.
 * Clean and eloquent code is easier to review and independently reviewed code is more reliable and secure.
-* Code clarity is largely determining the code's reusability for other purposes and by other people.
-* Consistency in a coding standard allows for better and more comprehensible documentation.
-* Using all means available for better bug detection and bug tracking, even if it requires some tedious coding, pays off with a more reliable code.
-* Adapting some of the familiar conventions for method names, parameter ordering, and behavior from JavaScript is better than making up new ones.
-* Unvarying return types with a fixed type for every method is better than varying return types when a value of one type can be mistaken for a value of another type, e.g. `false == 0`.
-* "100" is *not* equal to "1e2" as in `"100" == "1e2"`.
-* Underscores "_" in naming are outright depressing -- let's have less of those.
+* Code clarity largely influences the code's reusability for other purposes and by other people.
+* Consistency in a coding standard allows for cleaner and more comprehensible documentation.
+* Although it requires some tedious work, the usage of semantic checks on a massive scale pays off with more reliable code.
+* Adapting some of the familiar conventions that are used for method naming, parameter ordering, and method behavior in JavaScript is better than making up new ones.
+* Unvarying return types with a fixed type for every method is better than varying return types when a value of one type can be mistaken for a value of another type, as in `false == 0`.
+* "100" is *not* equal to "1e2", as in `"100" == "1e2"`.
+* Underscores in naming are simply depressing -- let's have less of those.
 
 # Installation
 
