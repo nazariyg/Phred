@@ -106,25 +106,26 @@ $inputUserName = "たかし やまもと ";
 $inputBirthday = 491702400;  // converted to Unix time by JS
 
 // Sanitize the username if it's not a valid Unicode string and remove any
-// leading or trailing whitespace, together with any Unicode whitespace.
+// leading or trailing whitespace including any Unicode whitespace.
 $userName = $inputUserName->isValid() ? $inputUserName : $inputUserName->sanitize();
 $userName = $userName->trim();
 
 if (!$userName->isEmpty()) {
     // The username is not empty.
     if ($userName->length() <= MAX_USERNAME_CHARS) {
-        // Search for the first and last names within the input username using
+        // Search for the first and last names within the username using
         // a regular expression pattern.
         if ($userName->reFindGroups("/^(\pL+)\s+(\pL+)$/u", $foundGroups)) {
             $firstName = $foundGroups[0];
             $lastName =  $foundGroups[1];
+            echo $firstName;  // たかし
+            echo $lastName;   // やまもと
 
             // Transliterate the username into the Latin script for searching.
-            $userName = $userName->transliterateFromAny("latin")->toLowerCase();
+            $userNameT = $userName->transliterateFromAny("latin")->toLowerCase();
             // "たかし やまもと" becomes "takashi yamamoto".
 
-            // Store the normalized first and last names and the transliterated
-            // full name to the database.
+            // Store the names to the database.
             // ...
 
             // Let's see how many days we are currently away from the user's birthday.
