@@ -413,7 +413,7 @@ $array = new Ar(15);
 echo $array->length();  // 15
 ```
 
-For creating an OOP array from a list of values, you would use the syntax that is shorter than `array()` by 4 characters:
+For creating an OOP array from a list of values, you would use a syntax that is shorter than `array()` by 4 characters:
 
 ```php
 $array = a("one", "two", "three", "four", "five");
@@ -486,9 +486,9 @@ It's also easier than ever to perform logical operations with arrays using `unio
 
 As you would expect, an OOP map contains values associated with unique keys. The OOP map's functionality is implemented by the [CMapObject](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CMapObject.html) class (alias `Ma`).
 
-Just like with PHP's associative arrays, the type of a key in an OOP map can be either `string` or `int`. When a string key looks like an integer, it's implicitly converted into the corresponding integer and is used as such to access a value in the map.
+Just like with PHP's associative arrays, a key in an OOP map can be either string or integer. When a string key looks like an integer, it's implicitly converted into the corresponding integer and is used as such to access the key's value in the map.
 
-You can create an OOP map as initially empty or from a list of key-value pairs using a syntax similar to that of OOP arrays only with `m` in place of `a` and with square brackets to let `=>` operator glue the key-value pairs together:
+You can create an OOP map as initially empty or from a list of key-value pairs using a syntax similar to that of OOP arrays only with `m` in place of `a` and with square brackets to let `=>` operator glue the keys and values together:
 
 ```php
 // Create an empty map.
@@ -505,7 +505,7 @@ $map = m([
 echo $map->length();  // 5
 ```
 
-Naturally, the values in an OOP map are accessible with `[ ]` operator and you can iterate over an OOP map with `foreach` statement:
+Naturally, the values in an OOP map are accessible with `[ ]` operator and you can iterate through an OOP map with `foreach`:
 
 ```php
 $map = new Ma();
@@ -533,15 +533,15 @@ $map["e"] = "five";
 foreach ($map as $key => &$value) {
     $value = $value->toTitleCase();
 }
-foreach ($map as $key => &$value) {
+foreach ($map as $key => $value) {
     echo "$key:$value ";
 }
 // "a:One b:Two c:Three d:Four e:Five "
 ```
 
-Some of the self-describing methods the OOP map are `length`, `isEmpty`, `hasKey`, `remove`, `filter`, `keys`, and `values`. With `valueByPath` and `setValueByPath` methods, you can also access a value in a multi-dimensional map by its *key path*, which is just a dot-separated sequence of keys that hierarchically indicate the path to the value, as in "level1key.level2key". Unlike PHP's `array_merge` function, the `merge` method is proud of being able to merge multi-dimensional maps correctly so that a value from a subsequent map overrides a value in a preceding map if they are associated with the same key, making no special cases for numeric keys.
+Some of the self-describing methods the OOP map are `length`, `isEmpty`, `hasKey`, `remove`, `filter`, `keys`, and `values`. With `valueByPath` and `setValueByPath` methods, you can also access a value in a multi-dimensional map by its key path, which is just a dot-separated sequence of keys that hierarchically indicate the path to the value, as in "level1key.level2key". Unlike the PHP's `array_merge` function, `merge` method is proud of being able to merge multi-dimensional maps correctly so that a value from a subsequent map overrides a value in a preceding map if they are associated with equal keys, making no special cases for numeric keys like `array_merge` function does.
 
-Following the philosophy of JavaScript where the role of the associative array is played by `Object` type, any OOP map is an object in every aspect and is stored, assigned, and passed by reference. But when required, you can make an independent copy of an OOP map using `clone` keyword like so:
+Following the philosophy of JavaScript where the role of the associative array is played by `Object` type, any OOP map is an object in every aspect and is stored, assigned, and passed by reference. But when required, you can make an independent copy of an OOP map using `clone` keyword:
 
 ```php
 $mapCopy = clone $map;
