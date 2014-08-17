@@ -247,7 +247,7 @@ What this means is that you can have the semantic checks enabled for your develo
 
 # Fundamental Types
 
-Phred puts a substantial effort into making the PHP's fundamental types not just follow the best practices of object-oriented programming with consistent naming and parameter ordering, but into making them reliable, efficient, and simply comfortable in use. Phred views the date/time class essential enough for it to serve as a fundamental type alongside the time zone class.
+Phred is making the PHP's fundamental types not just follow the best practices of object-oriented programming with consistent naming and expectable parameter ordering, but also making them reliable, efficient, and comfortable in use. Phred views the date/time class essential enough for it to be considered a fundamental type alongside the time zone class.
 
 ## OOP String
 
