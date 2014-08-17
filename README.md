@@ -62,7 +62,6 @@ echo strtoupper($str);      // Никита Попов
     * [Mailing](#mailing)
     * [Requesting](#requesting)
 * [Backward Compatibility](#backward-compatibility)
-* [Phred's Roadmap](#phreds-roadmap)
 * [Donate](#donate)
 
 ***
@@ -311,7 +310,7 @@ Converting from one character encoding to another and other typical tasks relate
 
 Powered by the ICU library, the class is able to convert between practically all character encodings there are in existence. For historical and other reasons, almost every of the character encodings supported by ICU is known by more than one name. Because of this, ICU picked a single name for each character encoding by which the encoding is to be identified internally. Such character encoding names are called primary by the class and the rest of the names are aliases. For example, "UTF-8" is a primary character encoding name, whereas "ibm-1208" and "cp1208" are some of its many aliases, and it's safe to say that "UTF-8" is an alias of "cp1208". When you need to tell a character encoding name to a method of the class, an alias is just as good as the primary name.
 
-In addition to converting between character encodings, detecting encodings, and fixing UTF-8 strings, the class can translate any Unicode string written in any language into ASCII, while preserving as much information as possible. This "flattening" to ASCII might be useful for the indexing of Unicode text, for searching inside or with Unicode text, and for collating Unicode text. If required, the string is transliterated into the Latin script beforehand. Latin characters such as "æ" and German sharp "ß" are all handled properly ("æ" becomes "ae" and "ß" becomes "ss"). The process also converts to ASCII some of the beyond-Latin Unicode characters that have similar appearance or meaning. The Unicode's Line Separator and Paragraph Separator are converted into ASCII's LF characters.
+In addition to converting between character encodings, detecting encodings, and fixing UTF-8 strings, the class can translate any Unicode string written in any language into ASCII, while preserving as much information as possible. This "flattening" to ASCII might be useful for the indexing of Unicode text, for searching inside or with Unicode text, and for collating Unicode text. If required, the string is transliterated into the Latin script beforehand. Latin characters such as "æ" and German sharp "ß" are all handled properly ("æ" becomes "ae" and "ß" becomes "ss"). The process also converts to ASCII some of the beyond-Latin Unicode characters that have similar appearance or meaning. The Unicode's Line Separator and Paragraph Separator characters are converted into ASCII's LF characters.
 
 ## OOP Array
 
@@ -1211,25 +1210,6 @@ Any library, API, or any other third-party component is backward-compatible with
 From the perspective of any third-party component, every OOP string is just a regular PHP string without any memory overhead or use restrictions. A PHP's native array becomes an OOP array when a third-party component in any way outputs a PHP array with sequential keys (0, 1, 2, ...) or, if the array's keys are non-sequential, it arrives as an OOP map, just like you would expect. And when you pass an OOP array or an OOP map to a third-party component, the PHP library or API receive it as a plain PHP array in all cases, just like the third-party components would expect.
 
 The Phred's backward compatibility does not only cover regular parameters in methods and functions belonging to third-party components, but also return values and values being output by means of parameters that are declared by reference in the classes of third-party components. Furthermore, the backward compatibility comes into play even when you get or set a public property of an object of a class that was brought in by a third-party component, whether or not the class is using `__get` or `__set` "magic" methods for property access.
-
-# Phred's Roadmap
-
-The following is a non-exhaustive TODO list for Phred:
-
-* Add support for Unicode text boundary analysis, such as iterating through individual code points, characters, words, sentences, lines, and break points, also in the context of an improved wrapper for Unicode text.
-* With the help of the ICU library, add support for Unicode message and choice formatting.
-* Let input filters alternatively validate and sanitize values with text-bases constraints so that, for example, "int|minmax[1,10]|..." would be validating the value as an integer number and then clamping it to [1, 10] range if needed. Make the constraints to be easy to remember and consistent. Support new types of input with added constraints, such as "alpha", "alphanum", "alphanumdash", "phone", "ssn", "nonempty" and more.
-* Add support for caching. Provide the developer with a choice between multiple caching engines and lay the foundation for the caching of generated HTML content, perhaps with micro-caching for small HTML fragments. Improve the response time by caching the information read from the configuration files.
-* Implement support for request routing. Probably don't go into creating any new semantics that developers would have to learn before writing routs and try adapting regular expressions instead.
-* Possibly make the methods in the request and response classes non-static.
-* Add support for a templating engine. Let the developer choose without freely between the templating engine and the PHP's built-in capabilities for HTML rendering.
-* Add support for high-quality and comprehensible ORM. Consider adding a query builder as well.
-* Address the main security vulnerabilities that any web application should look out for, such as XSS, CSRF, and others.
-* Let developers run unit tests on requests and responses locally by implementing all necessary mechanics for request emulation.
-* Add a dependency container for unit testing.
-* Add support for code profiling and benchmarking.
-* Consider making the request flow partially or entirely event-based.
-* Facilitate the reception and validation of user-sent files with one or more dedicated classes.
 
 # Donate
 
