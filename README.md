@@ -279,13 +279,15 @@ Other methods that do handle special cases with care are `indexOf` and `indexOfC
 
 ### Regular Expressions
 
-Phred greatly simplifies the use of regular expressions in PHP by integrating the regular expression functionality into the string type. This move is intended to save you lots of typing by eliminating the need for the `preg_` functions altogether, for `=== 1` and `=== 0` when searching for regular expression patterns thanks to the corresponding string methods naturally returning either `true` or `false`, by outputting the found string directly instead of in an array, and by removing the bother with obscure multidimensional arrays when searching for regular expression groups.
+Phred greatly simplifies the use of regular expressions in PHP by integrating the regular expression functionality right into OOP strings.
 
-Any string method that has to do with regular expressions indicate it with `re` in the beginning of its name. The methods that behave along the lines of some of the non-regex methods try to follow maximally the naming and the parameter order used by their counterparts. The only big difference, however, is "Ci" in the method naming since the case-insensitive mode can only be turned on with the "i" modifier in the regular expression pattern itself.
+This integration is intended to save you lots of typing by getting rid of the overly complicated `preg_` functions, `=== 1` and `=== 0` when searching for regular expression patterns since the appropriate string methods naturally return either `true` or `false`, by outputting the found string directly instead of unnecessarily enfolding it into an array, and by avoiding the intricacies with obscure multidimensional arrays when searching for regular expression groups.
 
-Most of the complexity that exists with regular expression searching was divided and conquered by combining the possible kinds of regular expression searches based on whether the search starts from the beginning of the string or from a specific position, whether the search is looking for a substring or regular expression groups, and whether the search stops after the first occurrence of the regular expression pattern is found or continues to find all the occurrences.
+Any string method that has to do with regular expressions indicates it with `re` in the beginning of its name. The `re` methods that behave along the lines of some of the plain-text methods are trying to follow maximally the naming and the parameter order used by their counterparts. The only big difference however is `Ci` in the method naming because, as imposed by PCRE, the case-insensitive mode can only be turned on with the "i" modifier in the regular expression pattern itself.
 
-The following example searches for regular expression groups in a string and stores the found strings into arrays with much less code and without unnecessary intricacy than it would require with `preg_` functions.
+Most of the complexity that exists with regular expression searches was divided and conquered by combining the possible kinds of searches based on whether the search starts from the beginning of the string or from a specific position, whether the search targets a substring or regular expression groups, and whether the search stops after the first occurrence of the regular expression pattern is found or continues to find all the occurrences.
+
+The following example searches for regular expression groups in a string and stores found strings to arrays:
 
 ```php
 $str = "[gr0-0] [gr0-1] [gr1-0] [gr1-1]";
@@ -300,6 +302,8 @@ echo $foundStrings->length();  // 2
 echo $foundStrings[0];         // "[gr0-0] [gr0-1]"
 echo $foundStrings[1];         // "[gr1-0] [gr1-1]"
 ```
+
+For a challenge, you could try doing the same but with `preg_` functions just to see the amount of needless code it would produce.
 
 ### Character Encodings
 
