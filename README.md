@@ -365,11 +365,11 @@ for ($i = 4; $i >= 0; $i--) {
 echo implode(", ", $assocArray);  // "4, 3, 2, 1, 0" instead of "0, 1, 2, 3, 4"
 ```
 
-But a good thing is that the default array implementation used by PHP is not the only one available. Another is the [SplFixedArray](http://www.php.net/SplFixedArray) class that is included into the SPL library, the goal of which is to provide efficient implementations for interfaces and classes that have to do with data structures in PHP. Despite of the class' name, the length of an SplFixedArray is not really fixed and the array can be resized using a dedicated method of the class. In addition to arrays, SPL also supplements PHP with classes for lists, stacks, and queues (Phred might acquire these with time).
+But the good thing is that the array implementation being forced by PHP on developers is not the only one available. Another is the [SplFixedArray](http://www.php.net/SplFixedArray) class included with the PHP's SPL library, the goal of which is to provide efficient implementations for interfaces and classes that have to do with data structures in PHP. The language of the SplFixedArray class' implementation is C. Despite of the class' name, the length of an SplFixedArray is not really fixed and an SplFixedArray can be easily resized using a dedicated method of the class. In addition to arrays, SPL also supplements PHP with classes for lists, stacks, and queues (Phred might acquire those with time).
 
-In Phred, the SplFixedArray class serves as the underlying array implementation for any OOP array. This allows arrays in your applications to be very lightweight and efficient. And, for better or worse, it also takes any surprise out of interacting with arrays in your projects since an OOP array always behaves just like you would expect it to.
+In Phred, the SplFixedArray class serves as the underlying array implementation for any OOP array. This allows arrays in your applications to be very lightweight and efficient. And it also takes all the bad surprises out of interacting with arrays in your code since an OOP array *always* behaves just like you would expect it to.
 
-As a test, let's allocate some number of integer values, first with the PHP's native array and then with the OOP array (the results may be slightly different depending on your configuration):
+As a test, let's allocate some number of integer values, first with a PHP array and then with an OOP array:
 
 ```php
 $assocArray = array();
@@ -380,7 +380,7 @@ for ($i = 0; $i < 500000; $i++) {
 echo memory_get_peak_usage();  // 74209240
 ```
 
-And using an OOP array:
+And when using an OOP array:
 
 ```php
 $array = new Ar(500000);
@@ -391,36 +391,36 @@ for ($i = 0; $i < 500000; $i++) {
 echo memory_get_peak_usage();  // 30017960
 ```
 
-The difference in the peak numbers of allocated bytes indicates about 60% of decrease in memory consumption when an OOP array is used. This is an enjoyable improvement in performance even for already boosted PHP 7.
+The difference in the peak numbers of allocated bytes shows about 60% of memory saving when an OOP array is used. This is an enjoyable improvement in performance, even for already boosted PHP 7.
 
-To summarize:
+So what we've got is:
 
-* OOP arrays have much smaller memory footprint because their elements are stored sequentially and in a much dense fashion.
-* Because the elements in OOP arrays are indexed with integer numbers, it enables significantly faster access for both reading and writing.
-* OOP arrays provide you with the freedom of choice and let you make better optimization decisions in your applications.
-* OOP arrays behave much like their counterparts from the languages that you are familiar with, such as JavaScript.
-* Exactly like in JavaScript, an OOP array is an object and is stored, assigned, and passed by reference.
+* OOP arrays have much smaller memory footprint because their elements are stored sequentially and in a much more dense fashion.
+* Because the elements in an OOP array are indexed with integer numbers, it allows for significantly faster element access in both reading and writing.
+* OOP arrays enable you with the freedom of choice and let you make better optimization decisions in your applications.
+* OOP array behaves much like its counterparts from the languages that you are familiar with, such as JavaScript.
+* Exactly like in JavaScript, any OOP array is an object that is stored, assigned, and passed by reference.
 
-You can create a new OOP array as an empty array to be grown later, as an array with a number of blank elements ready to be assigned, or from existing values to become the array's elements. The first two scenarios are covered by the constructor of the OOP array's class:
+You can create a new OOP array as an empty array to be grown later, as an array with a number of pre-allocated elements ready to be assigned, or from existing values to become the array's elements. The first two scenarios are covered by the constructor of the OOP array's class:
 
 ```php
 // Create an empty array.
 $array = new Ar();
 echo $array->length();  // 0
 
-// Create an array with preallocated elements.
+// Create an array with pre-allocated elements.
 $array = new Ar(15);
 echo $array->length();  // 15
 ```
 
-For creating an OOP array from a list of values, you would use the syntax that is shorter than `array()` by four characters:
+For creating an OOP array from a list of values, you would use the syntax that is shorter than `array()` by 4 characters:
 
 ```php
 $array = a("one", "two", "three", "four", "five");
 echo $array->length();  // 5
 ```
 
-Something that is true for any array implementation is that, if the lenght of an array you are creating is known beforehand, it is faster to preallocate the array's elements first and then assign their values as compared to adding the elements one by one with `push` method.
+Something that is true for any array implementation is that, if the length of an array you are creating is known beforehand, it is faster to pre-allocate the array's elements first and then assign them with values as compared to adding the elements one by one using `push` method.
 
 As usual, the elements in an OOP array are accessed with `[ ]` operator:
 
@@ -433,7 +433,7 @@ for ($i = 0; $i < $array->length(); $i++) {
 echo $array->join(", ");  // "0, 1, 4, 9, 16"
 ```
 
-OOP arrays can be iterated with `foreach` statement too:
+And OOP arrays can be iterated with `foreach` too:
 
 ```php
 $array = a("12", "34", "56");
@@ -449,9 +449,9 @@ While in JavaScript you would use `slice` method to make an independent copy of 
 $arrayCopy = clone $array;
 ```
 
-Some of the methods of the OOP array that need little introduction are `length`, `isEmpty`, `first`, `last`, `push`, `pop`, `pushArray`, `slice`, `insert`, `remove`, `splice`, `find`, `filter`, and `sort`.
+Some of the methods of the OOP array that need little introduction are `length`, `isEmpty`, `first`, `last`, `push`, `pop`, `slice`, `insert`, `remove`, `splice`, `find`, `filter`, and `sort`.
 
-Inspired by JavaScript, the OOP array also implements `sortOn` method that lets you sort elements in an OOP array based on return values from a specified method of the elements' class:
+Inspired by JavaScript, the OOP array also implements `sortOn` method that lets you sort the elements in an OOP array based on return values from a specified method of the elements' class:
 
 ```php
 class ElementClass
