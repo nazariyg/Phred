@@ -314,15 +314,15 @@ In addition to converting between character encodings, detecting encodings, and 
 
 ## OOP Array
 
-Phred draws a clear distinction between apples and oranges by introducing a highly efficient array type for storing and accessing elements with minimum overhead. The type wraps over the SplFixedArray class that comes with the Standard PHP Library, which is an integral part of PHP, and is implemented in the [CArrayObject](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CArrayObject.html) class (alias `Ar`).
+Phred draws a clear distinction between apples and oranges by bringing forward a highly efficient array type for storing and accessing elements with minimum overhead. The type wraps over the SplFixedArray class that is offered by the Standard PHP Library, which is an integral part of PHP and is written in C. The OOP array is implemented in the [CArrayObject](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CArrayObject.html) class (alias `Ar`).
 
-It often comes as a surprise to new PHP developers that PHP primarily offers only one type to be used for all kinds of arrays and other collections. Any PHP array is an associative array, otherwise known as dictionary, hash map, or map. The native PHP array is only able to store a value if the value brings along a key, a number or string, by which it can then be accessed, always storing key-value pairs instead of just values for simple arrays. In comparison, JavaScript provides the developers with the choice between `Array` type for simple arrays and `Object` type for associative arrays, while Python offers an assortment of at least four array types, namely `tuple`, `list`, `dict`, and `set`.
+It often comes as a surprise to new PHP developers that PHP only has one data type to be used for all kinds of arrays. And any PHP array is an associative array, otherwise known as dictionary, hash map, or map. The PHP array is only able to store a value if the value brings along a key by which the value can then be accessed. Therefore, a PHP array is always storing key-value pairs instead of just values, even for simple arrays. In comparison, JavaScript provides the developer with the choice between `Array` type for simple arrays and `Object` type for associative arrays, while Python offers an assortment of at least four array types, namely `tuple`, `list`, `dict`, and `set`.
 
-It would be really nice if PHP arrays could benefit from this all-in-one design decision, but unfortunately they don't. If you are a programmer and have worked with arrays long enough, you could ask yourself a question about which kind of arrays you've had to deal with for the most part, simple or associative? So not only PHP arrays are biased towards one use at the expense of the other use, but they are also biased in the wrong direction.
+It would be really nice if PHP developers could benefit from this all-in-one design decision, but unfortunately they don't. On average, a programmer has to work with simple arrays more than with associative ones and simple arrays may contain large quantities of values that need to be stored with least memory consumption. So not only PHP arrays are biased towards one array use at the expense of the other use, but they are also biased in the wrong direction.
 
-Furthermore, the use of term "array" is quite misleading because what any PHP array is really behaving as is an ordered map. This misconception is the source for generating a great deal of confusion in the PHP docs on the array functions and made some of the array behaviors appear so bizarre that, in the eyes of an average PHP user, they're hardly distinguishable from bug reports.
+Furthermore, the way PHP is using term "array" is outright misleading since what any PHP array is really behaving as is an ordered (hash) map. This misconception has been the source for generating a great deal of confusion in the PHP docs on the array functions and made some of the PHP array's behavior appear so bizarre that, in the eyes of many PHP developers, it may be hardly distinguishable from bug reports.
 
-The following examples illustrate how much the actual results with PHP arrays may differ from the expected ones:
+The following examples illustrate how much unpredictable PHP arrays can be:
 
 ```php
 $assocArray = array();
@@ -330,8 +330,8 @@ $assocArray[0] = "a";
 $assocArray[1] = "b";
 $assocArray[2] = "c";
 
-// At some point, remove a no longer needed element to save memory and
-// assign it to a new value at some point later.
+// At some point, remove a no longer needed element and replace it with
+// a new element at some point later.
 unset($assocArray[1]);
 // ...
 $assocArray[1] = "d";
@@ -339,12 +339,12 @@ $assocArray[1] = "d";
 echo implode(", ", $assocArray);  // "a, c, d"
 ```
 
-Which is similar to:
+Another example:
 
 ```php
 $assocArray = array();
 
-// We don't know the value for one of the elements yet, will assign it later.
+// We don't know the value of one of the elements yet, will assign it later.
 $assocArray[0] = "a";
 $assocArray[2] = "c";
 // ...
