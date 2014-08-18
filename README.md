@@ -549,7 +549,7 @@ $mapCopy = clone $map;
 
 ## Time and Time Zones
 
-Phred tries its best to let you perform all kinds of time-related operations in the simplest way possible. The functionality that is natively present in PHP for date, time, and time zones and that is mostly scattered over the [date/time functions](http://php.net/manual/en/ref.datetime.php), [DateTime class](http://php.net/manual/en/class.datetime.php), [DateTimeZone class](http://php.net/manual/en/class.datetimezone.php), and [IntlTimeZone class](http://php.net/manual/en/class.intltimezone.php), was sorted out, refined, and put into a self-contained, fully-featured, and simply pleasant to use [CTime](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CTime.html) class (alias `Tm`). Time zones are embodied by objects of the [CTimeZone](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CTimeZone.html) class (alias `Tz`).
+Phred tries its best to let you perform all kinds of time-related operations in the simplest way possible. The functionality that is natively present in PHP for dates, time, and time zones and that is mostly scattered over [date/time functions](http://php.net/manual/en/ref.datetime.php), [DateTime class](http://php.net/manual/en/class.datetime.php), [DateTimeZone class](http://php.net/manual/en/class.datetimezone.php), and [IntlTimeZone class](http://php.net/manual/en/class.intltimezone.php) was sorted out, refined, and put into the self-contained and fully-featured [CTime](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CTime.html) class (alias `Tm`). Time zones are represented by objects of the [CTimeZone](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CTimeZone.html) class (alias `Tz`).
 
 An object of the CTime class represents a point in time. While there exists a multitude of time zones around the world, any represented point in time is referring to the very same moment in all of the time zones. Clearly, a point in time cannot be defined by the usual year, month, day, hour, minute, and second, because these date/time components vary from one time zone to another. Instead, any point in time is absolutely defined by a single time coordinate called Unix time.
 
@@ -1213,7 +1213,7 @@ The Phred's backward compatibility does not only cover regular parameters in met
 
 # Donate
 
-**Developing Phred and maintaining decent documentation takes effort and time. Donations are highly appreciated.**
+**Developing Phred and maintaining decent documentation takes effort and time. And the project has only started. Donations are highly appreciated.**
 
 <p align="center">
   <a href="http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html"><img src="readme-files/ppd-button.png"/></a>
