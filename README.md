@@ -611,7 +611,7 @@ When you need the current time as a time object, you can create the object with 
 $currTime = Tm::now();
 ```
 
-The MySQL-like date/time format that you've seen in the previous examples is the default format that, unlike the MySQL format, doesn't omit the time zone, but other formats are available as well:
+The MySQL-like date/time format that you've seen in the previous examples is the default format that, unlike the MySQL format, does not omit the time zone. Other formats are available as well:
 
 ```php
 $time = new Tm(1234567890);
@@ -638,7 +638,7 @@ echo $time->toStringInTimeZone($timeZone,
     Tm::PATTERN_W3C);              // "2009-02-13T15:31:30-08:00"
 ```
 
-When dealing with dates and time, the months are identified by their numbers, starting with 1 for January and ending with 12 for December. The minimum number of a day is 1, but the maximum such number depends on the actual month, with 31 being of course the largest possible number. Hours, minutes, and seconds are numbered in the usual way, starting with 0 and ending with 23 for hours and with 59 for minutes and seconds. Milliseconds are supported for any point in time and their numbers range from 0 to 999. The days of the week are identified by the `SUNDAY`, `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, and `SATURDAY` enumerands of the class.
+When dealing with dates and time, the months are identified by their numbers, starting with 1 for January and ending with 12 for December. Hours, minutes, and seconds are numbered in the usual way, starting with 0 and ending with 23 for hours and with 59 for minutes and seconds. Milliseconds are supported for any point in time and their numbers range from 0 to 999. The days of the week are identified by `SUNDAY`, `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, and `SATURDAY` enumerands of the class.
 
 You can ask a time object for individual date/time components like this:
 
@@ -682,13 +682,13 @@ echo $time0->isBefore($time1);  // true
 echo $time0->isAfter($time1);   // false
 ```
 
-Among other methods, the CTime class features the `diff...` group of methods that let you compute the absolute difference between any two points in time measured in one of the seven time units, the `signedDiff...` group of methods that allow for negative differences to be reported, the `shifted...` group of methods that let you shift points in time by a certain amount of time units in either direction, and `with...` group of methods that let you modify a point in time by changing the value of one of its components.
+Among other methods, the CTime class features the `diff...` group of methods that let you compute the absolute difference between any two points in time measured in one of the seven time units, the `signedDiff...` group of methods that allow for negative differences to be reported, the `shifted...` group of methods that let you shift points in time by a certain amount of time units in either direction, and `with...` group of methods that let you modify a point in time by changing the value of one of its date/time components.
 
 ## Comparison and Sorting
 
-Some of the methods of the collection types, which currently are OOP array and OOP map, take as an optional parameter a callback function or method to be used by the method for the inter-comparison of the values contained in the collection so that the collection's method could carry out its mission. You can see the default values for this parameter being either `CComparator::EQUALITY` or `CComparator::ORDER_ASC`, which are strings referring to the callback methods of the [CComparator](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CComparator.html) class (alias `Cmpr`). Another such comparator that is available to you is `CComparator::ORDER_DESC`.
+Some of the methods of the collection types, which currently are OOP array and OOP map, take as an optional parameter a callback function or method to be used by the method for the inter-comparison of the values contained in the collection so that the method could carry out its mission. You can see the default values for this parameter being either `CComparator::EQUALITY` or `CComparator::ORDER_ASC`, which are strings referring to the methods of the [CComparator](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CComparator.html) class (alias `Cmpr`). Another such comparator that is available to you is `CComparator::ORDER_DESC`.
 
-With these comparators being the default callbacks, you don't need to worry about how the values in a collection are going to be compared with one another as long as the type of the values is known to the CComparator class. A type is known to the CComparator class if its class implements `equals` method (static or not), `compare` method (static or not), or both.
+With these comparators being the default callbacks, you don't need to worry about how the values in a collection are going to be compared with one another as long as the type of the values is known to the CComparator class. And that type is known to the CComparator class which is a scalar or an object of a class that implements one of the equality/order interfaces.
 
 The CComparator class is familiar with each of the fundamental types, so you can freely put strings, time objects, OOP arrays, and OOP maps into an array and then sort the array with `sort` or `sortOn` method or make use of any other method that depends on a comparator, such as `find`, `countElement`, `removeByValue`, `unique`, `isSubsetOf`, `intersection`, and `difference`. With OOP maps, the default comparators make your life easier when you need to use `find` or `countValue` method.
 
