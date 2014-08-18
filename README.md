@@ -583,7 +583,7 @@ $time = Tm::fromComponentsUtc($year, $month, $day, $hour, $minute, $second);
 echo $time->toStringUtc();  // "2009-02-13 23:31:30 UTC"
 ```
 
-But if you'd want the values of the date/time components to be tied to the Los Angeles time instead of Greenwich time:
+But if you'd want the values of the date/time components to be tied to the Los Angeles time instead of UTC time:
 
 ```php
 // Create a time zone for Los Angeles.
@@ -603,16 +603,15 @@ echo $time->toStringInTimeZone(
 echo $time->UTime();  // 1234596690 (8 hours difference)
 ```
 
-Any time zone is primarily identified by its name and the same time zone can have multiple names. Unlike locale names, time zone names are case-sensitive. The names of time zones are standardized and, besides other places, can be found in the PHP's [List of Supported Timezones](http://php.net/manual/en/timezones.php).
+Any time zone is primarily identified by its name and the same time zone can have multiple names. Unlike locale names, time zone names are case-sensitive. The names are standardized and, besides other places, can be found in the PHP's [List of Supported Timezones](http://php.net/manual/en/timezones.php).
 
 When you need the current time as a time object, you can create the object with `now` static method:
 
 ```php
-$time = Tm::now();
-echo $time->toStringUtc();
+$currTime = Tm::now();
 ```
 
-The MySQL-like date/time format that you've seen in the above examples is the default format that, unlike the MySQL format, doesn't omit the time zone, but other formats are available as well:
+The MySQL-like date/time format that you've seen in the previous examples is the default format that, unlike the MySQL format, doesn't omit the time zone, but other formats are available as well:
 
 ```php
 $time = new Tm(1234567890);
@@ -1207,7 +1206,7 @@ $sess->start();
 
 Any library, API, or any other third-party component is backward-compatible with Phred as long as it is installed via Composer, which is de facto standard package manager for PHP. Even Facebook is recommending Composer for installing its [Facebook SDK](https://developers.facebook.com/docs/php/gettingstarted/).
 
-From the perspective of any third-party component, every OOP string is just a regular PHP string without any memory overhead or use restrictions. A PHP's native array becomes an OOP array when a third-party component in any way outputs a PHP array with sequential keys (0, 1, 2, ...) or, if the array's keys are non-sequential, it arrives as an OOP map, just like you would expect. And when you pass an OOP array or an OOP map to a third-party component, the PHP library or API receive it as a plain PHP array in all cases, just like the third-party components would expect.
+From the perspective of any third-party component, every OOP string is just a regular PHP string without any memory overhead or use restrictions. A PHP's native array becomes an OOP array when a third-party component in any way outputs a PHP array with sequential keys (0, 1, 2, ...) or, if the array's keys are non-sequential, it arrives as an OOP map, just like you would expect. And when you pass an OOP array or an OOP map to a third-party component, the PHP library or API receives it as a plain PHP array in all cases, just like the third-party component would expect.
 
 The Phred's backward compatibility does not only cover regular parameters in methods and functions belonging to third-party components, but also return values and values being output by means of parameters that are declared by reference in the classes of third-party components. Furthermore, the backward compatibility comes into play even when you get or set a public property of an object of a class that was brought in by a third-party component, whether or not the class is using `__get` or `__set` "magic" methods for property access.
 
