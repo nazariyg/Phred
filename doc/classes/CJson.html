@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1584986983"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1652514063"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1584986983" class="accordion-body collapse in">
+            <div id="namespace-1652514063" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -292,16 +292,16 @@ floating-point value.</p>
                                 <em>N/A</em>
                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/CJson.html#property_m_xSource" class="">$m_xSource</a><br />
-                                                                    <a href="../classes/CJson.html#property_m_eDecodingStrictness" class="">$m_eDecodingStrictness</a><br />
-                                                                    <a href="../classes/CJson.html#property_m_bEscapeNonAsciiChars" class="">$m_bEscapeNonAsciiChars</a><br />
-                                                                    <a href="../classes/CJson.html#property_m_bEscapeForwardSlashes" class="">$m_bEscapeForwardSlashes</a><br />
-                                                                    <a href="../classes/CJson.html#property_m_bEscapeAngleBrackets" class="">$m_bEscapeAngleBrackets</a><br />
-                                                                    <a href="../classes/CJson.html#property_m_bEscapeAmpersands" class="">$m_bEscapeAmpersands</a><br />
-                                                                    <a href="../classes/CJson.html#property_m_bEscapeSingleQuotes" class="">$m_bEscapeSingleQuotes</a><br />
-                                                                    <a href="../classes/CJson.html#property_m_bEscapeDoubleQuotes" class="">$m_bEscapeDoubleQuotes</a><br />
-                                                                    <a href="../classes/CJson.html#property_m_bPrettyPrint" class="">$m_bPrettyPrint</a><br />
-                                                                    <a href="../classes/CJson.html#property_ms_iMaxRecursionDepth" class="">$ms_iMaxRecursionDepth</a><br />
+                                                                    <a href="../classes/CJson.html#property_m_source" class="">$m_source</a><br />
+                                                                    <a href="../classes/CJson.html#property_m_decodingStrictness" class="">$m_decodingStrictness</a><br />
+                                                                    <a href="../classes/CJson.html#property_m_escapeNonAsciiChars" class="">$m_escapeNonAsciiChars</a><br />
+                                                                    <a href="../classes/CJson.html#property_m_escapeForwardSlashes" class="">$m_escapeForwardSlashes</a><br />
+                                                                    <a href="../classes/CJson.html#property_m_escapeAngleBrackets" class="">$m_escapeAngleBrackets</a><br />
+                                                                    <a href="../classes/CJson.html#property_m_escapeAmpersands" class="">$m_escapeAmpersands</a><br />
+                                                                    <a href="../classes/CJson.html#property_m_escapeSingleQuotes" class="">$m_escapeSingleQuotes</a><br />
+                                                                    <a href="../classes/CJson.html#property_m_escapeDoubleQuotes" class="">$m_escapeDoubleQuotes</a><br />
+                                                                    <a href="../classes/CJson.html#property_m_prettyPrint" class="">$m_prettyPrint</a><br />
+                                                                    <a href="../classes/CJson.html#property_ms_maxRecursionDepth" class="">$ms_maxRecursionDepth</a><br />
                                                             </section>
                         </section>
                         <section class="row-fluid private">
@@ -511,20 +511,20 @@ values, such as a tab represented by a 0x09 byte.</p></p>
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (mixed&nbsp;<span class="argument">$xSource</span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eDecodingStrictness</span></span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (mixed&nbsp;<span class="argument">$source</span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$decodingStrictness</span></span>)</pre>
                 <p><em><p>Creates a JSON decoder or encoder.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xSource</code> </td>
+                                <td><code style="border: none; background: none">$source</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The string to be decoded from JSON or the map or array to be encoded into JSON. In case
 of a map or array, it can be multidimensional and contain other maps and arrays.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$eDecodingStrictness</code> </td>
+                                <td><code style="border: none; background: none">$decodingStrictness</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>STRICT</code>. If the object is being constructed for
 decoding, this is the decoding strictness. Can be <code>STRICT</code>, <code>STRICT_WITH_COMMENTS</code>, or <code>LENIENT</code>
@@ -558,14 +558,14 @@ decoding, this is the decoding strictness. Can be <code>STRICT</code>, <code>STR
             <article class="method">
                 <h3 class="public ">setEscapeNonAsciiChars()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setEscapeNonAsciiChars (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setEscapeNonAsciiChars (bool&nbsp;<span class="argument">$enable</span>) : void</pre>
                 <p><em><p>For encoding, sets whether any non-ASCII character should appear escaped in the resulting string.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none">$enable</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><code>true</code> to make any non-ASCII character appear escaped in the resulting string, <code>false</code>
 otherwise.</p></td>
@@ -598,14 +598,14 @@ otherwise.</p></td>
             <article class="method">
                 <h3 class="public ">setEscapeForwardSlashes()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setEscapeForwardSlashes (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setEscapeForwardSlashes (bool&nbsp;<span class="argument">$enable</span>) : void</pre>
                 <p><em><p>For encoding, sets whether any "/" should appear escaped in the resulting string.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none">$enable</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><code>true</code> to make any "/" appear escaped in the resulting string, <code>false</code> otherwise.</p></td>
                             </tr>
@@ -637,14 +637,14 @@ otherwise.</p></td>
             <article class="method">
                 <h3 class="public ">setEscapeAngleBrackets()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setEscapeAngleBrackets (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setEscapeAngleBrackets (bool&nbsp;<span class="argument">$enable</span>) : void</pre>
                 <p><em><p>For encoding, sets whether any "&lt;" or ">" should appear escaped in the resulting string.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none">$enable</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><code>true</code> to make any "&lt;" or ">" appear escaped in the resulting string, <code>false</code> otherwise.</p></td>
                             </tr>
@@ -676,14 +676,14 @@ otherwise.</p></td>
             <article class="method">
                 <h3 class="public ">setEscapeAmpersands()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setEscapeAmpersands (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setEscapeAmpersands (bool&nbsp;<span class="argument">$enable</span>) : void</pre>
                 <p><em><p>For encoding, sets whether any "&amp;" should appear escaped in the resulting string.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none">$enable</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><code>true</code> to make any "&amp;" appear escaped in the resulting string, <code>false</code> otherwise.</p></td>
                             </tr>
@@ -715,14 +715,14 @@ otherwise.</p></td>
             <article class="method">
                 <h3 class="public ">setEscapeSingleQuotes()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setEscapeSingleQuotes (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setEscapeSingleQuotes (bool&nbsp;<span class="argument">$enable</span>) : void</pre>
                 <p><em><p>For encoding, sets whether any single quote should appear escaped in the resulting string.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none">$enable</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><code>true</code> to make any single quote appear escaped in the resulting string, <code>false</code> otherwise.</p></td>
                             </tr>
@@ -754,14 +754,14 @@ otherwise.</p></td>
             <article class="method">
                 <h3 class="public ">setEscapeDoubleQuotes()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setEscapeDoubleQuotes (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setEscapeDoubleQuotes (bool&nbsp;<span class="argument">$enable</span>) : void</pre>
                 <p><em><p>For encoding, sets whether any double quote should appear escaped in the resulting string.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none">$enable</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><code>true</code> to make any double quote appear escaped in the resulting string, <code>false</code> otherwise.</p></td>
                             </tr>
@@ -793,7 +793,7 @@ otherwise.</p></td>
             <article class="method">
                 <h3 class="public ">setPrettyPrint()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setPrettyPrint (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setPrettyPrint (bool&nbsp;<span class="argument">$enable</span>) : void</pre>
                 <p><em><p>For encoding, sets whether the resulting string should appear well-formatted with additional whitespace and
 newlines.</p></em></p>
                 
@@ -801,7 +801,7 @@ newlines.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none">$enable</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><code>true</code> to enable pretty-printing for the resulting string, <code>false</code> otherwise.</p></td>
                             </tr>
@@ -833,14 +833,14 @@ newlines.</p></em></p>
             <article class="method">
                 <h3 class="public ">decode()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">decode (<span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$rbSuccess</span></span>) : mixed</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">decode (<span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$success</span></span>) : mixed</pre>
                 <p><em><p>Decodes the JSON-encoded string provided earlier to the decoder and returns the result.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$rbSuccess</code> </td>
+                                <td><code style="border: none; background: none">$success</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL. OUTPUT.</strong> After the method is called with this parameter provided, the
 parameter's value tells whether the decoding was successful.</p></td>
@@ -915,19 +915,19 @@ parameter's value tells whether the decoding was successful.</p></td>
             <article class="method">
                 <h3 class="protected ">recurseValueAfterDecoding()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseValueAfterDecoding (&nbsp;<span class="argument">$xValue</span>, &nbsp;<span class="argument">$iCurrDepth</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseValueAfterDecoding (&nbsp;<span class="argument">$value</span>, &nbsp;<span class="argument">$currDepth</span>)</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iCurrDepth</code> </td>
+                                <td><code style="border: none; background: none">$currDepth</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
@@ -960,19 +960,19 @@ parameter's value tells whether the decoding was successful.</p></td>
             <article class="method">
                 <h3 class="protected ">recurseStringValidation()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseStringValidation (&nbsp;<span class="argument">$xValue</span>, &nbsp;<span class="argument">$iCurrDepth</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseStringValidation (&nbsp;<span class="argument">$value</span>, &nbsp;<span class="argument">$currDepth</span>)</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iCurrDepth</code> </td>
+                                <td><code style="border: none; background: none">$currDepth</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
@@ -1005,19 +1005,19 @@ parameter's value tells whether the decoding was successful.</p></td>
             <article class="method">
                 <h3 class="protected ">recurseValueBeforeEncoding()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseValueBeforeEncoding (&nbsp;<span class="argument">$xValue</span>, &nbsp;<span class="argument">$iCurrDepth</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseValueBeforeEncoding (&nbsp;<span class="argument">$value</span>, &nbsp;<span class="argument">$currDepth</span>)</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iCurrDepth</code> </td>
+                                <td><code style="border: none; background: none">$currDepth</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
@@ -1057,10 +1057,10 @@ parameter's value tells whether the decoding was successful.</p></td>
 
                                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_xSource" name="property_m_xSource" class="anchor"></a>
+            <a id="property_m_source" name="property_m_source" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_xSource</h3>
-                <pre class="signature">$m_xSource</pre>
+                <h3 class="protected ">$m_source</h3>
+                <pre class="signature">$m_source</pre>
                 <p><em></em></p>
                 
 
@@ -1085,10 +1085,10 @@ parameter's value tells whether the decoding was successful.</p></td>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_eDecodingStrictness" name="property_m_eDecodingStrictness" class="anchor"></a>
+            <a id="property_m_decodingStrictness" name="property_m_decodingStrictness" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_eDecodingStrictness</h3>
-                <pre class="signature">$m_eDecodingStrictness</pre>
+                <h3 class="protected ">$m_decodingStrictness</h3>
+                <pre class="signature">$m_decodingStrictness</pre>
                 <p><em></em></p>
                 
 
@@ -1113,10 +1113,10 @@ parameter's value tells whether the decoding was successful.</p></td>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_bEscapeNonAsciiChars" name="property_m_bEscapeNonAsciiChars" class="anchor"></a>
+            <a id="property_m_escapeNonAsciiChars" name="property_m_escapeNonAsciiChars" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_bEscapeNonAsciiChars</h3>
-                <pre class="signature">$m_bEscapeNonAsciiChars</pre>
+                <h3 class="protected ">$m_escapeNonAsciiChars</h3>
+                <pre class="signature">$m_escapeNonAsciiChars</pre>
                 <p><em></em></p>
                 
 
@@ -1141,10 +1141,10 @@ parameter's value tells whether the decoding was successful.</p></td>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_bEscapeForwardSlashes" name="property_m_bEscapeForwardSlashes" class="anchor"></a>
+            <a id="property_m_escapeForwardSlashes" name="property_m_escapeForwardSlashes" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_bEscapeForwardSlashes</h3>
-                <pre class="signature">$m_bEscapeForwardSlashes</pre>
+                <h3 class="protected ">$m_escapeForwardSlashes</h3>
+                <pre class="signature">$m_escapeForwardSlashes</pre>
                 <p><em></em></p>
                 
 
@@ -1169,10 +1169,10 @@ parameter's value tells whether the decoding was successful.</p></td>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_bEscapeAngleBrackets" name="property_m_bEscapeAngleBrackets" class="anchor"></a>
+            <a id="property_m_escapeAngleBrackets" name="property_m_escapeAngleBrackets" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_bEscapeAngleBrackets</h3>
-                <pre class="signature">$m_bEscapeAngleBrackets</pre>
+                <h3 class="protected ">$m_escapeAngleBrackets</h3>
+                <pre class="signature">$m_escapeAngleBrackets</pre>
                 <p><em></em></p>
                 
 
@@ -1197,10 +1197,10 @@ parameter's value tells whether the decoding was successful.</p></td>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_bEscapeAmpersands" name="property_m_bEscapeAmpersands" class="anchor"></a>
+            <a id="property_m_escapeAmpersands" name="property_m_escapeAmpersands" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_bEscapeAmpersands</h3>
-                <pre class="signature">$m_bEscapeAmpersands</pre>
+                <h3 class="protected ">$m_escapeAmpersands</h3>
+                <pre class="signature">$m_escapeAmpersands</pre>
                 <p><em></em></p>
                 
 
@@ -1225,10 +1225,10 @@ parameter's value tells whether the decoding was successful.</p></td>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_bEscapeSingleQuotes" name="property_m_bEscapeSingleQuotes" class="anchor"></a>
+            <a id="property_m_escapeSingleQuotes" name="property_m_escapeSingleQuotes" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_bEscapeSingleQuotes</h3>
-                <pre class="signature">$m_bEscapeSingleQuotes</pre>
+                <h3 class="protected ">$m_escapeSingleQuotes</h3>
+                <pre class="signature">$m_escapeSingleQuotes</pre>
                 <p><em></em></p>
                 
 
@@ -1253,10 +1253,10 @@ parameter's value tells whether the decoding was successful.</p></td>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_bEscapeDoubleQuotes" name="property_m_bEscapeDoubleQuotes" class="anchor"></a>
+            <a id="property_m_escapeDoubleQuotes" name="property_m_escapeDoubleQuotes" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_bEscapeDoubleQuotes</h3>
-                <pre class="signature">$m_bEscapeDoubleQuotes</pre>
+                <h3 class="protected ">$m_escapeDoubleQuotes</h3>
+                <pre class="signature">$m_escapeDoubleQuotes</pre>
                 <p><em></em></p>
                 
 
@@ -1281,10 +1281,10 @@ parameter's value tells whether the decoding was successful.</p></td>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_bPrettyPrint" name="property_m_bPrettyPrint" class="anchor"></a>
+            <a id="property_m_prettyPrint" name="property_m_prettyPrint" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_bPrettyPrint</h3>
-                <pre class="signature">$m_bPrettyPrint</pre>
+                <h3 class="protected ">$m_prettyPrint</h3>
+                <pre class="signature">$m_prettyPrint</pre>
                 <p><em></em></p>
                 
 
@@ -1309,10 +1309,10 @@ parameter's value tells whether the decoding was successful.</p></td>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_ms_iMaxRecursionDepth" name="property_ms_iMaxRecursionDepth" class="anchor"></a>
+            <a id="property_ms_maxRecursionDepth" name="property_ms_maxRecursionDepth" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$ms_iMaxRecursionDepth</h3>
-                <pre class="signature">$ms_iMaxRecursionDepth</pre>
+                <h3 class="protected ">$ms_maxRecursionDepth</h3>
+                <pre class="signature">$ms_maxRecursionDepth</pre>
                 <p><em></em></p>
                 
 
@@ -1385,7 +1385,7 @@ parameter's value tells whether the decoding was successful.</p></td>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

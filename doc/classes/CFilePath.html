@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1134035916"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1145414620"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1134035916" class="accordion-body collapse in">
+            <div id="namespace-1145414620" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -386,7 +386,7 @@ and returns the usable path.</p></td>
             <article class="method">
                 <h3 class="public ">name()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> name (string&nbsp;<span class="argument">$sPath</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> name (string&nbsp;<span class="argument">$path</span>) : OOPString</pre>
                 <p><em><p>Returns the full name of the file or directory located at a specified path.</p></em></p>
                 <p>The returned string contains the last component of the path i.e. everything what follows the last "/" in the
 path, including any file extension(s), or the original path (after normalization) if there are no "/" in the
@@ -397,7 +397,7 @@ path.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPath</code> </td>
+                                <td><code style="border: none; background: none">$path</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the file or directory (can be absolute or relative).</p></td>
                             </tr>
@@ -435,14 +435,14 @@ path.</p>
             <article class="method">
                 <h3 class="public ">directory()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> directory (string&nbsp;<span class="argument">$sPath</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> directory (string&nbsp;<span class="argument">$path</span>) : OOPString</pre>
                 <p><em><p>Returns the path to the directory that contains the file or directory located at a specified path.</p></em></p>
                 <p>The path should not be "/", "..", "." or be equivalent to any of them.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPath</code> </td>
+                                <td><code style="border: none; background: none">$path</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the file or directory (can be absolute or relative).</p></td>
                             </tr>
@@ -481,7 +481,7 @@ located at the path specified.</p>
             <article class="method">
                 <h3 class="public ">nameOnly()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> nameOnly (string&nbsp;<span class="argument">$sPath</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> nameOnly (string&nbsp;<span class="argument">$path</span>) : OOPString</pre>
                 <p><em><p>Returns the name of the file or directory located at a specified path, without any extensions.</p></em></p>
                 <p>As special cases, the method returns "/", "..", or "." if the path (after normalization) is respectively "/",
 "..", or ".".</p>
@@ -489,7 +489,7 @@ located at the path specified.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPath</code> </td>
+                                <td><code style="border: none; background: none">$path</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the file or directory (can be absolute or relative).</p></td>
                             </tr>
@@ -527,14 +527,14 @@ located at the path specified.</p>
             <article class="method">
                 <h3 class="public ">extension()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> extension (string&nbsp;<span class="argument">$sPath</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> extension (string&nbsp;<span class="argument">$path</span>) : OOPString</pre>
                 <p><em><p>Returns the full extension of the file located at a specified path.</p></em></p>
                 <p>For example, the full extension of "/path/to/file.tar.gz" is "tar.gz".</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPath</code> </td>
+                                <td><code style="border: none; background: none">$path</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the file (can be absolute or relative).</p></td>
                             </tr>
@@ -572,14 +572,14 @@ located at the path specified.</p>
             <article class="method">
                 <h3 class="public ">lastExtension()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> lastExtension (string&nbsp;<span class="argument">$sPath</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> lastExtension (string&nbsp;<span class="argument">$path</span>) : OOPString</pre>
                 <p><em><p>Returns only the last extension of the file located at a specified path.</p></em></p>
                 <p>For example, the last extension of "/path/to/file.tar.gz" is "gz".</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPath</code> </td>
+                                <td><code style="border: none; background: none">$path</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the file (can be absolute or relative).</p></td>
                             </tr>
@@ -617,7 +617,7 @@ located at the path specified.</p>
             <article class="method">
                 <h3 class="public ">add()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> add (string&nbsp;<span class="argument">$sBasePath</span>, string&nbsp;<span class="argument">$sComponent</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> add (string&nbsp;<span class="argument">$basePath</span>, string&nbsp;<span class="argument">$component</span>) : OOPString</pre>
                 <p><em><p>Adds a path component to a path, separating them with a slash if needed, and returns the combined path.</p></em></p>
                 <p>If the specified path component already starts with "/", it still results in a single "/" as the separator. And,
 as a special case, if the base path is empty, the returned string is the same as the specified path component.</p>
@@ -625,12 +625,12 @@ as a special case, if the base path is empty, the returned string is the same as
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sBasePath</code> </td>
+                                <td><code style="border: none; background: none">$basePath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The base path (can be absolute or relative).</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sComponent</code> </td>
+                                <td><code style="border: none; background: none">$component</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path component to be added to the base path (cannot be absolute).</p></td>
                             </tr>
@@ -668,7 +668,7 @@ as a special case, if the base path is empty, the returned string is the same as
             <article class="method">
                 <h3 class="public ">normalize()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> normalize (string&nbsp;<span class="argument">$sPath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bTargetIsExecutable</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> normalize (string&nbsp;<span class="argument">$path</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$targetIsExecutable</span></span>) : OOPString</pre>
                 <p><em><p>Normalizes a path by removing any trailing slashes, any redundant slashes, any references to the current
 directory, and any references to the parent directory where possible, and returns the new path.</p></em></p>
                 <p>For example, "/path//./dir-a/.././to//../dir-b/" is normalized to "/path/dir-b".</p>
@@ -676,12 +676,12 @@ directory, and any references to the parent directory where possible, and return
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPath</code> </td>
+                                <td><code style="border: none; background: none">$path</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to be normalized (can be absolute or relative).</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bTargetIsExecutable</code> </td>
+                                <td><code style="border: none; background: none">$targetIsExecutable</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the path's target should be
 treated as an executable so that, if the path starts with ".", the resulting path will start with "." too and
@@ -721,7 +721,7 @@ the "." will not be removed as a reference to the current directory.</p></td>
             <article class="method">
                 <h3 class="public ">absolute()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> absolute (string&nbsp;<span class="argument">$sPath</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> absolute (string&nbsp;<span class="argument">$path</span>) : OOPString</pre>
                 <p><em><p>Asks the file system for the absolute path to a file or directory located at a specified relative path and
 returns the answer.</p></em></p>
                 <p>The file or directory should actually exist for the file system to be able to answer.</p>
@@ -729,7 +729,7 @@ returns the answer.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPath</code> </td>
+                                <td><code style="border: none; background: none">$path</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the file or directory (usually a relative one).</p></td>
                             </tr>
@@ -767,14 +767,14 @@ returns the answer.</p></em></p>
             <article class="method">
                 <h3 class="public ">isAbsolute()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isAbsolute (string&nbsp;<span class="argument">$sPath</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isAbsolute (string&nbsp;<span class="argument">$path</span>) : bool</pre>
                 <p><em><p>Determines if a path is absolute.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPath</code> </td>
+                                <td><code style="border: none; background: none">$path</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to be looked into.</p></td>
                             </tr>
@@ -812,7 +812,7 @@ returns the answer.</p></em></p>
             <article class="method">
                 <h3 class="public ">frameworkPath()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> frameworkPath (string&nbsp;<span class="argument">$sPath</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> frameworkPath (string&nbsp;<span class="argument">$path</span>) : OOPString</pre>
                 <p><em><p>Replaces any reference to one of the framework's special directories in a path with the directory's actual path
 and returns the usable path.</p></em></p>
                 <p>A framework's directory is referenced in a path by wrapping its ID into double curly braces, as in
@@ -821,7 +821,7 @@ and returns the usable path.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPath</code> </td>
+                                <td><code style="border: none; background: none">$path</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the file or directory (can be absolute or relative).</p></td>
                             </tr>
@@ -907,7 +907,7 @@ and returns the usable path.</p></em></p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

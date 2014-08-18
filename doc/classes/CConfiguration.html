@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-180381887"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1547827447"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-180381887" class="accordion-body collapse in">
+            <div id="namespace-1547827447" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -275,9 +275,9 @@ under the "Application" category.</p>
                                 <em>N/A</em>
                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/CConfiguration.html#property_ms_bIsInitialized" class="">$ms_bIsInitialized</a><br />
-                                                                    <a href="../classes/CConfiguration.html#property_ms_mConfig" class="">$ms_mConfig</a><br />
-                                                                    <a href="../classes/CConfiguration.html#property_ms_mConfigAliases" class="">$ms_mConfigAliases</a><br />
+                                                                    <a href="../classes/CConfiguration.html#property_ms_isInitialized" class="">$ms_isInitialized</a><br />
+                                                                    <a href="../classes/CConfiguration.html#property_ms_config" class="">$ms_config</a><br />
+                                                                    <a href="../classes/CConfiguration.html#property_ms_configAliases" class="">$ms_configAliases</a><br />
                                                             </section>
                         </section>
                         <section class="row-fluid private">
@@ -370,14 +370,14 @@ under the "Application" category.</p>
             <article class="method">
                 <h3 class="public ">option()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> option (string&nbsp;<span class="argument">$sPath</span>) : mixed</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> option (string&nbsp;<span class="argument">$path</span>) : mixed</pre>
                 <p><em><p>Returns the value of the application's configuration option specified by a global path.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPath</code> </td>
+                                <td><code style="border: none; background: none">$path</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The global path to the option.</p></td>
                             </tr>
@@ -415,19 +415,19 @@ under the "Application" category.</p>
             <article class="method">
                 <h3 class="public ">setOption()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setOption (string&nbsp;<span class="argument">$sPath</span>, mixed&nbsp;<span class="argument">$xValue</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setOption (string&nbsp;<span class="argument">$path</span>, mixed&nbsp;<span class="argument">$value</span>) : void</pre>
                 <p><em><p>Sets the value of the application's configuration option specified by a global path.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPath</code> </td>
+                                <td><code style="border: none; background: none">$path</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The global path to the option.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$xValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The new value.</p></td>
                             </tr>
@@ -460,14 +460,14 @@ under the "Application" category.</p>
             <article class="method">
                 <h3 class="public ">appOption()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> appOption (string&nbsp;<span class="argument">$sOptionName</span>) : mixed</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> appOption (string&nbsp;<span class="argument">$optionName</span>) : mixed</pre>
                 <p><em><p>Returns the value of an application's configuration option under the "Application" branch.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option, under the "Application" branch.</p></td>
                             </tr>
@@ -505,19 +505,19 @@ under the "Application" category.</p>
             <article class="method">
                 <h3 class="public ">setAppOption()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setAppOption (string&nbsp;<span class="argument">$sOptionName</span>, mixed&nbsp;<span class="argument">$xValue</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setAppOption (string&nbsp;<span class="argument">$optionName</span>, mixed&nbsp;<span class="argument">$value</span>) : void</pre>
                 <p><em><p>Sets the value of an application's configuration option under the "Application" branch.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option, under the "Application" branch.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$xValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The new value.</p></td>
                             </tr>
@@ -551,24 +551,24 @@ under the "Application" category.</p>
             <article class="method">
                 <h3 class="protected ">readAndAddConfig()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> readAndAddConfig (&nbsp;<span class="argument">$sConfigFp</span>, &nbsp;<span class="argument">$sConfigName</span>, &nbsp;<span class="argument">$aConfigs</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> readAndAddConfig (&nbsp;<span class="argument">$configFp</span>, &nbsp;<span class="argument">$configName</span>, &nbsp;<span class="argument">$configs</span>)</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sConfigFp</code> </td>
+                                <td><code style="border: none; background: none">$configFp</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sConfigName</code> </td>
+                                <td><code style="border: none; background: none">$configName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$aConfigs</code> </td>
+                                <td><code style="border: none; background: none">$configs</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
@@ -608,10 +608,10 @@ under the "Application" category.</p>
 
                                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_ms_bIsInitialized" name="property_ms_bIsInitialized" class="anchor"></a>
+            <a id="property_ms_isInitialized" name="property_ms_isInitialized" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$ms_bIsInitialized</h3>
-                <pre class="signature">$ms_bIsInitialized</pre>
+                <h3 class="protected ">$ms_isInitialized</h3>
+                <pre class="signature">$ms_isInitialized</pre>
                 <p><em></em></p>
                 
 
@@ -636,10 +636,10 @@ under the "Application" category.</p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_ms_mConfig" name="property_ms_mConfig" class="anchor"></a>
+            <a id="property_ms_config" name="property_ms_config" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$ms_mConfig</h3>
-                <pre class="signature">$ms_mConfig</pre>
+                <h3 class="protected ">$ms_config</h3>
+                <pre class="signature">$ms_config</pre>
                 <p><em></em></p>
                 
 
@@ -664,10 +664,10 @@ under the "Application" category.</p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_ms_mConfigAliases" name="property_ms_mConfigAliases" class="anchor"></a>
+            <a id="property_ms_configAliases" name="property_ms_configAliases" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$ms_mConfigAliases</h3>
-                <pre class="signature">$ms_mConfigAliases</pre>
+                <h3 class="protected ">$ms_configAliases</h3>
+                <pre class="signature">$ms_configAliases</pre>
                 <p><em></em></p>
                 
 
@@ -740,7 +740,7 @@ under the "Application" category.</p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

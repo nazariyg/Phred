@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * The class that greatly simplifies writing CLI scripts in PHP by facilitating messaging, logging and mailing, script
  * option retrieval, input capturing, and command execution in both CLI and regular modes.
@@ -12,39 +13,39 @@
  */
 
 // Method signatures:
-//   static void setLogging ($sLogFp)
-//   static void setMailing (CMail $oMail)
-//   static bool hasOption ($sOptionName)
-//   static bool hasOptionWithValue ($sOptionName)
-//   static bool hasLongOption ($sOptionName)
-//   static bool hasLongOptionWithValue ($sOptionName)
-//   static CUStringObject valueForOption ($sOptionName)
-//   static CUStringObject valueForLongOption ($sOptionName)
-//   static CArrayObject valuesForOption ($sOptionName)
-//   static CArrayObject valuesForLongOption ($sOptionName)
-//   static bool valueForOptionBool ($sOptionName)
-//   static bool valueForLongOptionBool ($sOptionName)
-//   static int valueForOptionInt ($sOptionName)
-//   static int valueForLongOptionInt ($sOptionName)
+//   static void setLogging ($logFp)
+//   static void setMailing (CMail $mail)
+//   static bool hasOption ($optionName)
+//   static bool hasOptionWithValue ($optionName)
+//   static bool hasLongOption ($optionName)
+//   static bool hasLongOptionWithValue ($optionName)
+//   static CUStringObject valueForOption ($optionName)
+//   static CUStringObject valueForLongOption ($optionName)
+//   static CArrayObject valuesForOption ($optionName)
+//   static CArrayObject valuesForLongOption ($optionName)
+//   static bool valueForOptionBool ($optionName)
+//   static bool valueForLongOptionBool ($optionName)
+//   static int valueForOptionInt ($optionName)
+//   static int valueForLongOptionInt ($optionName)
 //   static CUStringObject scriptFp ()
 //   static CUStringObject scriptDp ()
 //   static CUStringObject currentDate ()
 //   static CUStringObject user ()
 //   static void exitIfNotRoot ()
-//   static void say ($sMessage, $bWriteToLog = true)
-//   static void speak ($sMessage, $bWriteToLog = true)
+//   static void say ($message, $writeToLog = true)
+//   static void speak ($message, $writeToLog = true)
 //   static CUStringObject getInput ()
 //   static CUStringObject getInputSecretly ()
-//   static CUStringObject execCommand ($sCommand, &$rbSuccess = null)
-//   static CUStringObject execCommandPipe ($sCommands, &$rbSuccess = null)
-//   static CUStringObject execCommandM ($sCommand, $xMessage, $bExitOnFail = true)
-//   static CUStringObject execCommandPipeM ($sCommands, $xMessage, $bExitOnFail = true)
-//   static void exitOkM ($sMessage)
-//   static void errorM ($sMessage, $iLineNum = null)
-//   static void warningM ($sMessage, $iLineNum = null)
-//   static void writeToLog ($sString)
-//   static void sendMail ($sMessage)
-//   static void exitScript ($bStatusIsOk, $bWriteNewlineToLog = true)
+//   static CUStringObject execCommand ($command, &$success = null)
+//   static CUStringObject execCommandPipe ($commands, &$success = null)
+//   static CUStringObject execCommandM ($command, $message, $exitOnFail = true)
+//   static CUStringObject execCommandPipeM ($commands, $message, $exitOnFail = true)
+//   static void exitOkM ($message)
+//   static void errorM ($message, $lineNum = null)
+//   static void warningM ($message, $lineNum = null)
+//   static void writeToLog ($string)
+//   static void sendMail ($message)
+//   static void exitScript ($statusIsOk, $writeNewlineToLog = true)
 
 class CShell extends CRootClass
 {
@@ -53,177 +54,177 @@ class CShell extends CRootClass
      * Enables the logging of messages issued with `say` and `speak` methods and error messages into a file located at
      * a specified path.
      *
-     * @param  string $sLogFp The path to the log file.
+     * @param  string $logFp The path to the log file.
      *
      * @return void
      */
 
-    public static function setLogging ($sLogFp)
+    public static function setLogging ($logFp)
     {
-        assert( 'is_cstring($sLogFp)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($logFp)', vs(isset($this), get_defined_vars()) );
 
-        $sLogFp = CFilePath::frameworkPath($sLogFp);
+        $logFp = CFilePath::frameworkPath($logFp);
 
-        self::$ms_sLogFp = $sLogFp;
+        self::$ms_logFp = $logFp;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Enables mailing about occurred errors with a specified message template.
      *
-     * @param  CMail $oMail The message template to be used for sending emails.
+     * @param  CMail $mail The message template to be used for sending emails.
      *
      * @return void
      */
 
-    public static function setMailing (CMail $oMail)
+    public static function setMailing (CMail $mail)
     {
-        self::$ms_oMail = $oMail;
-        self::$ms_oMail->setSubject("PHP Running in CLI Mode Encountered a Problem after Starting '" .
+        self::$ms_mail = $mail;
+        self::$ms_mail->setSubject("PHP Running in CLI Mode Encountered a Problem after Starting '" .
             CSystem::initScriptFn() . "'");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if the script was run with a specified short option, e.g. "-o".
      *
-     * @param  string $sOptionName The name of the option, excluding "-".
+     * @param  string $optionName The name of the option, excluding "-".
      *
      * @return bool `true` if the script was run with the option specified, `false` otherwise.
      */
 
-    public static function hasOption ($sOptionName)
+    public static function hasOption ($optionName)
     {
-        assert( 'is_cstring($sOptionName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($optionName)', vs(isset($this), get_defined_vars()) );
 
-        $mOpt = getopt("$sOptionName::");
-        return ( is_cmap($mOpt) && CMap::hasKey($mOpt, $sOptionName) );
+        $opt = getopt("$optionName::");
+        return ( is_cmap($opt) && CMap::hasKey($opt, $optionName) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if the script was run with a specified short option and the option had a value assigned to it,
      * e.g. "-o=value".
      *
-     * @param  string $sOptionName The name of the option, excluding "-".
+     * @param  string $optionName The name of the option, excluding "-".
      *
      * @return bool `true` if the script was run with the option specified and the option had a value assigned to it,
      * `false` otherwise.
      */
 
-    public static function hasOptionWithValue ($sOptionName)
+    public static function hasOptionWithValue ($optionName)
     {
-        assert( 'is_cstring($sOptionName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($optionName)', vs(isset($this), get_defined_vars()) );
 
-        $mOpt = getopt("$sOptionName:");
-        return ( is_cmap($mOpt) && CMap::hasKey($mOpt, $sOptionName) && $mOpt[$sOptionName] !== false );
+        $opt = getopt("$optionName:");
+        return ( is_cmap($opt) && CMap::hasKey($opt, $optionName) && $opt[$optionName] !== false );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if the script was run with a specified long option, e.g. "--option".
      *
-     * @param  string $sOptionName The name of the option, excluding "-".
+     * @param  string $optionName The name of the option, excluding "-".
      *
      * @return bool `true` if the script was run with the option specified, `false` otherwise.
      */
 
-    public static function hasLongOption ($sOptionName)
+    public static function hasLongOption ($optionName)
     {
-        assert( 'is_cstring($sOptionName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($optionName)', vs(isset($this), get_defined_vars()) );
 
-        $mOpt = getopt("", ["$sOptionName::"]);
-        return ( is_cmap($mOpt) && CMap::hasKey($mOpt, $sOptionName) );
+        $opt = getopt("", ["$optionName::"]);
+        return ( is_cmap($opt) && CMap::hasKey($opt, $optionName) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if the script was run with a specified long option and the option had a value assigned to it,
      * e.g. "--option=value".
      *
-     * @param  string $sOptionName The name of the option, excluding "-".
+     * @param  string $optionName The name of the option, excluding "-".
      *
      * @return bool `true` if the script was run with the option specified and the option had a value assigned to it,
      * `false` otherwise.
      */
 
-    public static function hasLongOptionWithValue ($sOptionName)
+    public static function hasLongOptionWithValue ($optionName)
     {
-        assert( 'is_cstring($sOptionName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($optionName)', vs(isset($this), get_defined_vars()) );
 
-        $mOpt = getopt("", ["$sOptionName:"]);
-        return ( is_cmap($mOpt) && CMap::hasKey($mOpt, $sOptionName) && $mOpt[$sOptionName] !== false );
+        $opt = getopt("", ["$optionName:"]);
+        return ( is_cmap($opt) && CMap::hasKey($opt, $optionName) && $opt[$optionName] !== false );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the value of a specified short option with which the script was run, as a string.
      *
-     * @param  string $sOptionName The name of the option, excluding "-".
+     * @param  string $optionName The name of the option, excluding "-".
      *
      * @return CUStringObject The value of the option specified.
      */
 
-    public static function valueForOption ($sOptionName)
+    public static function valueForOption ($optionName)
     {
-        assert( 'is_cstring($sOptionName)', vs(isset($this), get_defined_vars()) );
-        assert( 'self::hasOptionWithValue($sOptionName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($optionName)', vs(isset($this), get_defined_vars()) );
+        assert( 'self::hasOptionWithValue($optionName)', vs(isset($this), get_defined_vars()) );
 
-        $mOpt = getopt("$sOptionName:");
-        $sValue = $mOpt[$sOptionName];
-        assert( 'is_cstring($sValue)', vs(isset($this), get_defined_vars()) );
-        return $sValue;
+        $opt = getopt("$optionName:");
+        $value = $opt[$optionName];
+        assert( 'is_cstring($value)', vs(isset($this), get_defined_vars()) );
+        return $value;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the value of a specified long option with which the script was run, as a string.
      *
-     * @param  string $sOptionName The name of the option, excluding "-".
+     * @param  string $optionName The name of the option, excluding "-".
      *
      * @return CUStringObject The value of the option specified.
      */
 
-    public static function valueForLongOption ($sOptionName)
+    public static function valueForLongOption ($optionName)
     {
-        assert( 'is_cstring($sOptionName)', vs(isset($this), get_defined_vars()) );
-        assert( 'self::hasLongOptionWithValue($sOptionName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($optionName)', vs(isset($this), get_defined_vars()) );
+        assert( 'self::hasLongOptionWithValue($optionName)', vs(isset($this), get_defined_vars()) );
 
-        $mOpt = getopt("", ["$sOptionName:"]);
-        $sValue = $mOpt[$sOptionName];
-        assert( 'is_cstring($sValue)', vs(isset($this), get_defined_vars()) );
-        return $sValue;
+        $opt = getopt("", ["$optionName:"]);
+        $value = $opt[$optionName];
+        assert( 'is_cstring($value)', vs(isset($this), get_defined_vars()) );
+        return $value;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns all the values assigned to a specified short option with which the script was run,
      * e.g. "-o=value1 -o=value2".
      *
-     * @param  string $sOptionName The name of the option, excluding "-".
+     * @param  string $optionName The name of the option, excluding "-".
      *
      * @return CArrayObject The values of the option specified, where each value is of type `CUStringObject`.
      */
 
-    public static function valuesForOption ($sOptionName)
+    public static function valuesForOption ($optionName)
     {
-        assert( 'is_cstring($sOptionName)', vs(isset($this), get_defined_vars()) );
-        assert( 'self::hasOptionWithValue($sOptionName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($optionName)', vs(isset($this), get_defined_vars()) );
+        assert( 'self::hasOptionWithValue($optionName)', vs(isset($this), get_defined_vars()) );
 
-        $mOpt = getopt("$sOptionName:");
-        $xValues = $mOpt[$sOptionName];
-        return oop_a(( is_cmap($xValues) ) ? CArray::fromPArray($xValues) : CArray::fromElements($xValues));
+        $opt = getopt("$optionName:");
+        $values = $opt[$optionName];
+        return oop_a(( is_cmap($values) ) ? CArray::fromPArray($values) : CArray::fromElements($values));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns all the values assigned to a specified long option with which the script was run,
      * e.g. "--option=value1 --option=value2".
      *
-     * @param  string $sOptionName The name of the option, excluding "-".
+     * @param  string $optionName The name of the option, excluding "-".
      *
      * @return CArrayObject The values of the option specified, where each value is of type `CUStringObject`.
      */
 
-    public static function valuesForLongOption ($sOptionName)
+    public static function valuesForLongOption ($optionName)
     {
-        assert( 'is_cstring($sOptionName)', vs(isset($this), get_defined_vars()) );
-        assert( 'self::hasLongOptionWithValue($sOptionName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($optionName)', vs(isset($this), get_defined_vars()) );
+        assert( 'self::hasLongOptionWithValue($optionName)', vs(isset($this), get_defined_vars()) );
 
-        $mOpt = getopt("", ["$sOptionName:"]);
-        $xValues = $mOpt[$sOptionName];
-        return oop_a(( is_cmap($xValues) ) ? CArray::fromPArray($xValues) : CArray::fromElements($xValues));
+        $opt = getopt("", ["$optionName:"]);
+        $values = $opt[$optionName];
+        return oop_a(( is_cmap($values) ) ? CArray::fromPArray($values) : CArray::fromElements($values));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -232,15 +233,15 @@ class CShell extends CRootClass
      * If the option's value is "1", "true", "yes", or "on", case-insensitively, it's recognized as `true`, and as
      * `false` for any other value.
      *
-     * @param  string $sOptionName The name of the option, excluding "-".
+     * @param  string $optionName The name of the option, excluding "-".
      *
      * @return bool `true` for "1", "true", "yes", and "on", case-insensitively, `false` otherwise.
      */
 
-    public static function valueForOptionBool ($sOptionName)
+    public static function valueForOptionBool ($optionName)
     {
-        assert( 'is_cstring($sOptionName)', vs(isset($this), get_defined_vars()) );
-        return CString::toBool(self::valueForOption($sOptionName));
+        assert( 'is_cstring($optionName)', vs(isset($this), get_defined_vars()) );
+        return CString::toBool(self::valueForOption($optionName));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -249,43 +250,43 @@ class CShell extends CRootClass
      * If the option's value is "1", "true", "yes", or "on", case-insensitively, it's recognized as `true`, and as
      * `false` for any other value.
      *
-     * @param  string $sOptionName The name of the option, excluding "-".
+     * @param  string $optionName The name of the option, excluding "-".
      *
      * @return bool `true` for "1", "true", "yes", and "on", case-insensitively, `false` otherwise.
      */
 
-    public static function valueForLongOptionBool ($sOptionName)
+    public static function valueForLongOptionBool ($optionName)
     {
-        assert( 'is_cstring($sOptionName)', vs(isset($this), get_defined_vars()) );
-        return CString::toBool(self::valueForLongOption($sOptionName));
+        assert( 'is_cstring($optionName)', vs(isset($this), get_defined_vars()) );
+        return CString::toBool(self::valueForLongOption($optionName));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the value of a specified short option with which the script was run, as an integer value.
      *
-     * @param  string $sOptionName The name of the option, excluding "-".
+     * @param  string $optionName The name of the option, excluding "-".
      *
      * @return int The value of the option specified.
      */
 
-    public static function valueForOptionInt ($sOptionName)
+    public static function valueForOptionInt ($optionName)
     {
-        assert( 'is_cstring($sOptionName)', vs(isset($this), get_defined_vars()) );
-        return CString::toInt(self::valueForOption($sOptionName));
+        assert( 'is_cstring($optionName)', vs(isset($this), get_defined_vars()) );
+        return CString::toInt(self::valueForOption($optionName));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the value of a specified long option with which the script was run, as an integer value.
      *
-     * @param  string $sOptionName The name of the option, excluding "-".
+     * @param  string $optionName The name of the option, excluding "-".
      *
      * @return int The value of the option specified.
      */
 
-    public static function valueForLongOptionInt ($sOptionName)
+    public static function valueForLongOptionInt ($optionName)
     {
-        assert( 'is_cstring($sOptionName)', vs(isset($this), get_defined_vars()) );
-        return CString::toInt(self::valueForLongOption($sOptionName));
+        assert( 'is_cstring($optionName)', vs(isset($this), get_defined_vars()) );
+        return CString::toInt(self::valueForLongOption($optionName));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -319,9 +320,9 @@ class CShell extends CRootClass
 
     public static function currentDate ()
     {
-        $sDate = self::execCommand("date");
-        $sDate = CString::trim($sDate);
-        return $sDate;
+        $date = self::execCommand("date");
+        $date = CString::trim($date);
+        return $date;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -334,10 +335,10 @@ class CShell extends CRootClass
 
     public static function user ()
     {
-        $sFoundString;
-        $bFound = CRegex::find(self::execCommand("whoami"), "/\\S+/", $sFoundString);
-        assert( '$bFound', vs(isset($this), get_defined_vars()) );
-        return $sFoundString;
+        $foundString;
+        $found = CRegex::find(self::execCommand("whoami"), "/\\S+/", $foundString);
+        assert( '$found', vs(isset($this), get_defined_vars()) );
+        return $foundString;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -348,11 +349,11 @@ class CShell extends CRootClass
 
     public static function exitIfNotRoot ()
     {
-        $sUser = self::user();
-        if ( !CString::equals($sUser, "root") )
+        $user = self::user();
+        if ( !CString::equals($user, "root") )
         {
-            $sMessage = "This script requires root privileges to run, while the current user is $sUser.";
-            self::onError(true, $sMessage);
+            $message = "This script requires root privileges to run, while the current user is $user.";
+            self::onError(true, $message);
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -360,25 +361,25 @@ class CShell extends CRootClass
      * Echoes a message into the output and, if logging is enabled, into the log file, making a new line after the
      * message's text unless the message is already ending in a newline.
      *
-     * @param  string $sMessage The message to be echoed.
-     * @param  bool $bWriteToLog **OPTIONAL. Default is** `true`. If logging is enabled, tells whether the message
+     * @param  string $message The message to be echoed.
+     * @param  bool $writeToLog **OPTIONAL. Default is** `true`. If logging is enabled, tells whether the message
      * should also be written to the log file.
      *
      * @return void
      */
 
-    public static function say ($sMessage, $bWriteToLog = true)
+    public static function say ($message, $writeToLog = true)
     {
-        assert( 'is_cstring($sMessage) && is_bool($bWriteToLog)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($message) && is_bool($writeToLog)', vs(isset($this), get_defined_vars()) );
 
-        if ( !CString::endsWith($sMessage, "\n") )
+        if ( !CString::endsWith($message, "\n") )
         {
-            $sMessage .= "\n";
+            $message .= "\n";
         }
-        echo $sMessage;
-        if ( $bWriteToLog && isset(self::$ms_sLogFp) )
+        echo $message;
+        if ( $writeToLog && isset(self::$ms_logFp) )
         {
-            self::writeToLog($sMessage);
+            self::writeToLog($message);
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -386,25 +387,25 @@ class CShell extends CRootClass
      * Echoes a message into the output and, if logging is enabled, into the log file, adding a space after the
      * message's text unless the message is already ending in a space.
      *
-     * @param  string $sMessage The message to be echoed.
-     * @param  bool $bWriteToLog **OPTIONAL. Default is** `true`. If logging is enabled, tells whether the message
+     * @param  string $message The message to be echoed.
+     * @param  bool $writeToLog **OPTIONAL. Default is** `true`. If logging is enabled, tells whether the message
      * should also be written to the log file.
      *
      * @return void
      */
 
-    public static function speak ($sMessage, $bWriteToLog = true)
+    public static function speak ($message, $writeToLog = true)
     {
-        assert( 'is_cstring($sMessage) && is_bool($bWriteToLog)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($message) && is_bool($writeToLog)', vs(isset($this), get_defined_vars()) );
 
-        if ( !CString::endsWith($sMessage, " ") )
+        if ( !CString::endsWith($message, " ") )
         {
-            $sMessage .= " ";
+            $message .= " ";
         }
-        echo $sMessage;
-        if ( $bWriteToLog && isset(self::$ms_sLogFp) )
+        echo $message;
+        if ( $writeToLog && isset(self::$ms_logFp) )
         {
-            self::writeToLog($sMessage);
+            self::writeToLog($message);
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -416,9 +417,9 @@ class CShell extends CRootClass
 
     public static function getInput ()
     {
-        $sInput = fgets(STDIN);
-        $sInput = CRegex::remove($sInput, "/\\n+\\z/");
-        return $sInput;
+        $input = fgets(STDIN);
+        $input = CRegex::remove($input, "/\\n+\\z/");
+        return $input;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -430,31 +431,31 @@ class CShell extends CRootClass
 
     public static function getInputSecretly ()
     {
-        $sInput = self::execCommand("stty -echo; head -n1; stty echo");
-        $sInput = CRegex::remove($sInput, "/\\n+\\z/");
-        return $sInput;
+        $input = self::execCommand("stty -echo; head -n1; stty echo");
+        $input = CRegex::remove($input, "/\\n+\\z/");
+        return $input;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Executes a command and returns the output.
      *
-     * @param  string $sCommand The command to be executed.
-     * @param  reference $rbSuccess **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
+     * @param  string $command The command to be executed.
+     * @param  reference $success **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value tells whether the command was run successfully.
      *
      * @return CUStringObject The output of the command.
      */
 
-    public static function execCommand ($sCommand, &$rbSuccess = null)
+    public static function execCommand ($command, &$success = null)
     {
-        assert( 'is_cstring($sCommand)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($command)', vs(isset($this), get_defined_vars()) );
 
         ob_start();
-        $iCommandExitCode;
-        passthru($sCommand, $iCommandExitCode);
-        $sOutput = ob_get_clean();
-        $rbSuccess = ( $iCommandExitCode == 0 );
-        return $sOutput;
+        $commandExitCode;
+        passthru($command, $commandExitCode);
+        $output = ob_get_clean();
+        $success = ( $commandExitCode == 0 );
+        return $output;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -463,54 +464,54 @@ class CShell extends CRootClass
      * Using this method instead of `execCommand` method ensures that, if a command in the pipeline fails, so does the
      * entire pipeline.
      *
-     * @param  string $sCommands The command pipeline to be executed.
-     * @param  reference $rbSuccess **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
+     * @param  string $commands The command pipeline to be executed.
+     * @param  reference $success **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value tells whether the pipeline was run successfully.
      *
      * @return CUStringObject The output of the command pipeline.
      */
 
-    public static function execCommandPipe ($sCommands, &$rbSuccess = null)
+    public static function execCommandPipe ($commands, &$success = null)
     {
-        assert( 'is_cstring($sCommands)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($commands)', vs(isset($this), get_defined_vars()) );
 
-        $sCommands = CString::replace($sCommands, "\"", "'");
-        $sCommand = "bash -c \"set -o pipefail && $sCommands\"";
-        return self::execCommand($sCommand, $rbSuccess);
+        $commands = CString::replace($commands, "\"", "'");
+        $command = "bash -c \"set -o pipefail && $commands\"";
+        return self::execCommand($command, $success);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Executes a command and returns the output, issuing a specified error message if the command fails.
      *
-     * @param  string $sCommand The command to be executed.
-     * @param  mixed $xMessage The error message to be issued if the command fails or the number of the line at which
+     * @param  string $command The command to be executed.
+     * @param  mixed $message The error message to be issued if the command fails or the number of the line at which
      * the error occurred (obtained using `__LINE__` magic constant). In the latter case, the error message is
      * generated automatically.
-     * @param  bool $bExitOnFail **OPTIONAL. Default is** `true`. Tells whether to exit the script if the command did
+     * @param  bool $exitOnFail **OPTIONAL. Default is** `true`. Tells whether to exit the script if the command did
      * not succeed.
      *
      * @return CUStringObject The output of the command.
      */
 
-    public static function execCommandM ($sCommand, $xMessage, $bExitOnFail = true)
+    public static function execCommandM ($command, $message, $exitOnFail = true)
     {
-        assert( 'is_cstring($sCommand) && (is_cstring($xMessage) || is_int($xMessage)) && is_bool($bExitOnFail)',
+        assert( 'is_cstring($command) && (is_cstring($message) || is_int($message)) && is_bool($exitOnFail)',
             vs(isset($this), get_defined_vars()) );
-        settype($xMessage, "string");
+        settype($message, "string");
 
-        $bCommandSuccess;
-        $sOutput = self::execCommand($sCommand, $bCommandSuccess);
-        if ( !$bCommandSuccess )
+        $commandSuccess;
+        $output = self::execCommand($command, $commandSuccess);
+        if ( !$commandSuccess )
         {
-            if ( CRegex::find($xMessage, "/^\\d+\\z/") )
+            if ( CRegex::find($message, "/^\\d+\\z/") )
             {
                 // The message is a line number to be reported.
-                $xMessage =
-                    "The script encountered an error while executing command:\n$sCommand\nReported line: $xMessage.";
+                $message =
+                    "The script encountered an error while executing command:\n$command\nReported line: $message.";
             }
-            self::onError($bExitOnFail, $xMessage);
+            self::onError($exitOnFail, $message);
         }
-        return $sOutput;
+        return $output;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -520,187 +521,187 @@ class CShell extends CRootClass
      * Using this method instead of `execCommandM` method ensures that, if a command in the pipeline fails, so does the
      * entire pipeline.
      *
-     * @param  string $sCommands The command pipeline to be executed.
-     * @param  mixed $xMessage The error message to be issued if the pipeline fails or the number of the line at which
+     * @param  string $commands The command pipeline to be executed.
+     * @param  mixed $message The error message to be issued if the pipeline fails or the number of the line at which
      * the error occurred (obtained using `__LINE__` magic constant). In the latter case, the error message is
      * generated automatically.
-     * @param  bool $bExitOnFail **OPTIONAL. Default is** `true`. Tells whether to exit the script if the pipeline did
+     * @param  bool $exitOnFail **OPTIONAL. Default is** `true`. Tells whether to exit the script if the pipeline did
      * not succeed.
      *
      * @return CUStringObject The output of the command pipeline.
      */
 
-    public static function execCommandPipeM ($sCommands, $xMessage, $bExitOnFail = true)
+    public static function execCommandPipeM ($commands, $message, $exitOnFail = true)
     {
-        assert( 'is_cstring($sCommands) && (is_cstring($xMessage) || is_int($xMessage)) && is_bool($bExitOnFail)',
+        assert( 'is_cstring($commands) && (is_cstring($message) || is_int($message)) && is_bool($exitOnFail)',
             vs(isset($this), get_defined_vars()) );
-        settype($xMessage, "string");
+        settype($message, "string");
 
-        $bCommandsSuccess;
-        $sOutput = self::execCommandPipe($sCommands, $bCommandsSuccess);
-        if ( !$bCommandsSuccess )
+        $commandsSuccess;
+        $output = self::execCommandPipe($commands, $commandsSuccess);
+        if ( !$commandsSuccess )
         {
-            if ( CRegex::find($xMessage, "/^\\d+\\z/") )
+            if ( CRegex::find($message, "/^\\d+\\z/") )
             {
                 // The message is a line number to be reported.
-                $xMessage = "The script encountered an error while executing a command pipe:" .
-                    "\n$sCommands\nReported line: $xMessage.";
+                $message = "The script encountered an error while executing a command pipe:" .
+                    "\n$commands\nReported line: $message.";
             }
-            self::onError($bExitOnFail, $xMessage);
+            self::onError($exitOnFail, $message);
         }
-        return $sOutput;
+        return $output;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Exits the script with the success code, issuing a specified message.
      *
-     * @param  string $sMessage The message to be issued.
+     * @param  string $message The message to be issued.
      *
      * @return void
      */
 
-    public static function exitOkM ($sMessage)
+    public static function exitOkM ($message)
     {
-        assert( 'is_cstring($sMessage)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($message)', vs(isset($this), get_defined_vars()) );
 
-        $sMessage .= ( !CString::find($sMessage, "\n") ) ? " " : "\n";
-        $sMessage .= "Exiting.";
-        self::say($sMessage);
+        $message .= ( !CString::find($message, "\n") ) ? " " : "\n";
+        $message .= "Exiting.";
+        self::say($message);
         self::exitScript(true);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Reports an error with a specified message and exits the script.
      *
-     * @param  string $sMessage The error message to be issued.
-     * @param  int $iLineNum **OPTIONAL.** The number of the line at which the error occurred.
+     * @param  string $message The error message to be issued.
+     * @param  int $lineNum **OPTIONAL.** The number of the line at which the error occurred.
      *
      * @return void
      */
 
-    public static function errorM ($sMessage, $iLineNum = null)
+    public static function errorM ($message, $lineNum = null)
     {
-        assert( 'is_cstring($sMessage) && (!isset($iLineNum) || is_int($iLineNum))',
+        assert( 'is_cstring($message) && (!isset($lineNum) || is_int($lineNum))',
             vs(isset($this), get_defined_vars()) );
 
-        if ( isset($iLineNum) )
+        if ( isset($lineNum) )
         {
-            $sMessage .= ( !CString::find($sMessage, "\n") ) ? " " : "\n";
-            $sMessage .= "Reported line: $iLineNum.";
+            $message .= ( !CString::find($message, "\n") ) ? " " : "\n";
+            $message .= "Reported line: $lineNum.";
         }
-        self::onError(true, $sMessage);
+        self::onError(true, $message);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Reports an error with a specified message but does not exit the script.
      *
-     * @param  string $sMessage The error message to be issued.
-     * @param  int $iLineNum **OPTIONAL.** The number of the line at which the error occurred.
+     * @param  string $message The error message to be issued.
+     * @param  int $lineNum **OPTIONAL.** The number of the line at which the error occurred.
      *
      * @return void
      */
 
-    public static function warningM ($sMessage, $iLineNum = null)
+    public static function warningM ($message, $lineNum = null)
     {
-        assert( 'is_cstring($sMessage) && (!isset($iLineNum) || is_int($iLineNum))',
+        assert( 'is_cstring($message) && (!isset($lineNum) || is_int($lineNum))',
             vs(isset($this), get_defined_vars()) );
 
-        $sMessage = "Warning: $sMessage";
-        if ( isset($iLineNum) )
+        $message = "Warning: $message";
+        if ( isset($lineNum) )
         {
-            $sMessage .= ( !CString::find($sMessage, "\n") ) ? " " : "\n";
-            $sMessage .= "Reported line: $iLineNum.";
+            $message .= ( !CString::find($message, "\n") ) ? " " : "\n";
+            $message .= "Reported line: $lineNum.";
         }
-        self::onError(false, $sMessage);
+        self::onError(false, $message);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * If logging is enabled, writes a string into the log file.
      *
-     * @param  string $sString The string to be logged.
+     * @param  string $string The string to be logged.
      *
      * @return void
      */
 
-    public static function writeToLog ($sString)
+    public static function writeToLog ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        assert( 'isset(self::$ms_sLogFp)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        assert( 'isset(self::$ms_logFp)', vs(isset($this), get_defined_vars()) );
 
-        CFile::append(self::$ms_sLogFp, $sString);
+        CFile::append(self::$ms_logFp, $string);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * If mailing is enabled, sends a message out.
      *
-     * @param  string $sMessage The message to be sent.
+     * @param  string $message The message to be sent.
      *
      * @return void
      */
 
-    public static function sendMail ($sMessage)
+    public static function sendMail ($message)
     {
-        assert( 'is_cstring($sMessage)', vs(isset($this), get_defined_vars()) );
-        assert( 'isset(self::$ms_oMail)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($message)', vs(isset($this), get_defined_vars()) );
+        assert( 'isset(self::$ms_mail)', vs(isset($this), get_defined_vars()) );
 
         // Send.
-        self::$ms_oMail->setBody($sMessage);
-        self::$ms_oMail->disableWordWrapping();
-        self::$ms_oMail->send();
+        self::$ms_mail->setBody($message);
+        self::$ms_mail->disableWordWrapping();
+        self::$ms_mail->send();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Exits the script with a specified status.
      *
-     * @param  bool $bStatusIsOk `true` if the script has run successfully, `false` if not.
-     * @param  bool $bWriteNewlineToLog **OPTIONAL. Default is** `true`. If logging is enabled, tells whether the
+     * @param  bool $statusIsOk `true` if the script has run successfully, `false` if not.
+     * @param  bool $writeNewlineToLog **OPTIONAL. Default is** `true`. If logging is enabled, tells whether the
      * current entries in the log file should be concluded with a newline.
      *
      * @return void
      */
 
-    public static function exitScript ($bStatusIsOk, $bWriteNewlineToLog = true)
+    public static function exitScript ($statusIsOk, $writeNewlineToLog = true)
     {
-        assert( 'is_bool($bStatusIsOk) && is_bool($bWriteNewlineToLog)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($statusIsOk) && is_bool($writeNewlineToLog)', vs(isset($this), get_defined_vars()) );
 
-        if ( $bWriteNewlineToLog && isset(self::$ms_sLogFp) )
+        if ( $writeNewlineToLog && isset(self::$ms_logFp) )
         {
             self::writeToLog("\n");
         }
-        $iExitCode = ( $bStatusIsOk ) ? 0 : 1;
-        exit($iExitCode);
+        $exitCode = ( $statusIsOk ) ? 0 : 1;
+        exit($exitCode);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    public static function onError ($bExit = true, $sMessage)
+    public static function onError ($exit = true, $message)
     {
-        if ( $bExit )
+        if ( $exit )
         {
-            if ( !CString::isEmpty($sMessage) )
+            if ( !CString::isEmpty($message) )
             {
-                $sMessage .= ( !CString::find($sMessage, "\n") ) ? " " : "\n";
+                $message .= ( !CString::find($message, "\n") ) ? " " : "\n";
             }
-            $sMessage .= "Exiting.";
+            $message .= "Exiting.";
         }
-        if ( !CString::isEmpty($sMessage) )
+        if ( !CString::isEmpty($message) )
         {
-            self::say($sMessage);
+            self::say($message);
         }
-        if ( isset(self::$ms_oMail) )
+        if ( isset(self::$ms_mail) )
         {
-            self::sendMail($sMessage);
+            self::sendMail($message);
         }
-        if ( $bExit )
+        if ( $exit )
         {
             self::exitScript(false);
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    protected static $ms_sLogFp;
-    protected static $ms_oMail;
+    protected static $ms_logFp;
+    protected static $ms_mail;
 }
 

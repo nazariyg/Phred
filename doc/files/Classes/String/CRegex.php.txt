@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * A collection of static methods that let you express yourself regularly and get answered in the neatest way possible.
  *
@@ -9,21 +10,21 @@
  */
 
 // Method signatures:
-//   static int indexOf ($sString, $sOfPattern, $iStartPos = 0, &$rsFoundString = null)
-//   static int lastIndexOf ($sString, $sOfPattern, $iStartPos = 0, &$rsFoundString = null)
-//   static bool find ($sString, $sFindPattern, &$rsFoundString = null)
-//   static bool findFrom ($sString, $sFindPattern, $iStartPos, &$rsFoundString = null)
-//   static bool findGroups ($sString, $sFindPattern, &$raFoundGroups, &$rsFoundString = null)
-//   static bool findGroupsFrom ($sString, $sFindPattern, $iStartPos, &$raFoundGroups, &$rsFoundString = null)
-//   static int findAll ($sString, $sFindPattern, &$raFoundStrings = null)
-//   static int findAllFrom ($sString, $sFindPattern, $iStartPos, &$raFoundStrings = null)
-//   static int findAllGroups ($sString, $sFindPattern, &$raFoundGroupArrays, &$raFoundStrings = null)
-//   static int findAllGroupsFrom ($sString, $sFindPattern, $iStartPos, &$raFoundGroupArrays, &$raFoundStrings = null)
-//   static string replace ($sString, $sWhatPattern, $sWith, &$riQuantity = null)
-//   static string replaceWithCallback ($sString, $sWhatPattern, $fnCallback, &$riQuantity = null)
-//   static string remove ($sString, $sWhatPattern, &$riQuantity = null)
-//   static CArray split ($sString, $xDelimiterPatternOrPatterns)
-//   static string enterTd ($sString, $sDelimiter = self::DEFAULT_PATTERN_DELIMITER)
+//   static int indexOf ($string, $ofPattern, $startPos = 0, &$foundString = null)
+//   static int lastIndexOf ($string, $ofPattern, $startPos = 0, &$foundString = null)
+//   static bool find ($string, $findPattern, &$foundString = null)
+//   static bool findFrom ($string, $findPattern, $startPos, &$foundString = null)
+//   static bool findGroups ($string, $findPattern, &$foundGroups, &$foundString = null)
+//   static bool findGroupsFrom ($string, $findPattern, $startPos, &$foundGroups, &$foundString = null)
+//   static int findAll ($string, $findPattern, &$foundStrings = null)
+//   static int findAllFrom ($string, $findPattern, $startPos, &$foundStrings = null)
+//   static int findAllGroups ($string, $findPattern, &$foundGroupArrays, &$foundStrings = null)
+//   static int findAllGroupsFrom ($string, $findPattern, $startPos, &$foundGroupArrays, &$foundStrings = null)
+//   static string replace ($string, $whatPattern, $with, &$quantity = null)
+//   static string replaceWithCallback ($string, $whatPattern, $callback, &$quantity = null)
+//   static string remove ($string, $whatPattern, &$quantity = null)
+//   static CArray split ($string, $delimiterPatternOrPatterns)
+//   static string enterTd ($string, $delimiter = self::DEFAULT_PATTERN_DELIMITER)
 
 class CRegex extends CRootClass
 {
@@ -39,10 +40,10 @@ class CRegex extends CRootClass
      * Returns the position of the first occurrence of a pattern in a string, optionally reporting the substring that
      * matched the pattern.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sOfPattern The searched pattern.
-     * @param  int $iStartPos **OPTIONAL. Default is** `0`. The starting position for the search.
-     * @param  reference $rsFoundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
+     * @param  string $string The string to be looked into.
+     * @param  string $ofPattern The searched pattern.
+     * @param  int $startPos **OPTIONAL. Default is** `0`. The starting position for the search.
+     * @param  reference $foundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `string`, is the first substring that
      * matched the pattern.
      *
@@ -50,18 +51,18 @@ class CRegex extends CRootClass
      * found.
      */
 
-    public static function indexOf ($sString, $sOfPattern, $iStartPos = 0, &$rsFoundString = null)
+    public static function indexOf ($string, $ofPattern, $startPos = 0, &$foundString = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sOfPattern) && is_int($iStartPos)',
+        assert( 'is_cstring($string) && is_cstring($ofPattern) && is_int($startPos)',
             vs(isset($this), get_defined_vars()) );
-        assert( '0 <= $iStartPos && $iStartPos <= strlen($sString)', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $startPos && $startPos <= strlen($string)', vs(isset($this), get_defined_vars()) );
 
-        $mMatches;
-        $xRes = preg_match($sOfPattern, $sString, $mMatches, PREG_OFFSET_CAPTURE, $iStartPos);
-        if ( $xRes === 1 )
+        $matches;
+        $res = preg_match($ofPattern, $string, $matches, PREG_OFFSET_CAPTURE, $startPos);
+        if ( $res === 1 )
         {
-            $rsFoundString = $mMatches[0][0];
-            return $mMatches[0][1];
+            $foundString = $matches[0][0];
+            return $matches[0][1];
         }
         else
         {
@@ -73,10 +74,10 @@ class CRegex extends CRootClass
      * Returns the position of the last occurrence of a pattern in a string, optionally reporting the substring that
      * matched the pattern.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sOfPattern The searched pattern.
-     * @param  int $iStartPos **OPTIONAL. Default is** `0`. The starting position for the search.
-     * @param  reference $rsFoundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
+     * @param  string $string The string to be looked into.
+     * @param  string $ofPattern The searched pattern.
+     * @param  int $startPos **OPTIONAL. Default is** `0`. The starting position for the search.
+     * @param  reference $foundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `string`, is the last substring that
      * matched the pattern.
      *
@@ -84,19 +85,19 @@ class CRegex extends CRootClass
      * found.
      */
 
-    public static function lastIndexOf ($sString, $sOfPattern, $iStartPos = 0, &$rsFoundString = null)
+    public static function lastIndexOf ($string, $ofPattern, $startPos = 0, &$foundString = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sOfPattern) && is_int($iStartPos)',
+        assert( 'is_cstring($string) && is_cstring($ofPattern) && is_int($startPos)',
             vs(isset($this), get_defined_vars()) );
-        assert( '0 <= $iStartPos && $iStartPos <= strlen($sString)', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $startPos && $startPos <= strlen($string)', vs(isset($this), get_defined_vars()) );
 
-        $mMatches;
-        $xRes = preg_match_all($sOfPattern, $sString, $mMatches, PREG_OFFSET_CAPTURE, $iStartPos);
-        if ( is_int($xRes) && $xRes > 0 )
+        $matches;
+        $res = preg_match_all($ofPattern, $string, $matches, PREG_OFFSET_CAPTURE, $startPos);
+        if ( is_int($res) && $res > 0 )
         {
-            $iLastIdx = count($mMatches[0]) - 1;
-            $rsFoundString = $mMatches[0][$iLastIdx][0];
-            return $mMatches[0][$iLastIdx][1];
+            $lastIdx = count($matches[0]) - 1;
+            $foundString = $matches[0][$lastIdx][0];
+            return $matches[0][$lastIdx][1];
         }
         else
         {
@@ -108,31 +109,31 @@ class CRegex extends CRootClass
      * Determines if a string contains a specified pattern, optionally reporting the substring that matched the
      * pattern.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sFindPattern The searched pattern.
-     * @param  reference $rsFoundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
+     * @param  string $string The string to be looked into.
+     * @param  string $findPattern The searched pattern.
+     * @param  reference $foundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `string`, is the first substring that
      * matched the pattern.
      *
      * @return bool `true` if the pattern was found in the string, `false` otherwise.
      */
 
-    public static function find ($sString, $sFindPattern, &$rsFoundString = null)
+    public static function find ($string, $findPattern, &$foundString = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sFindPattern)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string) && is_cstring($findPattern)', vs(isset($this), get_defined_vars()) );
 
         if ( func_num_args() == 2 )
         {
             // Try not to waste memory on matched text.
-            return ( preg_match($sFindPattern, $sString) === 1 );
+            return ( preg_match($findPattern, $string) === 1 );
         }
         else
         {
-            $mMatches;
-            $xRes = preg_match($sFindPattern, $sString, $mMatches);
-            if ( $xRes === 1 )
+            $matches;
+            $res = preg_match($findPattern, $string, $matches);
+            if ( $res === 1 )
             {
-                $rsFoundString = $mMatches[0];
+                $foundString = $matches[0];
                 return true;
             }
             else
@@ -146,27 +147,27 @@ class CRegex extends CRootClass
      * Determines if a string contains a specified pattern, starting the search from a specified position and
      * optionally reporting the substring that matched the pattern.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sFindPattern The searched pattern.
-     * @param  int $iStartPos The starting position for the search.
-     * @param  reference $rsFoundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
+     * @param  string $string The string to be looked into.
+     * @param  string $findPattern The searched pattern.
+     * @param  int $startPos The starting position for the search.
+     * @param  reference $foundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `string`, is the first substring that
      * matched the pattern.
      *
      * @return bool `true` if the pattern was found in the string, `false` otherwise.
      */
 
-    public static function findFrom ($sString, $sFindPattern, $iStartPos, &$rsFoundString = null)
+    public static function findFrom ($string, $findPattern, $startPos, &$foundString = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sFindPattern) && is_int($iStartPos)',
+        assert( 'is_cstring($string) && is_cstring($findPattern) && is_int($startPos)',
             vs(isset($this), get_defined_vars()) );
-        assert( '0 <= $iStartPos && $iStartPos <= strlen($sString)', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $startPos && $startPos <= strlen($string)', vs(isset($this), get_defined_vars()) );
 
-        $mMatches;
-        $xRes = preg_match($sFindPattern, $sString, $mMatches, 0, $iStartPos);
-        if ( $xRes === 1 )
+        $matches;
+        $res = preg_match($findPattern, $string, $matches, 0, $startPos);
+        if ( $res === 1 )
         {
-            $rsFoundString = $mMatches[0];
+            $foundString = $matches[0];
             return true;
         }
         else
@@ -179,31 +180,31 @@ class CRegex extends CRootClass
      * Determines if a string contains a specified pattern, putting every substring that matches a regular expression
      * group into an array for output and optionally reporting the substring that matched the pattern.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sFindPattern The searched pattern, usually with groups.
-     * @param  reference $raFoundGroups **OUTPUT.** If the pattern was found, this is an array of type `CArray`
+     * @param  string $string The string to be looked into.
+     * @param  string $findPattern The searched pattern, usually with groups.
+     * @param  reference $foundGroups **OUTPUT.** If the pattern was found, this is an array of type `CArray`
      * containing the substrings that matched the groups in the pattern, in the same order, if any.
-     * @param  reference $rsFoundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
+     * @param  reference $foundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `string`, is the first substring that
      * matched the pattern.
      *
      * @return bool `true` if the pattern was found in the string, `false` otherwise.
      */
 
-    public static function findGroups ($sString, $sFindPattern, &$raFoundGroups, &$rsFoundString = null)
+    public static function findGroups ($string, $findPattern, &$foundGroups, &$foundString = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sFindPattern)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string) && is_cstring($findPattern)', vs(isset($this), get_defined_vars()) );
 
-        $mMatches;
-        $xRes = preg_match($sFindPattern, $sString, $mMatches);
-        if ( $xRes === 1 )
+        $matches;
+        $res = preg_match($findPattern, $string, $matches);
+        if ( $res === 1 )
         {
-            $raFoundGroups = CArray::make(count($mMatches) - 1);
-            for ($i0 = 1, $i1 = 0; $i0 < count($mMatches); $i0++, $i1++)
+            $foundGroups = CArray::make(count($matches) - 1);
+            for ($i0 = 1, $i1 = 0; $i0 < count($matches); $i0++, $i1++)
             {
-                $raFoundGroups[$i1] = $mMatches[$i0];
+                $foundGroups[$i1] = $matches[$i0];
             }
-            $rsFoundString = $mMatches[0];
+            $foundString = $matches[0];
             return true;
         }
         else
@@ -217,34 +218,34 @@ class CRegex extends CRootClass
      * every substring that matches a regular expression group into an array for output, optionally reporting the
      * substring that matched the pattern.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sFindPattern The searched pattern, usually with groups.
-     * @param  int $iStartPos The starting position for the search.
-     * @param  reference $raFoundGroups **OUTPUT.** If the pattern was found, this is an array of type `CArray`
+     * @param  string $string The string to be looked into.
+     * @param  string $findPattern The searched pattern, usually with groups.
+     * @param  int $startPos The starting position for the search.
+     * @param  reference $foundGroups **OUTPUT.** If the pattern was found, this is an array of type `CArray`
      * containing the substrings that matched the groups in the pattern, in the same order, if any.
-     * @param  reference $rsFoundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
+     * @param  reference $foundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `string`, is the first substring that
      * matched the pattern.
      *
      * @return bool `true` if the pattern was found in the string, `false` otherwise.
      */
 
-    public static function findGroupsFrom ($sString, $sFindPattern, $iStartPos, &$raFoundGroups, &$rsFoundString = null)
+    public static function findGroupsFrom ($string, $findPattern, $startPos, &$foundGroups, &$foundString = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sFindPattern) && is_int($iStartPos)',
+        assert( 'is_cstring($string) && is_cstring($findPattern) && is_int($startPos)',
             vs(isset($this), get_defined_vars()) );
-        assert( '0 <= $iStartPos && $iStartPos <= strlen($sString)', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $startPos && $startPos <= strlen($string)', vs(isset($this), get_defined_vars()) );
 
-        $mMatches;
-        $xRes = preg_match($sFindPattern, $sString, $mMatches, 0, $iStartPos);
-        if ( $xRes === 1 )
+        $matches;
+        $res = preg_match($findPattern, $string, $matches, 0, $startPos);
+        if ( $res === 1 )
         {
-            $raFoundGroups = CArray::make(count($mMatches) - 1);
-            for ($i0 = 1, $i1 = 0; $i0 < count($mMatches); $i0++, $i1++)
+            $foundGroups = CArray::make(count($matches) - 1);
+            for ($i0 = 1, $i1 = 0; $i0 < count($matches); $i0++, $i1++)
             {
-                $raFoundGroups[$i1] = $mMatches[$i0];
+                $foundGroups[$i1] = $matches[$i0];
             }
-            $rsFoundString = $mMatches[0];
+            $foundString = $matches[0];
             return true;
         }
         else
@@ -257,37 +258,37 @@ class CRegex extends CRootClass
      * Tells how many matches of a specified pattern there are in a string, optionally reporting the substrings that
      * matched the pattern.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sFindPattern The searched pattern.
-     * @param  reference $raFoundStrings **OPTIONAL. OUTPUT.** If any patterns have been found after the method was
+     * @param  string $string The string to be looked into.
+     * @param  string $findPattern The searched pattern.
+     * @param  reference $foundStrings **OPTIONAL. OUTPUT.** If any patterns have been found after the method was
      * called with this parameter provided, the parameter's value is an array of type `CArray` containing the
      * substrings that matched the pattern, in the order of appearance.
      *
      * @return int The number of matches of the pattern in the string.
      */
 
-    public static function findAll ($sString, $sFindPattern, &$raFoundStrings = null)
+    public static function findAll ($string, $findPattern, &$foundStrings = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sFindPattern)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string) && is_cstring($findPattern)', vs(isset($this), get_defined_vars()) );
 
         if ( func_num_args() == 2 )
         {
             // Try not to waste memory on matched text.
-            $xRes = preg_match_all($sFindPattern, $sString);
-            return ( is_int($xRes) ) ? $xRes : 0;
+            $res = preg_match_all($findPattern, $string);
+            return ( is_int($res) ) ? $res : 0;
         }
         else
         {
-            $mMatches;
-            $xRes = preg_match_all($sFindPattern, $sString, $mMatches);
-            if ( is_int($xRes) && $xRes > 0 )
+            $matches;
+            $res = preg_match_all($findPattern, $string, $matches);
+            if ( is_int($res) && $res > 0 )
             {
-                $raFoundStrings = CArray::make($xRes);
-                for ($i = 0; $i < $xRes; $i++)
+                $foundStrings = CArray::make($res);
+                for ($i = 0; $i < $res; $i++)
                 {
-                    $raFoundStrings[$i] = $mMatches[0][$i];
+                    $foundStrings[$i] = $matches[0][$i];
                 }
-                return $xRes;
+                return $res;
             }
             else
             {
@@ -300,32 +301,32 @@ class CRegex extends CRootClass
      * Tells how many matches of a specified pattern there are in a string, starting the search from a specified
      * position and optionally reporting the substrings that matched the pattern.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sFindPattern The searched pattern.
-     * @param  int $iStartPos The starting position for the search.
-     * @param  reference $raFoundStrings **OPTIONAL. OUTPUT.** If any patterns have been found after the method was
+     * @param  string $string The string to be looked into.
+     * @param  string $findPattern The searched pattern.
+     * @param  int $startPos The starting position for the search.
+     * @param  reference $foundStrings **OPTIONAL. OUTPUT.** If any patterns have been found after the method was
      * called with this parameter provided, the parameter's value is an array of type `CArray` containing the
      * substrings that matched the pattern, in the order of appearance.
      *
      * @return int The number of matches of the pattern in the string.
      */
 
-    public static function findAllFrom ($sString, $sFindPattern, $iStartPos, &$raFoundStrings = null)
+    public static function findAllFrom ($string, $findPattern, $startPos, &$foundStrings = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sFindPattern) && is_int($iStartPos)',
+        assert( 'is_cstring($string) && is_cstring($findPattern) && is_int($startPos)',
             vs(isset($this), get_defined_vars()) );
-        assert( '0 <= $iStartPos && $iStartPos <= strlen($sString)', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $startPos && $startPos <= strlen($string)', vs(isset($this), get_defined_vars()) );
 
-        $mMatches;
-        $xRes = preg_match_all($sFindPattern, $sString, $mMatches, PREG_PATTERN_ORDER, $iStartPos);
-        if ( is_int($xRes) && $xRes > 0 )
+        $matches;
+        $res = preg_match_all($findPattern, $string, $matches, PREG_PATTERN_ORDER, $startPos);
+        if ( is_int($res) && $res > 0 )
         {
-            $raFoundStrings = CArray::make($xRes);
-            for ($i = 0; $i < $xRes; $i++)
+            $foundStrings = CArray::make($res);
+            for ($i = 0; $i < $res; $i++)
             {
-                $raFoundStrings[$i] = $mMatches[0][$i];
+                $foundStrings[$i] = $matches[0][$i];
             }
-            return $xRes;
+            return $res;
         }
         else
         {
@@ -338,39 +339,39 @@ class CRegex extends CRootClass
      * regular expression group into an array for output so that each match of the pattern is associated with an array
      * of group matches and optionally reporting the substrings that matched the pattern.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sFindPattern The searched pattern, usually with groups.
-     * @param  reference $raFoundGroupArrays **OUTPUT.** If any patterns were found, this is a two-dimensional array of
+     * @param  string $string The string to be looked into.
+     * @param  string $findPattern The searched pattern, usually with groups.
+     * @param  reference $foundGroupArrays **OUTPUT.** If any patterns were found, this is a two-dimensional array of
      * type `CArray`, per each pattern match containing an array of the substrings that matched the groups in the
      * pattern, in the same order, if any.
-     * @param  reference $raFoundStrings **OPTIONAL. OUTPUT.** If any patterns have been found after the method was
+     * @param  reference $foundStrings **OPTIONAL. OUTPUT.** If any patterns have been found after the method was
      * called with this parameter provided, the parameter's value is an array of type `CArray` containing the
      * substrings that matched the pattern, in the order of appearance.
      *
      * @return int The number of matches of the pattern in the string.
      */
 
-    public static function findAllGroups ($sString, $sFindPattern, &$raFoundGroupArrays, &$raFoundStrings = null)
+    public static function findAllGroups ($string, $findPattern, &$foundGroupArrays, &$foundStrings = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sFindPattern)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string) && is_cstring($findPattern)', vs(isset($this), get_defined_vars()) );
 
-        $mMatches;
-        $xRes = preg_match_all($sFindPattern, $sString, $mMatches, PREG_SET_ORDER);
-        if ( is_int($xRes) && $xRes > 0 )
+        $matches;
+        $res = preg_match_all($findPattern, $string, $matches, PREG_SET_ORDER);
+        if ( is_int($res) && $res > 0 )
         {
-            $raFoundGroupArrays = CArray::make($xRes);
-            $raFoundStrings = CArray::make($xRes);
-            for ($i0 = 0; $i0 < $xRes; $i0++)
+            $foundGroupArrays = CArray::make($res);
+            $foundStrings = CArray::make($res);
+            for ($i0 = 0; $i0 < $res; $i0++)
             {
-                $iQty = count($mMatches[$i0]);
-                $raFoundGroupArrays[$i0] = CArray::make($iQty - 1);
-                for ($i1 = 1; $i1 < $iQty; $i1++)
+                $qty = count($matches[$i0]);
+                $foundGroupArrays[$i0] = CArray::make($qty - 1);
+                for ($i1 = 1; $i1 < $qty; $i1++)
                 {
-                    $raFoundGroupArrays[$i0][$i1 - 1] = $mMatches[$i0][$i1];
+                    $foundGroupArrays[$i0][$i1 - 1] = $matches[$i0][$i1];
                 }
-                $raFoundStrings[$i0] = $mMatches[$i0][0];
+                $foundStrings[$i0] = $matches[$i0][0];
             }
-            return $xRes;
+            return $res;
         }
         else
         {
@@ -384,43 +385,43 @@ class CRegex extends CRootClass
      * each match of the pattern is associated with an array of group matches, optionally reporting the substrings that
      * matched the pattern.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sFindPattern The searched pattern, usually with groups.
-     * @param  int $iStartPos The starting position for the search.
-     * @param  reference $raFoundGroupArrays **OUTPUT.** If any patterns were found, this is a two-dimensional array of
+     * @param  string $string The string to be looked into.
+     * @param  string $findPattern The searched pattern, usually with groups.
+     * @param  int $startPos The starting position for the search.
+     * @param  reference $foundGroupArrays **OUTPUT.** If any patterns were found, this is a two-dimensional array of
      * type `CArray`, per each pattern match containing an array of the substrings that matched the groups in the
      * pattern, in the same order, if any.
-     * @param  reference $raFoundStrings **OPTIONAL. OUTPUT.** If any patterns have been found after the method was
+     * @param  reference $foundStrings **OPTIONAL. OUTPUT.** If any patterns have been found after the method was
      * called with this parameter provided, the parameter's value is an array of type `CArray` containing the
      * substrings that matched the pattern, in the order of appearance.
      *
      * @return int The number of matches of the pattern in the string.
      */
 
-    public static function findAllGroupsFrom ($sString, $sFindPattern, $iStartPos, &$raFoundGroupArrays,
-        &$raFoundStrings = null)
+    public static function findAllGroupsFrom ($string, $findPattern, $startPos, &$foundGroupArrays,
+        &$foundStrings = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sFindPattern) && is_int($iStartPos)',
+        assert( 'is_cstring($string) && is_cstring($findPattern) && is_int($startPos)',
             vs(isset($this), get_defined_vars()) );
-        assert( '0 <= $iStartPos && $iStartPos <= strlen($sString)', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $startPos && $startPos <= strlen($string)', vs(isset($this), get_defined_vars()) );
 
-        $mMatches;
-        $xRes = preg_match_all($sFindPattern, $sString, $mMatches, PREG_SET_ORDER, $iStartPos);
-        if ( is_int($xRes) && $xRes > 0 )
+        $matches;
+        $res = preg_match_all($findPattern, $string, $matches, PREG_SET_ORDER, $startPos);
+        if ( is_int($res) && $res > 0 )
         {
-            $raFoundGroupArrays = CArray::make($xRes);
-            $raFoundStrings = CArray::make($xRes);
-            for ($i0 = 0; $i0 < $xRes; $i0++)
+            $foundGroupArrays = CArray::make($res);
+            $foundStrings = CArray::make($res);
+            for ($i0 = 0; $i0 < $res; $i0++)
             {
-                $iQty = count($mMatches[$i0]);
-                $raFoundGroupArrays[$i0] = CArray::make($iQty - 1);
-                for ($i1 = 1; $i1 < $iQty; $i1++)
+                $qty = count($matches[$i0]);
+                $foundGroupArrays[$i0] = CArray::make($qty - 1);
+                for ($i1 = 1; $i1 < $qty; $i1++)
                 {
-                    $raFoundGroupArrays[$i0][$i1 - 1] = $mMatches[$i0][$i1];
+                    $foundGroupArrays[$i0][$i1 - 1] = $matches[$i0][$i1];
                 }
-                $raFoundStrings[$i0] = $mMatches[$i0][0];
+                $foundStrings[$i0] = $matches[$i0][0];
             }
-            return $xRes;
+            return $res;
         }
         else
         {
@@ -432,63 +433,63 @@ class CRegex extends CRootClass
      * Replaces all occurrences of a pattern in a string with a specified string and returns the new string, optionally
      * reporting the number of replacements made.
      *
-     * @param  string $sString The source string.
-     * @param  string $sWhatPattern The pattern to be replaced.
-     * @param  string $sWith The replacement string.
-     * @param  reference $riQuantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
+     * @param  string $string The source string.
+     * @param  string $whatPattern The pattern to be replaced.
+     * @param  string $with The replacement string.
+     * @param  reference $quantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value, which is of type `int`, indicates the number of replacements made.
      *
      * @return string The resulting string.
      */
 
-    public static function replace ($sString, $sWhatPattern, $sWith, &$riQuantity = null)
+    public static function replace ($string, $whatPattern, $with, &$quantity = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sWhatPattern) && is_cstring($sWith)',
+        assert( 'is_cstring($string) && is_cstring($whatPattern) && is_cstring($with)',
             vs(isset($this), get_defined_vars()) );
 
-        return preg_replace($sWhatPattern, $sWith, $sString, -1, $riQuantity);
+        return preg_replace($whatPattern, $with, $string, -1, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Replaces any occurrence of a pattern in a string with the string returned by a function or method called on the
      * matching substring and returns the new string, optionally reporting the number of replacements made.
      *
-     * @param  string $sString The source string.
-     * @param  string $sWhatPattern The pattern to be replaced.
-     * @param  callable $fnCallback A function or method that, as imposed by PHP's PCRE, takes a PHP's associative
+     * @param  string $string The source string.
+     * @param  string $whatPattern The pattern to be replaced.
+     * @param  callable $callback A function or method that, as imposed by PHP's PCRE, takes a PHP's associative
      * array (CMap) as a parameter, which contains the matching substring under the key of `0`, the substring that
      * matched the first group, if any, under the key of `1`, and so on for groups, and returns the string with which
      * the matching substring should be replaced.
-     * @param  reference $riQuantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
+     * @param  reference $quantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value, which is of type `int`, indicates the number of replacements made.
      *
      * @return string The resulting string.
      */
 
-    public static function replaceWithCallback ($sString, $sWhatPattern, $fnCallback, &$riQuantity = null)
+    public static function replaceWithCallback ($string, $whatPattern, $callback, &$quantity = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sWhatPattern) && is_callable($fnCallback)',
+        assert( 'is_cstring($string) && is_cstring($whatPattern) && is_callable($callback)',
             vs(isset($this), get_defined_vars()) );
 
-        return preg_replace_callback($sWhatPattern, $fnCallback, $sString, -1, $riQuantity);
+        return preg_replace_callback($whatPattern, $callback, $string, -1, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes all occurrences of a pattern in a string and returns the new string, optionally reporting the number of
      * removals made.
      *
-     * @param  string $sString The source string.
-     * @param  string $sWhatPattern The pattern to be removed.
-     * @param  reference $riQuantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
+     * @param  string $string The source string.
+     * @param  string $whatPattern The pattern to be removed.
+     * @param  reference $quantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value, which is of type `int`, indicates the number of removals made.
      *
      * @return string The resulting string.
      */
 
-    public static function remove ($sString, $sWhatPattern, &$riQuantity = null)
+    public static function remove ($string, $whatPattern, &$quantity = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sWhatPattern)', vs(isset($this), get_defined_vars()) );
-        return self::replace($sString, $sWhatPattern, "", $riQuantity);
+        assert( 'is_cstring($string) && is_cstring($whatPattern)', vs(isset($this), get_defined_vars()) );
+        return self::replace($string, $whatPattern, "", $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -502,74 +503,74 @@ class CRegex extends CRootClass
      * As a special case, the delimiter pattern can be empty, which will split the string into its constituting
      * characters.
      *
-     * @param  string $sString The string to be split.
-     * @param  string|array|map $xDelimiterPatternOrPatterns The pattern or array of patterns to be recognized as the
+     * @param  string $string The string to be split.
+     * @param  string|array|map $delimiterPatternOrPatterns The pattern or array of patterns to be recognized as the
      * delimiter(s).
      *
      * @return CArray The resulting strings.
      */
 
-    public static function split ($sString, $xDelimiterPatternOrPatterns)
+    public static function split ($string, $delimiterPatternOrPatterns)
     {
-        assert( 'is_cstring($sString) && (is_cstring($xDelimiterPatternOrPatterns) || ' .
-                'is_collection($xDelimiterPatternOrPatterns))', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string) && (is_cstring($delimiterPatternOrPatterns) || ' .
+                'is_collection($delimiterPatternOrPatterns))', vs(isset($this), get_defined_vars()) );
 
-        if ( is_cstring($xDelimiterPatternOrPatterns) )
+        if ( is_cstring($delimiterPatternOrPatterns) )
         {
-            $iNumIdt = self::findGroups($xDelimiterPatternOrPatterns, "/^([^0-9A-Za-z\\s\\\\])(.*)\\1/", $aFoundGroups);
-            assert( '$iNumIdt == 2', vs(isset($this), get_defined_vars()) );
-            $sIdt = $aFoundGroups[1];
-            if ( CString::isEmpty($sIdt) )
+            $numIdt = self::findGroups($delimiterPatternOrPatterns, "/^([^0-9A-Za-z\\s\\\\])(.*)\\1/", $foundGroups);
+            assert( '$numIdt == 2', vs(isset($this), get_defined_vars()) );
+            $idt = $foundGroups[1];
+            if ( CString::isEmpty($idt) )
             {
                 // Special case.
-                if ( CString::isEmpty($sString) )
+                if ( CString::isEmpty($string) )
                 {
-                    $aResStrings = CArray::fromElements("");
-                    return $aResStrings;
+                    $resStrings = CArray::fromElements("");
+                    return $resStrings;
                 }
                 else
                 {
                     if ( preg_match(
-                            "/^([^0-9A-Za-z\\s\\\\])\\1[A-Za-z]*u[A-Za-z]*\\z/", $xDelimiterPatternOrPatterns) !== 1 )
+                            "/^([^0-9A-Za-z\\s\\\\])\\1[A-Za-z]*u[A-Za-z]*\\z/", $delimiterPatternOrPatterns) !== 1 )
                     {
-                        $aResStrings = CArray::make(strlen($sString));
-                        for ($i = 0; $i < strlen($sString); $i++)
+                        $resStrings = CArray::make(strlen($string));
+                        for ($i = 0; $i < strlen($string); $i++)
                         {
-                            $aResStrings[$i] = $sString[$i];
+                            $resStrings[$i] = $string[$i];
                         }
-                        return $aResStrings;
+                        return $resStrings;
                     }
                     else
                     {
-                        return CUString::splitIntoChars($sString);
+                        return CUString::splitIntoChars($string);
                     }
                 }
             }
 
-            $mResStrings = preg_split($xDelimiterPatternOrPatterns, $sString);
-            $iQty = count($mResStrings);
-            $aResStrings = CArray::make($iQty);
-            for ($i = 0; $i < $iQty; $i++)
+            $paResStrings = preg_split($delimiterPatternOrPatterns, $string);
+            $qty = count($paResStrings);
+            $resStrings = CArray::make($qty);
+            for ($i = 0; $i < $qty; $i++)
             {
-                $aResStrings[$i] = $mResStrings[$i];
+                $resStrings[$i] = $paResStrings[$i];
             }
-            return $aResStrings;
+            return $resStrings;
         }
         else  // a collection
         {
-            $aResStrings = CArray::fromElements($sString);
-            foreach ($xDelimiterPatternOrPatterns as $sDelimiterPattern)
+            $resStrings = CArray::fromElements($string);
+            foreach ($delimiterPatternOrPatterns as $delimiterPattern)
             {
-                assert( 'is_cstring($sDelimiterPattern)', vs(isset($this), get_defined_vars()) );
-                $aResStringsNew = CArray::make();
-                $iLen = CArray::length($aResStrings);
-                for ($i = 0; $i < $iLen; $i++)
+                assert( 'is_cstring($delimiterPattern)', vs(isset($this), get_defined_vars()) );
+                $resStringsNew = CArray::make();
+                $len = CArray::length($resStrings);
+                for ($i = 0; $i < $len; $i++)
                 {
-                    CArray::pushArray($aResStringsNew, self::split($aResStrings[$i], $sDelimiterPattern));
+                    CArray::pushArray($resStringsNew, self::split($resStrings[$i], $delimiterPattern));
                 }
-                $aResStrings = $aResStringsNew;
+                $resStrings = $resStringsNew;
             }
-            return $aResStrings;
+            return $resStrings;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -579,17 +580,17 @@ class CRegex extends CRootClass
      *
      * With this method, you can prepare an arbitrary string to be used as a part of a regular expression.
      *
-     * @param  string $sString The string to be escaped.
-     * @param  string $sDelimiter **OPTIONAL. Default is** "/". The pattern delimiter that is going to be used by the
+     * @param  string $string The string to be escaped.
+     * @param  string $delimiter **OPTIONAL. Default is** "/". The pattern delimiter that is going to be used by the
      * resulting regular expression and therefore needs to be escaped as well.
      *
      * @return string The escaped string.
      */
 
-    public static function enterTd ($sString, $sDelimiter = self::DEFAULT_PATTERN_DELIMITER)
+    public static function enterTd ($string, $delimiter = self::DEFAULT_PATTERN_DELIMITER)
     {
-        assert( 'is_cstring($sString) && is_cstring($sDelimiter)', vs(isset($this), get_defined_vars()) );
-        return preg_quote($sString, $sDelimiter);
+        assert( 'is_cstring($string) && is_cstring($delimiter)', vs(isset($this), get_defined_vars()) );
+        return preg_quote($string, $delimiter);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }

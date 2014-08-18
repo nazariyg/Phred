@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * The hub for static methods that take care of Unicode strings and can provide the same quality of service to ASCII
  * strings.
@@ -58,102 +59,102 @@
  */
 
 // Method signatures:
-//   static bool isValid ($sString)
-//   static string sanitize ($sString)
-//   static string normalize ($sString, $eForm = self::NF_C)
-//   static bool isNormalized ($sString, $eForm = self::NF_C)
-//   static string fromBool10 ($bValue)
-//   static string fromBoolTf ($bValue)
-//   static string fromBoolYn ($bValue)
-//   static string fromBoolOo ($bValue)
-//   static string fromInt ($iValue)
-//   static string fromFloat ($fValue)
-//   static string fromCharCode ($iCode)
-//   static string fromCharCodeHex ($sCode)
-//   static string fromCharCodeEsc ($sCode)
-//   static string fromEscString ($sString)
-//   static bool toBool ($sString)
-//   static bool toBoolFrom10 ($sString)
-//   static bool toBoolFromTf ($sString)
-//   static bool toBoolFromYn ($sString)
-//   static bool toBoolFromOo ($sString)
-//   static int toInt ($sString)
-//   static int toIntFromHex ($sString)
-//   static int toIntFromBase ($sString, $iBase)
-//   static float toFloat ($sString)
-//   static int toCharCode ($sChar)
-//   static string toCharCodeHex ($sChar)
-//   static string toCharCodeEsc ($sChar)
-//   static string toEscString ($sString)
-//   static int length ($sString)
-//   static bool isEmpty ($sString)
-//   static string charAt ($sString, $iPos)
-//   static void setCharAt (&$rsString, $iPos, $sChar)
-//   static bool equals ($sString, $sToString, $bfCollationFlags = self::COLLATION_DEFAULT)
-//   static bool equalsCi ($sString, $sToString, $bfCollationFlags = self::COLLATION_DEFAULT)
-//   static int compare ($sString, $sToString, $bfCollationFlags = self::COLLATION_DEFAULT, CULocale $oInLocale = null)
-//   static int compareCi ($sString, $sToString, $bfCollationFlags = self::COLLATION_DEFAULT,
-//     CULocale $oInLocale = null)
-//   static int compareNat ($sString, $sToString, $bfCollationFlags = self::COLLATION_DEFAULT,
-//     CULocale $oInLocale = null)
-//   static int compareNatCi ($sString, $sToString, $bfCollationFlags = self::COLLATION_DEFAULT,
-//     CULocale $oInLocale = null)
-//   static int levenDist ($sString, $sToString, $bTransliterate = true)
-//   static string metaphoneKey ($sString, $bTransliterate = true)
-//   static int metaphoneDist ($sString, $sToString, $bTransliterate = true)
-//   static string toLowerCase ($sString)
-//   static string toUpperCase ($sString)
-//   static string toUpperCaseFirst ($sString)
-//   static string toTitleCase ($sString)
-//   static bool startsWith ($sString, $sWithString)
-//   static bool startsWithCi ($sString, $sWithString)
-//   static bool endsWith ($sString, $sWithString)
-//   static bool endsWithCi ($sString, $sWithString)
-//   static int indexOf ($sString, $sOfString, $iStartPos = 0)
-//   static int indexOfCi ($sString, $sOfString, $iStartPos = 0)
-//   static int lastIndexOf ($sString, $sOfString, $iStartPos = 0)
-//   static int lastIndexOfCi ($sString, $sOfString, $iStartPos = 0)
-//   static bool find ($sString, $sWhatString, $iStartPos = 0)
-//   static bool findCi ($sString, $sWhatString, $iStartPos = 0)
-//   static bool isSubsetOf ($sString, $sOfCharSet)
-//   static string substr ($sString, $iStartPos, $iLength = null)
-//   static string substring ($sString, $iStartPos, $iEndPos)
-//   static int numSubstrings ($sString, $sSubstring, $iStartPos = 0)
-//   static CArray split ($sString, $xDelimiterOrDelimiters)
-//   static CArray splitIntoChars ($sString)
-//   static string trimStart ($sString)
-//   static string trimEnd ($sString)
-//   static string trim ($sString)
-//   static string normSpacing ($sString)
-//   static string normNewlines ($sString, $sNewline = self::NEWLINE)
-//   static string padStart ($sString, $sPaddingString, $iNewLength)
-//   static string padEnd ($sString, $sPaddingString, $iNewLength)
-//   static string stripStart ($sString, $xPrefixOrPrefixes)
-//   static string stripStartCi ($sString, $xPrefixOrPrefixes)
-//   static string stripEnd ($sString, $xSuffixOrSuffixes)
-//   static string stripEndCi ($sString, $xSuffixOrSuffixes)
-//   static string insert ($sString, $iAtPos, $sInsertString)
-//   static string replaceSubstring ($sString, $iStartPos, $iLength, $sWith)
-//   static string replaceSubstringByRange ($sString, $iStartPos, $iEndPos, $sWith)
-//   static string removeSubstring ($sString, $iStartPos, $iLength)
-//   static string removeSubstringByRange ($sString, $iStartPos, $iEndPos)
-//   static string replace ($sString, $sWhat, $sWith, &$riQuantity = null)
-//   static string replaceCi ($sString, $sWhat, $sWith, &$riQuantity = null)
-//   static string remove ($sString, $sWhat, &$riQuantity = null)
-//   static string removeCi ($sString, $sWhat, &$riQuantity = null)
-//   static string shuffle ($sString)
-//   static string wordWrap ($sString, $iWidth, $bfWrappingFlags = self::WRAPPING_DEFAULT, $sNewline = self::NEWLINE)
-//   static string decToHex ($sNumber)
-//   static string hexToDec ($sNumber)
-//   static string numberToBase ($sNumber, $iFromBase, $iToBase)
-//   static string transliterate ($sString, $sFromScript, $sToScript)
-//   static string transliterateFromAny ($sString, $sToScript)
-//   static string applyPublishingFilter ($sString)
-//   static string halfwidthToFullwidth ($sString)
-//   static string fullwidthToHalfwidth ($sString)
-//   static string transform ($sString, $sTransform)
-//   static string repeat ($sString, $iTimes)
-//   static bool hasCjkChar ($sString)
+//   static bool isValid ($string)
+//   static string sanitize ($string)
+//   static string normalize ($string, $form = self::NF_C)
+//   static bool isNormalized ($string, $form = self::NF_C)
+//   static string fromBool10 ($value)
+//   static string fromBoolTf ($value)
+//   static string fromBoolYn ($value)
+//   static string fromBoolOo ($value)
+//   static string fromInt ($value)
+//   static string fromFloat ($value)
+//   static string fromCharCode ($code)
+//   static string fromCharCodeHex ($code)
+//   static string fromCharCodeEsc ($code)
+//   static string fromEscString ($string)
+//   static bool toBool ($string)
+//   static bool toBoolFrom10 ($string)
+//   static bool toBoolFromTf ($string)
+//   static bool toBoolFromYn ($string)
+//   static bool toBoolFromOo ($string)
+//   static int toInt ($string)
+//   static int toIntFromHex ($string)
+//   static int toIntFromBase ($string, $base)
+//   static float toFloat ($string)
+//   static int toCharCode ($char)
+//   static string toCharCodeHex ($char)
+//   static string toCharCodeEsc ($char)
+//   static string toEscString ($string)
+//   static int length ($string)
+//   static bool isEmpty ($string)
+//   static string charAt ($string, $pos)
+//   static void setCharAt (&$string, $pos, $char)
+//   static bool equals ($string, $toString, $collationFlags = self::COLLATION_DEFAULT)
+//   static bool equalsCi ($string, $toString, $collationFlags = self::COLLATION_DEFAULT)
+//   static int compare ($string, $toString, $collationFlags = self::COLLATION_DEFAULT, CULocale $inLocale = null)
+//   static int compareCi ($string, $toString, $collationFlags = self::COLLATION_DEFAULT,
+//     CULocale $inLocale = null)
+//   static int compareNat ($string, $toString, $collationFlags = self::COLLATION_DEFAULT,
+//     CULocale $inLocale = null)
+//   static int compareNatCi ($string, $toString, $collationFlags = self::COLLATION_DEFAULT,
+//     CULocale $inLocale = null)
+//   static int levenDist ($string, $toString, $transliterate = true)
+//   static string metaphoneKey ($string, $transliterate = true)
+//   static int metaphoneDist ($string, $toString, $transliterate = true)
+//   static string toLowerCase ($string)
+//   static string toUpperCase ($string)
+//   static string toUpperCaseFirst ($string)
+//   static string toTitleCase ($string)
+//   static bool startsWith ($string, $withString)
+//   static bool startsWithCi ($string, $withString)
+//   static bool endsWith ($string, $withString)
+//   static bool endsWithCi ($string, $withString)
+//   static int indexOf ($string, $ofString, $startPos = 0)
+//   static int indexOfCi ($string, $ofString, $startPos = 0)
+//   static int lastIndexOf ($string, $ofString, $startPos = 0)
+//   static int lastIndexOfCi ($string, $ofString, $startPos = 0)
+//   static bool find ($string, $whatString, $startPos = 0)
+//   static bool findCi ($string, $whatString, $startPos = 0)
+//   static bool isSubsetOf ($string, $ofCharSet)
+//   static string substr ($string, $startPos, $length = null)
+//   static string substring ($string, $startPos, $endPos)
+//   static int numSubstrings ($string, $substring, $startPos = 0)
+//   static CArray split ($string, $delimiterOrDelimiters)
+//   static CArray splitIntoChars ($string)
+//   static string trimStart ($string)
+//   static string trimEnd ($string)
+//   static string trim ($string)
+//   static string normSpacing ($string)
+//   static string normNewlines ($string, $newline = self::NEWLINE)
+//   static string padStart ($string, $paddingString, $newLength)
+//   static string padEnd ($string, $paddingString, $newLength)
+//   static string stripStart ($string, $prefixOrPrefixes)
+//   static string stripStartCi ($string, $prefixOrPrefixes)
+//   static string stripEnd ($string, $suffixOrSuffixes)
+//   static string stripEndCi ($string, $suffixOrSuffixes)
+//   static string insert ($string, $atPos, $insertString)
+//   static string replaceSubstring ($string, $startPos, $length, $with)
+//   static string replaceSubstringByRange ($string, $startPos, $endPos, $with)
+//   static string removeSubstring ($string, $startPos, $length)
+//   static string removeSubstringByRange ($string, $startPos, $endPos)
+//   static string replace ($string, $what, $with, &$quantity = null)
+//   static string replaceCi ($string, $what, $with, &$quantity = null)
+//   static string remove ($string, $what, &$quantity = null)
+//   static string removeCi ($string, $what, &$quantity = null)
+//   static string shuffle ($string)
+//   static string wordWrap ($string, $width, $wrappingFlags = self::WRAPPING_DEFAULT, $newline = self::NEWLINE)
+//   static string decToHex ($number)
+//   static string hexToDec ($number)
+//   static string numberToBase ($number, $fromBase, $toBase)
+//   static string transliterate ($string, $fromScript, $toScript)
+//   static string transliterateFromAny ($string, $toScript)
+//   static string applyPublishingFilter ($string)
+//   static string halfwidthToFullwidth ($string)
+//   static string fullwidthToHalfwidth ($string)
+//   static string transform ($string, $transform)
+//   static string repeat ($string, $times)
+//   static bool hasCjkChar ($string)
 
 class CUString extends CRootClass implements IEqualityAndOrderStatic
 {
@@ -317,16 +318,16 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
     /**
      * Determines if a string is a valid Unicode string encoded in UTF-8.
      *
-     * @param  string $sString The string to be looked into.
+     * @param  string $string The string to be looked into.
      *
      * @return bool `true` if the string is a valid Unicode string encoded in UTF-8, `false` otherwise.
      */
 
-    public static function isValid ($sString)
+    public static function isValid ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
 
-        $sPattern = "/^(" .
+        $pattern = "/^(" .
             "[\\x00-\\x7F]" .                        // ASCII (all bytes)
             "|[\\xC2-\\xDF][\\x80-\\xBF]" .          // non-overlong 2-byte
             "|\\xE0[\\xA0-\\xBF][\\x80-\\xBF]" .     // excluding overlongs
@@ -338,42 +339,42 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
             "|[\\xF1-\\xF3][\\x80-\\xBF]{3}" .       // planes 4-15
             "|\\xF4[\\x80-\\x8F][\\x80-\\xBF]{2}" .  // plane 16
             ")*\\z/";
-        return CRegex::find($sString, $sPattern);
+        return CRegex::find($string, $pattern);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Replaces any invalid byte in a Unicode string with a Replacement Character (U+FFFD), which is "�", and returns
      * the new string.
      *
-     * @param  string $sString The string to be sanitized.
+     * @param  string $string The string to be sanitized.
      *
      * @return string The sanitized string.
      */
 
-    public static function sanitize ($sString)
+    public static function sanitize ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return CEString::convert($sString, CEString::UTF8, CEString::UTF8);
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return CEString::convert($string, CEString::UTF8, CEString::UTF8);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Normalizes a string to a specified Unicode normal form and returns the new string.
      *
-     * @param  string $sString The string to be normalized.
-     * @param  enum $eForm **OPTIONAL. Default is** `NF_C`. The Unicode normal form of the normalized string. The
+     * @param  string $string The string to be normalized.
+     * @param  enum $form **OPTIONAL. Default is** `NF_C`. The Unicode normal form of the normalized string. The
      * possible normal forms are `NF_C`, `NF_D`, `NF_KC`, and `NF_KD` (see [Summary](#summary)).
      *
      * @return string The normalized string.
      */
 
-    public static function normalize ($sString, $eForm = self::NF_C)
+    public static function normalize ($string, $form = self::NF_C)
     {
-        assert( 'is_cstring($sString) && is_enum($eForm)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string) && is_enum($form)', vs(isset($this), get_defined_vars()) );
 
-        $sString = Normalizer::normalize($sString, self::normFormToNc($eForm));
-        if ( is_cstring($sString) )
+        $string = Normalizer::normalize($string, self::normFormToNc($form));
+        if ( is_cstring($string) )
         {
-            return $sString;
+            return $string;
         }
         else
         {
@@ -385,118 +386,118 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
     /**
      * Determines if a string is normalized according to a specified Unicode normal form.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  enum $eForm **OPTIONAL. Default is** `NF_C`. The Unicode normal form to be verified against. The
+     * @param  string $string The string to be looked into.
+     * @param  enum $form **OPTIONAL. Default is** `NF_C`. The Unicode normal form to be verified against. The
      * possible normal forms are `NF_C`, `NF_D`, `NF_KC`, and `NF_KD` (see [Summary](#summary)).
      *
      * @return bool `true` if the string appears to be normalized according to the normal form specified, `false`
      * otherwise.
      */
 
-    public static function isNormalized ($sString, $eForm = self::NF_C)
+    public static function isNormalized ($string, $form = self::NF_C)
     {
-        assert( 'is_cstring($sString) && is_enum($eForm)', vs(isset($this), get_defined_vars()) );
-        return Normalizer::isNormalized($sString, self::normFormToNc($eForm));
+        assert( 'is_cstring($string) && is_enum($form)', vs(isset($this), get_defined_vars()) );
+        return Normalizer::isNormalized($string, self::normFormToNc($form));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a boolean value into a string, as "1" for `true` and as "0" for `false`.
      *
-     * @param  bool $bValue The value to be converted.
+     * @param  bool $value The value to be converted.
      *
      * @return string "1" for `true`, "0" for `false`.
      */
 
-    public static function fromBool10 ($bValue)
+    public static function fromBool10 ($value)
     {
-        assert( 'is_bool($bValue)', vs(isset($this), get_defined_vars()) );
-        return ( $bValue ) ? "1" : "0";
+        assert( 'is_bool($value)', vs(isset($this), get_defined_vars()) );
+        return ( $value ) ? "1" : "0";
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a boolean value into a string, as "true" for `true` and as "false" for `false`.
      *
-     * @param  bool $bValue The value to be converted.
+     * @param  bool $value The value to be converted.
      *
      * @return string "true" for `true`, "false" for `false`.
      */
 
-    public static function fromBoolTf ($bValue)
+    public static function fromBoolTf ($value)
     {
-        assert( 'is_bool($bValue)', vs(isset($this), get_defined_vars()) );
-        return ( $bValue ) ? "true" : "false";
+        assert( 'is_bool($value)', vs(isset($this), get_defined_vars()) );
+        return ( $value ) ? "true" : "false";
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a boolean value into a string, as "yes" for `true` and as "no" for `false`.
      *
-     * @param  bool $bValue The value to be converted.
+     * @param  bool $value The value to be converted.
      *
      * @return string "yes" for `true`, "no" for `false`.
      */
 
-    public static function fromBoolYn ($bValue)
+    public static function fromBoolYn ($value)
     {
-        assert( 'is_bool($bValue)', vs(isset($this), get_defined_vars()) );
-        return ( $bValue ) ? "yes" : "no";
+        assert( 'is_bool($value)', vs(isset($this), get_defined_vars()) );
+        return ( $value ) ? "yes" : "no";
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a boolean value into a string, as "on" for `true` and as "off" for `false`.
      *
-     * @param  bool $bValue The value to be converted.
+     * @param  bool $value The value to be converted.
      *
      * @return string "on" for `true`, "off" for `false`.
      */
 
-    public static function fromBoolOo ($bValue)
+    public static function fromBoolOo ($value)
     {
-        assert( 'is_bool($bValue)', vs(isset($this), get_defined_vars()) );
-        return ( $bValue ) ? "on" : "off";
+        assert( 'is_bool($value)', vs(isset($this), get_defined_vars()) );
+        return ( $value ) ? "on" : "off";
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts an integer value into a string.
      *
-     * @param  int $iValue The value to be converted.
+     * @param  int $value The value to be converted.
      *
      * @return string The textual representation of the integer value.
      */
 
-    public static function fromInt ($iValue)
+    public static function fromInt ($value)
     {
-        assert( 'is_int($iValue)', vs(isset($this), get_defined_vars()) );
-        return (string)$iValue;
+        assert( 'is_int($value)', vs(isset($this), get_defined_vars()) );
+        return (string)$value;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a floating-point value into a string.
      *
-     * @param  float $fValue The value to be converted.
+     * @param  float $value The value to be converted.
      *
      * @return string The textual representation of the floating-point value.
      */
 
-    public static function fromFloat ($fValue)
+    public static function fromFloat ($value)
     {
-        assert( 'is_float($fValue)', vs(isset($this), get_defined_vars()) );
-        return (string)$fValue;
+        assert( 'is_float($value)', vs(isset($this), get_defined_vars()) );
+        return (string)$value;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns a character by its code point specified as an integer.
      *
-     * @param  int $iCode The Unicode code point.
+     * @param  int $code The Unicode code point.
      *
      * @return string The Unicode character with the code point specified.
      */
 
-    public static function fromCharCode ($iCode)
+    public static function fromCharCode ($code)
     {
-        assert( 'is_int($iCode)', vs(isset($this), get_defined_vars()) );
-        assert( '0 <= $iCode && $iCode < 0xFFFE', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($code)', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $code && $code < 0xFFFE', vs(isset($this), get_defined_vars()) );
 
-        return json_decode("\"\\u" . CString::padStart(CString::decToHex(CString::fromInt($iCode)), "0", 4) . "\"");
+        return json_decode("\"\\u" . CString::padStart(CString::decToHex(CString::fromInt($code)), "0", 4) . "\"");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -504,17 +505,17 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * For instance, "0041" or "41" would return "A".
      *
-     * @param  string $sCode The Unicode code point. This can be a string with up to four hexadecimal digits.
+     * @param  string $code The Unicode code point. This can be a string with up to four hexadecimal digits.
      *
      * @return string The Unicode character with the code point specified.
      */
 
-    public static function fromCharCodeHex ($sCode)
+    public static function fromCharCodeHex ($code)
     {
-        assert( 'is_cstring($sCode)', vs(isset($this), get_defined_vars()) );
-        assert( 'CRegex::find($sCode, "/^[0-9A-F]{1,4}(?<!FFFE|FFFF)\\\\z/i")', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($code)', vs(isset($this), get_defined_vars()) );
+        assert( 'CRegex::find($code, "/^[0-9A-F]{1,4}(?<!FFFE|FFFF)\\\\z/i")', vs(isset($this), get_defined_vars()) );
 
-        return json_decode("\"\\u" . CString::padStart($sCode, "0", 4) . "\"");
+        return json_decode("\"\\u" . CString::padStart($code, "0", 4) . "\"");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -522,19 +523,19 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * For instance, "\u0041" would return "A".
      *
-     * @param  string $sCode The Unicode code point prefixed with "\u". The number of hexadecimal digits in the string
+     * @param  string $code The Unicode code point prefixed with "\u". The number of hexadecimal digits in the string
      * should be four.
      *
      * @return string The Unicode character with the code point specified.
      */
 
-    public static function fromCharCodeEsc ($sCode)
+    public static function fromCharCodeEsc ($code)
     {
-        assert( 'is_cstring($sCode)', vs(isset($this), get_defined_vars()) );
-        assert( 'CRegex::find($sCode, "/^\\\\\\\\u((?i)[0-9A-F]{4}(?<!FFFE|FFFF))\\\\z/")',
+        assert( 'is_cstring($code)', vs(isset($this), get_defined_vars()) );
+        assert( 'CRegex::find($code, "/^\\\\\\\\u((?i)[0-9A-F]{4}(?<!FFFE|FFFF))\\\\z/")',
             vs(isset($this), get_defined_vars()) );
 
-        return json_decode("\"\\u" . CString::padStart(CString::substr($sCode, 2), "0", 4) . "\"");
+        return json_decode("\"\\u" . CString::padStart(CString::substr($code, 2), "0", 4) . "\"");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -542,15 +543,15 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * For instance, "\u0041bc" would return "Abc".
      *
-     * @param  string $sString The string to be unescaped.
+     * @param  string $string The string to be unescaped.
      *
      * @return string The unescaped string.
      */
 
-    public static function fromEscString ($sString)
+    public static function fromEscString ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return self::handleTransform($sString, "hex/java-any");
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return self::handleTransform($string, "hex/java-any");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -559,34 +560,34 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * Any string that is "1", "true", "yes", or "on", regardless of the letter case, is interpreted as `true` and any
      * other string is interpreted as `false`.
      *
-     * @param  string $sString The string to be converted.
+     * @param  string $string The string to be converted.
      *
      * @return bool `true` for "1", "true", "yes", and "on", `false` for any other string.
      */
 
-    public static function toBool ($sString)
+    public static function toBool ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
 
         return (
-            CString::equals($sString, "1") ||
-            CString::equalsCi($sString, "true") ||
-            CString::equalsCi($sString, "yes") ||
-            CString::equalsCi($sString, "on") );
+            CString::equals($string, "1") ||
+            CString::equalsCi($string, "true") ||
+            CString::equalsCi($string, "yes") ||
+            CString::equalsCi($string, "on") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a string into a boolean value, as `true` for "1" and as `false` for "0" or any other string.
      *
-     * @param  string $sString The string to be converted.
+     * @param  string $string The string to be converted.
      *
      * @return bool `true` for "1", `false` for any other string.
      */
 
-    public static function toBoolFrom10 ($sString)
+    public static function toBoolFrom10 ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return CString::equals($sString, "1");
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return CString::equals($string, "1");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -594,15 +595,15 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * The conversion is case-insensitive.
      *
-     * @param  string $sString The string to be converted.
+     * @param  string $string The string to be converted.
      *
      * @return bool `true` for "true", `false` for any other string.
      */
 
-    public static function toBoolFromTf ($sString)
+    public static function toBoolFromTf ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return CString::equalsCi($sString, "true");
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return CString::equalsCi($string, "true");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -610,15 +611,15 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * The conversion is case-insensitive.
      *
-     * @param  string $sString The string to be converted.
+     * @param  string $string The string to be converted.
      *
      * @return bool `true` for "yes", `false` for any other string.
      */
 
-    public static function toBoolFromYn ($sString)
+    public static function toBoolFromYn ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return CString::equalsCi($sString, "yes");
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return CString::equalsCi($string, "yes");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -626,29 +627,29 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * The conversion is case-insensitive.
      *
-     * @param  string $sString The string to be converted.
+     * @param  string $string The string to be converted.
      *
      * @return bool `true` for "on", `false` for any other string.
      */
 
-    public static function toBoolFromOo ($sString)
+    public static function toBoolFromOo ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return CString::equalsCi($sString, "on");
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return CString::equalsCi($string, "on");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a string into the corresponding integer value.
      *
-     * @param  string $sString The string to be converted.
+     * @param  string $string The string to be converted.
      *
      * @return int The integer value represented by the string.
      */
 
-    public static function toInt ($sString)
+    public static function toInt ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return (int)$sString;
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return (int)$string;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -656,15 +657,15 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * The string may be prefixed with "0x".
      *
-     * @param  string $sString The string to be converted.
+     * @param  string $string The string to be converted.
      *
      * @return int The integer value represented by the string.
      */
 
-    public static function toIntFromHex ($sString)
+    public static function toIntFromHex ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return CString::toIntFromHex($sString);
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return CString::toIntFromHex($string);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -672,17 +673,17 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * The string may be prefixed with "0x" for the base of 16.
      *
-     * @param  string $sString The string to be converted.
-     * @param  int $iBase The base in which the integer is represented by the string. Can be a number in the range from
+     * @param  string $string The string to be converted.
+     * @param  int $base The base in which the integer is represented by the string. Can be a number in the range from
      * 2 to 36.
      *
      * @return int The integer value represented by the string.
      */
 
-    public static function toIntFromBase ($sString, $iBase)
+    public static function toIntFromBase ($string, $base)
     {
-        assert( 'is_cstring($sString) && is_int($iBase)', vs(isset($this), get_defined_vars()) );
-        return CString::toIntFromBase($sString, $iBase);
+        assert( 'is_cstring($string) && is_int($base)', vs(isset($this), get_defined_vars()) );
+        return CString::toIntFromBase($string, $base);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -690,31 +691,31 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * The number can be using a scientific notation, such as "2.5e-1".
      *
-     * @param  string $sString The string to be converted.
+     * @param  string $string The string to be converted.
      *
      * @return float The floating-point value represented by the string.
      */
 
-    public static function toFloat ($sString)
+    public static function toFloat ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return (float)$sString;
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return (float)$string;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the code point of a specified character, as an integer.
      *
-     * @param  string $sChar The character.
+     * @param  string $char The character.
      *
      * @return int The Unicode code point of the character.
      */
 
-    public static function toCharCode ($sChar)
+    public static function toCharCode ($char)
     {
-        assert( 'is_cstring($sChar)', vs(isset($this), get_defined_vars()) );
-        assert( 'self::length($sChar) == 1', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($char)', vs(isset($this), get_defined_vars()) );
+        assert( 'self::length($char) == 1', vs(isset($this), get_defined_vars()) );
 
-        return CString::toInt(CString::hexToDec(CString::substr(self::toEscString($sChar), 2)));
+        return CString::toInt(CString::hexToDec(CString::substr(self::toEscString($char), 2)));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -724,17 +725,17 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * For instance, "A" would return "0041".
      *
-     * @param  string $sChar The character.
+     * @param  string $char The character.
      *
      * @return string The Unicode code point of the character.
      */
 
-    public static function toCharCodeHex ($sChar)
+    public static function toCharCodeHex ($char)
     {
-        assert( 'is_cstring($sChar)', vs(isset($this), get_defined_vars()) );
-        assert( 'self::length($sChar) == 1', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($char)', vs(isset($this), get_defined_vars()) );
+        assert( 'self::length($char) == 1', vs(isset($this), get_defined_vars()) );
 
-        return CString::substr(self::toEscString($sChar), 2);
+        return CString::substr(self::toEscString($char), 2);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -742,49 +743,49 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * For instance, "A" would return "\u0041".
      *
-     * @param  string $sChar The character.
+     * @param  string $char The character.
      *
      * @return string The escaped character.
      */
 
-    public static function toCharCodeEsc ($sChar)
+    public static function toCharCodeEsc ($char)
     {
-        assert( 'is_cstring($sChar)', vs(isset($this), get_defined_vars()) );
-        assert( 'self::length($sChar) == 1', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($char)', vs(isset($this), get_defined_vars()) );
+        assert( 'self::length($char) == 1', vs(isset($this), get_defined_vars()) );
 
-        return self::toEscString($sChar);
+        return self::toEscString($char);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Escapes all the characters in a string and returns the new string.
      *
-     * @param  string $sString The string to be escaped.
+     * @param  string $string The string to be escaped.
      *
      * @return string The escaped string.
      */
 
-    public static function toEscString ($sString)
+    public static function toEscString ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return self::handleTransform($sString, "hex/java");
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return self::handleTransform($string, "hex/java");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Tells how many characters there are in a string.
      *
-     * @param  string $sString The string to be looked into.
+     * @param  string $string The string to be looked into.
      *
      * @return int The string's length.
      */
 
-    public static function length ($sString)
+    public static function length ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
 
-        $xRes = grapheme_strlen($sString);
-        if ( is_int($xRes) )
+        $res = grapheme_strlen($string);
+        if ( is_int($res) )
         {
-            return $xRes;
+            return $res;
         }
         else
         {
@@ -796,32 +797,32 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
     /**
      * Determines if a string is empty.
      *
-     * @param  string $sString The string to be looked into.
+     * @param  string $string The string to be looked into.
      *
      * @return bool `true` if the string is empty, `false` otherwise.
      */
 
-    public static function isEmpty ($sString)
+    public static function isEmpty ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return ( self::length($sString) == 0 );
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return ( self::length($string) == 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * From a string, returns the character located at a specified position.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  int $iPos The character's position.
+     * @param  string $string The string to be looked into.
+     * @param  int $pos The character's position.
      *
      * @return string The character located at the position specified.
      */
 
-    public static function charAt ($sString, $iPos)
+    public static function charAt ($string, $pos)
     {
-        assert( 'is_cstring($sString) && is_int($iPos)', vs(isset($this), get_defined_vars()) );
-        assert( '0 <= $iPos && $iPos < self::length($sString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string) && is_int($pos)', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $pos && $pos < self::length($string)', vs(isset($this), get_defined_vars()) );
 
-        return grapheme_substr($sString, $iPos, 1);
+        return grapheme_substr($string, $pos, 1);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -829,28 +830,28 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * The string is modified in-place.
      *
-     * @param  reference $rsString The string to be modified.
-     * @param  int $iPos The position of the character to be set.
-     * @param  string $sChar The replacement character.
+     * @param  reference $string The string to be modified.
+     * @param  int $pos The position of the character to be set.
+     * @param  string $char The replacement character.
      *
      * @return void
      */
 
-    public static function setCharAt (&$rsString, $iPos, $sChar)
+    public static function setCharAt (&$string, $pos, $char)
     {
-        assert( 'is_cstring($rsString) && is_int($iPos) && is_cstring($sChar)', vs(isset($this), get_defined_vars()) );
-        assert( '0 <= $iPos && $iPos < self::length($rsString)', vs(isset($this), get_defined_vars()) );
-        assert( 'self::length($sChar) == 1', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string) && is_int($pos) && is_cstring($char)', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $pos && $pos < self::length($string)', vs(isset($this), get_defined_vars()) );
+        assert( 'self::length($char) == 1', vs(isset($this), get_defined_vars()) );
 
-        $rsString = self::substr($rsString, 0, $iPos) . $sChar . self::substr($rsString, $iPos + 1);
+        $string = self::substr($string, 0, $pos) . $char . self::substr($string, $pos + 1);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if two strings are equal, comparing them case-sensitively.
      *
-     * @param  string $sString The first string for comparison.
-     * @param  string $sToString The second string for comparison.
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
+     * @param  string $string The first string for comparison.
+     * @param  string $toString The second string for comparison.
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
      * used for the comparison. The available collation options are `COLLATION_IGNORE_ACCENTS`,
      * `COLLATION_IGNORE_NONWORD`, `COLLATION_UPPERCASE_FIRST`, and `COLLATION_FRENCH` (see [Summary](#summary)).
      *
@@ -858,21 +859,21 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * `false` otherwise.
      */
 
-    public static function equals ($sString, $sToString, $bfCollationFlags = self::COLLATION_DEFAULT)
+    public static function equals ($string, $toString, $collationFlags = self::COLLATION_DEFAULT)
     {
-        assert( 'is_cstring($sString) && is_cstring($sToString) && is_bitfield($bfCollationFlags)',
+        assert( 'is_cstring($string) && is_cstring($toString) && is_bitfield($collationFlags)',
             vs(isset($this), get_defined_vars()) );
 
-        $oColl = self::collatorObject(false, false, "root", $bfCollationFlags);
-        return ( $oColl->compare($sString, $sToString) === 0 );
+        $coll = self::collatorObject(false, false, "root", $collationFlags);
+        return ( $coll->compare($string, $toString) === 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if two strings are equal, comparing them case-insensitively.
      *
-     * @param  string $sString The first string for comparison.
-     * @param  string $sToString The second string for comparison.
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
+     * @param  string $string The first string for comparison.
+     * @param  string $toString The second string for comparison.
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
      * used for the comparison. The available collation options are `COLLATION_IGNORE_ACCENTS`,
      * `COLLATION_IGNORE_NONWORD`, `COLLATION_UPPERCASE_FIRST`, and `COLLATION_FRENCH` (see [Summary](#summary)).
      *
@@ -880,43 +881,43 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * otherwise.
      */
 
-    public static function equalsCi ($sString, $sToString, $bfCollationFlags = self::COLLATION_DEFAULT)
+    public static function equalsCi ($string, $toString, $collationFlags = self::COLLATION_DEFAULT)
     {
-        assert( 'is_cstring($sString) && is_cstring($sToString) && is_bitfield($bfCollationFlags)',
+        assert( 'is_cstring($string) && is_cstring($toString) && is_bitfield($collationFlags)',
             vs(isset($this), get_defined_vars()) );
 
-        $oColl = self::collatorObject(true, false, "root", $bfCollationFlags);
-        return ( $oColl->compare($sString, $sToString) === 0 );
+        $coll = self::collatorObject(true, false, "root", $collationFlags);
+        return ( $coll->compare($string, $toString) === 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines the order in which two strings should appear in a place where it matters, assuming the ascending
      * order and comparing the strings case-sensitively.
      *
-     * @param  string $sString The first string for comparison.
-     * @param  string $sToString The second string for comparison.
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
+     * @param  string $string The first string for comparison.
+     * @param  string $toString The second string for comparison.
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
      * used for the comparison. The available collation options are `COLLATION_IGNORE_ACCENTS`,
      * `COLLATION_IGNORE_NONWORD`, `COLLATION_UPPERCASE_FIRST`, and `COLLATION_FRENCH` (see [Summary](#summary)).
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * strings are to be compared.
      *
      * @return int `-1` if the first string should go before the second string, `1` if the other way around, and `0` if
      * the two strings are equal, taking into account the letter case of the characters.
      */
 
-    public static function compare ($sString, $sToString, $bfCollationFlags = self::COLLATION_DEFAULT,
-        CULocale $oInLocale = null)
+    public static function compare ($string, $toString, $collationFlags = self::COLLATION_DEFAULT,
+        CULocale $inLocale = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sToString) && is_bitfield($bfCollationFlags)',
+        assert( 'is_cstring($string) && is_cstring($toString) && is_bitfield($collationFlags)',
             vs(isset($this), get_defined_vars()) );
 
-        $sLocale = ( isset($oInLocale) ) ? $oInLocale->name() : CULocale::defaultLocaleName();
-        $oColl = self::collatorObject(false, false, $sLocale, $bfCollationFlags);
-        $xRes = $oColl->compare($sString, $sToString);
-        if ( is_int($xRes) )
+        $locale = ( isset($inLocale) ) ? $inLocale->name() : CULocale::defaultLocaleName();
+        $coll = self::collatorObject(false, false, $locale, $collationFlags);
+        $res = $coll->compare($string, $toString);
+        if ( is_int($res) )
         {
-            return $xRes;
+            return $res;
         }
         else
         {
@@ -929,30 +930,30 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * Determines the order in which two strings should appear in a place where it matters, assuming the ascending
      * order and comparing the strings case-insensitively.
      *
-     * @param  string $sString The first string for comparison.
-     * @param  string $sToString The second string for comparison.
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
+     * @param  string $string The first string for comparison.
+     * @param  string $toString The second string for comparison.
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
      * used for the comparison. The available collation options are `COLLATION_IGNORE_ACCENTS`,
      * `COLLATION_IGNORE_NONWORD`, `COLLATION_UPPERCASE_FIRST`, and `COLLATION_FRENCH` (see [Summary](#summary)).
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * strings are to be compared.
      *
      * @return int `-1` if the first string should go before the second string, `1` if the other way around, and `0` if
      * the two strings are equal, ignoring the letter case of the characters.
      */
 
-    public static function compareCi ($sString, $sToString, $bfCollationFlags = self::COLLATION_DEFAULT,
-        CULocale $oInLocale = null)
+    public static function compareCi ($string, $toString, $collationFlags = self::COLLATION_DEFAULT,
+        CULocale $inLocale = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sToString) && is_bitfield($bfCollationFlags)',
+        assert( 'is_cstring($string) && is_cstring($toString) && is_bitfield($collationFlags)',
             vs(isset($this), get_defined_vars()) );
 
-        $sLocale = ( isset($oInLocale) ) ? $oInLocale->name() : CULocale::defaultLocaleName();
-        $oColl = self::collatorObject(true, false, $sLocale, $bfCollationFlags);
-        $xRes = $oColl->compare($sString, $sToString);
-        if ( is_int($xRes) )
+        $locale = ( isset($inLocale) ) ? $inLocale->name() : CULocale::defaultLocaleName();
+        $coll = self::collatorObject(true, false, $locale, $collationFlags);
+        $res = $coll->compare($string, $toString);
+        if ( is_int($res) )
         {
-            return $xRes;
+            return $res;
         }
         else
         {
@@ -968,30 +969,30 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * To illustrate natural order with an example, the strings "a100" and "a20" would get ordered as such with
      * `compare` method, but as "a20" and "a100" with this method, which is the order a human being would choose.
      *
-     * @param  string $sString The first string for comparison.
-     * @param  string $sToString The second string for comparison.
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
+     * @param  string $string The first string for comparison.
+     * @param  string $toString The second string for comparison.
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
      * used for the comparison. The available collation options are `COLLATION_IGNORE_ACCENTS`,
      * `COLLATION_IGNORE_NONWORD`, `COLLATION_UPPERCASE_FIRST`, and `COLLATION_FRENCH` (see [Summary](#summary)).
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * strings are to be compared.
      *
      * @return int `-1` if the first string should go before the second string, `1` if the other way around, and `0` if
      * the two strings are equal, taking into account the letter case of the characters.
      */
 
-    public static function compareNat ($sString, $sToString, $bfCollationFlags = self::COLLATION_DEFAULT,
-        CULocale $oInLocale = null)
+    public static function compareNat ($string, $toString, $collationFlags = self::COLLATION_DEFAULT,
+        CULocale $inLocale = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sToString) && is_bitfield($bfCollationFlags)',
+        assert( 'is_cstring($string) && is_cstring($toString) && is_bitfield($collationFlags)',
             vs(isset($this), get_defined_vars()) );
 
-        $sLocale = ( isset($oInLocale) ) ? $oInLocale->name() : CULocale::defaultLocaleName();
-        $oColl = self::collatorObject(false, true, $sLocale, $bfCollationFlags);
-        $xRes = $oColl->compare($sString, $sToString);
-        if ( is_int($xRes) )
+        $locale = ( isset($inLocale) ) ? $inLocale->name() : CULocale::defaultLocaleName();
+        $coll = self::collatorObject(false, true, $locale, $collationFlags);
+        $res = $coll->compare($string, $toString);
+        if ( is_int($res) )
         {
-            return $xRes;
+            return $res;
         }
         else
         {
@@ -1007,30 +1008,30 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * To illustrate natural order with an example, the strings "a100" and "a20" would get ordered as such with
      * `compareCi` method, but as "a20" and "a100" with this method, which is the order a human being would choose.
      *
-     * @param  string $sString The first string for comparison.
-     * @param  string $sToString The second string for comparison.
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
+     * @param  string $string The first string for comparison.
+     * @param  string $toString The second string for comparison.
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
      * used for the comparison. The available collation options are `COLLATION_IGNORE_ACCENTS`,
      * `COLLATION_IGNORE_NONWORD`, `COLLATION_UPPERCASE_FIRST`, and `COLLATION_FRENCH` (see [Summary](#summary)).
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * strings are to be compared.
      *
      * @return int `-1` if the first string should go before the second string, `1` if the other way around, and `0` if
      * the two strings are equal, ignoring the letter case of the characters.
      */
 
-    public static function compareNatCi ($sString, $sToString, $bfCollationFlags = self::COLLATION_DEFAULT,
-        CULocale $oInLocale = null)
+    public static function compareNatCi ($string, $toString, $collationFlags = self::COLLATION_DEFAULT,
+        CULocale $inLocale = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sToString) && is_bitfield($bfCollationFlags)',
+        assert( 'is_cstring($string) && is_cstring($toString) && is_bitfield($collationFlags)',
             vs(isset($this), get_defined_vars()) );
 
-        $sLocale = ( isset($oInLocale) ) ? $oInLocale->name() : CULocale::defaultLocaleName();
-        $oColl = self::collatorObject(true, true, $sLocale, $bfCollationFlags);
-        $xRes = $oColl->compare($sString, $sToString);
-        if ( is_int($xRes) )
+        $locale = ( isset($inLocale) ) ? $inLocale->name() : CULocale::defaultLocaleName();
+        $coll = self::collatorObject(true, true, $locale, $collationFlags);
+        $res = $coll->compare($string, $toString);
+        if ( is_int($res) )
         {
-            return $xRes;
+            return $res;
         }
         else
         {
@@ -1045,9 +1046,9 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * For any two strings, the [Levenshtein distance](http://en.wikipedia.org/wiki/Levenshtein_distance) is the total
      * number of insert, replace, and delete operations required to transform the first string into the second one.
      *
-     * @param  string $sString The first string for comparison.
-     * @param  string $sToString The second string for comparison.
-     * @param  bool $bTransliterate **OPTIONAL. Default is** `true`. Tells whether to transliterate the strings into
+     * @param  string $string The first string for comparison.
+     * @param  string $toString The second string for comparison.
+     * @param  bool $transliterate **OPTIONAL. Default is** `true`. Tells whether to transliterate the strings into
      * the Latin script and then flatten them to ASCII before calculating the distance. This is what you would normally
      * wish to happen for arbitrary Unicode strings since the algorithm of calculating the Levenshtein distance is not
      * Unicode-aware. For example, "こんにちは" is transliterated to "kon'nichiha".
@@ -1055,14 +1056,14 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * @return int The Levenshtein distance between the two strings.
      */
 
-    public static function levenDist ($sString, $sToString, $bTransliterate = true)
+    public static function levenDist ($string, $toString, $transliterate = true)
     {
-        assert( 'is_cstring($sString) && is_cstring($sToString) && is_bool($bTransliterate)',
+        assert( 'is_cstring($string) && is_cstring($toString) && is_bool($transliterate)',
             vs(isset($this), get_defined_vars()) );
 
-        $sString = CEString::flattenUnicodeToAscii($sString, $bTransliterate);
-        $sToString = CEString::flattenUnicodeToAscii($sToString, $bTransliterate);
-        return CString::levenDist($sString, $sToString);
+        $string = CEString::flattenUnicodeToAscii($string, $transliterate);
+        $toString = CEString::flattenUnicodeToAscii($toString, $transliterate);
+        return CString::levenDist($string, $toString);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1071,8 +1072,8 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * The algorithm used to render the [Metaphone](http://en.wikipedia.org/wiki/Metaphone) key is the first-generation
      * one.
      *
-     * @param  string $sString The source string.
-     * @param  bool $bTransliterate **OPTIONAL. Default is** `true`. Tells whether to transliterate the string into the
+     * @param  string $string The source string.
+     * @param  bool $transliterate **OPTIONAL. Default is** `true`. Tells whether to transliterate the string into the
      * Latin script and then flatten it to ASCII before generating the key. Since the Metaphone algorithm is not
      * Unicode-aware, the touch of transliteration is something that any arbitrary Unicode string would wish for. For
      * example, "こんにちは" is transliterated to "kon'nichiha".
@@ -1080,12 +1081,12 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * @return string The Metaphone key of the string.
      */
 
-    public static function metaphoneKey ($sString, $bTransliterate = true)
+    public static function metaphoneKey ($string, $transliterate = true)
     {
-        assert( 'is_cstring($sString) && is_bool($bTransliterate)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string) && is_bool($transliterate)', vs(isset($this), get_defined_vars()) );
 
-        $sString = CEString::flattenUnicodeToAscii($sString, $bTransliterate);
-        return CString::metaphoneKey($sString);
+        $string = CEString::flattenUnicodeToAscii($string, $transliterate);
+        return CString::metaphoneKey($string);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1096,9 +1097,9 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * algorithm used to render the [Metaphone](http://en.wikipedia.org/wiki/Metaphone) keys is the first-generation
      * one.
      *
-     * @param  string $sString The first string for comparison.
-     * @param  string $sToString The second string for comparison.
-     * @param  bool $bTransliterate **OPTIONAL. Default is** `true`. Tells whether to transliterate the strings into
+     * @param  string $string The first string for comparison.
+     * @param  string $toString The second string for comparison.
+     * @param  bool $transliterate **OPTIONAL. Default is** `true`. Tells whether to transliterate the strings into
      * the Latin script and then flatten them to ASCII before generating the keys. Since neither the Metaphone or
      * Levenshtein algorithm is Unicode-aware, the touch of transliteration is something that any arbitrary Unicode
      * strings would wish for. For example, "こんにちは" is transliterated to "kon'nichiha".
@@ -1106,73 +1107,73 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * @return int The Levenshtein distance between the Metaphone keys of the two strings.
      */
 
-    public static function metaphoneDist ($sString, $sToString, $bTransliterate = true)
+    public static function metaphoneDist ($string, $toString, $transliterate = true)
     {
-        assert( 'is_cstring($sString) && is_cstring($sToString) && is_bool($bTransliterate)',
+        assert( 'is_cstring($string) && is_cstring($toString) && is_bool($transliterate)',
             vs(isset($this), get_defined_vars()) );
-        return CString::levenDist(self::metaphoneKey($sString, $bTransliterate),
-            self::metaphoneKey($sToString, $bTransliterate));
+        return CString::levenDist(self::metaphoneKey($string, $transliterate),
+            self::metaphoneKey($toString, $transliterate));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts all the characters in a string to lowercase and returns the new string.
      *
-     * @param  string $sString The string to be converted.
+     * @param  string $string The string to be converted.
      *
      * @return string The converted string.
      */
 
-    public static function toLowerCase ($sString)
+    public static function toLowerCase ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return self::handleTransform($sString, "lower");
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return self::handleTransform($string, "lower");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts all the characters in a string to uppercase and returns the new string.
      *
-     * @param  string $sString The string to be converted.
+     * @param  string $string The string to be converted.
      *
      * @return string The converted string.
      */
 
-    public static function toUpperCase ($sString)
+    public static function toUpperCase ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return self::handleTransform($sString, "upper");
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return self::handleTransform($string, "upper");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts the first character in a string to uppercase and returns the new string.
      *
-     * @param  string $sString The string to be converted.
+     * @param  string $string The string to be converted.
      *
      * @return string The converted string.
      */
 
-    public static function toUpperCaseFirst ($sString)
+    public static function toUpperCaseFirst ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
 
-        if ( self::isEmpty($sString) )
+        if ( self::isEmpty($string) )
         {
             return "";
         }
-        return self::toUpperCase(self::substr($sString, 0, 1)) . self::substr($sString, 1);
+        return self::toUpperCase(self::substr($string, 0, 1)) . self::substr($string, 1);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts the first character in each word that there is in a string to uppercase and returns the new string.
      *
-     * @param  string $sString The string to be converted.
+     * @param  string $string The string to be converted.
      *
      * @return string The converted string.
      */
 
-    public static function toTitleCase ($sString)
+    public static function toTitleCase ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return self::handleTransform($sString, "title");
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return self::handleTransform($string, "title");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1180,22 +1181,22 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * As a special case, the method returns `true` if the searched substring is empty.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sWithString The searched substring.
+     * @param  string $string The string to be looked into.
+     * @param  string $withString The searched substring.
      *
      * @return bool `true` if the string starts with the substring specified, taking into account the letter case of
      * the characters, and `false` otherwise.
      */
 
-    public static function startsWith ($sString, $sWithString)
+    public static function startsWith ($string, $withString)
     {
-        assert( 'is_cstring($sString) && is_cstring($sWithString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string) && is_cstring($withString)', vs(isset($this), get_defined_vars()) );
 
-        if ( self::isEmpty($sWithString) )
+        if ( self::isEmpty($withString) )
         {
             return true;
         }
-        return ( grapheme_strpos($sString, $sWithString) === 0 );
+        return ( grapheme_strpos($string, $withString) === 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1203,22 +1204,22 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * As a special case, the method returns `true` if the searched substring is empty.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sWithString The searched substring.
+     * @param  string $string The string to be looked into.
+     * @param  string $withString The searched substring.
      *
      * @return bool `true` if the string starts with the substring specified, ignoring the letter case of the
      * characters, and `false` otherwise.
      */
 
-    public static function startsWithCi ($sString, $sWithString)
+    public static function startsWithCi ($string, $withString)
     {
-        assert( 'is_cstring($sString) && is_cstring($sWithString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string) && is_cstring($withString)', vs(isset($this), get_defined_vars()) );
 
-        if ( self::isEmpty($sWithString) )
+        if ( self::isEmpty($withString) )
         {
             return true;
         }
-        return ( grapheme_stripos($sString, $sWithString) === 0 );
+        return ( grapheme_stripos($string, $withString) === 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1226,22 +1227,22 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * As a special case, the method returns `true` if the searched substring is empty.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sWithString The searched substring.
+     * @param  string $string The string to be looked into.
+     * @param  string $withString The searched substring.
      *
      * @return bool `true` if the string ends with the substring specified, taking into account the letter case of the
      * characters, and `false` otherwise.
      */
 
-    public static function endsWith ($sString, $sWithString)
+    public static function endsWith ($string, $withString)
     {
-        assert( 'is_cstring($sString) && is_cstring($sWithString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string) && is_cstring($withString)', vs(isset($this), get_defined_vars()) );
 
-        if ( self::isEmpty($sWithString) )
+        if ( self::isEmpty($withString) )
         {
             return true;
         }
-        return ( grapheme_strrpos($sString, $sWithString) === self::length($sString) - self::length($sWithString) );
+        return ( grapheme_strrpos($string, $withString) === self::length($string) - self::length($withString) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1249,22 +1250,22 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * As a special case, the method returns `true` if the searched substring is empty.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sWithString The searched substring.
+     * @param  string $string The string to be looked into.
+     * @param  string $withString The searched substring.
      *
      * @return bool `true` if the string ends with the substring specified, ignoring the letter case of the characters,
      * and `false` otherwise.
      */
 
-    public static function endsWithCi ($sString, $sWithString)
+    public static function endsWithCi ($string, $withString)
     {
-        assert( 'is_cstring($sString) && is_cstring($sWithString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string) && is_cstring($withString)', vs(isset($this), get_defined_vars()) );
 
-        if ( self::isEmpty($sWithString) )
+        if ( self::isEmpty($withString) )
         {
             return true;
         }
-        return ( grapheme_strripos($sString, $sWithString) === self::length($sString) - self::length($sWithString) );
+        return ( grapheme_strripos($string, $withString) === self::length($string) - self::length($withString) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1272,26 +1273,26 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * As a special case, the method returns the starting position of the search if the searched substring is empty.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sOfString The searched substring.
-     * @param  int $iStartPos **OPTIONAL. Default is** `0`. The starting position for the search.
+     * @param  string $string The string to be looked into.
+     * @param  string $ofString The searched substring.
+     * @param  int $startPos **OPTIONAL. Default is** `0`. The starting position for the search.
      *
      * @return int The position of the first occurrence of the substring in the string or `-1` if no such substring was
      * found, taking into account the letter case during the search.
      */
 
-    public static function indexOf ($sString, $sOfString, $iStartPos = 0)
+    public static function indexOf ($string, $ofString, $startPos = 0)
     {
-        assert( 'is_cstring($sString) && is_cstring($sOfString) && is_int($iStartPos)',
+        assert( 'is_cstring($string) && is_cstring($ofString) && is_int($startPos)',
             vs(isset($this), get_defined_vars()) );
-        assert( '0 <= $iStartPos && $iStartPos <= self::length($sString)', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $startPos && $startPos <= self::length($string)', vs(isset($this), get_defined_vars()) );
 
-        if ( self::isEmpty($sOfString) )
+        if ( self::isEmpty($ofString) )
         {
-            return $iStartPos;
+            return $startPos;
         }
-        $xRes = grapheme_strpos($sString, $sOfString, $iStartPos);
-        return ( is_int($xRes) ) ? $xRes : -1;
+        $res = grapheme_strpos($string, $ofString, $startPos);
+        return ( is_int($res) ) ? $res : -1;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1299,26 +1300,26 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * As a special case, the method returns the starting position of the search if the searched substring is empty.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sOfString The searched substring.
-     * @param  int $iStartPos **OPTIONAL. Default is** `0`. The starting position for the search.
+     * @param  string $string The string to be looked into.
+     * @param  string $ofString The searched substring.
+     * @param  int $startPos **OPTIONAL. Default is** `0`. The starting position for the search.
      *
      * @return int The position of the first occurrence of the substring in the string or `-1` if no such substring was
      * found, ignoring the letter case during the search.
      */
 
-    public static function indexOfCi ($sString, $sOfString, $iStartPos = 0)
+    public static function indexOfCi ($string, $ofString, $startPos = 0)
     {
-        assert( 'is_cstring($sString) && is_cstring($sOfString) && is_int($iStartPos)',
+        assert( 'is_cstring($string) && is_cstring($ofString) && is_int($startPos)',
             vs(isset($this), get_defined_vars()) );
-        assert( '0 <= $iStartPos && $iStartPos <= self::length($sString)', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $startPos && $startPos <= self::length($string)', vs(isset($this), get_defined_vars()) );
 
-        if ( self::isEmpty($sOfString) )
+        if ( self::isEmpty($ofString) )
         {
-            return $iStartPos;
+            return $startPos;
         }
-        $xRes = grapheme_stripos($sString, $sOfString, $iStartPos);
-        return ( is_int($xRes) ) ? $xRes : -1;
+        $res = grapheme_stripos($string, $ofString, $startPos);
+        return ( is_int($res) ) ? $res : -1;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1326,26 +1327,26 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * As a special case, the method returns the string's length if the searched substring is empty.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sOfString The searched substring.
-     * @param  int $iStartPos **OPTIONAL. Default is** `0`. The starting position for the search.
+     * @param  string $string The string to be looked into.
+     * @param  string $ofString The searched substring.
+     * @param  int $startPos **OPTIONAL. Default is** `0`. The starting position for the search.
      *
      * @return int The position of the last occurrence of the substring in the string or `-1` if no such substring was
      * found, taking into account the letter case during the search.
      */
 
-    public static function lastIndexOf ($sString, $sOfString, $iStartPos = 0)
+    public static function lastIndexOf ($string, $ofString, $startPos = 0)
     {
-        assert( 'is_cstring($sString) && is_cstring($sOfString) && is_int($iStartPos)',
+        assert( 'is_cstring($string) && is_cstring($ofString) && is_int($startPos)',
             vs(isset($this), get_defined_vars()) );
-        assert( '0 <= $iStartPos && $iStartPos <= self::length($sString)', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $startPos && $startPos <= self::length($string)', vs(isset($this), get_defined_vars()) );
 
-        if ( self::isEmpty($sOfString) )
+        if ( self::isEmpty($ofString) )
         {
-            return self::length($sString);
+            return self::length($string);
         }
-        $xRes = grapheme_strrpos($sString, $sOfString, $iStartPos);
-        return ( is_int($xRes) ) ? $xRes : -1;
+        $res = grapheme_strrpos($string, $ofString, $startPos);
+        return ( is_int($res) ) ? $res : -1;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1353,97 +1354,97 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * As a special case, the method returns the string's length if the searched substring is empty.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sOfString The searched substring.
-     * @param  int $iStartPos **OPTIONAL. Default is** `0`. The starting position for the search.
+     * @param  string $string The string to be looked into.
+     * @param  string $ofString The searched substring.
+     * @param  int $startPos **OPTIONAL. Default is** `0`. The starting position for the search.
      *
      * @return int The position of the last occurrence of the substring in the string or `-1` if no such substring was
      * found, ignoring the letter case during the search.
      */
 
-    public static function lastIndexOfCi ($sString, $sOfString, $iStartPos = 0)
+    public static function lastIndexOfCi ($string, $ofString, $startPos = 0)
     {
-        assert( 'is_cstring($sString) && is_cstring($sOfString) && is_int($iStartPos)',
+        assert( 'is_cstring($string) && is_cstring($ofString) && is_int($startPos)',
             vs(isset($this), get_defined_vars()) );
-        assert( '0 <= $iStartPos && $iStartPos <= self::length($sString)', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $startPos && $startPos <= self::length($string)', vs(isset($this), get_defined_vars()) );
 
-        if ( self::isEmpty($sOfString) )
+        if ( self::isEmpty($ofString) )
         {
-            return self::length($sString);
+            return self::length($string);
         }
-        $xRes = grapheme_strripos($sString, $sOfString, $iStartPos);
-        return ( is_int($xRes) ) ? $xRes : -1;
+        $res = grapheme_strripos($string, $ofString, $startPos);
+        return ( is_int($res) ) ? $res : -1;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if a string contains a specified substring, searching case-sensitively.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sWhatString The searched substring.
-     * @param  int $iStartPos **OPTIONAL. Default is** `0`. The starting position for the search.
+     * @param  string $string The string to be looked into.
+     * @param  string $whatString The searched substring.
+     * @param  int $startPos **OPTIONAL. Default is** `0`. The starting position for the search.
      *
      * @return bool `true` if the substring was found in the string, taking into account the letter case during the
      * search, and `false` otherwise.
      */
 
-    public static function find ($sString, $sWhatString, $iStartPos = 0)
+    public static function find ($string, $whatString, $startPos = 0)
     {
-        assert( 'is_cstring($sString) && is_cstring($sWhatString) && is_int($iStartPos)',
+        assert( 'is_cstring($string) && is_cstring($whatString) && is_int($startPos)',
             vs(isset($this), get_defined_vars()) );
-        return ( self::indexOf($sString, $sWhatString, $iStartPos) != -1 );
+        return ( self::indexOf($string, $whatString, $startPos) != -1 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if a string contains a specified substring, searching case-insensitively.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sWhatString The searched substring.
-     * @param  int $iStartPos **OPTIONAL. Default is** `0`. The starting position for the search.
+     * @param  string $string The string to be looked into.
+     * @param  string $whatString The searched substring.
+     * @param  int $startPos **OPTIONAL. Default is** `0`. The starting position for the search.
      *
      * @return bool `true` if the substring was found in the string, ignoring the letter case during the search, and
      * `false` otherwise.
      */
 
-    public static function findCi ($sString, $sWhatString, $iStartPos = 0)
+    public static function findCi ($string, $whatString, $startPos = 0)
     {
-        assert( 'is_cstring($sString) && is_cstring($sWhatString) && is_int($iStartPos)',
+        assert( 'is_cstring($string) && is_cstring($whatString) && is_int($startPos)',
             vs(isset($this), get_defined_vars()) );
-        return ( self::indexOfCi($sString, $sWhatString, $iStartPos) != -1 );
+        return ( self::indexOfCi($string, $whatString, $startPos) != -1 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if the characters in a string are a subset of the characters in another string.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sOfCharSet The reference string.
+     * @param  string $string The string to be looked into.
+     * @param  string $ofCharSet The reference string.
      *
      * @return bool `true` if the string is a subset of the reference string, `false` otherwise.
      */
 
-    public static function isSubsetOf ($sString, $sOfCharSet)
+    public static function isSubsetOf ($string, $ofCharSet)
     {
-        assert( 'is_cstring($sString) && is_cstring($sOfCharSet)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string) && is_cstring($ofCharSet)', vs(isset($this), get_defined_vars()) );
 
-        if ( self::isEmpty($sString) && !self::isEmpty($sOfCharSet) )
+        if ( self::isEmpty($string) && !self::isEmpty($ofCharSet) )
         {
             // Special case.
             return false;
         }
 
-        $iSLength = self::length($sString);
-        $iCsLength = self::length($sOfCharSet);
-        for ($i0 = 0; $i0 < $iSLength; $i0++)
+        $sLength = self::length($string);
+        $csLength = self::length($ofCharSet);
+        for ($i0 = 0; $i0 < $sLength; $i0++)
         {
-            $bIsIn = false;
-            for ($i1 = 0; $i1 < $iCsLength; $i1++)
+            $isIn = false;
+            for ($i1 = 0; $i1 < $csLength; $i1++)
             {
-                if ( self::equals(self::charAt($sString, $i0), self::charAt($sOfCharSet, $i1)) )
+                if ( self::equals(self::charAt($string, $i0), self::charAt($ofCharSet, $i1)) )
                 {
-                    $bIsIn = true;
+                    $isIn = true;
                     break;
                 }
             }
-            if ( !$bIsIn )
+            if ( !$isIn )
             {
                 return false;
             }
@@ -1457,34 +1458,34 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * As a special case, the method returns an empty string if the starting position is equal to the string's length
      * or if the substring's length, if specified, is `0`.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  int $iStartPos The position of the substring's first character.
-     * @param  int $iLength **OPTIONAL. Default is** *as many characters as the starting character is followed by*. The
+     * @param  string $string The string to be looked into.
+     * @param  int $startPos The position of the substring's first character.
+     * @param  int $length **OPTIONAL. Default is** *as many characters as the starting character is followed by*. The
      * length of the substring.
      *
      * @return string The substring.
      */
 
-    public static function substr ($sString, $iStartPos, $iLength = null)
+    public static function substr ($string, $startPos, $length = null)
     {
-        assert( 'is_cstring($sString) && is_int($iStartPos) && (!isset($iLength) || is_int($iLength))',
+        assert( 'is_cstring($string) && is_int($startPos) && (!isset($length) || is_int($length))',
             vs(isset($this), get_defined_vars()) );
-        assert( '(0 <= $iStartPos && $iStartPos < self::length($sString)) || ' .
-                '($iStartPos == self::length($sString) && (!isset($iLength) || $iLength == 0))',
+        assert( '(0 <= $startPos && $startPos < self::length($string)) || ' .
+                '($startPos == self::length($string) && (!isset($length) || $length == 0))',
             vs(isset($this), get_defined_vars()) );
-        assert( '!isset($iLength) || ($iLength >= 0 && $iStartPos + $iLength <= self::length($sString))',
+        assert( '!isset($length) || ($length >= 0 && $startPos + $length <= self::length($string))',
             vs(isset($this), get_defined_vars()) );
 
-        $xRes;
-        if ( !isset($iLength) )
+        $res;
+        if ( !isset($length) )
         {
-            $xRes = grapheme_substr($sString, $iStartPos);
+            $res = grapheme_substr($string, $startPos);
         }
         else
         {
-            $xRes = grapheme_substr($sString, $iStartPos, $iLength);
+            $res = grapheme_substr($string, $startPos, $length);
         }
-        return ( is_cstring($xRes) ) ? $xRes : "";
+        return ( is_cstring($res) ) ? $res : "";
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1493,18 +1494,18 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * As a special case, the method returns an empty string if the starting and ending positions are the same, with
      * the greatest such position being the string's length.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  int $iStartPos The position of the substring's first character.
-     * @param  int $iEndPos The position of the character that *follows* the last character in the substring.
+     * @param  string $string The string to be looked into.
+     * @param  int $startPos The position of the substring's first character.
+     * @param  int $endPos The position of the character that *follows* the last character in the substring.
      *
      * @return string The substring.
      */
 
-    public static function substring ($sString, $iStartPos, $iEndPos)
+    public static function substring ($string, $startPos, $endPos)
     {
-        assert( 'is_cstring($sString) && is_int($iStartPos) && is_int($iEndPos)',
+        assert( 'is_cstring($string) && is_int($startPos) && is_int($endPos)',
             vs(isset($this), get_defined_vars()) );
-        return self::substr($sString, $iStartPos, $iEndPos - $iStartPos);
+        return self::substr($string, $startPos, $endPos - $startPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1512,34 +1513,34 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * The search is case-sensitive.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  string $sSubstring The searched substring.
-     * @param  int $iStartPos **OPTIONAL. Default is** `0`. The starting position for the search.
+     * @param  string $string The string to be looked into.
+     * @param  string $substring The searched substring.
+     * @param  int $startPos **OPTIONAL. Default is** `0`. The starting position for the search.
      *
      * @return int The number of such substrings in the string.
      */
 
-    public static function numSubstrings ($sString, $sSubstring, $iStartPos = 0)
+    public static function numSubstrings ($string, $substring, $startPos = 0)
     {
-        assert( 'is_cstring($sString) && is_cstring($sSubstring) && is_int($iStartPos)',
+        assert( 'is_cstring($string) && is_cstring($substring) && is_int($startPos)',
             vs(isset($this), get_defined_vars()) );
-        assert( '!self::isEmpty($sSubstring)', vs(isset($this), get_defined_vars()) );
-        assert( '(0 <= $iStartPos && $iStartPos < self::length($sString)) || ' .
-                '(self::isEmpty($sString) && $iStartPos == 0)', vs(isset($this), get_defined_vars()) );
+        assert( '!self::isEmpty($substring)', vs(isset($this), get_defined_vars()) );
+        assert( '(0 <= $startPos && $startPos < self::length($string)) || ' .
+                '(self::isEmpty($string) && $startPos == 0)', vs(isset($this), get_defined_vars()) );
 
-        $iQty = 0;
-        $iSsLength = self::length($sSubstring);
+        $qty = 0;
+        $ssLength = self::length($substring);
         while ( true )
         {
-            $iPos = self::indexOf($sString, $sSubstring, $iStartPos);
-            if ( $iPos == -1 )
+            $pos = self::indexOf($string, $substring, $startPos);
+            if ( $pos == -1 )
             {
                 break;
             }
-            $iQty++;
-            $iStartPos = $iPos + $iSsLength;
+            $qty++;
+            $startPos = $pos + $ssLength;
         }
-        return $iQty;
+        return $qty;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1553,136 +1554,136 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * As a special case, the delimiter substring can be empty, which will split the string into its constituting
      * characters.
      *
-     * @param  string $sString The string to be split.
-     * @param  string|array|map $xDelimiterOrDelimiters The substring or array of substrings to be recognized as the
+     * @param  string $string The string to be split.
+     * @param  string|array|map $delimiterOrDelimiters The substring or array of substrings to be recognized as the
      * delimiter(s).
      *
      * @return CArray The resulting strings.
      */
 
-    public static function split ($sString, $xDelimiterOrDelimiters)
+    public static function split ($string, $delimiterOrDelimiters)
     {
-        assert( 'is_cstring($sString) && ' .
-                '(is_cstring($xDelimiterOrDelimiters) || is_collection($xDelimiterOrDelimiters))',
+        assert( 'is_cstring($string) && ' .
+                '(is_cstring($delimiterOrDelimiters) || is_collection($delimiterOrDelimiters))',
             vs(isset($this), get_defined_vars()) );
 
-        if ( is_cstring($xDelimiterOrDelimiters) )
+        if ( is_cstring($delimiterOrDelimiters) )
         {
-            if ( self::isEmpty($xDelimiterOrDelimiters) )
+            if ( self::isEmpty($delimiterOrDelimiters) )
             {
                 // Special case.
-                if ( self::isEmpty($sString) )
+                if ( self::isEmpty($string) )
                 {
-                    $aResStrings = CArray::fromElements("");
-                    return $aResStrings;
+                    $resStrings = CArray::fromElements("");
+                    return $resStrings;
                 }
                 else
                 {
-                    $iSLength = self::length($sString);
-                    $aResStrings = CArray::make($iSLength);
-                    for ($i = 0; $i < $iSLength; $i++)
+                    $sLength = self::length($string);
+                    $resStrings = CArray::make($sLength);
+                    for ($i = 0; $i < $sLength; $i++)
                     {
-                        $aResStrings[$i] = self::charAt($sString, $i);
+                        $resStrings[$i] = self::charAt($string, $i);
                     }
-                    return $aResStrings;
+                    return $resStrings;
                 }
             }
 
-            $aResStrings = CArray::make(self::numSubstrings($sString, $xDelimiterOrDelimiters) + 1);
-            $iStartPos = 0;
+            $resStrings = CArray::make(self::numSubstrings($string, $delimiterOrDelimiters) + 1);
+            $startPos = 0;
             $i = 0;
-            $iDLength = self::length($xDelimiterOrDelimiters);
+            $dLength = self::length($delimiterOrDelimiters);
             while ( true )
             {
-                $iEndPos = self::indexOf($sString, $xDelimiterOrDelimiters, $iStartPos);
-                if ( $iEndPos != -1 )
+                $endPos = self::indexOf($string, $delimiterOrDelimiters, $startPos);
+                if ( $endPos != -1 )
                 {
-                    $aResStrings[$i++] = self::substring($sString, $iStartPos, $iEndPos);
-                    $iStartPos = $iEndPos + $iDLength;
+                    $resStrings[$i++] = self::substring($string, $startPos, $endPos);
+                    $startPos = $endPos + $dLength;
                 }
                 else
                 {
-                    $aResStrings[$i] = self::substr($sString, $iStartPos);
+                    $resStrings[$i] = self::substr($string, $startPos);
                     break;
                 }
             }
-            return $aResStrings;
+            return $resStrings;
         }
         else  // a collection
         {
-            $aResStrings = CArray::fromElements($sString);
-            foreach ($xDelimiterOrDelimiters as $sDelimiter)
+            $resStrings = CArray::fromElements($string);
+            foreach ($delimiterOrDelimiters as $delimiter)
             {
-                assert( 'is_cstring($sDelimiter)', vs(isset($this), get_defined_vars()) );
-                $aResStringsNew = CArray::make();
-                $iLen = CArray::length($aResStrings);
-                for ($i = 0; $i < $iLen; $i++)
+                assert( 'is_cstring($delimiter)', vs(isset($this), get_defined_vars()) );
+                $resStringsNew = CArray::make();
+                $len = CArray::length($resStrings);
+                for ($i = 0; $i < $len; $i++)
                 {
-                    CArray::pushArray($aResStringsNew, self::split($aResStrings[$i], $sDelimiter));
+                    CArray::pushArray($resStringsNew, self::split($resStrings[$i], $delimiter));
                 }
-                $aResStrings = $aResStringsNew;
+                $resStrings = $resStringsNew;
             }
-            return $aResStrings;
+            return $resStrings;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Splits a string into its constituting characters.
      *
-     * @param  string $sString The string to be split.
+     * @param  string $string The string to be split.
      *
      * @return CArray The string's characters.
      */
 
-    public static function splitIntoChars ($sString)
+    public static function splitIntoChars ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return self::split($sString, "");
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return self::split($string, "");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes all characters from the start of a string that are non-printable, such as whitespace.
      *
-     * @param  string $sString The string to be trimmed.
+     * @param  string $string The string to be trimmed.
      *
      * @return string The trimmed string.
      */
 
-    public static function trimStart ($sString)
+    public static function trimStart ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return CRegex::remove($sString, "/^(" . self::TRIMMING_AND_SPACING_NORM_SUBJECT_RE . ")+/u");
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return CRegex::remove($string, "/^(" . self::TRIMMING_AND_SPACING_NORM_SUBJECT_RE . ")+/u");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes all characters from the end of a string that are non-printable, such as whitespace.
      *
-     * @param  string $sString The string to be trimmed.
+     * @param  string $string The string to be trimmed.
      *
      * @return string The trimmed string.
      */
 
-    public static function trimEnd ($sString)
+    public static function trimEnd ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return CRegex::remove($sString, "/(" . self::TRIMMING_AND_SPACING_NORM_SUBJECT_RE . ")+\\z/u");
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return CRegex::remove($string, "/(" . self::TRIMMING_AND_SPACING_NORM_SUBJECT_RE . ")+\\z/u");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes all characters from both ends of a string that are non-printable, such as whitespace.
      *
-     * @param  string $sString The string to be trimmed.
+     * @param  string $string The string to be trimmed.
      *
      * @return string The trimmed string.
      */
 
-    public static function trim ($sString)
+    public static function trim ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
 
-        $sString = self::trimStart($sString);
-        $sString = self::trimEnd($sString);
-        return $sString;
+        $string = self::trimStart($string);
+        $string = self::trimEnd($string);
+        return $string;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1690,19 +1691,19 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * as whitespace, and replacing any sequence of such characters within the string with a single space character,
      * and returns the new string.
      *
-     * @param  string $sString The string to be normalized.
+     * @param  string $string The string to be normalized.
      *
      * @return string The normalized string.
      */
 
-    public static function normSpacing ($sString)
+    public static function normSpacing ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
 
-        $sString = CRegex::remove($sString, "/^(" . self::TRIMMING_AND_SPACING_NORM_SUBJECT_RE . ")+/u");
-        $sString = CRegex::remove($sString, "/(" . self::TRIMMING_AND_SPACING_NORM_SUBJECT_RE . ")+\\z/u");
-        $sString = CRegex::replace($sString, "/(" . self::TRIMMING_AND_SPACING_NORM_SUBJECT_RE . ")+/u", " ");
-        return $sString;
+        $string = CRegex::remove($string, "/^(" . self::TRIMMING_AND_SPACING_NORM_SUBJECT_RE . ")+/u");
+        $string = CRegex::remove($string, "/(" . self::TRIMMING_AND_SPACING_NORM_SUBJECT_RE . ")+\\z/u");
+        $string = CRegex::replace($string, "/(" . self::TRIMMING_AND_SPACING_NORM_SUBJECT_RE . ")+/u", " ");
+        return $string;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1712,16 +1713,16 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * The known newline formats are LF (U+000A), CRLF (U+000D, U+000A), CR (U+000D), VT (U+000B), FF (U+000C),
      * Next Line (U+0085), Line Separator (U+2028), and Paragraph Separator (U+2029).
      *
-     * @param  string $sString The string to be normalized.
-     * @param  string $sNewline **OPTIONAL. Default is** LF (U+000A).
+     * @param  string $string The string to be normalized.
+     * @param  string $newline **OPTIONAL. Default is** LF (U+000A).
      *
      * @return string The normalized string.
      */
 
-    public static function normNewlines ($sString, $sNewline = self::NEWLINE)
+    public static function normNewlines ($string, $newline = self::NEWLINE)
     {
-        assert( 'is_cstring($sString) && is_cstring($sNewline)', vs(isset($this), get_defined_vars()) );
-        return CRegex::replace($sString, "/" . self::NL_NORM_SUBJECT_RE . "/u", $sNewline);
+        assert( 'is_cstring($string) && is_cstring($newline)', vs(isset($this), get_defined_vars()) );
+        return CRegex::replace($string, "/" . self::NL_NORM_SUBJECT_RE . "/u", $newline);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1729,26 +1730,26 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * If the input string is already of the targeted length, it's returned unmodified.
      *
-     * @param  string $sString The string to be padded.
-     * @param  string $sPaddingString The string to be used for padding.
-     * @param  int $iNewLength The length of the padded string.
+     * @param  string $string The string to be padded.
+     * @param  string $paddingString The string to be used for padding.
+     * @param  int $newLength The length of the padded string.
      *
      * @return string The padded string.
      */
 
-    public static function padStart ($sString, $sPaddingString, $iNewLength)
+    public static function padStart ($string, $paddingString, $newLength)
     {
-        assert( 'is_cstring($sString) && is_cstring($sPaddingString) && is_int($iNewLength)',
+        assert( 'is_cstring($string) && is_cstring($paddingString) && is_int($newLength)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$iNewLength >= self::length($sString)', vs(isset($this), get_defined_vars()) );
+        assert( '$newLength >= self::length($string)', vs(isset($this), get_defined_vars()) );
 
-        $sPadding = "";
-        $iDiff = $iNewLength - self::length($sString);
-        for ($i = 0; $i < $iDiff; $i++)
+        $padding = "";
+        $diff = $newLength - self::length($string);
+        for ($i = 0; $i < $diff; $i++)
         {
-            $sPadding .= $sPaddingString;
+            $padding .= $paddingString;
         }
-        return $sPadding . $sString;
+        return $padding . $string;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1756,26 +1757,26 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * If the input string is already of the targeted length, it's returned unmodified.
      *
-     * @param  string $sString The string to be padded.
-     * @param  string $sPaddingString The string to be used for padding.
-     * @param  int $iNewLength The length of the padded string.
+     * @param  string $string The string to be padded.
+     * @param  string $paddingString The string to be used for padding.
+     * @param  int $newLength The length of the padded string.
      *
      * @return string The padded string.
      */
 
-    public static function padEnd ($sString, $sPaddingString, $iNewLength)
+    public static function padEnd ($string, $paddingString, $newLength)
     {
-        assert( 'is_cstring($sString) && is_cstring($sPaddingString) && is_int($iNewLength)',
+        assert( 'is_cstring($string) && is_cstring($paddingString) && is_int($newLength)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$iNewLength >= self::length($sString)', vs(isset($this), get_defined_vars()) );
+        assert( '$newLength >= self::length($string)', vs(isset($this), get_defined_vars()) );
 
-        $sPadding = "";
-        $iDiff = $iNewLength - self::length($sString);
-        for ($i = 0; $i < $iDiff; $i++)
+        $padding = "";
+        $diff = $newLength - self::length($string);
+        for ($i = 0; $i < $diff; $i++)
         {
-            $sPadding .= $sPaddingString;
+            $padding .= $paddingString;
         }
-        return $sString . $sPadding;
+        return $string . $padding;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1785,36 +1786,36 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * In case of multiple different substrings to be stripped off, the order of the substrings in the parameter array
      * does matter.
      *
-     * @param  string $sString The string to be stripped.
-     * @param  string|array|map $xPrefixOrPrefixes The substring or array of substrings to be stripped off.
+     * @param  string $string The string to be stripped.
+     * @param  string|array|map $prefixOrPrefixes The substring or array of substrings to be stripped off.
      *
      * @return string The stripped string.
      */
 
-    public static function stripStart ($sString, $xPrefixOrPrefixes)
+    public static function stripStart ($string, $prefixOrPrefixes)
     {
-        assert( 'is_cstring($sString) && (is_cstring($xPrefixOrPrefixes) || is_collection($xPrefixOrPrefixes))',
+        assert( 'is_cstring($string) && (is_cstring($prefixOrPrefixes) || is_collection($prefixOrPrefixes))',
             vs(isset($this), get_defined_vars()) );
 
-        if ( is_cstring($xPrefixOrPrefixes) )
+        if ( is_cstring($prefixOrPrefixes) )
         {
-            if ( self::startsWith($sString, $xPrefixOrPrefixes) )
+            if ( self::startsWith($string, $prefixOrPrefixes) )
             {
-                $sString = self::substr($sString, self::length($xPrefixOrPrefixes));
+                $string = self::substr($string, self::length($prefixOrPrefixes));
             }
         }
         else  // a collection
         {
-            foreach ($xPrefixOrPrefixes as $sPrefix)
+            foreach ($prefixOrPrefixes as $prefix)
             {
-                assert( 'is_cstring($sPrefix)', vs(isset($this), get_defined_vars()) );
-                if ( self::startsWith($sString, $sPrefix) )
+                assert( 'is_cstring($prefix)', vs(isset($this), get_defined_vars()) );
+                if ( self::startsWith($string, $prefix) )
                 {
-                    $sString = self::substr($sString, self::length($sPrefix));
+                    $string = self::substr($string, self::length($prefix));
                 }
             }
         }
-        return $sString;
+        return $string;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1824,36 +1825,36 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * In case of multiple different substrings to be stripped off, the order of the substrings in the parameter array
      * does matter.
      *
-     * @param  string $sString The string to be stripped.
-     * @param  string|array|map $xPrefixOrPrefixes The substring or array of substrings to be stripped off.
+     * @param  string $string The string to be stripped.
+     * @param  string|array|map $prefixOrPrefixes The substring or array of substrings to be stripped off.
      *
      * @return string The stripped string.
      */
 
-    public static function stripStartCi ($sString, $xPrefixOrPrefixes)
+    public static function stripStartCi ($string, $prefixOrPrefixes)
     {
-        assert( 'is_cstring($sString) && (is_cstring($xPrefixOrPrefixes) || is_collection($xPrefixOrPrefixes))',
+        assert( 'is_cstring($string) && (is_cstring($prefixOrPrefixes) || is_collection($prefixOrPrefixes))',
             vs(isset($this), get_defined_vars()) );
 
-        if ( is_cstring($xPrefixOrPrefixes) )
+        if ( is_cstring($prefixOrPrefixes) )
         {
-            if ( self::startsWithCi($sString, $xPrefixOrPrefixes) )
+            if ( self::startsWithCi($string, $prefixOrPrefixes) )
             {
-                $sString = self::substr($sString, self::length($xPrefixOrPrefixes));
+                $string = self::substr($string, self::length($prefixOrPrefixes));
             }
         }
         else  // a collection
         {
-            foreach ($xPrefixOrPrefixes as $sPrefix)
+            foreach ($prefixOrPrefixes as $prefix)
             {
-                assert( 'is_cstring($sPrefix)', vs(isset($this), get_defined_vars()) );
-                if ( self::startsWithCi($sString, $sPrefix) )
+                assert( 'is_cstring($prefix)', vs(isset($this), get_defined_vars()) );
+                if ( self::startsWithCi($string, $prefix) )
                 {
-                    $sString = self::substr($sString, self::length($sPrefix));
+                    $string = self::substr($string, self::length($prefix));
                 }
             }
         }
-        return $sString;
+        return $string;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1863,36 +1864,36 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * In case of multiple different substrings to be stripped off, the order of the substrings in the parameter array
      * does matter.
      *
-     * @param  string $sString The string to be stripped.
-     * @param  string|array|map $xSuffixOrSuffixes The substring or array of substrings to be stripped off.
+     * @param  string $string The string to be stripped.
+     * @param  string|array|map $suffixOrSuffixes The substring or array of substrings to be stripped off.
      *
      * @return string The stripped string.
      */
 
-    public static function stripEnd ($sString, $xSuffixOrSuffixes)
+    public static function stripEnd ($string, $suffixOrSuffixes)
     {
-        assert( 'is_cstring($sString) && (is_cstring($xSuffixOrSuffixes) || is_collection($xSuffixOrSuffixes))',
+        assert( 'is_cstring($string) && (is_cstring($suffixOrSuffixes) || is_collection($suffixOrSuffixes))',
             vs(isset($this), get_defined_vars()) );
 
-        if ( is_cstring($xSuffixOrSuffixes) )
+        if ( is_cstring($suffixOrSuffixes) )
         {
-            if ( self::endsWith($sString, $xSuffixOrSuffixes) )
+            if ( self::endsWith($string, $suffixOrSuffixes) )
             {
-                $sString = self::substr($sString, 0, self::length($sString) - self::length($xSuffixOrSuffixes));
+                $string = self::substr($string, 0, self::length($string) - self::length($suffixOrSuffixes));
             }
         }
         else  // a collection
         {
-            foreach ($xSuffixOrSuffixes as $sSuffix)
+            foreach ($suffixOrSuffixes as $suffix)
             {
-                assert( 'is_cstring($sSuffix)', vs(isset($this), get_defined_vars()) );
-                if ( self::endsWith($sString, $sSuffix) )
+                assert( 'is_cstring($suffix)', vs(isset($this), get_defined_vars()) );
+                if ( self::endsWith($string, $suffix) )
                 {
-                    $sString = self::substr($sString, 0, self::length($sString) - self::length($sSuffix));
+                    $string = self::substr($string, 0, self::length($string) - self::length($suffix));
                 }
             }
         }
-        return $sString;
+        return $string;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1902,36 +1903,36 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * In case of multiple different substrings to be stripped off, the order of the substrings in the parameter array
      * does matter.
      *
-     * @param  string $sString The string to be stripped.
-     * @param  string|array|map $xSuffixOrSuffixes The substring or array of substrings to be stripped off.
+     * @param  string $string The string to be stripped.
+     * @param  string|array|map $suffixOrSuffixes The substring or array of substrings to be stripped off.
      *
      * @return string The stripped string.
      */
 
-    public static function stripEndCi ($sString, $xSuffixOrSuffixes)
+    public static function stripEndCi ($string, $suffixOrSuffixes)
     {
-        assert( 'is_cstring($sString) && (is_cstring($xSuffixOrSuffixes) || is_collection($xSuffixOrSuffixes))',
+        assert( 'is_cstring($string) && (is_cstring($suffixOrSuffixes) || is_collection($suffixOrSuffixes))',
             vs(isset($this), get_defined_vars()) );
 
-        if ( is_cstring($xSuffixOrSuffixes) )
+        if ( is_cstring($suffixOrSuffixes) )
         {
-            if ( self::endsWithCi($sString, $xSuffixOrSuffixes) )
+            if ( self::endsWithCi($string, $suffixOrSuffixes) )
             {
-                $sString = self::substr($sString, 0, self::length($sString) - self::length($xSuffixOrSuffixes));
+                $string = self::substr($string, 0, self::length($string) - self::length($suffixOrSuffixes));
             }
         }
         else  // a collection
         {
-            foreach ($xSuffixOrSuffixes as $sSuffix)
+            foreach ($suffixOrSuffixes as $suffix)
             {
-                assert( 'is_cstring($sSuffix)', vs(isset($this), get_defined_vars()) );
-                if ( self::endsWithCi($sString, $sSuffix) )
+                assert( 'is_cstring($suffix)', vs(isset($this), get_defined_vars()) );
+                if ( self::endsWithCi($string, $suffix) )
                 {
-                    $sString = self::substr($sString, 0, self::length($sString) - self::length($sSuffix));
+                    $string = self::substr($string, 0, self::length($string) - self::length($suffix));
                 }
             }
         }
-        return $sString;
+        return $string;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1939,465 +1940,465 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * As a special case, the position of insertion can be equal to the target string's length.
      *
-     * @param  string $sString The target string.
-     * @param  int $iAtPos The position of insertion. This is the desired position of the first character of the
+     * @param  string $string The target string.
+     * @param  int $atPos The position of insertion. This is the desired position of the first character of the
      * inserted string in the resulting string.
-     * @param  string $sInsertString The string to be inserted.
+     * @param  string $insertString The string to be inserted.
      *
      * @return string The resulting string.
      */
 
-    public static function insert ($sString, $iAtPos, $sInsertString)
+    public static function insert ($string, $atPos, $insertString)
     {
-        assert( 'is_cstring($sString) && is_int($iAtPos) && is_cstring($sInsertString)',
+        assert( 'is_cstring($string) && is_int($atPos) && is_cstring($insertString)',
             vs(isset($this), get_defined_vars()) );
-        assert( '0 <= $iAtPos && $iAtPos <= self::length($sString)', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $atPos && $atPos <= self::length($string)', vs(isset($this), get_defined_vars()) );
 
-        return self::substr($sString, 0, $iAtPos) . $sInsertString . self::substr($sString, $iAtPos);
+        return self::substr($string, 0, $atPos) . $insertString . self::substr($string, $atPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * In a string, replaces a substring with a specified string, and returns the new string.
      *
-     * @param  string $sString The source string.
-     * @param  int $iStartPos The position of the first character in the substring to be replaced.
-     * @param  int $iLength The length of the substring to be replaced.
-     * @param  string $sWith The replacement string.
+     * @param  string $string The source string.
+     * @param  int $startPos The position of the first character in the substring to be replaced.
+     * @param  int $length The length of the substring to be replaced.
+     * @param  string $with The replacement string.
      *
      * @return string The resulting string.
      */
 
-    public static function replaceSubstring ($sString, $iStartPos, $iLength, $sWith)
+    public static function replaceSubstring ($string, $startPos, $length, $with)
     {
-        assert( 'is_cstring($sString) && is_int($iStartPos) && is_int($iLength) && is_cstring($sWith)',
+        assert( 'is_cstring($string) && is_int($startPos) && is_int($length) && is_cstring($with)',
             vs(isset($this), get_defined_vars()) );
-        assert( '(0 <= $iStartPos && $iStartPos < self::length($sString)) || ' .
-                '($iStartPos == self::length($sString) && $iLength == 0)', vs(isset($this), get_defined_vars()) );
-        assert( '$iLength >= 0 && $iStartPos + $iLength <= self::length($sString)',
+        assert( '(0 <= $startPos && $startPos < self::length($string)) || ' .
+                '($startPos == self::length($string) && $length == 0)', vs(isset($this), get_defined_vars()) );
+        assert( '$length >= 0 && $startPos + $length <= self::length($string)',
             vs(isset($this), get_defined_vars()) );
 
-        return self::substr($sString, 0, $iStartPos) . $sWith . self::substr($sString, $iStartPos + $iLength);
+        return self::substr($string, 0, $startPos) . $with . self::substr($string, $startPos + $length);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * In a string, replaces a substring with a specified string, with both starting and ending positions specified,
      * and returns the new string.
      *
-     * @param  string $sString The source string.
-     * @param  int $iStartPos The position of the first character in the substring to be replaced.
-     * @param  int $iEndPos The position of the character that *follows* the last character in the substring to be
+     * @param  string $string The source string.
+     * @param  int $startPos The position of the first character in the substring to be replaced.
+     * @param  int $endPos The position of the character that *follows* the last character in the substring to be
      * replaced.
-     * @param  string $sWith The replacement string.
+     * @param  string $with The replacement string.
      *
      * @return string The resulting string.
      */
 
-    public static function replaceSubstringByRange ($sString, $iStartPos, $iEndPos, $sWith)
+    public static function replaceSubstringByRange ($string, $startPos, $endPos, $with)
     {
-        assert( 'is_cstring($sString) && is_int($iStartPos) && is_int($iEndPos) && is_cstring($sWith)',
+        assert( 'is_cstring($string) && is_int($startPos) && is_int($endPos) && is_cstring($with)',
             vs(isset($this), get_defined_vars()) );
-        return self::replaceSubstring($sString, $iStartPos, $iEndPos - $iStartPos, $sWith);
+        return self::replaceSubstring($string, $startPos, $endPos - $startPos, $with);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes a substring from a string and returns the new string.
      *
-     * @param  string $sString The source string.
-     * @param  int $iStartPos The position of the first character in the substring to be removed.
-     * @param  int $iLength The length of the substring to be removed.
+     * @param  string $string The source string.
+     * @param  int $startPos The position of the first character in the substring to be removed.
+     * @param  int $length The length of the substring to be removed.
      *
      * @return string The resulting string.
      */
 
-    public static function removeSubstring ($sString, $iStartPos, $iLength)
+    public static function removeSubstring ($string, $startPos, $length)
     {
-        assert( 'is_cstring($sString) && is_int($iStartPos) && is_int($iLength)',
+        assert( 'is_cstring($string) && is_int($startPos) && is_int($length)',
             vs(isset($this), get_defined_vars()) );
-        return self::replaceSubstring($sString, $iStartPos, $iLength, "");
+        return self::replaceSubstring($string, $startPos, $length, "");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes a substring from a string, with both starting and ending positions specified, and returns the new
      * string.
      *
-     * @param  string $sString The source string.
-     * @param  int $iStartPos The position of the first character in the substring to be removed.
-     * @param  int $iEndPos The position of the character that *follows* the last character in the substring to be
+     * @param  string $string The source string.
+     * @param  int $startPos The position of the first character in the substring to be removed.
+     * @param  int $endPos The position of the character that *follows* the last character in the substring to be
      * removed.
      *
      * @return string The resulting string.
      */
 
-    public static function removeSubstringByRange ($sString, $iStartPos, $iEndPos)
+    public static function removeSubstringByRange ($string, $startPos, $endPos)
     {
-        assert( 'is_cstring($sString) && is_int($iStartPos) && is_int($iEndPos)',
+        assert( 'is_cstring($string) && is_int($startPos) && is_int($endPos)',
             vs(isset($this), get_defined_vars()) );
-        return self::replaceSubstringByRange($sString, $iStartPos, $iEndPos, "");
+        return self::replaceSubstringByRange($string, $startPos, $endPos, "");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Replaces all occurrences of a substring in a string with a specified string, searching case-sensitively, and
      * returns the new string, optionally reporting the number of replacements made.
      *
-     * @param  string $sString The source string.
-     * @param  string $sWhat The searched substring.
-     * @param  string $sWith The replacement string.
-     * @param  reference $riQuantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
+     * @param  string $string The source string.
+     * @param  string $what The searched substring.
+     * @param  string $with The replacement string.
+     * @param  reference $quantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value, which is of type `int`, indicates the number of replacements made.
      *
      * @return string The resulting string.
      */
 
-    public static function replace ($sString, $sWhat, $sWith, &$riQuantity = null)
+    public static function replace ($string, $what, $with, &$quantity = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sWhat) && is_cstring($sWith)',
+        assert( 'is_cstring($string) && is_cstring($what) && is_cstring($with)',
             vs(isset($this), get_defined_vars()) );
 
-        if ( self::isEmpty($sWhat) )
+        if ( self::isEmpty($what) )
         {
             // Special case.
-            return $sString;
+            return $string;
         }
 
-        $sNewString = "";
-        $riQuantity = 0;
-        $iStartPos = 0;
-        $iWhatLength = self::length($sWhat);
+        $newString = "";
+        $quantity = 0;
+        $startPos = 0;
+        $whatLength = self::length($what);
         while ( true )
         {
-            $iEndPos = self::indexOf($sString, $sWhat, $iStartPos);
-            if ( $iEndPos != -1 )
+            $endPos = self::indexOf($string, $what, $startPos);
+            if ( $endPos != -1 )
             {
-                $sNewString .= self::substring($sString, $iStartPos, $iEndPos);
-                $sNewString .= $sWith;
-                $riQuantity++;
-                $iStartPos = $iEndPos + $iWhatLength;
+                $newString .= self::substring($string, $startPos, $endPos);
+                $newString .= $with;
+                $quantity++;
+                $startPos = $endPos + $whatLength;
             }
             else
             {
-                $sNewString .= self::substr($sString, $iStartPos);
+                $newString .= self::substr($string, $startPos);
                 break;
             }
         }
-        return $sNewString;
+        return $newString;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Replaces all occurrences of a substring in a string with a specified string, searching case-insensitively, and
      * returns the new string, optionally reporting the number of replacements made.
      *
-     * @param  string $sString The source string.
-     * @param  string $sWhat The searched substring.
-     * @param  string $sWith The replacement string.
-     * @param  reference $riQuantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
+     * @param  string $string The source string.
+     * @param  string $what The searched substring.
+     * @param  string $with The replacement string.
+     * @param  reference $quantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value, which is of type `int`, indicates the number of replacements made.
      *
      * @return string The resulting string.
      */
 
-    public static function replaceCi ($sString, $sWhat, $sWith, &$riQuantity = null)
+    public static function replaceCi ($string, $what, $with, &$quantity = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sWhat) && is_cstring($sWith)',
+        assert( 'is_cstring($string) && is_cstring($what) && is_cstring($with)',
             vs(isset($this), get_defined_vars()) );
 
-        if ( self::isEmpty($sWhat) )
+        if ( self::isEmpty($what) )
         {
             // Special case.
-            return $sString;
+            return $string;
         }
 
-        $sNewString = "";
-        $riQuantity = 0;
-        $iStartPos = 0;
-        $iWhatLength = self::length($sWhat);
+        $newString = "";
+        $quantity = 0;
+        $startPos = 0;
+        $whatLength = self::length($what);
         while ( true )
         {
-            $iEndPos = self::indexOfCi($sString, $sWhat, $iStartPos);
-            if ( $iEndPos != -1 )
+            $endPos = self::indexOfCi($string, $what, $startPos);
+            if ( $endPos != -1 )
             {
-                $sNewString .= self::substring($sString, $iStartPos, $iEndPos);
-                $sNewString .= $sWith;
-                $riQuantity++;
-                $iStartPos = $iEndPos + $iWhatLength;
+                $newString .= self::substring($string, $startPos, $endPos);
+                $newString .= $with;
+                $quantity++;
+                $startPos = $endPos + $whatLength;
             }
             else
             {
-                $sNewString .= self::substr($sString, $iStartPos);
+                $newString .= self::substr($string, $startPos);
                 break;
             }
         }
-        return $sNewString;
+        return $newString;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes all occurrences of a substring from a string, searching case-sensitively, and returns the new string,
      * optionally reporting the number of removals made.
      *
-     * @param  string $sString The source string.
-     * @param  string $sWhat The searched substring.
-     * @param  reference $riQuantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
+     * @param  string $string The source string.
+     * @param  string $what The searched substring.
+     * @param  reference $quantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value, which is of type `int`, indicates the number of removals made.
      *
      * @return string The resulting string.
      */
 
-    public static function remove ($sString, $sWhat, &$riQuantity = null)
+    public static function remove ($string, $what, &$quantity = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sWhat)', vs(isset($this), get_defined_vars()) );
-        return self::replace($sString, $sWhat, "", $riQuantity);
+        assert( 'is_cstring($string) && is_cstring($what)', vs(isset($this), get_defined_vars()) );
+        return self::replace($string, $what, "", $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes all occurrences of a substring from a string, searching case-insensitively, and returns the new string,
      * optionally reporting the number of removals made.
      *
-     * @param  string $sString The source string.
-     * @param  string $sWhat The searched substring.
-     * @param  reference $riQuantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
+     * @param  string $string The source string.
+     * @param  string $what The searched substring.
+     * @param  reference $quantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value, which is of type `int`, indicates the number of removals made.
      *
      * @return string The resulting string.
      */
 
-    public static function removeCi ($sString, $sWhat, &$riQuantity = null)
+    public static function removeCi ($string, $what, &$quantity = null)
     {
-        assert( 'is_cstring($sString) && is_cstring($sWhat)', vs(isset($this), get_defined_vars()) );
-        return self::replaceCi($sString, $sWhat, "", $riQuantity);
+        assert( 'is_cstring($string) && is_cstring($what)', vs(isset($this), get_defined_vars()) );
+        return self::replaceCi($string, $what, "", $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Randomizes the positions of the characters in a string and returns the new string.
      *
-     * @param  string $sString The string to be shuffled.
+     * @param  string $string The string to be shuffled.
      *
      * @return string The shuffled string.
      */
 
-    public static function shuffle ($sString)
+    public static function shuffle ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
 
         // The Fisher-Yates algorithm.
-        for ($i = self::length($sString) - 1; $i > 0; $i--)
+        for ($i = self::length($string) - 1; $i > 0; $i--)
         {
-            $iExchangeIdx = CMathi::intervalRandom(0, $i);
-            $sSave = self::charAt($sString, $iExchangeIdx);
-            self::setCharAt($sString, $iExchangeIdx, self::charAt($sString, $i));
-            self::setCharAt($sString, $i, $sSave);
+            $exchangeIdx = CMathi::intervalRandom(0, $i);
+            $save = self::charAt($string, $exchangeIdx);
+            self::setCharAt($string, $exchangeIdx, self::charAt($string, $i));
+            self::setCharAt($string, $i, $save);
         }
-        return $sString;
+        return $string;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Wraps the text in a string to a specified width and returns the new string.
      *
-     * @param  string $sString The string with the text to be wrapped.
-     * @param  int $iWidth The wrapping width, in characters.
-     * @param  bitfield $bfWrappingFlags **OPTIONAL. Default is** `WRAPPING_DEFAULT`. The wrapping option(s). The
+     * @param  string $string The string with the text to be wrapped.
+     * @param  int $width The wrapping width, in characters.
+     * @param  bitfield $wrappingFlags **OPTIONAL. Default is** `WRAPPING_DEFAULT`. The wrapping option(s). The
      * available options are `WRAPPING_BREAK_SPACELESS_LINES`, `WRAPPING_ALLOW_TRAILING_SPACES`,
      * `WRAPPING_DISALLOW_LEADING_SPACES`, and `WRAPPING_DONT_BREAK_SPACELESS_CJK_ENDING_LINES`
      * (see [Summary](#summary)).
-     * @param  string $sNewline **OPTIONAL. Default is** LF (U+000A). The newline character(s) to be used for making
+     * @param  string $newline **OPTIONAL. Default is** LF (U+000A). The newline character(s) to be used for making
      * new lines in the process of wrapping.
      *
      * @return string The wrapped text.
      */
 
-    public static function wordWrap ($sString, $iWidth, $bfWrappingFlags = self::WRAPPING_DEFAULT,
-        $sNewline = self::NEWLINE)
+    public static function wordWrap ($string, $width, $wrappingFlags = self::WRAPPING_DEFAULT,
+        $newline = self::NEWLINE)
     {
-        assert( 'is_cstring($sString) && is_int($iWidth) && is_bitfield($bfWrappingFlags) && is_cstring($sNewline)',
+        assert( 'is_cstring($string) && is_int($width) && is_bitfield($wrappingFlags) && is_cstring($newline)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$iWidth > 0', vs(isset($this), get_defined_vars()) );
+        assert( '$width > 0', vs(isset($this), get_defined_vars()) );
 
         // Constant. Newline character that is used by the input string (after newline normalization).
-        $sNormNl = self::NEWLINE;
+        $normNl = self::NEWLINE;
 
         // Constant. Determines what characters should be considered spaces.
         // A character in the "Zs" Unicode category, an HT, or a Zero Width Space, except No-break Space and Narrow
         // No-break Space.
-        $sSpaceSubjectRe = "(\\p{Zs}|\\x{0009}|\\x{200B})(?<!\\x{00A0}|\\x{202F})";
+        $spaceSubjectRe = "(\\p{Zs}|\\x{0009}|\\x{200B})(?<!\\x{00A0}|\\x{202F})";
 
         // Break enabling characters.
         // Soft Hyphen or Tibetan Mark Intersyllabic Tsheg.
-        $sBreakAllowCharSubjectRe = "\\x{00AD}|\\x{0F0B}";
+        $breakAllowCharSubjectRe = "\\x{00AD}|\\x{0F0B}";
 
         // Retrieve the wrapping options.
-        $bBreakSpacelessLines = CBitField::isBitSet($bfWrappingFlags, self::WRAPPING_BREAK_SPACELESS_LINES);
-        $bAllowTrailingSpaces = CBitField::isBitSet($bfWrappingFlags, self::WRAPPING_ALLOW_TRAILING_SPACES);
-        $bDisallowLeadingSpaces = CBitField::isBitSet($bfWrappingFlags, self::WRAPPING_DISALLOW_LEADING_SPACES);
-        $bDontBreakSpacelessCjkEndingLines = CBitField::isBitSet($bfWrappingFlags,
+        $breakSpacelessLines = CBitField::isBitSet($wrappingFlags, self::WRAPPING_BREAK_SPACELESS_LINES);
+        $allowTrailingSpaces = CBitField::isBitSet($wrappingFlags, self::WRAPPING_ALLOW_TRAILING_SPACES);
+        $disallowLeadingSpaces = CBitField::isBitSet($wrappingFlags, self::WRAPPING_DISALLOW_LEADING_SPACES);
+        $dontBreakSpacelessCjkEndingLines = CBitField::isBitSet($wrappingFlags,
             self::WRAPPING_DONT_BREAK_SPACELESS_CJK_ENDING_LINES);
 
         // Normalize newlines in the input string.
-        $sString = self::normNewlines($sString, $sNormNl);
-        $iNormNlLength = self::length($sNormNl);
+        $string = self::normNewlines($string, $normNl);
+        $normNlLength = self::length($normNl);
 
-        $sNewString = "";
+        $newString = "";
 
-        $iPos = 0;
-        $iBytePos = 0;
-        $iSLength = self::length($sString);
+        $pos = 0;
+        $bytePos = 0;
+        $sLength = self::length($string);
         while ( true )
         {
-            $iNumCharsLeft = $iSLength - $iPos;
+            $numCharsLeft = $sLength - $pos;
 
             // A portion begins at the very start or right after a newline, either it is native or added. The length of
             // a portion is the wrapping width or less.
-            $iPortionLength = CMathi::min($iWidth, $iNumCharsLeft);
-            $sPortion = self::substr($sString, $iPos, $iPortionLength);
-            $iPortionByteLength = CString::length($sPortion);
+            $portionLength = CMathi::min($width, $numCharsLeft);
+            $portion = self::substr($string, $pos, $portionLength);
+            $portionByteLength = CString::length($portion);
 
-            if ( $iPortionLength == $iNumCharsLeft )
+            if ( $portionLength == $numCharsLeft )
             {
                 // All done.
-                $sNewString .= $sPortion;
+                $newString .= $portion;
                 break;
             }
 
             // The starting position of the next portion.
-            $iNextPos = $iPos + $iPortionLength;
-            $iNextBytePos = $iBytePos + $iPortionByteLength;
+            $nextPos = $pos + $portionLength;
+            $nextBytePos = $bytePos + $portionByteLength;
 
             // Look for the first occurrence of a newline in the portion.
-            $iNlPos = self::indexOf($sPortion, $sNormNl);
-            if ( $iNlPos != -1 )
+            $nlPos = self::indexOf($portion, $normNl);
+            if ( $nlPos != -1 )
             {
                 // This portion contains a newline, so the next portion is going to start right after this first found
                 // newline.
-                $iSubPLength = $iNlPos + $iNormNlLength;
-                $sSubP = self::substr($sPortion, 0, $iSubPLength);
-                $sNewString .= $sSubP;
-                $iPos += $iSubPLength;
-                $iBytePos += CString::length($sSubP);
+                $subPLength = $nlPos + $normNlLength;
+                $subP = self::substr($portion, 0, $subPLength);
+                $newString .= $subP;
+                $pos += $subPLength;
+                $bytePos += CString::length($subP);
                 continue;
             }
 
             // There are no newlines in this portion. Before the next step, make sure that the next portion is not
             // going to start with a newline.
-            if ( $iNumCharsLeft - $iPortionLength >= $iNormNlLength )
+            if ( $numCharsLeft - $portionLength >= $normNlLength )
             {
-                $sNextPortionBeginning = self::substr($sString, $iNextPos, $iNormNlLength);
-                if ( self::indexOf($sNextPortionBeginning, $sNormNl) == 0 )
+                $nextPortionBeginning = self::substr($string, $nextPos, $normNlLength);
+                if ( self::indexOf($nextPortionBeginning, $normNl) == 0 )
                 {
                     // The next portion is going to start with a newline, so no need to break this one, regardless of
                     // whether or not it contains any spaces.
-                    $sNewString .= $sPortion;
-                    $iPos = $iNextPos;
-                    $iBytePos = $iNextBytePos;
+                    $newString .= $portion;
+                    $pos = $nextPos;
+                    $bytePos = $nextBytePos;
                     continue;
                 }
             }
 
             // The next portion is not going to start with a newline. Look for the last occurrence of a space or
             // break-allow character in this portion.
-            $iLastSubjectBytePos = CRegex::lastIndexOf($sPortion, "/($sSpaceSubjectRe)|($sBreakAllowCharSubjectRe)/u",
-                0, $sFoundString);
-            if ( $iLastSubjectBytePos != -1 )
+            $lastSubjectBytePos = CRegex::lastIndexOf($portion, "/($spaceSubjectRe)|($breakAllowCharSubjectRe)/u",
+                0, $foundString);
+            if ( $lastSubjectBytePos != -1 )
             {
                 // Add a newline right after this last occurring space or break-allow character.
-                $sSubP = CString::substring($sPortion, 0, $iLastSubjectBytePos + CString::length($sFoundString));
-                $sNewString .= $sSubP;
-                $sNewString .= $sNewline;
-                $iPos += self::length($sSubP);
-                $iBytePos += CString::length($sSubP);
+                $subP = CString::substring($portion, 0, $lastSubjectBytePos + CString::length($foundString));
+                $newString .= $subP;
+                $newString .= $newline;
+                $pos += self::length($subP);
+                $bytePos += CString::length($subP);
                 continue;
             }
 
             // There are no spaces or break-allow characters in this portion. Consider adding a newline right after the
             // portion.
-            if ( $bBreakSpacelessLines ||
-                 (!$bDontBreakSpacelessCjkEndingLines &&
-                 self::hasCjkChar(self::charAt($sPortion, $iPortionLength - 1))) )
+            if ( $breakSpacelessLines ||
+                 (!$dontBreakSpacelessCjkEndingLines &&
+                 self::hasCjkChar(self::charAt($portion, $portionLength - 1))) )
             {
-                $sNewString .= $sPortion;
-                $sNewString .= $sNewline;
-                $iPos = $iNextPos;
-                $iBytePos = $iNextBytePos;
+                $newString .= $portion;
+                $newString .= $newline;
+                $pos = $nextPos;
+                $bytePos = $nextBytePos;
                 continue;
             }
 
             // There are no spaces or break-allow characters in this portion and it should go adjacent to the upcoming
             // text. Look for the first newline, space, or break-allow character in the upcoming text.
-            $iNextSubjectBytePos = CRegex::indexOf($sString,
-                "/$sNormNl|(($sSpaceSubjectRe)|($sBreakAllowCharSubjectRe))(?!$sNormNl)/u", $iNextBytePos,
-                $sFoundString);
-            if ( $iNextSubjectBytePos != -1 )
+            $nextSubjectBytePos = CRegex::indexOf($string,
+                "/$normNl|(($spaceSubjectRe)|($breakAllowCharSubjectRe))(?!$normNl)/u", $nextBytePos,
+                $foundString);
+            if ( $nextSubjectBytePos != -1 )
             {
                 // Found a newline, space, or a break-allow character, so the next portion is going to start right
                 // after it.
-                $sAfterP = CString::substring($sString, $iNextBytePos,
-                    $iNextSubjectBytePos + CString::length($sFoundString));
-                $sNewString .= $sPortion;
-                $sNewString .= $sAfterP;
-                if ( !CString::equals($sFoundString, $sNormNl) )
+                $afterP = CString::substring($string, $nextBytePos,
+                    $nextSubjectBytePos + CString::length($foundString));
+                $newString .= $portion;
+                $newString .= $afterP;
+                if ( !CString::equals($foundString, $normNl) )
                 {
                     // It is a space or break-allow character that was found, so add a newline after it.
-                    $sNewString .= $sNewline;
+                    $newString .= $newline;
                 }
-                $iPos += $iPortionLength + self::length($sAfterP);
-                $iBytePos += $iPortionByteLength + CString::length($sAfterP);
+                $pos += $portionLength + self::length($afterP);
+                $bytePos += $portionByteLength + CString::length($afterP);
                 continue;
             }
 
             // There are no spaces, newlines, or break-allow characters in the upcoming text. Finalize according to the
             // breaking options.
-            if ( !$bBreakSpacelessLines )
+            if ( !$breakSpacelessLines )
             {
-                $sNewString .= $sPortion;
-                $sNewString .= self::substr($sString, $iNextPos);
+                $newString .= $portion;
+                $newString .= self::substr($string, $nextPos);
             }
             else
             {
-                $sNewString .= $sPortion;
-                $sNewString .= $sNewline;
-                $iPos = $iNextPos;
+                $newString .= $portion;
+                $newString .= $newline;
+                $pos = $nextPos;
                 while ( true )
                 {
-                    $iNumCharsLeft = $iSLength - $iPos;
-                    $iPortionLength = CMathi::min($iWidth, $iNumCharsLeft);
-                    $sNewString .= self::substr($sString, $iPos, $iPortionLength);
-                    if ( $iPortionLength == $iNumCharsLeft )
+                    $numCharsLeft = $sLength - $pos;
+                    $portionLength = CMathi::min($width, $numCharsLeft);
+                    $newString .= self::substr($string, $pos, $portionLength);
+                    if ( $portionLength == $numCharsLeft )
                     {
                         break;
                     }
-                    $sNewString .= $sNewline;
-                    $iPos += $iPortionLength;
+                    $newString .= $newline;
+                    $pos += $portionLength;
                 }
             }
             break;
         }
 
-        if ( !$bAllowTrailingSpaces )
+        if ( !$allowTrailingSpaces )
         {
             // Remove trailing spaces.
-            $sNewString = CRegex::remove($sNewString, "/($sSpaceSubjectRe)+(?=$sNormNl|\\z)/u");
+            $newString = CRegex::remove($newString, "/($spaceSubjectRe)+(?=$normNl|\\z)/u");
         }
 
-        if ( $bDisallowLeadingSpaces )
+        if ( $disallowLeadingSpaces )
         {
             // Remove leading spaces.
-            $sNewString = CRegex::remove($sNewString, "/(?<=$sNormNl|^)($sSpaceSubjectRe)+/u");
+            $newString = CRegex::remove($newString, "/(?<=$normNl|^)($spaceSubjectRe)+/u");
         }
 
-        return $sNewString;
+        return $newString;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a string with a decimal integer into the corresponding hexadecimal integer and returns it as another
      * string.
      *
-     * @param  string $sNumber The string with the number to be converted.
+     * @param  string $number The string with the number to be converted.
      *
      * @return string The string with the converted number.
      */
 
-    public static function decToHex ($sNumber)
+    public static function decToHex ($number)
     {
-        assert( 'is_cstring($sNumber)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($number)', vs(isset($this), get_defined_vars()) );
 
-        $sNumber = self::normalize($sNumber, self::NF_KC);
-        return CString::decToHex($sNumber);
+        $number = self::normalize($number, self::NF_KC);
+        return CString::decToHex($number);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2406,17 +2407,17 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * The input string may be prefixed with "0x".
      *
-     * @param  string $sNumber The string with the number to be converted.
+     * @param  string $number The string with the number to be converted.
      *
      * @return string The string with the converted number.
      */
 
-    public static function hexToDec ($sNumber)
+    public static function hexToDec ($number)
     {
-        assert( 'is_cstring($sNumber)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($number)', vs(isset($this), get_defined_vars()) );
 
-        $sNumber = self::normalize($sNumber, self::NF_KC);
-        return CString::hexToDec($sNumber);
+        $number = self::normalize($number, self::NF_KC);
+        return CString::hexToDec($number);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2425,20 +2426,20 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * The input string may be prefixed with "0x" for the source base of 16.
      *
-     * @param  string $sNumber The string with the number to be converted.
-     * @param  int $iFromBase The source base. Can be a number in the range from 2 to 36.
-     * @param  int $iToBase The destination base. Can be a number in the range from 2 to 36.
+     * @param  string $number The string with the number to be converted.
+     * @param  int $fromBase The source base. Can be a number in the range from 2 to 36.
+     * @param  int $toBase The destination base. Can be a number in the range from 2 to 36.
      *
      * @return string The string with the converted number.
      */
 
-    public static function numberToBase ($sNumber, $iFromBase, $iToBase)
+    public static function numberToBase ($number, $fromBase, $toBase)
     {
-        assert( 'is_cstring($sNumber) && is_int($iFromBase) && is_int($iToBase)',
+        assert( 'is_cstring($number) && is_int($fromBase) && is_int($toBase)',
             vs(isset($this), get_defined_vars()) );
 
-        $sNumber = self::normalize($sNumber, self::NF_KC);
-        return CString::numberToBase($sNumber, $iFromBase, $iToBase);
+        $number = self::normalize($number, self::NF_KC);
+        return CString::numberToBase($number, $fromBase, $toBase);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2451,19 +2452,19 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * [General Transforms](http://userguide.icu-project.org/transforms/general) in the ICU User Guide and
      * [ICU Transform Demonstration](http://demo.icu-project.org/icu-bin/translit).
      *
-     * @param  string $sString The string to be transliterated.
-     * @param  string $sFromScript The name of the source script (case-insensitive).
-     * @param  string $sToScript The name of the destination script (case-insensitive).
+     * @param  string $string The string to be transliterated.
+     * @param  string $fromScript The name of the source script (case-insensitive).
+     * @param  string $toScript The name of the destination script (case-insensitive).
      *
      * @return string The transliterated string.
      */
 
-    public static function transliterate ($sString, $sFromScript, $sToScript)
+    public static function transliterate ($string, $fromScript, $toScript)
     {
-        assert( 'is_cstring($sString) && is_cstring($sFromScript) && is_cstring($sToScript)',
+        assert( 'is_cstring($string) && is_cstring($fromScript) && is_cstring($toScript)',
             vs(isset($this), get_defined_vars()) );
 
-        return self::handleTransform($sString, "$sFromScript-$sToScript");
+        return self::handleTransform($string, "$fromScript-$toScript");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2476,16 +2477,16 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * [General Transforms](http://userguide.icu-project.org/transforms/general) in the ICU User Guide and
      * [ICU Transform Demonstration](http://demo.icu-project.org/icu-bin/translit).
      *
-     * @param  string $sString The string to be transliterated.
-     * @param  string $sToScript The name of the destination script (case-insensitive).
+     * @param  string $string The string to be transliterated.
+     * @param  string $toScript The name of the destination script (case-insensitive).
      *
      * @return string The transliterated string.
      */
 
-    public static function transliterateFromAny ($sString, $sToScript)
+    public static function transliterateFromAny ($string, $toScript)
     {
-        assert( 'is_cstring($sString) && is_cstring($sToScript)', vs(isset($this), get_defined_vars()) );
-        return self::handleTransform($sString, "any-$sToScript");
+        assert( 'is_cstring($string) && is_cstring($toScript)', vs(isset($this), get_defined_vars()) );
+        return self::handleTransform($string, "any-$toScript");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2493,15 +2494,15 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * For example, this method converts "--" into "—" and a set of simple quotes into a set of "smart quotes".
      *
-     * @param  string $sString The string to be filtered.
+     * @param  string $string The string to be filtered.
      *
      * @return string The filtered string.
      */
 
-    public static function applyPublishingFilter ($sString)
+    public static function applyPublishingFilter ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return self::handleTransform($sString, "publishing");
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return self::handleTransform($string, "publishing");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2509,15 +2510,15 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * For example, this method converts "123" to "１２３".
      *
-     * @param  string $sString The string to be converted.
+     * @param  string $string The string to be converted.
      *
      * @return string The converted string.
      */
 
-    public static function halfwidthToFullwidth ($sString)
+    public static function halfwidthToFullwidth ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return self::handleTransform($sString, "halfwidth-fullwidth");
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return self::handleTransform($string, "halfwidth-fullwidth");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2525,15 +2526,15 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * For example, this method converts "１２３" to "123".
      *
-     * @param  string $sString The string to be converted.
+     * @param  string $string The string to be converted.
      *
      * @return string The converted string.
      */
 
-    public static function fullwidthToHalfwidth ($sString)
+    public static function fullwidthToHalfwidth ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return self::handleTransform($sString, "fullwidth-halfwidth");
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return self::handleTransform($string, "fullwidth-halfwidth");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2542,16 +2543,16 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * See [General Transforms](http://userguide.icu-project.org/transforms/general) in the ICU User Guide for the
      * information on what you can do with ICU general transforms.
      *
-     * @param  string $sString The string to be transformed.
-     * @param  string $sTransform The transform.
+     * @param  string $string The string to be transformed.
+     * @param  string $transform The transform.
      *
      * @return string The transformed string.
      */
 
-    public static function transform ($sString, $sTransform)
+    public static function transform ($string, $transform)
     {
-        assert( 'is_cstring($sString) && is_cstring($sTransform)', vs(isset($this), get_defined_vars()) );
-        return self::handleTransform($sString, $sTransform);
+        assert( 'is_cstring($string) && is_cstring($transform)', vs(isset($this), get_defined_vars()) );
+        return self::handleTransform($string, $transform);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2559,123 +2560,123 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      *
      * For instance, the string of "a" repeated three times would result in "aaa".
      *
-     * @param  string $sString The string to be repeated.
-     * @param  int $iTimes The number of times for the string to be repeated.
+     * @param  string $string The string to be repeated.
+     * @param  int $times The number of times for the string to be repeated.
      *
      * @return string The resulting string.
      */
 
-    public static function repeat ($sString, $iTimes)
+    public static function repeat ($string, $times)
     {
-        assert( 'is_cstring($sString) && is_int($iTimes)', vs(isset($this), get_defined_vars()) );
-        assert( '$iTimes > 0 || (self::isEmpty($sString) && $iTimes == 0)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string) && is_int($times)', vs(isset($this), get_defined_vars()) );
+        assert( '$times > 0 || (self::isEmpty($string) && $times == 0)', vs(isset($this), get_defined_vars()) );
 
-        $sResString = "";
-        for ($i = 0; $i < $iTimes; $i++)
+        $resString = "";
+        for ($i = 0; $i < $times; $i++)
         {
-            $sResString .= $sString;
+            $resString .= $string;
         }
-        return $sResString;
+        return $resString;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if a string contains any characters from the Chinese, Japanese, or Korean scripts.
      *
-     * @param  string $sString The string to be looked into.
+     * @param  string $string The string to be looked into.
      *
      * @return bool `true` if the string contains at least one CJK character, `false` otherwise.
      */
 
-    public static function hasCjkChar ($sString)
+    public static function hasCjkChar ($string)
     {
 
         // U+2E80-U+9FFF, U+F900-U+FAFF
-        return CRegex::find($sString, "/[\\x{2E80}-\\x{9FFF}\\x{F900}-\\x{FAFF}]/u");
+        return CRegex::find($string, "/[\\x{2E80}-\\x{9FFF}\\x{F900}-\\x{FAFF}]/u");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    public static function collatorObject ($bCaseInsensitive, $bNaturalOrder, $sLocale, $bfCollationFlags)
+    public static function collatorObject ($caseInsensitive, $naturalOrder, $locale, $collationFlags)
     {
         // Is public to be accessible by other classes, such as CArray.
 
-        assert( 'is_bool($bCaseInsensitive) && is_bool($bNaturalOrder) && is_cstring($sLocale) && ' .
-                'is_bitfield($bfCollationFlags)', vs(isset($this), get_defined_vars()) );
-        assert( 'CULocale::isValid($sLocale) || CString::equalsCi($sLocale, "root")',
+        assert( 'is_bool($caseInsensitive) && is_bool($naturalOrder) && is_cstring($locale) && ' .
+                'is_bitfield($collationFlags)', vs(isset($this), get_defined_vars()) );
+        assert( 'CULocale::isValid($locale) || CString::equalsCi($locale, "root")',
             vs(isset($this), get_defined_vars()) );
 
-        $oColl = new Collator($sLocale);
+        $coll = new Collator($locale);
 
         // Case sensitivity.
-        if ( !$bCaseInsensitive )
+        if ( !$caseInsensitive )
         {
-            $oColl->setStrength(Collator::TERTIARY);
+            $coll->setStrength(Collator::TERTIARY);
         }
         else
         {
-            $oColl->setStrength(Collator::SECONDARY);
+            $coll->setStrength(Collator::SECONDARY);
         }
 
         // Natural order.
-        if ( !$bNaturalOrder )
+        if ( !$naturalOrder )
         {
             // To be sure.
-            $oColl->setAttribute(Collator::NUMERIC_COLLATION, Collator::OFF);
+            $coll->setAttribute(Collator::NUMERIC_COLLATION, Collator::OFF);
         }
         else
         {
-            $oColl->setAttribute(Collator::NUMERIC_COLLATION, Collator::ON);
+            $coll->setAttribute(Collator::NUMERIC_COLLATION, Collator::ON);
         }
 
         // Accents.
-        if ( CBitField::isBitSet($bfCollationFlags, self::COLLATION_IGNORE_ACCENTS) )
+        if ( CBitField::isBitSet($collationFlags, self::COLLATION_IGNORE_ACCENTS) )
         {
-            $oColl->setStrength(Collator::PRIMARY);
-            if ( !$bCaseInsensitive )
+            $coll->setStrength(Collator::PRIMARY);
+            if ( !$caseInsensitive )
             {
-                $oColl->setAttribute(Collator::CASE_LEVEL, Collator::ON);
+                $coll->setAttribute(Collator::CASE_LEVEL, Collator::ON);
             }
         }
 
         // Invisible characters, some punctuation and symbols.
-        if ( CBitField::isBitSet($bfCollationFlags, self::COLLATION_IGNORE_NONWORD) )
+        if ( CBitField::isBitSet($collationFlags, self::COLLATION_IGNORE_NONWORD) )
         {
-            $oColl->setAttribute(Collator::ALTERNATE_HANDLING, Collator::SHIFTED);
+            $coll->setAttribute(Collator::ALTERNATE_HANDLING, Collator::SHIFTED);
         }
 
         // Case order.
-        if ( !CBitField::isBitSet($bfCollationFlags, self::COLLATION_UPPERCASE_FIRST) )
+        if ( !CBitField::isBitSet($collationFlags, self::COLLATION_UPPERCASE_FIRST) )
         {
             // To be sure.
-            $oColl->setAttribute(Collator::CASE_FIRST, Collator::OFF);
+            $coll->setAttribute(Collator::CASE_FIRST, Collator::OFF);
         }
         else
         {
-            $oColl->setAttribute(Collator::CASE_FIRST, Collator::UPPER_FIRST);
+            $coll->setAttribute(Collator::CASE_FIRST, Collator::UPPER_FIRST);
         }
 
         // "French" collation.
-        if ( CBitField::isBitSet($bfCollationFlags, self::COLLATION_FRENCH) )
+        if ( CBitField::isBitSet($collationFlags, self::COLLATION_FRENCH) )
         {
-            $oColl->setAttribute(Collator::FRENCH_COLLATION, Collator::ON);
+            $coll->setAttribute(Collator::FRENCH_COLLATION, Collator::ON);
         }
 
-        return $oColl;
+        return $coll;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    protected static function handleTransform ($sString, $sTransform)
+    protected static function handleTransform ($string, $transform)
     {
-        $oTranslit = Transliterator::create($sTransform);
-        $sString = $oTranslit->transliterate($sString);
-        if ( is_cstring($sString) )
+        $translit = Transliterator::create($transform);
+        $string = $translit->transliterate($string);
+        if ( is_cstring($string) )
         {
-            return $sString;
+            return $string;
         }
         else
         {
@@ -2688,9 +2689,9 @@ class CUString extends CRootClass implements IEqualityAndOrderStatic
      * @ignore
      */
 
-    protected static function normFormToNc ($eForm)
+    protected static function normFormToNc ($form)
     {
-        switch ( $eForm )
+        switch ( $form )
         {
         case self::NF_C:
             return Normalizer::FORM_C;

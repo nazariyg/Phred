@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1875077845"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1035990085"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1875077845" class="accordion-body collapse in">
+            <div id="namespace-1035990085" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -460,19 +460,19 @@
             <article class="method">
                 <h3 class="public ">decompress()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> decompress (data&nbsp;<span class="argument">$byCompressedData</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$rbSuccess</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> decompress (data&nbsp;<span class="argument">$compressedData</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$success</span></span>) : OOPString</pre>
                 <p><em><p>Decompresses a gzip-compressed data and returns the result.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$byCompressedData</code> </td>
+                                <td><code style="border: none; background: none">$compressedData</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">data</code></td>
                                 <td><p>The data to be decompressed.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$rbSuccess</code> </td>
+                                <td><code style="border: none; background: none">$success</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL. OUTPUT.</strong> After the method is called with this parameter provided, the
 parameter's value tells whether the data was decompressed successfully.</p></td>
@@ -511,19 +511,19 @@ parameter's value tells whether the data was decompressed successfully.</p></td>
             <article class="method">
                 <h3 class="public ">compress()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> compress (data&nbsp;<span class="argument">$byData</span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eCompressionLevel</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> compress (data&nbsp;<span class="argument">$data</span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$compressionLevel</span></span>) : OOPString</pre>
                 <p><em><p>Compresses a data into gzip format and returns the result.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$byData</code> </td>
+                                <td><code style="border: none; background: none">$data</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">data</code></td>
                                 <td><p>The data to be compressed.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$eCompressionLevel</code> </td>
+                                <td><code style="border: none; background: none">$compressionLevel</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>NORMAL</code>. The compression level. Can be <code>FASTEST</code>,
 <code>FAST</code>, <code>NORMAL</code>, or <code>MAXIMUM</code>.</p></td>
@@ -563,14 +563,14 @@ parameter's value tells whether the data was decompressed successfully.</p></td>
             <article class="method">
                 <h3 class="protected ">compressionLevelEnumToGZip()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> compressionLevelEnumToGZip (&nbsp;<span class="argument">$eCompressionLevel</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> compressionLevelEnumToGZip (&nbsp;<span class="argument">$compressionLevel</span>)</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$eCompressionLevel</code> </td>
+                                <td><code style="border: none; background: none">$compressionLevel</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
@@ -650,7 +650,7 @@ parameter's value tells whether the data was decompressed successfully.</p></td>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

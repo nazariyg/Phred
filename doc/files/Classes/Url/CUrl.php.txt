@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * This class lets you parse URLs into constituting parts, normalize and compare URLs, compose URLs from parts, ensure
  * protocols for URLs, validate URLs, and put strings through percent-encoding (URL encoding) in either direction.
@@ -23,7 +24,7 @@
  */
 
 // Method signatures:
-//   __construct ($sUrl)
+//   __construct ($url)
 //   CUStringObject url ()
 //   bool hasProtocol ()
 //   CUStringObject protocol ()
@@ -33,32 +34,32 @@
 //   bool hasPort ()
 //   int port ()
 //   bool hasPath ()
-//   CUStringObject pathString ($bDecode = false)
-//   CUStringObject normalizedPathString ($bDecode = false)
+//   CUStringObject pathString ($decode = false)
+//   CUStringObject normalizedPathString ($decode = false)
 //   CUrlPath path ()
 //   bool hasQuery ()
-//   CUStringObject queryString ($bDecode = false)
-//   CUStringObject normalizedQueryString ($bDecode = false)
+//   CUStringObject queryString ($decode = false)
+//   CUStringObject normalizedQueryString ($decode = false)
 //   CUrlQuery query ()
 //   bool hasFragmentId ()
-//   CUStringObject fragmentId ($bDecode = false)
-//   CUStringObject normalizedFragmentId ($bDecode = false)
+//   CUStringObject fragmentId ($decode = false)
+//   CUStringObject normalizedFragmentId ($decode = false)
 //   bool hasUser ()
 //   CUStringObject user ()
 //   bool hasPassword ()
 //   CUStringObject password ()
 //   CUStringObject normalizedUrlWithoutFragmentId ()
 //   CUStringObject normalizedUrl ()
-//   bool equals ($oToUrl, $bIgnoreFragmentId = true)
-//   static CUStringObject ensureProtocol ($sUrl, $sDefaultProtocol = self::DEFAULT_PROTOCOL)
-//   static bool isValid ($sUrl, $bIgnoreProtocolAbsence = false)
-//   static CUStringObject normalize ($sUrl, $bKeepFragmentId)
-//   static CUStringObject makeUrlString ($sHost, $sProtocol = self::DEFAULT_PROTOCOL, $xPath = null, $xQuery = null,
-//     $sFragmentId = null, $iPort = null, $sUser = null, $sPassword = null)
-//   static CUStringObject enterTdNew ($sString)
-//   static CUStringObject leaveTdNew ($sString)
-//   static CUStringObject enterTdOld ($sString)
-//   static CUStringObject leaveTdOld ($sString)
+//   bool equals ($toUrl, $ignoreFragmentId = true)
+//   static CUStringObject ensureProtocol ($url, $defaultProtocol = self::DEFAULT_PROTOCOL)
+//   static bool isValid ($url, $ignoreProtocolAbsence = false)
+//   static CUStringObject normalize ($url, $keepFragmentId)
+//   static CUStringObject makeUrlString ($host, $protocol = self::DEFAULT_PROTOCOL, $path = null, $query = null,
+//     $fragmentId = null, $port = null, $user = null, $password = null)
+//   static CUStringObject enterTdNew ($string)
+//   static CUStringObject leaveTdNew ($string)
+//   static CUStringObject enterTdOld ($string)
+//   static CUStringObject leaveTdOld ($string)
 
 class CUrl extends CRootClass implements IEquality
 {
@@ -78,58 +79,58 @@ class CUrl extends CRootClass implements IEquality
      * indicate any protocol that the URL may still be considered valid and the default protocol is assigned to the
      * URL, which is "http".
      *
-     * @param  string $sUrl The URL string.
+     * @param  string $url The URL string.
      */
 
-    public function __construct ($sUrl)
+    public function __construct ($url)
     {
-        assert( 'is_cstring($sUrl)', vs(isset($this), get_defined_vars()) );
-        assert( 'self::isValid($sUrl, true)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($url)', vs(isset($this), get_defined_vars()) );
+        assert( 'self::isValid($url, true)', vs(isset($this), get_defined_vars()) );
 
-        $this->m_sUrl = $sUrl;
+        $this->m_url = $url;
 
-        $mParsedUrl = parse_url($sUrl);
-        assert( 'is_cmap($mParsedUrl)', vs(isset($this), get_defined_vars()) );  // should not rise for a valid URL
+        $parsedUrl = parse_url($url);
+        assert( 'is_cmap($parsedUrl)', vs(isset($this), get_defined_vars()) );  // should not rise for a valid URL
 
         // Protocol (scheme).
-        if ( CMap::hasKey($mParsedUrl, "scheme") )
+        if ( CMap::hasKey($parsedUrl, "scheme") )
         {
-            $this->m_bHasProtocol = true;
-            $this->m_sProtocol = $mParsedUrl["scheme"];
+            $this->m_hasProtocol = true;
+            $this->m_protocol = $parsedUrl["scheme"];
 
             // Normalize by converting to lowercase.
-            $this->m_sNormProtocol = CString::toLowerCase($this->m_sProtocol);
+            $this->m_normProtocol = CString::toLowerCase($this->m_protocol);
         }
         else
         {
-            $this->m_bHasProtocol = false;
-            $this->m_sNormProtocol = self::DEFAULT_PROTOCOL;
+            $this->m_hasProtocol = false;
+            $this->m_normProtocol = self::DEFAULT_PROTOCOL;
 
-            if ( !CMap::hasKey($mParsedUrl, "host") )
+            if ( !CMap::hasKey($parsedUrl, "host") )
             {
                 // Most likely, `parse_url` function has not parsed the host because the protocol (scheme) is absent
                 // and there are no "//" in the front, so try parsing the host with the default protocol in the URL.
-                $mParsedUrl = parse_url(self::ensureProtocol($sUrl));
-                assert( 'is_cmap($mParsedUrl)', vs(isset($this), get_defined_vars()) );
-                CMap::remove($mParsedUrl, "scheme");
+                $parsedUrl = parse_url(self::ensureProtocol($url));
+                assert( 'is_cmap($parsedUrl)', vs(isset($this), get_defined_vars()) );
+                CMap::remove($parsedUrl, "scheme");
             }
         }
 
         // Host (domain).
-        $this->m_bHostIsInBrackets = false;
-        if ( CMap::hasKey($mParsedUrl, "host") )
+        $this->m_hostIsInBrackets = false;
+        if ( CMap::hasKey($parsedUrl, "host") )
         {
-            $this->m_sHost = $mParsedUrl["host"];
+            $this->m_host = $parsedUrl["host"];
 
-            if ( CRegex::find($this->m_sHost, "/^\\[.*\\]\\z/") )
+            if ( CRegex::find($this->m_host, "/^\\[.*\\]\\z/") )
             {
                 // Most likely, an IPv6 enclosed in "[]".
-                $this->m_bHostIsInBrackets = true;
-                $this->m_sHost = CString::substr($this->m_sHost, 1, CString::length($this->m_sHost) - 2);
+                $this->m_hostIsInBrackets = true;
+                $this->m_host = CString::substr($this->m_host, 1, CString::length($this->m_host) - 2);
             }
 
             // Normalize by converting to lowercase.
-            $this->m_sNormHost = CString::toLowerCase($this->m_sHost);
+            $this->m_normHost = CString::toLowerCase($this->m_host);
         }
         else
         {
@@ -138,146 +139,146 @@ class CUrl extends CRootClass implements IEquality
         }
 
         // Port.
-        if ( CMap::hasKey($mParsedUrl, "port") )
+        if ( CMap::hasKey($parsedUrl, "port") )
         {
-            $this->m_bHasPort = true;
-            $this->m_iPort = $mParsedUrl["port"];
+            $this->m_hasPort = true;
+            $this->m_port = $parsedUrl["port"];
 
             // Should be `int`, but look into the type just in case.
-            if ( is_cstring($this->m_iPort) )
+            if ( is_cstring($this->m_port) )
             {
-                $this->m_iPort = CString::toInt($this->m_iPort);
+                $this->m_port = CString::toInt($this->m_port);
             }
         }
         else
         {
-            $this->m_bHasPort = false;
+            $this->m_hasPort = false;
         }
 
         // Path.
-        if ( CMap::hasKey($mParsedUrl, "path") )
+        if ( CMap::hasKey($parsedUrl, "path") )
         {
-            $this->m_bHasPath = true;
-            $this->m_sPath = $mParsedUrl["path"];
+            $this->m_hasPath = true;
+            $this->m_path = $parsedUrl["path"];
 
             // Normalize by replacing percent-encoded bytes of unreserved characters with their literal equivalents and
             // ensuring that all percent-encoded parts are in uppercase.
-            $sPathDelimitersReEsc = CRegex::enterTd(self::$ms_sDelimiters);
-            $this->m_sNormPath = CRegex::replaceWithCallback($this->m_sPath, "/[^$sPathDelimitersReEsc]+/",
-                function ($mMatches)
+            $pathDelimitersReEsc = CRegex::enterTd(self::$ms_delimiters);
+            $this->m_normPath = CRegex::replaceWithCallback($this->m_path, "/[^$pathDelimitersReEsc]+/",
+                function ($matches)
                 {
-                    return CUrl::enterTdNew(CUrl::leaveTdNew($mMatches[0]));
+                    return CUrl::enterTdNew(CUrl::leaveTdNew($matches[0]));
                 });
         }
         else
         {
-            $this->m_bHasPath = false;
-            $this->m_sNormPath = "/";
+            $this->m_hasPath = false;
+            $this->m_normPath = "/";
         }
-        $this->m_oUrlPath = new CUrlPath($this->m_sNormPath);
+        $this->m_urlPath = new CUrlPath($this->m_normPath);
 
         // Query string.
-        $this->m_bHasQuery = false;
-        if ( CMap::hasKey($mParsedUrl, "query") )
+        $this->m_hasQuery = false;
+        if ( CMap::hasKey($parsedUrl, "query") )
         {
-            $this->m_bHasQuery = true;
-            $this->m_sQueryString = $mParsedUrl["query"];
+            $this->m_hasQuery = true;
+            $this->m_queryString = $parsedUrl["query"];
 
-            $bParsingWasFruitful;
-            $this->m_oUrlQuery = new CUrlQuery($this->m_sQueryString, $bParsingWasFruitful);
-            if ( $bParsingWasFruitful )
+            $parsingWasFruitful;
+            $this->m_urlQuery = new CUrlQuery($this->m_queryString, $parsingWasFruitful);
+            if ( $parsingWasFruitful )
             {
-                $this->m_bHasQuery = true;
-                $this->m_sNormQueryString = $this->m_oUrlQuery->queryString(true);
+                $this->m_hasQuery = true;
+                $this->m_normQueryString = $this->m_urlQuery->queryString(true);
             }
         }
 
         // Fragment ID.
-        if ( CMap::hasKey($mParsedUrl, "fragment") )
+        if ( CMap::hasKey($parsedUrl, "fragment") )
         {
-            $this->m_bHasFragmentId = true;
-            $this->m_sFragmentId = $mParsedUrl["fragment"];
+            $this->m_hasFragmentId = true;
+            $this->m_fragmentId = $parsedUrl["fragment"];
 
             // Normalize by replacing percent-encoded bytes of unreserved characters with their literal equivalents and
             // ensuring that all percent-encoded parts are in uppercase.
-            $sFiDelimitersReEsc = CRegex::enterTd(self::$ms_sDelimiters);
-            $this->m_sNormFragmentId = CRegex::replaceWithCallback($this->m_sFragmentId, "/[^$sFiDelimitersReEsc]+/",
-                function ($mMatches)
+            $fiDelimitersReEsc = CRegex::enterTd(self::$ms_delimiters);
+            $this->m_normFragmentId = CRegex::replaceWithCallback($this->m_fragmentId, "/[^$fiDelimitersReEsc]+/",
+                function ($matches)
                 {
                     // Use the newer flavor of percent-encoding.
-                    return CUrl::enterTdNew(CUrl::leaveTdNew($mMatches[0]));
+                    return CUrl::enterTdNew(CUrl::leaveTdNew($matches[0]));
                 });
         }
         else
         {
-            $this->m_bHasFragmentId = false;
+            $this->m_hasFragmentId = false;
         }
 
         // User.
-        if ( CMap::hasKey($mParsedUrl, "user") )
+        if ( CMap::hasKey($parsedUrl, "user") )
         {
-            $this->m_bHasUser = true;
-            $this->m_sUser = $mParsedUrl["user"];
+            $this->m_hasUser = true;
+            $this->m_user = $parsedUrl["user"];
         }
         else
         {
-            $this->m_bHasUser = false;
+            $this->m_hasUser = false;
         }
 
         // Password.
-        if ( CMap::hasKey($mParsedUrl, "pass") )
+        if ( CMap::hasKey($parsedUrl, "pass") )
         {
-            $this->m_bHasPassword = true;
-            $this->m_sPassword = $mParsedUrl["pass"];
+            $this->m_hasPassword = true;
+            $this->m_password = $parsedUrl["pass"];
         }
         else
         {
-            $this->m_bHasPassword = false;
+            $this->m_hasPassword = false;
         }
 
         // Compose the normalized URL string.
-        $this->m_sNormUrl = "";
-        $this->m_sNormUrl .= $this->m_sNormProtocol . "://";
-        if ( $this->m_bHasUser )
+        $this->m_normUrl = "";
+        $this->m_normUrl .= $this->m_normProtocol . "://";
+        if ( $this->m_hasUser )
         {
-            $this->m_sNormUrl .= $this->m_sUser;
+            $this->m_normUrl .= $this->m_user;
         }
-        if ( $this->m_bHasPassword )
+        if ( $this->m_hasPassword )
         {
-            $this->m_sNormUrl .= ":" . $this->m_sPassword;
+            $this->m_normUrl .= ":" . $this->m_password;
         }
-        if ( $this->m_bHasUser || $this->m_bHasPassword )
+        if ( $this->m_hasUser || $this->m_hasPassword )
         {
-            $this->m_sNormUrl .= "@";
+            $this->m_normUrl .= "@";
         }
-        if ( !$this->m_bHostIsInBrackets )
+        if ( !$this->m_hostIsInBrackets )
         {
-            $this->m_sNormUrl .= $this->m_sNormHost;
+            $this->m_normUrl .= $this->m_normHost;
         }
         else
         {
-            $this->m_sNormUrl .= "[" . $this->m_sNormHost . "]";
+            $this->m_normUrl .= "[" . $this->m_normHost . "]";
         }
-        if ( $this->m_bHasPort )
+        if ( $this->m_hasPort )
         {
             // Normalize by skipping port indication if the port is the default one for the protocol.
-            if ( !(CMap::hasKey(self::$ms_mKnownProtocolToDefaultPort, $this->m_sNormProtocol) &&
-                 self::$ms_mKnownProtocolToDefaultPort[$this->m_sNormProtocol] == $this->m_iPort) )
+            if ( !(CMap::hasKey(self::$ms_knownProtocolToDefaultPort, $this->m_normProtocol) &&
+                 self::$ms_knownProtocolToDefaultPort[$this->m_normProtocol] == $this->m_port) )
             {
-                $this->m_sNormUrl .= ":" . $this->m_iPort;
+                $this->m_normUrl .= ":" . $this->m_port;
             }
         }
-        $this->m_sNormUrl .= $this->m_sNormPath;
-        if ( $this->m_bHasQuery )
+        $this->m_normUrl .= $this->m_normPath;
+        if ( $this->m_hasQuery )
         {
-            $this->m_sNormUrl .= "?" . $this->m_sNormQueryString;
+            $this->m_normUrl .= "?" . $this->m_normQueryString;
         }
 
-        $this->m_sNormUrlWithoutFragmentId = $this->m_sNormUrl;
+        $this->m_normUrlWithoutFragmentId = $this->m_normUrl;
 
-        if ( $this->m_bHasFragmentId )
+        if ( $this->m_hasFragmentId )
         {
-            $this->m_sNormUrl .= "#" . $this->m_sNormFragmentId;
+            $this->m_normUrl .= "#" . $this->m_normFragmentId;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -289,7 +290,7 @@ class CUrl extends CRootClass implements IEquality
 
     public function url ()
     {
-        return $this->m_sUrl;
+        return $this->m_url;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -300,7 +301,7 @@ class CUrl extends CRootClass implements IEquality
 
     public function hasProtocol ()
     {
-        return $this->m_bHasProtocol;
+        return $this->m_hasProtocol;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -320,7 +321,7 @@ class CUrl extends CRootClass implements IEquality
     public function protocol ()
     {
         assert( '$this->hasProtocol()', vs(isset($this), get_defined_vars()) );
-        return $this->m_sProtocol;
+        return $this->m_protocol;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -336,7 +337,7 @@ class CUrl extends CRootClass implements IEquality
 
     public function normalizedProtocol ()
     {
-        return $this->m_sNormProtocol;
+        return $this->m_normProtocol;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -355,7 +356,7 @@ class CUrl extends CRootClass implements IEquality
 
     public function host ()
     {
-        return $this->m_sHost;
+        return $this->m_host;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -372,7 +373,7 @@ class CUrl extends CRootClass implements IEquality
 
     public function normalizedHost ()
     {
-        return $this->m_sNormHost;
+        return $this->m_normHost;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -383,7 +384,7 @@ class CUrl extends CRootClass implements IEquality
 
     public function hasPort ()
     {
-        return $this->m_bHasPort;
+        return $this->m_hasPort;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -399,7 +400,7 @@ class CUrl extends CRootClass implements IEquality
     public function port ()
     {
         assert( '$this->hasPort()', vs(isset($this), get_defined_vars()) );
-        return $this->m_iPort;
+        return $this->m_port;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -410,7 +411,7 @@ class CUrl extends CRootClass implements IEquality
 
     public function hasPath ()
     {
-        return $this->m_bHasPath;
+        return $this->m_hasPath;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -422,7 +423,7 @@ class CUrl extends CRootClass implements IEquality
      *
      * This method should not be called if `hasPath` method reports `false`.
      *
-     * @param  bool $bDecode **OPTIONAL. Default is** `false`. Tells whether all percent-encoded characters in the path
+     * @param  bool $decode **OPTIONAL. Default is** `false`. Tells whether all percent-encoded characters in the path
      * string should be decoded into their literal representations.
      *
      * @return CUStringObject The URL's path string.
@@ -431,12 +432,12 @@ class CUrl extends CRootClass implements IEquality
      * @link   #method_normalizedPathString normalizedPathString
      */
 
-    public function pathString ($bDecode = false)
+    public function pathString ($decode = false)
     {
-        assert( 'is_bool($bDecode)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($decode)', vs(isset($this), get_defined_vars()) );
         assert( '$this->hasPath()', vs(isset($this), get_defined_vars()) );
 
-        return ( !$bDecode ) ? $this->m_sPath : self::leaveTdNew($this->m_sPath);
+        return ( !$decode ) ? $this->m_path : self::leaveTdNew($this->m_path);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -447,16 +448,16 @@ class CUrl extends CRootClass implements IEquality
      *
      * This method can be called even if `hasPath` method reports `false`, in which case it will return "/".
      *
-     * @param  bool $bDecode **OPTIONAL. Default is** `false`. Tells whether all percent-encoded characters in the path
+     * @param  bool $decode **OPTIONAL. Default is** `false`. Tells whether all percent-encoded characters in the path
      * string should be decoded into their literal representations.
      *
      * @return CUStringObject The URL's path string after normalization.
      */
 
-    public function normalizedPathString ($bDecode = false)
+    public function normalizedPathString ($decode = false)
     {
-        assert( 'is_bool($bDecode)', vs(isset($this), get_defined_vars()) );
-        return ( !$bDecode ) ? $this->m_sNormPath : self::leaveTdNew($this->m_sNormPath);
+        assert( 'is_bool($decode)', vs(isset($this), get_defined_vars()) );
+        return ( !$decode ) ? $this->m_normPath : self::leaveTdNew($this->m_normPath);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -469,7 +470,7 @@ class CUrl extends CRootClass implements IEquality
 
     public function path ()
     {
-        return clone $this->m_oUrlPath;
+        return clone $this->m_urlPath;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -480,7 +481,7 @@ class CUrl extends CRootClass implements IEquality
 
     public function hasQuery ()
     {
-        return $this->m_bHasQuery;
+        return $this->m_hasQuery;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -492,7 +493,7 @@ class CUrl extends CRootClass implements IEquality
      *
      * This method should not be called if `hasQuery` method reports `false`.
      *
-     * @param  bool $bDecode **OPTIONAL. Default is** `false`. Tells whether all percent-encoded characters in the
+     * @param  bool $decode **OPTIONAL. Default is** `false`. Tells whether all percent-encoded characters in the
      * query string should be decoded into their literal representations.
      *
      * @return CUStringObject The URL's query string.
@@ -501,10 +502,10 @@ class CUrl extends CRootClass implements IEquality
      * @link   #method_normalizedQueryString normalizedQueryString
      */
 
-    public function queryString ($bDecode = false)
+    public function queryString ($decode = false)
     {
         assert( '$this->hasQuery()', vs(isset($this), get_defined_vars()) );
-        return ( !$bDecode ) ? $this->m_sQueryString : self::leaveTdOld($this->m_sQueryString);
+        return ( !$decode ) ? $this->m_queryString : self::leaveTdOld($this->m_queryString);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -517,7 +518,7 @@ class CUrl extends CRootClass implements IEquality
      *
      * This method should not be called if `hasQuery` method reports `false`.
      *
-     * @param  bool $bDecode **OPTIONAL. Default is** `false`. Tells whether all percent-encoded characters in the
+     * @param  bool $decode **OPTIONAL. Default is** `false`. Tells whether all percent-encoded characters in the
      * query string should be decoded into their literal representations.
      *
      * @return CUStringObject The URL's query string after normalization.
@@ -525,10 +526,10 @@ class CUrl extends CRootClass implements IEquality
      * @link   #method_hasQuery hasQuery
      */
 
-    public function normalizedQueryString ($bDecode = false)
+    public function normalizedQueryString ($decode = false)
     {
         assert( '$this->hasQuery()', vs(isset($this), get_defined_vars()) );
-        return ( !$bDecode ) ? $this->m_sNormQueryString : self::leaveTdOld($this->m_sNormQueryString);
+        return ( !$decode ) ? $this->m_normQueryString : self::leaveTdOld($this->m_normQueryString);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -544,7 +545,7 @@ class CUrl extends CRootClass implements IEquality
     public function query ()
     {
         assert( '$this->hasQuery()', vs(isset($this), get_defined_vars()) );
-        return clone $this->m_oUrlQuery;
+        return clone $this->m_urlQuery;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -555,7 +556,7 @@ class CUrl extends CRootClass implements IEquality
 
     public function hasFragmentId ()
     {
-        return $this->m_bHasFragmentId;
+        return $this->m_hasFragmentId;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -567,7 +568,7 @@ class CUrl extends CRootClass implements IEquality
      *
      * This method should not be called if `hasFragmentId` method reports `false`.
      *
-     * @param  bool $bDecode **OPTIONAL. Default is** `false`. Tells whether all percent-encoded characters in the
+     * @param  bool $decode **OPTIONAL. Default is** `false`. Tells whether all percent-encoded characters in the
      * fragment ID should be decoded into their literal representations.
      *
      * @return CUStringObject The URL's fragment ID.
@@ -576,12 +577,12 @@ class CUrl extends CRootClass implements IEquality
      * @link   #method_normalizedFragmentId normalizedFragmentId
      */
 
-    public function fragmentId ($bDecode = false)
+    public function fragmentId ($decode = false)
     {
-        assert( 'is_bool($bDecode)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($decode)', vs(isset($this), get_defined_vars()) );
         assert( '$this->hasFragmentId()', vs(isset($this), get_defined_vars()) );
 
-        return ( !$bDecode ) ? $this->m_sFragmentId : self::leaveTdNew($this->m_sFragmentId);
+        return ( !$decode ) ? $this->m_fragmentId : self::leaveTdNew($this->m_fragmentId);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -592,7 +593,7 @@ class CUrl extends CRootClass implements IEquality
      *
      * This method should not be called if `hasFragmentId` method reports `false`.
      *
-     * @param  bool $bDecode **OPTIONAL. Default is** `false`. Tells whether all percent-encoded characters in the
+     * @param  bool $decode **OPTIONAL. Default is** `false`. Tells whether all percent-encoded characters in the
      * fragment ID should be decoded into their literal representations.
      *
      * @return CUStringObject The URL's fragment ID after normalization.
@@ -600,12 +601,12 @@ class CUrl extends CRootClass implements IEquality
      * @link   #method_hasFragmentId hasFragmentId
      */
 
-    public function normalizedFragmentId ($bDecode = false)
+    public function normalizedFragmentId ($decode = false)
     {
-        assert( 'is_bool($bDecode)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($decode)', vs(isset($this), get_defined_vars()) );
         assert( '$this->hasFragmentId()', vs(isset($this), get_defined_vars()) );
 
-        return ( !$bDecode ) ? $this->m_sNormFragmentId : self::leaveTdNew($this->m_sNormFragmentId);
+        return ( !$decode ) ? $this->m_normFragmentId : self::leaveTdNew($this->m_normFragmentId);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -616,7 +617,7 @@ class CUrl extends CRootClass implements IEquality
 
     public function hasUser ()
     {
-        return $this->m_bHasUser;
+        return $this->m_hasUser;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -632,7 +633,7 @@ class CUrl extends CRootClass implements IEquality
     public function user ()
     {
         assert( '$this->hasUser()', vs(isset($this), get_defined_vars()) );
-        return $this->m_sUser;
+        return $this->m_user;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -643,7 +644,7 @@ class CUrl extends CRootClass implements IEquality
 
     public function hasPassword ()
     {
-        return $this->m_bHasPassword;
+        return $this->m_hasPassword;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -659,7 +660,7 @@ class CUrl extends CRootClass implements IEquality
     public function password ()
     {
         assert( '$this->hasPassword()', vs(isset($this), get_defined_vars()) );
-        return $this->m_sPassword;
+        return $this->m_password;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -683,7 +684,7 @@ class CUrl extends CRootClass implements IEquality
 
     public function normalizedUrlWithoutFragmentId ()
     {
-        return $this->m_sNormUrlWithoutFragmentId;
+        return $this->m_normUrlWithoutFragmentId;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -703,30 +704,30 @@ class CUrl extends CRootClass implements IEquality
 
     public function normalizedUrl ()
     {
-        return $this->m_sNormUrl;
+        return $this->m_normUrl;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if a URL is equal to another URL, comparing them by normalized URL strings.
      *
-     * @param  CUrl $oToUrl The second URL for comparison.
-     * @param  bool $bIgnoreFragmentId **OPTIONAL. Default is** `true`. Tells whether the fragment IDs of the URLs, if
+     * @param  CUrl $toUrl The second URL for comparison.
+     * @param  bool $ignoreFragmentId **OPTIONAL. Default is** `true`. Tells whether the fragment IDs of the URLs, if
      * any, should be ignored during the comparison.
      *
      * @return bool `true` if *this* URL is equal to the second URL, `false` otherwise.
      */
 
-    public function equals ($oToUrl, $bIgnoreFragmentId = true)
+    public function equals ($toUrl, $ignoreFragmentId = true)
     {
-        assert( '$oToUrl instanceof CUrl && is_bool($bIgnoreFragmentId)', vs(isset($this), get_defined_vars()) );
+        assert( '$toUrl instanceof CUrl && is_bool($ignoreFragmentId)', vs(isset($this), get_defined_vars()) );
 
-        if ( $bIgnoreFragmentId )
+        if ( $ignoreFragmentId )
         {
-            return CString::equals($this->m_sNormUrlWithoutFragmentId, $oToUrl->m_sNormUrlWithoutFragmentId);
+            return CString::equals($this->m_normUrlWithoutFragmentId, $toUrl->m_normUrlWithoutFragmentId);
         }
         else
         {
-            return CString::equals($this->m_sNormUrl, $oToUrl->m_sNormUrl);
+            return CString::equals($this->m_normUrl, $toUrl->m_normUrl);
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -734,76 +735,76 @@ class CUrl extends CRootClass implements IEquality
      * Assigns the default protocol to a specified URL string if it does not indicate any or leaves the URL string
      * unchanged if it does, and returns the URL string.
      *
-     * @param  string $sUrl The URL string.
-     * @param  string $sDefaultProtocol **OPTIONAL. Default is** "http". The default protocol to be used if the URL
+     * @param  string $url The URL string.
+     * @param  string $defaultProtocol **OPTIONAL. Default is** "http". The default protocol to be used if the URL
      * string doesn't indicate any.
      *
      * @return CUStringObject The processed URL string.
      */
 
-    public static function ensureProtocol ($sUrl, $sDefaultProtocol = self::DEFAULT_PROTOCOL)
+    public static function ensureProtocol ($url, $defaultProtocol = self::DEFAULT_PROTOCOL)
     {
-        assert( 'is_cstring($sUrl) && is_cstring($sDefaultProtocol)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($url) && is_cstring($defaultProtocol)', vs(isset($this), get_defined_vars()) );
 
-        $mParsedUrl = parse_url($sUrl);
-        if ( is_cmap($mParsedUrl) && !CMap::hasKey($mParsedUrl, "scheme") )
+        $parsedUrl = parse_url($url);
+        if ( is_cmap($parsedUrl) && !CMap::hasKey($parsedUrl, "scheme") )
         {
-            $sUrl = "$sDefaultProtocol://$sUrl";
+            $url = "$defaultProtocol://$url";
         }
-        return $sUrl;
+        return $url;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if the URL in a specified string is valid.
      *
-     * @param  string $sUrl The URL string to be looked into.
-     * @param  bool $bIgnoreProtocolAbsence **OPTIONAL. Default is** `false`. Tells whether the URL in the string may
+     * @param  string $url The URL string to be looked into.
+     * @param  bool $ignoreProtocolAbsence **OPTIONAL. Default is** `false`. Tells whether the URL in the string may
      * still be considered valid even if it does not indicate any protocol.
      *
      * @return bool `true` if the URL in the string is valid, `false` otherwise.
      */
 
-    public static function isValid ($sUrl, $bIgnoreProtocolAbsence = false)
+    public static function isValid ($url, $ignoreProtocolAbsence = false)
     {
-        assert( 'is_cstring($sUrl) && is_bool($bIgnoreProtocolAbsence)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($url) && is_bool($ignoreProtocolAbsence)', vs(isset($this), get_defined_vars()) );
 
-        $mParsedUrl = parse_url($sUrl);
-        if ( !is_cmap($mParsedUrl) )
+        $parsedUrl = parse_url($url);
+        if ( !is_cmap($parsedUrl) )
         {
             return false;
         }
-        if ( $bIgnoreProtocolAbsence && !CMap::hasKey($mParsedUrl, "scheme") )
+        if ( $ignoreProtocolAbsence && !CMap::hasKey($parsedUrl, "scheme") )
         {
             // No protocol seems to be specified, try with the default one.
-            $sUrl = self::DEFAULT_PROTOCOL . "://$sUrl";
-            $mParsedUrl = parse_url($sUrl);
-            if ( !is_cmap($mParsedUrl) )
+            $url = self::DEFAULT_PROTOCOL . "://$url";
+            $parsedUrl = parse_url($url);
+            if ( !is_cmap($parsedUrl) )
             {
                 return false;
             }
-            if ( !CMap::hasKey($mParsedUrl, "scheme") )
+            if ( !CMap::hasKey($parsedUrl, "scheme") )
             {
                 return false;
             }
         }
-        if ( is_cstring(filter_var($sUrl, FILTER_VALIDATE_URL)) )
+        if ( is_cstring(filter_var($url, FILTER_VALIDATE_URL)) )
         {
             return true;
         }
-        else if ( CMap::hasKey($mParsedUrl, "host") )
+        else if ( CMap::hasKey($parsedUrl, "host") )
         {
             // The `filter_var` function could fail to recognize an IPv6 as the URL's host (enclosed in square
             // brackets), so, in case of a valid IPv6 being the host, replace it with an IPv4 and give the URL another
             // try.
-            $sHost = $mParsedUrl["host"];
-            if ( CRegex::find($sHost, "/^\\[.*\\]\\z/") )
+            $host = $parsedUrl["host"];
+            if ( CRegex::find($host, "/^\\[.*\\]\\z/") )
             {
-                $sHost = CString::substr($sHost, 1, CString::length($sHost) - 2);
-                if ( CIp::isValidV6($sHost) )
+                $host = CString::substr($host, 1, CString::length($host) - 2);
+                if ( CIp::isValidV6($host) )
                 {
                     // Should not influence the validity if the string is present anywhere else.
-                    $sUrl = CString::replace($sUrl, "[$sHost]", "127.0.0.1");
-                    if ( is_cstring(filter_var($sUrl, FILTER_VALIDATE_URL)) && is_cmap(parse_url($sUrl)) )
+                    $url = CString::replace($url, "[$host]", "127.0.0.1");
+                    if ( is_cstring(filter_var($url, FILTER_VALIDATE_URL)) && is_cmap(parse_url($url)) )
                     {
                         return true;
                     }
@@ -829,19 +830,19 @@ class CUrl extends CRootClass implements IEquality
      * scrolled on the initial view, which is only a matter of presentation, it makes the comparison of URLs by their
      * normalized strings more consistent if fragment IDs are not taken into account.
      *
-     * @param  string $sUrl The string with the URL to be normalized.
-     * @param  bool $bKeepFragmentId Tells whether the fragment ID, if the URL contains any, should be normalized too
+     * @param  string $url The string with the URL to be normalized.
+     * @param  bool $keepFragmentId Tells whether the fragment ID, if the URL contains any, should be normalized too
      * and put into the normalized URL.
      *
      * @return CUStringObject A string with the normalized URL.
      */
 
-    public static function normalize ($sUrl, $bKeepFragmentId)
+    public static function normalize ($url, $keepFragmentId)
     {
-        assert( 'is_cstring($sUrl) && is_bool($bKeepFragmentId)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($url) && is_bool($keepFragmentId)', vs(isset($this), get_defined_vars()) );
 
-        $oUrl = new self($sUrl);
-        return ( !$bKeepFragmentId ) ? $oUrl->normalizedUrlWithoutFragmentId() : $oUrl->normalizedUrl();
+        $objUrl = new self($url);
+        return ( !$keepFragmentId ) ? $objUrl->normalizedUrlWithoutFragmentId() : $objUrl->normalizedUrl();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -850,102 +851,102 @@ class CUrl extends CRootClass implements IEquality
      * If the URL string needs to be normalized after having been composed, you can use `normalize` static method for
      * that.
      *
-     * @param  string $sHost The host part. This includes the domain and the subdomains, if any.
-     * @param  string $sProtocol **OPTIONAL. Default is** "http". The protocol.
-     * @param  string|CUrlPath $xPath **OPTIONAL. Default is** "/". The path. Should start with "/".
-     * @param  string|CUrlQuery $xQuery **OPTIONAL. Default is** *none*. The query.
-     * @param  string $sFragmentId **OPTIONAL. Default is** *none*. The fragment ID.
-     * @param  int $iPort **OPTIONAL. Default is** *none*. The number of the destination port.
-     * @param  string $sUser **OPTIONAL. Default is** *none*. The user name.
-     * @param  string $sPassword **OPTIONAL. Default is** *none*. The password.
+     * @param  string $host The host part. This includes the domain and the subdomains, if any.
+     * @param  string $protocol **OPTIONAL. Default is** "http". The protocol.
+     * @param  string|CUrlPath $path **OPTIONAL. Default is** "/". The path. Should start with "/".
+     * @param  string|CUrlQuery $query **OPTIONAL. Default is** *none*. The query.
+     * @param  string $fragmentId **OPTIONAL. Default is** *none*. The fragment ID.
+     * @param  int $port **OPTIONAL. Default is** *none*. The number of the destination port.
+     * @param  string $user **OPTIONAL. Default is** *none*. The user name.
+     * @param  string $password **OPTIONAL. Default is** *none*. The password.
      *
      * @return CUStringObject The composed URL string.
      *
      * @link   #method_normalize normalize
      */
 
-    public static function makeUrlString ($sHost, $sProtocol = self::DEFAULT_PROTOCOL, $xPath = null, $xQuery = null,
-        $sFragmentId = null, $iPort = null, $sUser = null, $sPassword = null)
+    public static function makeUrlString ($host, $protocol = self::DEFAULT_PROTOCOL, $path = null, $query = null,
+        $fragmentId = null, $port = null, $user = null, $password = null)
     {
-        assert( 'is_cstring($sHost) && is_cstring($sProtocol) && ' .
-                '(!isset($xPath) || is_cstring($xPath) || $xPath instanceof CUrlPath) && ' .
-                '(!isset($xQuery) || is_cstring($xQuery) || $xQuery instanceof CUrlQuery) && ' .
-                '(!isset($sFragmentId) || is_cstring($sFragmentId)) && (!isset($iPort) || is_int($iPort)) && ' .
-                '(!isset($sUser) || is_cstring($sUser)) && (!isset($sPassword) || is_cstring($sPassword))',
+        assert( 'is_cstring($host) && is_cstring($protocol) && ' .
+                '(!isset($path) || is_cstring($path) || $path instanceof CUrlPath) && ' .
+                '(!isset($query) || is_cstring($query) || $query instanceof CUrlQuery) && ' .
+                '(!isset($fragmentId) || is_cstring($fragmentId)) && (!isset($port) || is_int($port)) && ' .
+                '(!isset($user) || is_cstring($user)) && (!isset($password) || is_cstring($password))',
             vs(isset($this), get_defined_vars()) );
 
-        $sUrl = "";
+        $url = "";
 
         // Protocol.
-        $sUrl .= "$sProtocol://";
+        $url .= "$protocol://";
 
         // User and password.
-        if ( isset($sUser) )
+        if ( isset($user) )
         {
-            $sUrl .= $sUser;
+            $url .= $user;
         }
-        if ( isset($sPassword) )
+        if ( isset($password) )
         {
-            $sUrl .= ":$sPassword";
+            $url .= ":$password";
         }
-        if ( isset($sUser) || isset($sPassword) )
+        if ( isset($user) || isset($password) )
         {
-            $sUrl .= "@";
+            $url .= "@";
         }
 
         // Host.
-        if ( !CIp::isValidV6($sHost) )
+        if ( !CIp::isValidV6($host) )
         {
-            $sUrl .= $sHost;
+            $url .= $host;
         }
         else
         {
-            $sUrl .= "[$sHost]";
+            $url .= "[$host]";
         }
 
         // Port.
-        if ( isset($iPort) )
+        if ( isset($port) )
         {
-            $sUrl .= ":$iPort";
+            $url .= ":$port";
         }
 
         // Path.
-        if ( !isset($xPath) )
+        if ( !isset($path) )
         {
-            $sUrl .= "/";
+            $url .= "/";
         }
-        else if ( is_cstring($xPath) )
+        else if ( is_cstring($path) )
         {
-            assert( 'CString::startsWith($xPath, "/")', vs(isset($this), get_defined_vars()) );
-            $sUrl .= $xPath;
+            assert( 'CString::startsWith($path, "/")', vs(isset($this), get_defined_vars()) );
+            $url .= $path;
         }
         else  // a CUrlPath
         {
-            $sUrl .= $xPath->pathString();
+            $url .= $path->pathString();
         }
 
         // Query string.
-        if ( isset($xQuery) )
+        if ( isset($query) )
         {
-            $sQueryString;
-            if ( is_cstring($xQuery) )
+            $queryString;
+            if ( is_cstring($query) )
             {
-                $sQueryString = $xQuery;
+                $queryString = $query;
             }
             else  // a CUrlQuery
             {
-                $sQueryString = $xQuery->queryString(false);
+                $queryString = $query->queryString(false);
             }
-            $sUrl .= "?$sQueryString";
+            $url .= "?$queryString";
         }
 
         // Fragment ID.
-        if ( isset($sFragmentId) )
+        if ( isset($fragmentId) )
         {
-            $sUrl .= "#$sFragmentId";
+            $url .= "#$fragmentId";
         }
 
-        return $sUrl;
+        return $url;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -956,15 +957,15 @@ class CUrl extends CRootClass implements IEquality
      * According to the newer flavor of percent-encoding, the space character is encoded as "%20", "+" as "%2B", and
      * "~" is not encoded.
      *
-     * @param  string $sString The string to be translated into the URL text domain.
+     * @param  string $string The string to be translated into the URL text domain.
      *
      * @return CUStringObject The translated string.
      */
 
-    public static function enterTdNew ($sString)
+    public static function enterTdNew ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return rawurlencode($sString);
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return rawurlencode($string);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -974,15 +975,15 @@ class CUrl extends CRootClass implements IEquality
      * According to the newer flavor of percent-encoding, the space character is decoded from "%20" only (literal
      * spaces are not permitted in a valid URL), "+" from either "%2B" or "+", and "~" from either "~" or "%7E".
      *
-     * @param  string $sString The string to be translated out of the URL text domain.
+     * @param  string $string The string to be translated out of the URL text domain.
      *
      * @return CUStringObject The translated string.
      */
 
-    public static function leaveTdNew ($sString)
+    public static function leaveTdNew ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return rawurldecode($sString);
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return rawurldecode($string);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -995,15 +996,15 @@ class CUrl extends CRootClass implements IEquality
      * "application/x-www-form-urlencoded" data in POST requests. In any other place, the newer flavor of
      * percent-encoding is usually preferred.
      *
-     * @param  string $sString The string to be translated into the URL text domain.
+     * @param  string $string The string to be translated into the URL text domain.
      *
      * @return CUStringObject The translated string.
      */
 
-    public static function enterTdOld ($sString)
+    public static function enterTdOld ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return urlencode($sString);
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return urlencode($string);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1016,47 +1017,47 @@ class CUrl extends CRootClass implements IEquality
      * "application/x-www-form-urlencoded" data in POST requests. In any other place, the newer flavor of
      * percent-encoding is usually preferred.
      *
-     * @param  string $sString The string to be translated out of the URL text domain.
+     * @param  string $string The string to be translated out of the URL text domain.
      *
      * @return CUStringObject The translated string.
      */
 
-    public static function leaveTdOld ($sString)
+    public static function leaveTdOld ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return urldecode($sString);
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return urldecode($string);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    protected $m_sUrl;
-    protected $m_bHasProtocol;
-    protected $m_sProtocol;
-    protected $m_sNormProtocol;
-    protected $m_bHostIsInBrackets;
-    protected $m_sHost;
-    protected $m_sNormHost;
-    protected $m_bHasPort;
-    protected $m_iPort;
-    protected $m_bHasPath;
-    protected $m_sPath;
-    protected $m_sNormPath;
-    protected $m_oUrlPath;
-    protected $m_bHasQuery;
-    protected $m_sQueryString;
-    protected $m_sNormQueryString;
-    protected $m_oUrlQuery;
-    protected $m_bHasFragmentId;
-    protected $m_sFragmentId;
-    protected $m_sNormFragmentId;
-    protected $m_bHasUser;
-    protected $m_sUser;
-    protected $m_bHasPassword;
-    protected $m_sPassword;
-    protected $m_sNormUrlWithoutFragmentId;
-    protected $m_sNormUrl;
+    protected $m_url;
+    protected $m_hasProtocol;
+    protected $m_protocol;
+    protected $m_normProtocol;
+    protected $m_hostIsInBrackets;
+    protected $m_host;
+    protected $m_normHost;
+    protected $m_hasPort;
+    protected $m_port;
+    protected $m_hasPath;
+    protected $m_path;
+    protected $m_normPath;
+    protected $m_urlPath;
+    protected $m_hasQuery;
+    protected $m_queryString;
+    protected $m_normQueryString;
+    protected $m_urlQuery;
+    protected $m_hasFragmentId;
+    protected $m_fragmentId;
+    protected $m_normFragmentId;
+    protected $m_hasUser;
+    protected $m_user;
+    protected $m_hasPassword;
+    protected $m_password;
+    protected $m_normUrlWithoutFragmentId;
+    protected $m_normUrl;
 
     // Used by port normalization.
-    protected static $ms_mKnownProtocolToDefaultPort = [
+    protected static $ms_knownProtocolToDefaultPort = [
         "http" => 80,
         "https" => 443,
         "ftp" => 21];
@@ -1066,6 +1067,6 @@ class CUrl extends CRootClass implements IEquality
     // "sub-delims": !$&'()*+,;=
     // Reference:
     // http://www.apps.ietf.org/rfc/rfc3986.html#sec-2.2
-    protected static $ms_sDelimiters = ":/?#[]@!$&'()*+,;=";
+    protected static $ms_delimiters = ":/?#[]@!$&'()*+,;=";
 }
 

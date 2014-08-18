@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * The class of any point in time.
  *
@@ -36,33 +37,33 @@
  */
 
 // Method signatures:
-//   __construct ($iUTime, $iMTime = 0)
+//   __construct ($UTime, $MTime = 0)
 //   static CTime now ()
-//   static CTime fromFTime ($fFTime)
-//   static CTime fromString ($sString, $xPattern = null)
-//   static bool areComponentsValid ($iYear, $iMonth, $iDay, $iHour = 0, $iMinute = 0, $iSecond = 0, $iMillisecond = 0)
-//   static CTime fromComponentsUtc ($iYear, $iMonth = 1, $iDay = 1, $iHour = 0, $iMinute = 0, $iSecond = 0,
-//     $iMillisecond = 0)
-//   static CTime fromComponentsInTimeZone (CTimeZone $oTimeZone, $iYear, $iMonth = 1, $iDay = 1, $iHour = 0,
-//     $iMinute = 0, $iSecond = 0, $iMillisecond = 0)
-//   static CTime fromComponentsLocal ($iYear, $iMonth = 1, $iDay = 1, $iHour = 0, $iMinute = 0, $iSecond = 0,
-//     $iMillisecond = 0)
-//   CUStringObject toStringUtc ($xPattern = self::PATTERN_DEFAULT)
-//   CUStringObject toStringInTimeZone (CTimeZone $oTimeZone, $xPattern = self::PATTERN_DEFAULT)
-//   CUStringObject toStringLocal ($xPattern = self::PATTERN_DEFAULT)
+//   static CTime fromFTime ($FTime)
+//   static CTime fromString ($string, $pattern = null)
+//   static bool areComponentsValid ($year, $month, $day, $hour = 0, $minute = 0, $second = 0, $millisecond = 0)
+//   static CTime fromComponentsUtc ($year, $month = 1, $day = 1, $hour = 0, $minute = 0, $second = 0,
+//     $millisecond = 0)
+//   static CTime fromComponentsInTimeZone (CTimeZone $timeZone, $year, $month = 1, $day = 1, $hour = 0,
+//     $minute = 0, $second = 0, $millisecond = 0)
+//   static CTime fromComponentsLocal ($year, $month = 1, $day = 1, $hour = 0, $minute = 0, $second = 0,
+//     $millisecond = 0)
+//   CUStringObject toStringUtc ($pattern = self::PATTERN_DEFAULT)
+//   CUStringObject toStringInTimeZone (CTimeZone $timeZone, $pattern = self::PATTERN_DEFAULT)
+//   CUStringObject toStringLocal ($pattern = self::PATTERN_DEFAULT)
 //   int UTime ()
 //   int MTime ()
 //   float FTime ()
-//   bool equals ($oToTime)
-//   bool isBefore (CTime $oTime)
-//   bool isAfter (CTime $oTime)
-//   int compare ($oToTime)
+//   bool equals ($toTime)
+//   bool isBefore (CTime $time)
+//   bool isAfter (CTime $time)
+//   int compare ($toTime)
 //   static int currentUTime ()
 //   static int currentDayOfYearUtc ()
-//   static int currentDayOfYearInTimeZone (CTimeZone $oTimeZone)
+//   static int currentDayOfYearInTimeZone (CTimeZone $timeZone)
 //   static int currentDayOfYearLocal ()
-//   void componentsUtc (&$riYear, &$riMonth = null, &$riDay = null, &$riHour = null, &$riMinute = null,
-//     &$riSecond = null, &$riMillisecond = null, &$reDayOfWeek = null)
+//   void componentsUtc (&$year, &$month = null, &$day = null, &$hour = null, &$minute = null,
+//     &$second = null, &$millisecond = null, &$dayOfWeek = null)
 //   int yearUtc ()
 //   int monthUtc ()
 //   int dayUtc ()
@@ -71,18 +72,18 @@
 //   int secondUtc ()
 //   int millisecondUtc ()
 //   enum dayOfWeekUtc ()
-//   void componentsInTimeZone (CTimeZone $oTimeZone, &$riYear, &$riMonth = null, &$riDay = null, &$riHour = null,
-//     &$riMinute = null, &$riSecond = null, &$riMillisecond = null, &$reDayOfWeek = null)
-//   int yearInTimeZone (CTimeZone $oTimeZone)
-//   int monthInTimeZone (CTimeZone $oTimeZone)
-//   int dayInTimeZone (CTimeZone $oTimeZone)
-//   int hourInTimeZone (CTimeZone $oTimeZone)
-//   int minuteInTimeZone (CTimeZone $oTimeZone)
-//   int secondInTimeZone (CTimeZone $oTimeZone)
-//   int millisecondInTimeZone (CTimeZone $oTimeZone)
-//   enum dayOfWeekInTimeZone (CTimeZone $oTimeZone)
-//   void componentsLocal (&$riYear, &$riMonth = null, &$riDay = null, &$riHour = null, &$riMinute = null,
-//     &$riSecond = null, &$riMillisecond = null, &$reDayOfWeek = null)
+//   void componentsInTimeZone (CTimeZone $timeZone, &$year, &$month = null, &$day = null, &$hour = null,
+//     &$minute = null, &$second = null, &$millisecond = null, &$dayOfWeek = null)
+//   int yearInTimeZone (CTimeZone $timeZone)
+//   int monthInTimeZone (CTimeZone $timeZone)
+//   int dayInTimeZone (CTimeZone $timeZone)
+//   int hourInTimeZone (CTimeZone $timeZone)
+//   int minuteInTimeZone (CTimeZone $timeZone)
+//   int secondInTimeZone (CTimeZone $timeZone)
+//   int millisecondInTimeZone (CTimeZone $timeZone)
+//   enum dayOfWeekInTimeZone (CTimeZone $timeZone)
+//   void componentsLocal (&$year, &$month = null, &$day = null, &$hour = null, &$minute = null,
+//     &$second = null, &$millisecond = null, &$dayOfWeek = null)
 //   int yearLocal ()
 //   int monthLocal ()
 //   int dayLocal ()
@@ -91,69 +92,69 @@
 //   int secondLocal ()
 //   int millisecondLocal ()
 //   enum dayOfWeekLocal ()
-//   int diff (CTime $oFromTime, $eTimeUnit)
-//   int diffInSeconds (CTime $oFromTime)
-//   int diffInMinutes (CTime $oFromTime)
-//   int diffInHours (CTime $oFromTime)
-//   int diffInDays (CTime $oFromTime)
-//   int diffInWeeks (CTime $oFromTime)
-//   int diffInMonths (CTime $oFromTime)
-//   int diffInYears (CTime $oFromTime)
-//   void diffUnits (CTime $oFromTime, &$riNumSeconds, &$riNumMinutes = null, &$riNumHours = null, &$riNumDays = null,
-//     &$riNumWeeks = null, &$riNumMonths = null, &$riNumYears = null)
-//   int signedDiff (CTime $oFromTime, $eTimeUnit)
-//   int signedDiffInSeconds (CTime $oFromTime)
-//   int signedDiffInMinutes (CTime $oFromTime)
-//   int signedDiffInHours (CTime $oFromTime)
-//   int signedDiffInDays (CTime $oFromTime)
-//   int signedDiffInWeeks (CTime $oFromTime)
-//   int signedDiffInMonths (CTime $oFromTime)
-//   int signedDiffInYears (CTime $oFromTime)
-//   CTime shiftedUtc ($eTimeUnit, $iQuantity)
-//   CTime shiftedBySecondsUtc ($iQuantity)
-//   CTime shiftedByMinutesUtc ($iQuantity)
-//   CTime shiftedByHoursUtc ($iQuantity)
-//   CTime shiftedByDaysUtc ($iQuantity)
-//   CTime shiftedByWeeksUtc ($iQuantity)
-//   CTime shiftedByMonthsUtc ($iQuantity)
-//   CTime shiftedByYearsUtc ($iQuantity)
-//   CTime shiftedInTimeZone (CTimeZone $oTimeZone, $eTimeUnit, $iQuantity)
-//   CTime shiftedBySecondsInTimeZone (CTimeZone $oTimeZone, $iQuantity)
-//   CTime shiftedByMinutesInTimeZone (CTimeZone $oTimeZone, $iQuantity)
-//   CTime shiftedByHoursInTimeZone (CTimeZone $oTimeZone, $iQuantity)
-//   CTime shiftedByDaysInTimeZone (CTimeZone $oTimeZone, $iQuantity)
-//   CTime shiftedByWeeksInTimeZone (CTimeZone $oTimeZone, $iQuantity)
-//   CTime shiftedByMonthsInTimeZone (CTimeZone $oTimeZone, $iQuantity)
-//   CTime shiftedByYearsInTimeZone (CTimeZone $oTimeZone, $iQuantity)
-//   CTime shiftedLocal ($eTimeUnit, $iQuantity)
-//   CTime shiftedBySecondsLocal ($iQuantity)
-//   CTime shiftedByMinutesLocal ($iQuantity)
-//   CTime shiftedByHoursLocal ($iQuantity)
-//   CTime shiftedByDaysLocal ($iQuantity)
-//   CTime shiftedByWeeksLocal ($iQuantity)
-//   CTime shiftedByMonthsLocal ($iQuantity)
-//   CTime shiftedByYearsLocal ($iQuantity)
-//   CTime withMillisecondUtc ($iNewMillisecond)
-//   CTime withSecondUtc ($iNewSecond)
-//   CTime withMinuteUtc ($iNewMinute)
-//   CTime withHourUtc ($iNewHour)
-//   CTime withDayUtc ($iNewDay)
-//   CTime withMonthUtc ($iNewMonth)
-//   CTime withYearUtc ($iNewYear)
-//   CTime withMillisecondInTimeZone (CTimeZone $oTimeZone, $iNewMillisecond)
-//   CTime withSecondInTimeZone (CTimeZone $oTimeZone, $iNewSecond)
-//   CTime withMinuteInTimeZone (CTimeZone $oTimeZone, $iNewMinute)
-//   CTime withHourInTimeZone (CTimeZone $oTimeZone, $iNewHour)
-//   CTime withDayInTimeZone (CTimeZone $oTimeZone, $iNewDay)
-//   CTime withMonthInTimeZone (CTimeZone $oTimeZone, $iNewMonth)
-//   CTime withYearInTimeZone (CTimeZone $oTimeZone, $iNewYear)
-//   CTime withMillisecondLocal ($iNewMillisecond)
-//   CTime withSecondLocal ($iNewSecond)
-//   CTime withMinuteLocal ($iNewMinute)
-//   CTime withHourLocal ($iNewHour)
-//   CTime withDayLocal ($iNewDay)
-//   CTime withMonthLocal ($iNewMonth)
-//   CTime withYearLocal ($iNewYear)
+//   int diff (CTime $fromTime, $timeUnit)
+//   int diffInSeconds (CTime $fromTime)
+//   int diffInMinutes (CTime $fromTime)
+//   int diffInHours (CTime $fromTime)
+//   int diffInDays (CTime $fromTime)
+//   int diffInWeeks (CTime $fromTime)
+//   int diffInMonths (CTime $fromTime)
+//   int diffInYears (CTime $fromTime)
+//   void diffUnits (CTime $fromTime, &$numSeconds, &$numMinutes = null, &$numHours = null, &$numDays = null,
+//     &$numWeeks = null, &$numMonths = null, &$numYears = null)
+//   int signedDiff (CTime $fromTime, $timeUnit)
+//   int signedDiffInSeconds (CTime $fromTime)
+//   int signedDiffInMinutes (CTime $fromTime)
+//   int signedDiffInHours (CTime $fromTime)
+//   int signedDiffInDays (CTime $fromTime)
+//   int signedDiffInWeeks (CTime $fromTime)
+//   int signedDiffInMonths (CTime $fromTime)
+//   int signedDiffInYears (CTime $fromTime)
+//   CTime shiftedUtc ($timeUnit, $quantity)
+//   CTime shiftedBySecondsUtc ($quantity)
+//   CTime shiftedByMinutesUtc ($quantity)
+//   CTime shiftedByHoursUtc ($quantity)
+//   CTime shiftedByDaysUtc ($quantity)
+//   CTime shiftedByWeeksUtc ($quantity)
+//   CTime shiftedByMonthsUtc ($quantity)
+//   CTime shiftedByYearsUtc ($quantity)
+//   CTime shiftedInTimeZone (CTimeZone $timeZone, $timeUnit, $quantity)
+//   CTime shiftedBySecondsInTimeZone (CTimeZone $timeZone, $quantity)
+//   CTime shiftedByMinutesInTimeZone (CTimeZone $timeZone, $quantity)
+//   CTime shiftedByHoursInTimeZone (CTimeZone $timeZone, $quantity)
+//   CTime shiftedByDaysInTimeZone (CTimeZone $timeZone, $quantity)
+//   CTime shiftedByWeeksInTimeZone (CTimeZone $timeZone, $quantity)
+//   CTime shiftedByMonthsInTimeZone (CTimeZone $timeZone, $quantity)
+//   CTime shiftedByYearsInTimeZone (CTimeZone $timeZone, $quantity)
+//   CTime shiftedLocal ($timeUnit, $quantity)
+//   CTime shiftedBySecondsLocal ($quantity)
+//   CTime shiftedByMinutesLocal ($quantity)
+//   CTime shiftedByHoursLocal ($quantity)
+//   CTime shiftedByDaysLocal ($quantity)
+//   CTime shiftedByWeeksLocal ($quantity)
+//   CTime shiftedByMonthsLocal ($quantity)
+//   CTime shiftedByYearsLocal ($quantity)
+//   CTime withMillisecondUtc ($newMillisecond)
+//   CTime withSecondUtc ($newSecond)
+//   CTime withMinuteUtc ($newMinute)
+//   CTime withHourUtc ($newHour)
+//   CTime withDayUtc ($newDay)
+//   CTime withMonthUtc ($newMonth)
+//   CTime withYearUtc ($newYear)
+//   CTime withMillisecondInTimeZone (CTimeZone $timeZone, $newMillisecond)
+//   CTime withSecondInTimeZone (CTimeZone $timeZone, $newSecond)
+//   CTime withMinuteInTimeZone (CTimeZone $timeZone, $newMinute)
+//   CTime withHourInTimeZone (CTimeZone $timeZone, $newHour)
+//   CTime withDayInTimeZone (CTimeZone $timeZone, $newDay)
+//   CTime withMonthInTimeZone (CTimeZone $timeZone, $newMonth)
+//   CTime withYearInTimeZone (CTimeZone $timeZone, $newYear)
+//   CTime withMillisecondLocal ($newMillisecond)
+//   CTime withSecondLocal ($newSecond)
+//   CTime withMinuteLocal ($newMinute)
+//   CTime withHourLocal ($newHour)
+//   CTime withDayLocal ($newDay)
+//   CTime withMonthLocal ($newMonth)
+//   CTime withYearLocal ($newYear)
 
 class CTime extends CRootClass implements IEqualityAndOrder
 {
@@ -411,13 +412,13 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * midnight of January 1, 1970 UTC and are both negative for any point in time before it (the number of
      * milliseconds can be zero in either case).
      *
-     * @param  int $iUTime The "Unix time" (the number of seconds relative to the midnight of January 1, 1970 UTC).
-     * @param  int $iMTime **OPTIONAL. Default is** `0`. The number of milliseconds in either positive or negative
+     * @param  int $UTime The "Unix time" (the number of seconds relative to the midnight of January 1, 1970 UTC).
+     * @param  int $MTime **OPTIONAL. Default is** `0`. The number of milliseconds in either positive or negative
      * direction starting from the moment set by the "Unix time" seconds. Can be a value from 0 to 999 or from 0 to
      * -999.
      */
 
-    public function __construct ($iUTime, $iMTime = 0, $_noinit = false)
+    public function __construct ($UTime, $MTime = 0, $_noinit = false)
     {
         if ( $_noinit )
         {
@@ -426,12 +427,12 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
         // If neither is zero, `UTime` and `MTime` must be of the same sign.
 
-        assert( 'is_int($iUTime) && is_int($iMTime)', vs(isset($this), get_defined_vars()) );
-        assert( '$iUTime == 0 || $iMTime == 0 || CMathi::sign($iUTime) == CMathi::sign($iMTime)',
+        assert( 'is_int($UTime) && is_int($MTime)', vs(isset($this), get_defined_vars()) );
+        assert( '$UTime == 0 || $MTime == 0 || CMathi::sign($UTime) == CMathi::sign($MTime)',
             vs(isset($this), get_defined_vars()) );
-        assert( '0 <= CMathi::abs($iMTime) && CMathi::abs($iMTime) <= 999', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= CMathi::abs($MTime) && CMathi::abs($MTime) <= 999', vs(isset($this), get_defined_vars()) );
 
-        $this->m_fFTime = (float)$iUTime + $iMTime/1000;
+        $this->m_FTime = (float)$UTime + $MTime/1000;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -442,9 +443,9 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public static function now ()
     {
-        $oTime = new self(null, null, true);
-        $oTime->m_fFTime = microtime(true);
-        return $oTime;
+        $time = new self(null, null, true);
+        $time->m_FTime = microtime(true);
+        return $time;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -454,19 +455,19 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * The "Unix time" is positive for any point in time after the midnight of January 1, 1970 UTC and is negative for
      * any point in time before it.
      *
-     * @param  float $fFTime The "Unix time" (the number of seconds relative to the midnight of January 1, 1970 UTC),
+     * @param  float $FTime The "Unix time" (the number of seconds relative to the midnight of January 1, 1970 UTC),
      * as a floating-point number capable of milliseconds.
      *
      * @return CTime The corresponding point in time.
      */
 
-    public static function fromFTime ($fFTime)
+    public static function fromFTime ($FTime)
     {
-        assert( 'is_float($fFTime)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_float($FTime)', vs(isset($this), get_defined_vars()) );
 
-        $oTime = new self(null, null, true);
-        $oTime->m_fFTime = $fFTime;
-        return $oTime;
+        $time = new self(null, null, true);
+        $time->m_FTime = $FTime;
+        return $time;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -481,8 +482,8 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * If the string does not indicate any time zone, the time zone associated with the date/time components in the
      * string is assumed to be UTC.
      *
-     * @param  string $sString The string to be parsed.
-     * @param  enum|string $xPattern **OPTIONAL. Default is** *take a guess*. The pattern according to which the string
+     * @param  string $string The string to be parsed.
+     * @param  enum|string $pattern **OPTIONAL. Default is** *take a guess*. The pattern according to which the string
      * is formatted. See [Summary](#summary) for the enumerands of the most widespread patterns or
      * [date](http://www.php.net/manual/en/function.date.php) in the PHP Manual for the format characters that you can
      * use to compose a custom pattern.
@@ -490,36 +491,36 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * @return CTime The corresponding point in time.
      */
 
-    public static function fromString ($sString, $xPattern = null)
+    public static function fromString ($string, $pattern = null)
     {
-        assert( 'is_cstring($sString) && (!isset($xPattern) || is_enum($xPattern) || is_cstring($xPattern))',
+        assert( 'is_cstring($string) && (!isset($pattern) || is_enum($pattern) || is_cstring($pattern))',
             vs(isset($this), get_defined_vars()) );
 
-        $iUTime;
-        if ( isset($xPattern) )
+        $UTime;
+        if ( isset($pattern) )
         {
             // Parse the string using the pattern provided.
-            $sPattern = ( is_enum($xPattern) ) ? self::patternEnumToString($xPattern) : $xPattern;
-            $oDt = DateTime::createFromFormat($sPattern, $sString, new DateTimeZone(CTimeZone::UTC));
-            if ( !is_object($oDt) )
+            $strPattern = ( is_enum($pattern) ) ? self::patternEnumToString($pattern) : $pattern;
+            $dt = DateTime::createFromFormat($strPattern, $string, new DateTimeZone(CTimeZone::UTC));
+            if ( !is_object($dt) )
             {
                 assert( 'false', vs(isset($this), get_defined_vars()) );
             }
-            $iUTime = $oDt->getTimestamp();
+            $UTime = $dt->getTimestamp();
         }
         else
         {
             // Guess.
-            $sSysDefTz = date_default_timezone_get();
+            $sysDefTz = date_default_timezone_get();
             date_default_timezone_set(CTimeZone::UTC);
-            $iUTime = strtotime($sString);
-            date_default_timezone_set($sSysDefTz);
-            if ( !is_int($iUTime) )
+            $UTime = strtotime($string);
+            date_default_timezone_set($sysDefTz);
+            if ( !is_int($UTime) )
             {
                 assert( 'false', vs(isset($this), get_defined_vars()) );
             }
         }
-        return new self($iUTime);
+        return new self($UTime);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -528,121 +529,121 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * For example, the combination of February 29 with the year of 2000 is valid but, if combined with the year of
      * 2005, is not.
      *
-     * @param  int $iYear The year.
-     * @param  int $iMonth The number of the month (the valid range is from 1 to 12).
-     * @param  int $iDay The number of the day (the valid range is from 1 to 31).
-     * @param  int $iHour **OPTIONAL. Default is** `0`. The number of the hour (the valid range is from 0 to 23).
-     * @param  int $iMinute **OPTIONAL. Default is** `0`. The number of the minute (the valid range is from 0 to 59).
-     * @param  int $iSecond **OPTIONAL. Default is** `0`. The number of the second (the valid range is from 0 to 59).
-     * @param  int $iMillisecond **OPTIONAL. Default is** `0`. The number of the millisecond (the valid range is from 0
+     * @param  int $year The year.
+     * @param  int $month The number of the month (the valid range is from 1 to 12).
+     * @param  int $day The number of the day (the valid range is from 1 to 31).
+     * @param  int $hour **OPTIONAL. Default is** `0`. The number of the hour (the valid range is from 0 to 23).
+     * @param  int $minute **OPTIONAL. Default is** `0`. The number of the minute (the valid range is from 0 to 59).
+     * @param  int $second **OPTIONAL. Default is** `0`. The number of the second (the valid range is from 0 to 59).
+     * @param  int $millisecond **OPTIONAL. Default is** `0`. The number of the millisecond (the valid range is from 0
      * to 999).
      *
      * @return bool `true` if the components are valid in separate and as a combination, `false` otherwise.
      */
 
-    public static function areComponentsValid ($iYear, $iMonth, $iDay, $iHour = 0, $iMinute = 0, $iSecond = 0,
-        $iMillisecond = 0)
+    public static function areComponentsValid ($year, $month, $day, $hour = 0, $minute = 0, $second = 0,
+        $millisecond = 0)
     {
-        assert( 'is_int($iYear) && is_int($iMonth) && is_int($iDay) && is_int($iHour) && is_int($iMinute) && ' .
-                'is_int($iSecond) && is_int($iMillisecond)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($year) && is_int($month) && is_int($day) && is_int($hour) && is_int($minute) && ' .
+                'is_int($second) && is_int($millisecond)', vs(isset($this), get_defined_vars()) );
 
-        if ( !(1 <= $iMonth && $iMonth <= 12) )
+        if ( !(1 <= $month && $month <= 12) )
         {
             return false;
         }
-        if ( !(1 <= $iDay && $iDay <= 31) )
+        if ( !(1 <= $day && $day <= 31) )
         {
             return false;
         }
-        if ( !(0 <= $iHour && $iHour <= 23) )
+        if ( !(0 <= $hour && $hour <= 23) )
         {
             return false;
         }
-        if ( !(0 <= $iMinute && $iMinute <= 59) )
+        if ( !(0 <= $minute && $minute <= 59) )
         {
             return false;
         }
-        if ( !(0 <= $iSecond && $iSecond <= 59) )
+        if ( !(0 <= $second && $second <= 59) )
         {
             return false;
         }
-        if ( !(0 <= $iMillisecond && $iMillisecond <= 999) )
+        if ( !(0 <= $millisecond && $millisecond <= 999) )
         {
             return false;
         }
-        return checkdate($iMonth, $iDay, $iYear);
+        return checkdate($month, $day, $year);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Creates a point in time from date/time components as they would appear in the UTC time zone.
      *
-     * @param  int $iYear The year.
-     * @param  int $iMonth **OPTIONAL. Default is** `1`. The number of the month (from 1 to 12).
-     * @param  int $iDay **OPTIONAL. Default is** `1`. The number of the day (from 1 to 31).
-     * @param  int $iHour **OPTIONAL. Default is** `0`. The number of the hour (from 0 to 23).
-     * @param  int $iMinute **OPTIONAL. Default is** `0`. The number of the minute (from 0 to 59).
-     * @param  int $iSecond **OPTIONAL. Default is** `0`. The number of the second (from 0 to 59).
-     * @param  int $iMillisecond **OPTIONAL. Default is** `0`. The number of the millisecond (from 0 to 999).
+     * @param  int $year The year.
+     * @param  int $month **OPTIONAL. Default is** `1`. The number of the month (from 1 to 12).
+     * @param  int $day **OPTIONAL. Default is** `1`. The number of the day (from 1 to 31).
+     * @param  int $hour **OPTIONAL. Default is** `0`. The number of the hour (from 0 to 23).
+     * @param  int $minute **OPTIONAL. Default is** `0`. The number of the minute (from 0 to 59).
+     * @param  int $second **OPTIONAL. Default is** `0`. The number of the second (from 0 to 59).
+     * @param  int $millisecond **OPTIONAL. Default is** `0`. The number of the millisecond (from 0 to 999).
      *
      * @return CTime The corresponding point in time.
      */
 
-    public static function fromComponentsUtc ($iYear, $iMonth = 1, $iDay = 1, $iHour = 0, $iMinute = 0, $iSecond = 0,
-        $iMillisecond = 0)
+    public static function fromComponentsUtc ($year, $month = 1, $day = 1, $hour = 0, $minute = 0, $second = 0,
+        $millisecond = 0)
     {
-        assert( 'is_int($iYear) && is_int($iMonth) && is_int($iDay) && is_int($iHour) && is_int($iMinute) && ' .
-                'is_int($iSecond) && is_int($iMillisecond)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($year) && is_int($month) && is_int($day) && is_int($hour) && is_int($minute) && ' .
+                'is_int($second) && is_int($millisecond)', vs(isset($this), get_defined_vars()) );
 
-        return self::componentsInTimeZoneToTime($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond,
+        return self::componentsInTimeZoneToTime($year, $month, $day, $hour, $minute, $second, $millisecond,
             CTimeZone::UTC);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Creates a point in time from date/time components as they would appear in a specified time zone.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the components got their values.
-     * @param  int $iYear The year.
-     * @param  int $iMonth **OPTIONAL. Default is** `1`. The number of the month (from 1 to 12).
-     * @param  int $iDay **OPTIONAL. Default is** `1`. The number of the day (from 1 to 31).
-     * @param  int $iHour **OPTIONAL. Default is** `0`. The number of the hour (from 0 to 23).
-     * @param  int $iMinute **OPTIONAL. Default is** `0`. The number of the minute (from 0 to 59).
-     * @param  int $iSecond **OPTIONAL. Default is** `0`. The number of the second (from 0 to 59).
-     * @param  int $iMillisecond **OPTIONAL. Default is** `0`. The number of the millisecond (from 0 to 999).
+     * @param  CTimeZone $timeZone The time zone in which the components got their values.
+     * @param  int $year The year.
+     * @param  int $month **OPTIONAL. Default is** `1`. The number of the month (from 1 to 12).
+     * @param  int $day **OPTIONAL. Default is** `1`. The number of the day (from 1 to 31).
+     * @param  int $hour **OPTIONAL. Default is** `0`. The number of the hour (from 0 to 23).
+     * @param  int $minute **OPTIONAL. Default is** `0`. The number of the minute (from 0 to 59).
+     * @param  int $second **OPTIONAL. Default is** `0`. The number of the second (from 0 to 59).
+     * @param  int $millisecond **OPTIONAL. Default is** `0`. The number of the millisecond (from 0 to 999).
      *
      * @return CTime The corresponding point in time.
      */
 
-    public static function fromComponentsInTimeZone (CTimeZone $oTimeZone, $iYear, $iMonth = 1, $iDay = 1, $iHour = 0,
-        $iMinute = 0, $iSecond = 0, $iMillisecond = 0)
+    public static function fromComponentsInTimeZone (CTimeZone $timeZone, $year, $month = 1, $day = 1, $hour = 0,
+        $minute = 0, $second = 0, $millisecond = 0)
     {
-        assert( 'is_int($iYear) && is_int($iMonth) && is_int($iDay) && is_int($iHour) && is_int($iMinute) && ' .
-                'is_int($iSecond) && is_int($iMillisecond)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($year) && is_int($month) && is_int($day) && is_int($hour) && is_int($minute) && ' .
+                'is_int($second) && is_int($millisecond)', vs(isset($this), get_defined_vars()) );
 
-        return self::componentsInTimeZoneToTime($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond,
-            $oTimeZone);
+        return self::componentsInTimeZoneToTime($year, $month, $day, $hour, $minute, $second, $millisecond,
+            $timeZone);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Creates a point in time from date/time components as they would appear in the PHP's default time zone.
      *
-     * @param  int $iYear The year.
-     * @param  int $iMonth **OPTIONAL. Default is** `1`. The number of the month (from 1 to 12).
-     * @param  int $iDay **OPTIONAL. Default is** `1`. The number of the day (from 1 to 31).
-     * @param  int $iHour **OPTIONAL. Default is** `0`. The number of the hour (from 0 to 23).
-     * @param  int $iMinute **OPTIONAL. Default is** `0`. The number of the minute (from 0 to 59).
-     * @param  int $iSecond **OPTIONAL. Default is** `0`. The number of the second (from 0 to 59).
-     * @param  int $iMillisecond **OPTIONAL. Default is** `0`. The number of the millisecond (from 0 to 999).
+     * @param  int $year The year.
+     * @param  int $month **OPTIONAL. Default is** `1`. The number of the month (from 1 to 12).
+     * @param  int $day **OPTIONAL. Default is** `1`. The number of the day (from 1 to 31).
+     * @param  int $hour **OPTIONAL. Default is** `0`. The number of the hour (from 0 to 23).
+     * @param  int $minute **OPTIONAL. Default is** `0`. The number of the minute (from 0 to 59).
+     * @param  int $second **OPTIONAL. Default is** `0`. The number of the second (from 0 to 59).
+     * @param  int $millisecond **OPTIONAL. Default is** `0`. The number of the millisecond (from 0 to 999).
      *
      * @return CTime The corresponding point in time.
      */
 
-    public static function fromComponentsLocal ($iYear, $iMonth = 1, $iDay = 1, $iHour = 0, $iMinute = 0, $iSecond = 0,
-        $iMillisecond = 0)
+    public static function fromComponentsLocal ($year, $month = 1, $day = 1, $hour = 0, $minute = 0, $second = 0,
+        $millisecond = 0)
     {
-        assert( 'is_int($iYear) && is_int($iMonth) && is_int($iDay) && is_int($iHour) && is_int($iMinute) && ' .
-                'is_int($iSecond) && is_int($iMillisecond)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($year) && is_int($month) && is_int($day) && is_int($hour) && is_int($minute) && ' .
+                'is_int($second) && is_int($millisecond)', vs(isset($this), get_defined_vars()) );
 
-        return self::componentsInTimeZoneToTime($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond,
+        return self::componentsInTimeZoneToTime($year, $month, $day, $hour, $minute, $second, $millisecond,
             date_default_timezone_get());
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -653,7 +654,7 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * For locale-aware formatting of points in time as strings, which lets users from almost any country read time in
      * the way that they are accustomed to, you may want to try the [CUFormat](CUFormat.html) class.
      *
-     * @param  enum|string $xPattern **OPTIONAL. Default is** `PATTERN_DEFAULT`. The pattern to be used for formatting.
+     * @param  enum|string $pattern **OPTIONAL. Default is** `PATTERN_DEFAULT`. The pattern to be used for formatting.
      * See [Summary](#summary) for the enumerands of the most widespread patterns or
      * [date](http://www.php.net/manual/en/function.date.php) in the PHP Manual for the format characters that you can
      * use to compose a custom pattern.
@@ -661,18 +662,18 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * @return CUStringObject The resulting string.
      */
 
-    public function toStringUtc ($xPattern = self::PATTERN_DEFAULT)
+    public function toStringUtc ($pattern = self::PATTERN_DEFAULT)
     {
-        assert( 'is_enum($xPattern) || is_cstring($xPattern)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_enum($pattern) || is_cstring($pattern)', vs(isset($this), get_defined_vars()) );
 
-        if ( is_enum($xPattern) && $xPattern == self::PATTERN_HTTP_HEADER_GMT )
+        if ( is_enum($pattern) && $pattern == self::PATTERN_HTTP_HEADER_GMT )
         {
             // A special case.
-            $sTime = gmdate(self::patternEnumToString(self::PATTERN_HTTP_HEADER_GMT), $this->UTime());
-            assert( 'is_cstring($sTime)', vs(isset($this), get_defined_vars()) );
-            return $sTime;
+            $time = gmdate(self::patternEnumToString(self::PATTERN_HTTP_HEADER_GMT), $this->UTime());
+            assert( 'is_cstring($time)', vs(isset($this), get_defined_vars()) );
+            return $time;
         }
-        return self::timeToStringInTimeZone($this, $xPattern, CTimeZone::UTC);
+        return self::timeToStringInTimeZone($this, $pattern, CTimeZone::UTC);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -682,8 +683,8 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * For locale-aware formatting of points in time as strings, which lets users from almost any country read time in
      * the way that they are accustomed to, you may want to try the [CUFormat](CUFormat.html) class.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the components in the resulting string are to appear.
-     * @param  enum|string $xPattern **OPTIONAL. Default is** `PATTERN_DEFAULT`. The pattern to be used for formatting.
+     * @param  CTimeZone $timeZone The time zone in which the components in the resulting string are to appear.
+     * @param  enum|string $pattern **OPTIONAL. Default is** `PATTERN_DEFAULT`. The pattern to be used for formatting.
      * See [Summary](#summary) for the enumerands of the most widespread patterns or
      * [date](http://www.php.net/manual/en/function.date.php) in the PHP Manual for the format characters that you can
      * use to compose a custom pattern.
@@ -691,10 +692,10 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * @return CUStringObject The resulting string.
      */
 
-    public function toStringInTimeZone (CTimeZone $oTimeZone, $xPattern = self::PATTERN_DEFAULT)
+    public function toStringInTimeZone (CTimeZone $timeZone, $pattern = self::PATTERN_DEFAULT)
     {
-        assert( 'is_enum($xPattern) || is_cstring($xPattern)', vs(isset($this), get_defined_vars()) );
-        return self::timeToStringInTimeZone($this, $xPattern, $oTimeZone);
+        assert( 'is_enum($pattern) || is_cstring($pattern)', vs(isset($this), get_defined_vars()) );
+        return self::timeToStringInTimeZone($this, $pattern, $timeZone);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -704,7 +705,7 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * For locale-aware formatting of points in time as strings, which lets users from almost any country read time in
      * the way that they are accustomed to, you may want to try the [CUFormat](CUFormat.html) class.
      *
-     * @param  enum|string $xPattern **OPTIONAL. Default is** `PATTERN_DEFAULT`. The pattern to be used for formatting.
+     * @param  enum|string $pattern **OPTIONAL. Default is** `PATTERN_DEFAULT`. The pattern to be used for formatting.
      * See [Summary](#summary) for the enumerands of the most widespread patterns or
      * [date](http://www.php.net/manual/en/function.date.php) in the PHP Manual for the format characters that you can
      * use to compose a custom pattern.
@@ -712,10 +713,10 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * @return CUStringObject The resulting string.
      */
 
-    public function toStringLocal ($xPattern = self::PATTERN_DEFAULT)
+    public function toStringLocal ($pattern = self::PATTERN_DEFAULT)
     {
-        assert( 'is_enum($xPattern) || is_cstring($xPattern)', vs(isset($this), get_defined_vars()) );
-        return self::timeToStringInTimeZone($this, $xPattern, date_default_timezone_get());
+        assert( 'is_enum($pattern) || is_cstring($pattern)', vs(isset($this), get_defined_vars()) );
+        return self::timeToStringInTimeZone($this, $pattern, date_default_timezone_get());
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -729,7 +730,7 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function UTime ()
     {
-        return (int)$this->m_fFTime;
+        return (int)$this->m_FTime;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -743,7 +744,7 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function MTime ()
     {
-        return CMathi::round(($this->m_fFTime - (int)$this->m_fFTime)*1000);
+        return CMathi::round(($this->m_FTime - (int)$this->m_FTime)*1000);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -757,7 +758,7 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function FTime ()
     {
-        return $this->m_fFTime;
+        return $this->m_FTime;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -766,16 +767,16 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * If any of the two points in time goes as far as milliseconds in its time resolution, the method also compares
      * the milliseconds of the points.
      *
-     * @param  CTime $oToTime The second point in time for comparison.
+     * @param  CTime $toTime The second point in time for comparison.
      *
      * @return bool `true` if the two points in time are equal, `false` otherwise.
      */
 
-    public function equals ($oToTime)
+    public function equals ($toTime)
     {
         // Parameter type hinting is not used for the purpose of interface compatibility.
-        assert( 'is_ctime($oToTime)', vs(isset($this), get_defined_vars()) );
-        return ( $this->UTime() == $oToTime->UTime() && $this->MTime() == $oToTime->MTime() );
+        assert( 'is_ctime($toTime)', vs(isset($this), get_defined_vars()) );
+        return ( $this->UTime() == $toTime->UTime() && $this->MTime() == $toTime->MTime() );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -784,14 +785,14 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * If any of the two points in time goes as far as milliseconds in its time resolution, the method also compares
      * the milliseconds of the points.
      *
-     * @param  CTime $oTime The second point in time for comparison.
+     * @param  CTime $time The second point in time for comparison.
      *
      * @return bool `true` if *this* point in time precedes the second point in time, `false` otherwise.
      */
 
-    public function isBefore (CTime $oTime)
+    public function isBefore (CTime $time)
     {
-        return ( $this->m_fFTime < $oTime->m_fFTime );
+        return ( $this->m_FTime < $time->m_FTime );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -800,14 +801,14 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * If any of the two points in time goes as far as milliseconds in its time resolution, the method also compares
      * the milliseconds of the points.
      *
-     * @param  CTime $oTime The second point in time for comparison.
+     * @param  CTime $time The second point in time for comparison.
      *
      * @return bool `true` if *this* point in time succeeds the second point in time, `false` otherwise.
      */
 
-    public function isAfter (CTime $oTime)
+    public function isAfter (CTime $time)
     {
-        return ( $this->m_fFTime > $oTime->m_fFTime );
+        return ( $this->m_FTime > $time->m_FTime );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -816,17 +817,17 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * If any of the two points in time goes as far as milliseconds in its time resolution, the method also compares
      * the milliseconds of the points.
      *
-     * @param  CTime $oToTime The second point in time for comparison.
+     * @param  CTime $toTime The second point in time for comparison.
      *
      * @return int A negative value (typically `-1`) if *this* point in time should go before the second point in time,
      * a positive value (typically `1`) if the other way around, and `0` if the two points in time are equal.
      */
 
-    public function compare ($oToTime)
+    public function compare ($toTime)
     {
         // Parameter type hinting is not used for the purpose of interface compatibility.
-        assert( 'is_ctime($oToTime)', vs(isset($this), get_defined_vars()) );
-        return CMathi::sign($this->m_fFTime - $oToTime->m_fFTime);
+        assert( 'is_ctime($toTime)', vs(isset($this), get_defined_vars()) );
+        return CMathi::sign($this->m_FTime - $toTime->m_FTime);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -859,14 +860,14 @@ class CTime extends CRootClass implements IEqualityAndOrder
      *
      * Days of year are numbered starting with 0.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the current day is to get its number.
+     * @param  CTimeZone $timeZone The time zone in which the current day is to get its number.
      *
      * @return int The number of the current day of the year.
      */
 
-    public static function currentDayOfYearInTimeZone (CTimeZone $oTimeZone)
+    public static function currentDayOfYearInTimeZone (CTimeZone $timeZone)
     {
-        return CString::toInt(self::timeToStringInTimeZone(self::now(), "z", $oTimeZone));
+        return CString::toInt(self::timeToStringInTimeZone(self::now(), "z", $timeZone));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -888,25 +889,25 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * You can use one of the dedicated methods when you only want to know the value of a single component, e.g.
      * `monthUtc`.
      *
-     * @param  reference $riYear **OUTPUT.** The year, of type `int`.
-     * @param  reference $riMonth **OPTIONAL. OUTPUT.** The number of the month (from 1 to 12), of type `int`.
-     * @param  reference $riDay **OPTIONAL. OUTPUT.** The number of the day (from 1 to 31), of type `int`.
-     * @param  reference $riHour **OPTIONAL. OUTPUT.** The number of the hour (from 0 to 23), of type `int`.
-     * @param  reference $riMinute **OPTIONAL. OUTPUT.** The number of the minute (from 0 to 59), of type `int`.
-     * @param  reference $riSecond **OPTIONAL. OUTPUT.** The number of the second (from 0 to 59), of type `int`.
-     * @param  reference $riMillisecond **OPTIONAL. OUTPUT.** The number of the millisecond (from 0 to 999), of type
+     * @param  reference $year **OUTPUT.** The year, of type `int`.
+     * @param  reference $month **OPTIONAL. OUTPUT.** The number of the month (from 1 to 12), of type `int`.
+     * @param  reference $day **OPTIONAL. OUTPUT.** The number of the day (from 1 to 31), of type `int`.
+     * @param  reference $hour **OPTIONAL. OUTPUT.** The number of the hour (from 0 to 23), of type `int`.
+     * @param  reference $minute **OPTIONAL. OUTPUT.** The number of the minute (from 0 to 59), of type `int`.
+     * @param  reference $second **OPTIONAL. OUTPUT.** The number of the second (from 0 to 59), of type `int`.
+     * @param  reference $millisecond **OPTIONAL. OUTPUT.** The number of the millisecond (from 0 to 999), of type
      * `int`.
-     * @param  reference $reDayOfWeek **OPTIONAL. OUTPUT.** The day of the week, of type `enum`. Can be `SUNDAY`,
+     * @param  reference $dayOfWeek **OPTIONAL. OUTPUT.** The day of the week, of type `enum`. Can be `SUNDAY`,
      * `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, or `SATURDAY`.
      *
      * @return void
      */
 
-    public function componentsUtc (&$riYear, &$riMonth = null, &$riDay = null, &$riHour = null, &$riMinute = null,
-        &$riSecond = null, &$riMillisecond = null, &$reDayOfWeek = null)
+    public function componentsUtc (&$year, &$month = null, &$day = null, &$hour = null, &$minute = null,
+        &$second = null, &$millisecond = null, &$dayOfWeek = null)
     {
-        self::timeToComponentsInTimeZone($this, CTimeZone::UTC, $riYear, $riMonth, $riDay, $riHour, $riMinute,
-            $riSecond, $riMillisecond, $reDayOfWeek);
+        self::timeToComponentsInTimeZone($this, CTimeZone::UTC, $year, $month, $day, $hour, $minute,
+            $second, $millisecond, $dayOfWeek);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -921,9 +922,9 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function yearUtc ()
     {
-        $iYear;
-        $this->componentsUtc($iYear);
-        return $iYear;
+        $year;
+        $this->componentsUtc($year);
+        return $year;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -938,10 +939,10 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function monthUtc ()
     {
-        $iYear;
-        $iMonth;
-        $this->componentsUtc($iYear, $iMonth);
-        return $iMonth;
+        $year;
+        $month;
+        $this->componentsUtc($year, $month);
+        return $month;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -956,11 +957,11 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function dayUtc ()
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $this->componentsUtc($iYear, $iMonth, $iDay);
-        return $iDay;
+        $year;
+        $month;
+        $day;
+        $this->componentsUtc($year, $month, $day);
+        return $day;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -975,12 +976,12 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function hourUtc ()
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $this->componentsUtc($iYear, $iMonth, $iDay, $iHour);
-        return $iHour;
+        $year;
+        $month;
+        $day;
+        $hour;
+        $this->componentsUtc($year, $month, $day, $hour);
+        return $hour;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -995,13 +996,13 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function minuteUtc ()
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $this->componentsUtc($iYear, $iMonth, $iDay, $iHour, $iMinute);
-        return $iMinute;
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $this->componentsUtc($year, $month, $day, $hour, $minute);
+        return $minute;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1016,14 +1017,14 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function secondUtc ()
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $this->componentsUtc($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond);
-        return $iSecond;
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $this->componentsUtc($year, $month, $day, $hour, $minute, $second);
+        return $second;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1039,15 +1040,15 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function millisecondUtc ()
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsUtc($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        return $iMillisecond;
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsUtc($year, $month, $day, $hour, $minute, $second, $millisecond);
+        return $millisecond;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1063,16 +1064,16 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function dayOfWeekUtc ()
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $eDayOfWeek;
-        $this->componentsUtc($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond, $eDayOfWeek);
-        return $eDayOfWeek;
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $dayOfWeek;
+        $this->componentsUtc($year, $month, $day, $hour, $minute, $second, $millisecond, $dayOfWeek);
+        return $dayOfWeek;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1081,26 +1082,26 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * You can use one of the dedicated methods when you only want to know the value of a single component, e.g.
      * `monthInTimeZone`.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the components are to get their values.
-     * @param  reference $riYear **OUTPUT.** The year, of type `int`.
-     * @param  reference $riMonth **OPTIONAL. OUTPUT.** The number of the month (from 1 to 12), of type `int`.
-     * @param  reference $riDay **OPTIONAL. OUTPUT.** The number of the day (from 1 to 31), of type `int`.
-     * @param  reference $riHour **OPTIONAL. OUTPUT.** The number of the hour (from 0 to 23), of type `int`.
-     * @param  reference $riMinute **OPTIONAL. OUTPUT.** The number of the minute (from 0 to 59), of type `int`.
-     * @param  reference $riSecond **OPTIONAL. OUTPUT.** The number of the second (from 0 to 59), of type `int`.
-     * @param  reference $riMillisecond **OPTIONAL. OUTPUT.** The number of the millisecond (from 0 to 999), of type
+     * @param  CTimeZone $timeZone The time zone in which the components are to get their values.
+     * @param  reference $year **OUTPUT.** The year, of type `int`.
+     * @param  reference $month **OPTIONAL. OUTPUT.** The number of the month (from 1 to 12), of type `int`.
+     * @param  reference $day **OPTIONAL. OUTPUT.** The number of the day (from 1 to 31), of type `int`.
+     * @param  reference $hour **OPTIONAL. OUTPUT.** The number of the hour (from 0 to 23), of type `int`.
+     * @param  reference $minute **OPTIONAL. OUTPUT.** The number of the minute (from 0 to 59), of type `int`.
+     * @param  reference $second **OPTIONAL. OUTPUT.** The number of the second (from 0 to 59), of type `int`.
+     * @param  reference $millisecond **OPTIONAL. OUTPUT.** The number of the millisecond (from 0 to 999), of type
      * `int`.
-     * @param  reference $reDayOfWeek **OPTIONAL. OUTPUT.** The day of the week, of type `enum`. Can be `SUNDAY`,
+     * @param  reference $dayOfWeek **OPTIONAL. OUTPUT.** The day of the week, of type `enum`. Can be `SUNDAY`,
      * `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, or `SATURDAY`.
      *
      * @return void
      */
 
-    public function componentsInTimeZone (CTimeZone $oTimeZone, &$riYear, &$riMonth = null, &$riDay = null,
-        &$riHour = null, &$riMinute = null, &$riSecond = null, &$riMillisecond = null, &$reDayOfWeek = null)
+    public function componentsInTimeZone (CTimeZone $timeZone, &$year, &$month = null, &$day = null,
+        &$hour = null, &$minute = null, &$second = null, &$millisecond = null, &$dayOfWeek = null)
     {
-        self::timeToComponentsInTimeZone($this, $oTimeZone, $riYear, $riMonth, $riDay, $riHour, $riMinute, $riSecond,
-            $riMillisecond, $reDayOfWeek);
+        self::timeToComponentsInTimeZone($this, $timeZone, $year, $month, $day, $hour, $minute, $second,
+            $millisecond, $dayOfWeek);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1108,18 +1109,18 @@ class CTime extends CRootClass implements IEqualityAndOrder
      *
      * You can use `componentsInTimeZone` method when you want to know the values of multiple date/time components.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the component is to get its value.
+     * @param  CTimeZone $timeZone The time zone in which the component is to get its value.
      *
      * @return int The year of the point in time.
      *
      * @link   #method_componentsInTimeZone componentsInTimeZone
      */
 
-    public function yearInTimeZone (CTimeZone $oTimeZone)
+    public function yearInTimeZone (CTimeZone $timeZone)
     {
-        $iYear;
-        $this->componentsInTimeZone($oTimeZone, $iYear);
-        return $iYear;
+        $year;
+        $this->componentsInTimeZone($timeZone, $year);
+        return $year;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1127,19 +1128,19 @@ class CTime extends CRootClass implements IEqualityAndOrder
      *
      * You can use `componentsInTimeZone` method when you want to know the values of multiple date/time components.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the component is to get its value.
+     * @param  CTimeZone $timeZone The time zone in which the component is to get its value.
      *
      * @return int The number of the month of the point in time (from 1 to 12).
      *
      * @link   #method_componentsInTimeZone componentsInTimeZone
      */
 
-    public function monthInTimeZone (CTimeZone $oTimeZone)
+    public function monthInTimeZone (CTimeZone $timeZone)
     {
-        $iYear;
-        $iMonth;
-        $this->componentsInTimeZone($oTimeZone, $iYear, $iMonth);
-        return $iMonth;
+        $year;
+        $month;
+        $this->componentsInTimeZone($timeZone, $year, $month);
+        return $month;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1147,20 +1148,20 @@ class CTime extends CRootClass implements IEqualityAndOrder
      *
      * You can use `componentsInTimeZone` method when you want to know the values of multiple date/time components.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the component is to get its value.
+     * @param  CTimeZone $timeZone The time zone in which the component is to get its value.
      *
      * @return int The number of the day of the point in time (from 1 to 31).
      *
      * @link   #method_componentsInTimeZone componentsInTimeZone
      */
 
-    public function dayInTimeZone (CTimeZone $oTimeZone)
+    public function dayInTimeZone (CTimeZone $timeZone)
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $this->componentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay);
-        return $iDay;
+        $year;
+        $month;
+        $day;
+        $this->componentsInTimeZone($timeZone, $year, $month, $day);
+        return $day;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1168,21 +1169,21 @@ class CTime extends CRootClass implements IEqualityAndOrder
      *
      * You can use `componentsInTimeZone` method when you want to know the values of multiple date/time components.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the component is to get its value.
+     * @param  CTimeZone $timeZone The time zone in which the component is to get its value.
      *
      * @return int The number of the hour of the point in time (from 0 to 23).
      *
      * @link   #method_componentsInTimeZone componentsInTimeZone
      */
 
-    public function hourInTimeZone (CTimeZone $oTimeZone)
+    public function hourInTimeZone (CTimeZone $timeZone)
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $this->componentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour);
-        return $iHour;
+        $year;
+        $month;
+        $day;
+        $hour;
+        $this->componentsInTimeZone($timeZone, $year, $month, $day, $hour);
+        return $hour;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1190,22 +1191,22 @@ class CTime extends CRootClass implements IEqualityAndOrder
      *
      * You can use `componentsInTimeZone` method when you want to know the values of multiple date/time components.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the component is to get its value.
+     * @param  CTimeZone $timeZone The time zone in which the component is to get its value.
      *
      * @return int The number of the minute of the point in time (from 0 to 59).
      *
      * @link   #method_componentsInTimeZone componentsInTimeZone
      */
 
-    public function minuteInTimeZone (CTimeZone $oTimeZone)
+    public function minuteInTimeZone (CTimeZone $timeZone)
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $this->componentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour, $iMinute);
-        return $iMinute;
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $this->componentsInTimeZone($timeZone, $year, $month, $day, $hour, $minute);
+        return $minute;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1213,23 +1214,23 @@ class CTime extends CRootClass implements IEqualityAndOrder
      *
      * You can use `componentsInTimeZone` method when you want to know the values of multiple date/time components.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the component is to get its value.
+     * @param  CTimeZone $timeZone The time zone in which the component is to get its value.
      *
      * @return int The number of the second of the point in time (from 0 to 59).
      *
      * @link   #method_componentsInTimeZone componentsInTimeZone
      */
 
-    public function secondInTimeZone (CTimeZone $oTimeZone)
+    public function secondInTimeZone (CTimeZone $timeZone)
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $this->componentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond);
-        return $iSecond;
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $this->componentsInTimeZone($timeZone, $year, $month, $day, $hour, $minute, $second);
+        return $second;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1238,24 +1239,24 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * This method only exists for consistency among the methods (the milliseconds are the same across all time zones).
      * You can use `componentsInTimeZone` method when you want to know the values of multiple date/time components.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the component is to get its value.
+     * @param  CTimeZone $timeZone The time zone in which the component is to get its value.
      *
      * @return int The number of the millisecond of the point in time (from 0 to 999).
      *
      * @link   #method_componentsInTimeZone componentsInTimeZone
      */
 
-    public function millisecondInTimeZone (CTimeZone $oTimeZone)
+    public function millisecondInTimeZone (CTimeZone $timeZone)
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        return $iMillisecond;
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsInTimeZone($timeZone, $year, $month, $day, $hour, $minute, $second, $millisecond);
+        return $millisecond;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1263,7 +1264,7 @@ class CTime extends CRootClass implements IEqualityAndOrder
      *
      * You can use `componentsInTimeZone` method when you want to know the values of multiple date/time components.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the component is to get its value.
+     * @param  CTimeZone $timeZone The time zone in which the component is to get its value.
      *
      * @return enum The day-of-week of the point in time. Can be `SUNDAY`, `MONDAY`, `TUESDAY`, `WEDNESDAY`,
      * `THURSDAY`, `FRIDAY`, or `SATURDAY`.
@@ -1271,19 +1272,19 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * @link   #method_componentsInTimeZone componentsInTimeZone
      */
 
-    public function dayOfWeekInTimeZone (CTimeZone $oTimeZone)
+    public function dayOfWeekInTimeZone (CTimeZone $timeZone)
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $eDayOfWeek;
-        $this->componentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond,
-            $eDayOfWeek);
-        return $eDayOfWeek;
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $dayOfWeek;
+        $this->componentsInTimeZone($timeZone, $year, $month, $day, $hour, $minute, $second, $millisecond,
+            $dayOfWeek);
+        return $dayOfWeek;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1292,25 +1293,25 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * You can use one of the dedicated methods when you only want to know the value of a single component, e.g.
      * `monthLocal`.
      *
-     * @param  reference $riYear **OUTPUT.** The year, of type `int`.
-     * @param  reference $riMonth **OPTIONAL. OUTPUT.** The number of the month (from 1 to 12), of type `int`.
-     * @param  reference $riDay **OPTIONAL. OUTPUT.** The number of the day (from 1 to 31), of type `int`.
-     * @param  reference $riHour **OPTIONAL. OUTPUT.** The number of the hour (from 0 to 23), of type `int`.
-     * @param  reference $riMinute **OPTIONAL. OUTPUT.** The number of the minute (from 0 to 59), of type `int`.
-     * @param  reference $riSecond **OPTIONAL. OUTPUT.** The number of the second (from 0 to 59), of type `int`.
-     * @param  reference $riMillisecond **OPTIONAL. OUTPUT.** The number of the millisecond (from 0 to 999), of type
+     * @param  reference $year **OUTPUT.** The year, of type `int`.
+     * @param  reference $month **OPTIONAL. OUTPUT.** The number of the month (from 1 to 12), of type `int`.
+     * @param  reference $day **OPTIONAL. OUTPUT.** The number of the day (from 1 to 31), of type `int`.
+     * @param  reference $hour **OPTIONAL. OUTPUT.** The number of the hour (from 0 to 23), of type `int`.
+     * @param  reference $minute **OPTIONAL. OUTPUT.** The number of the minute (from 0 to 59), of type `int`.
+     * @param  reference $second **OPTIONAL. OUTPUT.** The number of the second (from 0 to 59), of type `int`.
+     * @param  reference $millisecond **OPTIONAL. OUTPUT.** The number of the millisecond (from 0 to 999), of type
      * `int`.
-     * @param  reference $reDayOfWeek **OPTIONAL. OUTPUT.** The day of the week, of type `enum`. Can be `SUNDAY`,
+     * @param  reference $dayOfWeek **OPTIONAL. OUTPUT.** The day of the week, of type `enum`. Can be `SUNDAY`,
      * `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, or `SATURDAY`.
      *
      * @return void
      */
 
-    public function componentsLocal (&$riYear, &$riMonth = null, &$riDay = null, &$riHour = null, &$riMinute = null,
-        &$riSecond = null, &$riMillisecond = null, &$reDayOfWeek = null)
+    public function componentsLocal (&$year, &$month = null, &$day = null, &$hour = null, &$minute = null,
+        &$second = null, &$millisecond = null, &$dayOfWeek = null)
     {
-        self::timeToComponentsInTimeZone($this, date_default_timezone_get(), $riYear, $riMonth, $riDay, $riHour,
-            $riMinute, $riSecond, $riMillisecond, $reDayOfWeek);
+        self::timeToComponentsInTimeZone($this, date_default_timezone_get(), $year, $month, $day, $hour,
+            $minute, $second, $millisecond, $dayOfWeek);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1325,9 +1326,9 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function yearLocal ()
     {
-        $iYear;
-        $this->componentsLocal($iYear);
-        return $iYear;
+        $year;
+        $this->componentsLocal($year);
+        return $year;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1342,10 +1343,10 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function monthLocal ()
     {
-        $iYear;
-        $iMonth;
-        $this->componentsLocal($iYear, $iMonth);
-        return $iMonth;
+        $year;
+        $month;
+        $this->componentsLocal($year, $month);
+        return $month;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1360,11 +1361,11 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function dayLocal ()
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $this->componentsLocal($iYear, $iMonth, $iDay);
-        return $iDay;
+        $year;
+        $month;
+        $day;
+        $this->componentsLocal($year, $month, $day);
+        return $day;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1379,12 +1380,12 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function hourLocal ()
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $this->componentsLocal($iYear, $iMonth, $iDay, $iHour);
-        return $iHour;
+        $year;
+        $month;
+        $day;
+        $hour;
+        $this->componentsLocal($year, $month, $day, $hour);
+        return $hour;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1399,13 +1400,13 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function minuteLocal ()
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $this->componentsLocal($iYear, $iMonth, $iDay, $iHour, $iMinute);
-        return $iMinute;
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $this->componentsLocal($year, $month, $day, $hour, $minute);
+        return $minute;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1420,14 +1421,14 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function secondLocal ()
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $this->componentsLocal($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond);
-        return $iSecond;
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $this->componentsLocal($year, $month, $day, $hour, $minute, $second);
+        return $second;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1443,15 +1444,15 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function millisecondLocal ()
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsLocal($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        return $iMillisecond;
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsLocal($year, $month, $day, $hour, $minute, $second, $millisecond);
+        return $millisecond;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1467,16 +1468,16 @@ class CTime extends CRootClass implements IEqualityAndOrder
 
     public function dayOfWeekLocal ()
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $eDayOfWeek;
-        $this->componentsLocal($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond, $eDayOfWeek);
-        return $eDayOfWeek;
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $dayOfWeek;
+        $this->componentsLocal($year, $month, $day, $hour, $minute, $second, $millisecond, $dayOfWeek);
+        return $dayOfWeek;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1488,49 +1489,49 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * Differences between points in time are not tied to any time zone. Any days that were added by leap years between
      * the points are counted in.
      *
-     * @param  CTime $oFromTime The second point in time for comparison.
-     * @param  enum $eTimeUnit The time unit in which the difference is to be calculated. Can be `SECOND`, `MINUTE`,
+     * @param  CTime $fromTime The second point in time for comparison.
+     * @param  enum $timeUnit The time unit in which the difference is to be calculated. Can be `SECOND`, `MINUTE`,
      * `HOUR`, `DAY`, `WEEK`, `MONTH`, or `YEAR`.
      *
      * @return int The absolute difference between the two points in time, measured in the time unit specified.
      */
 
-    public function diff (CTime $oFromTime, $eTimeUnit)
+    public function diff (CTime $fromTime, $timeUnit)
     {
-        assert( 'is_enum($eTimeUnit)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_enum($timeUnit)', vs(isset($this), get_defined_vars()) );
 
-        $oDtz = new DateTimeZone(CTimeZone::UTC);
-        $oThisDt = new DateTime();
-        $oThisDt->setTimestamp($this->UTime());
-        $oThisDt->setTimezone($oDtz);
-        $oFromDt = new DateTime();
-        $oFromDt->setTimestamp($oFromTime->UTime());
-        $oFromDt->setTimezone($oDtz);
-        $oDti = $oFromDt->diff($oThisDt, true);
-        assert( 'is_number($oDti->days)', vs(isset($this), get_defined_vars()) );
+        $dtz = new DateTimeZone(CTimeZone::UTC);
+        $thisDt = new DateTime();
+        $thisDt->setTimestamp($this->UTime());
+        $thisDt->setTimezone($dtz);
+        $fromDt = new DateTime();
+        $fromDt->setTimestamp($fromTime->UTime());
+        $fromDt->setTimezone($dtz);
+        $dti = $fromDt->diff($thisDt, true);
+        assert( 'is_number($dti->days)', vs(isset($this), get_defined_vars()) );
 
-        $iDiffInSeconds =
-            CMathi::abs($oDti->days)*self::SECONDS_PER_DAY +
-            CMathi::abs($oDti->h)*self::SECONDS_PER_HOUR +
-            CMathi::abs($oDti->i)*self::SECONDS_PER_MINUTE +
-            CMathi::abs($oDti->s);
-        $fDiffInSeconds = (float)$iDiffInSeconds;
-        switch ( $eTimeUnit )
+        $intDiffInSeconds =
+            CMathi::abs($dti->days)*self::SECONDS_PER_DAY +
+            CMathi::abs($dti->h)*self::SECONDS_PER_HOUR +
+            CMathi::abs($dti->i)*self::SECONDS_PER_MINUTE +
+            CMathi::abs($dti->s);
+        $floatDiffInSeconds = (float)$intDiffInSeconds;
+        switch ( $timeUnit )
         {
         case self::SECOND:
-            return $iDiffInSeconds;
+            return $intDiffInSeconds;
         case self::MINUTE:
-            return CMathi::floor($fDiffInSeconds/self::SECONDS_PER_MINUTE);
+            return CMathi::floor($floatDiffInSeconds/self::SECONDS_PER_MINUTE);
         case self::HOUR:
-            return CMathi::floor($fDiffInSeconds/self::SECONDS_PER_HOUR);
+            return CMathi::floor($floatDiffInSeconds/self::SECONDS_PER_HOUR);
         case self::DAY:
-            return CMathi::floor($fDiffInSeconds/self::SECONDS_PER_DAY);
+            return CMathi::floor($floatDiffInSeconds/self::SECONDS_PER_DAY);
         case self::WEEK:
-            return CMathi::floor($fDiffInSeconds/self::SECONDS_PER_WEEK);
+            return CMathi::floor($floatDiffInSeconds/self::SECONDS_PER_WEEK);
         case self::MONTH:
-            return CMathi::floor($fDiffInSeconds/self::SECONDS_PER_MONTH);
+            return CMathi::floor($floatDiffInSeconds/self::SECONDS_PER_MONTH);
         case self::YEAR:
-            return CMathi::floor($fDiffInSeconds/self::SECONDS_PER_YEAR);
+            return CMathi::floor($floatDiffInSeconds/self::SECONDS_PER_YEAR);
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
         }
@@ -1545,14 +1546,14 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * Differences between points in time are not tied to any time zone. Any days that were added by leap years between
      * the points are counted in.
      *
-     * @param  CTime $oFromTime The second point in time for comparison.
+     * @param  CTime $fromTime The second point in time for comparison.
      *
      * @return int The absolute difference between the two points in time, measured in seconds.
      */
 
-    public function diffInSeconds (CTime $oFromTime)
+    public function diffInSeconds (CTime $fromTime)
     {
-        return $this->diff($oFromTime, self::SECOND);
+        return $this->diff($fromTime, self::SECOND);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1564,14 +1565,14 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * Differences between points in time are not tied to any time zone. Any days that were added by leap years between
      * the points are counted in.
      *
-     * @param  CTime $oFromTime The second point in time for comparison.
+     * @param  CTime $fromTime The second point in time for comparison.
      *
      * @return int The absolute difference between the two points in time, measured in minutes.
      */
 
-    public function diffInMinutes (CTime $oFromTime)
+    public function diffInMinutes (CTime $fromTime)
     {
-        return $this->diff($oFromTime, self::MINUTE);
+        return $this->diff($fromTime, self::MINUTE);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1583,14 +1584,14 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * Differences between points in time are not tied to any time zone. Any days that were added by leap years between
      * the points are counted in.
      *
-     * @param  CTime $oFromTime The second point in time for comparison.
+     * @param  CTime $fromTime The second point in time for comparison.
      *
      * @return int The absolute difference between the two points in time, measured in hours.
      */
 
-    public function diffInHours (CTime $oFromTime)
+    public function diffInHours (CTime $fromTime)
     {
-        return $this->diff($oFromTime, self::HOUR);
+        return $this->diff($fromTime, self::HOUR);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1601,14 +1602,14 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * Differences between points in time are not tied to any time zone. Any days that were added by leap years between
      * the points are counted in.
      *
-     * @param  CTime $oFromTime The second point in time for comparison.
+     * @param  CTime $fromTime The second point in time for comparison.
      *
      * @return int The absolute difference between the two points in time, measured in days.
      */
 
-    public function diffInDays (CTime $oFromTime)
+    public function diffInDays (CTime $fromTime)
     {
-        return $this->diff($oFromTime, self::DAY);
+        return $this->diff($fromTime, self::DAY);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1620,14 +1621,14 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * Differences between points in time are not tied to any time zone. Any days that were added by leap years between
      * the points are counted in.
      *
-     * @param  CTime $oFromTime The second point in time for comparison.
+     * @param  CTime $fromTime The second point in time for comparison.
      *
      * @return int The absolute difference between the two points in time, measured in weeks.
      */
 
-    public function diffInWeeks (CTime $oFromTime)
+    public function diffInWeeks (CTime $fromTime)
     {
-        return $this->diff($oFromTime, self::WEEK);
+        return $this->diff($fromTime, self::WEEK);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1639,14 +1640,14 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * Differences between points in time are not tied to any time zone. Any days that were added by leap years between
      * the points are counted in.
      *
-     * @param  CTime $oFromTime The second point in time for comparison.
+     * @param  CTime $fromTime The second point in time for comparison.
      *
      * @return int The absolute difference between the two points in time, measured in months.
      */
 
-    public function diffInMonths (CTime $oFromTime)
+    public function diffInMonths (CTime $fromTime)
     {
-        return $this->diff($oFromTime, self::MONTH);
+        return $this->diff($fromTime, self::MONTH);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1658,14 +1659,14 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * Differences between points in time are not tied to any time zone. Any days that were added by leap years between
      * the points are counted in.
      *
-     * @param  CTime $oFromTime The second point in time for comparison.
+     * @param  CTime $fromTime The second point in time for comparison.
      *
      * @return int The absolute difference between the two points in time, measured in years.
      */
 
-    public function diffInYears (CTime $oFromTime)
+    public function diffInYears (CTime $fromTime)
     {
-        return $this->diff($oFromTime, self::YEAR);
+        return $this->diff($fromTime, self::YEAR);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1680,92 +1681,92 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * 0 months, 4 days (because 2008 is a leap year), 23 hours, 31 minutes, and 30 seconds, while the difference in
      * weeks is 52.
      *
-     * @param  CTime $oFromTime The second point in time for comparison.
-     * @param  reference $riNumSeconds **OUTPUT.** The number of seconds (from 0 to 59), of type `int`.
-     * @param  reference $riNumMinutes **OPTIONAL. OUTPUT.** The number of minutes (from 0 to 59), of type `int`.
-     * @param  reference $riNumHours **OPTIONAL. OUTPUT.** The number of hours (from 0 to 23), of type `int`.
-     * @param  reference $riNumDays **OPTIONAL. OUTPUT.** The number of days (from 0 to 30), of type `int`.
-     * @param  reference $riNumWeeks **OPTIONAL. OUTPUT.** The number of weeks, of type `int`.
-     * @param  reference $riNumMonths **OPTIONAL. OUTPUT.** The number of months (from 0 to 11), of type `int`.
-     * @param  reference $riNumYears **OPTIONAL. OUTPUT.** The number of years, of type `int`.
+     * @param  CTime $fromTime The second point in time for comparison.
+     * @param  reference $numSeconds **OUTPUT.** The number of seconds (from 0 to 59), of type `int`.
+     * @param  reference $numMinutes **OPTIONAL. OUTPUT.** The number of minutes (from 0 to 59), of type `int`.
+     * @param  reference $numHours **OPTIONAL. OUTPUT.** The number of hours (from 0 to 23), of type `int`.
+     * @param  reference $numDays **OPTIONAL. OUTPUT.** The number of days (from 0 to 30), of type `int`.
+     * @param  reference $numWeeks **OPTIONAL. OUTPUT.** The number of weeks, of type `int`.
+     * @param  reference $numMonths **OPTIONAL. OUTPUT.** The number of months (from 0 to 11), of type `int`.
+     * @param  reference $numYears **OPTIONAL. OUTPUT.** The number of years, of type `int`.
      *
      * @return void
      */
 
-    public function diffUnits (CTime $oFromTime, &$riNumSeconds, &$riNumMinutes = null, &$riNumHours = null,
-        &$riNumDays = null, &$riNumWeeks = null, &$riNumMonths = null, &$riNumYears = null)
+    public function diffUnits (CTime $fromTime, &$numSeconds, &$numMinutes = null, &$numHours = null,
+        &$numDays = null, &$numWeeks = null, &$numMonths = null, &$numYears = null)
     {
-        $iSecondQty = $this->diffInSeconds($oFromTime);
+        $secondQty = $this->diffInSeconds($fromTime);
 
-        if ( $iSecondQty < self::SECONDS_PER_MINUTE )
+        if ( $secondQty < self::SECONDS_PER_MINUTE )
         {
-            $riNumSeconds = $iSecondQty;
-            $riNumMinutes = 0;
-            $riNumHours = 0;
-            $riNumDays = 0;
-            $riNumWeeks = 0;
-            $riNumMonths = 0;
-            $riNumYears = 0;
+            $numSeconds = $secondQty;
+            $numMinutes = 0;
+            $numHours = 0;
+            $numDays = 0;
+            $numWeeks = 0;
+            $numMonths = 0;
+            $numYears = 0;
         }
-        else if ( $iSecondQty < self::SECONDS_PER_HOUR )
+        else if ( $secondQty < self::SECONDS_PER_HOUR )
         {
-            $riNumSeconds = $iSecondQty % self::SECONDS_PER_MINUTE;
-            $riNumMinutes = CMathi::floor(((float)$iSecondQty)/self::SECONDS_PER_MINUTE);
-            $riNumHours = 0;
-            $riNumDays = 0;
-            $riNumWeeks = 0;
-            $riNumMonths = 0;
-            $riNumYears = 0;
+            $numSeconds = $secondQty % self::SECONDS_PER_MINUTE;
+            $numMinutes = CMathi::floor(((float)$secondQty)/self::SECONDS_PER_MINUTE);
+            $numHours = 0;
+            $numDays = 0;
+            $numWeeks = 0;
+            $numMonths = 0;
+            $numYears = 0;
         }
-        else if ( $iSecondQty < self::SECONDS_PER_DAY )
+        else if ( $secondQty < self::SECONDS_PER_DAY )
         {
-            $riNumSeconds = $iSecondQty % self::SECONDS_PER_MINUTE;
-            $riNumMinutes = CMathi::floor(((float)($iSecondQty % self::SECONDS_PER_HOUR))/self::SECONDS_PER_MINUTE);
-            $riNumHours = CMathi::floor(((float)$iSecondQty)/self::SECONDS_PER_HOUR);
-            $riNumDays = 0;
-            $riNumWeeks = 0;
-            $riNumMonths = 0;
-            $riNumYears = 0;
+            $numSeconds = $secondQty % self::SECONDS_PER_MINUTE;
+            $numMinutes = CMathi::floor(((float)($secondQty % self::SECONDS_PER_HOUR))/self::SECONDS_PER_MINUTE);
+            $numHours = CMathi::floor(((float)$secondQty)/self::SECONDS_PER_HOUR);
+            $numDays = 0;
+            $numWeeks = 0;
+            $numMonths = 0;
+            $numYears = 0;
         }
-        else if ( $iSecondQty < self::SECONDS_PER_WEEK )
+        else if ( $secondQty < self::SECONDS_PER_WEEK )
         {
-            $riNumSeconds = $iSecondQty % self::SECONDS_PER_MINUTE;
-            $riNumMinutes = CMathi::floor(((float)($iSecondQty % self::SECONDS_PER_HOUR))/self::SECONDS_PER_MINUTE);
-            $riNumHours = CMathi::floor(((float)($iSecondQty % self::SECONDS_PER_DAY))/self::SECONDS_PER_HOUR);
-            $riNumDays = CMathi::floor(((float)$iSecondQty)/self::SECONDS_PER_DAY);
-            $riNumWeeks = 0;
-            $riNumMonths = 0;
-            $riNumYears = 0;
+            $numSeconds = $secondQty % self::SECONDS_PER_MINUTE;
+            $numMinutes = CMathi::floor(((float)($secondQty % self::SECONDS_PER_HOUR))/self::SECONDS_PER_MINUTE);
+            $numHours = CMathi::floor(((float)($secondQty % self::SECONDS_PER_DAY))/self::SECONDS_PER_HOUR);
+            $numDays = CMathi::floor(((float)$secondQty)/self::SECONDS_PER_DAY);
+            $numWeeks = 0;
+            $numMonths = 0;
+            $numYears = 0;
         }
-        else if ( $iSecondQty < self::SECONDS_PER_MONTH )
+        else if ( $secondQty < self::SECONDS_PER_MONTH )
         {
-            $riNumSeconds = $iSecondQty % self::SECONDS_PER_MINUTE;
-            $riNumMinutes = CMathi::floor(((float)($iSecondQty % self::SECONDS_PER_HOUR))/self::SECONDS_PER_MINUTE);
-            $riNumHours = CMathi::floor(((float)($iSecondQty % self::SECONDS_PER_DAY))/self::SECONDS_PER_HOUR);
-            $riNumDays = CMathi::floor(((float)$iSecondQty)/self::SECONDS_PER_DAY);
-            $riNumWeeks = CMathi::floor(((float)$iSecondQty)/self::SECONDS_PER_WEEK);
-            $riNumMonths = 0;
-            $riNumYears = 0;
+            $numSeconds = $secondQty % self::SECONDS_PER_MINUTE;
+            $numMinutes = CMathi::floor(((float)($secondQty % self::SECONDS_PER_HOUR))/self::SECONDS_PER_MINUTE);
+            $numHours = CMathi::floor(((float)($secondQty % self::SECONDS_PER_DAY))/self::SECONDS_PER_HOUR);
+            $numDays = CMathi::floor(((float)$secondQty)/self::SECONDS_PER_DAY);
+            $numWeeks = CMathi::floor(((float)$secondQty)/self::SECONDS_PER_WEEK);
+            $numMonths = 0;
+            $numYears = 0;
         }
-        else if ( $iSecondQty < self::SECONDS_PER_YEAR )
+        else if ( $secondQty < self::SECONDS_PER_YEAR )
         {
-            $riNumSeconds = $iSecondQty % self::SECONDS_PER_MINUTE;
-            $riNumMinutes = CMathi::floor(((float)($iSecondQty % self::SECONDS_PER_HOUR))/self::SECONDS_PER_MINUTE);
-            $riNumHours = CMathi::floor(((float)($iSecondQty % self::SECONDS_PER_DAY))/self::SECONDS_PER_HOUR);
-            $riNumDays = CMathi::floor(((float)($iSecondQty % self::SECONDS_PER_MONTH))/self::SECONDS_PER_DAY);
-            $riNumWeeks = CMathi::floor(((float)$iSecondQty)/self::SECONDS_PER_WEEK);
-            $riNumMonths = CMathi::floor(((float)$iSecondQty)/self::SECONDS_PER_MONTH);
-            $riNumYears = 0;
+            $numSeconds = $secondQty % self::SECONDS_PER_MINUTE;
+            $numMinutes = CMathi::floor(((float)($secondQty % self::SECONDS_PER_HOUR))/self::SECONDS_PER_MINUTE);
+            $numHours = CMathi::floor(((float)($secondQty % self::SECONDS_PER_DAY))/self::SECONDS_PER_HOUR);
+            $numDays = CMathi::floor(((float)($secondQty % self::SECONDS_PER_MONTH))/self::SECONDS_PER_DAY);
+            $numWeeks = CMathi::floor(((float)$secondQty)/self::SECONDS_PER_WEEK);
+            $numMonths = CMathi::floor(((float)$secondQty)/self::SECONDS_PER_MONTH);
+            $numYears = 0;
         }
-        else  // $iSecondQty >= self::SECONDS_PER_YEAR
+        else  // $secondQty >= self::SECONDS_PER_YEAR
         {
-            $riNumSeconds = $iSecondQty % self::SECONDS_PER_MINUTE;
-            $riNumMinutes = CMathi::floor(((float)($iSecondQty % self::SECONDS_PER_HOUR))/self::SECONDS_PER_MINUTE);
-            $riNumHours = CMathi::floor(((float)($iSecondQty % self::SECONDS_PER_DAY))/self::SECONDS_PER_HOUR);
-            $riNumDays = CMathi::floor(((float)($iSecondQty % self::SECONDS_PER_MONTH))/self::SECONDS_PER_DAY);
-            $riNumWeeks = CMathi::floor(((float)$iSecondQty)/self::SECONDS_PER_WEEK);
-            $riNumMonths = CMathi::floor(((float)($iSecondQty % self::SECONDS_PER_YEAR))/self::SECONDS_PER_MONTH);
-            $riNumYears = CMathi::floor(((float)$iSecondQty)/self::SECONDS_PER_YEAR);
+            $numSeconds = $secondQty % self::SECONDS_PER_MINUTE;
+            $numMinutes = CMathi::floor(((float)($secondQty % self::SECONDS_PER_HOUR))/self::SECONDS_PER_MINUTE);
+            $numHours = CMathi::floor(((float)($secondQty % self::SECONDS_PER_DAY))/self::SECONDS_PER_HOUR);
+            $numDays = CMathi::floor(((float)($secondQty % self::SECONDS_PER_MONTH))/self::SECONDS_PER_DAY);
+            $numWeeks = CMathi::floor(((float)$secondQty)/self::SECONDS_PER_WEEK);
+            $numMonths = CMathi::floor(((float)($secondQty % self::SECONDS_PER_YEAR))/self::SECONDS_PER_MONTH);
+            $numYears = CMathi::floor(((float)$secondQty)/self::SECONDS_PER_YEAR);
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1780,8 +1781,8 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * Differences between points in time are not tied to any time zone. Any days that were added by leap years between
      * the points are counted in.
      *
-     * @param  CTime $oFromTime The second point in time for comparison.
-     * @param  enum $eTimeUnit The time unit in which the difference is to be calculated. Can be `SECOND`, `MINUTE`,
+     * @param  CTime $fromTime The second point in time for comparison.
+     * @param  enum $timeUnit The time unit in which the difference is to be calculated. Can be `SECOND`, `MINUTE`,
      * `HOUR`, `DAY`, `WEEK`, `MONTH`, or `YEAR`.
      *
      * @return int The difference between the two points in time, measured in the time unit specified and as a positive
@@ -1789,59 +1790,59 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * before the second one (except if the result is zero).
      */
 
-    public function signedDiff (CTime $oFromTime, $eTimeUnit)
+    public function signedDiff (CTime $fromTime, $timeUnit)
     {
-        assert( 'is_enum($eTimeUnit)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_enum($timeUnit)', vs(isset($this), get_defined_vars()) );
 
-        $oDtz = new DateTimeZone(CTimeZone::UTC);
-        $oThisDt = new DateTime();
-        $oThisDt->setTimestamp($this->UTime());
-        $oThisDt->setTimezone($oDtz);
-        $oFromDt = new DateTime();
-        $oFromDt->setTimestamp($oFromTime->UTime());
-        $oFromDt->setTimezone($oDtz);
-        $oDti = $oFromDt->diff($oThisDt, false);
-        assert( 'is_number($oDti->days)', vs(isset($this), get_defined_vars()) );
+        $dtz = new DateTimeZone(CTimeZone::UTC);
+        $thisDt = new DateTime();
+        $thisDt->setTimestamp($this->UTime());
+        $thisDt->setTimezone($dtz);
+        $fromDt = new DateTime();
+        $fromDt->setTimestamp($fromTime->UTime());
+        $fromDt->setTimezone($dtz);
+        $dti = $fromDt->diff($thisDt, false);
+        assert( 'is_number($dti->days)', vs(isset($this), get_defined_vars()) );
 
-        $iDiffInSeconds =
-            CMathi::abs($oDti->days)*self::SECONDS_PER_DAY +
-            CMathi::abs($oDti->h)*self::SECONDS_PER_HOUR +
-            CMathi::abs($oDti->i)*self::SECONDS_PER_MINUTE +
-            CMathi::abs($oDti->s);
-        $fDiffInSeconds = (float)$iDiffInSeconds;
-        $iDiff;
-        switch ( $eTimeUnit )
+        $intDiffInSeconds =
+            CMathi::abs($dti->days)*self::SECONDS_PER_DAY +
+            CMathi::abs($dti->h)*self::SECONDS_PER_HOUR +
+            CMathi::abs($dti->i)*self::SECONDS_PER_MINUTE +
+            CMathi::abs($dti->s);
+        $floatDiffInSeconds = (float)$intDiffInSeconds;
+        $diff;
+        switch ( $timeUnit )
         {
         case self::SECOND:
-            $iDiff = $iDiffInSeconds;
+            $diff = $intDiffInSeconds;
             break;
         case self::MINUTE:
-            $iDiff = CMathi::floor($fDiffInSeconds/self::SECONDS_PER_MINUTE);
+            $diff = CMathi::floor($floatDiffInSeconds/self::SECONDS_PER_MINUTE);
             break;
         case self::HOUR:
-            $iDiff = CMathi::floor($fDiffInSeconds/self::SECONDS_PER_HOUR);
+            $diff = CMathi::floor($floatDiffInSeconds/self::SECONDS_PER_HOUR);
             break;
         case self::DAY:
-            $iDiff = CMathi::floor($fDiffInSeconds/self::SECONDS_PER_DAY);
+            $diff = CMathi::floor($floatDiffInSeconds/self::SECONDS_PER_DAY);
             break;
         case self::WEEK:
-            $iDiff = CMathi::floor($fDiffInSeconds/self::SECONDS_PER_WEEK);
+            $diff = CMathi::floor($floatDiffInSeconds/self::SECONDS_PER_WEEK);
             break;
         case self::MONTH:
-            $iDiff = CMathi::floor($fDiffInSeconds/self::SECONDS_PER_MONTH);
+            $diff = CMathi::floor($floatDiffInSeconds/self::SECONDS_PER_MONTH);
             break;
         case self::YEAR:
-            $iDiff = CMathi::floor($fDiffInSeconds/self::SECONDS_PER_YEAR);
+            $diff = CMathi::floor($floatDiffInSeconds/self::SECONDS_PER_YEAR);
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
-        if ( $oDti->invert == 1 )
+        if ( $dti->invert == 1 )
         {
-            $iDiff = -$iDiff;
+            $diff = -$diff;
         }
-        return $iDiff;
+        return $diff;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1855,16 +1856,16 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * Differences between points in time are not tied to any time zone. Any days that were added by leap years between
      * the points are counted in.
      *
-     * @param  CTime $oFromTime The second point in time for comparison.
+     * @param  CTime $fromTime The second point in time for comparison.
      *
      * @return int The difference between the two points in time, measured in seconds as a positive value if *this*
      * point in time goes after the second one and as a negative value if *this* point in time goes before the second
      * one (except if the result is zero).
      */
 
-    public function signedDiffInSeconds (CTime $oFromTime)
+    public function signedDiffInSeconds (CTime $fromTime)
     {
-        return $this->signedDiff($oFromTime, self::SECOND);
+        return $this->signedDiff($fromTime, self::SECOND);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1878,16 +1879,16 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * Differences between points in time are not tied to any time zone. Any days that were added by leap years between
      * the points are counted in.
      *
-     * @param  CTime $oFromTime The second point in time for comparison.
+     * @param  CTime $fromTime The second point in time for comparison.
      *
      * @return int The difference between the two points in time, measured in minutes as a positive value if *this*
      * point in time goes after the second one and as a negative value if *this* point in time goes before the second
      * one (except if the result is zero).
      */
 
-    public function signedDiffInMinutes (CTime $oFromTime)
+    public function signedDiffInMinutes (CTime $fromTime)
     {
-        return $this->signedDiff($oFromTime, self::MINUTE);
+        return $this->signedDiff($fromTime, self::MINUTE);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1901,16 +1902,16 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * Differences between points in time are not tied to any time zone. Any days that were added by leap years between
      * the points are counted in.
      *
-     * @param  CTime $oFromTime The second point in time for comparison.
+     * @param  CTime $fromTime The second point in time for comparison.
      *
      * @return int The difference between the two points in time, measured in hours as a positive value if *this* point
      * in time goes after the second one and as a negative value if *this* point in time goes before the second one
      * (except if the result is zero).
      */
 
-    public function signedDiffInHours (CTime $oFromTime)
+    public function signedDiffInHours (CTime $fromTime)
     {
-        return $this->signedDiff($oFromTime, self::HOUR);
+        return $this->signedDiff($fromTime, self::HOUR);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1924,16 +1925,16 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * Differences between points in time are not tied to any time zone. Any days that were added by leap years between
      * the points are counted in.
      *
-     * @param  CTime $oFromTime The second point in time for comparison.
+     * @param  CTime $fromTime The second point in time for comparison.
      *
      * @return int The difference between the two points in time, measured in days as a positive value if *this* point
      * in time goes after the second one and as a negative value if *this* point in time goes before the second one
      * (except if the result is zero).
      */
 
-    public function signedDiffInDays (CTime $oFromTime)
+    public function signedDiffInDays (CTime $fromTime)
     {
-        return $this->signedDiff($oFromTime, self::DAY);
+        return $this->signedDiff($fromTime, self::DAY);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1947,16 +1948,16 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * Differences between points in time are not tied to any time zone. Any days that were added by leap years between
      * the points are counted in.
      *
-     * @param  CTime $oFromTime The second point in time for comparison.
+     * @param  CTime $fromTime The second point in time for comparison.
      *
      * @return int The difference between the two points in time, measured in weeks as a positive value if *this* point
      * in time goes after the second one and as a negative value if *this* point in time goes before the second one
      * (except if the result is zero).
      */
 
-    public function signedDiffInWeeks (CTime $oFromTime)
+    public function signedDiffInWeeks (CTime $fromTime)
     {
-        return $this->signedDiff($oFromTime, self::WEEK);
+        return $this->signedDiff($fromTime, self::WEEK);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1970,16 +1971,16 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * Differences between points in time are not tied to any time zone. Any days that were added by leap years between
      * the points are counted in.
      *
-     * @param  CTime $oFromTime The second point in time for comparison.
+     * @param  CTime $fromTime The second point in time for comparison.
      *
      * @return int The difference between the two points in time, measured in months as a positive value if *this*
      * point in time goes after the second one and as a negative value if *this* point in time goes before the second
      * one (except if the result is zero).
      */
 
-    public function signedDiffInMonths (CTime $oFromTime)
+    public function signedDiffInMonths (CTime $fromTime)
     {
-        return $this->signedDiff($oFromTime, self::MONTH);
+        return $this->signedDiff($fromTime, self::MONTH);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1993,414 +1994,414 @@ class CTime extends CRootClass implements IEqualityAndOrder
      * Differences between points in time are not tied to any time zone. Any days that were added by leap years between
      * the points are counted in.
      *
-     * @param  CTime $oFromTime The second point in time for comparison.
+     * @param  CTime $fromTime The second point in time for comparison.
      *
      * @return int The difference between the two points in time, measured in years as a positive value if *this* point
      * in time goes after the second one and as a negative value if *this* point in time goes before the second one
      * (except if the result is zero).
      */
 
-    public function signedDiffInYears (CTime $oFromTime)
+    public function signedDiffInYears (CTime $fromTime)
     {
-        return $this->signedDiff($oFromTime, self::YEAR);
+        return $this->signedDiff($fromTime, self::YEAR);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of the UTC time zone by a specified number of time units and
      * returns the new point in time.
      *
-     * @param  enum $eTimeUnit The time unit to be used for shifting. Can be `SECOND`, `MINUTE`, `HOUR`, `DAY`, `WEEK`,
+     * @param  enum $timeUnit The time unit to be used for shifting. Can be `SECOND`, `MINUTE`, `HOUR`, `DAY`, `WEEK`,
      * `MONTH`, or `YEAR`.
-     * @param  int $iQuantity The number of units by which the point in time is to be shifted. This is a positive value
+     * @param  int $quantity The number of units by which the point in time is to be shifted. This is a positive value
      * for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedUtc ($eTimeUnit, $iQuantity)
+    public function shiftedUtc ($timeUnit, $quantity)
     {
-        assert( 'is_enum($eTimeUnit) && is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return self::shiftTimeInTimeZone($this, $eTimeUnit, $iQuantity, CTimeZone::UTC);
+        assert( 'is_enum($timeUnit) && is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return self::shiftTimeInTimeZone($this, $timeUnit, $quantity, CTimeZone::UTC);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of the UTC time zone by a specified number of seconds and returns
      * the new point in time.
      *
-     * @param  int $iQuantity The number of seconds by which the point in time is to be shifted. This is a positive
+     * @param  int $quantity The number of seconds by which the point in time is to be shifted. This is a positive
      * value for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedBySecondsUtc ($iQuantity)
+    public function shiftedBySecondsUtc ($quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedUtc(self::SECOND, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedUtc(self::SECOND, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of the UTC time zone by a specified number of minutes and returns
      * the new point in time.
      *
-     * @param  int $iQuantity The number of minutes by which the point in time is to be shifted. This is a positive
+     * @param  int $quantity The number of minutes by which the point in time is to be shifted. This is a positive
      * value for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedByMinutesUtc ($iQuantity)
+    public function shiftedByMinutesUtc ($quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedUtc(self::MINUTE, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedUtc(self::MINUTE, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of the UTC time zone by a specified number of hours and returns
      * the new point in time.
      *
-     * @param  int $iQuantity The number of hours by which the point in time is to be shifted. This is a positive value
+     * @param  int $quantity The number of hours by which the point in time is to be shifted. This is a positive value
      * for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedByHoursUtc ($iQuantity)
+    public function shiftedByHoursUtc ($quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedUtc(self::HOUR, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedUtc(self::HOUR, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of the UTC time zone by a specified number of days and returns
      * the new point in time.
      *
-     * @param  int $iQuantity The number of days by which the point in time is to be shifted. This is a positive value
+     * @param  int $quantity The number of days by which the point in time is to be shifted. This is a positive value
      * for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedByDaysUtc ($iQuantity)
+    public function shiftedByDaysUtc ($quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedUtc(self::DAY, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedUtc(self::DAY, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of the UTC time zone by a specified number of weeks and returns
      * the new point in time.
      *
-     * @param  int $iQuantity The number of weeks by which the point in time is to be shifted. This is a positive value
+     * @param  int $quantity The number of weeks by which the point in time is to be shifted. This is a positive value
      * for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedByWeeksUtc ($iQuantity)
+    public function shiftedByWeeksUtc ($quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedUtc(self::WEEK, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedUtc(self::WEEK, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of the UTC time zone by a specified number of months and returns
      * the new point in time.
      *
-     * @param  int $iQuantity The number of months by which the point in time is to be shifted. This is a positive
+     * @param  int $quantity The number of months by which the point in time is to be shifted. This is a positive
      * value for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedByMonthsUtc ($iQuantity)
+    public function shiftedByMonthsUtc ($quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedUtc(self::MONTH, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedUtc(self::MONTH, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of the UTC time zone by a specified number of years and returns
      * the new point in time.
      *
-     * @param  int $iQuantity The number of years by which the point in time is to be shifted. This is a positive value
+     * @param  int $quantity The number of years by which the point in time is to be shifted. This is a positive value
      * for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedByYearsUtc ($iQuantity)
+    public function shiftedByYearsUtc ($quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedUtc(self::YEAR, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedUtc(self::YEAR, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of a specified time zone by a specified number of time units and
      * returns the new point in time.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the point in time is to be shifted.
-     * @param  enum $eTimeUnit The time unit to be used for shifting. Can be `SECOND`, `MINUTE`, `HOUR`, `DAY`, `WEEK`,
+     * @param  CTimeZone $timeZone The time zone in which the point in time is to be shifted.
+     * @param  enum $timeUnit The time unit to be used for shifting. Can be `SECOND`, `MINUTE`, `HOUR`, `DAY`, `WEEK`,
      * `MONTH`, or `YEAR`.
-     * @param  int $iQuantity The number of units by which the point in time is to be shifted. This is a positive value
+     * @param  int $quantity The number of units by which the point in time is to be shifted. This is a positive value
      * for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedInTimeZone (CTimeZone $oTimeZone, $eTimeUnit, $iQuantity)
+    public function shiftedInTimeZone (CTimeZone $timeZone, $timeUnit, $quantity)
     {
-        assert( 'is_enum($eTimeUnit) && is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return self::shiftTimeInTimeZone($this, $eTimeUnit, $iQuantity, $oTimeZone);
+        assert( 'is_enum($timeUnit) && is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return self::shiftTimeInTimeZone($this, $timeUnit, $quantity, $timeZone);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of a specified time zone by a specified number of seconds and
      * returns the new point in time.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the point in time is to be shifted.
-     * @param  int $iQuantity The number of seconds by which the point in time is to be shifted. This is a positive
+     * @param  CTimeZone $timeZone The time zone in which the point in time is to be shifted.
+     * @param  int $quantity The number of seconds by which the point in time is to be shifted. This is a positive
      * value for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedBySecondsInTimeZone (CTimeZone $oTimeZone, $iQuantity)
+    public function shiftedBySecondsInTimeZone (CTimeZone $timeZone, $quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedInTimeZone($oTimeZone, self::SECOND, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedInTimeZone($timeZone, self::SECOND, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of a specified time zone by a specified number of minutes and
      * returns the new point in time.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the point in time is to be shifted.
-     * @param  int $iQuantity The number of minutes by which the point in time is to be shifted. This is a positive
+     * @param  CTimeZone $timeZone The time zone in which the point in time is to be shifted.
+     * @param  int $quantity The number of minutes by which the point in time is to be shifted. This is a positive
      * value for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedByMinutesInTimeZone (CTimeZone $oTimeZone, $iQuantity)
+    public function shiftedByMinutesInTimeZone (CTimeZone $timeZone, $quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedInTimeZone($oTimeZone, self::MINUTE, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedInTimeZone($timeZone, self::MINUTE, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of a specified time zone by a specified number of hours and
      * returns the new point in time.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the point in time is to be shifted.
-     * @param  int $iQuantity The number of hours by which the point in time is to be shifted. This is a positive value
+     * @param  CTimeZone $timeZone The time zone in which the point in time is to be shifted.
+     * @param  int $quantity The number of hours by which the point in time is to be shifted. This is a positive value
      * for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedByHoursInTimeZone (CTimeZone $oTimeZone, $iQuantity)
+    public function shiftedByHoursInTimeZone (CTimeZone $timeZone, $quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedInTimeZone($oTimeZone, self::HOUR, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedInTimeZone($timeZone, self::HOUR, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of a specified time zone by a specified number of days and
      * returns the new point in time.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the point in time is to be shifted.
-     * @param  int $iQuantity The number of days by which the point in time is to be shifted. This is a positive value
+     * @param  CTimeZone $timeZone The time zone in which the point in time is to be shifted.
+     * @param  int $quantity The number of days by which the point in time is to be shifted. This is a positive value
      * for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedByDaysInTimeZone (CTimeZone $oTimeZone, $iQuantity)
+    public function shiftedByDaysInTimeZone (CTimeZone $timeZone, $quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedInTimeZone($oTimeZone, self::DAY, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedInTimeZone($timeZone, self::DAY, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of a specified time zone by a specified number of weeks and
      * returns the new point in time.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the point in time is to be shifted.
-     * @param  int $iQuantity The number of weeks by which the point in time is to be shifted. This is a positive value
+     * @param  CTimeZone $timeZone The time zone in which the point in time is to be shifted.
+     * @param  int $quantity The number of weeks by which the point in time is to be shifted. This is a positive value
      * for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedByWeeksInTimeZone (CTimeZone $oTimeZone, $iQuantity)
+    public function shiftedByWeeksInTimeZone (CTimeZone $timeZone, $quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedInTimeZone($oTimeZone, self::WEEK, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedInTimeZone($timeZone, self::WEEK, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of a specified time zone by a specified number of months and
      * returns the new point in time.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the point in time is to be shifted.
-     * @param  int $iQuantity The number of months by which the point in time is to be shifted. This is a positive
+     * @param  CTimeZone $timeZone The time zone in which the point in time is to be shifted.
+     * @param  int $quantity The number of months by which the point in time is to be shifted. This is a positive
      * value for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedByMonthsInTimeZone (CTimeZone $oTimeZone, $iQuantity)
+    public function shiftedByMonthsInTimeZone (CTimeZone $timeZone, $quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedInTimeZone($oTimeZone, self::MONTH, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedInTimeZone($timeZone, self::MONTH, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of a specified time zone by a specified number of years and
      * returns the new point in time.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the point in time is to be shifted.
-     * @param  int $iQuantity The number of years by which the point in time is to be shifted. This is a positive value
+     * @param  CTimeZone $timeZone The time zone in which the point in time is to be shifted.
+     * @param  int $quantity The number of years by which the point in time is to be shifted. This is a positive value
      * for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedByYearsInTimeZone (CTimeZone $oTimeZone, $iQuantity)
+    public function shiftedByYearsInTimeZone (CTimeZone $timeZone, $quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedInTimeZone($oTimeZone, self::YEAR, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedInTimeZone($timeZone, self::YEAR, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of the PHP's default time zone by a specified number of time
      * units and returns the new point in time.
      *
-     * @param  enum $eTimeUnit The time unit to be used for shifting. Can be `SECOND`, `MINUTE`, `HOUR`, `DAY`, `WEEK`,
+     * @param  enum $timeUnit The time unit to be used for shifting. Can be `SECOND`, `MINUTE`, `HOUR`, `DAY`, `WEEK`,
      * `MONTH`, or `YEAR`.
-     * @param  int $iQuantity The number of units by which the point in time is to be shifted. This is a positive value
+     * @param  int $quantity The number of units by which the point in time is to be shifted. This is a positive value
      * for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedLocal ($eTimeUnit, $iQuantity)
+    public function shiftedLocal ($timeUnit, $quantity)
     {
-        assert( 'is_enum($eTimeUnit) && is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return self::shiftTimeInTimeZone($this, $eTimeUnit, $iQuantity, date_default_timezone_get());
+        assert( 'is_enum($timeUnit) && is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return self::shiftTimeInTimeZone($this, $timeUnit, $quantity, date_default_timezone_get());
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of the PHP's default time zone by a specified number of seconds
      * and returns the new point in time.
      *
-     * @param  int $iQuantity The number of seconds by which the point in time is to be shifted. This is a positive
+     * @param  int $quantity The number of seconds by which the point in time is to be shifted. This is a positive
      * value for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedBySecondsLocal ($iQuantity)
+    public function shiftedBySecondsLocal ($quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedLocal(self::SECOND, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedLocal(self::SECOND, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of the PHP's default time zone by a specified number of minutes
      * and returns the new point in time.
      *
-     * @param  int $iQuantity The number of minutes by which the point in time is to be shifted. This is a positive
+     * @param  int $quantity The number of minutes by which the point in time is to be shifted. This is a positive
      * value for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedByMinutesLocal ($iQuantity)
+    public function shiftedByMinutesLocal ($quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedLocal(self::MINUTE, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedLocal(self::MINUTE, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of the PHP's default time zone by a specified number of hours and
      * returns the new point in time.
      *
-     * @param  int $iQuantity The number of hours by which the point in time is to be shifted. This is a positive value
+     * @param  int $quantity The number of hours by which the point in time is to be shifted. This is a positive value
      * for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedByHoursLocal ($iQuantity)
+    public function shiftedByHoursLocal ($quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedLocal(self::HOUR, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedLocal(self::HOUR, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of the PHP's default time zone by a specified number of days and
      * returns the new point in time.
      *
-     * @param  int $iQuantity The number of days by which the point in time is to be shifted. This is a positive value
+     * @param  int $quantity The number of days by which the point in time is to be shifted. This is a positive value
      * for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedByDaysLocal ($iQuantity)
+    public function shiftedByDaysLocal ($quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedLocal(self::DAY, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedLocal(self::DAY, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of the PHP's default time zone by a specified number of weeks and
      * returns the new point in time.
      *
-     * @param  int $iQuantity The number of weeks by which the point in time is to be shifted. This is a positive value
+     * @param  int $quantity The number of weeks by which the point in time is to be shifted. This is a positive value
      * for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedByWeeksLocal ($iQuantity)
+    public function shiftedByWeeksLocal ($quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedLocal(self::WEEK, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedLocal(self::WEEK, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of the PHP's default time zone by a specified number of months
      * and returns the new point in time.
      *
-     * @param  int $iQuantity The number of months by which the point in time is to be shifted. This is a positive
+     * @param  int $quantity The number of months by which the point in time is to be shifted. This is a positive
      * value for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedByMonthsLocal ($iQuantity)
+    public function shiftedByMonthsLocal ($quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedLocal(self::MONTH, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedLocal(self::MONTH, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts a point in time into the future or past of the PHP's default time zone by a specified number of years and
      * returns the new point in time.
      *
-     * @param  int $iQuantity The number of years by which the point in time is to be shifted. This is a positive value
+     * @param  int $quantity The number of years by which the point in time is to be shifted. This is a positive value
      * for shifting into the future or a negative value for shifting into the past.
      *
      * @return CTime The shifted point in time.
      */
 
-    public function shiftedByYearsLocal ($iQuantity)
+    public function shiftedByYearsLocal ($quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        return $this->shiftedLocal(self::YEAR, $iQuantity);
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        return $this->shiftedLocal(self::YEAR, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2408,173 +2409,173 @@ class CTime extends CRootClass implements IEqualityAndOrder
      *
      * This method only exists for consistency among the methods (the milliseconds are the same across all time zones).
      *
-     * @param  int $iNewMillisecond The new number of the millisecond (from 0 to 999).
+     * @param  int $newMillisecond The new number of the millisecond (from 0 to 999).
      *
      * @return CTime The modified point in time.
      */
 
-    public function withMillisecondUtc ($iNewMillisecond)
+    public function withMillisecondUtc ($newMillisecond)
     {
-        assert( '0 <= $iNewMillisecond && $iNewMillisecond <= 999', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $newMillisecond && $newMillisecond <= 999', vs(isset($this), get_defined_vars()) );
 
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsUtc($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iMillisecond = $iNewMillisecond;
-        return self::fromComponentsUtc($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsUtc($year, $month, $day, $hour, $minute, $second, $millisecond);
+        $millisecond = $newMillisecond;
+        return self::fromComponentsUtc($year, $month, $day, $hour, $minute, $second, $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Modifies the second component of a point in time, assuming the UTC time zone for its components, and returns the
      * new point in time.
      *
-     * @param  int $iNewSecond The new number of the second (from 0 to 59).
+     * @param  int $newSecond The new number of the second (from 0 to 59).
      *
      * @return CTime The modified point in time.
      */
 
-    public function withSecondUtc ($iNewSecond)
+    public function withSecondUtc ($newSecond)
     {
-        assert( '0 <= $iNewSecond && $iNewSecond <= 59', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $newSecond && $newSecond <= 59', vs(isset($this), get_defined_vars()) );
 
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsUtc($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iSecond = $iNewSecond;
-        return self::fromComponentsUtc($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsUtc($year, $month, $day, $hour, $minute, $second, $millisecond);
+        $second = $newSecond;
+        return self::fromComponentsUtc($year, $month, $day, $hour, $minute, $second, $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Modifies the minute component of a point in time, assuming the UTC time zone for its components, and returns the
      * new point in time.
      *
-     * @param  int $iNewMinute The new number of the minute (from 0 to 59).
+     * @param  int $newMinute The new number of the minute (from 0 to 59).
      *
      * @return CTime The modified point in time.
      */
 
-    public function withMinuteUtc ($iNewMinute)
+    public function withMinuteUtc ($newMinute)
     {
-        assert( '0 <= $iNewMinute && $iNewMinute <= 59', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $newMinute && $newMinute <= 59', vs(isset($this), get_defined_vars()) );
 
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsUtc($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iMinute = $iNewMinute;
-        return self::fromComponentsUtc($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsUtc($year, $month, $day, $hour, $minute, $second, $millisecond);
+        $minute = $newMinute;
+        return self::fromComponentsUtc($year, $month, $day, $hour, $minute, $second, $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Modifies the hour component of a point in time, assuming the UTC time zone for its components, and returns the
      * new point in time.
      *
-     * @param  int $iNewHour The new number of the hour (from 0 to 23).
+     * @param  int $newHour The new number of the hour (from 0 to 23).
      *
      * @return CTime The modified point in time.
      */
 
-    public function withHourUtc ($iNewHour)
+    public function withHourUtc ($newHour)
     {
-        assert( '0 <= $iNewHour && $iNewHour <= 23', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $newHour && $newHour <= 23', vs(isset($this), get_defined_vars()) );
 
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsUtc($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iHour = $iNewHour;
-        return self::fromComponentsUtc($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsUtc($year, $month, $day, $hour, $minute, $second, $millisecond);
+        $hour = $newHour;
+        return self::fromComponentsUtc($year, $month, $day, $hour, $minute, $second, $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Modifies the day component of a point in time, assuming the UTC time zone for its components, and returns the
      * new point in time.
      *
-     * @param  int $iNewDay The new number of the day (from 1 to 31).
+     * @param  int $newDay The new number of the day (from 1 to 31).
      *
      * @return CTime The modified point in time.
      */
 
-    public function withDayUtc ($iNewDay)
+    public function withDayUtc ($newDay)
     {
-        assert( '1 <= $iNewDay && $iNewDay <= 31', vs(isset($this), get_defined_vars()) );
+        assert( '1 <= $newDay && $newDay <= 31', vs(isset($this), get_defined_vars()) );
 
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsUtc($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iDay = $iNewDay;
-        return self::fromComponentsUtc($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsUtc($year, $month, $day, $hour, $minute, $second, $millisecond);
+        $day = $newDay;
+        return self::fromComponentsUtc($year, $month, $day, $hour, $minute, $second, $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Modifies the month component of a point in time, assuming the UTC time zone for its components, and returns the
      * new point in time.
      *
-     * @param  int $iNewMonth The new number of the month (from 1 to 12).
+     * @param  int $newMonth The new number of the month (from 1 to 12).
      *
      * @return CTime The modified point in time.
      */
 
-    public function withMonthUtc ($iNewMonth)
+    public function withMonthUtc ($newMonth)
     {
-        assert( '1 <= $iNewMonth && $iNewMonth <= 12', vs(isset($this), get_defined_vars()) );
+        assert( '1 <= $newMonth && $newMonth <= 12', vs(isset($this), get_defined_vars()) );
 
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsUtc($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iMonth = $iNewMonth;
-        return self::fromComponentsUtc($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsUtc($year, $month, $day, $hour, $minute, $second, $millisecond);
+        $month = $newMonth;
+        return self::fromComponentsUtc($year, $month, $day, $hour, $minute, $second, $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Modifies the year component of a point in time, assuming the UTC time zone for its components, and returns the
      * new point in time.
      *
-     * @param  int $iNewYear The new number of the year.
+     * @param  int $newYear The new number of the year.
      *
      * @return CTime The modified point in time.
      */
 
-    public function withYearUtc ($iNewYear)
+    public function withYearUtc ($newYear)
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsUtc($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iYear = $iNewYear;
-        return self::fromComponentsUtc($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsUtc($year, $month, $day, $hour, $minute, $second, $millisecond);
+        $year = $newYear;
+        return self::fromComponentsUtc($year, $month, $day, $hour, $minute, $second, $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2582,187 +2583,187 @@ class CTime extends CRootClass implements IEqualityAndOrder
      *
      * This method only exists for consistency among the methods (the milliseconds are the same across all time zones).
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the component is to be modified.
-     * @param  int $iNewMillisecond The new number of the millisecond (from 0 to 999).
+     * @param  CTimeZone $timeZone The time zone in which the component is to be modified.
+     * @param  int $newMillisecond The new number of the millisecond (from 0 to 999).
      *
      * @return CTime The modified point in time.
      */
 
-    public function withMillisecondInTimeZone (CTimeZone $oTimeZone, $iNewMillisecond)
+    public function withMillisecondInTimeZone (CTimeZone $timeZone, $newMillisecond)
     {
-        assert( '0 <= $iNewMillisecond && $iNewMillisecond <= 999', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $newMillisecond && $newMillisecond <= 999', vs(isset($this), get_defined_vars()) );
 
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iMillisecond = $iNewMillisecond;
-        return self::fromComponentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond,
-            $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsInTimeZone($timeZone, $year, $month, $day, $hour, $minute, $second, $millisecond);
+        $millisecond = $newMillisecond;
+        return self::fromComponentsInTimeZone($timeZone, $year, $month, $day, $hour, $minute, $second,
+            $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Modifies the second component of a point in time, assuming a specified time zone for its components, and returns
      * the new point in time.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the component is to be modified.
-     * @param  int $iNewSecond The new number of the second (from 0 to 59).
+     * @param  CTimeZone $timeZone The time zone in which the component is to be modified.
+     * @param  int $newSecond The new number of the second (from 0 to 59).
      *
      * @return CTime The modified point in time.
      */
 
-    public function withSecondInTimeZone (CTimeZone $oTimeZone, $iNewSecond)
+    public function withSecondInTimeZone (CTimeZone $timeZone, $newSecond)
     {
-        assert( '0 <= $iNewSecond && $iNewSecond <= 59', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $newSecond && $newSecond <= 59', vs(isset($this), get_defined_vars()) );
 
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iSecond = $iNewSecond;
-        return self::fromComponentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond,
-            $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsInTimeZone($timeZone, $year, $month, $day, $hour, $minute, $second, $millisecond);
+        $second = $newSecond;
+        return self::fromComponentsInTimeZone($timeZone, $year, $month, $day, $hour, $minute, $second,
+            $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Modifies the minute component of a point in time, assuming a specified time zone for its components, and returns
      * the new point in time.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the component is to be modified.
-     * @param  int $iNewMinute The new number of the minute (from 0 to 59).
+     * @param  CTimeZone $timeZone The time zone in which the component is to be modified.
+     * @param  int $newMinute The new number of the minute (from 0 to 59).
      *
      * @return CTime The modified point in time.
      */
 
-    public function withMinuteInTimeZone (CTimeZone $oTimeZone, $iNewMinute)
+    public function withMinuteInTimeZone (CTimeZone $timeZone, $newMinute)
     {
-        assert( '0 <= $iNewMinute && $iNewMinute <= 59', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $newMinute && $newMinute <= 59', vs(isset($this), get_defined_vars()) );
 
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iMinute = $iNewMinute;
-        return self::fromComponentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond,
-            $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsInTimeZone($timeZone, $year, $month, $day, $hour, $minute, $second, $millisecond);
+        $minute = $newMinute;
+        return self::fromComponentsInTimeZone($timeZone, $year, $month, $day, $hour, $minute, $second,
+            $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Modifies the hour component of a point in time, assuming a specified time zone for its components, and returns
      * the new point in time.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the component is to be modified.
-     * @param  int $iNewHour The new number of the hour (from 0 to 23).
+     * @param  CTimeZone $timeZone The time zone in which the component is to be modified.
+     * @param  int $newHour The new number of the hour (from 0 to 23).
      *
      * @return CTime The modified point in time.
      */
 
-    public function withHourInTimeZone (CTimeZone $oTimeZone, $iNewHour)
+    public function withHourInTimeZone (CTimeZone $timeZone, $newHour)
     {
-        assert( '0 <= $iNewHour && $iNewHour <= 23', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $newHour && $newHour <= 23', vs(isset($this), get_defined_vars()) );
 
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iHour = $iNewHour;
-        return self::fromComponentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond,
-            $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsInTimeZone($timeZone, $year, $month, $day, $hour, $minute, $second, $millisecond);
+        $hour = $newHour;
+        return self::fromComponentsInTimeZone($timeZone, $year, $month, $day, $hour, $minute, $second,
+            $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Modifies the day component of a point in time, assuming a specified time zone for its components, and returns
      * the new point in time.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the component is to be modified.
-     * @param  int $iNewDay The new number of the day (from 1 to 31).
+     * @param  CTimeZone $timeZone The time zone in which the component is to be modified.
+     * @param  int $newDay The new number of the day (from 1 to 31).
      *
      * @return CTime The modified point in time.
      */
 
-    public function withDayInTimeZone (CTimeZone $oTimeZone, $iNewDay)
+    public function withDayInTimeZone (CTimeZone $timeZone, $newDay)
     {
-        assert( '1 <= $iNewDay && $iNewDay <= 31', vs(isset($this), get_defined_vars()) );
+        assert( '1 <= $newDay && $newDay <= 31', vs(isset($this), get_defined_vars()) );
 
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iDay = $iNewDay;
-        return self::fromComponentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond,
-            $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsInTimeZone($timeZone, $year, $month, $day, $hour, $minute, $second, $millisecond);
+        $day = $newDay;
+        return self::fromComponentsInTimeZone($timeZone, $year, $month, $day, $hour, $minute, $second,
+            $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Modifies the month component of a point in time, assuming a specified time zone for its components, and returns
      * the new point in time.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the component is to be modified.
-     * @param  int $iNewMonth The new number of the month (from 1 to 12).
+     * @param  CTimeZone $timeZone The time zone in which the component is to be modified.
+     * @param  int $newMonth The new number of the month (from 1 to 12).
      *
      * @return CTime The modified point in time.
      */
 
-    public function withMonthInTimeZone (CTimeZone $oTimeZone, $iNewMonth)
+    public function withMonthInTimeZone (CTimeZone $timeZone, $newMonth)
     {
-        assert( '1 <= $iNewMonth && $iNewMonth <= 12', vs(isset($this), get_defined_vars()) );
+        assert( '1 <= $newMonth && $newMonth <= 12', vs(isset($this), get_defined_vars()) );
 
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iMonth = $iNewMonth;
-        return self::fromComponentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond,
-            $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsInTimeZone($timeZone, $year, $month, $day, $hour, $minute, $second, $millisecond);
+        $month = $newMonth;
+        return self::fromComponentsInTimeZone($timeZone, $year, $month, $day, $hour, $minute, $second,
+            $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Modifies the year component of a point in time, assuming a specified time zone for its components, and returns
      * the new point in time.
      *
-     * @param  CTimeZone $oTimeZone The time zone in which the component is to be modified.
-     * @param  int $iNewYear The new number of the year.
+     * @param  CTimeZone $timeZone The time zone in which the component is to be modified.
+     * @param  int $newYear The new number of the year.
      *
      * @return CTime The modified point in time.
      */
 
-    public function withYearInTimeZone (CTimeZone $oTimeZone, $iNewYear)
+    public function withYearInTimeZone (CTimeZone $timeZone, $newYear)
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iYear = $iNewYear;
-        return self::fromComponentsInTimeZone($oTimeZone, $iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond,
-            $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsInTimeZone($timeZone, $year, $month, $day, $hour, $minute, $second, $millisecond);
+        $year = $newYear;
+        return self::fromComponentsInTimeZone($timeZone, $year, $month, $day, $hour, $minute, $second,
+            $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2770,219 +2771,219 @@ class CTime extends CRootClass implements IEqualityAndOrder
      *
      * This method only exists for consistency among the methods (the milliseconds are the same across all time zones).
      *
-     * @param  int $iNewMillisecond The new number of the millisecond (from 0 to 999).
+     * @param  int $newMillisecond The new number of the millisecond (from 0 to 999).
      *
      * @return CTime The modified point in time.
      */
 
-    public function withMillisecondLocal ($iNewMillisecond)
+    public function withMillisecondLocal ($newMillisecond)
     {
-        assert( '0 <= $iNewMillisecond && $iNewMillisecond <= 999', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $newMillisecond && $newMillisecond <= 999', vs(isset($this), get_defined_vars()) );
 
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsLocal($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iMillisecond = $iNewMillisecond;
-        return self::fromComponentsLocal($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsLocal($year, $month, $day, $hour, $minute, $second, $millisecond);
+        $millisecond = $newMillisecond;
+        return self::fromComponentsLocal($year, $month, $day, $hour, $minute, $second, $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Modifies the second component of a point in time, assuming the PHP's default time zone for its components, and
      * returns the new point in time.
      *
-     * @param  int $iNewSecond The new number of the second (from 0 to 59).
+     * @param  int $newSecond The new number of the second (from 0 to 59).
      *
      * @return CTime The modified point in time.
      */
 
-    public function withSecondLocal ($iNewSecond)
+    public function withSecondLocal ($newSecond)
     {
-        assert( '0 <= $iNewSecond && $iNewSecond <= 59', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $newSecond && $newSecond <= 59', vs(isset($this), get_defined_vars()) );
 
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsLocal($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iSecond = $iNewSecond;
-        return self::fromComponentsLocal($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsLocal($year, $month, $day, $hour, $minute, $second, $millisecond);
+        $second = $newSecond;
+        return self::fromComponentsLocal($year, $month, $day, $hour, $minute, $second, $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Modifies the minute component of a point in time, assuming the PHP's default time zone for its components, and
      * returns the new point in time.
      *
-     * @param  int $iNewMinute The new number of the minute (from 0 to 59).
+     * @param  int $newMinute The new number of the minute (from 0 to 59).
      *
      * @return CTime The modified point in time.
      */
 
-    public function withMinuteLocal ($iNewMinute)
+    public function withMinuteLocal ($newMinute)
     {
-        assert( '0 <= $iNewMinute && $iNewMinute <= 59', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $newMinute && $newMinute <= 59', vs(isset($this), get_defined_vars()) );
 
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsLocal($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iMinute = $iNewMinute;
-        return self::fromComponentsLocal($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsLocal($year, $month, $day, $hour, $minute, $second, $millisecond);
+        $minute = $newMinute;
+        return self::fromComponentsLocal($year, $month, $day, $hour, $minute, $second, $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Modifies the hour component of a point in time, assuming the PHP's default time zone for its components, and
      * returns the new point in time.
      *
-     * @param  int $iNewHour The new number of the hour (from 0 to 23).
+     * @param  int $newHour The new number of the hour (from 0 to 23).
      *
      * @return CTime The modified point in time.
      */
 
-    public function withHourLocal ($iNewHour)
+    public function withHourLocal ($newHour)
     {
-        assert( '0 <= $iNewHour && $iNewHour <= 23', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $newHour && $newHour <= 23', vs(isset($this), get_defined_vars()) );
 
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsLocal($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iHour = $iNewHour;
-        return self::fromComponentsLocal($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsLocal($year, $month, $day, $hour, $minute, $second, $millisecond);
+        $hour = $newHour;
+        return self::fromComponentsLocal($year, $month, $day, $hour, $minute, $second, $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Modifies the day component of a point in time, assuming the PHP's default time zone for its components, and
      * returns the new point in time.
      *
-     * @param  int $iNewDay The new number of the day (from 1 to 31).
+     * @param  int $newDay The new number of the day (from 1 to 31).
      *
      * @return CTime The modified point in time.
      */
 
-    public function withDayLocal ($iNewDay)
+    public function withDayLocal ($newDay)
     {
-        assert( '1 <= $iNewDay && $iNewDay <= 31', vs(isset($this), get_defined_vars()) );
+        assert( '1 <= $newDay && $newDay <= 31', vs(isset($this), get_defined_vars()) );
 
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsLocal($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iDay = $iNewDay;
-        return self::fromComponentsLocal($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsLocal($year, $month, $day, $hour, $minute, $second, $millisecond);
+        $day = $newDay;
+        return self::fromComponentsLocal($year, $month, $day, $hour, $minute, $second, $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Modifies the month component of a point in time, assuming the PHP's default time zone for its components, and
      * returns the new point in time.
      *
-     * @param  int $iNewMonth The new number of the month (from 1 to 12).
+     * @param  int $newMonth The new number of the month (from 1 to 12).
      *
      * @return CTime The modified point in time.
      */
 
-    public function withMonthLocal ($iNewMonth)
+    public function withMonthLocal ($newMonth)
     {
-        assert( '1 <= $iNewMonth && $iNewMonth <= 12', vs(isset($this), get_defined_vars()) );
+        assert( '1 <= $newMonth && $newMonth <= 12', vs(isset($this), get_defined_vars()) );
 
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsLocal($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iMonth = $iNewMonth;
-        return self::fromComponentsLocal($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsLocal($year, $month, $day, $hour, $minute, $second, $millisecond);
+        $month = $newMonth;
+        return self::fromComponentsLocal($year, $month, $day, $hour, $minute, $second, $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Modifies the year component of a point in time, assuming the PHP's default time zone for its components, and
      * returns the new point in time.
      *
-     * @param  int $iNewYear The new number of the year.
+     * @param  int $newYear The new number of the year.
      *
      * @return CTime The modified point in time.
      */
 
-    public function withYearLocal ($iNewYear)
+    public function withYearLocal ($newYear)
     {
-        $iYear;
-        $iMonth;
-        $iDay;
-        $iHour;
-        $iMinute;
-        $iSecond;
-        $iMillisecond;
-        $this->componentsLocal($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
-        $iYear = $iNewYear;
-        return self::fromComponentsLocal($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond);
+        $year;
+        $month;
+        $day;
+        $hour;
+        $minute;
+        $second;
+        $millisecond;
+        $this->componentsLocal($year, $month, $day, $hour, $minute, $second, $millisecond);
+        $year = $newYear;
+        return self::fromComponentsLocal($year, $month, $day, $hour, $minute, $second, $millisecond);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function componentsInTimeZoneToTime ($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond,
-        $iMillisecond, $xTimeZone)
+    protected static function componentsInTimeZoneToTime ($year, $month, $day, $hour, $minute, $second,
+        $millisecond, $timeZone)
     {
-        assert( 'self::areComponentsValid($iYear, $iMonth, $iDay, $iHour, $iMinute, $iSecond, $iMillisecond)',
+        assert( 'self::areComponentsValid($year, $month, $day, $hour, $minute, $second, $millisecond)',
             vs(isset($this), get_defined_vars()) );
-        assert( '1000 <= $iYear && $iYear <= 9999', vs(isset($this), get_defined_vars()) );
+        assert( '1000 <= $year && $year <= 9999', vs(isset($this), get_defined_vars()) );
 
-        $sYear = CString::fromInt($iYear);
-        $sMonth = CString::fromInt($iMonth);
-        $sDay = CString::fromInt($iDay);
-        $sHour = CString::padStart(CString::fromInt($iHour), "0", 2);
-        $sMinute = CString::padStart(CString::fromInt($iMinute), "0", 2);
-        $sSecond = CString::padStart(CString::fromInt($iSecond), "0", 2);
-        $oDt = DateTime::createFromFormat("Y,m,d,H,i,s", "$sYear,$sMonth,$sDay,$sHour,$sMinute,$sSecond",
-            ( is_cstring($xTimeZone) ) ? new DateTimeZone($xTimeZone) : $xTimeZone->DTimeZone());
-        if ( !is_object($oDt) )
+        $strYear = CString::fromInt($year);
+        $strMonth = CString::fromInt($month);
+        $strDay = CString::fromInt($day);
+        $strHour = CString::padStart(CString::fromInt($hour), "0", 2);
+        $strMinute = CString::padStart(CString::fromInt($minute), "0", 2);
+        $strSecond = CString::padStart(CString::fromInt($second), "0", 2);
+        $dt = DateTime::createFromFormat("Y,m,d,H,i,s", "$strYear,$strMonth,$strDay,$strHour,$strMinute,$strSecond",
+            ( is_cstring($timeZone) ) ? new DateTimeZone($timeZone) : $timeZone->DTimeZone());
+        if ( !is_object($dt) )
         {
             assert( 'false', vs(isset($this), get_defined_vars()) );
         }
 
-        $iUTime = $oDt->getTimestamp();
-        $iMTime;
-        if ( !($iUTime < 0 && $iMillisecond != 0) )
+        $UTime = $dt->getTimestamp();
+        $MTime;
+        if ( !($UTime < 0 && $millisecond != 0) )
         {
-            $iMTime = $iMillisecond;
+            $MTime = $millisecond;
         }
         else
         {
-            $iUTime++;
-            $iMTime = $iMillisecond - 1000;
+            $UTime++;
+            $MTime = $millisecond - 1000;
         }
-        return new self($iUTime, $iMTime);
+        return new self($UTime, $MTime);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function timeToStringInTimeZone (CTime $oTime, $xPattern, $xTimeZone)
+    protected static function timeToStringInTimeZone (CTime $time, $pattern, $timeZone)
     {
-        $oDt = new DateTime();
-        $oDt->setTimestamp($oTime->UTime());
-        $oDt->setTimezone(( is_cstring($xTimeZone) ) ? new DateTimeZone($xTimeZone) : $xTimeZone->DTimeZone());
-        $sPattern = ( is_enum($xPattern) ) ? self::patternEnumToString($xPattern) : $xPattern;
-        $sTime = $oDt->format($sPattern);
-        if ( is_cstring($sTime) )
+        $dt = new DateTime();
+        $dt->setTimestamp($time->UTime());
+        $dt->setTimezone(( is_cstring($timeZone) ) ? new DateTimeZone($timeZone) : $timeZone->DTimeZone());
+        $strPattern = ( is_enum($pattern) ) ? self::patternEnumToString($pattern) : $pattern;
+        $time = $dt->format($strPattern);
+        if ( is_cstring($time) )
         {
-            return $sTime;
+            return $time;
         }
         else
         {
@@ -2991,100 +2992,100 @@ class CTime extends CRootClass implements IEqualityAndOrder
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function timeToComponentsInTimeZone (CTime $oTime, $xTimeZone, &$riYear, &$riMonth, &$riDay,
-        &$riHour, &$riMinute, &$riSecond, &$riMillisecond, &$reDayOfWeek)
+    protected static function timeToComponentsInTimeZone (CTime $time, $timeZone, &$year, &$month, &$day,
+        &$hour, &$minute, &$second, &$millisecond, &$dayOfWeek)
     {
-        $fFTime = $oTime->FTime();
-        $iUTime = $oTime->UTime();
-        $iMTime = $oTime->MTime();
-        $bNegMsCase = false;
+        $FTime = $time->FTime();
+        $UTime = $time->UTime();
+        $MTime = $time->MTime();
+        $negMsCase = false;
 
-        if ( $fFTime < 0.0 && $iMTime != 0 )
+        if ( $FTime < 0.0 && $MTime != 0 )
         {
-            $bNegMsCase = true;
-            $iUTime--;
+            $negMsCase = true;
+            $UTime--;
         }
 
-        $sTime = self::timeToStringInTimeZone(new self($iUTime), "Y,m,d,H,i,s,w", $xTimeZone);
-        $aComponents = CString::split($sTime, ",");
-        $riYear =      CString::toInt($aComponents[0]);
-        $riMonth =     CString::toInt($aComponents[1]);
-        $riDay =       CString::toInt($aComponents[2]);
-        $riHour =      CString::toInt($aComponents[3]);
-        $riMinute =    CString::toInt($aComponents[4]);
-        $riSecond =    CString::toInt($aComponents[5]);
-        $reDayOfWeek = CString::toInt($aComponents[6]);
+        $time = self::timeToStringInTimeZone(new self($UTime), "Y,m,d,H,i,s,w", $timeZone);
+        $components = CString::split($time, ",");
+        $year =      CString::toInt($components[0]);
+        $month =     CString::toInt($components[1]);
+        $day =       CString::toInt($components[2]);
+        $hour =      CString::toInt($components[3]);
+        $minute =    CString::toInt($components[4]);
+        $second =    CString::toInt($components[5]);
+        $dayOfWeek = CString::toInt($components[6]);
 
-        if ( !$bNegMsCase )
+        if ( !$negMsCase )
         {
-            $riMillisecond = $iMTime;
+            $millisecond = $MTime;
         }
         else
         {
-            $riMillisecond = $iMTime + 1000;
+            $millisecond = $MTime + 1000;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function shiftTimeInTimeZone (CTime $oTime, $eTimeUnit, $iQuantity, $xTimeZone)
+    protected static function shiftTimeInTimeZone (CTime $time, $timeUnit, $quantity, $timeZone)
     {
-        $sUnits;
-        switch ( $eTimeUnit )
+        $units;
+        switch ( $timeUnit )
         {
         case self::SECOND:
-            $sUnits = "seconds";
+            $units = "seconds";
             break;
         case self::MINUTE:
-            $sUnits = "minutes";
+            $units = "minutes";
             break;
         case self::HOUR:
-            $sUnits = "hours";
+            $units = "hours";
             break;
         case self::DAY:
-            $sUnits = "days";
+            $units = "days";
             break;
         case self::WEEK:
-            $sUnits = "weeks";
+            $units = "weeks";
             break;
         case self::MONTH:
-            $sUnits = "months";
+            $units = "months";
             break;
         case self::YEAR:
-            $sUnits = "years";
+            $units = "years";
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
-        $oDt = new DateTime();
-        $oDt->setTimestamp($oTime->UTime());
-        $oDt->setTimezone(( is_cstring($xTimeZone) ) ? new DateTimeZone($xTimeZone) : $xTimeZone->DTimeZone());
-        $sSign = ( $iQuantity < 0 ) ? "-" : "+";
-        $sAbsQty = CString::fromInt(CMathi::abs($iQuantity));
-        $oDt->modify("$sSign$sAbsQty $sUnits");
+        $dt = new DateTime();
+        $dt->setTimestamp($time->UTime());
+        $dt->setTimezone(( is_cstring($timeZone) ) ? new DateTimeZone($timeZone) : $timeZone->DTimeZone());
+        $sign = ( $quantity < 0 ) ? "-" : "+";
+        $absQty = CString::fromInt(CMathi::abs($quantity));
+        $dt->modify("$sign$absQty $units");
 
-        $iUTime = $oDt->getTimestamp();
-        $iMTime = $oTime->MTime();
-        if ( $iUTime != 0 && $iMTime != 0 && CMathi::sign($iUTime) != CMathi::sign($iMTime) )
+        $UTime = $dt->getTimestamp();
+        $MTime = $time->MTime();
+        if ( $UTime != 0 && $MTime != 0 && CMathi::sign($UTime) != CMathi::sign($MTime) )
         {
-            if ( $iUTime < 0 )
+            if ( $UTime < 0 )
             {
-                // $iMTime > 0
-                $iUTime++;
-                $iMTime -= 1000;
+                // $MTime > 0
+                $UTime++;
+                $MTime -= 1000;
             }
             else
             {
-                // $iMTime < 0
-                $iUTime--;
-                $iMTime += 1000;
+                // $MTime < 0
+                $UTime--;
+                $MTime += 1000;
             }
         }
-        return new self($iUTime, $iMTime);
+        return new self($UTime, $MTime);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function patternEnumToString ($ePattern)
+    protected static function patternEnumToString ($pattern)
     {
-        switch ( $ePattern )
+        switch ( $pattern )
         {
         case self::PATTERN_DEFAULT:
             return "Y-m-d H:i:s e";
@@ -3122,6 +3123,6 @@ class CTime extends CRootClass implements IEqualityAndOrder
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    protected $m_fFTime;
+    protected $m_FTime;
 }
 

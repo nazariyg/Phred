@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -21,11 +21,11 @@
  */
 
 // Method signatures:
-//   static bool isBitSet ($bfField, $bfBit)
-//   static bitfield setBit ($bfField, $bfBit)
-//   static bitfield unsetBit ($bfField, $bfBit)
-//   static bitfield toggleBit ($bfField, $bfBit)
-//   static int numBitsSet ($bfField)
+//   static bool isBitSet ($field, $bit)
+//   static bitfield setBit ($field, $bit)
+//   static bitfield unsetBit ($field, $bit)
+//   static bitfield toggleBit ($field, $bit)
+//   static int numBitsSet ($field)
 
 class CBitField extends CRootClass
 {
@@ -271,50 +271,50 @@ class CBitField extends CRootClass
     /**
      * Determines if a bit is set in a bitfield.
      *
-     * @param  bitfield $bfField The bitfield to be looked into.
-     * @param  bitfield $bfBit A bitfield where exactly one bit is set, which is the bit to be tested against the bits
-     * in `$bfField`. This is something you often get as a constant e.g. `SOME_OPTION` and you test it against e.g.
+     * @param  bitfield $field The bitfield to be looked into.
+     * @param  bitfield $bit A bitfield where exactly one bit is set, which is the bit to be tested against the bits
+     * in `$field`. This is something you often get as a constant e.g. `SOME_OPTION` and you test it against e.g.
      * `AVAILABLE_OPTIONS` to see if the option is enabled.
      *
      * @return bool `true` if the bit is set in the bitfield, `false` otherwise.
      */
 
-    public static function isBitSet ($bfField, $bfBit)
+    public static function isBitSet ($field, $bit)
     {
-        assert( 'is_bitfield($bfField) && is_bitfield($bfBit)', vs(isset($this), get_defined_vars()) );
-        return ( ($bfField & $bfBit) != 0 );
+        assert( 'is_bitfield($field) && is_bitfield($bit)', vs(isset($this), get_defined_vars()) );
+        return ( ($field & $bit) != 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets a bit in a bitfield and returns the new bitfield.
      *
-     * @param  bitfield $bfField The bitfield to be modified.
-     * @param  bitfield $bfBit A bitfield where exactly one bit is set, which indicates the position of the bit to be
-     * set in `$bfField`.
+     * @param  bitfield $field The bitfield to be modified.
+     * @param  bitfield $bit A bitfield where exactly one bit is set, which indicates the position of the bit to be
+     * set in `$field`.
      *
      * @return bitfield The new bitfield.
      */
 
-    public static function setBit ($bfField, $bfBit)
+    public static function setBit ($field, $bit)
     {
-        assert( 'is_bitfield($bfField) && is_bitfield($bfBit)', vs(isset($this), get_defined_vars()) );
-        return $bfField | $bfBit;
+        assert( 'is_bitfield($field) && is_bitfield($bit)', vs(isset($this), get_defined_vars()) );
+        return $field | $bit;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Unsets a bit in a bitfield and returns the new bitfield.
      *
-     * @param  bitfield $bfField The bitfield to be modified.
-     * @param  bitfield $bfBit A bitfield where exactly one bit is set, which indicates the position of the bit to be
-     * unset in `$bfField`.
+     * @param  bitfield $field The bitfield to be modified.
+     * @param  bitfield $bit A bitfield where exactly one bit is set, which indicates the position of the bit to be
+     * unset in `$field`.
      *
      * @return bitfield The new bitfield.
      */
 
-    public static function unsetBit ($bfField, $bfBit)
+    public static function unsetBit ($field, $bit)
     {
-        assert( 'is_bitfield($bfField) && is_bitfield($bfBit)', vs(isset($this), get_defined_vars()) );
-        return $bfField & ~$bfBit;
+        assert( 'is_bitfield($field) && is_bitfield($bit)', vs(isset($this), get_defined_vars()) );
+        return $field & ~$bit;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -322,38 +322,38 @@ class CBitField extends CRootClass
      *
      * If the bit is `0` (unset), it becomes `1` (set), and vice versa.
      *
-     * @param  bitfield $bfField The bitfield to be modified.
-     * @param  bitfield $bfBit A bitfield where exactly one bit is set, which indicates the position of the bit to be
-     * toggled in `$bfField`.
+     * @param  bitfield $field The bitfield to be modified.
+     * @param  bitfield $bit A bitfield where exactly one bit is set, which indicates the position of the bit to be
+     * toggled in `$field`.
      *
      * @return bitfield The new bitfield.
      */
 
-    public static function toggleBit ($bfField, $bfBit)
+    public static function toggleBit ($field, $bit)
     {
-        assert( 'is_bitfield($bfField) && is_bitfield($bfBit)', vs(isset($this), get_defined_vars()) );
-        return $bfField ^ $bfBit;
+        assert( 'is_bitfield($field) && is_bitfield($bit)', vs(isset($this), get_defined_vars()) );
+        return $field ^ $bit;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Counts the number of bits that are set in a bitfield.
      *
-     * @param  bitfield $bfField The bitfield to be looked into.
+     * @param  bitfield $field The bitfield to be looked into.
      *
      * @return int The number of bits set.
      */
 
-    public static function numBitsSet ($bfField)
+    public static function numBitsSet ($field)
     {
-        assert( 'is_bitfield($bfField)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bitfield($field)', vs(isset($this), get_defined_vars()) );
 
-        $iQuantity = 0;
-        while ( $bfField != 0 )
+        $quantity = 0;
+        while ( $field != 0 )
         {
-            $iQuantity += $bfField & 1;
-            $bfField >>= 1;
+            $quantity += $field & 1;
+            $field >>= 1;
         }
-        return $iQuantity;
+        return $quantity;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }

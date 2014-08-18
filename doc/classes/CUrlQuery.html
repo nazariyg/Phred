@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1019081137"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-945374992"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1019081137" class="accordion-body collapse in">
+            <div id="namespace-945374992" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -232,7 +232,7 @@ array, or a map. If it's a collection, such as an array or map, any value in tha
 its own and so on, which enables for multi-dimensional values.</p>
 <p>The class supports both "&amp;" and ";" as field delimiters in query strings.</p>
 <p>You can make a copy of a URL query object using <code>clone</code> keyword like so:</p>
-<pre><code>$oUrlQueryCopy = clone $oUrlQuery;</code></pre>
+<pre><code>$urlQueryCopy = clone $urlQuery;</code></pre>
 
                     <section id="summary">
                         <h2>Summary</h2>
@@ -273,9 +273,9 @@ its own and so on, which enables for multi-dimensional values.</p>
                                 <em>N/A</em>
                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/CUrlQuery.html#property_m_mQuery" class="">$m_mQuery</a><br />
-                                                                    <a href="../classes/CUrlQuery.html#property_ms_sFieldDelimiters" class="">$ms_sFieldDelimiters</a><br />
-                                                                    <a href="../classes/CUrlQuery.html#property_ms_iMaxRecursionDepth" class="">$ms_iMaxRecursionDepth</a><br />
+                                                                    <a href="../classes/CUrlQuery.html#property_m_query" class="">$m_query</a><br />
+                                                                    <a href="../classes/CUrlQuery.html#property_ms_fieldDelimiters" class="">$ms_fieldDelimiters</a><br />
+                                                                    <a href="../classes/CUrlQuery.html#property_ms_maxRecursionDepth" class="">$ms_maxRecursionDepth</a><br />
                                                             </section>
                         </section>
                         <section class="row-fluid private">
@@ -372,7 +372,7 @@ its own and so on, which enables for multi-dimensional values.</p>
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (<span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sQueryString</span></span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$rbParsingWasFruitful</span></span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (<span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$queryString</span></span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$parsingWasFruitful</span></span>)</pre>
                 <p><em><p>Creates a URL query from a query string or as empty.</p></em></p>
                 <p>Just like in any valid URL, a provided query string is not expected to contain characters that cannot be
 represented literally and percent-encoding is expected to be used for any such characters. The query string
@@ -382,12 +382,12 @@ the preceding URL part.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sQueryString</code> </td>
+                                <td><code style="border: none; background: none">$queryString</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>create an empty URL query</em>. The source query string.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$rbParsingWasFruitful</code> </td>
+                                <td><code style="border: none; background: none">$parsingWasFruitful</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL. OUTPUT.</strong> After the object is constructed, this parameter,
 which is of type <code>bool</code>, tells whether the parsing of the query string resulted in any valid fields.</p></td>
@@ -420,7 +420,7 @@ which is of type <code>bool</code>, tells whether the parsing of the query strin
             <article class="method">
                 <h3 class="public ">hasField()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">hasField (string&nbsp;<span class="argument">$sFieldName</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">hasField (string&nbsp;<span class="argument">$fieldName</span>) : bool</pre>
                 <p><em><p>Determines if a URL query contains a field with a specified name.</p></em></p>
                 <p>In case of nested fields, i.e. multi-dimensional values, the method only looks into the fields that belong to
 the topmost level.</p>
@@ -428,7 +428,7 @@ the topmost level.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFieldName</code> </td>
+                                <td><code style="border: none; background: none">$fieldName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the field to be looked for. The characters in the string should be
 represented literally and no characters should be percent-encoded.</p></td>
@@ -466,7 +466,7 @@ represented literally and no characters should be percent-encoded.</p></td>
             <article class="method">
                 <h3 class="public ">field()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">field (string&nbsp;<span class="argument">$sFieldName</span>) : OOPString|OOPArray|OOPMap</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">field (string&nbsp;<span class="argument">$fieldName</span>) : OOPString|OOPArray|OOPMap</pre>
                 <p><em><p>From a URL query, returns the value of the field with a specified name.</p></em></p>
                 <p>Query strings allow for field values to be arrays and maps that can contain not only strings but also other
 arrays and maps, and so on. If the field's value is a string, it's returned without any of its characters being
@@ -475,7 +475,7 @@ percent-encoded.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFieldName</code> </td>
+                                <td><code style="border: none; background: none">$fieldName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the field to be looked for. The characters in the string should be
 represented literally and no characters should be percent-encoded.</p></td>
@@ -514,7 +514,7 @@ string (the most common case), an array, or a map.</p>
             <article class="method">
                 <h3 class="public ">addField()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">addField (string&nbsp;<span class="argument">$sFieldName</span>, mixed&nbsp;<span class="argument">$xValue</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">addField (string&nbsp;<span class="argument">$fieldName</span>, mixed&nbsp;<span class="argument">$value</span>) : void</pre>
                 <p><em><p>Adds a field to a URL query.</p></em></p>
                 <p>Query strings allow for field values to be arrays and maps that can contain not only strings but also other
 arrays and maps, and so on. If the field's value is a string, the characters in it should be represented
@@ -523,13 +523,13 @@ literally and no characters should be percent-encoded.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFieldName</code> </td>
+                                <td><code style="border: none; background: none">$fieldName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the field. The characters in the string should be represented literally
 and no characters should be percent-encoded.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$xValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The value of the field. This can be a string (the most common case), a <code>bool</code>, an <code>int</code>, a
 <code>float</code>, an array, or a map.</p></td>
@@ -562,7 +562,7 @@ and no characters should be percent-encoded.</p></td>
             <article class="method">
                 <h3 class="public ">queryString()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">queryString (<span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSortFields</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">queryString (<span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sortFields</span></span>) : OOPString</pre>
                 <p><em><p>Composes a URL query into a query string ready to be used as a part of a URL and returns it.</p></em></p>
                 <p>Any characters that cannot be represented literally in a valid query string come out percent-encoded. The
 resulting query string never starts with "?".</p>
@@ -576,7 +576,7 @@ without a value and is not followed by "=".</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSortFields</code> </td>
+                                <td><code style="border: none; background: none">$sortFields</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the fields in the query string should
 appear sorted in the ascending order, case-insensitively, and with natural order comparison used for sorting.</p></td>
@@ -615,19 +615,19 @@ appear sorted in the ascending order, case-insensitively, and with natural order
             <article class="method">
                 <h3 class="protected ">recurseQueryValueAfterParsing()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseQueryValueAfterParsing (&nbsp;<span class="argument">$xValue</span>, &nbsp;<span class="argument">$iCurrDepth</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseQueryValueAfterParsing (&nbsp;<span class="argument">$value</span>, &nbsp;<span class="argument">$currDepth</span>)</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iCurrDepth</code> </td>
+                                <td><code style="border: none; background: none">$currDepth</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
@@ -660,19 +660,19 @@ appear sorted in the ascending order, case-insensitively, and with natural order
             <article class="method">
                 <h3 class="protected ">recurseFieldValidation()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseFieldValidation (&nbsp;<span class="argument">$xValue</span>, &nbsp;<span class="argument">$iCurrDepth</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseFieldValidation (&nbsp;<span class="argument">$value</span>, &nbsp;<span class="argument">$currDepth</span>)</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iCurrDepth</code> </td>
+                                <td><code style="border: none; background: none">$currDepth</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
@@ -705,19 +705,19 @@ appear sorted in the ascending order, case-insensitively, and with natural order
             <article class="method">
                 <h3 class="protected ">recurseQueryValueBeforeComposingQs()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseQueryValueBeforeComposingQs (&nbsp;<span class="argument">$xValue</span>, &nbsp;<span class="argument">$iCurrDepth</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseQueryValueBeforeComposingQs (&nbsp;<span class="argument">$value</span>, &nbsp;<span class="argument">$currDepth</span>)</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iCurrDepth</code> </td>
+                                <td><code style="border: none; background: none">$currDepth</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
@@ -757,10 +757,10 @@ appear sorted in the ascending order, case-insensitively, and with natural order
 
                                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_mQuery" name="property_m_mQuery" class="anchor"></a>
+            <a id="property_m_query" name="property_m_query" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_mQuery</h3>
-                <pre class="signature">$m_mQuery</pre>
+                <h3 class="protected ">$m_query</h3>
+                <pre class="signature">$m_query</pre>
                 <p><em></em></p>
                 
 
@@ -785,10 +785,10 @@ appear sorted in the ascending order, case-insensitively, and with natural order
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_ms_sFieldDelimiters" name="property_ms_sFieldDelimiters" class="anchor"></a>
+            <a id="property_ms_fieldDelimiters" name="property_ms_fieldDelimiters" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$ms_sFieldDelimiters</h3>
-                <pre class="signature">$ms_sFieldDelimiters</pre>
+                <h3 class="protected ">$ms_fieldDelimiters</h3>
+                <pre class="signature">$ms_fieldDelimiters</pre>
                 <p><em></em></p>
                 
 
@@ -813,10 +813,10 @@ appear sorted in the ascending order, case-insensitively, and with natural order
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_ms_iMaxRecursionDepth" name="property_ms_iMaxRecursionDepth" class="anchor"></a>
+            <a id="property_ms_maxRecursionDepth" name="property_ms_maxRecursionDepth" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$ms_iMaxRecursionDepth</h3>
-                <pre class="signature">$ms_iMaxRecursionDepth</pre>
+                <h3 class="protected ">$ms_maxRecursionDepth</h3>
+                <pre class="signature">$ms_maxRecursionDepth</pre>
                 <p><em></em></p>
                 
 
@@ -889,7 +889,7 @@ appear sorted in the ascending order, case-insensitively, and with natural order
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

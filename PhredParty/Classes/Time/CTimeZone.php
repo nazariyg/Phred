@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -25,22 +25,22 @@
  */
 
 // Method signatures:
-//   __construct ($sName)
+//   __construct ($name)
 //   static CTimeZone makeUtc ()
 //   CUStringObject name ()
-//   CUStringObject dispName ($eStyle = self::STYLE_LONG, CULocale $oInLocale = null)
+//   CUStringObject dispName ($style = self::STYLE_LONG, CULocale $inLocale = null)
 //   CUStringObject dispEnName ()
 //   CUStringObject dispEnNameWithoutRegion ()
 //   int currentOffsetSeconds ()
 //   int standardOffsetSeconds ()
-//   bool equals ($oToTimeZone)
-//   static CUStringObject dispEnRegion ($eRegion)
+//   bool equals ($toTimeZone)
+//   static CUStringObject dispEnRegion ($region)
 //   static CArrayObject knownRegions ()
 //   static CArrayObject knownNames ()
 //   static CArrayObject knownNamesWithBc ()
-//   static CArrayObject knownNamesForRegion ($eRegion)
-//   static CArrayObject knownNamesForCountry ($sCountryCode)
-//   static bool isNameKnown ($sName)
+//   static CArrayObject knownNamesForRegion ($region)
+//   static CArrayObject knownNamesForCountry ($countryCode)
+//   static bool isNameKnown ($name)
 
 class CTimeZone extends CRootClass implements IEquality
 {
@@ -131,15 +131,15 @@ class CTimeZone extends CRootClass implements IEquality
     /**
      * Creates a time zone with a specified name.
      *
-     * @param  string $sName The name of the time zone (case-sensitive).
+     * @param  string $name The name of the time zone (case-sensitive).
      */
 
-    public function __construct ($sName)
+    public function __construct ($name)
     {
-        assert( 'is_cstring($sName)', vs(isset($this), get_defined_vars()) );
-        assert( 'self::isNameKnown($sName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($name)', vs(isset($this), get_defined_vars()) );
+        assert( 'self::isNameKnown($name)', vs(isset($this), get_defined_vars()) );
 
-        $this->m_oDtz = new DateTimeZone($sName);
+        $this->m_dtz = new DateTimeZone($name);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -166,43 +166,43 @@ class CTimeZone extends CRootClass implements IEquality
 
     public function name ()
     {
-        return $this->m_oDtz->getName();
+        return $this->m_dtz->getName();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the human-readable name of a time zone, written in the language of a specified locale.
      *
-     * @param  enum $eStyle **OPTIONAL. Default is** `STYLE_LONG`. The display style of the name. The available styles
+     * @param  enum $style **OPTIONAL. Default is** `STYLE_LONG`. The display style of the name. The available styles
      * are `STYLE_SHORT` and `STYLE_LONG`.
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * name is to be displayed.
      *
      * @return CUStringObject The human-readable name of the time zone.
      */
 
-    public function dispName ($eStyle = self::STYLE_LONG, CULocale $oInLocale = null)
+    public function dispName ($style = self::STYLE_LONG, CULocale $inLocale = null)
     {
-        assert( 'is_enum($eStyle)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_enum($style)', vs(isset($this), get_defined_vars()) );
 
-        $iItzStyle;
-        switch ( $eStyle )
+        $itzStyle;
+        switch ( $style )
         {
         case self::STYLE_SHORT:
-            $iItzStyle = IntlTimeZone::DISPLAY_SHORT;
+            $itzStyle = IntlTimeZone::DISPLAY_SHORT;
             break;
         case self::STYLE_LONG:
-            $iItzStyle = IntlTimeZone::DISPLAY_LONG;
+            $itzStyle = IntlTimeZone::DISPLAY_LONG;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
-        $oItz = $this->ITimeZone();
-        $sLocale = ( isset($oInLocale) ) ? $oInLocale->name() : CULocale::defaultLocaleName();
-        $sDispName = $oItz->getDisplayName(false, $iItzStyle, $sLocale);
-        if ( is_cstring($sDispName) )
+        $itz = $this->ITimeZone();
+        $locale = ( isset($inLocale) ) ? $inLocale->name() : CULocale::defaultLocaleName();
+        $dispName = $itz->getDisplayName(false, $itzStyle, $locale);
+        if ( is_cstring($dispName) )
         {
-            return $sDispName;
+            return $dispName;
         }
         else
         {
@@ -226,9 +226,9 @@ class CTimeZone extends CRootClass implements IEquality
 
     public function dispEnName ()
     {
-        $sDispName = $this->name();
-        $sDispName = self::makeEnName($sDispName);
-        return $sDispName;
+        $dispName = $this->name();
+        $dispName = self::makeEnName($dispName);
+        return $dispName;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -246,10 +246,10 @@ class CTimeZone extends CRootClass implements IEquality
 
     public function dispEnNameWithoutRegion ()
     {
-        $sDispName = $this->name();
-        $sDispName = CRegex::remove($sDispName, "/^.*?\\//");
-        $sDispName = self::makeEnName($sDispName);
-        return $sDispName;
+        $dispName = $this->name();
+        $dispName = CRegex::remove($dispName, "/^.*?\\//");
+        $dispName = self::makeEnName($dispName);
+        return $dispName;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -263,11 +263,11 @@ class CTimeZone extends CRootClass implements IEquality
 
     public function currentOffsetSeconds ()
     {
-        $oItz = $this->ITimeZone();
-        $iOffset;
-        $iDstOffset;
-        $oItz->getOffset(time()*1000, false, $iOffset, $iDstOffset);
-        return CMathi::round(((float)($iOffset + $iDstOffset))/1000);
+        $itz = $this->ITimeZone();
+        $offset;
+        $dstOffset;
+        $itz->getOffset(time()*1000, false, $offset, $dstOffset);
+        return CMathi::round(((float)($offset + $dstOffset))/1000);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -280,41 +280,41 @@ class CTimeZone extends CRootClass implements IEquality
 
     public function standardOffsetSeconds ()
     {
-        $oItz = $this->ITimeZone();
-        $iOffset;
-        $iDstOffset;
-        $oItz->getOffset(time()*1000, false, $iOffset, $iDstOffset);
-        return CMathi::round(((float)$iOffset)/1000);
+        $itz = $this->ITimeZone();
+        $offset;
+        $dstOffset;
+        $itz->getOffset(time()*1000, false, $offset, $dstOffset);
+        return CMathi::round(((float)$offset)/1000);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if a time zone is equal to another time zone, comparing them by name.
      *
-     * @param  CTimeZone $oToTimeZone The second time zone for comparison.
+     * @param  CTimeZone $toTimeZone The second time zone for comparison.
      *
      * @return bool `true` if *this* time zone is equal to the second time zone, `false` otherwise.
      */
 
-    public function equals ($oToTimeZone)
+    public function equals ($toTimeZone)
     {
         // Parameter type hinting is not used for the purpose of interface compatibility.
-        assert( 'is_ctimezone($oToTimeZone)', vs(isset($this), get_defined_vars()) );
-        return CString::equals($this->name(), $oToTimeZone->name());
+        assert( 'is_ctimezone($toTimeZone)', vs(isset($this), get_defined_vars()) );
+        return CString::equals($this->name(), $toTimeZone->name());
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the human-readable name of a time zone region, in English.
      *
-     * @param  enum $eRegion The time zone region (see [Summary](#summary)).
+     * @param  enum $region The time zone region (see [Summary](#summary)).
      *
      * @return CUStringObject The human-readable name of the time zone region.
      */
 
-    public static function dispEnRegion ($eRegion)
+    public static function dispEnRegion ($region)
     {
-        assert( 'is_enum($eRegion)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_enum($region)', vs(isset($this), get_defined_vars()) );
 
-        switch ( $eRegion )
+        switch ( $region )
         {
         case self::REGION_AFRICA:
             return "Africa";
@@ -370,9 +370,9 @@ class CTimeZone extends CRootClass implements IEquality
 
     public static function knownNames ()
     {
-        $mNames = DateTimeZone::listIdentifiers(DateTimeZone::ALL);
-        $mNames = CMap::filter($mNames, "CTimeZone::isNameIcuCompatible");
-        return oop_a(CArray::fromPArray($mNames));
+        $names = DateTimeZone::listIdentifiers(DateTimeZone::ALL);
+        $names = CMap::filter($names, "CTimeZone::isNameIcuCompatible");
+        return oop_a(CArray::fromPArray($names));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -387,63 +387,63 @@ class CTimeZone extends CRootClass implements IEquality
 
     public static function knownNamesWithBc ()
     {
-        $mNames = DateTimeZone::listIdentifiers(DateTimeZone::ALL_WITH_BC);
-        $mNames = CMap::filter($mNames, "CTimeZone::isNameIcuCompatible");
-        return oop_a(CArray::fromPArray($mNames));
+        $names = DateTimeZone::listIdentifiers(DateTimeZone::ALL_WITH_BC);
+        $names = CMap::filter($names, "CTimeZone::isNameIcuCompatible");
+        return oop_a(CArray::fromPArray($names));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the names of the time zones that are known for a specified region.
      *
-     * @param  enum $eRegion The time zone region (see [Summary](#summary)).
+     * @param  enum $region The time zone region (see [Summary](#summary)).
      *
      * @return CArrayObject The known time zone names for the region specified, of type `CUStringObject`.
      */
 
-    public static function knownNamesForRegion ($eRegion)
+    public static function knownNamesForRegion ($region)
     {
-        assert( 'is_enum($eRegion)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_enum($region)', vs(isset($this), get_defined_vars()) );
 
-        $iDtzRegion;
-        switch ( $eRegion )
+        $dtzRegion;
+        switch ( $region )
         {
         case self::REGION_AFRICA:
-            $iDtzRegion = DateTimeZone::AFRICA;
+            $dtzRegion = DateTimeZone::AFRICA;
             break;
         case self::REGION_AMERICA:
-            $iDtzRegion = DateTimeZone::AMERICA;
+            $dtzRegion = DateTimeZone::AMERICA;
             break;
         case self::REGION_ANTARCTICA:
-            $iDtzRegion = DateTimeZone::ANTARCTICA;
+            $dtzRegion = DateTimeZone::ANTARCTICA;
             break;
         case self::REGION_ARCTIC:
-            $iDtzRegion = DateTimeZone::ARCTIC;
+            $dtzRegion = DateTimeZone::ARCTIC;
             break;
         case self::REGION_ASIA:
-            $iDtzRegion = DateTimeZone::ASIA;
+            $dtzRegion = DateTimeZone::ASIA;
             break;
         case self::REGION_ATLANTIC:
-            $iDtzRegion = DateTimeZone::ATLANTIC;
+            $dtzRegion = DateTimeZone::ATLANTIC;
             break;
         case self::REGION_AUSTRALIA:
-            $iDtzRegion = DateTimeZone::AUSTRALIA;
+            $dtzRegion = DateTimeZone::AUSTRALIA;
             break;
         case self::REGION_EUROPE:
-            $iDtzRegion = DateTimeZone::EUROPE;
+            $dtzRegion = DateTimeZone::EUROPE;
             break;
         case self::REGION_INDIAN:
-            $iDtzRegion = DateTimeZone::INDIAN;
+            $dtzRegion = DateTimeZone::INDIAN;
             break;
         case self::REGION_PACIFIC:
-            $iDtzRegion = DateTimeZone::PACIFIC;
+            $dtzRegion = DateTimeZone::PACIFIC;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
-        $mNames = DateTimeZone::listIdentifiers($iDtzRegion);
-        $mNames = CMap::filter($mNames, "CTimeZone::isNameIcuCompatible");
-        return oop_a(CArray::fromPArray($mNames));
+        $names = DateTimeZone::listIdentifiers($dtzRegion);
+        $names = CMap::filter($names, "CTimeZone::isNameIcuCompatible");
+        return oop_a(CArray::fromPArray($names));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -452,21 +452,21 @@ class CTimeZone extends CRootClass implements IEquality
      * If the country's code is not recognized for any reason, the entire list of the known time zone names is
      * returned.
      *
-     * @param  string $sCountryCode The two-letter code of the country, as provided by ISO 3166.
+     * @param  string $countryCode The two-letter code of the country, as provided by ISO 3166.
      *
      * @return CArrayObject The known time zone names for the country specified, of type `CUStringObject`.
      */
 
-    public static function knownNamesForCountry ($sCountryCode)
+    public static function knownNamesForCountry ($countryCode)
     {
-        assert( 'is_cstring($sCountryCode)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($countryCode)', vs(isset($this), get_defined_vars()) );
 
-        $mNames = DateTimeZone::listIdentifiers(DateTimeZone::PER_COUNTRY, $sCountryCode);
-        $mNames = CMap::filter($mNames, "CTimeZone::isNameIcuCompatible");
-        $aNames = CArray::fromPArray($mNames);
-        if ( is_cmap($mNames) && !CArray::isEmpty($aNames) )
+        $paNames = DateTimeZone::listIdentifiers(DateTimeZone::PER_COUNTRY, $countryCode);
+        $paNames = CMap::filter($paNames, "CTimeZone::isNameIcuCompatible");
+        $names = CArray::fromPArray($paNames);
+        if ( is_cmap($paNames) && !CArray::isEmpty($names) )
         {
-            return oop_a($aNames);
+            return oop_a($names);
         }
         else
         {
@@ -479,29 +479,29 @@ class CTimeZone extends CRootClass implements IEquality
      *
      * The method also searches among the backward compatible names.
      *
-     * @param  string $sName The time zone name to be looked for (case-sensitive).
+     * @param  string $name The time zone name to be looked for (case-sensitive).
      *
      * @return bool `true` if the name is known, `false` otherwise.
      */
 
-    public static function isNameKnown ($sName)
+    public static function isNameKnown ($name)
     {
-        assert( 'is_cstring($sName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($name)', vs(isset($this), get_defined_vars()) );
 
-        $mKnownNamesWithBc = DateTimeZone::listIdentifiers(DateTimeZone::ALL_WITH_BC);
-        return ( CMap::find($mKnownNamesWithBc, $sName) && self::isNameIcuCompatible($sName) );
+        $knownNamesWithBc = DateTimeZone::listIdentifiers(DateTimeZone::ALL_WITH_BC);
+        return ( CMap::find($knownNamesWithBc, $name) && self::isNameIcuCompatible($name) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    public static function isNameIcuCompatible ($sName)
+    public static function isNameIcuCompatible ($name)
     {
-        assert( 'is_cstring($sName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($name)', vs(isset($this), get_defined_vars()) );
 
-        $oItz = IntlTimeZone::createTimeZone($sName);
-        return CString::equals($sName, $oItz->getID());
+        $itz = IntlTimeZone::createTimeZone($name);
+        return CString::equals($name, $itz->getID());
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -510,7 +510,7 @@ class CTimeZone extends CRootClass implements IEquality
 
     public function DTimeZone ()
     {
-        return $this->m_oDtz;
+        return $this->m_dtz;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -528,18 +528,18 @@ class CTimeZone extends CRootClass implements IEquality
 
     public function __clone ()
     {
-        $this->m_oDtz = clone $this->m_oDtz;
+        $this->m_dtz = clone $this->m_dtz;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function makeEnName ($sName)
+    protected static function makeEnName ($name)
     {
-        $sName = CString::replace($sName, "/", ", ");
-        $sName = CString::replace($sName, "_", " ");
-        $sName = CRegex::replace($sName, "/[^A-Z0-9\\-+,]/i", " ");
-        $sName = CString::normSpacing($sName);
-        return $sName;
+        $name = CString::replace($name, "/", ", ");
+        $name = CString::replace($name, "_", " ");
+        $name = CRegex::replace($name, "/[^A-Z0-9\\-+,]/i", " ");
+        $name = CString::normSpacing($name);
+        return $name;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    protected $m_oDtz;
+    protected $m_dtz;
 }

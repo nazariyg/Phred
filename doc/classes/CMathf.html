@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1330079533"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1126956718"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1330079533" class="accordion-body collapse in">
+            <div id="namespace-1126956718" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -844,14 +844,14 @@ floating-point arithmetics that is used by any CPU.</p></p>
             <article class="method">
                 <h3 class="public ">floor()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> floor (number&nbsp;<span class="argument">$nValue</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> floor (number&nbsp;<span class="argument">$value</span>) : float</pre>
                 <p><em><p>Rounds a number down to the next lesser integer and returns it as a floating-point value.</p></em></p>
                 <p>If the number is already rounded, the same (floating-point) number is returned.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The number to be rounded.</p></td>
                             </tr>
@@ -889,14 +889,14 @@ floating-point arithmetics that is used by any CPU.</p></p>
             <article class="method">
                 <h3 class="public ">ceil()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> ceil (number&nbsp;<span class="argument">$nValue</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> ceil (number&nbsp;<span class="argument">$value</span>) : float</pre>
                 <p><em><p>Rounds a number up to the next greater integer and returns it as a floating-point value.</p></em></p>
                 <p>If the number is already rounded, the same (floating-point) number is returned.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The number to be rounded.</p></td>
                             </tr>
@@ -934,7 +934,7 @@ floating-point arithmetics that is used by any CPU.</p></p>
             <article class="method">
                 <h3 class="public ">round()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> round (number&nbsp;<span class="argument">$nValue</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$iFracLength</span></span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> round (number&nbsp;<span class="argument">$value</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fracLength</span></span>) : float</pre>
                 <p><em><p>Rounds a number to the nearest integer or to a specified number of digits after the decimal point, and returns
 it as a floating-point value.</p></em></p>
                 
@@ -942,12 +942,12 @@ it as a floating-point value.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The number to be rounded.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iFracLength</code> </td>
+                                <td><code style="border: none; background: none">$fracLength</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>0</code>. The length of the fractional part in the rounded number,
 which is the number of digits after the decimal point.</p></td>
@@ -986,14 +986,14 @@ which is the number of digits after the decimal point.</p></td>
             <article class="method">
                 <h3 class="public ">abs()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> abs (number&nbsp;<span class="argument">$nValue</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> abs (number&nbsp;<span class="argument">$value</span>) : float</pre>
                 <p><em><p>Returns the absolute value of a number.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The input number.</p></td>
                             </tr>
@@ -1031,7 +1031,7 @@ which is the number of digits after the decimal point.</p></td>
             <article class="method">
                 <h3 class="public ">sign()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> sign (number&nbsp;<span class="argument">$nValue</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> sign (number&nbsp;<span class="argument">$value</span>) : float</pre>
                 <p><em><p>Returns the sign of a number, as a floating-point value.</p></em></p>
                 <p>The method returns <code>-1.0</code> if the number is negative, <code>1.0</code> if the number is positive, and <code>0.0</code> if the number is
 exactly <code>0.0</code>.</p>
@@ -1039,7 +1039,7 @@ exactly <code>0.0</code>.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The input number.</p></td>
                             </tr>
@@ -1077,19 +1077,19 @@ exactly <code>0.0</code>.</p>
             <article class="method">
                 <h3 class="public ">min()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> min (number&nbsp;<span class="argument">$nValue0</span>, number&nbsp;<span class="argument">$nValue1</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> min (number&nbsp;<span class="argument">$value0</span>, number&nbsp;<span class="argument">$value1</span>) : float</pre>
                 <p><em><p>Returns the smallest out of two numbers.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue0</code> </td>
+                                <td><code style="border: none; background: none">$value0</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The first number for comparison.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue1</code> </td>
+                                <td><code style="border: none; background: none">$value1</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The second number for comparison.</p></td>
                             </tr>
@@ -1127,19 +1127,19 @@ exactly <code>0.0</code>.</p>
             <article class="method">
                 <h3 class="public ">max()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> max (number&nbsp;<span class="argument">$nValue0</span>, number&nbsp;<span class="argument">$nValue1</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> max (number&nbsp;<span class="argument">$value0</span>, number&nbsp;<span class="argument">$value1</span>) : float</pre>
                 <p><em><p>Returns the largest out of two numbers.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue0</code> </td>
+                                <td><code style="border: none; background: none">$value0</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The first number for comparison.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue1</code> </td>
+                                <td><code style="border: none; background: none">$value1</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The second number for comparison.</p></td>
                             </tr>
@@ -1177,30 +1177,30 @@ exactly <code>0.0</code>.</p>
             <article class="method">
                 <h3 class="public ">minMax()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> minMax (number&nbsp;<span class="argument">$nValue0</span>, number&nbsp;<span class="argument">$nValue1</span>, reference&nbsp;<span class="argument">$rfMin</span>, reference&nbsp;<span class="argument">$rfMax</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> minMax (number&nbsp;<span class="argument">$value0</span>, number&nbsp;<span class="argument">$value1</span>, reference&nbsp;<span class="argument">$min</span>, reference&nbsp;<span class="argument">$max</span>) : void</pre>
                 <p><em><p>Determines which out of two numbers is smallest and which is largest.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue0</code> </td>
+                                <td><code style="border: none; background: none">$value0</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The first number for comparison.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue1</code> </td>
+                                <td><code style="border: none; background: none">$value1</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The second number for comparison.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$rfMin</code> </td>
+                                <td><code style="border: none; background: none">$min</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OUTPUT.</strong> After the method is called, the value of this parameter, which is of type
 <code>float</code>, is the smallest number.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$rfMax</code> </td>
+                                <td><code style="border: none; background: none">$max</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OUTPUT.</strong> After the method is called, the value of this parameter, which is of type
 <code>float</code>, is the largest number.</p></td>
@@ -1234,25 +1234,25 @@ exactly <code>0.0</code>.</p>
             <article class="method">
                 <h3 class="public ">clamp()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> clamp (number&nbsp;<span class="argument">$nValue</span>, number&nbsp;<span class="argument">$nRangeMin</span>, number&nbsp;<span class="argument">$nRangeMax</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> clamp (number&nbsp;<span class="argument">$value</span>, number&nbsp;<span class="argument">$rangeMin</span>, number&nbsp;<span class="argument">$rangeMax</span>) : float</pre>
                 <p><em><p>Clamps a number to a specified range.</p></em></p>
                 <p>The original (floating-point) number is returned if it's already within the range.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The number to be clamped.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$nRangeMin</code> </td>
+                                <td><code style="border: none; background: none">$rangeMin</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The smallest acceptable number for output. Any number less than this value will be
 clamped to it.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$nRangeMax</code> </td>
+                                <td><code style="border: none; background: none">$rangeMax</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The largest acceptable number for output. Any number greater than this value will
 be clamped to it.</p></td>
@@ -1291,7 +1291,7 @@ be clamped to it.</p></td>
             <article class="method">
                 <h3 class="public ">unitClamp()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> unitClamp (number&nbsp;<span class="argument">$nValue</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> unitClamp (number&nbsp;<span class="argument">$value</span>) : float</pre>
                 <p><em><p>Clamps a number to the unit range from <code>0.0</code> to <code>1.0</code>.</p></em></p>
                 <p>This method clamps any number less than <code>0.0</code> to <code>0.0</code>, any number greater than <code>1.0</code> to <code>1.0</code>, and returns the
 original (floating-point) number if it's already within the unit range.</p>
@@ -1299,7 +1299,7 @@ original (floating-point) number if it's already within the unit range.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The number to be clamped.</p></td>
                             </tr>
@@ -1337,19 +1337,19 @@ original (floating-point) number if it's already within the unit range.</p>
             <article class="method">
                 <h3 class="public ">mod()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> mod (number&nbsp;<span class="argument">$nX</span>, number&nbsp;<span class="argument">$nY</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> mod (number&nbsp;<span class="argument">$x</span>, number&nbsp;<span class="argument">$y</span>) : float</pre>
                 <p><em><p>Returns the reminder of the division of two numbers.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nX</code> </td>
+                                <td><code style="border: none; background: none">$x</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The dividend.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$nY</code> </td>
+                                <td><code style="border: none; background: none">$y</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The divisor (cannot be zero).</p></td>
                             </tr>
@@ -1387,14 +1387,14 @@ original (floating-point) number if it's already within the unit range.</p>
             <article class="method">
                 <h3 class="public ">sqr()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> sqr (number&nbsp;<span class="argument">$nValue</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> sqr (number&nbsp;<span class="argument">$value</span>) : float</pre>
                 <p><em><p>Returns the square of a number.</p></em></p>
                 <p>This method serves as an alternative to multiplying a number by itself manually with <code>*</code> operator.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The input number.</p></td>
                             </tr>
@@ -1432,14 +1432,14 @@ original (floating-point) number if it's already within the unit range.</p>
             <article class="method">
                 <h3 class="public ">sqrt()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> sqrt (number&nbsp;<span class="argument">$nValue</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> sqrt (number&nbsp;<span class="argument">$value</span>) : float</pre>
                 <p><em><p>Returns the square root of a number.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The input number (should be positive or zero).</p></td>
                             </tr>
@@ -1477,19 +1477,19 @@ original (floating-point) number if it's already within the unit range.</p>
             <article class="method">
                 <h3 class="public ">pow()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> pow (number&nbsp;<span class="argument">$nBase</span>, number&nbsp;<span class="argument">$nExponent</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> pow (number&nbsp;<span class="argument">$base</span>, number&nbsp;<span class="argument">$exponent</span>) : float</pre>
                 <p><em><p>Returns the result of raising of a number to the power of a specified exponent.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nBase</code> </td>
+                                <td><code style="border: none; background: none">$base</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The number to be raised.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$nExponent</code> </td>
+                                <td><code style="border: none; background: none">$exponent</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The exponent.</p></td>
                             </tr>
@@ -1527,14 +1527,14 @@ original (floating-point) number if it's already within the unit range.</p>
             <article class="method">
                 <h3 class="public ">exp()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> exp (number&nbsp;<span class="argument">$nValue</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> exp (number&nbsp;<span class="argument">$value</span>) : float</pre>
                 <p><em><p>Returns the result of raising of <strong>e</strong> to the power of a specified number.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The number to be used as the exponent.</p></td>
                             </tr>
@@ -1572,14 +1572,14 @@ original (floating-point) number if it's already within the unit range.</p>
             <article class="method">
                 <h3 class="public ">log()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> log (number&nbsp;<span class="argument">$nValue</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> log (number&nbsp;<span class="argument">$value</span>) : float</pre>
                 <p><em><p>Returns the natural logarithm of a number.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The input number (should be positive, non-zero).</p></td>
                             </tr>
@@ -1617,14 +1617,14 @@ original (floating-point) number if it's already within the unit range.</p>
             <article class="method">
                 <h3 class="public ">log10()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> log10 (number&nbsp;<span class="argument">$nValue</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> log10 (number&nbsp;<span class="argument">$value</span>) : float</pre>
                 <p><em><p>Returns the logarithm of a number, calculated against the base of 10.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The input number (should be positive, non-zero).</p></td>
                             </tr>
@@ -1662,14 +1662,14 @@ original (floating-point) number if it's already within the unit range.</p>
             <article class="method">
                 <h3 class="public ">log2()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> log2 (number&nbsp;<span class="argument">$nValue</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> log2 (number&nbsp;<span class="argument">$value</span>) : float</pre>
                 <p><em><p>Returns the logarithm of a number, calculated against the base of 2.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The input number (should be positive, non-zero).</p></td>
                             </tr>
@@ -1707,14 +1707,14 @@ original (floating-point) number if it's already within the unit range.</p>
             <article class="method">
                 <h3 class="public ">sin()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> sin (number&nbsp;<span class="argument">$nValue</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> sin (number&nbsp;<span class="argument">$value</span>) : float</pre>
                 <p><em><p>Returns the sine of a number.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The input number, in radians.</p></td>
                             </tr>
@@ -1752,14 +1752,14 @@ original (floating-point) number if it's already within the unit range.</p>
             <article class="method">
                 <h3 class="public ">cos()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> cos (number&nbsp;<span class="argument">$nValue</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> cos (number&nbsp;<span class="argument">$value</span>) : float</pre>
                 <p><em><p>Returns the cosine of a number.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The input number, in radians.</p></td>
                             </tr>
@@ -1797,14 +1797,14 @@ original (floating-point) number if it's already within the unit range.</p>
             <article class="method">
                 <h3 class="public ">tan()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> tan (number&nbsp;<span class="argument">$nValue</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> tan (number&nbsp;<span class="argument">$value</span>) : float</pre>
                 <p><em><p>Returns the tangent of a number.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The input number, in radians.</p></td>
                             </tr>
@@ -1842,7 +1842,7 @@ original (floating-point) number if it's already within the unit range.</p>
             <article class="method">
                 <h3 class="public ">asin()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> asin (number&nbsp;<span class="argument">$nValue</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> asin (number&nbsp;<span class="argument">$value</span>) : float</pre>
                 <p><em><p>Returns the arc sine of a number.</p></em></p>
                 <p>As special cases, the method returns -<strong>π</strong> /2 if the number is less than or equal to <code>-1.0</code> and <strong>π</strong> /2 if the
 number is greater than or equal to <code>1.0</code>.</p>
@@ -1850,7 +1850,7 @@ number is greater than or equal to <code>1.0</code>.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The input number.</p></td>
                             </tr>
@@ -1888,7 +1888,7 @@ number is greater than or equal to <code>1.0</code>.</p>
             <article class="method">
                 <h3 class="public ">acos()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> acos (number&nbsp;<span class="argument">$nValue</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> acos (number&nbsp;<span class="argument">$value</span>) : float</pre>
                 <p><em><p>Returns the arc cosine of a number.</p></em></p>
                 <p>As special cases, the method returns <strong>π</strong> if the number is less than or equal to <code>-1.0</code> and <code>0.0</code> if the number
 is greater than or equal to <code>1.0</code>.</p>
@@ -1896,7 +1896,7 @@ is greater than or equal to <code>1.0</code>.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The input number.</p></td>
                             </tr>
@@ -1934,14 +1934,14 @@ is greater than or equal to <code>1.0</code>.</p>
             <article class="method">
                 <h3 class="public ">atan()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> atan (number&nbsp;<span class="argument">$nValue</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> atan (number&nbsp;<span class="argument">$value</span>) : float</pre>
                 <p><em><p>Returns the arc tangent of a number.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The input number.</p></td>
                             </tr>
@@ -1979,7 +1979,7 @@ is greater than or equal to <code>1.0</code>.</p>
             <article class="method">
                 <h3 class="public ">atan2()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> atan2 (number&nbsp;<span class="argument">$nY</span>, number&nbsp;<span class="argument">$nX</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> atan2 (number&nbsp;<span class="argument">$y</span>, number&nbsp;<span class="argument">$x</span>) : float</pre>
                 <p><em><p>Returns the angle derived from the coordinates of a point.</p></em></p>
                 <p>The angle is measured starting from the X axis and, assuming that the Y axis goes down, in the clockwise
 direction. The minimum value of a returned angle is -<strong>π</strong> and the maximum value is <strong>π</strong>.</p>
@@ -1989,12 +1989,12 @@ coordinates cannot be both zeros.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nY</code> </td>
+                                <td><code style="border: none; background: none">$y</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The Y coordinate of the point.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$nX</code> </td>
+                                <td><code style="border: none; background: none">$x</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The X coordinate of the point.</p></td>
                             </tr>
@@ -2032,14 +2032,14 @@ coordinates cannot be both zeros.</p>
             <article class="method">
                 <h3 class="public ">degToRad()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> degToRad (number&nbsp;<span class="argument">$nDegrees</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> degToRad (number&nbsp;<span class="argument">$degrees</span>) : float</pre>
                 <p><em><p>Converts a number from degrees to radians.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nDegrees</code> </td>
+                                <td><code style="border: none; background: none">$degrees</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The number to be converted.</p></td>
                             </tr>
@@ -2077,14 +2077,14 @@ coordinates cannot be both zeros.</p>
             <article class="method">
                 <h3 class="public ">radToDeg()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> radToDeg (number&nbsp;<span class="argument">$nRadians</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> radToDeg (number&nbsp;<span class="argument">$radians</span>) : float</pre>
                 <p><em><p>Converts a number from radians to degrees.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nRadians</code> </td>
+                                <td><code style="border: none; background: none">$radians</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The number to be converted.</p></td>
                             </tr>
@@ -2199,19 +2199,19 @@ non-inclusively for <code>1.0</code> (same as in JavaScript).</p>
             <article class="method">
                 <h3 class="public ">intervalRandom()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> intervalRandom (number&nbsp;<span class="argument">$nMin</span>, number&nbsp;<span class="argument">$nMax</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> intervalRandom (number&nbsp;<span class="argument">$min</span>, number&nbsp;<span class="argument">$max</span>) : float</pre>
                 <p><em><p>Returns a random number in the specified range.</p></em></p>
                 <p>The algorithm behind the random number generator is Mersenne twister.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nMin</code> </td>
+                                <td><code style="border: none; background: none">$min</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The lower bound of the range, inclusively.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$nMax</code> </td>
+                                <td><code style="border: none; background: none">$max</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The higher bound of the range, non-inclusively.</p></td>
                             </tr>
@@ -2249,14 +2249,14 @@ non-inclusively for <code>1.0</code> (same as in JavaScript).</p>
             <article class="method">
                 <h3 class="public ">seedRandom()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> seedRandom (int&nbsp;<span class="argument">$iSeed</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> seedRandom (int&nbsp;<span class="argument">$seed</span>) : void</pre>
                 <p><em><p>Seeds the random number generator.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iSeed</code> </td>
+                                <td><code style="border: none; background: none">$seed</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The value with which the generator is to be seeded.</p></td>
                             </tr>
@@ -2289,19 +2289,19 @@ non-inclusively for <code>1.0</code> (same as in JavaScript).</p>
             <article class="method">
                 <h3 class="public ">fromIntAndFracParts()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fromIntAndFracParts (int&nbsp;<span class="argument">$iIntPart</span>, int&nbsp;<span class="argument">$iFracPart</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fromIntAndFracParts (int&nbsp;<span class="argument">$intPart</span>, int&nbsp;<span class="argument">$fracPart</span>) : float</pre>
                 <p><em><p>Returns a number composed from specified integer and fractional parts.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iIntPart</code> </td>
+                                <td><code style="border: none; background: none">$intPart</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The integer part.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iFracPart</code> </td>
+                                <td><code style="border: none; background: none">$fracPart</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The fractional part.</p></td>
                             </tr>
@@ -2339,7 +2339,7 @@ non-inclusively for <code>1.0</code> (same as in JavaScript).</p>
             <article class="method">
                 <h3 class="public ">equalsZt()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> equalsZt (number&nbsp;<span class="argument">$nValue0</span>, number&nbsp;<span class="argument">$nValue1</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> equalsZt (number&nbsp;<span class="argument">$value0</span>, number&nbsp;<span class="argument">$value1</span>) : bool</pre>
                 <p><em><p>Determines if two numbers can be considered equal by comparing their difference with the value of
 <code>ZERO_TOLERANCE</code> constant.</p></em></p>
                 <p>Since the accuracy of floating-point arithmetics is not ideal, this method can be useful for finding out whether
@@ -2348,12 +2348,12 @@ two floating-point numbers are equal in situations when exact equality is not re
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue0</code> </td>
+                                <td><code style="border: none; background: none">$value0</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The first number for comparison.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$nValue1</code> </td>
+                                <td><code style="border: none; background: none">$value1</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">number</code></td>
                                 <td><p>The second number for comparison.</p></td>
                             </tr>
@@ -2440,7 +2440,7 @@ two floating-point numbers are equal in situations when exact equality is not re
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

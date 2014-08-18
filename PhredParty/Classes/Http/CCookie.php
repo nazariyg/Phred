@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -18,13 +18,13 @@
  */
 
 // Method signatures:
-//   __construct ($sCookieName, $xValue)
-//   void setExpireInterval ($eTimeUnit, $iQuantity)
-//   void setExpireTime (CTime $oTime)
-//   void setPath ($sPath)
-//   void setDomain ($sDomain)
-//   void setSecure ($bEnable)
-//   void setHttpOnly ($bEnable)
+//   __construct ($cookieName, $value)
+//   void setExpireInterval ($timeUnit, $quantity)
+//   void setExpireTime (CTime $time)
+//   void setPath ($path)
+//   void setDomain ($domain)
+//   void setSecure ($enable)
+//   void setHttpOnly ($enable)
 //   CUStringObject name ()
 //   CUStringObject value ()
 //   int expireUTime ()
@@ -43,38 +43,38 @@ class CCookie extends CRootClass
      * or map, it's encoded into JSON and is stored as a JSON string. Boolean values are stored as "1" for `true` and
      * as "0" for `false`.
      *
-     * @param  string $sCookieName The cookie's name.
-     * @param  mixed $xValue The cookie's value. This can be a string, a `bool`, an `int`, a `float`, an array, or a
+     * @param  string $cookieName The cookie's name.
+     * @param  mixed $value The cookie's value. This can be a string, a `bool`, an `int`, a `float`, an array, or a
      * map.
      */
 
-    public function __construct ($sCookieName, $xValue)
+    public function __construct ($cookieName, $value)
     {
-        assert( 'is_cstring($sCookieName) && (is_cstring($xValue) || is_bool($xValue) || is_int($xValue) || ' .
-                'is_float($xValue) || is_collection($xValue))', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($cookieName) && (is_cstring($value) || is_bool($value) || is_int($value) || ' .
+                'is_float($value) || is_collection($value))', vs(isset($this), get_defined_vars()) );
 
-        $this->m_sName = $sCookieName;
+        $this->m_name = $cookieName;
 
-        if ( is_cstring($xValue) )
+        if ( is_cstring($value) )
         {
-            $this->m_sValue = $xValue;
+            $this->m_value = $value;
         }
-        else if ( is_bool($xValue) )
+        else if ( is_bool($value) )
         {
-            $this->m_sValue = CString::fromBool10($xValue);
+            $this->m_value = CString::fromBool10($value);
         }
-        else if ( is_int($xValue) )
+        else if ( is_int($value) )
         {
-            $this->m_sValue = CString::fromInt($xValue);
+            $this->m_value = CString::fromInt($value);
         }
-        else if ( is_float($xValue) )
+        else if ( is_float($value) )
         {
-            $this->m_sValue = CString::fromFloat($xValue);
+            $this->m_value = CString::fromFloat($value);
         }
         else  // a collection
         {
-            $oJson = new CJson($xValue);
-            $this->m_sValue = $oJson->encode();
+            $json = new CJson($value);
+            $this->m_value = $json->encode();
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -82,91 +82,91 @@ class CCookie extends CRootClass
      * Sets the point in time after which a cookie should be considered expired, as a time interval since the current
      * time.
      *
-     * @param  enum $eTimeUnit The time unit in which the interval is to be calculated. Can be `CTime::SECOND`,
+     * @param  enum $timeUnit The time unit in which the interval is to be calculated. Can be `CTime::SECOND`,
      * `CTime::MINUTE`, `CTime::HOUR`, `CTime::DAY`, `CTime::WEEK`, `CTime::MONTH`, or `CTime::YEAR`.
-     * @param  int $iQuantity The quantity of the specified time units.
+     * @param  int $quantity The quantity of the specified time units.
      *
      * @return void
      */
 
-    public function setExpireInterval ($eTimeUnit, $iQuantity)
+    public function setExpireInterval ($timeUnit, $quantity)
     {
-        assert( 'is_enum($eTimeUnit) && is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        assert( '$iQuantity > 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_enum($timeUnit) && is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        assert( '$quantity > 0', vs(isset($this), get_defined_vars()) );
 
-        $oCurrTime = CTime::now();
-        $oExpireTime = $oCurrTime->shiftedUtc($eTimeUnit, $iQuantity);
-        $this->m_iExpireUTime = $oExpireTime->UTime();
+        $currTime = CTime::now();
+        $expireTime = $currTime->shiftedUtc($timeUnit, $quantity);
+        $this->m_expireUTime = $expireTime->UTime();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the point in time after which a cookie should be considered expired, as a known moment.
      *
-     * @param  CTime $oTime The point in time when the cookie should expire.
+     * @param  CTime $time The point in time when the cookie should expire.
      *
      * @return void
      */
 
-    public function setExpireTime (CTime $oTime)
+    public function setExpireTime (CTime $time)
     {
-        $this->m_iExpireUTime = $oTime->UTime();
+        $this->m_expireUTime = $time->UTime();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the path of a cookie.
      *
-     * @param  string $sPath The path.
+     * @param  string $path The path.
      *
      * @return void
      */
 
-    public function setPath ($sPath)
+    public function setPath ($path)
     {
-        assert( 'is_cstring($sPath)', vs(isset($this), get_defined_vars()) );
-        $this->m_sPath = $sPath;
+        assert( 'is_cstring($path)', vs(isset($this), get_defined_vars()) );
+        $this->m_path = $path;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the domain of a cookie.
      *
-     * @param  string $sDomain The domain.
+     * @param  string $domain The domain.
      *
      * @return void
      */
 
-    public function setDomain ($sDomain)
+    public function setDomain ($domain)
     {
-        assert( 'is_cstring($sDomain)', vs(isset($this), get_defined_vars()) );
-        $this->m_sDomain = $sDomain;
+        assert( 'is_cstring($domain)', vs(isset($this), get_defined_vars()) );
+        $this->m_domain = $domain;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets whether the sending of a cookie back to the server should be limited to just encrypted connections.
      *
-     * @param  bool $bEnable `true` if the cookie should be limited to just encrypted connections, `false` if not.
+     * @param  bool $enable `true` if the cookie should be limited to just encrypted connections, `false` if not.
      *
      * @return void
      */
 
-    public function setSecure ($bEnable)
+    public function setSecure ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        $this->m_bSecure = $bEnable;
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        $this->m_secure = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets whether the access to a cookie should be limited to just HTTP/HTTPS methods of access.
      *
-     * @param  bool $bEnable `true` if the access to the cookie should be limited to just HTTP/HTTPS methods of access,
+     * @param  bool $enable `true` if the access to the cookie should be limited to just HTTP/HTTPS methods of access,
      * `false` if not.
      *
      * @return void
      */
 
-    public function setHttpOnly ($bEnable)
+    public function setHttpOnly ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        $this->m_bHttpOnly = $bEnable;
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        $this->m_httpOnly = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -177,7 +177,7 @@ class CCookie extends CRootClass
 
     public function name ()
     {
-        return $this->m_sName;
+        return $this->m_name;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -188,7 +188,7 @@ class CCookie extends CRootClass
 
     public function value ()
     {
-        return $this->m_sValue;
+        return $this->m_value;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -200,7 +200,7 @@ class CCookie extends CRootClass
 
     public function expireUTime ()
     {
-        return $this->m_iExpireUTime;
+        return $this->m_expireUTime;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -211,7 +211,7 @@ class CCookie extends CRootClass
 
     public function path ()
     {
-        return $this->m_sPath;
+        return $this->m_path;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -222,7 +222,7 @@ class CCookie extends CRootClass
 
     public function domain ()
     {
-        return $this->m_sDomain;
+        return $this->m_domain;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -233,7 +233,7 @@ class CCookie extends CRootClass
 
     public function secure ()
     {
-        return $this->m_bSecure;
+        return $this->m_secure;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -245,16 +245,16 @@ class CCookie extends CRootClass
 
     public function httpOnly ()
     {
-        return $this->m_bHttpOnly;
+        return $this->m_httpOnly;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     // Properties and defaults.
-    protected $m_sName;
-    protected $m_sValue;
-    protected $m_iExpireUTime = 0;
-    protected $m_sPath = "/";
-    protected $m_sDomain = "";
-    protected $m_bSecure = false;
-    protected $m_bHttpOnly = true;
+    protected $m_name;
+    protected $m_value;
+    protected $m_expireUTime = 0;
+    protected $m_path = "/";
+    protected $m_domain = "";
+    protected $m_secure = false;
+    protected $m_httpOnly = true;
 }

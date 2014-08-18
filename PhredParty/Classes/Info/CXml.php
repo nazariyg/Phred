@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -10,10 +10,10 @@
  */
 
 // Method signatures:
-//   static CUStringObject enterTd ($sString, $bTranslateExisting = true)
-//   static CUStringObject leaveTd ($sString)
-//   static CUStringObject enterTdAll ($sString, $bTranslateExisting = true)
-//   static CUStringObject leaveTdAll ($sString)
+//   static CUStringObject enterTd ($string, $translateExisting = true)
+//   static CUStringObject leaveTd ($string)
+//   static CUStringObject enterTdAll ($string, $translateExisting = true)
+//   static CUStringObject leaveTdAll ($string)
 
 class CXml extends CRootClass
 {
@@ -24,18 +24,18 @@ class CXml extends CRootClass
      *
      * Both double and single quotes are translated.
      *
-     * @param  string $sString The string to be translated.
-     * @param  bool $bTranslateExisting **OPTIONAL. Default is** `true`. Tells whether the applicable characters of any
+     * @param  string $string The string to be translated.
+     * @param  bool $translateExisting **OPTIONAL. Default is** `true`. Tells whether the applicable characters of any
      * XML entities that are already contained in the input string should be translated so that those entities do not
      * preserve their XML meanings.
      *
      * @return CUStringObject The translated string.
      */
 
-    public static function enterTd ($sString, $bTranslateExisting = true)
+    public static function enterTd ($string, $translateExisting = true)
     {
-        assert( 'is_cstring($sString) && is_bool($bTranslateExisting)', vs(isset($this), get_defined_vars()) );
-        return htmlspecialchars($sString, ENT_QUOTES, "UTF-8", $bTranslateExisting);
+        assert( 'is_cstring($string) && is_bool($translateExisting)', vs(isset($this), get_defined_vars()) );
+        return htmlspecialchars($string, ENT_QUOTES, "UTF-8", $translateExisting);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -44,15 +44,15 @@ class CXml extends CRootClass
      *
      * Both double and single quotes are translated.
      *
-     * @param  string $sString The string to be translated.
+     * @param  string $string The string to be translated.
      *
      * @return CUStringObject The translated string.
      */
 
-    public static function leaveTd ($sString)
+    public static function leaveTd ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return htmlspecialchars_decode($sString, ENT_QUOTES);
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return htmlspecialchars_decode($string, ENT_QUOTES);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -61,18 +61,18 @@ class CXml extends CRootClass
      *
      * Both double and single quotes are translated.
      *
-     * @param  string $sString The string to be translated.
-     * @param  bool $bTranslateExisting **OPTIONAL. Default is** `true`. Tells whether the applicable characters of any
+     * @param  string $string The string to be translated.
+     * @param  bool $translateExisting **OPTIONAL. Default is** `true`. Tells whether the applicable characters of any
      * XML entities that are already contained in the input string should be translated so that those entities do not
      * preserve their XML meanings.
      *
      * @return CUStringObject The translated string.
      */
 
-    public static function enterTdAll ($sString, $bTranslateExisting = true)
+    public static function enterTdAll ($string, $translateExisting = true)
     {
-        assert( 'is_cstring($sString) && is_bool($bTranslateExisting)', vs(isset($this), get_defined_vars()) );
-        return htmlentities($sString, ENT_QUOTES, "UTF-8", $bTranslateExisting);
+        assert( 'is_cstring($string) && is_bool($translateExisting)', vs(isset($this), get_defined_vars()) );
+        return htmlentities($string, ENT_QUOTES, "UTF-8", $translateExisting);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -80,15 +80,15 @@ class CXml extends CRootClass
      *
      * Both double and single quotes are translated.
      *
-     * @param  string $sString The string to be translated.
+     * @param  string $string The string to be translated.
      *
      * @return CUStringObject The translated string.
      */
 
-    public static function leaveTdAll ($sString)
+    public static function leaveTdAll ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return html_entity_decode($sString, ENT_QUOTES, "UTF-8");
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return html_entity_decode($string, ENT_QUOTES, "UTF-8");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }

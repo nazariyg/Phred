@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * The class that enumerates some of the MIME types.
  *

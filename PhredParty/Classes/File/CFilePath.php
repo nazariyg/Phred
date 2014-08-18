@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -15,16 +15,16 @@
  */
 
 // Method signatures:
-//   static CUStringObject name ($sPath)
-//   static CUStringObject directory ($sPath)
-//   static CUStringObject nameOnly ($sPath)
-//   static CUStringObject extension ($sPath)
-//   static CUStringObject lastExtension ($sPath)
-//   static CUStringObject add ($sBasePath, $sComponent)
-//   static CUStringObject normalize ($sPath, $bTargetIsExecutable = false)
-//   static CUStringObject absolute ($sPath)
-//   static bool isAbsolute ($sPath)
-//   static CUStringObject frameworkPath ($sPath)
+//   static CUStringObject name ($path)
+//   static CUStringObject directory ($path)
+//   static CUStringObject nameOnly ($path)
+//   static CUStringObject extension ($path)
+//   static CUStringObject lastExtension ($path)
+//   static CUStringObject add ($basePath, $component)
+//   static CUStringObject normalize ($path, $targetIsExecutable = false)
+//   static CUStringObject absolute ($path)
+//   static bool isAbsolute ($path)
+//   static CUStringObject frameworkPath ($path)
 
 class CFilePath extends CRootClass
 {
@@ -39,30 +39,30 @@ class CFilePath extends CRootClass
      * As special cases, the method returns "/", "..", or "." if the path (after normalization) is respectively "/",
      * "..", or ".".
      *
-     * @param  string $sPath The path to the file or directory (can be absolute or relative).
+     * @param  string $path The path to the file or directory (can be absolute or relative).
      *
      * @return CUStringObject The full name of the file or directory.
      */
 
-    public static function name ($sPath)
+    public static function name ($path)
     {
-        assert( 'is_cstring($sPath)', vs(isset($this), get_defined_vars()) );
-        assert( '!CString::isEmpty($sPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($path)', vs(isset($this), get_defined_vars()) );
+        assert( '!CString::isEmpty($path)', vs(isset($this), get_defined_vars()) );
 
-        $sPath = self::normalize($sPath);
-        if ( CString::find($sPath, "/") )
+        $path = self::normalize($path);
+        if ( CString::find($path, "/") )
         {
-            $sFoundString;
-            CRegex::find($sPath, "/(?<=\\/)[^\\/]*\\z/", $sFoundString);
-            if ( CString::isEmpty($sFoundString) )
+            $foundString;
+            CRegex::find($path, "/(?<=\\/)[^\\/]*\\z/", $foundString);
+            if ( CString::isEmpty($foundString) )
             {
-                $sFoundString = "/";
+                $foundString = "/";
             }
-            return $sFoundString;
+            return $foundString;
         }
         else
         {
-            return $sPath;
+            return $path;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -71,31 +71,31 @@ class CFilePath extends CRootClass
      *
      * The path should not be "/", "..", "." or be equivalent to any of them.
      *
-     * @param  string $sPath The path to the file or directory (can be absolute or relative).
+     * @param  string $path The path to the file or directory (can be absolute or relative).
      *
      * @return CUStringObject The path to the directory (after normalization) that contains the file or directory
      * located at the path specified.
      */
 
-    public static function directory ($sPath)
+    public static function directory ($path)
     {
-        assert( 'is_cstring($sPath)', vs(isset($this), get_defined_vars()) );
-        assert( '!CString::isEmpty($sPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($path)', vs(isset($this), get_defined_vars()) );
+        assert( '!CString::isEmpty($path)', vs(isset($this), get_defined_vars()) );
 
-        $sPath = self::normalize($sPath);
-        if ( CString::equals($sPath, "..") || CString::equals($sPath, ".") )
+        $path = self::normalize($path);
+        if ( CString::equals($path, "..") || CString::equals($path, ".") )
         {
             return ".";
         }
-        if ( CString::find($sPath, "/") )
+        if ( CString::find($path, "/") )
         {
-            $sFoundString;
-            CRegex::find($sPath, "/^.*(?=\\/)/", $sFoundString);
-            if ( CString::isEmpty($sFoundString) )
+            $foundString;
+            CRegex::find($path, "/^.*(?=\\/)/", $foundString);
+            if ( CString::isEmpty($foundString) )
             {
-                $sFoundString = "/";
+                $foundString = "/";
             }
-            return $sFoundString;
+            return $foundString;
         }
         else
         {
@@ -109,23 +109,23 @@ class CFilePath extends CRootClass
      * As special cases, the method returns "/", "..", or "." if the path (after normalization) is respectively "/",
      * "..", or ".".
      *
-     * @param  string $sPath The path to the file or directory (can be absolute or relative).
+     * @param  string $path The path to the file or directory (can be absolute or relative).
      *
      * @return CUStringObject The name of the file or directory, without any extensions.
      */
 
-    public static function nameOnly ($sPath)
+    public static function nameOnly ($path)
     {
-        assert( 'is_cstring($sPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($path)', vs(isset($this), get_defined_vars()) );
 
-        $sName = self::name($sPath);
-        if ( CString::equals($sName, "..") || CString::equals($sName, ".") )
+        $name = self::name($path);
+        if ( CString::equals($name, "..") || CString::equals($name, ".") )
         {
-            return $sName;
+            return $name;
         }
-        $sFoundString;
-        CRegex::find($sName, "/^.*?(?=\\.|\\z)/", $sFoundString);
-        return $sFoundString;
+        $foundString;
+        CRegex::find($name, "/^.*?(?=\\.|\\z)/", $foundString);
+        return $foundString;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -133,20 +133,20 @@ class CFilePath extends CRootClass
      *
      * For example, the full extension of "/path/to/file.tar.gz" is "tar.gz".
      *
-     * @param  string $sPath The path to the file (can be absolute or relative).
+     * @param  string $path The path to the file (can be absolute or relative).
      *
      * @return CUStringObject The full extension of the file.
      */
 
-    public static function extension ($sPath)
+    public static function extension ($path)
     {
-        assert( 'is_cstring($sPath)', vs(isset($this), get_defined_vars()) );
-        assert( '!CString::isEmpty($sPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($path)', vs(isset($this), get_defined_vars()) );
+        assert( '!CString::isEmpty($path)', vs(isset($this), get_defined_vars()) );
 
-        $sFoundString;
-        if ( CRegex::find($sPath, "/(?<=\\.(?!\\.))[^\\/]+\\z/", $sFoundString) )
+        $foundString;
+        if ( CRegex::find($path, "/(?<=\\.(?!\\.))[^\\/]+\\z/", $foundString) )
         {
-            return $sFoundString;
+            return $foundString;
         }
         else
         {
@@ -159,20 +159,20 @@ class CFilePath extends CRootClass
      *
      * For example, the last extension of "/path/to/file.tar.gz" is "gz".
      *
-     * @param  string $sPath The path to the file (can be absolute or relative).
+     * @param  string $path The path to the file (can be absolute or relative).
      *
      * @return CUStringObject The last extension of the file.
      */
 
-    public static function lastExtension ($sPath)
+    public static function lastExtension ($path)
     {
-        assert( 'is_cstring($sPath)', vs(isset($this), get_defined_vars()) );
-        assert( '!CString::isEmpty($sPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($path)', vs(isset($this), get_defined_vars()) );
+        assert( '!CString::isEmpty($path)', vs(isset($this), get_defined_vars()) );
 
-        $sFoundString;
-        if ( CRegex::find($sPath, "/(?<=\\.)[^\\/.]+\\z/", $sFoundString) )
+        $foundString;
+        if ( CRegex::find($path, "/(?<=\\.)[^\\/.]+\\z/", $foundString) )
         {
-            return $sFoundString;
+            return $foundString;
         }
         else
         {
@@ -186,26 +186,26 @@ class CFilePath extends CRootClass
      * If the specified path component already starts with "/", it still results in a single "/" as the separator. And,
      * as a special case, if the base path is empty, the returned string is the same as the specified path component.
      *
-     * @param  string $sBasePath The base path (can be absolute or relative).
-     * @param  string $sComponent The path component to be added to the base path (cannot be absolute).
+     * @param  string $basePath The base path (can be absolute or relative).
+     * @param  string $component The path component to be added to the base path (cannot be absolute).
      *
      * @return CUStringObject The combined path.
      */
 
-    public static function add ($sBasePath, $sComponent)
+    public static function add ($basePath, $component)
     {
-        assert( 'is_cstring($sBasePath) && is_cstring($sComponent)', vs(isset($this), get_defined_vars()) );
-        assert( '!CString::isEmpty($sComponent)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($basePath) && is_cstring($component)', vs(isset($this), get_defined_vars()) );
+        assert( '!CString::isEmpty($component)', vs(isset($this), get_defined_vars()) );
 
-        if ( CString::isEmpty($sBasePath) )
+        if ( CString::isEmpty($basePath) )
         {
-            return $sComponent;
+            return $component;
         }
-        if ( !CString::endsWith($sBasePath, "/") )
+        if ( !CString::endsWith($basePath, "/") )
         {
-            $sBasePath .= "/";
+            $basePath .= "/";
         }
-        return $sBasePath . $sComponent;
+        return $basePath . $component;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -214,106 +214,106 @@ class CFilePath extends CRootClass
      *
      * For example, "/path//./dir-a/.././to//../dir-b/" is normalized to "/path/dir-b".
      *
-     * @param  string $sPath The path to be normalized (can be absolute or relative).
-     * @param  bool $bTargetIsExecutable **OPTIONAL. Default is** `false`. Tells whether the path's target should be
+     * @param  string $path The path to be normalized (can be absolute or relative).
+     * @param  bool $targetIsExecutable **OPTIONAL. Default is** `false`. Tells whether the path's target should be
      * treated as an executable so that, if the path starts with ".", the resulting path will start with "." too and
      * the "." will not be removed as a reference to the current directory.
      *
      * @return CUStringObject The normalized path.
      */
 
-    public static function normalize ($sPath, $bTargetIsExecutable = false)
+    public static function normalize ($path, $targetIsExecutable = false)
     {
-        assert( 'is_cstring($sPath) && is_bool($bTargetIsExecutable)', vs(isset($this), get_defined_vars()) );
-        assert( '!CString::isEmpty($sPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($path) && is_bool($targetIsExecutable)', vs(isset($this), get_defined_vars()) );
+        assert( '!CString::isEmpty($path)', vs(isset($this), get_defined_vars()) );
 
-        $sPath = CRegex::replace($sPath, "/\\/{2,}/", "/");  // normalize consecutive slashes
-        $sPath = CString::stripEnd($sPath, "/");  // remove the trailing slash, if any
-        if ( CString::isEmpty($sPath) )
+        $path = CRegex::replace($path, "/\\/{2,}/", "/");  // normalize consecutive slashes
+        $path = CString::stripEnd($path, "/");  // remove the trailing slash, if any
+        if ( CString::isEmpty($path) )
         {
             return "/";
         }
-        $sPath = CRegex::remove($sPath, "/\\/\\.(?=\\/|\\z)/");  // remove any "/." followed by a slash or at the end
-        if ( CString::isEmpty($sPath) )
+        $path = CRegex::remove($path, "/\\/\\.(?=\\/|\\z)/");  // remove any "/." followed by a slash or at the end
+        if ( CString::isEmpty($path) )
         {
             return "/";
         }
-        if ( !$bTargetIsExecutable )
+        if ( !$targetIsExecutable )
         {
-            $sPath = CString::stripStart($sPath, "./");
+            $path = CString::stripStart($path, "./");
         }
 
-        $bPathIsAbsolute;
+        $pathIsAbsolute;
 
-        if ( !CString::startsWith($sPath, "/") )
+        if ( !CString::startsWith($path, "/") )
         {
-            $bPathIsAbsolute = false;
+            $pathIsAbsolute = false;
         }
         else
         {
-            $bPathIsAbsolute = true;
-            $sPath = CString::substr($sPath, 1);
+            $pathIsAbsolute = true;
+            $path = CString::substr($path, 1);
         }
 
-        if ( !CString::find($sPath, "/") )
+        if ( !CString::find($path, "/") )
         {
-            if ( $bPathIsAbsolute )
+            if ( $pathIsAbsolute )
             {
-                if ( !CString::equals($sPath, "..") )
+                if ( !CString::equals($path, "..") )
                 {
-                    $sPath = "/$sPath";
+                    $path = "/$path";
                 }
                 else
                 {
-                    $sPath = "/";
+                    $path = "/";
                 }
             }
-            return $sPath;
+            return $path;
         }
 
         // Recompose the path.
-        $aComponents = CString::split($sPath, "/");
-        $aNewComponents = CArray::make();
-        $iLen = CArray::length($aComponents);
-        for ($i = 0; $i < $iLen; $i++)
+        $components = CString::split($path, "/");
+        $newComponents = CArray::make();
+        $len = CArray::length($components);
+        for ($i = 0; $i < $len; $i++)
         {
-            $sComp = $aComponents[$i];
-            $sLastAddedComp = "";
-            $bNoCompsAddedYet = CArray::isEmpty($aNewComponents);
-            if ( !$bNoCompsAddedYet )
+            $comp = $components[$i];
+            $lastAddedComp = "";
+            $noCompsAddedYet = CArray::isEmpty($newComponents);
+            if ( !$noCompsAddedYet )
             {
-                $sLastAddedComp = CArray::last($aNewComponents);
+                $lastAddedComp = CArray::last($newComponents);
             }
-            if ( CString::equals($sComp, "..") )
+            if ( CString::equals($comp, "..") )
             {
-                if ( $bNoCompsAddedYet ||
-                     CString::equals($sLastAddedComp, "..") || CString::equals($sLastAddedComp, ".") )
+                if ( $noCompsAddedYet ||
+                     CString::equals($lastAddedComp, "..") || CString::equals($lastAddedComp, ".") )
                 {
-                    if ( !($bNoCompsAddedYet && $bPathIsAbsolute) )
+                    if ( !($noCompsAddedYet && $pathIsAbsolute) )
                     {
-                        CArray::push($aNewComponents, $sComp);
+                        CArray::push($newComponents, $comp);
                     }
                 }
                 else
                 {
-                    CArray::pop($aNewComponents);
+                    CArray::pop($newComponents);
                 }
             }
             else
             {
-                CArray::push($aNewComponents, $sComp);
+                CArray::push($newComponents, $comp);
             }
         }
-        $sPath = CArray::join($aNewComponents, "/");
-        if ( $bPathIsAbsolute )
+        $path = CArray::join($newComponents, "/");
+        if ( $pathIsAbsolute )
         {
-            $sPath = "/$sPath";
+            $path = "/$path";
         }
-        else if ( CString::isEmpty($sPath) )
+        else if ( CString::isEmpty($path) )
         {
-            $sPath = ".";
+            $path = ".";
         }
-        return $sPath;
+        return $path;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -322,35 +322,35 @@ class CFilePath extends CRootClass
      *
      * The file or directory should actually exist for the file system to be able to answer.
      *
-     * @param  string $sPath The path to the file or directory (usually a relative one).
+     * @param  string $path The path to the file or directory (usually a relative one).
      *
      * @return CUStringObject The absolute path to the file or directory.
      */
 
-    public static function absolute ($sPath)
+    public static function absolute ($path)
     {
-        assert( 'is_cstring($sPath)', vs(isset($this), get_defined_vars()) );
-        assert( '!CString::isEmpty($sPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($path)', vs(isset($this), get_defined_vars()) );
+        assert( '!CString::isEmpty($path)', vs(isset($this), get_defined_vars()) );
 
-        $sAbsPath = realpath($sPath);
-        assert( 'is_cstring($sAbsPath)', vs(isset($this), get_defined_vars()) );
-        return $sAbsPath;
+        $absPath = realpath($path);
+        assert( 'is_cstring($absPath)', vs(isset($this), get_defined_vars()) );
+        return $absPath;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if a path is absolute.
      *
-     * @param  string $sPath The path to be looked into.
+     * @param  string $path The path to be looked into.
      *
      * @return bool `true` if the path is absolute, `false` otherwise.
      */
 
-    public static function isAbsolute ($sPath)
+    public static function isAbsolute ($path)
     {
-        assert( 'is_cstring($sPath)', vs(isset($this), get_defined_vars()) );
-        assert( '!CString::isEmpty($sPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($path)', vs(isset($this), get_defined_vars()) );
+        assert( '!CString::isEmpty($path)', vs(isset($this), get_defined_vars()) );
 
-        return CString::startsWith($sPath, "/");
+        return CString::startsWith($path, "/");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -360,16 +360,16 @@ class CFilePath extends CRootClass
      * A framework's directory is referenced in a path by wrapping its ID into double curly braces, as in
      * "{{PHRED_PATH_TO_FRAMEWORK_ROOT}}", optionally with "/" after the reference.
      *
-     * @param  string $sPath The path to the file or directory (can be absolute or relative).
+     * @param  string $path The path to the file or directory (can be absolute or relative).
      *
      * @return CUStringObject The usable path.
      */
 
-    public static function frameworkPath ($sPath)
+    public static function frameworkPath ($path)
     {
-        assert( '!isset($sPath) || is_cstring($sPath)', vs(isset($this), get_defined_vars()) );
+        assert( '!isset($path) || is_cstring($path)', vs(isset($this), get_defined_vars()) );
 
-        if ( !isset($sPath) )
+        if ( !isset($path) )
         {
             return null;
         }
@@ -377,26 +377,26 @@ class CFilePath extends CRootClass
         // Replace every "{{EXAMPLE_PATH}}" in the path string with the value of "EXAMPLE_PATH" key from $GLOBALS
         // variable if such key exists in the variable.
 
-        $bModified = false;
-        $sPath = CRegex::replaceWithCallback($sPath, "/\\{\\{\\w+\\}\\}/", function ($mMatches) use (&$bModified)
+        $modified = false;
+        $path = CRegex::replaceWithCallback($path, "/\\{\\{\\w+\\}\\}/", function ($matches) use (&$modified)
             {
-                $sPathVarName = CString::substr($mMatches[0], 2, CString::length($mMatches[0]) - 4);
-                if ( isset($GLOBALS[$sPathVarName]) )
+                $pathVarName = CString::substr($matches[0], 2, CString::length($matches[0]) - 4);
+                if ( isset($GLOBALS[$pathVarName]) )
                 {
-                    $bModified = true;
-                    return $GLOBALS[$sPathVarName] . "/";
+                    $modified = true;
+                    return $GLOBALS[$pathVarName] . "/";
                 }
                 else
                 {
                     assert( 'false', vs(isset($this), get_defined_vars()) );
-                    return $mMatches[0];
+                    return $matches[0];
                 }
             });
-        if ( $bModified )
+        if ( $modified )
         {
-            $sPath = CRegex::replace($sPath, "/\\/{2,}/", "/");
+            $path = CRegex::replace($path, "/\\/{2,}/", "/");
         }
-        return $sPath;
+        return $path;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }

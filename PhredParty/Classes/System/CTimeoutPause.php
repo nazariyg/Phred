@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -29,8 +29,8 @@ class CTimeoutPause extends CRootClass
     {
         // Remember the script's current execution time limit and the amount of time that has elapsed since the script
         // started.
-        $this->m_iExeTimeLimitBeforePause = CSystem::executionTimeLimit();
-        $this->m_iSecondsElaplsedBeforePause = CTime::now()->diffInSeconds(CSystem::startTime());
+        $this->m_exeTimeLimitBeforePause = CSystem::executionTimeLimit();
+        $this->m_secondsElaplsedBeforePause = CTime::now()->diffInSeconds(CSystem::startTime());
 
         // Remove the existing execution time limit.
         CSystem::removeExecutionTimeLimit();
@@ -40,19 +40,19 @@ class CTimeoutPause extends CRootClass
     {
         // Set the script's execution time limit to the previous value but without the time that elapsed before the
         // "pause" was made (simply setting it to the previous value would reset the timer).
-        $iNewExecutionTimeLimit = $this->m_iExeTimeLimitBeforePause - $this->m_iSecondsElaplsedBeforePause;
-        if ( $iNewExecutionTimeLimit <= 0 )  // avoid the special value of zero
+        $newExecutionTimeLimit = $this->m_exeTimeLimitBeforePause - $this->m_secondsElaplsedBeforePause;
+        if ( $newExecutionTimeLimit <= 0 )  // avoid the special value of zero
         {
-            $iNewExecutionTimeLimit = 1;
+            $newExecutionTimeLimit = 1;
         }
-        CSystem::setExecutionTimeLimit($iNewExecutionTimeLimit);
+        CSystem::setExecutionTimeLimit($newExecutionTimeLimit);
 
-        $this->m_bDone = true;
+        $this->m_done = true;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function __destruct ()
     {
-        if ( !$this->m_bDone )
+        if ( !$this->m_done )
         {
             // A timeout pause should explicitly be ended with `end` method, but have to do it manually now.
             $this->end();
@@ -60,7 +60,7 @@ class CTimeoutPause extends CRootClass
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    protected $m_iExeTimeLimitBeforePause;
-    protected $m_iSecondsElaplsedBeforePause;
-    protected $m_bDone = false;
+    protected $m_exeTimeLimitBeforePause;
+    protected $m_secondsElaplsedBeforePause;
+    protected $m_done = false;
 }

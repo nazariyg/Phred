@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * @ignore
  */
@@ -9,137 +10,137 @@ class CUrlPathTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testMake ()
     {
-        $oUrlPath = new CUrlPath("/path/to/item");
-        $this->assertTrue( $oUrlPath->numComponents() == 3 );
-        $this->assertTrue( $oUrlPath->component(0)->equals("path") && $oUrlPath->component(1)->equals("to") &&
-            $oUrlPath->component(2)->equals("item") );
-        $this->assertTrue($oUrlPath->pathString()->equals("/path/to/item"));
+        $urlPath = new CUrlPath("/path/to/item");
+        $this->assertTrue( $urlPath->numComponents() == 3 );
+        $this->assertTrue( $urlPath->component(0)->equals("path") && $urlPath->component(1)->equals("to") &&
+            $urlPath->component(2)->equals("item") );
+        $this->assertTrue($urlPath->pathString()->equals("/path/to/item"));
 
-        $oUrlPath = new CUrlPath("/the%20path/to/an%20item");
-        $this->assertTrue( $oUrlPath->numComponents() == 3 );
-        $this->assertTrue( $oUrlPath->component(0)->equals("the path") && $oUrlPath->component(1)->equals("to") &&
-            $oUrlPath->component(2)->equals("an item") );
-        $this->assertTrue($oUrlPath->pathString()->equals("/the%20path/to/an%20item"));
+        $urlPath = new CUrlPath("/the%20path/to/an%20item");
+        $this->assertTrue( $urlPath->numComponents() == 3 );
+        $this->assertTrue( $urlPath->component(0)->equals("the path") && $urlPath->component(1)->equals("to") &&
+            $urlPath->component(2)->equals("an item") );
+        $this->assertTrue($urlPath->pathString()->equals("/the%20path/to/an%20item"));
 
-        $oUrlPath = new CUrlPath("/the path/to/an item");
-        $this->assertTrue( $oUrlPath->numComponents() == 3 );
-        $this->assertTrue( $oUrlPath->component(0)->equals("the path") && $oUrlPath->component(1)->equals("to") &&
-            $oUrlPath->component(2)->equals("an item") );
-        $this->assertTrue($oUrlPath->pathString()->equals("/the%20path/to/an%20item"));
+        $urlPath = new CUrlPath("/the path/to/an item");
+        $this->assertTrue( $urlPath->numComponents() == 3 );
+        $this->assertTrue( $urlPath->component(0)->equals("the path") && $urlPath->component(1)->equals("to") &&
+            $urlPath->component(2)->equals("an item") );
+        $this->assertTrue($urlPath->pathString()->equals("/the%20path/to/an%20item"));
 
-        $oUrlPath = new CUrlPath("/path/to/item/");
-        $this->assertTrue( $oUrlPath->numComponents() == 4 );
-        $this->assertTrue( $oUrlPath->component(0)->equals("path") && $oUrlPath->component(1)->equals("to") &&
-            $oUrlPath->component(2)->equals("item") && $oUrlPath->component(3)->equals("") );
-        $this->assertTrue($oUrlPath->pathString()->equals("/path/to/item/"));
+        $urlPath = new CUrlPath("/path/to/item/");
+        $this->assertTrue( $urlPath->numComponents() == 4 );
+        $this->assertTrue( $urlPath->component(0)->equals("path") && $urlPath->component(1)->equals("to") &&
+            $urlPath->component(2)->equals("item") && $urlPath->component(3)->equals("") );
+        $this->assertTrue($urlPath->pathString()->equals("/path/to/item/"));
 
-        $oUrlPath = new CUrlPath();
-        $oUrlPath->addComponent("path");
-        $oUrlPath->addComponent("to");
-        $oUrlPath->addComponent("item");
-        $this->assertTrue( $oUrlPath->numComponents() == 3 );
-        $this->assertTrue( $oUrlPath->component(0)->equals("path") && $oUrlPath->component(1)->equals("to") &&
-            $oUrlPath->component(2)->equals("item") );
-        $this->assertTrue($oUrlPath->pathString()->equals("/path/to/item"));
+        $urlPath = new CUrlPath();
+        $urlPath->addComponent("path");
+        $urlPath->addComponent("to");
+        $urlPath->addComponent("item");
+        $this->assertTrue( $urlPath->numComponents() == 3 );
+        $this->assertTrue( $urlPath->component(0)->equals("path") && $urlPath->component(1)->equals("to") &&
+            $urlPath->component(2)->equals("item") );
+        $this->assertTrue($urlPath->pathString()->equals("/path/to/item"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testNextComponent ()
     {
-        $oUrlPath = new CUrlPath("/path/to/item");
-        $this->assertTrue($oUrlPath->nextComponent()->equals("path"));
-        $this->assertTrue($oUrlPath->nextComponent()->equals("to"));
-        $this->assertTrue($oUrlPath->nextComponent()->equals("item"));
+        $urlPath = new CUrlPath("/path/to/item");
+        $this->assertTrue($urlPath->nextComponent()->equals("path"));
+        $this->assertTrue($urlPath->nextComponent()->equals("to"));
+        $this->assertTrue($urlPath->nextComponent()->equals("item"));
 
-        $oUrlPath = new CUrlPath("/the%20path/to/an%20item");
-        $this->assertTrue($oUrlPath->nextComponent()->equals("the path"));
-        $this->assertTrue($oUrlPath->nextComponent()->equals("to"));
-        $this->assertTrue($oUrlPath->nextComponent()->equals("an item"));
+        $urlPath = new CUrlPath("/the%20path/to/an%20item");
+        $this->assertTrue($urlPath->nextComponent()->equals("the path"));
+        $this->assertTrue($urlPath->nextComponent()->equals("to"));
+        $this->assertTrue($urlPath->nextComponent()->equals("an item"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testIsPosPastEnd ()
     {
-        $oUrlPath = new CUrlPath("/path/to/item");
-        $this->assertTrue($oUrlPath->nextComponent()->equals("path"));
-        $this->assertFalse($oUrlPath->isPosPastEnd());
-        $this->assertTrue($oUrlPath->nextComponent()->equals("to"));
-        $this->assertFalse($oUrlPath->isPosPastEnd());
-        $this->assertTrue($oUrlPath->nextComponent()->equals("item"));
-        $this->assertTrue($oUrlPath->isPosPastEnd());
+        $urlPath = new CUrlPath("/path/to/item");
+        $this->assertTrue($urlPath->nextComponent()->equals("path"));
+        $this->assertFalse($urlPath->isPosPastEnd());
+        $this->assertTrue($urlPath->nextComponent()->equals("to"));
+        $this->assertFalse($urlPath->isPosPastEnd());
+        $this->assertTrue($urlPath->nextComponent()->equals("item"));
+        $this->assertTrue($urlPath->isPosPastEnd());
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testNumComponents ()
     {
-        $oUrlPath = new CUrlPath("/path/to/item");
-        $this->assertTrue( $oUrlPath->numComponents() == 3 );
+        $urlPath = new CUrlPath("/path/to/item");
+        $this->assertTrue( $urlPath->numComponents() == 3 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testComponent ()
     {
-        $oUrlPath = new CUrlPath("/path/to/item");
-        $this->assertTrue( $oUrlPath->component(0)->equals("path") && $oUrlPath->component(1)->equals("to") &&
-            $oUrlPath->component(2)->equals("item") );
+        $urlPath = new CUrlPath("/path/to/item");
+        $this->assertTrue( $urlPath->component(0)->equals("path") && $urlPath->component(1)->equals("to") &&
+            $urlPath->component(2)->equals("item") );
 
-        $oUrlPath = new CUrlPath("/the%20path/to/an%20item");
-        $this->assertTrue( $oUrlPath->component(0)->equals("the path") && $oUrlPath->component(1)->equals("to") &&
-            $oUrlPath->component(2)->equals("an item") );
+        $urlPath = new CUrlPath("/the%20path/to/an%20item");
+        $this->assertTrue( $urlPath->component(0)->equals("the path") && $urlPath->component(1)->equals("to") &&
+            $urlPath->component(2)->equals("an item") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testAddComponent ()
     {
-        $oUrlPath = new CUrlPath();
-        $oUrlPath->addComponent("path");
-        $oUrlPath->addComponent("to");
-        $oUrlPath->addComponent("item");
-        $this->assertTrue( $oUrlPath->numComponents() == 3 );
-        $this->assertTrue( $oUrlPath->component(0)->equals("path") && $oUrlPath->component(1)->equals("to") &&
-            $oUrlPath->component(2)->equals("item") );
-        $this->assertTrue($oUrlPath->pathString()->equals("/path/to/item"));
+        $urlPath = new CUrlPath();
+        $urlPath->addComponent("path");
+        $urlPath->addComponent("to");
+        $urlPath->addComponent("item");
+        $this->assertTrue( $urlPath->numComponents() == 3 );
+        $this->assertTrue( $urlPath->component(0)->equals("path") && $urlPath->component(1)->equals("to") &&
+            $urlPath->component(2)->equals("item") );
+        $this->assertTrue($urlPath->pathString()->equals("/path/to/item"));
 
-        $oUrlPath = new CUrlPath();
-        $oUrlPath->addComponent("the path");
-        $oUrlPath->addComponent("to");
-        $oUrlPath->addComponent("an item");
-        $this->assertTrue( $oUrlPath->numComponents() == 3 );
-        $this->assertTrue( $oUrlPath->component(0)->equals("the path") && $oUrlPath->component(1)->equals("to") &&
-            $oUrlPath->component(2)->equals("an item") );
-        $this->assertTrue($oUrlPath->pathString()->equals("/the%20path/to/an%20item"));
+        $urlPath = new CUrlPath();
+        $urlPath->addComponent("the path");
+        $urlPath->addComponent("to");
+        $urlPath->addComponent("an item");
+        $this->assertTrue( $urlPath->numComponents() == 3 );
+        $this->assertTrue( $urlPath->component(0)->equals("the path") && $urlPath->component(1)->equals("to") &&
+            $urlPath->component(2)->equals("an item") );
+        $this->assertTrue($urlPath->pathString()->equals("/the%20path/to/an%20item"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testPathString ()
     {
-        $oUrlPath = new CUrlPath("/path/to/item");
-        $this->assertTrue( $oUrlPath->numComponents() == 3 );
-        $this->assertTrue( $oUrlPath->component(0)->equals("path") && $oUrlPath->component(1)->equals("to") &&
-            $oUrlPath->component(2)->equals("item") );
-        $this->assertTrue($oUrlPath->pathString()->equals("/path/to/item"));
+        $urlPath = new CUrlPath("/path/to/item");
+        $this->assertTrue( $urlPath->numComponents() == 3 );
+        $this->assertTrue( $urlPath->component(0)->equals("path") && $urlPath->component(1)->equals("to") &&
+            $urlPath->component(2)->equals("item") );
+        $this->assertTrue($urlPath->pathString()->equals("/path/to/item"));
 
-        $oUrlPath = new CUrlPath("/the%20path/to/an%20item");
-        $this->assertTrue( $oUrlPath->numComponents() == 3 );
-        $this->assertTrue( $oUrlPath->component(0)->equals("the path") && $oUrlPath->component(1)->equals("to") &&
-            $oUrlPath->component(2)->equals("an item") );
-        $this->assertTrue($oUrlPath->pathString()->equals("/the%20path/to/an%20item"));
+        $urlPath = new CUrlPath("/the%20path/to/an%20item");
+        $this->assertTrue( $urlPath->numComponents() == 3 );
+        $this->assertTrue( $urlPath->component(0)->equals("the path") && $urlPath->component(1)->equals("to") &&
+            $urlPath->component(2)->equals("an item") );
+        $this->assertTrue($urlPath->pathString()->equals("/the%20path/to/an%20item"));
 
-        $oUrlPath = new CUrlPath("/the path/to/an item");
-        $this->assertTrue( $oUrlPath->numComponents() == 3 );
-        $this->assertTrue( $oUrlPath->component(0)->equals("the path") && $oUrlPath->component(1)->equals("to") &&
-            $oUrlPath->component(2)->equals("an item") );
-        $this->assertTrue($oUrlPath->pathString()->equals("/the%20path/to/an%20item"));
+        $urlPath = new CUrlPath("/the path/to/an item");
+        $this->assertTrue( $urlPath->numComponents() == 3 );
+        $this->assertTrue( $urlPath->component(0)->equals("the path") && $urlPath->component(1)->equals("to") &&
+            $urlPath->component(2)->equals("an item") );
+        $this->assertTrue($urlPath->pathString()->equals("/the%20path/to/an%20item"));
 
-        $oUrlPath = new CUrlPath("/path/to/item/");
-        $this->assertTrue( $oUrlPath->numComponents() == 4 );
-        $this->assertTrue( $oUrlPath->component(0)->equals("path") && $oUrlPath->component(1)->equals("to") &&
-            $oUrlPath->component(2)->equals("item") && $oUrlPath->component(3)->equals("") );
-        $this->assertTrue($oUrlPath->pathString()->equals("/path/to/item/"));
+        $urlPath = new CUrlPath("/path/to/item/");
+        $this->assertTrue( $urlPath->numComponents() == 4 );
+        $this->assertTrue( $urlPath->component(0)->equals("path") && $urlPath->component(1)->equals("to") &&
+            $urlPath->component(2)->equals("item") && $urlPath->component(3)->equals("") );
+        $this->assertTrue($urlPath->pathString()->equals("/path/to/item/"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testClone ()
     {
-        $oUrlPath0 = new CUrlPath("/path/to/item");
-        $oUrlPath1 = clone $oUrlPath0;
-        $oUrlPath0->addComponent("id");
+        $urlPath0 = new CUrlPath("/path/to/item");
+        $urlPath1 = clone $urlPath0;
+        $urlPath0->addComponent("id");
         $this->assertTrue(
-            $oUrlPath0->pathString()->equals("/path/to/item/id") &&
-            $oUrlPath1->pathString()->equals("/path/to/item") );
+            $urlPath0->pathString()->equals("/path/to/item/id") &&
+            $urlPath1->pathString()->equals("/path/to/item") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }

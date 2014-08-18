@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -14,340 +14,340 @@ class CMapTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testMake ()
     {
-        $mMap = CMap::make();
-        $this->assertTrue( count($mMap) == 0 );
+        $map = CMap::make();
+        $this->assertTrue( count($map) == 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testMakeCopy ()
     {
-        $mMap0 = CMap::make();
-        $mMap0["one"] = "a";
-        $mMap0["two"] = "b";
-        $mMap0["three"] = "c";
-        $mMap1 = CMap::makeCopy($mMap0);
+        $map0 = CMap::make();
+        $map0["one"] = "a";
+        $map0["two"] = "b";
+        $map0["three"] = "c";
+        $map1 = CMap::makeCopy($map0);
         $this->assertTrue(
-            $mMap0["one"] === $mMap1["one"] &&
-            $mMap0["two"] === $mMap1["two"] &&
-            $mMap0["three"] === $mMap1["three"] );
-        $mMap0["one"] = "d";
-        $this->assertTrue( $mMap1["one"] === "a" );
+            $map0["one"] === $map1["one"] &&
+            $map0["two"] === $map1["two"] &&
+            $map0["three"] === $map1["three"] );
+        $map0["one"] = "d";
+        $this->assertTrue( $map1["one"] === "a" );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testLength ()
     {
-        $mMap = CMap::make();
-        $mMap["one"] = "a";
-        $mMap["two"] = "b";
-        $mMap["three"] = "c";
-        $this->assertTrue( CMap::length($mMap) == 3 );
+        $map = CMap::make();
+        $map["one"] = "a";
+        $map["two"] = "b";
+        $map["three"] = "c";
+        $this->assertTrue( CMap::length($map) == 3 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testIsEmpty ()
     {
-        $mMap = CMap::make();
-        $this->assertTrue(CMap::isEmpty($mMap));
+        $map = CMap::make();
+        $this->assertTrue(CMap::isEmpty($map));
 
-        $mMap = CMap::make();
-        $mMap["one"] = "a";
-        $this->assertFalse(CMap::isEmpty($mMap));
+        $map = CMap::make();
+        $map["one"] = "a";
+        $this->assertFalse(CMap::isEmpty($map));
 
-        $mMap = CMap::make();
-        $mMap["one"] = null;
-        $this->assertFalse(CMap::isEmpty($mMap));
+        $map = CMap::make();
+        $map["one"] = null;
+        $this->assertFalse(CMap::isEmpty($map));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testEquals ()
     {
         // Using the default comparator.
 
-        $mMap0 = ["one" => "a", "two" => "b", "three" => "c"];
-        $mMap1 = ["one" => "a", "two" => "b", "three" => "c"];
-        $this->assertTrue(CMap::equals($mMap0, $mMap1));
+        $map0 = ["one" => "a", "two" => "b", "three" => "c"];
+        $map1 = ["one" => "a", "two" => "b", "three" => "c"];
+        $this->assertTrue(CMap::equals($map0, $map1));
 
-        $mMap0 = ["one" => "a", "two" => "b", "three" => "c"];
-        $mMap1 = ["one" => "a", "two" => "b", "four" => "c"];
-        $this->assertFalse(CMap::equals($mMap0, $mMap1));
+        $map0 = ["one" => "a", "two" => "b", "three" => "c"];
+        $map1 = ["one" => "a", "two" => "b", "four" => "c"];
+        $this->assertFalse(CMap::equals($map0, $map1));
 
-        $mMap0 = ["one" => "a", "two" => "b", "three" => "c"];
-        $mMap1 = ["one" => "a", "two" => "b", "three" => "d"];
-        $this->assertFalse(CMap::equals($mMap0, $mMap1));
+        $map0 = ["one" => "a", "two" => "b", "three" => "c"];
+        $map1 = ["one" => "a", "two" => "b", "three" => "d"];
+        $this->assertFalse(CMap::equals($map0, $map1));
 
-        $mMap0 = ["one" => "a", "two" => "b", "three" => "c"];
-        $mMap1 = ["one" => "a", "two" => "b", "three" => "C"];
-        $this->assertFalse(CMap::equals($mMap0, $mMap1));
+        $map0 = ["one" => "a", "two" => "b", "three" => "c"];
+        $map1 = ["one" => "a", "two" => "b", "three" => "C"];
+        $this->assertFalse(CMap::equals($map0, $map1));
 
-        $mMap0 = ["one" => "a", "two" => "b", "three" => "c"];
-        $mMap1 = ["one" => "a", "two" => "b", "three" => "c", "four" => "d"];
-        $this->assertFalse(CMap::equals($mMap0, $mMap1));
+        $map0 = ["one" => "a", "two" => "b", "three" => "c"];
+        $map1 = ["one" => "a", "two" => "b", "three" => "c", "four" => "d"];
+        $this->assertFalse(CMap::equals($map0, $map1));
 
-        $mMap0 = ["one" => 1, "two" => 2, "three" => 3];
-        $mMap1 = ["one" => 1, "two" => 2, "three" => 3];
-        $this->assertTrue(CMap::equals($mMap0, $mMap1));
+        $map0 = ["one" => 1, "two" => 2, "three" => 3];
+        $map1 = ["one" => 1, "two" => 2, "three" => 3];
+        $this->assertTrue(CMap::equals($map0, $map1));
 
-        $mMap0 = [1, 2, 3];
-        $mMap1 = [1, 2, 3];
-        $this->assertTrue(CMap::equals($mMap0, $mMap1));
+        $map0 = [1, 2, 3];
+        $map1 = [1, 2, 3];
+        $this->assertTrue(CMap::equals($map0, $map1));
 
-        $mMap0 = [1.2, 3.4, 5.6];
-        $mMap1 = [1.2, 3.4, 5.6];
-        $this->assertTrue(CMap::equals($mMap0, $mMap1));
+        $map0 = [1.2, 3.4, 5.6];
+        $map1 = [1.2, 3.4, 5.6];
+        $this->assertTrue(CMap::equals($map0, $map1));
 
-        $mMap0 = ["one" => "a", "two" => "b", "three" => "c"];
-        $mMap1 = ["one" => u("a"), "two" => u("b"), "three" => u("c")];
-        $this->assertTrue(CMap::equals($mMap0, $mMap1));
+        $map0 = ["one" => "a", "two" => "b", "three" => "c"];
+        $map1 = ["one" => u("a"), "two" => u("b"), "three" => u("c")];
+        $this->assertTrue(CMap::equals($map0, $map1));
 
-        $mMap0 = CMap::make();
-        $mMap1 = ["one" => "a", "two" => "b", "three" => "c"];
-        $this->assertFalse(CMap::equals($mMap0, $mMap1));
+        $map0 = CMap::make();
+        $map1 = ["one" => "a", "two" => "b", "three" => "c"];
+        $this->assertFalse(CMap::equals($map0, $map1));
 
-        $mMap0 = ["one" => "a", "two" => "b", "three" => "c"];
-        $mMap1 = CMap::make();
-        $this->assertFalse(CMap::equals($mMap0, $mMap1));
+        $map0 = ["one" => "a", "two" => "b", "three" => "c"];
+        $map1 = CMap::make();
+        $this->assertFalse(CMap::equals($map0, $map1));
 
         // Using a custom comparator.
-        $mMap0 = ["one" => "a", "two" => "b", "three" => "c"];
-        $mMap1 = ["one" => "A", "two" => "B", "three" => "C"];
-        $fnComparator = function ($sString0, $sString1)
+        $map0 = ["one" => "a", "two" => "b", "three" => "c"];
+        $map1 = ["one" => "A", "two" => "B", "three" => "C"];
+        $comparator = function ($string0, $string1)
             {
-                return ( CString::toLowerCase($sString0) === CString::toLowerCase($sString1) );
+                return ( CString::toLowerCase($string0) === CString::toLowerCase($string1) );
             };
-        $this->assertTrue(CMap::equals($mMap0, $mMap1, $fnComparator));
+        $this->assertTrue(CMap::equals($map0, $map1, $comparator));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testCompare ()
     {
         // Using the default comparator.
 
-        $mMap0 = ["one" => "a", "two" => "b", "three" => "c"];
-        $mMap1 = ["one" => "a", "two" => "b", "three" => "c"];
-        $this->assertTrue( CMap::compare($mMap0, $mMap1) == 0 );
+        $map0 = ["one" => "a", "two" => "b", "three" => "c"];
+        $map1 = ["one" => "a", "two" => "b", "three" => "c"];
+        $this->assertTrue( CMap::compare($map0, $map1) == 0 );
 
-        $mMap0 = ["a" => "a", "two" => "b", "three" => "c"];
-        $mMap1 = ["one" => "a", "two" => "b", "three" => "c"];
-        $this->assertTrue( CMap::compare($mMap0, $mMap1) < 0 );
+        $map0 = ["a" => "a", "two" => "b", "three" => "c"];
+        $map1 = ["one" => "a", "two" => "b", "three" => "c"];
+        $this->assertTrue( CMap::compare($map0, $map1) < 0 );
 
-        $mMap0 = ["one" => "a", "two" => "b", "three" => "c"];
-        $mMap1 = ["one" => "d", "two" => "e", "three" => "f"];
-        $this->assertTrue( CMap::compare($mMap0, $mMap1) < 0 );
+        $map0 = ["one" => "a", "two" => "b", "three" => "c"];
+        $map1 = ["one" => "d", "two" => "e", "three" => "f"];
+        $this->assertTrue( CMap::compare($map0, $map1) < 0 );
 
-        $mMap0 = ["one" => "d", "two" => "e", "three" => "f"];
-        $mMap1 = ["one" => "a", "two" => "e", "three" => "f"];
-        $this->assertTrue( CMap::compare($mMap0, $mMap1) > 0 );
+        $map0 = ["one" => "d", "two" => "e", "three" => "f"];
+        $map1 = ["one" => "a", "two" => "e", "three" => "f"];
+        $this->assertTrue( CMap::compare($map0, $map1) > 0 );
 
-        $mMap0 = ["one" => "a", "two" => "b"];
-        $mMap1 = ["one" => "a", "two" => "b", "three" => "c"];
-        $this->assertTrue( CMap::compare($mMap0, $mMap1) < 0 );
+        $map0 = ["one" => "a", "two" => "b"];
+        $map1 = ["one" => "a", "two" => "b", "three" => "c"];
+        $this->assertTrue( CMap::compare($map0, $map1) < 0 );
 
-        $mMap0 = ["one" => 1, "two" => 2, "three" => 3];
-        $mMap1 = ["one" => 1, "two" => 2, "three" => 3];
-        $this->assertTrue( CMap::compare($mMap0, $mMap1) == 0 );
+        $map0 = ["one" => 1, "two" => 2, "three" => 3];
+        $map1 = ["one" => 1, "two" => 2, "three" => 3];
+        $this->assertTrue( CMap::compare($map0, $map1) == 0 );
 
-        $mMap0 = [1, 2, 3];
-        $mMap1 = [1, 2, 3];
-        $this->assertTrue( CMap::compare($mMap0, $mMap1) == 0 );
+        $map0 = [1, 2, 3];
+        $map1 = [1, 2, 3];
+        $this->assertTrue( CMap::compare($map0, $map1) == 0 );
 
-        $mMap0 = [1, 2, 3];
-        $mMap1 = [4, 5, 6];
-        $this->assertTrue( CMap::compare($mMap0, $mMap1) < 0 );
+        $map0 = [1, 2, 3];
+        $map1 = [4, 5, 6];
+        $this->assertTrue( CMap::compare($map0, $map1) < 0 );
 
-        $mMap0 = [4, 5, 6];
-        $mMap1 = [3, 5, 6];
-        $this->assertTrue( CMap::compare($mMap0, $mMap1) > 0 );
+        $map0 = [4, 5, 6];
+        $map1 = [3, 5, 6];
+        $this->assertTrue( CMap::compare($map0, $map1) > 0 );
 
-        $mMap0 = [1.2, 3.4, 5.6];
-        $mMap1 = [1.2, 3.4, 5.6];
-        $this->assertTrue( CMap::compare($mMap0, $mMap1) == 0 );
+        $map0 = [1.2, 3.4, 5.6];
+        $map1 = [1.2, 3.4, 5.6];
+        $this->assertTrue( CMap::compare($map0, $map1) == 0 );
 
-        $mMap0 = ["one" => "a", "two" => "b", "three" => "c"];
-        $mMap1 = ["one" => u("a"), "two" => u("b"), "three" => u("c")];
-        $this->assertTrue( CMap::compare($mMap0, $mMap1) == 0 );
+        $map0 = ["one" => "a", "two" => "b", "three" => "c"];
+        $map1 = ["one" => u("a"), "two" => u("b"), "three" => u("c")];
+        $this->assertTrue( CMap::compare($map0, $map1) == 0 );
 
         // Using a custom comparator.
-        $mMap0 = ["one" => "a", "two" => "b", "three" => "c"];
-        $mMap1 = ["one" => "A", "two" => "B", "three" => "C"];
-        $fnComparator = function ($sString0, $sString1)
+        $map0 = ["one" => "a", "two" => "b", "three" => "c"];
+        $map1 = ["one" => "A", "two" => "B", "three" => "C"];
+        $comparator = function ($string0, $string1)
             {
-                return ( CString::toLowerCase($sString0) === CString::toLowerCase($sString1) ) ? 0 : -1;
+                return ( CString::toLowerCase($string0) === CString::toLowerCase($string1) ) ? 0 : -1;
             };
-        $this->assertTrue( CMap::compare($mMap0, $mMap1, $fnComparator) == 0 );
+        $this->assertTrue( CMap::compare($map0, $map1, $comparator) == 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testHasKey ()
     {
-        $mMap = ["one" => "a", "two" => "b", "three" => "c"];
-        $this->assertTrue(CMap::hasKey($mMap, "two"));
-        $this->assertFalse(CMap::hasKey($mMap, "four"));
+        $map = ["one" => "a", "two" => "b", "three" => "c"];
+        $this->assertTrue(CMap::hasKey($map, "two"));
+        $this->assertFalse(CMap::hasKey($map, "four"));
 
-        $mMap = ["one" => "a", "two" => null, "three" => "c"];
-        $this->assertTrue(CMap::hasKey($mMap, "two"));
+        $map = ["one" => "a", "two" => null, "three" => "c"];
+        $this->assertTrue(CMap::hasKey($map, "two"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testHasPath ()
     {
-        $mMap = ["one" => "a", "two" => ["one" => "a", "two" => ["one" => "a", "two" => "b", "three" => "c"]]];
-        $this->assertTrue(CMap::hasPath($mMap, "one"));
-        $this->assertTrue(CMap::hasPath($mMap, "two"));
-        $this->assertTrue(CMap::hasPath($mMap, "two.one"));
-        $this->assertTrue(CMap::hasPath($mMap, "two.two.three"));
-        $this->assertFalse(CMap::hasPath($mMap, "three"));
-        $this->assertFalse(CMap::hasPath($mMap, "one.one"));
-        $this->assertFalse(CMap::hasPath($mMap, "two.three"));
+        $map = ["one" => "a", "two" => ["one" => "a", "two" => ["one" => "a", "two" => "b", "three" => "c"]]];
+        $this->assertTrue(CMap::hasPath($map, "one"));
+        $this->assertTrue(CMap::hasPath($map, "two"));
+        $this->assertTrue(CMap::hasPath($map, "two.one"));
+        $this->assertTrue(CMap::hasPath($map, "two.two.three"));
+        $this->assertFalse(CMap::hasPath($map, "three"));
+        $this->assertFalse(CMap::hasPath($map, "one.one"));
+        $this->assertFalse(CMap::hasPath($map, "two.three"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testValueByPath ()
     {
-        $mMap = ["one" => "a", "two" => ["one" => "a", "two" => ["one" => "a", "two" => "b", "three" => "c"]]];
-        $this->assertTrue( CMap::valueByPath($mMap, "one") === "a" );
+        $map = ["one" => "a", "two" => ["one" => "a", "two" => ["one" => "a", "two" => "b", "three" => "c"]]];
+        $this->assertTrue( CMap::valueByPath($map, "one") === "a" );
         $this->assertTrue(
-            CMap::equals(CMap::valueByPath($mMap, "two"),
+            CMap::equals(CMap::valueByPath($map, "two"),
             ["one" => "a", "two" => ["one" => "a", "two" => "b", "three" => "c"]]));
-        $this->assertTrue( CMap::valueByPath($mMap, "two.one") === "a" );
+        $this->assertTrue( CMap::valueByPath($map, "two.one") === "a" );
         $this->assertTrue(
-            CMap::equals(CMap::valueByPath($mMap, "two.two"),
+            CMap::equals(CMap::valueByPath($map, "two.two"),
             ["one" => "a", "two" => "b", "three" => "c"]));
-        $this->assertTrue( CMap::valueByPath($mMap, "two.two.one") === "a" );
-        $this->assertTrue( CMap::valueByPath($mMap, "two.two.two") === "b" );
-        $this->assertTrue( CMap::valueByPath($mMap, "two.two.three") === "c" );
+        $this->assertTrue( CMap::valueByPath($map, "two.two.one") === "a" );
+        $this->assertTrue( CMap::valueByPath($map, "two.two.two") === "b" );
+        $this->assertTrue( CMap::valueByPath($map, "two.two.three") === "c" );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetValueByPath ()
     {
-        $mMap = ["one" => "a", "two" => ["one" => "a", "two" => ["one" => "a", "two" => "b", "three" => "c"]]];
+        $map = ["one" => "a", "two" => ["one" => "a", "two" => ["one" => "a", "two" => "b", "three" => "c"]]];
 
-        CMap::setValueByPath($mMap, "one", "d");
-        CMap::setValueByPath($mMap, "two.one", "e");
-        CMap::setValueByPath($mMap, "two.two.one", "f");
-        CMap::setValueByPath($mMap, "two.two.two", "g");
-        CMap::setValueByPath($mMap, "two.two.three", "h");
+        CMap::setValueByPath($map, "one", "d");
+        CMap::setValueByPath($map, "two.one", "e");
+        CMap::setValueByPath($map, "two.two.one", "f");
+        CMap::setValueByPath($map, "two.two.two", "g");
+        CMap::setValueByPath($map, "two.two.three", "h");
 
-        $this->assertTrue( CMap::valueByPath($mMap, "one") === "d" );
+        $this->assertTrue( CMap::valueByPath($map, "one") === "d" );
         $this->assertTrue(
-            CMap::equals(CMap::valueByPath($mMap, "two"),
+            CMap::equals(CMap::valueByPath($map, "two"),
             ["one" => "e", "two" => ["one" => "f", "two" => "g", "three" => "h"]]));
-        $this->assertTrue( CMap::valueByPath($mMap, "two.one") === "e" );
+        $this->assertTrue( CMap::valueByPath($map, "two.one") === "e" );
         $this->assertTrue(
-            CMap::equals(CMap::valueByPath($mMap, "two.two"),
+            CMap::equals(CMap::valueByPath($map, "two.two"),
             ["one" => "f", "two" => "g", "three" => "h"]));
-        $this->assertTrue( CMap::valueByPath($mMap, "two.two.one") === "f" );
-        $this->assertTrue( CMap::valueByPath($mMap, "two.two.two") === "g" );
-        $this->assertTrue( CMap::valueByPath($mMap, "two.two.three") === "h" );
+        $this->assertTrue( CMap::valueByPath($map, "two.two.one") === "f" );
+        $this->assertTrue( CMap::valueByPath($map, "two.two.two") === "g" );
+        $this->assertTrue( CMap::valueByPath($map, "two.two.three") === "h" );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFind ()
     {
-        $mMap = ["one" => "a", "two" => "b", "three" => "c", "four" => "d", "five" => "e"];
+        $map = ["one" => "a", "two" => "b", "three" => "c", "four" => "d", "five" => "e"];
 
         // Using the default comparator.
 
-        $bFound = CMap::find($mMap, "c");
-        $this->assertTrue($bFound);
+        $found = CMap::find($map, "c");
+        $this->assertTrue($found);
 
-        $xFoundUnderKey;
-        $bFound = CMap::find($mMap, "d", CComparator::EQUALITY, $xFoundUnderKey);
-        $this->assertTrue($bFound);
-        $this->assertTrue( $xFoundUnderKey === "four" );
+        $foundUnderKey;
+        $found = CMap::find($map, "d", CComparator::EQUALITY, $foundUnderKey);
+        $this->assertTrue($found);
+        $this->assertTrue( $foundUnderKey === "four" );
 
-        $bFound = CMap::find($mMap, "C");
-        $this->assertFalse($bFound);
+        $found = CMap::find($map, "C");
+        $this->assertFalse($found);
 
-        $bFound = CMap::find($mMap, "f");
-        $this->assertFalse($bFound);
+        $found = CMap::find($map, "f");
+        $this->assertFalse($found);
 
         // Using a custom comparator.
-        $fnComparator = function ($sString0, $sString1)
+        $comparator = function ($string0, $string1)
             {
-                return ( CString::toLowerCase($sString0) === CString::toLowerCase($sString1) );
+                return ( CString::toLowerCase($string0) === CString::toLowerCase($string1) );
             };
-        $xFoundUnderKey;
-        $bFound = CMap::find($mMap, "C", $fnComparator, $xFoundUnderKey);
-        $this->assertTrue($bFound);
-        $this->assertTrue( $xFoundUnderKey === "three" );
+        $foundUnderKey;
+        $found = CMap::find($map, "C", $comparator, $foundUnderKey);
+        $this->assertTrue($found);
+        $this->assertTrue( $foundUnderKey === "three" );
 
         // Special case.
-        $mMap = CMap::make();
-        $bFound = CMap::find($mMap, "a");
-        $this->assertFalse($bFound);
+        $map = CMap::make();
+        $found = CMap::find($map, "a");
+        $this->assertFalse($found);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFindScalar ()
     {
-        $mMap = ["one" => "a", "two" => "b", "three" => "c", "four" => "d", "five" => "e"];
+        $map = ["one" => "a", "two" => "b", "three" => "c", "four" => "d", "five" => "e"];
 
-        $bFound = CMap::findScalar($mMap, "c");
-        $this->assertTrue($bFound);
+        $found = CMap::findScalar($map, "c");
+        $this->assertTrue($found);
 
-        $xFoundUnderKey;
-        $bFound = CMap::findScalar($mMap, "d", $xFoundUnderKey);
-        $this->assertTrue($bFound);
-        $this->assertTrue( $xFoundUnderKey === "four" );
+        $foundUnderKey;
+        $found = CMap::findScalar($map, "d", $foundUnderKey);
+        $this->assertTrue($found);
+        $this->assertTrue( $foundUnderKey === "four" );
 
-        $bFound = CMap::findScalar($mMap, "C");
-        $this->assertFalse($bFound);
+        $found = CMap::findScalar($map, "C");
+        $this->assertFalse($found);
 
-        $bFound = CMap::findScalar($mMap, "f");
-        $this->assertFalse($bFound);
+        $found = CMap::findScalar($map, "f");
+        $this->assertFalse($found);
 
         // Special case.
-        $mMap = CMap::make();
-        $bFound = CMap::findScalar($mMap, "a");
-        $this->assertFalse($bFound);
+        $map = CMap::make();
+        $found = CMap::findScalar($map, "a");
+        $this->assertFalse($found);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testCountValue ()
     {
-        $mMap = ["one" => "a", "two" => "c", "three" => "b", "four" => "c", "five" => "d", "six" => "e",
+        $map = ["one" => "a", "two" => "c", "three" => "b", "four" => "c", "five" => "d", "six" => "e",
             "seven" => "c", "eight" => "c", "nine" => "f", "ten" => "g", "eleven" => "h", "twelve" => "c"];
 
         // Using the default comparator.
-        $this->assertTrue( CMap::countValue($mMap, "c") == 5 );
+        $this->assertTrue( CMap::countValue($map, "c") == 5 );
 
         // Using a custom comparator.
-        $fnComparator = function ($sString0, $sString1)
+        $comparator = function ($string0, $string1)
             {
-                return ( CString::toLowerCase($sString0) === CString::toLowerCase($sString1) );
+                return ( CString::toLowerCase($string0) === CString::toLowerCase($string1) );
             };
-        $this->assertTrue( CMap::countValue($mMap, "C", $fnComparator) == 5 );
+        $this->assertTrue( CMap::countValue($map, "C", $comparator) == 5 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testRemove ()
     {
-        $mMap = ["one" => "a", "two" => "b", "three" => "c", "four" => "d", "five" => "e"];
-        CMap::remove($mMap, "three");
-        $this->assertTrue(CMap::equals($mMap, ["one" => "a", "two" => "b", "four" => "d", "five" => "e"]));
+        $map = ["one" => "a", "two" => "b", "three" => "c", "four" => "d", "five" => "e"];
+        CMap::remove($map, "three");
+        $this->assertTrue(CMap::equals($map, ["one" => "a", "two" => "b", "four" => "d", "five" => "e"]));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFilter ()
     {
-        $mMap = ["one" => 1, "two" => 2, "three" => 3, "four" => 4, "five" => 5, "six" => 6, "seven" => 7,
+        $map = ["one" => 1, "two" => 2, "three" => 3, "four" => 4, "five" => 5, "six" => 6, "seven" => 7,
             "eight" => 8, "nine" => 9, "ten" => 10];
-        $mMap = CMap::filter($mMap, function ($iValue)
+        $map = CMap::filter($map, function ($value)
             {
-                return CMathi::isEven($iValue);
+                return CMathi::isEven($value);
             });
-        $this->assertTrue(CMap::equals($mMap, ["two" => 2, "four" => 4, "six" => 6, "eight" => 8, "ten" => 10]));
+        $this->assertTrue(CMap::equals($map, ["two" => 2, "four" => 4, "six" => 6, "eight" => 8, "ten" => 10]));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testKeys ()
     {
-        $mMap = ["one" => "a", "two" => "b", "three" => "c"];
-        $aKeys = CMap::keys($mMap);
-        $this->assertTrue(CArray::equals($aKeys, CArray::fromElements("one", "two", "three")));
+        $map = ["one" => "a", "two" => "b", "three" => "c"];
+        $keys = CMap::keys($map);
+        $this->assertTrue(CArray::equals($keys, CArray::fromElements("one", "two", "three")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testValues ()
     {
-        $mMap = ["one" => "a", "two" => "b", "three" => "c"];
-        $aValues = CMap::values($mMap);
-        $this->assertTrue(CArray::equals($aValues, CArray::fromElements("a", "b", "c")));
+        $map = ["one" => "a", "two" => "b", "three" => "c"];
+        $values = CMap::values($map);
+        $this->assertTrue(CArray::equals($values, CArray::fromElements("a", "b", "c")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testMerge ()
     {
-        $mMap0 = ["one" => "a", "two" => ["one" => "a", "two" => ["one" => "a", "two" => "b", "three" => "c"]]];
-        $mMap1 = ["one" => "b", "two" => ["two" => ["four" => "d"]], "three" => "c"];
-        $mMap2 = ["two" => ["two" => ["five" => "e"]]];
-        $mMap = CMap::merge($mMap0, $mMap1, $mMap2);
-        $this->assertTrue(CMap::equals($mMap, [
+        $map0 = ["one" => "a", "two" => ["one" => "a", "two" => ["one" => "a", "two" => "b", "three" => "c"]]];
+        $map1 = ["one" => "b", "two" => ["two" => ["four" => "d"]], "three" => "c"];
+        $map2 = ["two" => ["two" => ["five" => "e"]]];
+        $map = CMap::merge($map0, $map1, $map2);
+        $this->assertTrue(CMap::equals($map, [
             "one" => "b",
             "two" => ["one" => "a", "two" =>
                 ["one" => "a", "two" => "b", "three" => "c", "four" => "d", "five" => "e"]],
@@ -356,21 +356,21 @@ class CMapTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testAreKeysSequential ()
     {
-        $mMap = [0 => "a", 1 => "b", 2 => "c", 3 => "d", 4 => "e"];
-        $this->assertTrue(CMap::areKeysSequential($mMap));
+        $map = [0 => "a", 1 => "b", 2 => "c", 3 => "d", 4 => "e"];
+        $this->assertTrue(CMap::areKeysSequential($map));
 
-        $mMap = [0 => "a", 1 => "b", 2 => "c", 4 => "d", 5 => "e"];
-        $this->assertFalse(CMap::areKeysSequential($mMap));
+        $map = [0 => "a", 1 => "b", 2 => "c", 4 => "d", 5 => "e"];
+        $this->assertFalse(CMap::areKeysSequential($map));
 
-        $mMap = [0 => "a", 1 => "b", 2 => "c", "three" => "d", 4 => "e"];
-        $this->assertFalse(CMap::areKeysSequential($mMap));
+        $map = [0 => "a", 1 => "b", 2 => "c", "three" => "d", 4 => "e"];
+        $this->assertFalse(CMap::areKeysSequential($map));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testInsertValue ()
     {
-        $mMap = ["one" => "a", "two" => "b", "three" => "c"];
-        CMap::insertValue($mMap, "d");
-        $this->assertTrue(CMap::equals($mMap, ["one" => "a", "two" => "b", "three" => "c", 0 => "d"]));
+        $map = ["one" => "a", "two" => "b", "three" => "c"];
+        CMap::insertValue($map, "d");
+        $this->assertTrue(CMap::equals($map, ["one" => "a", "two" => "b", "three" => "c", 0 => "d"]));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }

@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -52,18 +52,18 @@
 // Method signatures:
 //   bool isValid ()
 //   CUStringObject sanitize ()
-//   CUStringObject normalize ($eForm = self::NF_C)
-//   bool isNormalized ($eForm = self::NF_C)
-//   static CUStringObject fromBool10 ($bValue)
-//   static CUStringObject fromBoolTf ($bValue)
-//   static CUStringObject fromBoolYn ($bValue)
-//   static CUStringObject fromBoolOo ($bValue)
-//   static CUStringObject fromInt ($iValue)
-//   static CUStringObject fromFloat ($fValue)
-//   static CUStringObject fromCharCode ($iCode)
-//   static CUStringObject fromCharCodeHex ($sCode)
-//   static CUStringObject fromCharCodeEsc ($sCode)
-//   static CUStringObject fromEscString ($sString)
+//   CUStringObject normalize ($form = self::NF_C)
+//   bool isNormalized ($form = self::NF_C)
+//   static CUStringObject fromBool10 ($value)
+//   static CUStringObject fromBoolTf ($value)
+//   static CUStringObject fromBoolYn ($value)
+//   static CUStringObject fromBoolOo ($value)
+//   static CUStringObject fromInt ($value)
+//   static CUStringObject fromFloat ($value)
+//   static CUStringObject fromCharCode ($code)
+//   static CUStringObject fromCharCodeHex ($code)
+//   static CUStringObject fromCharCodeEsc ($code)
+//   static CUStringObject fromEscString ($string)
 //   bool toBool ()
 //   bool toBoolFrom10 ()
 //   bool toBoolFromTf ()
@@ -71,7 +71,7 @@
 //   bool toBoolFromOo ()
 //   int toInt ()
 //   int toIntFromHex ()
-//   int toIntFromBase ($iBase)
+//   int toIntFromBase ($base)
 //   float toFloat ()
 //   int toCharCode ()
 //   CUStringObject toCharCodeHex ()
@@ -79,88 +79,88 @@
 //   CUStringObject toEscString ()
 //   int length ()
 //   bool isEmpty ()
-//   CUStringObject charAt ($iPos)
-//   void setCharAt ($iPos, $sChar)
-//   bool equals ($sToString, $bfCollationFlags = self::COLLATION_DEFAULT)
-//   bool equalsCi ($sToString, $bfCollationFlags = self::COLLATION_DEFAULT)
-//   bool equalsBi ($sToString)
-//   int compare ($sToString, $bfCollationFlags = self::COLLATION_DEFAULT, CULocale $oInLocale = null)
-//   int compareCi ($sToString, $bfCollationFlags = self::COLLATION_DEFAULT, CULocale $oInLocale = null)
-//   int compareNat ($sToString, $bfCollationFlags = self::COLLATION_DEFAULT, CULocale $oInLocale = null)
-//   int compareNatCi ($sToString, $bfCollationFlags = self::COLLATION_DEFAULT, CULocale $oInLocale = null)
-//   int levenDist ($sToString, $bTransliterate = true)
-//   CUStringObject metaphoneKey ($bTransliterate = true)
-//   int metaphoneDist ($sToString, $bTransliterate = true)
+//   CUStringObject charAt ($pos)
+//   void setCharAt ($pos, $char)
+//   bool equals ($toString, $collationFlags = self::COLLATION_DEFAULT)
+//   bool equalsCi ($toString, $collationFlags = self::COLLATION_DEFAULT)
+//   bool equalsBi ($toString)
+//   int compare ($toString, $collationFlags = self::COLLATION_DEFAULT, CULocale $inLocale = null)
+//   int compareCi ($toString, $collationFlags = self::COLLATION_DEFAULT, CULocale $inLocale = null)
+//   int compareNat ($toString, $collationFlags = self::COLLATION_DEFAULT, CULocale $inLocale = null)
+//   int compareNatCi ($toString, $collationFlags = self::COLLATION_DEFAULT, CULocale $inLocale = null)
+//   int levenDist ($toString, $transliterate = true)
+//   CUStringObject metaphoneKey ($transliterate = true)
+//   int metaphoneDist ($toString, $transliterate = true)
 //   CUStringObject toLowerCase ()
 //   CUStringObject toUpperCase ()
 //   CUStringObject toUpperCaseFirst ()
 //   CUStringObject toTitleCase ()
-//   bool startsWith ($sWithString)
-//   bool startsWithCi ($sWithString)
-//   bool endsWith ($sWithString)
-//   bool endsWithCi ($sWithString)
-//   int indexOf ($sOfString, $iStartPos = 0)
-//   int indexOfCi ($sOfString, $iStartPos = 0)
-//   int lastIndexOf ($sOfString, $iStartPos = 0)
-//   int lastIndexOfCi ($sOfString, $iStartPos = 0)
-//   bool find ($sWhatString, $iStartPos = 0)
-//   bool findCi ($sWhatString, $iStartPos = 0)
-//   bool isSubsetOf ($sOfCharSet)
-//   CUStringObject substr ($iStartPos, $iLength = null)
-//   CUStringObject substring ($iStartPos, $iEndPos)
-//   int numSubstrings ($sSubstring, $iStartPos = 0)
-//   CArrayObject split ($xDelimiterOrDelimiters)
+//   bool startsWith ($withString)
+//   bool startsWithCi ($withString)
+//   bool endsWith ($withString)
+//   bool endsWithCi ($withString)
+//   int indexOf ($ofString, $startPos = 0)
+//   int indexOfCi ($ofString, $startPos = 0)
+//   int lastIndexOf ($ofString, $startPos = 0)
+//   int lastIndexOfCi ($ofString, $startPos = 0)
+//   bool find ($whatString, $startPos = 0)
+//   bool findCi ($whatString, $startPos = 0)
+//   bool isSubsetOf ($ofCharSet)
+//   CUStringObject substr ($startPos, $length = null)
+//   CUStringObject substring ($startPos, $endPos)
+//   int numSubstrings ($substring, $startPos = 0)
+//   CArrayObject split ($delimiterOrDelimiters)
 //   CArrayObject splitIntoChars ()
 //   CUStringObject trimStart ()
 //   CUStringObject trimEnd ()
 //   CUStringObject trim ()
 //   CUStringObject normSpacing ()
-//   CUStringObject normNewlines ($sNewline = self::NEWLINE)
-//   CUStringObject add ($xString)
-//   CUStringObject addWs ($xString)
-//   CUStringObject padStart ($sPaddingString, $iNewLength)
-//   CUStringObject padEnd ($sPaddingString, $iNewLength)
-//   CUStringObject stripStart ($xPrefixOrPrefixes)
-//   CUStringObject stripStartCi ($xPrefixOrPrefixes)
-//   CUStringObject stripEnd ($xSuffixOrSuffixes)
-//   CUStringObject stripEndCi ($xSuffixOrSuffixes)
-//   CUStringObject insert ($iAtPos, $sInsertString)
-//   CUStringObject replaceSubstring ($iStartPos, $iLength, $sWith)
-//   CUStringObject replaceSubstringByRange ($iStartPos, $iEndPos, $sWith)
-//   CUStringObject removeSubstring ($iStartPos, $iLength)
-//   CUStringObject removeSubstringByRange ($iStartPos, $iEndPos)
-//   CUStringObject replace ($sWhat, $sWith, &$riQuantity = null)
-//   CUStringObject replaceCi ($sWhat, $sWith, &$riQuantity = null)
-//   CUStringObject remove ($sWhat, &$riQuantity = null)
-//   CUStringObject removeCi ($sWhat, &$riQuantity = null)
+//   CUStringObject normNewlines ($newline = self::NEWLINE)
+//   CUStringObject add ($string)
+//   CUStringObject addWs ($string)
+//   CUStringObject padStart ($paddingString, $newLength)
+//   CUStringObject padEnd ($paddingString, $newLength)
+//   CUStringObject stripStart ($prefixOrPrefixes)
+//   CUStringObject stripStartCi ($prefixOrPrefixes)
+//   CUStringObject stripEnd ($suffixOrSuffixes)
+//   CUStringObject stripEndCi ($suffixOrSuffixes)
+//   CUStringObject insert ($atPos, $insertString)
+//   CUStringObject replaceSubstring ($startPos, $length, $with)
+//   CUStringObject replaceSubstringByRange ($startPos, $endPos, $with)
+//   CUStringObject removeSubstring ($startPos, $length)
+//   CUStringObject removeSubstringByRange ($startPos, $endPos)
+//   CUStringObject replace ($what, $with, &$quantity = null)
+//   CUStringObject replaceCi ($what, $with, &$quantity = null)
+//   CUStringObject remove ($what, &$quantity = null)
+//   CUStringObject removeCi ($what, &$quantity = null)
 //   CUStringObject shuffle ()
-//   CUStringObject wordWrap ($iWidth, $bfWrappingFlags = self::WRAPPING_DEFAULT, $sNewline = self::NEWLINE)
+//   CUStringObject wordWrap ($width, $wrappingFlags = self::WRAPPING_DEFAULT, $newline = self::NEWLINE)
 //   CUStringObject decToHex ()
 //   CUStringObject hexToDec ()
-//   CUStringObject numberToBase ($iFromBase, $iToBase)
-//   CUStringObject transliterate ($sFromScript, $sToScript)
-//   CUStringObject transliterateFromAny ($sToScript)
+//   CUStringObject numberToBase ($fromBase, $toBase)
+//   CUStringObject transliterate ($fromScript, $toScript)
+//   CUStringObject transliterateFromAny ($toScript)
 //   CUStringObject applyPublishingFilter ()
 //   CUStringObject halfwidthToFullwidth ()
 //   CUStringObject fullwidthToHalfwidth ()
-//   CUStringObject transform ($sTransform)
-//   CUStringObject repeat ($iTimes)
+//   CUStringObject transform ($transform)
+//   CUStringObject repeat ($times)
 //   bool hasCjkChar ()
-//   int reIndexOf ($sOfPattern, $iStartPos = 0, &$rsFoundString = null)
-//   int reLastIndexOf ($sOfPattern, $iStartPos = 0, &$rsFoundString = null)
-//   bool reFind ($sFindPattern, &$rsFoundString = null)
-//   bool reFindFrom ($sFindPattern, $iStartPos, &$rsFoundString = null)
-//   bool reFindGroups ($sFindPattern, &$raFoundGroups, &$rsFoundString = null)
-//   bool reFindGroupsFrom ($sFindPattern, $iStartPos, &$raFoundGroups, &$rsFoundString = null)
-//   int reFindAll ($sFindPattern, &$raFoundStrings = null)
-//   int reFindAllFrom ($sFindPattern, $iStartPos, &$raFoundStrings = null)
-//   int reFindAllGroups ($sFindPattern, &$raFoundGroupArrays, &$raFoundStrings = null)
-//   int reFindAllGroupsFrom ($sFindPattern, $iStartPos, &$raFoundGroupArrays, &$raFoundStrings = null)
-//   CUStringObject reReplace ($sWhatPattern, $sWith, &$riQuantity = null)
-//   CUStringObject reReplaceWithCallback ($sWhatPattern, $fnCallback, &$riQuantity = null)
-//   CUStringObject reRemove ($sWhatPattern, &$riQuantity = null)
-//   CArrayObject reSplit ($xDelimiterPatternOrPatterns)
-//   CUStringObject reEnterTd ($sDelimiter = CRegex::DEFAULT_PATTERN_DELIMITER)
+//   int reIndexOf ($ofPattern, $startPos = 0, &$foundString = null)
+//   int reLastIndexOf ($ofPattern, $startPos = 0, &$foundString = null)
+//   bool reFind ($findPattern, &$foundString = null)
+//   bool reFindFrom ($findPattern, $startPos, &$foundString = null)
+//   bool reFindGroups ($findPattern, &$foundGroups, &$foundString = null)
+//   bool reFindGroupsFrom ($findPattern, $startPos, &$foundGroups, &$foundString = null)
+//   int reFindAll ($findPattern, &$foundStrings = null)
+//   int reFindAllFrom ($findPattern, $startPos, &$foundStrings = null)
+//   int reFindAllGroups ($findPattern, &$foundGroupArrays, &$foundStrings = null)
+//   int reFindAllGroupsFrom ($findPattern, $startPos, &$foundGroupArrays, &$foundStrings = null)
+//   CUStringObject reReplace ($whatPattern, $with, &$quantity = null)
+//   CUStringObject reReplaceWithCallback ($whatPattern, $callback, &$quantity = null)
+//   CUStringObject reRemove ($whatPattern, &$quantity = null)
+//   CArrayObject reSplit ($delimiterPatternOrPatterns)
+//   CUStringObject reEnterTd ($delimiter = CRegex::DEFAULT_PATTERN_DELIMITER)
 
 class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAccess*/
 {
@@ -347,121 +347,121 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
     /**
      * Normalizes a string to a specified Unicode normal form and returns the new string.
      *
-     * @param  enum $eForm **OPTIONAL. Default is** `NF_C`. The Unicode normal form of the normalized string. The
+     * @param  enum $form **OPTIONAL. Default is** `NF_C`. The Unicode normal form of the normalized string. The
      * possible normal forms are `NF_C`, `NF_D`, `NF_KC`, and `NF_KD` (see [Summary](#summary)).
      *
      * @return CUStringObject The normalized string.
      */
 
-    public function normalize ($eForm = self::NF_C)
+    public function normalize ($form = self::NF_C)
     {
-        return CUString::normalize($this, $eForm);
+        return CUString::normalize($this, $form);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if a string is normalized according to a specified Unicode normal form.
      *
-     * @param  enum $eForm **OPTIONAL. Default is** `NF_C`. The Unicode normal form to be verified against. The
+     * @param  enum $form **OPTIONAL. Default is** `NF_C`. The Unicode normal form to be verified against. The
      * possible normal forms are `NF_C`, `NF_D`, `NF_KC`, and `NF_KD` (see [Summary](#summary)).
      *
      * @return bool `true` if the string appears to be normalized according to the normal form specified, `false`
      * otherwise.
      */
 
-    public function isNormalized ($eForm = self::NF_C)
+    public function isNormalized ($form = self::NF_C)
     {
-        return CUString::isNormalized($this, $eForm);
+        return CUString::isNormalized($this, $form);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a boolean value into a string, as "1" for `true` and as "0" for `false`.
      *
-     * @param  bool $bValue The value to be converted.
+     * @param  bool $value The value to be converted.
      *
      * @return CUStringObject "1" for `true`, "0" for `false`.
      */
 
-    public static function fromBool10 ($bValue)
+    public static function fromBool10 ($value)
     {
-        return CUString::fromBool10($bValue);
+        return CUString::fromBool10($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a boolean value into a string, as "true" for `true` and as "false" for `false`.
      *
-     * @param  bool $bValue The value to be converted.
+     * @param  bool $value The value to be converted.
      *
      * @return CUStringObject "true" for `true`, "false" for `false`.
      */
 
-    public static function fromBoolTf ($bValue)
+    public static function fromBoolTf ($value)
     {
-        return CUString::fromBoolTf($bValue);
+        return CUString::fromBoolTf($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a boolean value into a string, as "yes" for `true` and as "no" for `false`.
      *
-     * @param  bool $bValue The value to be converted.
+     * @param  bool $value The value to be converted.
      *
      * @return CUStringObject "yes" for `true`, "no" for `false`.
      */
 
-    public static function fromBoolYn ($bValue)
+    public static function fromBoolYn ($value)
     {
-        return CUString::fromBoolYn($bValue);
+        return CUString::fromBoolYn($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a boolean value into a string, as "on" for `true` and as "off" for `false`.
      *
-     * @param  bool $bValue The value to be converted.
+     * @param  bool $value The value to be converted.
      *
      * @return CUStringObject "on" for `true`, "off" for `false`.
      */
 
-    public static function fromBoolOo ($bValue)
+    public static function fromBoolOo ($value)
     {
-        return CUString::fromBoolOo($bValue);
+        return CUString::fromBoolOo($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts an integer value into a string.
      *
-     * @param  int $iValue The value to be converted.
+     * @param  int $value The value to be converted.
      *
      * @return CUStringObject The textual representation of the integer value.
      */
 
-    public static function fromInt ($iValue)
+    public static function fromInt ($value)
     {
-        return CUString::fromInt($iValue);
+        return CUString::fromInt($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a floating-point value into a string.
      *
-     * @param  float $fValue The value to be converted.
+     * @param  float $value The value to be converted.
      *
      * @return CUStringObject The textual representation of the floating-point value.
      */
 
-    public static function fromFloat ($fValue)
+    public static function fromFloat ($value)
     {
-        return CUString::fromFloat($fValue);
+        return CUString::fromFloat($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns a character by its code point specified as an integer.
      *
-     * @param  int $iCode The Unicode code point.
+     * @param  int $code The Unicode code point.
      *
      * @return CUStringObject The Unicode character with the code point specified.
      */
 
-    public static function fromCharCode ($iCode)
+    public static function fromCharCode ($code)
     {
-        return CUString::fromCharCode($iCode);
+        return CUString::fromCharCode($code);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -469,14 +469,14 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * For instance, "0041" or "41" would return "A".
      *
-     * @param  string $sCode The Unicode code point. This can be a string with up to four hexadecimal digits.
+     * @param  string $code The Unicode code point. This can be a string with up to four hexadecimal digits.
      *
      * @return CUStringObject The Unicode character with the code point specified.
      */
 
-    public static function fromCharCodeHex ($sCode)
+    public static function fromCharCodeHex ($code)
     {
-        return CUString::fromCharCodeHex($sCode);
+        return CUString::fromCharCodeHex($code);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -484,15 +484,15 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * For instance, "\u0041" would return "A".
      *
-     * @param  string $sCode The Unicode code point prefixed with "\u". The number of hexadecimal digits in the string
+     * @param  string $code The Unicode code point prefixed with "\u". The number of hexadecimal digits in the string
      * should be four.
      *
      * @return CUStringObject The Unicode character with the code point specified.
      */
 
-    public static function fromCharCodeEsc ($sCode)
+    public static function fromCharCodeEsc ($code)
     {
-        return CUString::fromCharCodeEsc($sCode);
+        return CUString::fromCharCodeEsc($code);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -500,14 +500,14 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * For instance, "\u0041bc" would return "Abc".
      *
-     * @param  string $sString The string to be unescaped.
+     * @param  string $string The string to be unescaped.
      *
      * @return CUStringObject The unescaped string.
      */
 
-    public static function fromEscString ($sString)
+    public static function fromEscString ($string)
     {
-        return CUString::fromEscString($sString);
+        return CUString::fromEscString($string);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -607,15 +607,15 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * The string may be prefixed with "0x" for the base of 16.
      *
-     * @param  int $iBase The base in which the integer is represented by the string. Can be a number in the range from
+     * @param  int $base The base in which the integer is represented by the string. Can be a number in the range from
      * 2 to 36.
      *
      * @return int The integer value represented by the string.
      */
 
-    public function toIntFromBase ($iBase)
+    public function toIntFromBase ($base)
     {
-        return CUString::toIntFromBase($this, $iBase);
+        return CUString::toIntFromBase($this, $base);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -706,14 +706,14 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
     /**
      * Returns the character located at a specified position.
      *
-     * @param  int $iPos The character's position.
+     * @param  int $pos The character's position.
      *
      * @return CUStringObject The character located at the position specified.
      */
 
-    public function charAt ($iPos)
+    public function charAt ($pos)
     {
-        return CUString::charAt($this, $iPos);
+        return CUString::charAt($this, $pos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // /**
@@ -721,22 +721,22 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
     //  *
     //  * The string is modified in-place.
     //  *
-    //  * @param  int $iPos The position of the character to be set.
-    //  * @param  string $sChar The replacement character.
+    //  * @param  int $pos The position of the character to be set.
+    //  * @param  string $char The replacement character.
     //  *
     //  * @return void
     //  */
 
-    // public function setCharAt ($iPos, $sChar)
+    // public function setCharAt ($pos, $char)
     // {
-    //     CUString::setCharAt($this, $iPos, $sChar);
+    //     CUString::setCharAt($this, $pos, $char);
     // }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if a string is equal to another string, comparing case-sensitively.
      *
-     * @param  string $sToString The second string for comparison.
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
+     * @param  string $toString The second string for comparison.
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
      * used for the comparison. The available collation options are `COLLATION_IGNORE_ACCENTS`,
      * `COLLATION_IGNORE_NONWORD`, `COLLATION_UPPERCASE_FIRST`, and `COLLATION_FRENCH` (see [Summary](#summary)).
      *
@@ -744,16 +744,16 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * `false` otherwise.
      */
 
-    public function equals ($sToString, $bfCollationFlags = self::COLLATION_DEFAULT)
+    public function equals ($toString, $collationFlags = self::COLLATION_DEFAULT)
     {
-        return CUString::equals($this, $sToString, $bfCollationFlags);
+        return CUString::equals($this, $toString, $collationFlags);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if a string is equal to another string, comparing case-insensitively.
      *
-     * @param  string $sToString The second string for comparison.
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
+     * @param  string $toString The second string for comparison.
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
      * used for the comparison. The available collation options are `COLLATION_IGNORE_ACCENTS`,
      * `COLLATION_IGNORE_NONWORD`, `COLLATION_UPPERCASE_FIRST`, and `COLLATION_FRENCH` (see [Summary](#summary)).
      *
@@ -761,9 +761,9 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * otherwise.
      */
 
-    public function equalsCi ($sToString, $bfCollationFlags = self::COLLATION_DEFAULT)
+    public function equalsCi ($toString, $collationFlags = self::COLLATION_DEFAULT)
     {
-        return CUString::equalsCi($this, $sToString, $bfCollationFlags);
+        return CUString::equalsCi($this, $toString, $collationFlags);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -773,54 +773,54 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * comparing strings known to contain no Unicode characters and is the method to be preferred for comparison of
      * binary data.
      *
-     * @param  string $sToString The second string for comparison.
+     * @param  string $toString The second string for comparison.
      *
      * @return bool `true` if the two strings are equal, comparing them byte-to-byte, and `false` otherwise.
      */
 
-    public function equalsBi ($sToString)
+    public function equalsBi ($toString)
     {
-        return CString::equals($this, $sToString);
+        return CString::equals($this, $toString);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines the order in which two strings should appear in a place where it matters, assuming the ascending
      * order and comparing the strings case-sensitively.
      *
-     * @param  string $sToString The second string for comparison.
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
+     * @param  string $toString The second string for comparison.
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
      * used for the comparison. The available collation options are `COLLATION_IGNORE_ACCENTS`,
      * `COLLATION_IGNORE_NONWORD`, `COLLATION_UPPERCASE_FIRST`, and `COLLATION_FRENCH` (see [Summary](#summary)).
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * strings are to be compared.
      *
      * @return int `-1` if *this* string should go before the second string, `1` if the other way around, and `0` if
      * the two strings are equal, taking into account the letter case of the characters.
      */
 
-    public function compare ($sToString, $bfCollationFlags = self::COLLATION_DEFAULT, CULocale $oInLocale = null)
+    public function compare ($toString, $collationFlags = self::COLLATION_DEFAULT, CULocale $inLocale = null)
     {
-        return CUString::compare($this, $sToString, $bfCollationFlags, $oInLocale);
+        return CUString::compare($this, $toString, $collationFlags, $inLocale);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines the order in which two strings should appear in a place where it matters, assuming the ascending
      * order and comparing the strings case-insensitively.
      *
-     * @param  string $sToString The second string for comparison.
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
+     * @param  string $toString The second string for comparison.
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
      * used for the comparison. The available collation options are `COLLATION_IGNORE_ACCENTS`,
      * `COLLATION_IGNORE_NONWORD`, `COLLATION_UPPERCASE_FIRST`, and `COLLATION_FRENCH` (see [Summary](#summary)).
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * strings are to be compared.
      *
      * @return int `-1` if *this* string should go before the second string, `1` if the other way around, and `0` if
      * the two strings are equal, ignoring the letter case of the characters.
      */
 
-    public function compareCi ($sToString, $bfCollationFlags = self::COLLATION_DEFAULT, CULocale $oInLocale = null)
+    public function compareCi ($toString, $collationFlags = self::COLLATION_DEFAULT, CULocale $inLocale = null)
     {
-        return CUString::compareCi($this, $sToString, $bfCollationFlags, $oInLocale);
+        return CUString::compareCi($this, $toString, $collationFlags, $inLocale);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -830,20 +830,20 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * To illustrate natural order with an example, the strings "a100" and "a20" would get ordered as such with
      * `compare` method, but as "a20" and "a100" with this method, which is the order a human being would choose.
      *
-     * @param  string $sToString The second string for comparison.
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
+     * @param  string $toString The second string for comparison.
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
      * used for the comparison. The available collation options are `COLLATION_IGNORE_ACCENTS`,
      * `COLLATION_IGNORE_NONWORD`, `COLLATION_UPPERCASE_FIRST`, and `COLLATION_FRENCH` (see [Summary](#summary)).
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * strings are to be compared.
      *
      * @return int `-1` if *this* string should go before the second string, `1` if the other way around, and `0` if
      * the two strings are equal, taking into account the letter case of the characters.
      */
 
-    public function compareNat ($sToString, $bfCollationFlags = self::COLLATION_DEFAULT, CULocale $oInLocale = null)
+    public function compareNat ($toString, $collationFlags = self::COLLATION_DEFAULT, CULocale $inLocale = null)
     {
-        return CUString::compareNat($this, $sToString, $bfCollationFlags, $oInLocale);
+        return CUString::compareNat($this, $toString, $collationFlags, $inLocale);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -853,20 +853,20 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * To illustrate natural order with an example, the strings "a100" and "a20" would get ordered as such with
      * `compareCi` method, but as "a20" and "a100" with this method, which is the order a human being would choose.
      *
-     * @param  string $sToString The second string for comparison.
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
+     * @param  string $toString The second string for comparison.
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `COLLATION_DEFAULT`. The collation option(s) to be
      * used for the comparison. The available collation options are `COLLATION_IGNORE_ACCENTS`,
      * `COLLATION_IGNORE_NONWORD`, `COLLATION_UPPERCASE_FIRST`, and `COLLATION_FRENCH` (see [Summary](#summary)).
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * strings are to be compared.
      *
      * @return int `-1` if *this* string should go before the second string, `1` if the other way around, and `0` if
      * the two strings are equal, ignoring the letter case of the characters.
      */
 
-    public function compareNatCi ($sToString, $bfCollationFlags = self::COLLATION_DEFAULT, CULocale $oInLocale = null)
+    public function compareNatCi ($toString, $collationFlags = self::COLLATION_DEFAULT, CULocale $inLocale = null)
     {
-        return CUString::compareNatCi($this, $sToString, $bfCollationFlags, $oInLocale);
+        return CUString::compareNatCi($this, $toString, $collationFlags, $inLocale);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -875,8 +875,8 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * For any two strings, the [Levenshtein distance](http://en.wikipedia.org/wiki/Levenshtein_distance) is the total
      * number of insert, replace, and delete operations required to transform the first string into the second one.
      *
-     * @param  string $sToString The second string for comparison.
-     * @param  bool $bTransliterate **OPTIONAL. Default is** `true`. Tells whether to transliterate the strings into
+     * @param  string $toString The second string for comparison.
+     * @param  bool $transliterate **OPTIONAL. Default is** `true`. Tells whether to transliterate the strings into
      * the Latin script and then flatten them to ASCII before calculating the distance. This is what you would normally
      * wish to happen for arbitrary Unicode strings since the algorithm of calculating the Levenshtein distance is not
      * Unicode-aware. For example, "こんにちは" is transliterated to "kon'nichiha".
@@ -884,9 +884,9 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * @return int The Levenshtein distance between the two strings.
      */
 
-    public function levenDist ($sToString, $bTransliterate = true)
+    public function levenDist ($toString, $transliterate = true)
     {
-        return CUString::levenDist($this, $sToString, $bTransliterate);
+        return CUString::levenDist($this, $toString, $transliterate);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -895,7 +895,7 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * The algorithm used to render the [Metaphone](http://en.wikipedia.org/wiki/Metaphone) key is the first-generation
      * one.
      *
-     * @param  bool $bTransliterate **OPTIONAL. Default is** `true`. Tells whether to transliterate the string into the
+     * @param  bool $transliterate **OPTIONAL. Default is** `true`. Tells whether to transliterate the string into the
      * Latin script and then flatten it to ASCII before generating the key. Since the Metaphone algorithm is not
      * Unicode-aware, the touch of transliteration is something that any arbitrary Unicode string would wish for. For
      * example, "こんにちは" is transliterated to "kon'nichiha".
@@ -903,9 +903,9 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * @return CUStringObject The Metaphone key of the string.
      */
 
-    public function metaphoneKey ($bTransliterate = true)
+    public function metaphoneKey ($transliterate = true)
     {
-        return CUString::metaphoneKey($this, $bTransliterate);
+        return CUString::metaphoneKey($this, $transliterate);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -916,8 +916,8 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * algorithm used to render the [Metaphone](http://en.wikipedia.org/wiki/Metaphone) keys is the first-generation
      * one.
      *
-     * @param  string $sToString The second string for comparison.
-     * @param  bool $bTransliterate **OPTIONAL. Default is** `true`. Tells whether to transliterate the strings into
+     * @param  string $toString The second string for comparison.
+     * @param  bool $transliterate **OPTIONAL. Default is** `true`. Tells whether to transliterate the strings into
      * the Latin script and then flatten them to ASCII before generating the keys. Since neither the Metaphone or
      * Levenshtein algorithm is Unicode-aware, the touch of transliteration is something that any arbitrary Unicode
      * strings would wish for. For example, "こんにちは" is transliterated to "kon'nichiha".
@@ -925,9 +925,9 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * @return int The Levenshtein distance between the Metaphone keys of the two strings.
      */
 
-    public function metaphoneDist ($sToString, $bTransliterate = true)
+    public function metaphoneDist ($toString, $transliterate = true)
     {
-        return CUString::metaphoneDist($this, $sToString, $bTransliterate);
+        return CUString::metaphoneDist($this, $toString, $transliterate);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -979,15 +979,15 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * As a special case, the method returns `true` if the searched substring is empty.
      *
-     * @param  string $sWithString The searched substring.
+     * @param  string $withString The searched substring.
      *
      * @return bool `true` if the string starts with the substring specified, taking into account the letter case of
      * the characters, and `false` otherwise.
      */
 
-    public function startsWith ($sWithString)
+    public function startsWith ($withString)
     {
-        return CUString::startsWith($this, $sWithString);
+        return CUString::startsWith($this, $withString);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -995,15 +995,15 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * As a special case, the method returns `true` if the searched substring is empty.
      *
-     * @param  string $sWithString The searched substring.
+     * @param  string $withString The searched substring.
      *
      * @return bool `true` if the string starts with the substring specified, ignoring the letter case of the
      * characters, and `false` otherwise.
      */
 
-    public function startsWithCi ($sWithString)
+    public function startsWithCi ($withString)
     {
-        return CUString::startsWithCi($this, $sWithString);
+        return CUString::startsWithCi($this, $withString);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1011,15 +1011,15 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * As a special case, the method returns `true` if the searched substring is empty.
      *
-     * @param  string $sWithString The searched substring.
+     * @param  string $withString The searched substring.
      *
      * @return bool `true` if the string ends with the substring specified, taking into account the letter case of the
      * characters, and `false` otherwise.
      */
 
-    public function endsWith ($sWithString)
+    public function endsWith ($withString)
     {
-        return CUString::endsWith($this, $sWithString);
+        return CUString::endsWith($this, $withString);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1027,15 +1027,15 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * As a special case, the method returns `true` if the searched substring is empty.
      *
-     * @param  string $sWithString The searched substring.
+     * @param  string $withString The searched substring.
      *
      * @return bool `true` if the string ends with the substring specified, ignoring the letter case of the characters,
      * and `false` otherwise.
      */
 
-    public function endsWithCi ($sWithString)
+    public function endsWithCi ($withString)
     {
-        return CUString::endsWithCi($this, $sWithString);
+        return CUString::endsWithCi($this, $withString);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1043,16 +1043,16 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * As a special case, the method returns the starting position of the search if the searched substring is empty.
      *
-     * @param  string $sOfString The searched substring.
-     * @param  int $iStartPos **OPTIONAL. Default is** `0`. The starting position for the search.
+     * @param  string $ofString The searched substring.
+     * @param  int $startPos **OPTIONAL. Default is** `0`. The starting position for the search.
      *
      * @return int The position of the first occurrence of the substring in the string or `-1` if no such substring was
      * found, taking into account the letter case during the search.
      */
 
-    public function indexOf ($sOfString, $iStartPos = 0)
+    public function indexOf ($ofString, $startPos = 0)
     {
-        return CUString::indexOf($this, $sOfString, $iStartPos);
+        return CUString::indexOf($this, $ofString, $startPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1060,16 +1060,16 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * As a special case, the method returns the starting position of the search if the searched substring is empty.
      *
-     * @param  string $sOfString The searched substring.
-     * @param  int $iStartPos **OPTIONAL. Default is** `0`. The starting position for the search.
+     * @param  string $ofString The searched substring.
+     * @param  int $startPos **OPTIONAL. Default is** `0`. The starting position for the search.
      *
      * @return int The position of the first occurrence of the substring in the string or `-1` if no such substring was
      * found, ignoring the letter case during the search.
      */
 
-    public function indexOfCi ($sOfString, $iStartPos = 0)
+    public function indexOfCi ($ofString, $startPos = 0)
     {
-        return CUString::indexOfCi($this, $sOfString, $iStartPos);
+        return CUString::indexOfCi($this, $ofString, $startPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1077,16 +1077,16 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * As a special case, the method returns the string's length if the searched substring is empty.
      *
-     * @param  string $sOfString The searched substring.
-     * @param  int $iStartPos **OPTIONAL. Default is** `0`. The starting position for the search.
+     * @param  string $ofString The searched substring.
+     * @param  int $startPos **OPTIONAL. Default is** `0`. The starting position for the search.
      *
      * @return int The position of the last occurrence of the substring in the string or `-1` if no such substring was
      * found, taking into account the letter case during the search.
      */
 
-    public function lastIndexOf ($sOfString, $iStartPos = 0)
+    public function lastIndexOf ($ofString, $startPos = 0)
     {
-        return CUString::lastIndexOf($this, $sOfString, $iStartPos);
+        return CUString::lastIndexOf($this, $ofString, $startPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1094,59 +1094,59 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * As a special case, the method returns the string's length if the searched substring is empty.
      *
-     * @param  string $sOfString The searched substring.
-     * @param  int $iStartPos **OPTIONAL. Default is** `0`. The starting position for the search.
+     * @param  string $ofString The searched substring.
+     * @param  int $startPos **OPTIONAL. Default is** `0`. The starting position for the search.
      *
      * @return int The position of the last occurrence of the substring in the string or `-1` if no such substring was
      * found, ignoring the letter case during the search.
      */
 
-    public function lastIndexOfCi ($sOfString, $iStartPos = 0)
+    public function lastIndexOfCi ($ofString, $startPos = 0)
     {
-        return CUString::lastIndexOfCi($this, $sOfString, $iStartPos);
+        return CUString::lastIndexOfCi($this, $ofString, $startPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if a string contains a specified substring, searching case-sensitively.
      *
-     * @param  string $sWhatString The searched substring.
-     * @param  int $iStartPos **OPTIONAL. Default is** `0`. The starting position for the search.
+     * @param  string $whatString The searched substring.
+     * @param  int $startPos **OPTIONAL. Default is** `0`. The starting position for the search.
      *
      * @return bool `true` if the substring was found in the string, taking into account the letter case during the
      * search, and `false` otherwise.
      */
 
-    public function find ($sWhatString, $iStartPos = 0)
+    public function find ($whatString, $startPos = 0)
     {
-        return CUString::find($this, $sWhatString, $iStartPos);
+        return CUString::find($this, $whatString, $startPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if a string contains a specified substring, searching case-insensitively.
      *
-     * @param  string $sWhatString The searched substring.
-     * @param  int $iStartPos **OPTIONAL. Default is** `0`. The starting position for the search.
+     * @param  string $whatString The searched substring.
+     * @param  int $startPos **OPTIONAL. Default is** `0`. The starting position for the search.
      *
      * @return bool `true` if the substring was found in the string, ignoring the letter case during the search, and
      * `false` otherwise.
      */
 
-    public function findCi ($sWhatString, $iStartPos = 0)
+    public function findCi ($whatString, $startPos = 0)
     {
-        return CUString::findCi($this, $sWhatString, $iStartPos);
+        return CUString::findCi($this, $whatString, $startPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if the characters in a string are a subset of the characters in another string.
      *
-     * @param  string $sOfCharSet The reference string.
+     * @param  string $ofCharSet The reference string.
      *
      * @return bool `true` if *this* string is a subset of the reference string, `false` otherwise.
      */
 
-    public function isSubsetOf ($sOfCharSet)
+    public function isSubsetOf ($ofCharSet)
     {
-        return CUString::isSubsetOf($this, $sOfCharSet);
+        return CUString::isSubsetOf($this, $ofCharSet);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1155,16 +1155,16 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * As a special case, the method returns an empty string if the starting position is equal to the string's length
      * or if the substring's length, if specified, is `0`.
      *
-     * @param  int $iStartPos The position of the substring's first character.
-     * @param  int $iLength **OPTIONAL. Default is** *as many characters as the starting character is followed by*. The
+     * @param  int $startPos The position of the substring's first character.
+     * @param  int $length **OPTIONAL. Default is** *as many characters as the starting character is followed by*. The
      * length of the substring.
      *
      * @return CUStringObject The substring.
      */
 
-    public function substr ($iStartPos, $iLength = null)
+    public function substr ($startPos, $length = null)
     {
-        return CUString::substr($this, $iStartPos, $iLength);
+        return CUString::substr($this, $startPos, $length);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1173,15 +1173,15 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * As a special case, the method returns an empty string if the starting and ending positions are the same, with
      * the greatest such position being the string's length.
      *
-     * @param  int $iStartPos The position of the substring's first character.
-     * @param  int $iEndPos The position of the character that *follows* the last character in the substring.
+     * @param  int $startPos The position of the substring's first character.
+     * @param  int $endPos The position of the character that *follows* the last character in the substring.
      *
      * @return CUStringObject The substring.
      */
 
-    public function substring ($iStartPos, $iEndPos)
+    public function substring ($startPos, $endPos)
     {
-        return CUString::substring($this, $iStartPos, $iEndPos);
+        return CUString::substring($this, $startPos, $endPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1189,15 +1189,15 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * The search is case-sensitive.
      *
-     * @param  string $sSubstring The searched substring.
-     * @param  int $iStartPos **OPTIONAL. Default is** `0`. The starting position for the search.
+     * @param  string $substring The searched substring.
+     * @param  int $startPos **OPTIONAL. Default is** `0`. The starting position for the search.
      *
      * @return int The number of such substrings in the string.
      */
 
-    public function numSubstrings ($sSubstring, $iStartPos = 0)
+    public function numSubstrings ($substring, $startPos = 0)
     {
-        return CUString::numSubstrings($this, $sSubstring, $iStartPos);
+        return CUString::numSubstrings($this, $substring, $startPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1211,15 +1211,15 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * As a special case, the delimiter substring can be empty, which will split the string into its constituting
      * characters.
      *
-     * @param  string|array|map $xDelimiterOrDelimiters The substring or array of substrings to be recognized as the
+     * @param  string|array|map $delimiterOrDelimiters The substring or array of substrings to be recognized as the
      * delimiter(s).
      *
      * @return CArrayObject The resulting strings of type `CUStringObject`.
      */
 
-    public function split ($xDelimiterOrDelimiters)
+    public function split ($delimiterOrDelimiters)
     {
-        return to_oop(CUString::split($this, $xDelimiterOrDelimiters));
+        return to_oop(CUString::split($this, $delimiterOrDelimiters));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1286,14 +1286,14 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * The known newline formats are LF (U+000A), CRLF (U+000D, U+000A), CR (U+000D), VT (U+000B), FF (U+000C),
      * Next Line (U+0085), Line Separator (U+2028), and Paragraph Separator (U+2029).
      *
-     * @param  string $sNewline **OPTIONAL. Default is** LF (U+000A).
+     * @param  string $newline **OPTIONAL. Default is** LF (U+000A).
      *
      * @return CUStringObject The normalized string.
      */
 
-    public function normNewlines ($sNewline = self::NEWLINE)
+    public function normNewlines ($newline = self::NEWLINE)
     {
-        return CUString::normNewlines($this, $sNewline);
+        return CUString::normNewlines($this, $newline);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1301,18 +1301,18 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * In case of a boolean value, it's added as "1" for `true` and as "0" for `false`.
      *
-     * @param  string|int|float|bool $xString The string or value to be added.
+     * @param  string|int|float|bool $string The string or value to be added.
      *
      * @return CUStringObject The resulting string.
      */
 
-    public function add ($xString)
+    public function add ($string)
     {
-        if ( !is_string($xString) )
+        if ( !is_string($string) )
         {
-            $xString = ( !is_bool($xString) ) ? (string)$xString : CUString::fromBool10($xString);
+            $string = ( !is_bool($string) ) ? (string)$string : CUString::fromBool10($string);
         }
-        return $this . $xString;
+        return $this . $string;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1321,18 +1321,18 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * In case of a boolean value, it's added as "1" for `true` and as "0" for `false`.
      *
-     * @param  string|int|float|bool $xString The string or value to be added.
+     * @param  string|int|float|bool $string The string or value to be added.
      *
      * @return CUStringObject The resulting string.
      */
 
-    public function addWs ($xString)
+    public function addWs ($string)
     {
-        if ( !is_string($xString) )
+        if ( !is_string($string) )
         {
-            $xString = ( !is_bool($xString) ) ? (string)$xString : CUString::fromBool10($xString);
+            $string = ( !is_bool($string) ) ? (string)$string : CUString::fromBool10($string);
         }
-        return $this . " " . $xString;
+        return $this . " " . $string;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1340,15 +1340,15 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * If the string is already of the targeted length, it's returned unmodified.
      *
-     * @param  string $sPaddingString The string to be used for padding.
-     * @param  int $iNewLength The length of the padded string.
+     * @param  string $paddingString The string to be used for padding.
+     * @param  int $newLength The length of the padded string.
      *
      * @return CUStringObject The padded string.
      */
 
-    public function padStart ($sPaddingString, $iNewLength)
+    public function padStart ($paddingString, $newLength)
     {
-        return CUString::padStart($this, $sPaddingString, $iNewLength);
+        return CUString::padStart($this, $paddingString, $newLength);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1356,15 +1356,15 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * If the string is already of the targeted length, it's returned unmodified.
      *
-     * @param  string $sPaddingString The string to be used for padding.
-     * @param  int $iNewLength The length of the padded string.
+     * @param  string $paddingString The string to be used for padding.
+     * @param  int $newLength The length of the padded string.
      *
      * @return CUStringObject The padded string.
      */
 
-    public function padEnd ($sPaddingString, $iNewLength)
+    public function padEnd ($paddingString, $newLength)
     {
-        return CUString::padEnd($this, $sPaddingString, $iNewLength);
+        return CUString::padEnd($this, $paddingString, $newLength);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1374,14 +1374,14 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * In case of multiple different substrings to be stripped off, the order of the substrings in the parameter array
      * does matter.
      *
-     * @param  string|array|map $xPrefixOrPrefixes The substring or array of substrings to be stripped off.
+     * @param  string|array|map $prefixOrPrefixes The substring or array of substrings to be stripped off.
      *
      * @return CUStringObject The stripped string.
      */
 
-    public function stripStart ($xPrefixOrPrefixes)
+    public function stripStart ($prefixOrPrefixes)
     {
-        return CUString::stripStart($this, $xPrefixOrPrefixes);
+        return CUString::stripStart($this, $prefixOrPrefixes);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1391,14 +1391,14 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * In case of multiple different substrings to be stripped off, the order of the substrings in the parameter array
      * does matter.
      *
-     * @param  string|array|map $xPrefixOrPrefixes The substring or array of substrings to be stripped off.
+     * @param  string|array|map $prefixOrPrefixes The substring or array of substrings to be stripped off.
      *
      * @return CUStringObject The stripped string.
      */
 
-    public function stripStartCi ($xPrefixOrPrefixes)
+    public function stripStartCi ($prefixOrPrefixes)
     {
-        return CUString::stripStartCi($this, $xPrefixOrPrefixes);
+        return CUString::stripStartCi($this, $prefixOrPrefixes);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1408,14 +1408,14 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * In case of multiple different substrings to be stripped off, the order of the substrings in the parameter array
      * does matter.
      *
-     * @param  string|array|map $xSuffixOrSuffixes The substring or array of substrings to be stripped off.
+     * @param  string|array|map $suffixOrSuffixes The substring or array of substrings to be stripped off.
      *
      * @return CUStringObject The stripped string.
      */
 
-    public function stripEnd ($xSuffixOrSuffixes)
+    public function stripEnd ($suffixOrSuffixes)
     {
-        return CUString::stripEnd($this, $xSuffixOrSuffixes);
+        return CUString::stripEnd($this, $suffixOrSuffixes);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1425,14 +1425,14 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * In case of multiple different substrings to be stripped off, the order of the substrings in the parameter array
      * does matter.
      *
-     * @param  string|array|map $xSuffixOrSuffixes The substring or array of substrings to be stripped off.
+     * @param  string|array|map $suffixOrSuffixes The substring or array of substrings to be stripped off.
      *
      * @return CUStringObject The stripped string.
      */
 
-    public function stripEndCi ($xSuffixOrSuffixes)
+    public function stripEndCi ($suffixOrSuffixes)
     {
-        return CUString::stripEndCi($this, $xSuffixOrSuffixes);
+        return CUString::stripEndCi($this, $suffixOrSuffixes);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1440,144 +1440,144 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * As a special case, the position of insertion can be equal to the string's length.
      *
-     * @param  int $iAtPos The position of insertion. This is the desired position of the first character of the
+     * @param  int $atPos The position of insertion. This is the desired position of the first character of the
      * inserted string in the resulting string.
-     * @param  string $sInsertString The string to be inserted.
+     * @param  string $insertString The string to be inserted.
      *
      * @return CUStringObject The resulting string.
      */
 
-    public function insert ($iAtPos, $sInsertString)
+    public function insert ($atPos, $insertString)
     {
-        return CUString::insert($this, $iAtPos, $sInsertString);
+        return CUString::insert($this, $atPos, $insertString);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Replaces a substring with a specified string, and returns the new string.
      *
-     * @param  int $iStartPos The position of the first character in the substring to be replaced.
-     * @param  int $iLength The length of the substring to be replaced.
-     * @param  string $sWith The replacement string.
+     * @param  int $startPos The position of the first character in the substring to be replaced.
+     * @param  int $length The length of the substring to be replaced.
+     * @param  string $with The replacement string.
      *
      * @return CUStringObject The resulting string.
      */
 
-    public function replaceSubstring ($iStartPos, $iLength, $sWith)
+    public function replaceSubstring ($startPos, $length, $with)
     {
-        return CUString::replaceSubstring($this, $iStartPos, $iLength, $sWith);
+        return CUString::replaceSubstring($this, $startPos, $length, $with);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Replaces a substring with a specified string, with both starting and ending positions specified, and returns the
      * new string.
      *
-     * @param  int $iStartPos The position of the first character in the substring to be replaced.
-     * @param  int $iEndPos The position of the character that *follows* the last character in the substring to be
+     * @param  int $startPos The position of the first character in the substring to be replaced.
+     * @param  int $endPos The position of the character that *follows* the last character in the substring to be
      * replaced.
-     * @param  string $sWith The replacement string.
+     * @param  string $with The replacement string.
      *
      * @return CUStringObject The resulting string.
      */
 
-    public function replaceSubstringByRange ($iStartPos, $iEndPos, $sWith)
+    public function replaceSubstringByRange ($startPos, $endPos, $with)
     {
-        return CUString::replaceSubstringByRange($this, $iStartPos, $iEndPos, $sWith);
+        return CUString::replaceSubstringByRange($this, $startPos, $endPos, $with);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes a substring from a string and returns the new string.
      *
-     * @param  int $iStartPos The position of the first character in the substring to be removed.
-     * @param  int $iLength The length of the substring to be removed.
+     * @param  int $startPos The position of the first character in the substring to be removed.
+     * @param  int $length The length of the substring to be removed.
      *
      * @return CUStringObject The resulting string.
      */
 
-    public function removeSubstring ($iStartPos, $iLength)
+    public function removeSubstring ($startPos, $length)
     {
-        return CUString::removeSubstring($this, $iStartPos, $iLength);
+        return CUString::removeSubstring($this, $startPos, $length);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes a substring from a string, with both starting and ending positions specified, and returns the new
      * string.
      *
-     * @param  int $iStartPos The position of the first character in the substring to be removed.
-     * @param  int $iEndPos The position of the character that *follows* the last character in the substring to be
+     * @param  int $startPos The position of the first character in the substring to be removed.
+     * @param  int $endPos The position of the character that *follows* the last character in the substring to be
      * removed.
      *
      * @return CUStringObject The resulting string.
      */
 
-    public function removeSubstringByRange ($iStartPos, $iEndPos)
+    public function removeSubstringByRange ($startPos, $endPos)
     {
-        return CUString::removeSubstringByRange($this, $iStartPos, $iEndPos);
+        return CUString::removeSubstringByRange($this, $startPos, $endPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Replaces all occurrences of a substring in a string with a specified string, searching case-sensitively, and
      * returns the new string, optionally reporting the number of replacements made.
      *
-     * @param  string $sWhat The searched substring.
-     * @param  string $sWith The replacement string.
-     * @param  reference $riQuantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
+     * @param  string $what The searched substring.
+     * @param  string $with The replacement string.
+     * @param  reference $quantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value, which is of type `int`, indicates the number of replacements made.
      *
      * @return CUStringObject The resulting string.
      */
 
-    public function replace ($sWhat, $sWith, &$riQuantity = null)
+    public function replace ($what, $with, &$quantity = null)
     {
-        return CUString::replace($this, $sWhat, $sWith, $riQuantity);
+        return CUString::replace($this, $what, $with, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Replaces all occurrences of a substring in a string with a specified string, searching case-insensitively, and
      * returns the new string, optionally reporting the number of replacements made.
      *
-     * @param  string $sWhat The searched substring.
-     * @param  string $sWith The replacement string.
-     * @param  reference $riQuantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
+     * @param  string $what The searched substring.
+     * @param  string $with The replacement string.
+     * @param  reference $quantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value, which is of type `int`, indicates the number of replacements made.
      *
      * @return CUStringObject The resulting string.
      */
 
-    public function replaceCi ($sWhat, $sWith, &$riQuantity = null)
+    public function replaceCi ($what, $with, &$quantity = null)
     {
-        return CUString::replaceCi($this, $sWhat, $sWith, $riQuantity);
+        return CUString::replaceCi($this, $what, $with, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes all occurrences of a substring from a string, searching case-sensitively, and returns the new string,
      * optionally reporting the number of removals made.
      *
-     * @param  string $sWhat The searched substring.
-     * @param  reference $riQuantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
+     * @param  string $what The searched substring.
+     * @param  reference $quantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value, which is of type `int`, indicates the number of removals made.
      *
      * @return CUStringObject The resulting string.
      */
 
-    public function remove ($sWhat, &$riQuantity = null)
+    public function remove ($what, &$quantity = null)
     {
-        return CUString::remove($this, $sWhat, $riQuantity);
+        return CUString::remove($this, $what, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes all occurrences of a substring from a string, searching case-insensitively, and returns the new string,
      * optionally reporting the number of removals made.
      *
-     * @param  string $sWhat The searched substring.
-     * @param  reference $riQuantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
+     * @param  string $what The searched substring.
+     * @param  reference $quantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value, which is of type `int`, indicates the number of removals made.
      *
      * @return CUStringObject The resulting string.
      */
 
-    public function removeCi ($sWhat, &$riQuantity = null)
+    public function removeCi ($what, &$quantity = null)
     {
-        return CUString::removeCi($this, $sWhat, $riQuantity);
+        return CUString::removeCi($this, $what, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1594,20 +1594,20 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
     /**
      * Wraps the text in a string to a specified width and returns the new string.
      *
-     * @param  int $iWidth The wrapping width, in characters.
-     * @param  bitfield $bfWrappingFlags **OPTIONAL. Default is** `WRAPPING_DEFAULT`. The wrapping option(s). The
+     * @param  int $width The wrapping width, in characters.
+     * @param  bitfield $wrappingFlags **OPTIONAL. Default is** `WRAPPING_DEFAULT`. The wrapping option(s). The
      * available options are `WRAPPING_BREAK_SPACELESS_LINES`, `WRAPPING_ALLOW_TRAILING_SPACES`,
      * `WRAPPING_DISALLOW_LEADING_SPACES`, and `WRAPPING_DONT_BREAK_SPACELESS_CJK_ENDING_LINES`
      * (see [Summary](#summary)).
-     * @param  string $sNewline **OPTIONAL. Default is** LF (U+000A). The newline character(s) to be used for making
+     * @param  string $newline **OPTIONAL. Default is** LF (U+000A). The newline character(s) to be used for making
      * new lines in the process of wrapping.
      *
      * @return CUStringObject The wrapped text.
      */
 
-    public function wordWrap ($iWidth, $bfWrappingFlags = self::WRAPPING_DEFAULT, $sNewline = self::NEWLINE)
+    public function wordWrap ($width, $wrappingFlags = self::WRAPPING_DEFAULT, $newline = self::NEWLINE)
     {
-        return CUString::wordWrap($this, $iWidth, $bfWrappingFlags, $sNewline);
+        return CUString::wordWrap($this, $width, $wrappingFlags, $newline);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1642,15 +1642,15 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * The string may be prefixed with "0x" for the source base of 16.
      *
-     * @param  int $iFromBase The source base. Can be a number in the range from 2 to 36.
-     * @param  int $iToBase The destination base. Can be a number in the range from 2 to 36.
+     * @param  int $fromBase The source base. Can be a number in the range from 2 to 36.
+     * @param  int $toBase The destination base. Can be a number in the range from 2 to 36.
      *
      * @return CUStringObject The string with the converted number.
      */
 
-    public function numberToBase ($iFromBase, $iToBase)
+    public function numberToBase ($fromBase, $toBase)
     {
-        return CUString::numberToBase($this, $iFromBase, $iToBase);
+        return CUString::numberToBase($this, $fromBase, $toBase);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1663,15 +1663,15 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * [General Transforms](http://userguide.icu-project.org/transforms/general) in the ICU User Guide and
      * [ICU Transform Demonstration](http://demo.icu-project.org/icu-bin/translit).
      *
-     * @param  string $sFromScript The name of the source script (case-insensitive).
-     * @param  string $sToScript The name of the destination script (case-insensitive).
+     * @param  string $fromScript The name of the source script (case-insensitive).
+     * @param  string $toScript The name of the destination script (case-insensitive).
      *
      * @return CUStringObject The transliterated string.
      */
 
-    public function transliterate ($sFromScript, $sToScript)
+    public function transliterate ($fromScript, $toScript)
     {
-        return CUString::transliterate($this, $sFromScript, $sToScript);
+        return CUString::transliterate($this, $fromScript, $toScript);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1684,14 +1684,14 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * [General Transforms](http://userguide.icu-project.org/transforms/general) in the ICU User Guide and
      * [ICU Transform Demonstration](http://demo.icu-project.org/icu-bin/translit).
      *
-     * @param  string $sToScript The name of the destination script (case-insensitive).
+     * @param  string $toScript The name of the destination script (case-insensitive).
      *
      * @return CUStringObject The transliterated string.
      */
 
-    public function transliterateFromAny ($sToScript)
+    public function transliterateFromAny ($toScript)
     {
-        return CUString::transliterateFromAny($this, $sToScript);
+        return CUString::transliterateFromAny($this, $toScript);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1739,14 +1739,14 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * See [General Transforms](http://userguide.icu-project.org/transforms/general) in the ICU User Guide for the
      * information on what you can do with ICU general transforms.
      *
-     * @param  string $sTransform The transform.
+     * @param  string $transform The transform.
      *
      * @return CUStringObject The transformed string.
      */
 
-    public function transform ($sTransform)
+    public function transform ($transform)
     {
-        return CUString::transform($this, $sTransform);
+        return CUString::transform($this, $transform);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1754,14 +1754,14 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * For instance, the string of "a" repeated three times would result in "aaa".
      *
-     * @param  int $iTimes The number of times for the string to be repeated.
+     * @param  int $times The number of times for the string to be repeated.
      *
      * @return CUStringObject The resulting string.
      */
 
-    public function repeat ($iTimes)
+    public function repeat ($times)
     {
-        return CUString::repeat($this, $iTimes);
+        return CUString::repeat($this, $times);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1786,9 +1786,9 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * **NOTE.** Unlike the non-regex methods of the class, which count positions within a Unicode string in
      * characters, the PCRE engine and therefore this method count positions in bytes.
      *
-     * @param  string $sOfPattern The searched pattern.
-     * @param  int $iStartPos **OPTIONAL. Default is** `0`. The starting position for the search.
-     * @param  reference $rsFoundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
+     * @param  string $ofPattern The searched pattern.
+     * @param  int $startPos **OPTIONAL. Default is** `0`. The starting position for the search.
+     * @param  reference $foundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `CUStringObject`, is the first substring
      * that matched the pattern.
      *
@@ -1796,12 +1796,12 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * found.
      */
 
-    public function reIndexOf ($sOfPattern, $iStartPos = 0, &$rsFoundString = null)
+    public function reIndexOf ($ofPattern, $startPos = 0, &$foundString = null)
     {
-        $sOfPattern = self::ensureUModifier($sOfPattern);
-        $xRet = CRegex::indexOf($this, $sOfPattern, $iStartPos, $rsFoundString);
-        $rsFoundString = to_oop($rsFoundString);
-        return $xRet;
+        $ofPattern = self::ensureUModifier($ofPattern);
+        $ret = CRegex::indexOf($this, $ofPattern, $startPos, $foundString);
+        $foundString = to_oop($foundString);
+        return $ret;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1815,9 +1815,9 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * **NOTE.** Unlike the non-regex methods of the class, which count positions within a Unicode string in
      * characters, the PCRE engine and therefore this method count positions in bytes.
      *
-     * @param  string $sOfPattern The searched pattern.
-     * @param  int $iStartPos **OPTIONAL. Default is** `0`. The starting position for the search.
-     * @param  reference $rsFoundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
+     * @param  string $ofPattern The searched pattern.
+     * @param  int $startPos **OPTIONAL. Default is** `0`. The starting position for the search.
+     * @param  reference $foundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `CUStringObject`, is the last substring
      * that matched the pattern.
      *
@@ -1825,12 +1825,12 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * found.
      */
 
-    public function reLastIndexOf ($sOfPattern, $iStartPos = 0, &$rsFoundString = null)
+    public function reLastIndexOf ($ofPattern, $startPos = 0, &$foundString = null)
     {
-        $sOfPattern = self::ensureUModifier($sOfPattern);
-        $xRet = CRegex::lastIndexOf($this, $sOfPattern, $iStartPos, $rsFoundString);
-        $rsFoundString = to_oop($rsFoundString);
-        return $xRet;
+        $ofPattern = self::ensureUModifier($ofPattern);
+        $ret = CRegex::lastIndexOf($this, $ofPattern, $startPos, $foundString);
+        $foundString = to_oop($foundString);
+        return $ret;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1841,20 +1841,20 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
      * PCRE engine.
      *
-     * @param  string $sFindPattern The searched pattern.
-     * @param  reference $rsFoundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
+     * @param  string $findPattern The searched pattern.
+     * @param  reference $foundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `CUStringObject`, is the first substring
      * that matched the pattern.
      *
      * @return bool `true` if the pattern was found in the string, `false` otherwise.
      */
 
-    public function reFind ($sFindPattern, &$rsFoundString = null)
+    public function reFind ($findPattern, &$foundString = null)
     {
-        $sFindPattern = self::ensureUModifier($sFindPattern);
-        $xRet = CRegex::find($this, $sFindPattern, $rsFoundString);
-        $rsFoundString = to_oop($rsFoundString);
-        return $xRet;
+        $findPattern = self::ensureUModifier($findPattern);
+        $ret = CRegex::find($this, $findPattern, $foundString);
+        $foundString = to_oop($foundString);
+        return $ret;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1868,21 +1868,21 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * **NOTE.** Unlike the non-regex methods of the class, which count positions within a Unicode string in
      * characters, the PCRE engine and therefore this method count positions in bytes.
      *
-     * @param  string $sFindPattern The searched pattern.
-     * @param  int $iStartPos The starting position for the search.
-     * @param  reference $rsFoundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
+     * @param  string $findPattern The searched pattern.
+     * @param  int $startPos The starting position for the search.
+     * @param  reference $foundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `CUStringObject`, is the first substring
      * that matched the pattern.
      *
      * @return bool `true` if the pattern was found in the string, `false` otherwise.
      */
 
-    public function reFindFrom ($sFindPattern, $iStartPos, &$rsFoundString = null)
+    public function reFindFrom ($findPattern, $startPos, &$foundString = null)
     {
-        $sFindPattern = self::ensureUModifier($sFindPattern);
-        $xRet = CRegex::findFrom($this, $sFindPattern, $iStartPos, $rsFoundString);
-        $rsFoundString = to_oop($rsFoundString);
-        return $xRet;
+        $findPattern = self::ensureUModifier($findPattern);
+        $ret = CRegex::findFrom($this, $findPattern, $startPos, $foundString);
+        $foundString = to_oop($foundString);
+        return $ret;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1894,23 +1894,23 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
      * PCRE engine.
      *
-     * @param  string $sFindPattern The searched pattern, usually with groups.
-     * @param  reference $raFoundGroups **OUTPUT.** If the pattern was found, this is an array of type `CArrayObject`
+     * @param  string $findPattern The searched pattern, usually with groups.
+     * @param  reference $foundGroups **OUTPUT.** If the pattern was found, this is an array of type `CArrayObject`
      * containing the substrings that matched the groups in the pattern, in the same order, if any.
-     * @param  reference $rsFoundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
+     * @param  reference $foundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `CUStringObject`, is the first substring
      * that matched the pattern.
      *
      * @return bool `true` if the pattern was found in the string, `false` otherwise.
      */
 
-    public function reFindGroups ($sFindPattern, &$raFoundGroups, &$rsFoundString = null)
+    public function reFindGroups ($findPattern, &$foundGroups, &$foundString = null)
     {
-        $sFindPattern = self::ensureUModifier($sFindPattern);
-        $xRet = CRegex::findGroups($this, $sFindPattern, $raFoundGroups, $rsFoundString);
-        $raFoundGroups = to_oop($raFoundGroups);
-        $rsFoundString = to_oop($rsFoundString);
-        return $xRet;
+        $findPattern = self::ensureUModifier($findPattern);
+        $ret = CRegex::findGroups($this, $findPattern, $foundGroups, $foundString);
+        $foundGroups = to_oop($foundGroups);
+        $foundString = to_oop($foundString);
+        return $ret;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1925,24 +1925,24 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * **NOTE.** Unlike the non-regex methods of the class, which count positions within a Unicode string in
      * characters, the PCRE engine and therefore this method count positions in bytes.
      *
-     * @param  string $sFindPattern The searched pattern, usually with groups.
-     * @param  int $iStartPos The starting position for the search.
-     * @param  reference $raFoundGroups **OUTPUT.** If the pattern was found, this is an array of type `CArrayObject`
+     * @param  string $findPattern The searched pattern, usually with groups.
+     * @param  int $startPos The starting position for the search.
+     * @param  reference $foundGroups **OUTPUT.** If the pattern was found, this is an array of type `CArrayObject`
      * containing the substrings that matched the groups in the pattern, in the same order, if any.
-     * @param  reference $rsFoundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
+     * @param  reference $foundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `CUStringObject`, is the first substring
      * that matched the pattern.
      *
      * @return bool `true` if the pattern was found in the string, `false` otherwise.
      */
 
-    public function reFindGroupsFrom ($sFindPattern, $iStartPos, &$raFoundGroups, &$rsFoundString = null)
+    public function reFindGroupsFrom ($findPattern, $startPos, &$foundGroups, &$foundString = null)
     {
-        $sFindPattern = self::ensureUModifier($sFindPattern);
-        $xRet = CRegex::findGroupsFrom($this, $sFindPattern, $iStartPos, $raFoundGroups, $rsFoundString);
-        $raFoundGroups = to_oop($raFoundGroups);
-        $rsFoundString = to_oop($rsFoundString);
-        return $xRet;
+        $findPattern = self::ensureUModifier($findPattern);
+        $ret = CRegex::findGroupsFrom($this, $findPattern, $startPos, $foundGroups, $foundString);
+        $foundGroups = to_oop($foundGroups);
+        $foundString = to_oop($foundString);
+        return $ret;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1953,20 +1953,20 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
      * PCRE engine.
      *
-     * @param  string $sFindPattern The searched pattern.
-     * @param  reference $raFoundStrings **OPTIONAL. OUTPUT.** If any patterns have been found after the method was
+     * @param  string $findPattern The searched pattern.
+     * @param  reference $foundStrings **OPTIONAL. OUTPUT.** If any patterns have been found after the method was
      * called with this parameter provided, the parameter's value is an array of type `CArrayObject` containing the
      * substrings that matched the pattern, in the order of appearance.
      *
      * @return int The number of matches of the pattern in the string.
      */
 
-    public function reFindAll ($sFindPattern, &$raFoundStrings = null)
+    public function reFindAll ($findPattern, &$foundStrings = null)
     {
-        $sFindPattern = self::ensureUModifier($sFindPattern);
-        $xRet = CRegex::findAll($this, $sFindPattern, $raFoundStrings);
-        $raFoundStrings = to_oop($raFoundStrings);
-        return $xRet;
+        $findPattern = self::ensureUModifier($findPattern);
+        $ret = CRegex::findAll($this, $findPattern, $foundStrings);
+        $foundStrings = to_oop($foundStrings);
+        return $ret;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1980,21 +1980,21 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * **NOTE.** Unlike the non-regex methods of the class, which count positions within a Unicode string in
      * characters, the PCRE engine and therefore this method count positions in bytes.
      *
-     * @param  string $sFindPattern The searched pattern.
-     * @param  int $iStartPos The starting position for the search.
-     * @param  reference $raFoundStrings **OPTIONAL. OUTPUT.** If any patterns have been found after the method was
+     * @param  string $findPattern The searched pattern.
+     * @param  int $startPos The starting position for the search.
+     * @param  reference $foundStrings **OPTIONAL. OUTPUT.** If any patterns have been found after the method was
      * called with this parameter provided, the parameter's value is an array of type `CArrayObject` containing the
      * substrings that matched the pattern, in the order of appearance.
      *
      * @return int The number of matches of the pattern in the string.
      */
 
-    public function reFindAllFrom ($sFindPattern, $iStartPos, &$raFoundStrings = null)
+    public function reFindAllFrom ($findPattern, $startPos, &$foundStrings = null)
     {
-        $sFindPattern = self::ensureUModifier($sFindPattern);
-        $xRet = CRegex::findAllFrom($this, $sFindPattern, $iStartPos, $raFoundStrings);
-        $raFoundStrings = to_oop($raFoundStrings);
-        return $xRet;
+        $findPattern = self::ensureUModifier($findPattern);
+        $ret = CRegex::findAllFrom($this, $findPattern, $startPos, $foundStrings);
+        $foundStrings = to_oop($foundStrings);
+        return $ret;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2006,24 +2006,24 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
      * PCRE engine.
      *
-     * @param  string $sFindPattern The searched pattern, usually with groups.
-     * @param  reference $raFoundGroupArrays **OUTPUT.** If any patterns were found, this is a two-dimensional array of
+     * @param  string $findPattern The searched pattern, usually with groups.
+     * @param  reference $foundGroupArrays **OUTPUT.** If any patterns were found, this is a two-dimensional array of
      * type `CArrayObject`, per each pattern match containing an array of the substrings that matched the groups in the
      * pattern, in the same order, if any.
-     * @param  reference $raFoundStrings **OPTIONAL. OUTPUT.** If any patterns have been found after the method was
+     * @param  reference $foundStrings **OPTIONAL. OUTPUT.** If any patterns have been found after the method was
      * called with this parameter provided, the parameter's value is an array of type `CArrayObject` containing the
      * substrings that matched the pattern, in the order of appearance.
      *
      * @return int The number of matches of the pattern in the string.
      */
 
-    public function reFindAllGroups ($sFindPattern, &$raFoundGroupArrays, &$raFoundStrings = null)
+    public function reFindAllGroups ($findPattern, &$foundGroupArrays, &$foundStrings = null)
     {
-        $sFindPattern = self::ensureUModifier($sFindPattern);
-        $xRet = CRegex::findAllGroups($this, $sFindPattern, $raFoundGroupArrays, $raFoundStrings);
-        $raFoundGroupArrays = to_oop($raFoundGroupArrays);
-        $raFoundStrings = to_oop($raFoundStrings);
-        return $xRet;
+        $findPattern = self::ensureUModifier($findPattern);
+        $ret = CRegex::findAllGroups($this, $findPattern, $foundGroupArrays, $foundStrings);
+        $foundGroupArrays = to_oop($foundGroupArrays);
+        $foundStrings = to_oop($foundStrings);
+        return $ret;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2039,26 +2039,26 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * **NOTE.** Unlike the non-regex methods of the class, which count positions within a Unicode string in
      * characters, the PCRE engine and therefore this method count positions in bytes.
      *
-     * @param  string $sFindPattern The searched pattern, usually with groups.
-     * @param  int $iStartPos The starting position for the search.
-     * @param  reference $raFoundGroupArrays **OUTPUT.** If any patterns were found, this is a two-dimensional array of
+     * @param  string $findPattern The searched pattern, usually with groups.
+     * @param  int $startPos The starting position for the search.
+     * @param  reference $foundGroupArrays **OUTPUT.** If any patterns were found, this is a two-dimensional array of
      * type `CArrayObject`, per each pattern match containing an array of the substrings that matched the groups in the
      * pattern, in the same order, if any.
-     * @param  reference $raFoundStrings **OPTIONAL. OUTPUT.** If any patterns have been found after the method was
+     * @param  reference $foundStrings **OPTIONAL. OUTPUT.** If any patterns have been found after the method was
      * called with this parameter provided, the parameter's value is an array of type `CArrayObject` containing the
      * substrings that matched the pattern, in the order of appearance.
      *
      * @return int The number of matches of the pattern in the string.
      */
 
-    public function reFindAllGroupsFrom ($sFindPattern, $iStartPos, &$raFoundGroupArrays, &$raFoundStrings = null)
+    public function reFindAllGroupsFrom ($findPattern, $startPos, &$foundGroupArrays, &$foundStrings = null)
     {
-        $sFindPattern = self::ensureUModifier($sFindPattern);
-        $xRet = CRegex::findAllGroupsFrom($this, $sFindPattern, $iStartPos, $raFoundGroupArrays,
-            $raFoundStrings);
-        $raFoundGroupArrays = to_oop($raFoundGroupArrays);
-        $raFoundStrings = to_oop($raFoundStrings);
-        return $xRet;
+        $findPattern = self::ensureUModifier($findPattern);
+        $ret = CRegex::findAllGroupsFrom($this, $findPattern, $startPos, $foundGroupArrays,
+            $foundStrings);
+        $foundGroupArrays = to_oop($foundGroupArrays);
+        $foundStrings = to_oop($foundStrings);
+        return $ret;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2069,18 +2069,18 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
      * PCRE engine.
      *
-     * @param  string $sWhatPattern The pattern to be replaced.
-     * @param  string $sWith The replacement string.
-     * @param  reference $riQuantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
+     * @param  string $whatPattern The pattern to be replaced.
+     * @param  string $with The replacement string.
+     * @param  reference $quantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value, which is of type `int`, indicates the number of replacements made.
      *
      * @return CUStringObject The resulting string.
      */
 
-    public function reReplace ($sWhatPattern, $sWith, &$riQuantity = null)
+    public function reReplace ($whatPattern, $with, &$quantity = null)
     {
-        $sWhatPattern = self::ensureUModifier($sWhatPattern);
-        return CRegex::replace($this, $sWhatPattern, $sWith, $riQuantity);
+        $whatPattern = self::ensureUModifier($whatPattern);
+        return CRegex::replace($this, $whatPattern, $with, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2092,26 +2092,26 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
      * PCRE engine.
      *
-     * @param  string $sWhatPattern The pattern to be replaced.
-     * @param  callable $fnCallback A function or method that, as imposed by PHP's PCRE, takes a map as a parameter,
+     * @param  string $whatPattern The pattern to be replaced.
+     * @param  callable $callback A function or method that, as imposed by PHP's PCRE, takes a map as a parameter,
      * which contains the matching substring under the key of `0`, the substring that matched the first group, if any,
      * under the key of `1`, and so on for groups, and returns the string with which the matching substring should be
      * replaced.
-     * @param  reference $riQuantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
+     * @param  reference $quantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value, which is of type `int`, indicates the number of replacements made.
      *
      * @return CUStringObject The resulting string.
      */
 
-    public function reReplaceWithCallback ($sWhatPattern, $fnCallback, &$riQuantity = null)
+    public function reReplaceWithCallback ($whatPattern, $callback, &$quantity = null)
     {
-        $sWhatPattern = self::ensureUModifier($sWhatPattern);
-        $fnUseCallback = function ($mMatches) use ($fnCallback)
+        $whatPattern = self::ensureUModifier($whatPattern);
+        $useCallback = function ($matches) use ($callback)
             {
-                $mMatches = to_oop($mMatches);
-                return call_user_func($fnCallback, $mMatches);
+                $matches = to_oop($matches);
+                return call_user_func($callback, $matches);
             };
-        return CRegex::replaceWithCallback($this, $sWhatPattern, $fnUseCallback, $riQuantity);
+        return CRegex::replaceWithCallback($this, $whatPattern, $useCallback, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2122,17 +2122,17 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
      * PCRE engine.
      *
-     * @param  string $sWhatPattern The pattern to be removed.
-     * @param  reference $riQuantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
+     * @param  string $whatPattern The pattern to be removed.
+     * @param  reference $quantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value, which is of type `int`, indicates the number of removals made.
      *
      * @return CUStringObject The resulting string.
      */
 
-    public function reRemove ($sWhatPattern, &$riQuantity = null)
+    public function reRemove ($whatPattern, &$quantity = null)
     {
-        $sWhatPattern = self::ensureUModifier($sWhatPattern);
-        return CRegex::remove($this, $sWhatPattern, $riQuantity);
+        $whatPattern = self::ensureUModifier($whatPattern);
+        return CRegex::remove($this, $whatPattern, $quantity);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2150,16 +2150,16 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
      * PCRE engine.
      *
-     * @param  string|array|map $xDelimiterPatternOrPatterns The pattern or array of patterns to be recognized as the
+     * @param  string|array|map $delimiterPatternOrPatterns The pattern or array of patterns to be recognized as the
      * delimiter(s).
      *
      * @return CArrayObject The resulting strings of type `CUStringObject`.
      */
 
-    public function reSplit ($xDelimiterPatternOrPatterns)
+    public function reSplit ($delimiterPatternOrPatterns)
     {
-        $xDelimiterPatternOrPatterns = self::ensureUModifier($xDelimiterPatternOrPatterns);
-        return to_oop(CRegex::split($this, $xDelimiterPatternOrPatterns));
+        $delimiterPatternOrPatterns = self::ensureUModifier($delimiterPatternOrPatterns);
+        return to_oop(CRegex::split($this, $delimiterPatternOrPatterns));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2168,50 +2168,50 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * With this method, you can prepare an arbitrary string to be used as a part of a regular expression.
      *
-     * @param  string $sDelimiter **OPTIONAL. Default is** "/". The pattern delimiter that is going to be used by the
+     * @param  string $delimiter **OPTIONAL. Default is** "/". The pattern delimiter that is going to be used by the
      * resulting regular expression and therefore needs to be escaped as well.
      *
      * @return CUStringObject The escaped string.
      */
 
-    public function reEnterTd ($sDelimiter = CRegex::DEFAULT_PATTERN_DELIMITER)
+    public function reEnterTd ($delimiter = CRegex::DEFAULT_PATTERN_DELIMITER)
     {
-        return CRegex::enterTd($this, $sDelimiter);
+        return CRegex::enterTd($this, $delimiter);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    // public function offsetExists ($iOffset)
+    // public function offsetExists ($offset)
     // {
-    //     assert( 'is_int($iOffset)', vs(isset($this), get_defined_vars()) );
-    //     return ( 0 <= $iOffset && $iOffset < CUString::length($this) );
+    //     assert( 'is_int($offset)', vs(isset($this), get_defined_vars()) );
+    //     return ( 0 <= $offset && $offset < CUString::length($this) );
     // }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    // public function offsetGet ($iOffset)
+    // public function offsetGet ($offset)
     // {
-    //     return CUString::charAt($this, $iOffset);
+    //     return CUString::charAt($this, $offset);
     // }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    // public function offsetSet ($iOffset, $sChar)
+    // public function offsetSet ($offset, $char)
     // {
-    //     CUString::setCharAt($this, $iOffset, $sChar);
+    //     CUString::setCharAt($this, $offset, $char);
     // }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    // public function offsetUnset ($iOffset)
+    // public function offsetUnset ($offset)
     // {
     //     assert( 'false', vs(isset($this), get_defined_vars()) );
     // }
@@ -2220,40 +2220,40 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * @ignore
      */
 
-    protected static function ensureUModifier ($xPatternOrPatterns)
+    protected static function ensureUModifier ($patternOrPatterns)
     {
         // Are we automatically adding the "u" modifier to any regular expression pattern that doesn't already have it?
         // So far, the answer is No.
-        return $xPatternOrPatterns;
+        return $patternOrPatterns;
 
-        // static $s_sSearchFor = "/u[A-Za-z]*\\z/";
-        // if ( is_cstring($xPatternOrPatterns) )
+        // static $s_searchFor = "/u[A-Za-z]*\\z/";
+        // if ( is_cstring($patternOrPatterns) )
         // {
-        //     return ( preg_match($s_sSearchFor, $xPatternOrPatterns) !== 1 ) ? $xPatternOrPatterns . "u" :
-        //         $xPatternOrPatterns;
+        //     return ( preg_match($s_searchFor, $patternOrPatterns) !== 1 ) ? $patternOrPatterns . "u" :
+        //         $patternOrPatterns;
         // }
-        // if ( is_carray($xPatternOrPatterns) )
+        // if ( is_carray($patternOrPatterns) )
         // {
-        //     $iLen = CArray::length($xPatternOrPatterns);
-        //     for ($i = 0; $i < $iLen; $i++)
+        //     $len = CArray::length($patternOrPatterns);
+        //     for ($i = 0; $i < $len; $i++)
         //     {
-        //         if ( preg_match($s_sSearchFor, $xPatternOrPatterns[$i]) !== 1 )
+        //         if ( preg_match($s_searchFor, $patternOrPatterns[$i]) !== 1 )
         //         {
-        //             $xPatternOrPatterns[$i] = $xPatternOrPatterns[$i] . "u";
+        //             $patternOrPatterns[$i] = $patternOrPatterns[$i] . "u";
         //         }
         //     }
-        //     return $xPatternOrPatterns;
+        //     return $patternOrPatterns;
         // }
-        // if ( is_cmap($xPatternOrPatterns) )
+        // if ( is_cmap($patternOrPatterns) )
         // {
-        //     foreach ($xPatternOrPatterns as &$rsPattern)
+        //     foreach ($patternOrPatterns as &$pattern)
         //     {
-        //         if ( preg_match($s_sSearchFor, $rsPattern) !== 1 )
+        //         if ( preg_match($s_searchFor, $pattern) !== 1 )
         //         {
-        //             $rsPattern .= "u";
+        //             $pattern .= "u";
         //         }
-        //     } unset($rsPattern);
-        //     return $xPatternOrPatterns;
+        //     } unset($pattern);
+        //     return $patternOrPatterns;
         // }
         // assert( 'false', vs(isset($this), get_defined_vars()) );
     }

@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-855930092"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1914550300"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-855930092" class="accordion-body collapse in">
+            <div id="namespace-1914550300" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -305,10 +305,10 @@ more.</p></em></p>
                                 <em>N/A</em>
                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/CSystem.html#property_ms_mFhFromLockFp" class="">$ms_mFhFromLockFp</a><br />
-                                                                    <a href="../classes/CSystem.html#property_ms_sThirdPartyLastUpdateTimeFn" class="">$ms_sThirdPartyLastUpdateTimeFn</a><br />
-                                                                    <a href="../classes/CSystem.html#property_ms_sThirdPartyConcurrLockFn" class="">$ms_sThirdPartyConcurrLockFn</a><br />
-                                                                    <a href="../classes/CSystem.html#property_ms_sThirdPartyAlreadyOopWrappedMark" class="">$ms_sThirdPartyAlreadyOopWrappedMark</a><br />
+                                                                    <a href="../classes/CSystem.html#property_ms_fhFromLockFp" class="">$ms_fhFromLockFp</a><br />
+                                                                    <a href="../classes/CSystem.html#property_ms_thirdPartyLastUpdateTimeFn" class="">$ms_thirdPartyLastUpdateTimeFn</a><br />
+                                                                    <a href="../classes/CSystem.html#property_ms_thirdPartyConcurrLockFn" class="">$ms_thirdPartyConcurrLockFn</a><br />
+                                                                    <a href="../classes/CSystem.html#property_ms_thirdPartyAlreadyOopWrappedMark" class="">$ms_thirdPartyAlreadyOopWrappedMark</a><br />
                                                             </section>
                         </section>
                         <section class="row-fluid private">
@@ -846,14 +846,14 @@ directory.</p>
             <article class="method">
                 <h3 class="public ">cd()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> cd (string&nbsp;<span class="argument">$sDirectoryPath</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> cd (string&nbsp;<span class="argument">$directoryPath</span>) : void</pre>
                 <p><em><p>Changes the current working directory to a specified path.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$directoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the new current working directory.</p></td>
                             </tr>
@@ -923,7 +923,7 @@ directory.</p>
             <article class="method">
                 <h3 class="public ">setLock()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setLock (string&nbsp;<span class="argument">$sLockFp</span>, bool&nbsp;<span class="argument">$bWait</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setLock (string&nbsp;<span class="argument">$lockFp</span>, bool&nbsp;<span class="argument">$wait</span>) : bool</pre>
                 <p><em><p>Tries to set a lock on a file so that any other process that attempts to lock the same file either waits for the
 file to get unlocked or continues without the lock.</p></em></p>
                 
@@ -931,12 +931,12 @@ file to get unlocked or continues without the lock.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sLockFp</code> </td>
+                                <td><code style="border: none; background: none">$lockFp</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the file to be locked.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bWait</code> </td>
+                                <td><code style="border: none; background: none">$wait</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p>If the file appears to be already locked, this parameter tells whether to wait for the file
 to get unlocked (<code>true</code>) or to return immediately (<code>false</code>).</p></td>
@@ -975,14 +975,14 @@ to get unlocked (<code>true</code>) or to return immediately (<code>false</code>
             <article class="method">
                 <h3 class="public ">unsetLock()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> unsetLock (string&nbsp;<span class="argument">$sLockFp</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> unsetLock (string&nbsp;<span class="argument">$lockFp</span>) : void</pre>
                 <p><em><p>Removes the lock that was previously set on a file.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sLockFp</code> </td>
+                                <td><code style="border: none; background: none">$lockFp</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the file to be unlocked.</p></td>
                             </tr>
@@ -1015,14 +1015,14 @@ to get unlocked (<code>true</code>) or to return immediately (<code>false</code>
             <article class="method">
                 <h3 class="public ">numFreeDiskBytes()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> numFreeDiskBytes (<span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sReferenceDp</span></span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> numFreeDiskBytes (<span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$referenceDp</span></span>) : int</pre>
                 <p><em><p>Returns the amount of free space available on the filesystem or a disk partition.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sReferenceDp</code> </td>
+                                <td><code style="border: none; background: none">$referenceDp</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> ".". The path to the reference directory on the filesystem
 or the disk partition of interest.</p></td>
@@ -1061,14 +1061,14 @@ or the disk partition of interest.</p></td>
             <article class="method">
                 <h3 class="public ">numTotalDiskBytes()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> numTotalDiskBytes (<span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sReferenceDp</span></span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> numTotalDiskBytes (<span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$referenceDp</span></span>) : int</pre>
                 <p><em><p>Returns the amount of total space on the filesystem or a disk partition.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sReferenceDp</code> </td>
+                                <td><code style="border: none; background: none">$referenceDp</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> ".". The path to the reference directory on the filesystem
 or the disk partition of interest.</p></td>
@@ -1144,14 +1144,14 @@ or the disk partition of interest.</p></td>
             <article class="method">
                 <h3 class="public ">setExecutionTimeLimit()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setExecutionTimeLimit (int&nbsp;<span class="argument">$iNumSeconds</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setExecutionTimeLimit (int&nbsp;<span class="argument">$numSeconds</span>) : void</pre>
                 <p><em><p>Sets the maximum amount of time for which the script is allowed to execute.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iNumSeconds</code> </td>
+                                <td><code style="border: none; background: none">$numSeconds</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The maximum amount of time for which the script is allowed to execute, in seconds.</p></td>
                             </tr>
@@ -1216,14 +1216,14 @@ or the disk partition of interest.</p></td>
             <article class="method">
                 <h3 class="public ">currentMemoryUsageInt()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> currentMemoryUsageInt (<span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eInUnit</span></span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> currentMemoryUsageInt (<span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inUnit</span></span>) : int</pre>
                 <p><em><p>Returns the amount of memory currently allocated to PHP, as an integer value.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$eInUnit</code> </td>
+                                <td><code style="border: none; background: none">$inUnit</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CUUnit::BYTE</code>. The storage unit for the output value.</p></td>
                             </tr>
@@ -1261,14 +1261,14 @@ or the disk partition of interest.</p></td>
             <article class="method">
                 <h3 class="public ">currentMemoryUsageFloat()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> currentMemoryUsageFloat (<span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eInUnit</span></span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> currentMemoryUsageFloat (<span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inUnit</span></span>) : float</pre>
                 <p><em><p>Returns the amount of memory currently allocated to PHP, as a floating-point value.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$eInUnit</code> </td>
+                                <td><code style="border: none; background: none">$inUnit</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CUUnit::BYTE</code>. The storage unit for the output value.</p></td>
                             </tr>
@@ -1306,14 +1306,14 @@ or the disk partition of interest.</p></td>
             <article class="method">
                 <h3 class="public ">peakMemoryUsageInt()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> peakMemoryUsageInt (<span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eInUnit</span></span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> peakMemoryUsageInt (<span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inUnit</span></span>) : int</pre>
                 <p><em><p>Returns the peak amount of memory allocated to PHP to this moment, as an integer value.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$eInUnit</code> </td>
+                                <td><code style="border: none; background: none">$inUnit</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CUUnit::BYTE</code>. The storage unit for the output value.</p></td>
                             </tr>
@@ -1351,14 +1351,14 @@ or the disk partition of interest.</p></td>
             <article class="method">
                 <h3 class="public ">peakMemoryUsageFloat()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> peakMemoryUsageFloat (<span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eInUnit</span></span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> peakMemoryUsageFloat (<span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inUnit</span></span>) : float</pre>
                 <p><em><p>Returns the peak amount of memory allocated to PHP to this moment, as a floating-point value.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$eInUnit</code> </td>
+                                <td><code style="border: none; background: none">$inUnit</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CUUnit::BYTE</code>. The storage unit for the output value.</p></td>
                             </tr>
@@ -1396,14 +1396,14 @@ or the disk partition of interest.</p></td>
             <article class="method">
                 <h3 class="public ">setMemoryUsageLimit()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setMemoryUsageLimit (int&nbsp;<span class="argument">$iNumBytes</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setMemoryUsageLimit (int&nbsp;<span class="argument">$numBytes</span>) : void</pre>
                 <p><em><p>Sets the maximum amount of memory the script is allowed to allocate.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iNumBytes</code> </td>
+                                <td><code style="border: none; background: none">$numBytes</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The maximum amount of memory the script is allowed to allocate, in bytes.</p></td>
                             </tr>
@@ -1436,14 +1436,14 @@ or the disk partition of interest.</p></td>
             <article class="method">
                 <h3 class="public ">hasConfigOption()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> hasConfigOption (string&nbsp;<span class="argument">$sOptionName</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> hasConfigOption (string&nbsp;<span class="argument">$optionName</span>) : bool</pre>
                 <p><em><p>Determines if the PHP's configuration options include an option with a specified name.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option to be looked for.</p></td>
                             </tr>
@@ -1482,14 +1482,14 @@ otherwise.</p>
             <article class="method">
                 <h3 class="public ">configOption()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOption (string&nbsp;<span class="argument">$sOptionName</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOption (string&nbsp;<span class="argument">$optionName</span>) : OOPString</pre>
                 <p><em><p>Returns the value of a specified PHP's configuration option, as a string.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option.</p></td>
                             </tr>
@@ -1527,14 +1527,14 @@ otherwise.</p>
             <article class="method">
                 <h3 class="public ">configOptionBool()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionBool (string&nbsp;<span class="argument">$sOptionName</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionBool (string&nbsp;<span class="argument">$optionName</span>) : bool</pre>
                 <p><em><p>Returns the value of a specified PHP's configuration option, as a boolean value.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option.</p></td>
                             </tr>
@@ -1572,14 +1572,14 @@ otherwise.</p>
             <article class="method">
                 <h3 class="public ">configOptionInt()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionInt (string&nbsp;<span class="argument">$sOptionName</span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionInt (string&nbsp;<span class="argument">$optionName</span>) : int</pre>
                 <p><em><p>Returns the value of a specified PHP's configuration option, as an integer value.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option.</p></td>
                             </tr>
@@ -1617,14 +1617,14 @@ otherwise.</p>
             <article class="method">
                 <h3 class="public ">configOptionFloat()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionFloat (string&nbsp;<span class="argument">$sOptionName</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionFloat (string&nbsp;<span class="argument">$optionName</span>) : float</pre>
                 <p><em><p>Returns the value of a specified PHP's configuration option, as a floating-point value.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option.</p></td>
                             </tr>
@@ -1662,7 +1662,7 @@ otherwise.</p>
             <article class="method">
                 <h3 class="public ">configOptionStorageInt()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionStorageInt (string&nbsp;<span class="argument">$sOptionName</span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eInUnit</span></span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionStorageInt (string&nbsp;<span class="argument">$optionName</span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inUnit</span></span>) : int</pre>
                 <p><em><p>Returns the value of a specified PHP's configuration option that is related to digital storage, as an integer
 value.</p></em></p>
                 
@@ -1670,12 +1670,12 @@ value.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$eInUnit</code> </td>
+                                <td><code style="border: none; background: none">$inUnit</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CUUnit::BYTE</code>. The storage unit for the output value.</p></td>
                             </tr>
@@ -1713,7 +1713,7 @@ value.</p></em></p>
             <article class="method">
                 <h3 class="public ">configOptionStorageFloat()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionStorageFloat (string&nbsp;<span class="argument">$sOptionName</span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eInUnit</span></span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionStorageFloat (string&nbsp;<span class="argument">$optionName</span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inUnit</span></span>) : float</pre>
                 <p><em><p>Returns the value of a specified PHP's configuration option that is related to digital storage, as a
 floating-point value.</p></em></p>
                 
@@ -1721,12 +1721,12 @@ floating-point value.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$eInUnit</code> </td>
+                                <td><code style="border: none; background: none">$inUnit</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CUUnit::BYTE</code>. The storage unit for the output value.</p></td>
                             </tr>
@@ -1764,14 +1764,14 @@ floating-point value.</p></em></p>
             <article class="method">
                 <h3 class="public ">configOptionOrig()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionOrig (string&nbsp;<span class="argument">$sOptionName</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionOrig (string&nbsp;<span class="argument">$optionName</span>) : OOPString</pre>
                 <p><em><p>Returns the original value of a specified PHP's configuration option, as a string.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option.</p></td>
                             </tr>
@@ -1809,14 +1809,14 @@ floating-point value.</p></em></p>
             <article class="method">
                 <h3 class="public ">configOptionOrigBool()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionOrigBool (string&nbsp;<span class="argument">$sOptionName</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionOrigBool (string&nbsp;<span class="argument">$optionName</span>) : bool</pre>
                 <p><em><p>Returns the original value of a specified PHP's configuration option, as a boolean value.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option.</p></td>
                             </tr>
@@ -1854,14 +1854,14 @@ floating-point value.</p></em></p>
             <article class="method">
                 <h3 class="public ">configOptionOrigInt()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionOrigInt (string&nbsp;<span class="argument">$sOptionName</span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionOrigInt (string&nbsp;<span class="argument">$optionName</span>) : int</pre>
                 <p><em><p>Returns the original value of a specified PHP's configuration option, as an integer value.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option.</p></td>
                             </tr>
@@ -1899,14 +1899,14 @@ floating-point value.</p></em></p>
             <article class="method">
                 <h3 class="public ">configOptionOrigFloat()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionOrigFloat (string&nbsp;<span class="argument">$sOptionName</span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionOrigFloat (string&nbsp;<span class="argument">$optionName</span>) : float</pre>
                 <p><em><p>Returns the original value of a specified PHP's configuration option, as a floating-point value.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option.</p></td>
                             </tr>
@@ -1944,7 +1944,7 @@ floating-point value.</p></em></p>
             <article class="method">
                 <h3 class="public ">configOptionOrigStorageInt()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionOrigStorageInt (string&nbsp;<span class="argument">$sOptionName</span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eInUnit</span></span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionOrigStorageInt (string&nbsp;<span class="argument">$optionName</span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inUnit</span></span>) : int</pre>
                 <p><em><p>Returns the original value of a specified PHP's configuration option that is related to digital storage, as an
 integer value.</p></em></p>
                 
@@ -1952,12 +1952,12 @@ integer value.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$eInUnit</code> </td>
+                                <td><code style="border: none; background: none">$inUnit</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CUUnit::BYTE</code>. The storage unit for the output value.</p></td>
                             </tr>
@@ -1995,7 +1995,7 @@ integer value.</p></em></p>
             <article class="method">
                 <h3 class="public ">configOptionOrigStorageFloat()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionOrigStorageFloat (string&nbsp;<span class="argument">$sOptionName</span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eInUnit</span></span>) : float</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> configOptionOrigStorageFloat (string&nbsp;<span class="argument">$optionName</span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inUnit</span></span>) : float</pre>
                 <p><em><p>Returns the original value of a specified PHP's configuration option that is related to digital storage, as a
 floating-point value.</p></em></p>
                 
@@ -2003,12 +2003,12 @@ floating-point value.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$eInUnit</code> </td>
+                                <td><code style="border: none; background: none">$inUnit</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CUUnit::BYTE</code>. The storage unit for the output value.</p></td>
                             </tr>
@@ -2046,19 +2046,19 @@ floating-point value.</p></em></p>
             <article class="method">
                 <h3 class="public ">setConfigOption()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setConfigOption (string&nbsp;<span class="argument">$sOptionName</span>, string&nbsp;<span class="argument">$sOptionValue</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setConfigOption (string&nbsp;<span class="argument">$optionName</span>, string&nbsp;<span class="argument">$optionValue</span>) : void</pre>
                 <p><em><p>Sets the value of a PHP's configuration option to a string.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionValue</code> </td>
+                                <td><code style="border: none; background: none">$optionValue</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The option's new value.</p></td>
                             </tr>
@@ -2091,19 +2091,19 @@ floating-point value.</p></em></p>
             <article class="method">
                 <h3 class="public ">setConfigOptionBool()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setConfigOptionBool (string&nbsp;<span class="argument">$sOptionName</span>, bool&nbsp;<span class="argument">$bOptionValue</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setConfigOptionBool (string&nbsp;<span class="argument">$optionName</span>, bool&nbsp;<span class="argument">$optionValue</span>) : void</pre>
                 <p><em><p>Sets the value of a PHP's configuration option to a boolean value.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bOptionValue</code> </td>
+                                <td><code style="border: none; background: none">$optionValue</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p>The option's new value.</p></td>
                             </tr>
@@ -2136,19 +2136,19 @@ floating-point value.</p></em></p>
             <article class="method">
                 <h3 class="public ">setConfigOptionInt()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setConfigOptionInt (string&nbsp;<span class="argument">$sOptionName</span>, int&nbsp;<span class="argument">$iOptionValue</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setConfigOptionInt (string&nbsp;<span class="argument">$optionName</span>, int&nbsp;<span class="argument">$optionValue</span>) : void</pre>
                 <p><em><p>Sets the value of a PHP's configuration option to an integer value.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iOptionValue</code> </td>
+                                <td><code style="border: none; background: none">$optionValue</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The option's new value.</p></td>
                             </tr>
@@ -2181,19 +2181,19 @@ floating-point value.</p></em></p>
             <article class="method">
                 <h3 class="public ">setConfigOptionFloat()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setConfigOptionFloat (string&nbsp;<span class="argument">$sOptionName</span>, float&nbsp;<span class="argument">$fOptionValue</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setConfigOptionFloat (string&nbsp;<span class="argument">$optionName</span>, float&nbsp;<span class="argument">$optionValue</span>) : void</pre>
                 <p><em><p>Sets the value of a PHP's configuration option to a floating-point value.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$fOptionValue</code> </td>
+                                <td><code style="border: none; background: none">$optionValue</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">float</code></td>
                                 <td><p>The option's new value.</p></td>
                             </tr>
@@ -2226,14 +2226,14 @@ floating-point value.</p></em></p>
             <article class="method">
                 <h3 class="public ">restoreConfigOption()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> restoreConfigOption (string&nbsp;<span class="argument">$sOptionName</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> restoreConfigOption (string&nbsp;<span class="argument">$optionName</span>) : void</pre>
                 <p><em><p>Restores a PHP's configuration option to its original value.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option.</p></td>
                             </tr>
@@ -2674,14 +2674,14 @@ floating-point value.</p></em></p>
             <article class="method">
                 <h3 class="protected ">storageUnitFromOptionValue()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> storageUnitFromOptionValue (&nbsp;<span class="argument">$sOptionValue</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> storageUnitFromOptionValue (&nbsp;<span class="argument">$optionValue</span>)</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionValue</code> </td>
+                                <td><code style="border: none; background: none">$optionValue</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
@@ -2721,10 +2721,10 @@ floating-point value.</p></em></p>
 
                                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_ms_mFhFromLockFp" name="property_ms_mFhFromLockFp" class="anchor"></a>
+            <a id="property_ms_fhFromLockFp" name="property_ms_fhFromLockFp" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$ms_mFhFromLockFp</h3>
-                <pre class="signature">$ms_mFhFromLockFp</pre>
+                <h3 class="protected ">$ms_fhFromLockFp</h3>
+                <pre class="signature">$ms_fhFromLockFp</pre>
                 <p><em></em></p>
                 
 
@@ -2749,10 +2749,10 @@ floating-point value.</p></em></p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_ms_sThirdPartyLastUpdateTimeFn" name="property_ms_sThirdPartyLastUpdateTimeFn" class="anchor"></a>
+            <a id="property_ms_thirdPartyLastUpdateTimeFn" name="property_ms_thirdPartyLastUpdateTimeFn" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$ms_sThirdPartyLastUpdateTimeFn</h3>
-                <pre class="signature">$ms_sThirdPartyLastUpdateTimeFn</pre>
+                <h3 class="protected ">$ms_thirdPartyLastUpdateTimeFn</h3>
+                <pre class="signature">$ms_thirdPartyLastUpdateTimeFn</pre>
                 <p><em></em></p>
                 
 
@@ -2777,10 +2777,10 @@ floating-point value.</p></em></p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_ms_sThirdPartyConcurrLockFn" name="property_ms_sThirdPartyConcurrLockFn" class="anchor"></a>
+            <a id="property_ms_thirdPartyConcurrLockFn" name="property_ms_thirdPartyConcurrLockFn" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$ms_sThirdPartyConcurrLockFn</h3>
-                <pre class="signature">$ms_sThirdPartyConcurrLockFn</pre>
+                <h3 class="protected ">$ms_thirdPartyConcurrLockFn</h3>
+                <pre class="signature">$ms_thirdPartyConcurrLockFn</pre>
                 <p><em></em></p>
                 
 
@@ -2805,10 +2805,10 @@ floating-point value.</p></em></p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_ms_sThirdPartyAlreadyOopWrappedMark" name="property_ms_sThirdPartyAlreadyOopWrappedMark" class="anchor"></a>
+            <a id="property_ms_thirdPartyAlreadyOopWrappedMark" name="property_ms_thirdPartyAlreadyOopWrappedMark" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$ms_sThirdPartyAlreadyOopWrappedMark</h3>
-                <pre class="signature">$ms_sThirdPartyAlreadyOopWrappedMark</pre>
+                <h3 class="protected ">$ms_thirdPartyAlreadyOopWrappedMark</h3>
+                <pre class="signature">$ms_thirdPartyAlreadyOopWrappedMark</pre>
                 <p><em></em></p>
                 
 
@@ -2881,7 +2881,7 @@ floating-point value.</p></em></p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

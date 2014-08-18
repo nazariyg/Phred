@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * The home of the static methods that serve as the default comparators to be used by methods that depend on comparing
  * values of unspecified types.
@@ -43,9 +44,9 @@
  */
 
 // Method signatures:
-//   static bool equality ($xValue0, $xValue1)
-//   static int orderAsc ($xValue0, $xValue1)
-//   static int orderDesc ($xValue0, $xValue1)
+//   static bool equality ($value0, $value1)
+//   static int orderAsc ($value0, $value1)
+//   static int orderDesc ($value0, $value1)
 
 class CComparator extends CRootClass
 {
@@ -83,8 +84,8 @@ class CComparator extends CRootClass
      * If the values are objects of your custom class, the class should conform to the [IEquality](IEquality.html)
      * interface or to the [IEqualityAndOrder](IEqualityAndOrder.html) interface.
      *
-     * @param  mixed $xValue0 The first value for comparison.
-     * @param  mixed $xValue1 The second value for comparison.
+     * @param  mixed $value0 The first value for comparison.
+     * @param  mixed $value1 The second value for comparison.
      *
      * @return bool `true` if the two values are equal, `false` otherwise.
      *
@@ -92,57 +93,57 @@ class CComparator extends CRootClass
      * @link   IEqualityAndOrder.html IEqualityAndOrder
      */
 
-    public static function equality ($xValue0, $xValue1)
+    public static function equality ($value0, $value1)
     {
         if ( CDebug::isDebugModeOn() )
         {
-            if ( !((is_cstring($xValue0) && is_cstring($xValue1)) ||
-                   (is_carray($xValue0) && is_carray($xValue1)) ||
-                   (is_cmap($xValue0) && is_cmap($xValue1))) )
+            if ( !((is_cstring($value0) && is_cstring($value1)) ||
+                   (is_carray($value0) && is_carray($value1)) ||
+                   (is_cmap($value0) && is_cmap($value1))) )
             {
                 // With the above exceptions, the two values should be both either scalars or objects of the same
                 // class.
-                assert( 'is_object($xValue0) == is_object($xValue1)', vs(isset($this), get_defined_vars()) );
-                assert( '!is_object($xValue0) || CString::equals(get_class($xValue0), get_class($xValue1))',
+                assert( 'is_object($value0) == is_object($value1)', vs(isset($this), get_defined_vars()) );
+                assert( '!is_object($value0) || CString::equals(get_class($value0), get_class($value1))',
                     vs(isset($this), get_defined_vars()) );
             }
         }
 
-        $sClassName;
-        if ( !phred_classify_duo($xValue0, $xValue1, $sClassName) )
+        $className;
+        if ( !phred_classify_duo($value0, $value1, $className) )
         {
             // Compare the values as scalars.
-            assert( '(is_scalar($xValue0) || is_null($xValue0)) && (is_scalar($xValue1) || is_null($xValue1))',
+            assert( '(is_scalar($value0) || is_null($value0)) && (is_scalar($value1) || is_null($value1))',
                 vs(isset($this), get_defined_vars()) );
-            return ( $xValue0 === $xValue1 );
+            return ( $value0 === $value1 );
         }
         else
         {
             // Compare the values as objects that may conform to one of the comparison interfaces.
-            $oReflClass = new ReflectionClass($sClassName);
-            if ( $oReflClass->implementsInterface("IEqualityStatic") )
+            $reflClass = new ReflectionClass($className);
+            if ( $reflClass->implementsInterface("IEqualityStatic") )
             {
-                $bRes = call_user_func([$sClassName, "equals"], $xValue0, $xValue1);
-                assert( 'is_bool($bRes)', vs(isset($this), get_defined_vars()) );
-                return $bRes;
+                $res = call_user_func([$className, "equals"], $value0, $value1);
+                assert( 'is_bool($res)', vs(isset($this), get_defined_vars()) );
+                return $res;
             }
-            if ( $oReflClass->implementsInterface("IEquality") )
+            if ( $reflClass->implementsInterface("IEquality") )
             {
-                $bRes = call_user_func([$xValue0, "equals"], $xValue1);
-                assert( 'is_bool($bRes)', vs(isset($this), get_defined_vars()) );
-                return $bRes;
+                $res = call_user_func([$value0, "equals"], $value1);
+                assert( 'is_bool($res)', vs(isset($this), get_defined_vars()) );
+                return $res;
             }
-            if ( $oReflClass->implementsInterface("IEqualityAndOrderStatic") )
+            if ( $reflClass->implementsInterface("IEqualityAndOrderStatic") )
             {
-                $iRes = call_user_func([$sClassName, "compare"], $xValue0, $xValue1);
-                assert( 'is_int($iRes)', vs(isset($this), get_defined_vars()) );
-                return ( $iRes == 0 );
+                $res = call_user_func([$className, "compare"], $value0, $value1);
+                assert( 'is_int($res)', vs(isset($this), get_defined_vars()) );
+                return ( $res == 0 );
             }
-            if ( $oReflClass->implementsInterface("IEqualityAndOrder") )
+            if ( $reflClass->implementsInterface("IEqualityAndOrder") )
             {
-                $iRes = call_user_func([$xValue0, "compare"], $xValue1);
-                assert( 'is_int($iRes)', vs(isset($this), get_defined_vars()) );
-                return ( $iRes == 0 );
+                $res = call_user_func([$value0, "compare"], $value1);
+                assert( 'is_int($res)', vs(isset($this), get_defined_vars()) );
+                return ( $res == 0 );
             }
 
             // The class of the objects being compared does not implement any applicable comparison interfaces.
@@ -157,8 +158,8 @@ class CComparator extends CRootClass
      * If the values are objects of your custom class, the class should conform to the
      * [IEqualityAndOrder](IEqualityAndOrder.html) interface.
      *
-     * @param  mixed $xValue0 The first value for comparison.
-     * @param  mixed $xValue1 The second value for comparison.
+     * @param  mixed $value0 The first value for comparison.
+     * @param  mixed $value1 The second value for comparison.
      *
      * @return int A negative value (typically `-1`) if the first value should go before the second value, a positive
      * value (typically `1`) if the other way around, and `0` if the two values are equal.
@@ -166,45 +167,45 @@ class CComparator extends CRootClass
      * @link   IEqualityAndOrder.html IEqualityAndOrder
      */
 
-    public static function orderAsc ($xValue0, $xValue1)
+    public static function orderAsc ($value0, $value1)
     {
         if ( CDebug::isDebugModeOn() )
         {
-            if ( !((is_cstring($xValue0) && is_cstring($xValue1)) ||
-                   (is_carray($xValue0) && is_carray($xValue1)) ||
-                   (is_cmap($xValue0) && is_cmap($xValue1))) )
+            if ( !((is_cstring($value0) && is_cstring($value1)) ||
+                   (is_carray($value0) && is_carray($value1)) ||
+                   (is_cmap($value0) && is_cmap($value1))) )
             {
                 // With the above exceptions, the two values should be both either scalars or objects of the same
                 // class.
-                assert( 'is_object($xValue0) == is_object($xValue1)', vs(isset($this), get_defined_vars()) );
-                assert( '!is_object($xValue0) || CString::equals(get_class($xValue0), get_class($xValue1))',
+                assert( 'is_object($value0) == is_object($value1)', vs(isset($this), get_defined_vars()) );
+                assert( '!is_object($value0) || CString::equals(get_class($value0), get_class($value1))',
                     vs(isset($this), get_defined_vars()) );
             }
         }
 
-        $sClassName;
-        if ( !phred_classify_duo($xValue0, $xValue1, $sClassName) )
+        $className;
+        if ( !phred_classify_duo($value0, $value1, $className) )
         {
             // Compare the values as scalars.
-            assert( '(is_scalar($xValue0) || is_null($xValue0)) && (is_scalar($xValue1) || is_null($xValue1))',
+            assert( '(is_scalar($value0) || is_null($value0)) && (is_scalar($value1) || is_null($value1))',
                 vs(isset($this), get_defined_vars()) );
-            return ( $xValue0 === $xValue1 ) ? 0 : (( $xValue0 < $xValue1 ) ? -1 : 1);
+            return ( $value0 === $value1 ) ? 0 : (( $value0 < $value1 ) ? -1 : 1);
         }
         else
         {
             // Compare the values as objects that may conform to one of the comparison interfaces.
-            $oReflClass = new ReflectionClass($sClassName);
-            if ( $oReflClass->implementsInterface("IEqualityAndOrderStatic") )
+            $reflClass = new ReflectionClass($className);
+            if ( $reflClass->implementsInterface("IEqualityAndOrderStatic") )
             {
-                $iRes = call_user_func([$sClassName, "compare"], $xValue0, $xValue1);
-                assert( 'is_int($iRes)', vs(isset($this), get_defined_vars()) );
-                return $iRes;
+                $res = call_user_func([$className, "compare"], $value0, $value1);
+                assert( 'is_int($res)', vs(isset($this), get_defined_vars()) );
+                return $res;
             }
-            if ( $oReflClass->implementsInterface("IEqualityAndOrder") )
+            if ( $reflClass->implementsInterface("IEqualityAndOrder") )
             {
-                $iRes = call_user_func([$xValue0, "compare"], $xValue1);
-                assert( 'is_int($iRes)', vs(isset($this), get_defined_vars()) );
-                return $iRes;
+                $res = call_user_func([$value0, "compare"], $value1);
+                assert( 'is_int($res)', vs(isset($this), get_defined_vars()) );
+                return $res;
             }
 
             // The class of the objects being compared does not implement any applicable comparison interfaces.
@@ -219,8 +220,8 @@ class CComparator extends CRootClass
      * If the values are objects of your custom class, the class should conform to the
      * [IEqualityAndOrder](IEqualityAndOrder.html) interface.
      *
-     * @param  mixed $xValue0 The first value for comparison.
-     * @param  mixed $xValue1 The second value for comparison.
+     * @param  mixed $value0 The first value for comparison.
+     * @param  mixed $value1 The second value for comparison.
      *
      * @return int A positive value (typically `1`) if the first value should go before the second value, a negative
      * value (typically `-1`) if the other way around, and `0` if the two values are equal.
@@ -228,9 +229,9 @@ class CComparator extends CRootClass
      * @link   IEqualityAndOrder.html IEqualityAndOrder
      */
 
-    public static function orderDesc ($xValue0, $xValue1)
+    public static function orderDesc ($value0, $value1)
     {
-        return -self::orderAsc($xValue0, $xValue1);
+        return -self::orderAsc($value0, $value1);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }

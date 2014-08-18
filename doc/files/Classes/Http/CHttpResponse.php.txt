@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * The class that enumerates the HTTP response codes and HTTP response headers. This is also the base class for the
  * CResponse class.

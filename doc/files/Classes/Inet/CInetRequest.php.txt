@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * The class that lets you make HTTP, HTTPS, FTP, and FTPS requests over the Internet, as a part of a cookies-enabled
  * session if used together with the CInetSession class.
@@ -48,48 +49,48 @@
  */
 
 // Method signatures:
-//   __construct ($sUrl, $eType = self::HTTP_GET, $sDownloadDestinationFp = null)
+//   __construct ($url, $type = self::HTTP_GET, $downloadDestinationFp = null)
 //   CUStringObject errorMessage ()
-//   void setPort ($iPort)
-//   void setRequestTimeout ($iNumSeconds)
-//   void setConnectionTimeout ($iNumSeconds)
+//   void setPort ($port)
+//   void setRequestTimeout ($numSeconds)
+//   void setConnectionTimeout ($numSeconds)
 //   void removeConnectionTimeout ()
-//   void setDnsCacheTimeout ($iNumSeconds)
-//   void setRedirection ($bEnable)
-//   void setMaxNumRedirections ($iMaxNumRedirections)
-//   void setRedirectionAutoReferer ($bEnable)
-//   void setFailOn400ResponseCodeOrGreater ($bEnable)
-//   void addHeader ($sHeaderName, $sValue)
-//   void addHeaderPlural ($sHeaderName, $sValue)
-//   void addPostField ($sFieldName, $xValue)
-//   void addCookie ($sCookieName, $sValue)
-//   void setUploadFile ($sFilePath, $sMimeType = null, $sFileName = null, $sFileId = null)
-//   void setUploadData ($byData, $sMimeType = null, $sFileName = null, $sFileId = null)
-//   void setSendDefaultAcceptEncodingHeader ($bEnable)
-//   void setSendDefaultUserAgentHeader ($bEnable)
-//   void setAllow304ResponseCodeIfNotModifiedSince (CTime $oTime)
-//   void setRequestedByteRange ($aByteRangeOrRanges)
-//   void setCertificateVerification ($bEnable, $sAlternateCertificateFpOrDp = null)
-//   void setHostVerification ($bEnable)
-//   void setUserAndPassword ($sUser, $sPassword)
-//   void setRedirectionKeepAuth ($bEnable)
-//   void setFtpOptions ($bCreateMissingDirectoriesForUpload, $bAppendUpload = false, $aQuoteCommands = null,
-//     $aPostQuoteCommands = null, $bUseEpsv = true, $sActiveModeBackAddress = null, $bUseEprt = true)
-//   void setSslOptions ($sCertificateFp, $sPrivateKeyFp = null, $sCertificateFormat = "PEM",
-//     $sPrivateKeyFormat = "PEM", $sCertificatePassphrase = null, $sPrivateKeyPassphrase = null, $iSslVersion = null,
-//     $sCipherList = null, $sEngine = null, $sDefaultEngine = null)
-//   void setKerberos ($bEnable, $sLevel = null)
-//   void setProxy ($sProxyAddress, $sUser, $sPassword, $eProxyType = self::PROXY_SOCKS_5, $iProxyPort = null,
-//     $bProxyTunneling = false, $bConnectOnly = false)
-//   void setOutgoingInterface ($sInterface)
-//   void setEchoResponse ($bEnable)
-//   void setVerboseOutput ($bEnable)
-//   void setMaxDownloadSpeed ($iBytesPerSecond)
-//   void setMaxUploadSpeed ($iBytesPerSecond)
-//   CUStringObject send (&$rbSuccess)
+//   void setDnsCacheTimeout ($numSeconds)
+//   void setRedirection ($enable)
+//   void setMaxNumRedirections ($maxNumRedirections)
+//   void setRedirectionAutoReferer ($enable)
+//   void setFailOn400ResponseCodeOrGreater ($enable)
+//   void addHeader ($headerName, $value)
+//   void addHeaderPlural ($headerName, $value)
+//   void addPostField ($fieldName, $value)
+//   void addCookie ($cookieName, $value)
+//   void setUploadFile ($filePath, $mimeType = null, $fileName = null, $fileId = null)
+//   void setUploadData ($data, $mimeType = null, $fileName = null, $fileId = null)
+//   void setSendDefaultAcceptEncodingHeader ($enable)
+//   void setSendDefaultUserAgentHeader ($enable)
+//   void setAllow304ResponseCodeIfNotModifiedSince (CTime $time)
+//   void setRequestedByteRange ($byteRangeOrRanges)
+//   void setCertificateVerification ($enable, $alternateCertificateFpOrDp = null)
+//   void setHostVerification ($enable)
+//   void setUserAndPassword ($user, $password)
+//   void setRedirectionKeepAuth ($enable)
+//   void setFtpOptions ($createMissingDirectoriesForUpload, $appendUpload = false, $quoteCommands = null,
+//     $postQuoteCommands = null, $useEpsv = true, $activeModeBackAddress = null, $useEprt = true)
+//   void setSslOptions ($certificateFp, $privateKeyFp = null, $certificateFormat = "PEM",
+//     $privateKeyFormat = "PEM", $certificatePassphrase = null, $privateKeyPassphrase = null, $sslVersion = null,
+//     $cipherList = null, $engine = null, $defaultEngine = null)
+//   void setKerberos ($enable, $level = null)
+//   void setProxy ($proxyAddress, $user, $password, $proxyType = self::PROXY_SOCKS_5, $proxyPort = null,
+//     $proxyTunneling = false, $connectOnly = false)
+//   void setOutgoingInterface ($interface)
+//   void setEchoResponse ($enable)
+//   void setVerboseOutput ($enable)
+//   void setMaxDownloadSpeed ($bytesPerSecond)
+//   void setMaxUploadSpeed ($bytesPerSecond)
+//   CUStringObject send (&$success)
 //   int responseCode ()
-//   bool responseHasHeader ($sHeaderName)
-//   CUStringObject responseHeader ($sHeaderName)
+//   bool responseHasHeader ($headerName)
+//   CUStringObject responseHeader ($headerName)
 //   bool responseHasTimestamp ()
 //   CTime responseTimestamp ()
 //   bool responseHasModificationTime ()
@@ -111,8 +112,8 @@
 //   int requestNumRedirections ()
 //   bool requestSslVerificationResult ()
 //   CUStringObject requestHeadersString ()
-//   static bool downloadFile ($sUrl, $sDestinationFp, $iTimeoutSeconds = null)
-//   static CUStringObject read ($sUrl, &$rbSuccess = null, $iTimeoutSeconds = null)
+//   static bool downloadFile ($url, $destinationFp, $timeoutSeconds = null)
+//   static CUStringObject read ($url, &$success = null, $timeoutSeconds = null)
 //   static CUStringObject curlVersion ()
 //   static int curlVersionInt ()
 //   static CUStringObject openSslVersion ()
@@ -216,25 +217,25 @@ class CInetRequest extends CRootClass
      *
      * The number of the destination port can be specified in the URL or with `setPort` method.
      *
-     * @param  string $sUrl The URL to which the request is to be sent. If no protocol is indicated in the URL, the
+     * @param  string $url The URL to which the request is to be sent. If no protocol is indicated in the URL, the
      * HTTP protocol is assumed.
-     * @param  enum $eType **OPTIONAL. Default is** `HTTP_GET`. The type of the request (see [Summary](#summary)).
-     * @param  string $sDownloadDestinationFp **OPTIONAL.** For `HTTP_DOWNLOAD`, `FTP_DOWNLOAD`, and `ANY_DOWNLOAD`
+     * @param  enum $type **OPTIONAL. Default is** `HTTP_GET`. The type of the request (see [Summary](#summary)).
+     * @param  string $downloadDestinationFp **OPTIONAL.** For `HTTP_DOWNLOAD`, `FTP_DOWNLOAD`, and `ANY_DOWNLOAD`
      * request types, this is the file path to which the downloaded data should be saved.
      */
 
-    public function __construct ($sUrl, $eType = self::HTTP_GET, $sDownloadDestinationFp = null)
+    public function __construct ($url, $type = self::HTTP_GET, $downloadDestinationFp = null)
     {
-        assert( 'is_cstring($sUrl) && is_enum($eType) && ' .
-                '(!isset($sDownloadDestinationFp) || is_cstring($sDownloadDestinationFp))',
+        assert( 'is_cstring($url) && is_enum($type) && ' .
+                '(!isset($downloadDestinationFp) || is_cstring($downloadDestinationFp))',
             vs(isset($this), get_defined_vars()) );
-        assert( 'CUrl::isValid($sUrl, true)', vs(isset($this), get_defined_vars()) );
-        assert( '!(($eType == self::HTTP_DOWNLOAD || $eType == self::FTP_DOWNLOAD || ' .
-                '$eType == self::ANY_DOWNLOAD) && !isset($sDownloadDestinationFp))',
+        assert( 'CUrl::isValid($url, true)', vs(isset($this), get_defined_vars()) );
+        assert( '!(($type == self::HTTP_DOWNLOAD || $type == self::FTP_DOWNLOAD || ' .
+                '$type == self::ANY_DOWNLOAD) && !isset($downloadDestinationFp))',
             vs(isset($this), get_defined_vars()) );
 
         // Find out the basic protocol from the request type.
-        switch ( $eType )
+        switch ( $type )
         {
         case self::HTTP_GET:
         case self::HTTP_DOWNLOAD:
@@ -243,18 +244,18 @@ class CInetRequest extends CRootClass
         case self::HTTP_PUT:
         case self::HTTP_DELETE:
         case self::HTTP_HEAD:
-            $this->m_sRequestBasicProtocol = "http";
+            $this->m_requestBasicProtocol = "http";
             break;
         case self::FTP_LIST:
         case self::FTP_DOWNLOAD:
         case self::FTP_UPLOAD:
-            $this->m_sRequestBasicProtocol = "ftp";
+            $this->m_requestBasicProtocol = "ftp";
             break;
         case self::ANY_DOWNLOAD:
             // Look into the URL.
-            $oUrl = new CUrl(CUrl::ensureProtocol($sUrl));
-            $sProtocolFromUrl = $oUrl->normalizedProtocol();
-            $this->m_sRequestBasicProtocol = self::basicProtocol($sProtocolFromUrl);
+            $objUrl = new CUrl(CUrl::ensureProtocol($url));
+            $protocolFromUrl = $objUrl->normalizedProtocol();
+            $this->m_requestBasicProtocol = self::basicProtocol($protocolFromUrl);
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
@@ -263,30 +264,30 @@ class CInetRequest extends CRootClass
 
         // If the URL does not indicate any protocol, which prevents it from being fully qualified, make the URL
         // indicate the protocol that was derived from the request type.
-        $sUrl = CUrl::ensureProtocol($sUrl, $this->m_sRequestBasicProtocol);
+        $url = CUrl::ensureProtocol($url, $this->m_requestBasicProtocol);
 
         if ( CDebug::isDebugModeOn() )
         {
-            $oUrl = new CUrl($sUrl);
-            assert( '$oUrl->hasProtocol()', vs(isset($this), get_defined_vars()) );
-            $sBasicProtocolFromUrl = self::basicProtocol($oUrl->normalizedProtocol());
-            assert( 'CString::equals($sBasicProtocolFromUrl, $this->m_sRequestBasicProtocol)',
+            $objUrl = new CUrl($url);
+            assert( '$objUrl->hasProtocol()', vs(isset($this), get_defined_vars()) );
+            $basicProtocolFromUrl = self::basicProtocol($objUrl->normalizedProtocol());
+            assert( 'CString::equals($basicProtocolFromUrl, $this->m_requestBasicProtocol)',
                 vs(isset($this), get_defined_vars()) );
         }
 
-        $this->m_sUrl = $sUrl;
-        $this->m_eType = $eType;
-        $this->m_sDownloadDestinationFp = CFilePath::frameworkPath($sDownloadDestinationFp);
-        $this->m_mRequestSummary = CMap::make();
-        $this->m_aResponseHeaders = CArray::make();
-        $this->m_mResponseHeadersLcKeys = CMap::make();
+        $this->m_url = $url;
+        $this->m_type = $type;
+        $this->m_downloadDestinationFp = CFilePath::frameworkPath($downloadDestinationFp);
+        $this->m_requestSummary = CMap::make();
+        $this->m_responseHeaders = CArray::make();
+        $this->m_responseHeadersLcKeys = CMap::make();
 
-        $this->m_rcCurl = curl_init();
-        if ( !is_resource($this->m_rcCurl) || !CString::isEmpty(curl_error($this->m_rcCurl)) )
+        $this->m_curl = curl_init();
+        if ( !is_resource($this->m_curl) || !CString::isEmpty(curl_error($this->m_curl)) )
         {
-            $this->m_bHasError = true;
-            $sCurlError = ( !is_resource($this->m_rcCurl) ) ? "" : curl_error($this->m_rcCurl);
-            $this->m_sErrorMessage = ( CString::isEmpty($sCurlError) ) ? "cURL initialization failed." : $sCurlError;
+            $this->m_hasError = true;
+            $curlError = ( !is_resource($this->m_curl) ) ? "" : curl_error($this->m_curl);
+            $this->m_errorMessage = ( CString::isEmpty($curlError) ) ? "cURL initialization failed." : $curlError;
             $this->finalize();
             return;
         }
@@ -300,8 +301,8 @@ class CInetRequest extends CRootClass
 
     public function errorMessage ()
     {
-        assert( '$this->m_bHasError', vs(isset($this), get_defined_vars()) );
-        return $this->m_sErrorMessage;
+        assert( '$this->m_hasError', vs(isset($this), get_defined_vars()) );
+        return $this->m_errorMessage;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -310,47 +311,47 @@ class CInetRequest extends CRootClass
      * A port number set with this method overrides the port number specified in the URL from which the object was
      * constructed, if any.
      *
-     * @param  int $iPort The number of the destination port.
+     * @param  int $port The number of the destination port.
      *
      * @return void
      */
 
-    public function setPort ($iPort)
+    public function setPort ($port)
     {
-        assert( 'is_int($iPort)', vs(isset($this), get_defined_vars()) );
-        $this->m_iPort = $iPort;
+        assert( 'is_int($port)', vs(isset($this), get_defined_vars()) );
+        $this->m_port = $port;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets an overall timeout for a request.
      *
-     * @param  int $iNumSeconds The number of seconds after which the request should time out.
+     * @param  int $numSeconds The number of seconds after which the request should time out.
      *
      * @return void
      */
 
-    public function setRequestTimeout ($iNumSeconds)
+    public function setRequestTimeout ($numSeconds)
     {
-        assert( 'is_int($iNumSeconds)', vs(isset($this), get_defined_vars()) );
-        assert( '$iNumSeconds > 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($numSeconds)', vs(isset($this), get_defined_vars()) );
+        assert( '$numSeconds > 0', vs(isset($this), get_defined_vars()) );
 
-        $this->m_iRequestTimeoutSeconds = $iNumSeconds;
+        $this->m_requestTimeoutSeconds = $numSeconds;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets a timeout only for the connection establishment stage of a request.
      *
-     * @param  int $iNumSeconds The number of seconds after which the request should time out.
+     * @param  int $numSeconds The number of seconds after which the request should time out.
      *
      * @return void
      */
 
-    public function setConnectionTimeout ($iNumSeconds)
+    public function setConnectionTimeout ($numSeconds)
     {
-        assert( 'is_int($iNumSeconds)', vs(isset($this), get_defined_vars()) );
-        assert( '$iNumSeconds > 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($numSeconds)', vs(isset($this), get_defined_vars()) );
+        assert( '$numSeconds > 0', vs(isset($this), get_defined_vars()) );
 
-        $this->m_iConnectionTimeoutSeconds = $iNumSeconds;
+        $this->m_connectionTimeoutSeconds = $numSeconds;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -362,23 +363,23 @@ class CInetRequest extends CRootClass
 
     public function removeConnectionTimeout ()
     {
-        $this->m_iConnectionTimeoutSeconds = 0;
+        $this->m_connectionTimeoutSeconds = 0;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets a timeout for the entries in the DNS cache for a request.
      *
-     * @param  int $iNumSeconds The number of seconds after which an entry should time out.
+     * @param  int $numSeconds The number of seconds after which an entry should time out.
      *
      * @return void
      */
 
-    public function setDnsCacheTimeout ($iNumSeconds)
+    public function setDnsCacheTimeout ($numSeconds)
     {
-        assert( 'is_int($iNumSeconds)', vs(isset($this), get_defined_vars()) );
-        assert( '$iNumSeconds > 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($numSeconds)', vs(isset($this), get_defined_vars()) );
+        assert( '$numSeconds > 0', vs(isset($this), get_defined_vars()) );
 
-        $this->m_iDnsCacheTimeoutSeconds = $iNumSeconds;
+        $this->m_dnsCacheTimeoutSeconds = $numSeconds;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -386,17 +387,17 @@ class CInetRequest extends CRootClass
      *
      * This method has an effect on HTTP requests only.
      *
-     * @param  bool $bEnable `true` to follow the URL in a received "Location" header, `false` otherwise.
+     * @param  bool $enable `true` to follow the URL in a received "Location" header, `false` otherwise.
      *
      * @return void
      */
 
-    public function setRedirection ($bEnable)
+    public function setRedirection ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
         assert( '$this->isHttp()', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bRedirection = $bEnable;
+        $this->m_redirection = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -404,18 +405,18 @@ class CInetRequest extends CRootClass
      *
      * This method has an effect on HTTP requests only.
      *
-     * @param  int $iMaxNumRedirections The maximum number of redirections allowed.
+     * @param  int $maxNumRedirections The maximum number of redirections allowed.
      *
      * @return void
      */
 
-    public function setMaxNumRedirections ($iMaxNumRedirections)
+    public function setMaxNumRedirections ($maxNumRedirections)
     {
-        assert( 'is_int($iMaxNumRedirections)', vs(isset($this), get_defined_vars()) );
-        assert( '$iMaxNumRedirections > 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($maxNumRedirections)', vs(isset($this), get_defined_vars()) );
+        assert( '$maxNumRedirections > 0', vs(isset($this), get_defined_vars()) );
         assert( '$this->isHttp()', vs(isset($this), get_defined_vars()) );
 
-        $this->m_iMaxNumRedirections = $iMaxNumRedirections;
+        $this->m_maxNumRedirections = $maxNumRedirections;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -423,18 +424,18 @@ class CInetRequest extends CRootClass
      *
      * This method has an effect on HTTP requests only.
      *
-     * @param  bool $bEnable `true` to specify the "Referer" header automatically when being redirected, `false`
+     * @param  bool $enable `true` to specify the "Referer" header automatically when being redirected, `false`
      * otherwise.
      *
      * @return void
      */
 
-    public function setRedirectionAutoReferer ($bEnable)
+    public function setRedirectionAutoReferer ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
         assert( '$this->isHttp()', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bRedirectionAutoReferer = $bEnable;
+        $this->m_redirectionAutoReferer = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -442,17 +443,17 @@ class CInetRequest extends CRootClass
      *
      * This method has an effect on HTTP requests only.
      *
-     * @param  bool $bEnable `true` if the request should fail on 4xx and 5xx HTTP response codes, `false` if not.
+     * @param  bool $enable `true` if the request should fail on 4xx and 5xx HTTP response codes, `false` if not.
      *
      * @return void
      */
 
-    public function setFailOn400ResponseCodeOrGreater ($bEnable)
+    public function setFailOn400ResponseCodeOrGreater ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
         assert( '$this->isHttp()', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bFailOn400ResponseCodeOrGreater = $bEnable;
+        $this->m_failOn400ResponseCodeOrGreater = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -463,24 +464,24 @@ class CInetRequest extends CRootClass
      *
      * This method has an effect on HTTP requests only.
      *
-     * @param  string $sHeaderName The name of the header.
-     * @param  string $sValue The value of the header.
+     * @param  string $headerName The name of the header.
+     * @param  string $value The value of the header.
      *
      * @return void
      */
 
-    public function addHeader ($sHeaderName, $sValue)
+    public function addHeader ($headerName, $value)
     {
-        assert( 'is_cstring($sHeaderName) && is_cstring($sValue)', vs(isset($this), get_defined_vars()) );
-        assert( 'CRegex::find($sHeaderName, "/^[\\\\w\\\\-]+\\\\z/")', vs(isset($this), get_defined_vars()) );
-        assert( '!CRegex::find($sValue, "/\\\\v/")', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($headerName) && is_cstring($value)', vs(isset($this), get_defined_vars()) );
+        assert( 'CRegex::find($headerName, "/^[\\\\w\\\\-]+\\\\z/")', vs(isset($this), get_defined_vars()) );
+        assert( '!CRegex::find($value, "/\\\\v/")', vs(isset($this), get_defined_vars()) );
         assert( '$this->isHttp()', vs(isset($this), get_defined_vars()) );
 
-        if ( !isset($this->m_aRequestHeaders) )
+        if ( !isset($this->m_requestHeaders) )
         {
-            $this->m_aRequestHeaders = CArray::make();
+            $this->m_requestHeaders = CArray::make();
         }
-        $this->addHeaderWithoutOverriding($this->m_aRequestHeaders, $sHeaderName, $sValue);
+        $this->addHeaderWithoutOverriding($this->m_requestHeaders, $headerName, $value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -489,25 +490,25 @@ class CInetRequest extends CRootClass
      *
      * This method has an effect on HTTP requests only.
      *
-     * @param  string $sHeaderName The name of the header.
-     * @param  string $sValue The value of the header.
+     * @param  string $headerName The name of the header.
+     * @param  string $value The value of the header.
      *
      * @return void
      */
 
-    public function addHeaderPlural ($sHeaderName, $sValue)
+    public function addHeaderPlural ($headerName, $value)
     {
-        assert( 'is_cstring($sHeaderName) && is_cstring($sValue)', vs(isset($this), get_defined_vars()) );
-        assert( 'CRegex::find($sHeaderName, "/^[\\\\w\\\\-]+\\\\z/")', vs(isset($this), get_defined_vars()) );
-        assert( '!CRegex::find($sValue, "/\\\\v/")', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($headerName) && is_cstring($value)', vs(isset($this), get_defined_vars()) );
+        assert( 'CRegex::find($headerName, "/^[\\\\w\\\\-]+\\\\z/")', vs(isset($this), get_defined_vars()) );
+        assert( '!CRegex::find($value, "/\\\\v/")', vs(isset($this), get_defined_vars()) );
         assert( '$this->isHttp()', vs(isset($this), get_defined_vars()) );
 
-        if ( !isset($this->m_aRequestHeaders) )
+        if ( !isset($this->m_requestHeaders) )
         {
-            $this->m_aRequestHeaders = CArray::make();
+            $this->m_requestHeaders = CArray::make();
         }
-        $sHeaderLine = "$sHeaderName: $sValue";
-        CArray::push($this->m_aRequestHeaders, $sHeaderLine);
+        $headerLine = "$headerName: $value";
+        CArray::push($this->m_requestHeaders, $headerLine);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -515,24 +516,24 @@ class CInetRequest extends CRootClass
      *
      * This method has an effect on HTTP POST requests only.
      *
-     * @param  string $sFieldName The name of the POST field.
-     * @param  mixed $xValue The value of the POST field. This can be a string (the most common case), a `bool`, an
+     * @param  string $fieldName The name of the POST field.
+     * @param  mixed $value The value of the POST field. This can be a string (the most common case), a `bool`, an
      * `int`, a `float`, an array, or a map.
      *
      * @return void
      */
 
-    public function addPostField ($sFieldName, $xValue)
+    public function addPostField ($fieldName, $value)
     {
-        assert( 'is_cstring($sFieldName) && (is_cstring($xValue) || is_collection($xValue))',
+        assert( 'is_cstring($fieldName) && (is_cstring($value) || is_collection($value))',
             vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eType == self::HTTP_POST', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_type == self::HTTP_POST', vs(isset($this), get_defined_vars()) );
 
-        if ( !isset($this->m_oPostQuery) )
+        if ( !isset($this->m_postQuery) )
         {
-            $this->m_oPostQuery = new CUrlQuery();
+            $this->m_postQuery = new CUrlQuery();
         }
-        $this->m_oPostQuery->addField($sFieldName, $xValue);
+        $this->m_postQuery->addField($fieldName, $value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -540,60 +541,60 @@ class CInetRequest extends CRootClass
      *
      * This method has an effect on HTTP requests only.
      *
-     * @param  string $sCookieName The name of the cookie.
-     * @param  string $sValue The value of the cookie.
+     * @param  string $cookieName The name of the cookie.
+     * @param  string $value The value of the cookie.
      *
      * @return void
      */
 
-    public function addCookie ($sCookieName, $sValue)
+    public function addCookie ($cookieName, $value)
     {
-        assert( 'is_cstring($sCookieName) && is_cstring($sValue)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($cookieName) && is_cstring($value)', vs(isset($this), get_defined_vars()) );
         assert( '$this->isHttp()', vs(isset($this), get_defined_vars()) );
 
-        if ( !isset($this->m_aRequestCookies) )
+        if ( !isset($this->m_requestCookies) )
         {
-            $this->m_aRequestCookies = CArray::make();
+            $this->m_requestCookies = CArray::make();
         }
-        $sCookie = "$sCookieName=$sValue";
-        CArray::push($this->m_aRequestCookies, $sCookie);
+        $cookie = "$cookieName=$value";
+        CArray::push($this->m_requestCookies, $cookie);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * For any request that needs to upload a file, specifies the file to be uploaded and, for HTTP requests, the
      * file's metadata.
      *
-     * @param  string $sFilePath The path to the file to be uploaded.
-     * @param  string $sMimeType **OPTIONAL.** *Required for `HTTP_UPLOAD` requests only.* The MIME type of the file.
-     * @param  string $sFileName **OPTIONAL.** *Required for `HTTP_UPLOAD` requests only.* The custom name of the file.
-     * @param  string $sFileId **OPTIONAL.** *Required for `HTTP_UPLOAD` requests only.* The ID under which the file is
+     * @param  string $filePath The path to the file to be uploaded.
+     * @param  string $mimeType **OPTIONAL.** *Required for `HTTP_UPLOAD` requests only.* The MIME type of the file.
+     * @param  string $fileName **OPTIONAL.** *Required for `HTTP_UPLOAD` requests only.* The custom name of the file.
+     * @param  string $fileId **OPTIONAL.** *Required for `HTTP_UPLOAD` requests only.* The ID under which the file is
      * to arrive to the destination server.
      *
      * @return void
      */
 
-    public function setUploadFile ($sFilePath, $sMimeType = null, $sFileName = null, $sFileId = null)
+    public function setUploadFile ($filePath, $mimeType = null, $fileName = null, $fileId = null)
     {
-        assert( 'is_cstring($sFilePath) && (!isset($sMimeType) || is_cstring($sMimeType)) && (!isset($sFileName) || ' .
-                'is_cstring($sFileName)) && (!isset($sFileId) || is_cstring($sFileId))',
+        assert( 'is_cstring($filePath) && (!isset($mimeType) || is_cstring($mimeType)) && (!isset($fileName) || ' .
+                'is_cstring($fileName)) && (!isset($fileId) || is_cstring($fileId))',
             vs(isset($this), get_defined_vars()) );
-        assert( 'CFilePath::isAbsolute($sFilePath)', vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eType == self::HTTP_UPLOAD || $this->m_eType == self::HTTP_PUT || ' .
-                '$this->m_eType == self::FTP_UPLOAD', vs(isset($this), get_defined_vars()) );
-        assert( '!($this->m_eType == self::HTTP_UPLOAD && (!isset($sMimeType) || !isset($sFileName) || ' .
-                '!isset($sFileId)))', vs(isset($this), get_defined_vars()) );
+        assert( 'CFilePath::isAbsolute($filePath)', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_type == self::HTTP_UPLOAD || $this->m_type == self::HTTP_PUT || ' .
+                '$this->m_type == self::FTP_UPLOAD', vs(isset($this), get_defined_vars()) );
+        assert( '!($this->m_type == self::HTTP_UPLOAD && (!isset($mimeType) || !isset($fileName) || ' .
+                '!isset($fileId)))', vs(isset($this), get_defined_vars()) );
 
-        $sFilePath = CFilePath::frameworkPath($sFilePath);
+        $filePath = CFilePath::frameworkPath($filePath);
 
-        if ( $this->m_eType == self::HTTP_UPLOAD )
+        if ( $this->m_type == self::HTTP_UPLOAD )
         {
             // Via HTTP POST.
-            $oCurlFile = new CURLFile($sFilePath, $sMimeType, $sFileName);
-            $this->m_mPostFileUploadRecord = [$sFileId => $oCurlFile];
+            $curlFile = new CURLFile($filePath, $mimeType, $fileName);
+            $this->m_postFileUploadRecord = [$fileId => $curlFile];
         }
-        else  // $this->m_eType = self::HTTP_PUT or $this->m_eType = self::FTP_UPLOAD
+        else  // $this->m_type = self::HTTP_PUT or $this->m_type = self::FTP_UPLOAD
         {
-            $this->m_sNonPostFileUploadFp = $sFilePath;
+            $this->m_nonPostFileUploadFp = $filePath;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -603,10 +604,10 @@ class CInetRequest extends CRootClass
      *
      * For large data, `setUploadFile` method would be preferred to upload an already existing file.
      *
-     * @param  data $byData The data to be uploaded.
-     * @param  string $sMimeType **OPTIONAL.** *Required for `HTTP_UPLOAD` requests only.* The MIME type of the file.
-     * @param  string $sFileName **OPTIONAL.** *Required for `HTTP_UPLOAD` requests only.* The custom name of the file.
-     * @param  string $sFileId **OPTIONAL.** *Required for `HTTP_UPLOAD` requests only.* The ID under which the file is
+     * @param  data $data The data to be uploaded.
+     * @param  string $mimeType **OPTIONAL.** *Required for `HTTP_UPLOAD` requests only.* The MIME type of the file.
+     * @param  string $fileName **OPTIONAL.** *Required for `HTTP_UPLOAD` requests only.* The custom name of the file.
+     * @param  string $fileId **OPTIONAL.** *Required for `HTTP_UPLOAD` requests only.* The ID under which the file is
      * to arrive to the destination server.
      *
      * @return void
@@ -614,15 +615,15 @@ class CInetRequest extends CRootClass
      * @link   #method_setUploadFile setUploadFile
      */
 
-    public function setUploadData ($byData, $sMimeType = null, $sFileName = null, $sFileId = null)
+    public function setUploadData ($data, $mimeType = null, $fileName = null, $fileId = null)
     {
-        assert( 'is_cstring($byData) && (!isset($sMimeType) || is_cstring($sMimeType)) && ' .
-                '(!isset($sFileName) || is_cstring($sFileName)) && (!isset($sFileId) || is_cstring($sFileId))',
+        assert( 'is_cstring($data) && (!isset($mimeType) || is_cstring($mimeType)) && ' .
+                '(!isset($fileName) || is_cstring($fileName)) && (!isset($fileId) || is_cstring($fileId))',
             vs(isset($this), get_defined_vars()) );
 
-        $this->m_sFileUploadTempFp = CFile::createTemporary();
-        CFile::write($this->m_sFileUploadTempFp, $byData);
-        $this->setUploadFile($this->m_sFileUploadTempFp, $sMimeType, $sFileName, $sFileId);
+        $this->m_fileUploadTempFp = CFile::createTemporary();
+        CFile::write($this->m_fileUploadTempFp, $data);
+        $this->setUploadFile($this->m_fileUploadTempFp, $mimeType, $fileName, $fileId);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -632,17 +633,17 @@ class CInetRequest extends CRootClass
      *
      * This method has an effect on HTTP requests only.
      *
-     * @param  bool $bEnable `true` to send the default "Accept-Encoding" HTTP header, `false` otherwise.
+     * @param  bool $enable `true` to send the default "Accept-Encoding" HTTP header, `false` otherwise.
      *
      * @return void
      */
 
-    public function setSendDefaultAcceptEncodingHeader ($bEnable)
+    public function setSendDefaultAcceptEncodingHeader ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
         assert( '$this->isHttp()', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bSendDefaultAcceptEncodingHeader = $bEnable;
+        $this->m_sendDefaultAcceptEncodingHeader = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -652,17 +653,17 @@ class CInetRequest extends CRootClass
      *
      * This method has an effect on HTTP requests only.
      *
-     * @param  bool $bEnable `true` to send the default "User-Agent" HTTP header, `false` otherwise.
+     * @param  bool $enable `true` to send the default "User-Agent" HTTP header, `false` otherwise.
      *
      * @return void
      */
 
-    public function setSendDefaultUserAgentHeader ($bEnable)
+    public function setSendDefaultUserAgentHeader ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
         assert( '$this->isHttp()', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bSendDefaultUserAgentHeader = $bEnable;
+        $this->m_sendDefaultUserAgentHeader = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -671,28 +672,28 @@ class CInetRequest extends CRootClass
      *
      * This method has an effect on HTTP requests only.
      *
-     * @param  CTime $oTime The modification time of the requested entity by which its contents are already known to
+     * @param  CTime $time The modification time of the requested entity by which its contents are already known to
      * the client.
      *
      * @return void
      */
 
-    public function setAllow304ResponseCodeIfNotModifiedSince (CTime $oTime)
+    public function setAllow304ResponseCodeIfNotModifiedSince (CTime $time)
     {
         assert( '$this->isHttp()', vs(isset($this), get_defined_vars()) );
 
-        if ( isset($this->m_aRequestHeaders) )
+        if ( isset($this->m_requestHeaders) )
         {
             $this->removeHeader(CHttpRequest::IF_MODIFIED_SINCE);
         }
-        $sTime = $oTime->toStringUtc(CTime::PATTERN_HTTP_HEADER_GMT);
-        $this->addHeader(CHttpRequest::IF_MODIFIED_SINCE, $sTime);
+        $strTime = $time->toStringUtc(CTime::PATTERN_HTTP_HEADER_GMT);
+        $this->addHeader(CHttpRequest::IF_MODIFIED_SINCE, $strTime);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the byte range(s) of interest in the requested entity.
      *
-     * @param  array $aByteRangeOrRanges The byte range(s) of interest. This is either an array with two integer values
+     * @param  array $byteRangeOrRanges The byte range(s) of interest. This is either an array with two integer values
      * specifying the byte range to be retrieved or, for HTTP requests only, an array of such arrays specifying
      * multiple byte ranges. The second value in a pair is allowed to be `null`, in which case the range is considered
      * to be open-ended and the server is expected to respond with data starting from the byte indicated by the first
@@ -701,63 +702,63 @@ class CInetRequest extends CRootClass
      * @return void
      */
 
-    public function setRequestedByteRange ($aByteRangeOrRanges)
+    public function setRequestedByteRange ($byteRangeOrRanges)
     {
-        assert( 'is_carray($aByteRangeOrRanges) && !CArray::isEmpty($aByteRangeOrRanges)',
+        assert( 'is_carray($byteRangeOrRanges) && !CArray::isEmpty($byteRangeOrRanges)',
             vs(isset($this), get_defined_vars()) );
 
-        if ( !is_carray(CArray::first($aByteRangeOrRanges)) )
+        if ( !is_carray(CArray::first($byteRangeOrRanges)) )
         {
-            assert( 'CArray::length($aByteRangeOrRanges) == 2', vs(isset($this), get_defined_vars()) );
-            $iRangeBPosLow = $aByteRangeOrRanges[0];
-            $iRangeBPosHigh = $aByteRangeOrRanges[1];
-            assert( 'is_int($iRangeBPosLow) && (is_null($iRangeBPosHigh) || is_int($iRangeBPosHigh))',
+            assert( 'CArray::length($byteRangeOrRanges) == 2', vs(isset($this), get_defined_vars()) );
+            $rangeBPosLow = $byteRangeOrRanges[0];
+            $rangeBPosHigh = $byteRangeOrRanges[1];
+            assert( 'is_int($rangeBPosLow) && (is_null($rangeBPosHigh) || is_int($rangeBPosHigh))',
                 vs(isset($this), get_defined_vars()) );
-            assert( '$iRangeBPosLow >= 0 && (is_null($iRangeBPosHigh) || $iRangeBPosHigh >= 0)',
+            assert( '$rangeBPosLow >= 0 && (is_null($rangeBPosHigh) || $rangeBPosHigh >= 0)',
                 vs(isset($this), get_defined_vars()) );
-            assert( 'is_null($iRangeBPosHigh) || $iRangeBPosHigh >= $iRangeBPosLow',
+            assert( 'is_null($rangeBPosHigh) || $rangeBPosHigh >= $rangeBPosLow',
                 vs(isset($this), get_defined_vars()) );
-            $this->m_sRequestedByteRange = ( !is_null($iRangeBPosHigh) ) ? "$iRangeBPosLow-$iRangeBPosHigh" :
-                "$iRangeBPosLow-";
+            $this->m_requestedByteRange = ( !is_null($rangeBPosHigh) ) ? "$rangeBPosLow-$rangeBPosHigh" :
+                "$rangeBPosLow-";
         }
         else
         {
             assert( '$this->isHttp()', vs(isset($this), get_defined_vars()) );
-            $aPreOutString = CArray::make();
-            $iLen = CArray::length($aByteRangeOrRanges);
-            $iLenMinusOne = $iLen - 1;
-            for ($i = 0; $i < $iLen; $i++)
+            $preOutString = CArray::make();
+            $len = CArray::length($byteRangeOrRanges);
+            $lenMinusOne = $len - 1;
+            for ($i = 0; $i < $len; $i++)
             {
-                $aRange = $aByteRangeOrRanges[$i];
+                $range = $byteRangeOrRanges[$i];
 
-                assert( 'is_carray($aRange)', vs(isset($this), get_defined_vars()) );
-                assert( 'CArray::length($aRange) == 2', vs(isset($this), get_defined_vars()) );
-                $iRangeBPosLow = $aRange[0];
-                $iRangeBPosHigh = $aRange[1];
+                assert( 'is_carray($range)', vs(isset($this), get_defined_vars()) );
+                assert( 'CArray::length($range) == 2', vs(isset($this), get_defined_vars()) );
+                $rangeBPosLow = $range[0];
+                $rangeBPosHigh = $range[1];
                 if ( CDebug::isDebugModeOn() )
                 {
                     // The high byte position can be specified as `null` for the last range only.
-                    if ( $i != $iLenMinusOne )
+                    if ( $i != $lenMinusOne )
                     {
-                        assert( 'is_int($iRangeBPosLow) && is_int($iRangeBPosHigh)',
+                        assert( 'is_int($rangeBPosLow) && is_int($rangeBPosHigh)',
                             vs(isset($this), get_defined_vars()) );
-                        assert( '$iRangeBPosLow >= 0 && $iRangeBPosHigh >= 0', vs(isset($this), get_defined_vars()) );
-                        assert( '$iRangeBPosHigh >= $iRangeBPosLow', vs(isset($this), get_defined_vars()) );
+                        assert( '$rangeBPosLow >= 0 && $rangeBPosHigh >= 0', vs(isset($this), get_defined_vars()) );
+                        assert( '$rangeBPosHigh >= $rangeBPosLow', vs(isset($this), get_defined_vars()) );
                     }
                     else
                     {
-                        assert( 'is_int($iRangeBPosLow) && (is_null($iRangeBPosHigh) || is_int($iRangeBPosHigh))',
+                        assert( 'is_int($rangeBPosLow) && (is_null($rangeBPosHigh) || is_int($rangeBPosHigh))',
                             vs(isset($this), get_defined_vars()) );
-                        assert( '$iRangeBPosLow >= 0 && (is_null($iRangeBPosHigh) || $iRangeBPosHigh >= 0)',
+                        assert( '$rangeBPosLow >= 0 && (is_null($rangeBPosHigh) || $rangeBPosHigh >= 0)',
                             vs(isset($this), get_defined_vars()) );
-                        assert( 'is_null($iRangeBPosHigh) || $iRangeBPosHigh >= $iRangeBPosLow',
+                        assert( 'is_null($rangeBPosHigh) || $rangeBPosHigh >= $rangeBPosLow',
                             vs(isset($this), get_defined_vars()) );
                     }
                 }
-                $sRbr = ( !is_null($iRangeBPosHigh) ) ? "$iRangeBPosLow-$iRangeBPosHigh" : "$iRangeBPosLow-";
-                CArray::push($aPreOutString, $sRbr);
+                $rbr = ( !is_null($rangeBPosHigh) ) ? "$rangeBPosLow-$rangeBPosHigh" : "$rangeBPosLow-";
+                CArray::push($preOutString, $rbr);
             }
-            $this->m_sRequestedByteRange = CArray::join($aPreOutString, ",");
+            $this->m_requestedByteRange = CArray::join($preOutString, ",");
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -765,55 +766,55 @@ class CInetRequest extends CRootClass
      * Enables or disables the verification of the destination server's certificate when trying to connect via HTTPS or
      * any other SSL-enabled protocol.
      *
-     * @param  bool $bEnable `true` to enable the verification of the destination server's certificate, `false`
+     * @param  bool $enable `true` to enable the verification of the destination server's certificate, `false`
      * otherwise.
-     * @param  string $sAlternateCertificateFpOrDp **OPTIONAL. Default is** *use the default certificate bundle*. The
+     * @param  string $alternateCertificateFpOrDp **OPTIONAL. Default is** *use the default certificate bundle*. The
      * path to a file or directory with alternate certificate(s) to be used in substitute of the default certificate
      * bundle. Providing this parameter makes sense only if the first parameter is `true`.
      *
      * @return void
      */
 
-    public function setCertificateVerification ($bEnable, $sAlternateCertificateFpOrDp = null)
+    public function setCertificateVerification ($enable, $alternateCertificateFpOrDp = null)
     {
-        assert( 'is_bool($bEnable) && (!isset($sAlternateCertificateFpOrDp) || ' .
-                'is_cstring($sAlternateCertificateFpOrDp))', vs(isset($this), get_defined_vars()) );
-        assert( '!(!$bEnable && isset($sAlternateCertificateFpOrDp))', vs(isset($this), get_defined_vars()) );
-        assert( '!isset($sAlternateCertificateFpOrDp) || CFilePath::isAbsolute($sAlternateCertificateFpOrDp)',
+        assert( 'is_bool($enable) && (!isset($alternateCertificateFpOrDp) || ' .
+                'is_cstring($alternateCertificateFpOrDp))', vs(isset($this), get_defined_vars()) );
+        assert( '!(!$enable && isset($alternateCertificateFpOrDp))', vs(isset($this), get_defined_vars()) );
+        assert( '!isset($alternateCertificateFpOrDp) || CFilePath::isAbsolute($alternateCertificateFpOrDp)',
             vs(isset($this), get_defined_vars()) );
 
-        $this->m_bCertificateVerification = $bEnable;
-        $this->m_sAlternateCertificateFpOrDp = CFilePath::frameworkPath($sAlternateCertificateFpOrDp);
+        $this->m_certificateVerification = $enable;
+        $this->m_alternateCertificateFpOrDp = CFilePath::frameworkPath($alternateCertificateFpOrDp);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Enables or disables the verification of the destination server's hostname when trying to connect via HTTPS or
      * any other SSL-enabled protocol.
      *
-     * @param  bool $bEnable `true` to enable the verification of the destination server's hostname, `false` otherwise.
+     * @param  bool $enable `true` to enable the verification of the destination server's hostname, `false` otherwise.
      *
      * @return void
      */
 
-    public function setHostVerification ($bEnable)
+    public function setHostVerification ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        $this->m_bHostVerification = $bEnable;
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        $this->m_hostVerification = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the username and the password to be sent along with a request.
      *
-     * @param  string $sUser The username.
-     * @param  string $sPassword The password.
+     * @param  string $user The username.
+     * @param  string $password The password.
      *
      * @return void
      */
 
-    public function setUserAndPassword ($sUser, $sPassword)
+    public function setUserAndPassword ($user, $password)
     {
-        assert( 'is_cstring($sUser) && is_cstring($sPassword)', vs(isset($this), get_defined_vars()) );
-        $this->m_sUserAndPassword = "$sUser:$sPassword";
+        assert( 'is_cstring($user) && is_cstring($password)', vs(isset($this), get_defined_vars()) );
+        $this->m_userAndPassword = "$user:$password";
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -822,305 +823,305 @@ class CInetRequest extends CRootClass
      *
      * This method has an effect on HTTP requests only.
      *
-     * @param  bool $bEnable `true` to keep sending the username and password when being redirected, `false` otherwise.
+     * @param  bool $enable `true` to keep sending the username and password when being redirected, `false` otherwise.
      *
      * @return void
      */
 
-    public function setRedirectionKeepAuth ($bEnable)
+    public function setRedirectionKeepAuth ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
         assert( '$this->isHttp()', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bRedirectionKeepAuth = $bEnable;
+        $this->m_redirectionKeepAuth = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the options for an FTP request.
      *
-     * @param  bool $bCreateMissingDirectoriesForUpload Tells whether to try creating missing directories when
+     * @param  bool $createMissingDirectoriesForUpload Tells whether to try creating missing directories when
      * uploading a file.
-     * @param  bool $bAppendUpload **OPTIONAL. Default is** `false`. Tells whether the data from the file being
+     * @param  bool $appendUpload **OPTIONAL. Default is** `false`. Tells whether the data from the file being
      * uploaded should be appended to the data of the existing file, if any.
-     * @param  array $aQuoteCommands **OPTIONAL. Default is** *none*. The (S)FTP commands to be run before the transfer.
-     * @param  array $aPostQuoteCommands **OPTIONAL. Default is** *none*. The (S)FTP commands to be run after the
+     * @param  array $quoteCommands **OPTIONAL. Default is** *none*. The (S)FTP commands to be run before the transfer.
+     * @param  array $postQuoteCommands **OPTIONAL. Default is** *none*. The (S)FTP commands to be run after the
      * transfer.
-     * @param  bool $bUseEpsv **OPTIONAL. Default is** `true`. Tells whether to use EPSV.
-     * @param  string $sActiveModeBackAddress **OPTIONAL. Default is** *cURL's default*. The client-side address to
+     * @param  bool $useEpsv **OPTIONAL. Default is** `true`. Tells whether to use EPSV.
+     * @param  string $activeModeBackAddress **OPTIONAL. Default is** *cURL's default*. The client-side address to
      * which the destination server should try connecting back.
-     * @param  bool $bUseEprt **OPTIONAL. Default is** `true`. Tells whether to use EPRT.
+     * @param  bool $useEprt **OPTIONAL. Default is** `true`. Tells whether to use EPRT.
      *
      * @return void
      */
 
-    public function setFtpOptions ($bCreateMissingDirectoriesForUpload, $bAppendUpload = false, $aQuoteCommands = null,
-        $aPostQuoteCommands = null, $bUseEpsv = true, $sActiveModeBackAddress = null, $bUseEprt = true)
+    public function setFtpOptions ($createMissingDirectoriesForUpload, $appendUpload = false, $quoteCommands = null,
+        $postQuoteCommands = null, $useEpsv = true, $activeModeBackAddress = null, $useEprt = true)
     {
-        assert( 'is_bool($bCreateMissingDirectoriesForUpload) && is_bool($bAppendUpload) && ' .
-                '(!isset($aQuoteCommands) || is_carray($aQuoteCommands)) && (!isset($aPostQuoteCommands) || ' .
-                'is_carray($aPostQuoteCommands)) && is_bool($bUseEpsv) && (!isset($sActiveModeBackAddress) || ' .
-                'is_cstring($sActiveModeBackAddress)) && is_bool($bUseEprt)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($createMissingDirectoriesForUpload) && is_bool($appendUpload) && ' .
+                '(!isset($quoteCommands) || is_carray($quoteCommands)) && (!isset($postQuoteCommands) || ' .
+                'is_carray($postQuoteCommands)) && is_bool($useEpsv) && (!isset($activeModeBackAddress) || ' .
+                'is_cstring($activeModeBackAddress)) && is_bool($useEprt)', vs(isset($this), get_defined_vars()) );
         assert( '$this->isFtp()', vs(isset($this), get_defined_vars()) );
         if ( CDebug::isDebugModeOn() )
         {
-            if ( isset($aQuoteCommands) )
+            if ( isset($quoteCommands) )
             {
-                $iLen = CArray::length($aQuoteCommands);
-                for ($i = 0; $i < $iLen; $i++)
+                $len = CArray::length($quoteCommands);
+                for ($i = 0; $i < $len; $i++)
                 {
-                    assert( 'is_cstring($aQuoteCommands[$i])', vs(isset($this), get_defined_vars()) );
+                    assert( 'is_cstring($quoteCommands[$i])', vs(isset($this), get_defined_vars()) );
                 }
             }
-            if ( isset($aPostQuoteCommands) )
+            if ( isset($postQuoteCommands) )
             {
-                $iLen = CArray::length($aPostQuoteCommands);
-                for ($i = 0; $i < $iLen; $i++)
+                $len = CArray::length($postQuoteCommands);
+                for ($i = 0; $i < $len; $i++)
                 {
-                    assert( 'is_cstring($aPostQuoteCommands[$i])', vs(isset($this), get_defined_vars()) );
+                    assert( 'is_cstring($postQuoteCommands[$i])', vs(isset($this), get_defined_vars()) );
                 }
             }
         }
 
-        $this->m_bFtpCreateMissingDirectoriesForUpload = $bCreateMissingDirectoriesForUpload;
-        $this->m_bFtpAppendUpload = $bAppendUpload;
-        $this->m_aFtpQuoteCommands = $aQuoteCommands;
-        $this->m_aFtpPostQuoteCommands = $aPostQuoteCommands;
-        $this->m_bFtpUseEpsv = $bUseEpsv;
-        $this->m_sFtpActiveModeBackAddress = $sActiveModeBackAddress;
-        $this->m_bFtpUseEprt = $bUseEprt;
+        $this->m_ftpCreateMissingDirectoriesForUpload = $createMissingDirectoriesForUpload;
+        $this->m_ftpAppendUpload = $appendUpload;
+        $this->m_ftpQuoteCommands = $quoteCommands;
+        $this->m_ftpPostQuoteCommands = $postQuoteCommands;
+        $this->m_ftpUseEpsv = $useEpsv;
+        $this->m_ftpActiveModeBackAddress = $activeModeBackAddress;
+        $this->m_ftpUseEprt = $useEprt;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the SSL options for a request.
      *
-     * @param  string $sCertificateFp The path to the certificate's file.
-     * @param  string $sPrivateKeyFp **OPTIONAL. Default is** *none*. The path to the private key's file.
-     * @param  string $sCertificateFormat **OPTIONAL. Default is** "PEM". The format used by the certificate.
-     * @param  string $sPrivateKeyFormat **OPTIONAL. Default is** "PEM". The format used by the private key.
-     * @param  string $sCertificatePassphrase **OPTIONAL. Default is** *none*. The passphrase used by the certificate.
-     * @param  string $sPrivateKeyPassphrase **OPTIONAL. Default is** *none*. The passphrase used by the private key.
-     * @param  int $iSslVersion **OPTIONAL. Default is** *cURL's default*. The SSL version to be used in the
+     * @param  string $certificateFp The path to the certificate's file.
+     * @param  string $privateKeyFp **OPTIONAL. Default is** *none*. The path to the private key's file.
+     * @param  string $certificateFormat **OPTIONAL. Default is** "PEM". The format used by the certificate.
+     * @param  string $privateKeyFormat **OPTIONAL. Default is** "PEM". The format used by the private key.
+     * @param  string $certificatePassphrase **OPTIONAL. Default is** *none*. The passphrase used by the certificate.
+     * @param  string $privateKeyPassphrase **OPTIONAL. Default is** *none*. The passphrase used by the private key.
+     * @param  int $sslVersion **OPTIONAL. Default is** *cURL's default*. The SSL version to be used in the
      * communication.
-     * @param  string $sCipherList **OPTIONAL. Default is** *cURL's default*. The ciphers to be used.
-     * @param  string $sEngine **OPTIONAL. Default is** *cURL's default*. The SSL engine identifier.
-     * @param  string $sDefaultEngine **OPTIONAL. Default is** *cURL's default*. The identifier of the actual crypto
+     * @param  string $cipherList **OPTIONAL. Default is** *cURL's default*. The ciphers to be used.
+     * @param  string $engine **OPTIONAL. Default is** *cURL's default*. The SSL engine identifier.
+     * @param  string $defaultEngine **OPTIONAL. Default is** *cURL's default*. The identifier of the actual crypto
      * engine to be used as the default engine for (asymmetric) crypto operations.
      *
      * @return void
      */
 
-    public function setSslOptions ($sCertificateFp, $sPrivateKeyFp = null, $sCertificateFormat = "PEM",
-        $sPrivateKeyFormat = "PEM", $sCertificatePassphrase = null, $sPrivateKeyPassphrase = null, $iSslVersion = null,
-        $sCipherList = null, $sEngine = null, $sDefaultEngine = null)
+    public function setSslOptions ($certificateFp, $privateKeyFp = null, $certificateFormat = "PEM",
+        $privateKeyFormat = "PEM", $certificatePassphrase = null, $privateKeyPassphrase = null, $sslVersion = null,
+        $cipherList = null, $engine = null, $defaultEngine = null)
     {
-        assert( 'is_cstring($sCertificateFp) && (!isset($sPrivateKeyFp) || is_cstring($sPrivateKeyFp)) && ' .
-                'is_cstring($sCertificateFormat) && is_cstring($sPrivateKeyFormat) && ' .
-                '(!isset($sCertificatePassphrase) || is_cstring($sCertificatePassphrase)) && ' .
-                '(!isset($sPrivateKeyPassphrase) || is_cstring($sPrivateKeyPassphrase)) && ' .
-                '(!isset($iSslVersion) || is_int($iSslVersion)) && ' .
-                '(!isset($sCipherList) || is_cstring($sCipherList)) && (!isset($sEngine) || is_cstring($sEngine)) && ' .
-                '(!isset($sDefaultEngine) || is_cstring($sDefaultEngine))', vs(isset($this), get_defined_vars()) );
-        assert( 'CFilePath::isAbsolute($sCertificateFp)', vs(isset($this), get_defined_vars()) );
-        assert( '!isset($sPrivateKeyFp) || CFilePath::isAbsolute($sPrivateKeyFp)',
+        assert( 'is_cstring($certificateFp) && (!isset($privateKeyFp) || is_cstring($privateKeyFp)) && ' .
+                'is_cstring($certificateFormat) && is_cstring($privateKeyFormat) && ' .
+                '(!isset($certificatePassphrase) || is_cstring($certificatePassphrase)) && ' .
+                '(!isset($privateKeyPassphrase) || is_cstring($privateKeyPassphrase)) && ' .
+                '(!isset($sslVersion) || is_int($sslVersion)) && ' .
+                '(!isset($cipherList) || is_cstring($cipherList)) && (!isset($engine) || is_cstring($engine)) && ' .
+                '(!isset($defaultEngine) || is_cstring($defaultEngine))', vs(isset($this), get_defined_vars()) );
+        assert( 'CFilePath::isAbsolute($certificateFp)', vs(isset($this), get_defined_vars()) );
+        assert( '!isset($privateKeyFp) || CFilePath::isAbsolute($privateKeyFp)',
             vs(isset($this), get_defined_vars()) );
 
-        $this->m_sSslCertificateFp = CFilePath::frameworkPath($sCertificateFp);
-        $this->m_sSslPrivateKeyFp = CFilePath::frameworkPath($sPrivateKeyFp);
-        $this->m_sSslCertificateFormat = $sCertificateFormat;
-        $this->m_sSslPrivateKeyFormat = $sPrivateKeyFormat;
-        $this->m_sSslCertificatePassphrase = $sCertificatePassphrase;
-        $this->m_sSslPrivateKeyPassphrase = $sPrivateKeyPassphrase;
-        $this->m_iSslVersion = $iSslVersion;
-        $this->m_sSslCipherList = $sCipherList;
-        $this->m_sSslEngine = $sEngine;
-        $this->m_sSslDefaultEngine = $sDefaultEngine;
+        $this->m_sslCertificateFp = CFilePath::frameworkPath($certificateFp);
+        $this->m_sslPrivateKeyFp = CFilePath::frameworkPath($privateKeyFp);
+        $this->m_sslCertificateFormat = $certificateFormat;
+        $this->m_sslPrivateKeyFormat = $privateKeyFormat;
+        $this->m_sslCertificatePassphrase = $certificatePassphrase;
+        $this->m_sslPrivateKeyPassphrase = $privateKeyPassphrase;
+        $this->m_sslVersion = $sslVersion;
+        $this->m_sslCipherList = $cipherList;
+        $this->m_sslEngine = $engine;
+        $this->m_sslDefaultEngine = $defaultEngine;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Enables or disables Kerberos security protocol and, if enabled, sets the Kerberos security level.
      *
-     * @param  bool $bEnable `true` to enable the use of the Kerberos security protocol, `false` otherwise.
-     * @param  string $sLevel **OPTIONAL. Default is** *cURL's default*. The Kerberos security level to be used.
+     * @param  bool $enable `true` to enable the use of the Kerberos security protocol, `false` otherwise.
+     * @param  string $level **OPTIONAL. Default is** *cURL's default*. The Kerberos security level to be used.
      *
      * @return void
      */
 
-    public function setKerberos ($bEnable, $sLevel = null)
+    public function setKerberos ($enable, $level = null)
     {
-        assert( 'is_bool($bEnable) && (!isset($sLevel) || is_cstring($sLevel))', vs(isset($this), get_defined_vars()) );
-        assert( '!(!$bEnable && isset($sLevel))', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable) && (!isset($level) || is_cstring($level))', vs(isset($this), get_defined_vars()) );
+        assert( '!(!$enable && isset($level))', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bUseKerberos = $bEnable;
-        if ( $bEnable )
+        $this->m_useKerberos = $enable;
+        if ( $enable )
         {
-            if ( !isset($sLevel) )
+            if ( !isset($level) )
             {
                 // Will make it be the default level.
-                $sLevel = "";
+                $level = "";
             }
-            $this->m_sKerberosLevel = $sLevel;
+            $this->m_kerberosLevel = $level;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets proxy options for a request.
      *
-     * @param  string $sProxyAddress The address of the proxy to be used.
-     * @param  string $sUser The username for the proxy.
-     * @param  string $sPassword The password for the proxy.
-     * @param  enum $eProxyType **OPTIONAL. Default is** `PROXY_SOCKS_5`. The type of the proxy
+     * @param  string $proxyAddress The address of the proxy to be used.
+     * @param  string $user The username for the proxy.
+     * @param  string $password The password for the proxy.
+     * @param  enum $proxyType **OPTIONAL. Default is** `PROXY_SOCKS_5`. The type of the proxy
      * (see [Summary](#summary)).
-     * @param  int $iProxyPort **OPTIONAL. Default is** *determine automatically*. The proxy's port number.
-     * @param  bool $bProxyTunneling **OPTIONAL. Default is** `false`. Tells whether proxy tunneling should be used.
-     * @param  bool $bConnectOnly **OPTIONAL. Default is** `false`. Tells whether to disconnect from the proxy right
+     * @param  int $proxyPort **OPTIONAL. Default is** *determine automatically*. The proxy's port number.
+     * @param  bool $proxyTunneling **OPTIONAL. Default is** `false`. Tells whether proxy tunneling should be used.
+     * @param  bool $connectOnly **OPTIONAL. Default is** `false`. Tells whether to disconnect from the proxy right
      * after successfully making a connection.
      *
      * @return void
      */
 
-    public function setProxy ($sProxyAddress, $sUser, $sPassword, $eProxyType = self::PROXY_SOCKS_5, $iProxyPort = null,
-        $bProxyTunneling = false, $bConnectOnly = false)
+    public function setProxy ($proxyAddress, $user, $password, $proxyType = self::PROXY_SOCKS_5, $proxyPort = null,
+        $proxyTunneling = false, $connectOnly = false)
     {
-        assert( 'is_cstring($sProxyAddress) && is_cstring($sUser) && is_cstring($sPassword) && ' .
-                'is_enum($eProxyType) && (!isset($iProxyPort) || is_int($iProxyPort)) && ' .
-                'is_bool($bProxyTunneling) && is_bool($bConnectOnly)',
+        assert( 'is_cstring($proxyAddress) && is_cstring($user) && is_cstring($password) && ' .
+                'is_enum($proxyType) && (!isset($proxyPort) || is_int($proxyPort)) && ' .
+                'is_bool($proxyTunneling) && is_bool($connectOnly)',
             vs(isset($this), get_defined_vars()) );
 
-        $this->m_sProxyAddress = $sProxyAddress;
-        $this->m_sProxyUserAndPassword = "$sUser:$sPassword";
-        $this->m_eProxyType = $eProxyType;
-        $this->m_iProxyPort = $iProxyPort;
-        $this->m_bProxyTunneling = $bProxyTunneling;
-        $this->m_bProxyConnectOnly = $bConnectOnly;
+        $this->m_proxyAddress = $proxyAddress;
+        $this->m_proxyUserAndPassword = "$user:$password";
+        $this->m_proxyType = $proxyType;
+        $this->m_proxyPort = $proxyPort;
+        $this->m_proxyTunneling = $proxyTunneling;
+        $this->m_proxyConnectOnly = $connectOnly;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the name of the outgoing network interface to be used for a request.
      *
-     * @param  string $sInterface The name of the outgoing network interface. This can be an interface name as well as
+     * @param  string $interface The name of the outgoing network interface. This can be an interface name as well as
      * an IP address or a hostname.
      *
      * @return void
      */
 
-    public function setOutgoingInterface ($sInterface)
+    public function setOutgoingInterface ($interface)
     {
-        assert( 'is_cstring($sInterface)', vs(isset($this), get_defined_vars()) );
-        $this->m_sOutgoingInterface = $sInterface;
+        assert( 'is_cstring($interface)', vs(isset($this), get_defined_vars()) );
+        $this->m_outgoingInterface = $interface;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Enables or disables the echoing of the response into the standard output by cURL.
      *
-     * @param  bool $bEnable `true` to enable the echoing of the response, `false` otherwise.
+     * @param  bool $enable `true` to enable the echoing of the response, `false` otherwise.
      *
      * @return void
      */
 
-    public function setEchoResponse ($bEnable)
+    public function setEchoResponse ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        $this->m_bEchoResponse = $bEnable;
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        $this->m_echoResponse = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Enables or disables cURL's verbose output for a request.
      *
-     * @param  bool $bEnable `true` to enable cURL's verbose output, `false` otherwise.
+     * @param  bool $enable `true` to enable cURL's verbose output, `false` otherwise.
      *
      * @return void
      */
 
-    public function setVerboseOutput ($bEnable)
+    public function setVerboseOutput ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        $this->m_bVerboseOutput = $bEnable;
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        $this->m_verboseOutput = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the download speed limit for a request.
      *
-     * @param  int $iBytesPerSecond The download speed limit, in bytes per second.
+     * @param  int $bytesPerSecond The download speed limit, in bytes per second.
      *
      * @return void
      */
 
-    public function setMaxDownloadSpeed ($iBytesPerSecond)
+    public function setMaxDownloadSpeed ($bytesPerSecond)
     {
-        assert( 'is_int($iBytesPerSecond)', vs(isset($this), get_defined_vars()) );
-        assert( '$iBytesPerSecond > 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($bytesPerSecond)', vs(isset($this), get_defined_vars()) );
+        assert( '$bytesPerSecond > 0', vs(isset($this), get_defined_vars()) );
 
-        $this->m_iMaxDownloadSpeed = $iBytesPerSecond;
+        $this->m_maxDownloadSpeed = $bytesPerSecond;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the upload speed limit for a request.
      *
-     * @param  int $iBytesPerSecond The upload speed limit, in bytes per second.
+     * @param  int $bytesPerSecond The upload speed limit, in bytes per second.
      *
      * @return void
      */
 
-    public function setMaxUploadSpeed ($iBytesPerSecond)
+    public function setMaxUploadSpeed ($bytesPerSecond)
     {
-        assert( 'is_int($iBytesPerSecond)', vs(isset($this), get_defined_vars()) );
-        assert( '$iBytesPerSecond > 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($bytesPerSecond)', vs(isset($this), get_defined_vars()) );
+        assert( '$bytesPerSecond > 0', vs(isset($this), get_defined_vars()) );
 
-        $this->m_iMaxUploadSpeed = $iBytesPerSecond;
+        $this->m_maxUploadSpeed = $bytesPerSecond;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sends a request out and returns the response after it is received.
      *
-     * @param  reference $rbSuccess **OUTPUT.** After the method is called, the value of this parameter tells whether
+     * @param  reference $success **OUTPUT.** After the method is called, the value of this parameter tells whether
      * the request was successful.
      *
      * @return CUStringObject The response that was received for the request.
      */
 
-    public function send (&$rbSuccess)
+    public function send (&$success)
     {
-        $rbSuccess = true;
+        $success = true;
 
-        if ( $this->m_bHasError )
+        if ( $this->m_hasError )
         {
             // Already finalized.
-            $rbSuccess = false;
+            $success = false;
             return "";
         }
 
         // Set options for the cURL handle.
-        $this->setInternalOptions($rbSuccess);
-        if ( !$rbSuccess )
+        $this->setInternalOptions($success);
+        if ( !$success )
         {
             // Already finalized.
             return "";
         }
 
         // Disable the script's execution timeout before sending the request.
-        $oTimeoutPause = new CTimeoutPause();
+        $timeoutPause = new CTimeoutPause();
 
         // Send the request out and wait for a response.
-        $xRes = curl_exec($this->m_rcCurl);
+        $res = curl_exec($this->m_curl);
 
         // Set the script's execution time limit like the request has never happened.
-        $oTimeoutPause->end();
+        $timeoutPause->end();
 
         // According to some testimonials, when trying to retrieve a resource that turns out to be empty, `curl_exec`
         // function could return a `true` instead of an empty string.
-        if ( $xRes === true && !$this->m_bEchoResponse && CString::isEmpty(curl_error($this->m_rcCurl)) )
+        if ( $res === true && !$this->m_echoResponse && CString::isEmpty(curl_error($this->m_curl)) )
         {
-            $xRes = "";
+            $res = "";
         }
-        else if ( $xRes === false || (!$this->m_bEchoResponse && !is_cstring($xRes)) ||
-                  !CString::isEmpty(curl_error($this->m_rcCurl)) )
+        else if ( $res === false || (!$this->m_echoResponse && !is_cstring($res)) ||
+                  !CString::isEmpty(curl_error($this->m_curl)) )
         {
             // An error occurred.
-            $this->m_bHasError = true;
-            $sCurlError = curl_error($this->m_rcCurl);
-            $this->m_sErrorMessage = ( !CString::isEmpty($sCurlError) ) ? $sCurlError :
+            $this->m_hasError = true;
+            $curlError = curl_error($this->m_curl);
+            $this->m_errorMessage = ( !CString::isEmpty($curlError) ) ? $curlError :
                 "The 'curl_exec' function failed.";
-            $rbSuccess = false;
+            $success = false;
             $this->finalize();
             return "";
         }
@@ -1128,7 +1129,7 @@ class CInetRequest extends CRootClass
         // Collect summary information for the request and the response and finalize.
         $this->onRequestCompleteOk();
 
-        return ( !$this->m_bEchoResponse ) ? $xRes : "";
+        return ( !$this->m_echoResponse ) ? $res : "";
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1141,13 +1142,13 @@ class CInetRequest extends CRootClass
 
     public function responseCode ()
     {
-        assert( '$this->isHttp() && $this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->isHttp() && $this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
 
-        $sKey = "http_code";
-        if ( CMap::hasKey($this->m_mRequestSummary, $sKey) )
+        $key = "http_code";
+        if ( CMap::hasKey($this->m_requestSummary, $key) )
         {
-            $xValue = $this->m_mRequestSummary[$sKey];
-            return ( is_int($xValue) ) ? $xValue : CString::toInt($xValue);
+            $value = $this->m_requestSummary[$key];
+            return ( is_int($value) ) ? $value : CString::toInt($value);
         }
         else
         {
@@ -1160,18 +1161,18 @@ class CInetRequest extends CRootClass
      *
      * This method can be called for HTTP requests only.
      *
-     * @param  string $sHeaderName The name of the header.
+     * @param  string $headerName The name of the header.
      *
      * @return bool `true` if the response includes a header with the name specified, `false` otherwise.
      */
 
-    public function responseHasHeader ($sHeaderName)
+    public function responseHasHeader ($headerName)
     {
-        assert( 'is_cstring($sHeaderName)', vs(isset($this), get_defined_vars()) );
-        assert( '$this->isHttp() && $this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($headerName)', vs(isset($this), get_defined_vars()) );
+        assert( '$this->isHttp() && $this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
 
-        $sHeaderNameLc = CString::toLowerCase($sHeaderName);
-        return CMap::hasKey($this->m_mResponseHeadersLcKeys, $sHeaderNameLc);
+        $headerNameLc = CString::toLowerCase($headerName);
+        return CMap::hasKey($this->m_responseHeadersLcKeys, $headerNameLc);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1179,19 +1180,19 @@ class CInetRequest extends CRootClass
      *
      * This method can be called for HTTP requests only.
      *
-     * @param  string $sHeaderName The name of the header.
+     * @param  string $headerName The name of the header.
      *
      * @return CUStringObject The value of the header.
      */
 
-    public function responseHeader ($sHeaderName)
+    public function responseHeader ($headerName)
     {
-        assert( 'is_cstring($sHeaderName)', vs(isset($this), get_defined_vars()) );
-        assert( '$this->isHttp() && $this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
-        assert( '$this->responseHasHeader($sHeaderName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($headerName)', vs(isset($this), get_defined_vars()) );
+        assert( '$this->isHttp() && $this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->responseHasHeader($headerName)', vs(isset($this), get_defined_vars()) );
 
-        $sHeaderNameLc = CString::toLowerCase($sHeaderName);
-        return $this->m_mResponseHeadersLcKeys[$sHeaderNameLc];
+        $headerNameLc = CString::toLowerCase($headerName);
+        return $this->m_responseHeadersLcKeys[$headerNameLc];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1204,7 +1205,7 @@ class CInetRequest extends CRootClass
 
     public function responseHasTimestamp ()
     {
-        assert( '$this->isHttp() && $this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->isHttp() && $this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
         return $this->responseHasHeader(CHttpResponse::DATE);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1218,11 +1219,11 @@ class CInetRequest extends CRootClass
 
     public function responseTimestamp ()
     {
-        assert( '$this->isHttp() && $this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->isHttp() && $this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
         assert( '$this->responseHasTimestamp()', vs(isset($this), get_defined_vars()) );
 
-        $sTimestamp = $this->responseHeader(CHttpResponse::DATE);
-        return CTime::fromString($sTimestamp);
+        $timestamp = $this->responseHeader(CHttpResponse::DATE);
+        return CTime::fromString($timestamp);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1235,7 +1236,7 @@ class CInetRequest extends CRootClass
 
     public function responseHasModificationTime ()
     {
-        assert( '$this->isHttp() && $this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->isHttp() && $this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
         return $this->responseHasHeader(CHttpResponse::LAST_MODIFIED);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1251,11 +1252,11 @@ class CInetRequest extends CRootClass
 
     public function responseModificationTime ()
     {
-        assert( '$this->isHttp() && $this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->isHttp() && $this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
         assert( '$this->responseHasModificationTime()', vs(isset($this), get_defined_vars()) );
 
-        $sModificationTime = $this->responseHeader(CHttpResponse::LAST_MODIFIED);
-        return CTime::fromString($sModificationTime);
+        $modificationTime = $this->responseHeader(CHttpResponse::LAST_MODIFIED);
+        return CTime::fromString($modificationTime);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1266,13 +1267,13 @@ class CInetRequest extends CRootClass
 
     public function responseDownloadSize ()
     {
-        assert( '$this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
 
-        $sKey = "size_download";
-        if ( CMap::hasKey($this->m_mRequestSummary, $sKey) )
+        $key = "size_download";
+        if ( CMap::hasKey($this->m_requestSummary, $key) )
         {
-            $xValue = $this->m_mRequestSummary[$sKey];
-            return ( is_float($xValue) || is_int($xValue) ) ? (int)$xValue : CString::toInt($xValue);
+            $value = $this->m_requestSummary[$key];
+            return ( is_float($value) || is_int($value) ) ? (int)$value : CString::toInt($value);
         }
         else
         {
@@ -1288,13 +1289,13 @@ class CInetRequest extends CRootClass
 
     public function responseDownloadSpeed ()
     {
-        assert( '$this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
 
-        $sKey = "speed_download";
-        if ( CMap::hasKey($this->m_mRequestSummary, $sKey) )
+        $key = "speed_download";
+        if ( CMap::hasKey($this->m_requestSummary, $key) )
         {
-            $xValue = $this->m_mRequestSummary[$sKey];
-            return ( is_float($xValue) || is_int($xValue) ) ? (float)$xValue : CString::toFloat($xValue);
+            $value = $this->m_requestSummary[$key];
+            return ( is_float($value) || is_int($value) ) ? (float)$value : CString::toFloat($value);
         }
         else
         {
@@ -1312,13 +1313,13 @@ class CInetRequest extends CRootClass
 
     public function responseHeadersSize ()
     {
-        assert( '$this->isHttp() && $this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->isHttp() && $this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
 
-        $sKey = "header_size";
-        if ( CMap::hasKey($this->m_mRequestSummary, $sKey) )
+        $key = "header_size";
+        if ( CMap::hasKey($this->m_requestSummary, $key) )
         {
-            $xValue = $this->m_mRequestSummary[$sKey];
-            return ( is_int($xValue) || is_float($xValue) ) ? (int)$xValue : CString::toInt($xValue);
+            $value = $this->m_requestSummary[$key];
+            return ( is_int($value) || is_float($value) ) ? (int)$value : CString::toInt($value);
         }
         else
         {
@@ -1334,12 +1335,12 @@ class CInetRequest extends CRootClass
 
     public function responseCertificateInfo ()
     {
-        assert( '$this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
 
-        $sKey = "certinfo";
-        if ( CMap::hasKey($this->m_mRequestSummary, $sKey) )
+        $key = "certinfo";
+        if ( CMap::hasKey($this->m_requestSummary, $key) )
         {
-            return oop_x($this->m_mRequestSummary[$sKey]);
+            return oop_x($this->m_requestSummary[$key]);
         }
         else
         {
@@ -1355,13 +1356,13 @@ class CInetRequest extends CRootClass
 
     public function requestSize ()
     {
-        assert( '$this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
 
-        $sKey = "request_size";
-        if ( CMap::hasKey($this->m_mRequestSummary, $sKey) )
+        $key = "request_size";
+        if ( CMap::hasKey($this->m_requestSummary, $key) )
         {
-            $xValue = $this->m_mRequestSummary[$sKey];
-            return ( is_int($xValue) || is_float($xValue) ) ? (int)$xValue : CString::toInt($xValue);
+            $value = $this->m_requestSummary[$key];
+            return ( is_int($value) || is_float($value) ) ? (int)$value : CString::toInt($value);
         }
         else
         {
@@ -1377,13 +1378,13 @@ class CInetRequest extends CRootClass
 
     public function requestUploadSize ()
     {
-        assert( '$this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
 
-        $sKey = "size_upload";
-        if ( CMap::hasKey($this->m_mRequestSummary, $sKey) )
+        $key = "size_upload";
+        if ( CMap::hasKey($this->m_requestSummary, $key) )
         {
-            $xValue = $this->m_mRequestSummary[$sKey];
-            return ( is_float($xValue) || is_int($xValue) ) ? (int)$xValue : CString::toInt($xValue);
+            $value = $this->m_requestSummary[$key];
+            return ( is_float($value) || is_int($value) ) ? (int)$value : CString::toInt($value);
         }
         else
         {
@@ -1399,13 +1400,13 @@ class CInetRequest extends CRootClass
 
     public function requestUploadSpeed ()
     {
-        assert( '$this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
 
-        $sKey = "speed_upload";
-        if ( CMap::hasKey($this->m_mRequestSummary, $sKey) )
+        $key = "speed_upload";
+        if ( CMap::hasKey($this->m_requestSummary, $key) )
         {
-            $xValue = $this->m_mRequestSummary[$sKey];
-            return ( is_float($xValue) || is_int($xValue) ) ? (float)$xValue : CString::toFloat($xValue);
+            $value = $this->m_requestSummary[$key];
+            return ( is_float($value) || is_int($value) ) ? (float)$value : CString::toFloat($value);
         }
         else
         {
@@ -1423,13 +1424,13 @@ class CInetRequest extends CRootClass
 
     public function requestUploadContentLength ()
     {
-        assert( '$this->isHttp() && $this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->isHttp() && $this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
 
-        $sKey = "upload_content_length";
-        if ( CMap::hasKey($this->m_mRequestSummary, $sKey) )
+        $key = "upload_content_length";
+        if ( CMap::hasKey($this->m_requestSummary, $key) )
         {
-            $xValue = $this->m_mRequestSummary[$sKey];
-            return ( is_float($xValue) || is_int($xValue) ) ? (int)$xValue : CString::toInt($xValue);
+            $value = $this->m_requestSummary[$key];
+            return ( is_float($value) || is_int($value) ) ? (int)$value : CString::toInt($value);
         }
         else
         {
@@ -1445,13 +1446,13 @@ class CInetRequest extends CRootClass
 
     public function requestTotalTime ()
     {
-        assert( '$this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
 
-        $sKey = "total_time";
-        if ( CMap::hasKey($this->m_mRequestSummary, $sKey) )
+        $key = "total_time";
+        if ( CMap::hasKey($this->m_requestSummary, $key) )
         {
-            $xValue = $this->m_mRequestSummary[$sKey];
-            return ( is_float($xValue) || is_int($xValue) ) ? (float)$xValue : CString::toFloat($xValue);
+            $value = $this->m_requestSummary[$key];
+            return ( is_float($value) || is_int($value) ) ? (float)$value : CString::toFloat($value);
         }
         else
         {
@@ -1467,13 +1468,13 @@ class CInetRequest extends CRootClass
 
     public function requestDnsLookupTime ()
     {
-        assert( '$this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
 
-        $sKey = "namelookup_time";
-        if ( CMap::hasKey($this->m_mRequestSummary, $sKey) )
+        $key = "namelookup_time";
+        if ( CMap::hasKey($this->m_requestSummary, $key) )
         {
-            $xValue = $this->m_mRequestSummary[$sKey];
-            return ( is_float($xValue) || is_int($xValue) ) ? (float)$xValue : CString::toFloat($xValue);
+            $value = $this->m_requestSummary[$key];
+            return ( is_float($value) || is_int($value) ) ? (float)$value : CString::toFloat($value);
         }
         else
         {
@@ -1489,13 +1490,13 @@ class CInetRequest extends CRootClass
 
     public function requestConnectionEstablishmentTime ()
     {
-        assert( '$this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
 
-        $sKey = "connect_time";
-        if ( CMap::hasKey($this->m_mRequestSummary, $sKey) )
+        $key = "connect_time";
+        if ( CMap::hasKey($this->m_requestSummary, $key) )
         {
-            $xValue = $this->m_mRequestSummary[$sKey];
-            return ( is_float($xValue) || is_int($xValue) ) ? (float)$xValue : CString::toFloat($xValue);
+            $value = $this->m_requestSummary[$key];
+            return ( is_float($value) || is_int($value) ) ? (float)$value : CString::toFloat($value);
         }
         else
         {
@@ -1513,13 +1514,13 @@ class CInetRequest extends CRootClass
 
     public function requestRedirectionTime ()
     {
-        assert( '$this->isHttp() && $this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->isHttp() && $this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
 
-        $sKey = "redirect_time";
-        if ( CMap::hasKey($this->m_mRequestSummary, $sKey) )
+        $key = "redirect_time";
+        if ( CMap::hasKey($this->m_requestSummary, $key) )
         {
-            $xValue = $this->m_mRequestSummary[$sKey];
-            return ( is_float($xValue) || is_int($xValue) ) ? (float)$xValue : CString::toFloat($xValue);
+            $value = $this->m_requestSummary[$key];
+            return ( is_float($value) || is_int($value) ) ? (float)$value : CString::toFloat($value);
         }
         else
         {
@@ -1535,13 +1536,13 @@ class CInetRequest extends CRootClass
 
     public function requestPreTransferTime ()
     {
-        assert( '$this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
 
-        $sKey = "pretransfer_time";
-        if ( CMap::hasKey($this->m_mRequestSummary, $sKey) )
+        $key = "pretransfer_time";
+        if ( CMap::hasKey($this->m_requestSummary, $key) )
         {
-            $xValue = $this->m_mRequestSummary[$sKey];
-            return ( is_float($xValue) || is_int($xValue) ) ? (float)$xValue : CString::toFloat($xValue);
+            $value = $this->m_requestSummary[$key];
+            return ( is_float($value) || is_int($value) ) ? (float)$value : CString::toFloat($value);
         }
         else
         {
@@ -1558,13 +1559,13 @@ class CInetRequest extends CRootClass
 
     public function requestStartTransferTime ()
     {
-        assert( '$this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
 
-        $sKey = "starttransfer_time";
-        if ( CMap::hasKey($this->m_mRequestSummary, $sKey) )
+        $key = "starttransfer_time";
+        if ( CMap::hasKey($this->m_requestSummary, $key) )
         {
-            $xValue = $this->m_mRequestSummary[$sKey];
-            return ( is_float($xValue) || is_int($xValue) ) ? (float)$xValue : CString::toFloat($xValue);
+            $value = $this->m_requestSummary[$key];
+            return ( is_float($value) || is_int($value) ) ? (float)$value : CString::toFloat($value);
         }
         else
         {
@@ -1582,13 +1583,13 @@ class CInetRequest extends CRootClass
 
     public function requestNumRedirections ()
     {
-        assert( '$this->isHttp() && $this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->isHttp() && $this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
 
-        $sKey = "redirect_count";
-        if ( CMap::hasKey($this->m_mRequestSummary, $sKey) )
+        $key = "redirect_count";
+        if ( CMap::hasKey($this->m_requestSummary, $key) )
         {
-            $xValue = $this->m_mRequestSummary[$sKey];
-            return ( is_int($xValue) || is_float($xValue) ) ? (int)$xValue : CString::toInt($xValue);
+            $value = $this->m_requestSummary[$key];
+            return ( is_int($value) || is_float($value) ) ? (int)$value : CString::toInt($value);
         }
         else
         {
@@ -1604,23 +1605,23 @@ class CInetRequest extends CRootClass
 
     public function requestSslVerificationResult ()
     {
-        assert( '$this->m_bDone && !$this->m_bHasError', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_done && !$this->m_hasError', vs(isset($this), get_defined_vars()) );
 
-        $sKey = "ssl_verify_result";
-        if ( CMap::hasKey($this->m_mRequestSummary, $sKey) )
+        $key = "ssl_verify_result";
+        if ( CMap::hasKey($this->m_requestSummary, $key) )
         {
-            $xValue = $this->m_mRequestSummary[$sKey];
-            if ( !is_bool($xValue) )
+            $value = $this->m_requestSummary[$key];
+            if ( !is_bool($value) )
             {
-                if ( !is_cstring($xValue) )
+                if ( !is_cstring($value) )
                 {
-                    $xValue = CString::fromInt($xValue);
+                    $value = CString::fromInt($value);
                 }
-                return CString::toBool($xValue);
+                return CString::toBool($value);
             }
             else
             {
-                return $xValue;
+                return $value;
             }
         }
         else
@@ -1637,12 +1638,12 @@ class CInetRequest extends CRootClass
 
     public function requestHeadersString ()
     {
-        assert( '$this->isHttp() && $this->m_bDone', vs(isset($this), get_defined_vars()) );
+        assert( '$this->isHttp() && $this->m_done', vs(isset($this), get_defined_vars()) );
 
-        $sKey = "request_header";
-        if ( CMap::hasKey($this->m_mRequestSummary, $sKey) )
+        $key = "request_header";
+        if ( CMap::hasKey($this->m_requestSummary, $key) )
         {
-            return $this->m_mRequestSummary[$sKey];
+            return $this->m_requestSummary[$key];
         }
         else
         {
@@ -1653,57 +1654,57 @@ class CInetRequest extends CRootClass
     /**
      * Makes a request to a specified URL and saves the received response to a file.
      *
-     * @param  string $sUrl The URL to which the request is to be sent.
-     * @param  string $sDestinationFp The destination file path to which the response should be saved.
-     * @param  int $iTimeoutSeconds **OPTIONAL. Default is** *no timeout*. The number of seconds after which the
+     * @param  string $url The URL to which the request is to be sent.
+     * @param  string $destinationFp The destination file path to which the response should be saved.
+     * @param  int $timeoutSeconds **OPTIONAL. Default is** *no timeout*. The number of seconds after which the
      * request should time out.
      *
      * @return bool `true` if the request was successful, `false` otherwise.
      */
 
-    public static function downloadFile ($sUrl, $sDestinationFp, $iTimeoutSeconds = null)
+    public static function downloadFile ($url, $destinationFp, $timeoutSeconds = null)
     {
-        assert( 'is_cstring($sUrl) && is_cstring($sDestinationFp) && ' .
-                '(!isset($iTimeoutSeconds) || is_int($iTimeoutSeconds))', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($url) && is_cstring($destinationFp) && ' .
+                '(!isset($timeoutSeconds) || is_int($timeoutSeconds))', vs(isset($this), get_defined_vars()) );
 
-        $oInetRequest = new self($sUrl, self::ANY_DOWNLOAD, $sDestinationFp);
-        if ( isset($iTimeoutSeconds) )
+        $inetRequest = new self($url, self::ANY_DOWNLOAD, $destinationFp);
+        if ( isset($timeoutSeconds) )
         {
-            $oInetRequest->setRequestTimeout($iTimeoutSeconds);
+            $inetRequest->setRequestTimeout($timeoutSeconds);
         }
-        $bSuccess;
-        $oInetRequest->send($bSuccess);
-        return $bSuccess;
+        $success;
+        $inetRequest->send($success);
+        return $success;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Makes a request to a specified URL and returns the response.
      *
-     * @param  string $sUrl The URL to which the request is to be sent.
-     * @param  reference $rbSuccess **OPTIONAL. OUTPUT.** After the method is called, the value of this parameter tells
+     * @param  string $url The URL to which the request is to be sent.
+     * @param  reference $success **OPTIONAL. OUTPUT.** After the method is called, the value of this parameter tells
      * whether the request was successful.
-     * @param  int $iTimeoutSeconds **OPTIONAL. Default is** *no timeout*. The number of seconds after which the
+     * @param  int $timeoutSeconds **OPTIONAL. Default is** *no timeout*. The number of seconds after which the
      * request should time out.
      *
      * @return CUStringObject The response that was received for the request.
      */
 
-    public static function read ($sUrl, &$rbSuccess = null, $iTimeoutSeconds = null)
+    public static function read ($url, &$success = null, $timeoutSeconds = null)
     {
-        assert( 'is_cstring($sUrl) && (!isset($iTimeoutSeconds) || is_int($iTimeoutSeconds))',
+        assert( 'is_cstring($url) && (!isset($timeoutSeconds) || is_int($timeoutSeconds))',
             vs(isset($this), get_defined_vars()) );
 
-        $oInetRequest = new self($sUrl);
-        if ( isset($iTimeoutSeconds) )
+        $inetRequest = new self($url);
+        if ( isset($timeoutSeconds) )
         {
-            $oInetRequest->setRequestTimeout($iTimeoutSeconds);
+            $inetRequest->setRequestTimeout($timeoutSeconds);
         }
-        $sContent = $oInetRequest->send($rbSuccess);
-        if ( !$rbSuccess )
+        $content = $inetRequest->send($success);
+        if ( !$success )
         {
-            $sContent = "";
+            $content = "";
         }
-        return $sContent;
+        return $content;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1714,8 +1715,8 @@ class CInetRequest extends CRootClass
 
     public static function curlVersion ()
     {
-        $mVerInfo = curl_version();
-        return $mVerInfo["version"];
+        $verInfo = curl_version();
+        return $verInfo["version"];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1726,8 +1727,8 @@ class CInetRequest extends CRootClass
 
     public static function curlVersionInt ()
     {
-        $mVerInfo = curl_version();
-        return $mVerInfo["version_number"];
+        $verInfo = curl_version();
+        return $verInfo["version_number"];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1738,8 +1739,8 @@ class CInetRequest extends CRootClass
 
     public static function openSslVersion ()
     {
-        $mVerInfo = curl_version();
-        return $mVerInfo["ssl_version"];
+        $verInfo = curl_version();
+        return $verInfo["ssl_version"];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1750,8 +1751,8 @@ class CInetRequest extends CRootClass
 
     public static function openSslVersionInt ()
     {
-        $mVerInfo = curl_version();
-        return $mVerInfo["ssl_version_number"];
+        $verInfo = curl_version();
+        return $verInfo["ssl_version_number"];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1760,7 +1761,7 @@ class CInetRequest extends CRootClass
 
     public function isHttp ()
     {
-        return CString::equals($this->m_sRequestBasicProtocol, "http");
+        return CString::equals($this->m_requestBasicProtocol, "http");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1769,412 +1770,412 @@ class CInetRequest extends CRootClass
 
     public function isFtp ()
     {
-        return CString::equals($this->m_sRequestBasicProtocol, "ftp");
+        return CString::equals($this->m_requestBasicProtocol, "ftp");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    public function setInternalOptions (&$rbSuccess, $sCookiesFp = null, $bNewCookieSession = null)
+    public function setInternalOptions (&$success, $cookiesFp = null, $newCookieSession = null)
     {
-        $rbSuccess = true;
+        $success = true;
 
-        if ( $this->m_bHasError )
+        if ( $this->m_hasError )
         {
-            $rbSuccess = false;
+            $success = false;
             $this->finalize();
             return;
         }
 
-        $mOptions = CMap::make();
+        $options = CMap::make();
 
         // How to deal with the response.
-        if ( !$this->m_bEchoResponse )
+        if ( !$this->m_echoResponse )
         {
-            $mOptions[CURLOPT_RETURNTRANSFER] = true;
-            $this->m_bIsReturnTransferSet = true;
+            $options[CURLOPT_RETURNTRANSFER] = true;
+            $this->m_isReturnTransferSet = true;
         }
         else
         {
-            $mOptions[CURLOPT_RETURNTRANSFER] = false;
-            $this->m_bIsReturnTransferSet = false;
+            $options[CURLOPT_RETURNTRANSFER] = false;
+            $this->m_isReturnTransferSet = false;
         }
 
-        if ( isset($this->m_bVerboseOutput) && $this->m_bVerboseOutput )
+        if ( isset($this->m_verboseOutput) && $this->m_verboseOutput )
         {
-            $mOptions[CURLOPT_VERBOSE] = true;
+            $options[CURLOPT_VERBOSE] = true;
         }
 
         // The destination URL and port.
-        $mOptions[CURLOPT_URL] = $this->m_sUrl;
-        if ( isset($this->m_iPort) )
+        $options[CURLOPT_URL] = $this->m_url;
+        if ( isset($this->m_port) )
         {
-            $mOptions[CURLOPT_PORT] = $this->m_iPort;
+            $options[CURLOPT_PORT] = $this->m_port;
         }
 
         // Avoid response caching and reuse, which might happen because of any unconventional caching strategies used
         // by cURL.
-        $mOptions[CURLOPT_FORBID_REUSE] = true;
-        $mOptions[CURLOPT_FRESH_CONNECT] = true;
+        $options[CURLOPT_FORBID_REUSE] = true;
+        $options[CURLOPT_FRESH_CONNECT] = true;
 
-        if ( $this->m_eType != self::HTTP_HEAD )
+        if ( $this->m_type != self::HTTP_HEAD )
         {
-            $mOptions[CURLOPT_HEADER] = false;
+            $options[CURLOPT_HEADER] = false;
         }
 
         if ( $this->isHttp() )
         {
-            if ( $this->m_eType == self::HTTP_GET )
+            if ( $this->m_type == self::HTTP_GET )
             {
-                $mOptions[CURLOPT_HTTPGET] = true;
+                $options[CURLOPT_HTTPGET] = true;
             }
-            else if ( $this->m_eType == self::HTTP_DOWNLOAD ||
-                      $this->m_eType == self::ANY_DOWNLOAD )
+            else if ( $this->m_type == self::HTTP_DOWNLOAD ||
+                      $this->m_type == self::ANY_DOWNLOAD )
             {
-                $mOptions[CURLOPT_HTTPGET] = true;
-                assert( 'isset($this->m_sDownloadDestinationFp)', vs(isset($this), get_defined_vars()) );
-                $this->m_oDownloadFile = new CFile($this->m_sDownloadDestinationFp, CFile::WRITE_NEW);
-                $mOptions[CURLOPT_FILE] = $this->m_oDownloadFile->systemResource();
+                $options[CURLOPT_HTTPGET] = true;
+                assert( 'isset($this->m_downloadDestinationFp)', vs(isset($this), get_defined_vars()) );
+                $this->m_downloadFile = new CFile($this->m_downloadDestinationFp, CFile::WRITE_NEW);
+                $options[CURLOPT_FILE] = $this->m_downloadFile->systemResource();
             }
-            else if ( $this->m_eType == self::HTTP_POST )
+            else if ( $this->m_type == self::HTTP_POST )
             {
                 // POST.
-                $mOptions[CURLOPT_POST] = true;
+                $options[CURLOPT_POST] = true;
 
                 // At least one POST variable needs to be set in order to make a POST request.
-                assert( 'isset($this->m_oPostQuery)', vs(isset($this), get_defined_vars()) );
+                assert( 'isset($this->m_postQuery)', vs(isset($this), get_defined_vars()) );
 
                 // POST variables use the same format as the query string (application/x-www-form-urlencoded).
-                $mOptions[CURLOPT_POSTFIELDS] = $this->m_oPostQuery->queryString();
+                $options[CURLOPT_POSTFIELDS] = $this->m_postQuery->queryString();
             }
-            else if ( $this->m_eType == self::HTTP_UPLOAD )
+            else if ( $this->m_type == self::HTTP_UPLOAD )
             {
                 // File upload via POST and using the CURLFile class.
-                $mOptions[CURLOPT_POST] = true;
-                assert( 'isset($this->m_mPostFileUploadRecord)', vs(isset($this), get_defined_vars()) );
-                $mOptions[CURLOPT_POSTFIELDS] = $this->m_mPostFileUploadRecord;
+                $options[CURLOPT_POST] = true;
+                assert( 'isset($this->m_postFileUploadRecord)', vs(isset($this), get_defined_vars()) );
+                $options[CURLOPT_POSTFIELDS] = $this->m_postFileUploadRecord;
             }
-            else if ( $this->m_eType == self::HTTP_PUT )
+            else if ( $this->m_type == self::HTTP_PUT )
             {
                 // PUT.
-                assert( 'isset($this->m_sNonPostFileUploadFp)', vs(isset($this), get_defined_vars()) );
-                $mOptions[CURLOPT_PUT] = true;
-                $this->m_oUploadFile = new CFile($this->m_sNonPostFileUploadFp, CFile::READ);
-                $mOptions[CURLOPT_INFILE] = $this->m_oUploadFile->systemResource();
-                $mOptions[CURLOPT_INFILESIZE] = CFile::size($this->m_sNonPostFileUploadFp);
+                assert( 'isset($this->m_nonPostFileUploadFp)', vs(isset($this), get_defined_vars()) );
+                $options[CURLOPT_PUT] = true;
+                $this->m_uploadFile = new CFile($this->m_nonPostFileUploadFp, CFile::READ);
+                $options[CURLOPT_INFILE] = $this->m_uploadFile->systemResource();
+                $options[CURLOPT_INFILESIZE] = CFile::size($this->m_nonPostFileUploadFp);
             }
-            else if ( $this->m_eType == self::HTTP_DELETE )
+            else if ( $this->m_type == self::HTTP_DELETE )
             {
                 // DELETE.
-                $mOptions[CURLOPT_CUSTOMREQUEST] = "DELETE";
+                $options[CURLOPT_CUSTOMREQUEST] = "DELETE";
             }
-            else if ( $this->m_eType == self::HTTP_HEAD )
+            else if ( $this->m_type == self::HTTP_HEAD )
             {
                 // HEAD.
-                $mOptions[CURLOPT_HEADER] = true;
-                $mOptions[CURLOPT_NOBODY] = true;
+                $options[CURLOPT_HEADER] = true;
+                $options[CURLOPT_NOBODY] = true;
             }
 
             // HTTP redirections.
-            $mOptions[CURLOPT_FOLLOWLOCATION] = $this->m_bRedirection;
-            if ( $this->m_bRedirection )
+            $options[CURLOPT_FOLLOWLOCATION] = $this->m_redirection;
+            if ( $this->m_redirection )
             {
-                if ( isset($this->m_iMaxNumRedirections) )
+                if ( isset($this->m_maxNumRedirections) )
                 {
-                    $mOptions[CURLOPT_MAXREDIRS] = $this->m_iMaxNumRedirections;
+                    $options[CURLOPT_MAXREDIRS] = $this->m_maxNumRedirections;
                 }
-                if ( isset($this->m_bRedirectionAutoReferer) )
+                if ( isset($this->m_redirectionAutoReferer) )
                 {
-                    $mOptions[CURLOPT_AUTOREFERER] = $this->m_bRedirectionAutoReferer;
+                    $options[CURLOPT_AUTOREFERER] = $this->m_redirectionAutoReferer;
                 }
-                if ( isset($this->m_bRedirectionKeepAuth) )
+                if ( isset($this->m_redirectionKeepAuth) )
                 {
-                    $mOptions[CURLOPT_UNRESTRICTED_AUTH] = $this->m_bRedirectionKeepAuth;
+                    $options[CURLOPT_UNRESTRICTED_AUTH] = $this->m_redirectionKeepAuth;
                 }
             }
 
             // HTTP response code treatment.
-            $mOptions[CURLOPT_FAILONERROR] = $this->m_bFailOn400ResponseCodeOrGreater;
+            $options[CURLOPT_FAILONERROR] = $this->m_failOn400ResponseCodeOrGreater;
 
             // HTTP headers.
-            if ( $this->m_bSendDefaultAcceptEncodingHeader &&
-                 !(isset($this->m_aRequestHeaders) && $this->hasHeader(CHttpRequest::ACCEPT_ENCODING)) )
+            if ( $this->m_sendDefaultAcceptEncodingHeader &&
+                 !(isset($this->m_requestHeaders) && $this->hasHeader(CHttpRequest::ACCEPT_ENCODING)) )
             {
-                $mOptions[CURLOPT_ENCODING] = "";
+                $options[CURLOPT_ENCODING] = "";
             }
-            if ( $this->m_bSendDefaultUserAgentHeader &&
-                 !(isset($this->m_aRequestHeaders) && $this->hasHeader(CHttpRequest::USER_AGENT)) )
+            if ( $this->m_sendDefaultUserAgentHeader &&
+                 !(isset($this->m_requestHeaders) && $this->hasHeader(CHttpRequest::USER_AGENT)) )
             {
-                $sUserAgent = self::$ms_sDefaultUserAgent;
-                $sCurlVersion = self::curlVersion();
-                $sSslVersion = self::openSslVersion();
-                $sSslVersion = CRegex::remove($sSslVersion, "/OpenSSL(\\/|\\h+)/i");
-                $sUserAgent = CString::replaceCi($sUserAgent, "curl/x.x.x", "curl/$sCurlVersion");
-                $sUserAgent = CString::replaceCi($sUserAgent, "libcurl x.x.x", "libcurl $sCurlVersion");
-                $sUserAgent = CString::replaceCi($sUserAgent, "OpenSSL x.x.x", "OpenSSL $sSslVersion");
-                $this->addHeader(CHttpRequest::USER_AGENT, $sUserAgent);
+                $userAgent = self::$ms_defaultUserAgent;
+                $curlVersion = self::curlVersion();
+                $sslVersion = self::openSslVersion();
+                $sslVersion = CRegex::remove($sslVersion, "/OpenSSL(\\/|\\h+)/i");
+                $userAgent = CString::replaceCi($userAgent, "curl/x.x.x", "curl/$curlVersion");
+                $userAgent = CString::replaceCi($userAgent, "libcurl x.x.x", "libcurl $curlVersion");
+                $userAgent = CString::replaceCi($userAgent, "OpenSSL x.x.x", "OpenSSL $sslVersion");
+                $this->addHeader(CHttpRequest::USER_AGENT, $userAgent);
             }
-            if ( isset($this->m_aRequestHeaders) && !CArray::isEmpty($this->m_aRequestHeaders) )
+            if ( isset($this->m_requestHeaders) && !CArray::isEmpty($this->m_requestHeaders) )
             {
-                $mOptions[CURLOPT_HTTPHEADER] = CArray::toPArray($this->m_aRequestHeaders);
+                $options[CURLOPT_HTTPHEADER] = CArray::toPArray($this->m_requestHeaders);
             }
 
-            if ( isset($this->m_aRequestCookies) && !CArray::isEmpty($this->m_aRequestCookies) )
+            if ( isset($this->m_requestCookies) && !CArray::isEmpty($this->m_requestCookies) )
             {
                 // Custom HTTP cookies.
-                $sCookieHeaderValue = CArray::join($this->m_aRequestCookies, "; ");
-                $mOptions[CURLOPT_COOKIE] = $sCookieHeaderValue;
+                $cookieHeaderValue = CArray::join($this->m_requestCookies, "; ");
+                $options[CURLOPT_COOKIE] = $cookieHeaderValue;
             }
-            if ( isset($sCookiesFp) )
+            if ( isset($cookiesFp) )
             {
-                $mOptions[CURLOPT_COOKIEFILE] = $sCookiesFp;
-                $mOptions[CURLOPT_COOKIEJAR] = $sCookiesFp;
+                $options[CURLOPT_COOKIEFILE] = $cookiesFp;
+                $options[CURLOPT_COOKIEJAR] = $cookiesFp;
             }
-            if ( isset($bNewCookieSession) && $bNewCookieSession )
+            if ( isset($newCookieSession) && $newCookieSession )
             {
-                $mOptions[CURLOPT_COOKIESESSION] = true;
+                $options[CURLOPT_COOKIESESSION] = true;
             }
 
             // Needed for the retrieval of information regarding the data transfer after it is complete.
-            $mOptions[CURLINFO_HEADER_OUT] = true;
+            $options[CURLINFO_HEADER_OUT] = true;
 
             // Needed for the retrieval of response headers.
-            $mOptions[CURLOPT_HEADERFUNCTION] = [$this, "headerFunction"];
+            $options[CURLOPT_HEADERFUNCTION] = [$this, "headerFunction"];
 
-            if ( isset($this->m_sUserAndPassword) )
+            if ( isset($this->m_userAndPassword) )
             {
                 // HTTP authentication. Let cURL pick any authentication method it finds suitable (it will
                 // automatically select the one it finds most secure).
-                $mOptions[CURLOPT_HTTPAUTH] = CURLAUTH_ANY;
+                $options[CURLOPT_HTTPAUTH] = CURLAUTH_ANY;
             }
         }
         else  // FTP
         {
-            if ( $this->m_eType == self::FTP_LIST )
+            if ( $this->m_type == self::FTP_LIST )
             {
-                $mOptions[CURLOPT_FTPLISTONLY] = true;
+                $options[CURLOPT_FTPLISTONLY] = true;
             }
-            else if ( $this->m_eType == self::FTP_DOWNLOAD ||
-                      $this->m_eType == self::ANY_DOWNLOAD )
+            else if ( $this->m_type == self::FTP_DOWNLOAD ||
+                      $this->m_type == self::ANY_DOWNLOAD )
             {
-                assert( 'isset($this->m_sDownloadDestinationFp)', vs(isset($this), get_defined_vars()) );
-                $this->m_oDownloadFile = new CFile($this->m_sDownloadDestinationFp, CFile::WRITE_NEW);
-                $mOptions[CURLOPT_FILE] = $this->m_oDownloadFile->systemResource();
+                assert( 'isset($this->m_downloadDestinationFp)', vs(isset($this), get_defined_vars()) );
+                $this->m_downloadFile = new CFile($this->m_downloadDestinationFp, CFile::WRITE_NEW);
+                $options[CURLOPT_FILE] = $this->m_downloadFile->systemResource();
             }
-            else if ( $this->m_eType == self::FTP_UPLOAD )
+            else if ( $this->m_type == self::FTP_UPLOAD )
             {
                 // File upload via FTP.
 
-                assert( 'isset($this->m_sNonPostFileUploadFp)', vs(isset($this), get_defined_vars()) );
-                $this->m_oUploadFile = new CFile($this->m_sNonPostFileUploadFp, CFile::READ);
-                $mOptions[CURLOPT_UPLOAD] = true;
-                $mOptions[CURLOPT_INFILE] = $this->m_oUploadFile->systemResource();
-                $mOptions[CURLOPT_INFILESIZE] = CFile::size($this->m_sNonPostFileUploadFp);
+                assert( 'isset($this->m_nonPostFileUploadFp)', vs(isset($this), get_defined_vars()) );
+                $this->m_uploadFile = new CFile($this->m_nonPostFileUploadFp, CFile::READ);
+                $options[CURLOPT_UPLOAD] = true;
+                $options[CURLOPT_INFILE] = $this->m_uploadFile->systemResource();
+                $options[CURLOPT_INFILESIZE] = CFile::size($this->m_nonPostFileUploadFp);
 
-                if ( $this->m_bFtpCreateMissingDirectoriesForUpload )
+                if ( $this->m_ftpCreateMissingDirectoriesForUpload )
                 {
-                    $mOptions[CURLOPT_FTP_CREATE_MISSING_DIRS] = true;
+                    $options[CURLOPT_FTP_CREATE_MISSING_DIRS] = true;
                 }
 
-                if ( isset($this->m_bFtpAppendUpload) && $this->m_bFtpAppendUpload )
+                if ( isset($this->m_ftpAppendUpload) && $this->m_ftpAppendUpload )
                 {
-                    $mOptions[CURLOPT_FTPAPPEND] = true;
+                    $options[CURLOPT_FTPAPPEND] = true;
                 }
             }
 
-            if ( isset($this->m_aFtpQuoteCommands) && !CArray::isEmpty($this->m_aFtpQuoteCommands) )
+            if ( isset($this->m_ftpQuoteCommands) && !CArray::isEmpty($this->m_ftpQuoteCommands) )
             {
-                $mOptions[CURLOPT_QUOTE] = CArray::toPArray($this->m_aFtpQuoteCommands);
+                $options[CURLOPT_QUOTE] = CArray::toPArray($this->m_ftpQuoteCommands);
             }
-            if ( isset($this->m_aFtpPostQuoteCommands) && !CArray::isEmpty($this->m_aFtpPostQuoteCommands) )
+            if ( isset($this->m_ftpPostQuoteCommands) && !CArray::isEmpty($this->m_ftpPostQuoteCommands) )
             {
-                $mOptions[CURLOPT_POSTQUOTE] = CArray::toPArray($this->m_aFtpPostQuoteCommands);
-            }
-
-            if ( isset($this->m_bFtpUseEpsv) && !$this->m_bFtpUseEpsv )
-            {
-                $mOptions[CURLOPT_FTP_USE_EPSV] = false;
+                $options[CURLOPT_POSTQUOTE] = CArray::toPArray($this->m_ftpPostQuoteCommands);
             }
 
-            if ( isset($this->m_sFtpActiveModeBackAddress) )
+            if ( isset($this->m_ftpUseEpsv) && !$this->m_ftpUseEpsv )
             {
-                $mOptions[CURLOPT_FTPPORT] = $this->m_sFtpActiveModeBackAddress;
+                $options[CURLOPT_FTP_USE_EPSV] = false;
             }
 
-            if ( isset($this->m_bFtpUseEprt) && !$this->m_bFtpUseEprt )
+            if ( isset($this->m_ftpActiveModeBackAddress) )
             {
-                $mOptions[CURLOPT_FTP_USE_EPRT] = false;
+                $options[CURLOPT_FTPPORT] = $this->m_ftpActiveModeBackAddress;
+            }
+
+            if ( isset($this->m_ftpUseEprt) && !$this->m_ftpUseEprt )
+            {
+                $options[CURLOPT_FTP_USE_EPRT] = false;
             }
         }
 
         // Timeouts.
-        if ( isset($this->m_iRequestTimeoutSeconds) )
+        if ( isset($this->m_requestTimeoutSeconds) )
         {
-            $mOptions[CURLOPT_TIMEOUT] = $this->m_iRequestTimeoutSeconds;
+            $options[CURLOPT_TIMEOUT] = $this->m_requestTimeoutSeconds;
         }
-        if ( isset($this->m_iConnectionTimeoutSeconds) )
+        if ( isset($this->m_connectionTimeoutSeconds) )
         {
-            $mOptions[CURLOPT_CONNECTTIMEOUT] = $this->m_iConnectionTimeoutSeconds;
+            $options[CURLOPT_CONNECTTIMEOUT] = $this->m_connectionTimeoutSeconds;
         }
-        if ( isset($this->m_iDnsCacheTimeoutSeconds) )
+        if ( isset($this->m_dnsCacheTimeoutSeconds) )
         {
-            $mOptions[CURLOPT_DNS_CACHE_TIMEOUT] = $this->m_iDnsCacheTimeoutSeconds;
+            $options[CURLOPT_DNS_CACHE_TIMEOUT] = $this->m_dnsCacheTimeoutSeconds;
         }
 
         // The byte range(s) of interest.
-        if ( isset($this->m_sRequestedByteRange) )
+        if ( isset($this->m_requestedByteRange) )
         {
-            $mOptions[CURLOPT_RANGE] = $this->m_sRequestedByteRange;
+            $options[CURLOPT_RANGE] = $this->m_requestedByteRange;
         }
 
         // SSL certificate verification options.
-        $mOptions[CURLOPT_SSL_VERIFYPEER] = $this->m_bCertificateVerification;
-        if ( isset($this->m_sAlternateCertificateFpOrDp) )
+        $options[CURLOPT_SSL_VERIFYPEER] = $this->m_certificateVerification;
+        if ( isset($this->m_alternateCertificateFpOrDp) )
         {
-            if ( CFile::isFile($this->m_sAlternateCertificateFpOrDp) )
+            if ( CFile::isFile($this->m_alternateCertificateFpOrDp) )
             {
-                $mOptions[CURLOPT_CAINFO] = $this->m_sAlternateCertificateFpOrDp;
+                $options[CURLOPT_CAINFO] = $this->m_alternateCertificateFpOrDp;
             }
-            else if ( CFile::isDirectory($this->m_sAlternateCertificateFpOrDp) )
+            else if ( CFile::isDirectory($this->m_alternateCertificateFpOrDp) )
             {
-                $mOptions[CURLOPT_CAPATH] = $this->m_sAlternateCertificateFpOrDp;
+                $options[CURLOPT_CAPATH] = $this->m_alternateCertificateFpOrDp;
             }
             else
             {
                 assert( 'false', vs(isset($this), get_defined_vars()) );
             }
         }
-        if ( !$this->m_bHostVerification )
+        if ( !$this->m_hostVerification )
         {
             // The default should be the highest setting, so only set this option to `0` if host verification is
             // disabled.
-            $mOptions[CURLOPT_SSL_VERIFYHOST] = 0;
+            $options[CURLOPT_SSL_VERIFYHOST] = 0;
         }
 
-        if ( isset($this->m_sUserAndPassword) )
+        if ( isset($this->m_userAndPassword) )
         {
-            $mOptions[CURLOPT_USERPWD] = $this->m_sUserAndPassword;
+            $options[CURLOPT_USERPWD] = $this->m_userAndPassword;
         }
 
         // SSL options.
-        if ( isset($this->m_sSslCertificateFp) )
+        if ( isset($this->m_sslCertificateFp) )
         {
-            $mOptions[CURLOPT_SSLCERT] = $this->m_sSslCertificateFp;
+            $options[CURLOPT_SSLCERT] = $this->m_sslCertificateFp;
         }
-        if ( isset($this->m_sSslPrivateKeyFp) )
+        if ( isset($this->m_sslPrivateKeyFp) )
         {
-            $mOptions[CURLOPT_SSLKEY] = $this->m_sSslPrivateKeyFp;
+            $options[CURLOPT_SSLKEY] = $this->m_sslPrivateKeyFp;
         }
-        if ( isset($this->m_sSslCertificateFormat) )
+        if ( isset($this->m_sslCertificateFormat) )
         {
-            $mOptions[CURLOPT_SSLCERTTYPE] = $this->m_sSslCertificateFormat;
+            $options[CURLOPT_SSLCERTTYPE] = $this->m_sslCertificateFormat;
         }
-        if ( isset($this->m_sSslPrivateKeyFormat) )
+        if ( isset($this->m_sslPrivateKeyFormat) )
         {
-            $mOptions[CURLOPT_SSLKEYTYPE] = $this->m_sSslPrivateKeyFormat;
+            $options[CURLOPT_SSLKEYTYPE] = $this->m_sslPrivateKeyFormat;
         }
-        if ( isset($this->m_sSslCertificatePassphrase) )
+        if ( isset($this->m_sslCertificatePassphrase) )
         {
-            $mOptions[CURLOPT_SSLCERTPASSWD] = $this->m_sSslCertificatePassphrase;
+            $options[CURLOPT_SSLCERTPASSWD] = $this->m_sslCertificatePassphrase;
         }
-        if ( isset($this->m_sSslPrivateKeyPassphrase) )
+        if ( isset($this->m_sslPrivateKeyPassphrase) )
         {
-            $mOptions[CURLOPT_SSLKEYPASSWD] = $this->m_sSslPrivateKeyPassphrase;
+            $options[CURLOPT_SSLKEYPASSWD] = $this->m_sslPrivateKeyPassphrase;
         }
-        if ( isset($this->m_iSslVersion) )
+        if ( isset($this->m_sslVersion) )
         {
-            $mOptions[CURLOPT_SSLVERSION] = $this->m_iSslVersion;
+            $options[CURLOPT_SSLVERSION] = $this->m_sslVersion;
         }
-        if ( isset($this->m_sSslCipherList) )
+        if ( isset($this->m_sslCipherList) )
         {
-            $mOptions[CURLOPT_SSL_CIPHER_LIST] = $this->m_sSslCipherList;
+            $options[CURLOPT_SSL_CIPHER_LIST] = $this->m_sslCipherList;
         }
-        if ( isset($this->m_sSslEngine) )
+        if ( isset($this->m_sslEngine) )
         {
-            $mOptions[CURLOPT_SSLENGINE] = $this->m_sSslEngine;
+            $options[CURLOPT_SSLENGINE] = $this->m_sslEngine;
         }
-        if ( isset($this->m_sSslDefaultEngine) )
+        if ( isset($this->m_sslDefaultEngine) )
         {
-            $mOptions[CURLOPT_SSLENGINE_DEFAULT] = $this->m_sSslDefaultEngine;
-        }
-
-        if ( isset($this->m_bUseKerberos) && $this->m_bUseKerberos )
-        {
-            $mOptions[CURLOPT_KRBLEVEL] = $this->m_sKerberosLevel;
+            $options[CURLOPT_SSLENGINE_DEFAULT] = $this->m_sslDefaultEngine;
         }
 
-        if ( isset($this->m_sProxyAddress) )
+        if ( isset($this->m_useKerberos) && $this->m_useKerberos )
+        {
+            $options[CURLOPT_KRBLEVEL] = $this->m_kerberosLevel;
+        }
+
+        if ( isset($this->m_proxyAddress) )
         {
             // Use a proxy.
 
-            $mOptions[CURLOPT_PROXY] = $this->m_sProxyAddress;
+            $options[CURLOPT_PROXY] = $this->m_proxyAddress;
 
-            if ( isset($this->m_sProxyUserAndPassword) )
+            if ( isset($this->m_proxyUserAndPassword) )
             {
-                $mOptions[CURLOPT_PROXYUSERPWD] = $this->m_sProxyUserAndPassword;
+                $options[CURLOPT_PROXYUSERPWD] = $this->m_proxyUserAndPassword;
             }
 
-            if ( isset($this->m_eProxyType) )
+            if ( isset($this->m_proxyType) )
             {
-                $iProxyType;
-                switch ( $this->m_eProxyType )
+                $proxyType;
+                switch ( $this->m_proxyType )
                 {
                 case self::PROXY_HTTP:
-                    $iProxyType = CURLPROXY_HTTP;
+                    $proxyType = CURLPROXY_HTTP;
                     break;
                 case self::PROXY_SOCKS_5:
-                    $iProxyType = CURLPROXY_SOCKS5;
+                    $proxyType = CURLPROXY_SOCKS5;
                     break;
                 default:
                     assert( 'false', vs(isset($this), get_defined_vars()) );
                     break;
                 }
-                $mOptions[CURLOPT_PROXYTYPE] = $iProxyType;
+                $options[CURLOPT_PROXYTYPE] = $proxyType;
             }
 
-            if ( isset($this->m_iProxyPort) )
+            if ( isset($this->m_proxyPort) )
             {
-                $mOptions[CURLOPT_PROXYPORT] = $this->m_iProxyPort;
+                $options[CURLOPT_PROXYPORT] = $this->m_proxyPort;
             }
 
-            if ( isset($this->m_bProxyTunneling) && $this->m_bProxyTunneling )
+            if ( isset($this->m_proxyTunneling) && $this->m_proxyTunneling )
             {
-                $mOptions[CURLOPT_HTTPPROXYTUNNEL] = true;
+                $options[CURLOPT_HTTPPROXYTUNNEL] = true;
             }
 
-            if ( isset($this->m_bProxyConnectOnly) && $this->m_bProxyConnectOnly )
+            if ( isset($this->m_proxyConnectOnly) && $this->m_proxyConnectOnly )
             {
-                $mOptions[CURLOPT_CONNECT_ONLY] = true;
+                $options[CURLOPT_CONNECT_ONLY] = true;
             }
         }
 
-        if ( isset($this->m_sOutgoingInterface) )
+        if ( isset($this->m_outgoingInterface) )
         {
-            $mOptions[CURLOPT_INTERFACE] = $this->m_sOutgoingInterface;
+            $options[CURLOPT_INTERFACE] = $this->m_outgoingInterface;
         }
 
         // Speed limits.
-        if ( isset($this->m_iMaxDownloadSpeed) )
+        if ( isset($this->m_maxDownloadSpeed) )
         {
-            $mOptions[CURLOPT_MAX_RECV_SPEED_LARGE] = $this->m_iMaxDownloadSpeed;
+            $options[CURLOPT_MAX_RECV_SPEED_LARGE] = $this->m_maxDownloadSpeed;
         }
-        if ( isset($this->m_iMaxUploadSpeed) )
+        if ( isset($this->m_maxUploadSpeed) )
         {
-            $mOptions[CURLOPT_MAX_SEND_SPEED_LARGE] = $this->m_iMaxUploadSpeed;
+            $options[CURLOPT_MAX_SEND_SPEED_LARGE] = $this->m_maxUploadSpeed;
         }
 
         // Set cURL options.
-        $bRes = curl_setopt_array($this->m_rcCurl, $mOptions);
-        if ( !$bRes || !CString::isEmpty(curl_error($this->m_rcCurl)) )
+        $res = curl_setopt_array($this->m_curl, $options);
+        if ( !$res || !CString::isEmpty(curl_error($this->m_curl)) )
         {
             // Should never get in here as long as cURL options are being set correctly, hence the assertion.
             assert( 'false', vs(isset($this), get_defined_vars()) );
-            $this->m_bHasError = true;
-            $sCurlError = curl_error($this->m_rcCurl);
-            $this->m_sErrorMessage = ( !CString::isEmpty($sCurlError) ) ? $sCurlError :
+            $this->m_hasError = true;
+            $curlError = curl_error($this->m_curl);
+            $this->m_errorMessage = ( !CString::isEmpty($curlError) ) ? $curlError :
                 "The 'curl_setopt_array' function failed.";
-            $rbSuccess = false;
+            $success = false;
             $this->finalize();
             return;
         }
@@ -2187,22 +2188,22 @@ class CInetRequest extends CRootClass
     public function onRequestCompleteOk ()
     {
         // Collect summary information for the request and the response.
-        $xRequestSummary = curl_getinfo($this->m_rcCurl);
-        if ( is_cmap($xRequestSummary) )
+        $requestSummary = curl_getinfo($this->m_curl);
+        if ( is_cmap($requestSummary) )
         {
-            $this->m_mRequestSummary = $xRequestSummary;
+            $this->m_requestSummary = $requestSummary;
         }
 
         if ( $this->isHttp() )
         {
             // Put the response's HTTP headers into an associative array.
-            $iLen = CArray::length($this->m_aResponseHeaders);
-            for ($i = 0; $i < $iLen; $i++)
+            $len = CArray::length($this->m_responseHeaders);
+            for ($i = 0; $i < $len; $i++)
             {
-                $aFoundGroups;
-                CRegex::findGroups($this->m_aResponseHeaders[$i], "/^(.+?):\\h*(.*)/", $aFoundGroups);  // internal
-                $sHeaderNameLc = CString::toLowerCase($aFoundGroups[0]);
-                $this->m_mResponseHeadersLcKeys[$sHeaderNameLc] = $aFoundGroups[1];
+                $foundGroups;
+                CRegex::findGroups($this->m_responseHeaders[$i], "/^(.+?):\\h*(.*)/", $foundGroups);  // internal
+                $headerNameLc = CString::toLowerCase($foundGroups[0]);
+                $this->m_responseHeadersLcKeys[$headerNameLc] = $foundGroups[1];
             }
         }
 
@@ -2214,11 +2215,11 @@ class CInetRequest extends CRootClass
      * @ignore
      */
 
-    public function onRequestCompleteWithError ($sErrorMessage)
+    public function onRequestCompleteWithError ($errorMessage)
     {
         // To be used by "friend" classes only.
-        $this->m_bHasError = true;
-        $this->m_sErrorMessage = $sErrorMessage;
+        $this->m_hasError = true;
+        $this->m_errorMessage = $errorMessage;
         $this->finalize();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -2229,7 +2230,7 @@ class CInetRequest extends CRootClass
     public function curl ()
     {
         // To be used by "friend" classes only.
-        return $this->m_rcCurl;
+        return $this->m_curl;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2239,23 +2240,23 @@ class CInetRequest extends CRootClass
     public function isReturnTransferSet ()
     {
         // To be used by "friend" classes only.
-        assert( 'isset($this->m_bIsReturnTransferSet)', vs(isset($this), get_defined_vars()) );
-        return $this->m_bIsReturnTransferSet;
+        assert( 'isset($this->m_isReturnTransferSet)', vs(isset($this), get_defined_vars()) );
+        return $this->m_isReturnTransferSet;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    public function headerFunction ($rcCurl, $sHeaderLine)
+    public function headerFunction ($curl, $headerLine)
     {
-        $iRet = CString::length($sHeaderLine);
-        $aFoundGroups;
-        if ( CRegex::findGroups($sHeaderLine, "/^\\s*(.+?)\\h*:\\h*(.*?)\\s*\\z/", $aFoundGroups) )
+        $ret = CString::length($headerLine);
+        $foundGroups;
+        if ( CRegex::findGroups($headerLine, "/^\\s*(.+?)\\h*:\\h*(.*?)\\s*\\z/", $foundGroups) )
         {
-            $this->addHeaderWithoutOverriding($this->m_aResponseHeaders, $aFoundGroups[0], $aFoundGroups[1]);
+            $this->addHeaderWithoutOverriding($this->m_responseHeaders, $foundGroups[0], $foundGroups[1]);
         }
-        return $iRet;
+        return $ret;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -2264,186 +2265,186 @@ class CInetRequest extends CRootClass
 
     public function __destruct ()
     {
-        if ( !$this->m_bDone )
+        if ( !$this->m_done )
         {
             $this->finalize();
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected function addHeaderWithoutOverriding ($aHeaders, $sHeaderName, $sValue)
+    protected function addHeaderWithoutOverriding ($headers, $headerName, $value)
     {
-        $sHeaderLine;
-        $sHeaderName = CString::trim($sHeaderName);
-        $sValue = CString::trim($sValue);
-        $iFoundHeaderPos;
-        $bAlreadyExists = CArray::find($aHeaders, $sHeaderName, function ($sElement0, $sElement1)
+        $headerLine;
+        $headerName = CString::trim($headerName);
+        $value = CString::trim($value);
+        $foundHeaderPos;
+        $alreadyExists = CArray::find($headers, $headerName, function ($element0, $element1)
             {
-                return CRegex::find($sElement0, "/^\\h*" . CRegex::enterTd($sElement1) . "\\h*:/i");
+                return CRegex::find($element0, "/^\\h*" . CRegex::enterTd($element1) . "\\h*:/i");
             },
-            $iFoundHeaderPos);
-        if ( !$bAlreadyExists )
+            $foundHeaderPos);
+        if ( !$alreadyExists )
         {
-            $sHeaderLine = "$sHeaderName: $sValue";
+            $headerLine = "$headerName: $value";
         }
         else
         {
             // The header already exists. Combine the header values, removing duplicates based on case-insensitive
             // equality.
-            $sCurrValue = CRegex::remove($aHeaders[$iFoundHeaderPos], "/^.*?:\\h*/");
-            CArray::remove($aHeaders, $iFoundHeaderPos);
-            $aValues = CString::split("$sCurrValue, $sValue", ",");
-            $iLen = CArray::length($aValues);
-            for ($i = 0; $i < $iLen; $i++)
+            $currValue = CRegex::remove($headers[$foundHeaderPos], "/^.*?:\\h*/");
+            CArray::remove($headers, $foundHeaderPos);
+            $values = CString::split("$currValue, $value", ",");
+            $len = CArray::length($values);
+            for ($i = 0; $i < $len; $i++)
             {
-                $aValues[$i] = CString::trim($aValues[$i]);
+                $values[$i] = CString::trim($values[$i]);
             }
-            $aValues = CArray::filter($aValues, function ($sElement)
+            $values = CArray::filter($values, function ($element)
                 {
-                    return !CString::isEmpty($sElement);
+                    return !CString::isEmpty($element);
                 });
-            $aValues = CArray::unique($aValues, function ($sElement0, $sElement1)
+            $values = CArray::unique($values, function ($element0, $element1)
                 {
-                    return CString::equalsCi($sElement0, $sElement1);
+                    return CString::equalsCi($element0, $element1);
                 });
-            $sCombinedValue = CArray::join($aValues, ", ");
-            $sHeaderLine = "$sHeaderName: $sCombinedValue";
+            $combinedValue = CArray::join($values, ", ");
+            $headerLine = "$headerName: $combinedValue";
         }
-        CArray::push($aHeaders, $sHeaderLine);
+        CArray::push($headers, $headerLine);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected function hasHeader ($sHeaderName)
+    protected function hasHeader ($headerName)
     {
-        $sHeaderName = CString::trim($sHeaderName);
-        return CArray::find($this->m_aRequestHeaders, $sHeaderName, function ($sElement0, $sElement1)
+        $headerName = CString::trim($headerName);
+        return CArray::find($this->m_requestHeaders, $headerName, function ($element0, $element1)
             {
-                return CRegex::find($sElement0, "/^\\h*" . CRegex::enterTd($sElement1) . "\\h*:/i");
+                return CRegex::find($element0, "/^\\h*" . CRegex::enterTd($element1) . "\\h*:/i");
             });
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected function removeHeader ($sHeaderName)
+    protected function removeHeader ($headerName)
     {
-        $sHeaderName = CString::trim($sHeaderName);
-        CArray::removeByValue($this->m_aRequestHeaders, $sHeaderName, function ($sElement0, $sElement1)
+        $headerName = CString::trim($headerName);
+        CArray::removeByValue($this->m_requestHeaders, $headerName, function ($element0, $element1)
             {
-                return CRegex::find($sElement0, "/^\\h*" . CRegex::enterTd($sElement1) . "\\h*:/i");
+                return CRegex::find($element0, "/^\\h*" . CRegex::enterTd($element1) . "\\h*:/i");
             });
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected function finalize ()
     {
-        if ( $this->m_bDone )
+        if ( $this->m_done )
         {
             return;
         }
 
-        if ( is_resource($this->m_rcCurl) )
+        if ( is_resource($this->m_curl) )
         {
-            curl_close($this->m_rcCurl);
+            curl_close($this->m_curl);
         }
 
-        if ( isset($this->m_oDownloadFile) )
+        if ( isset($this->m_downloadFile) )
         {
-            $this->m_oDownloadFile->done();
+            $this->m_downloadFile->done();
         }
 
-        if ( isset($this->m_oUploadFile) )
+        if ( isset($this->m_uploadFile) )
         {
-            $this->m_oUploadFile->done();
+            $this->m_uploadFile->done();
         }
 
-        if ( isset($this->m_sFileUploadTempFp) && CFile::exists($this->m_sFileUploadTempFp) )
+        if ( isset($this->m_fileUploadTempFp) && CFile::exists($this->m_fileUploadTempFp) )
         {
-            CFile::delete($this->m_sFileUploadTempFp);
+            CFile::delete($this->m_fileUploadTempFp);
         }
 
-        $this->m_bDone = true;
+        $this->m_done = true;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function basicProtocol ($sProtocol)
+    protected static function basicProtocol ($protocol)
     {
-        $sProtocol = CString::toLowerCase($sProtocol);
-        if ( CString::equals($sProtocol, "https") )
+        $protocol = CString::toLowerCase($protocol);
+        if ( CString::equals($protocol, "https") )
         {
-            $sProtocol = "http";
+            $protocol = "http";
         }
-        else if ( CString::equals($sProtocol, "ftps") )
+        else if ( CString::equals($protocol, "ftps") )
         {
-            $sProtocol = "ftp";
+            $protocol = "ftp";
         }
-        return $sProtocol;
+        return $protocol;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     // Properties and defaults.
-    protected $m_sUrl;
-    protected $m_sRequestBasicProtocol;
-    protected $m_eType;
-    protected $m_sDownloadDestinationFp;
-    protected $m_rcCurl;
-    protected $m_bDone = false;
-    protected $m_bHasError = false;
-    protected $m_sErrorMessage;
-    protected $m_iPort;
-    protected $m_iRequestTimeoutSeconds;
-    protected $m_iConnectionTimeoutSeconds;
-    protected $m_iDnsCacheTimeoutSeconds;
-    protected $m_bRedirection = true;
-    protected $m_iMaxNumRedirections;
-    protected $m_bRedirectionAutoReferer = true;
-    protected $m_bFailOn400ResponseCodeOrGreater = true;
-    protected $m_aRequestHeaders;
-    protected $m_oPostQuery;
-    protected $m_aRequestCookies;
-    protected $m_oDownloadFile;
-    protected $m_mPostFileUploadRecord;
-    protected $m_sNonPostFileUploadFp;
-    protected $m_oUploadFile;
-    protected $m_sFileUploadTempFp;
-    protected $m_bSendDefaultAcceptEncodingHeader = true;
-    protected $m_bSendDefaultUserAgentHeader = false;
-    protected $m_sRequestedByteRange;
-    protected $m_bCertificateVerification = true;
-    protected $m_sAlternateCertificateFpOrDp;
-    protected $m_bHostVerification = true;
-    protected $m_sUserAndPassword;
-    protected $m_bRedirectionKeepAuth = false;
-    protected $m_bFtpCreateMissingDirectoriesForUpload = true;
-    protected $m_bFtpAppendUpload;
-    protected $m_aFtpQuoteCommands;
-    protected $m_aFtpPostQuoteCommands;
-    protected $m_bFtpUseEpsv;
-    protected $m_sFtpActiveModeBackAddress;
-    protected $m_bFtpUseEprt;
-    protected $m_sSslCertificateFp;
-    protected $m_sSslPrivateKeyFp;
-    protected $m_sSslCertificateFormat;
-    protected $m_sSslPrivateKeyFormat;
-    protected $m_sSslCertificatePassphrase;
-    protected $m_sSslPrivateKeyPassphrase;
-    protected $m_iSslVersion;
-    protected $m_sSslCipherList;
-    protected $m_sSslEngine;
-    protected $m_sSslDefaultEngine;
-    protected $m_bUseKerberos;
-    protected $m_sKerberosLevel;
-    protected $m_sProxyAddress;
-    protected $m_sProxyUserAndPassword;
-    protected $m_eProxyType;
-    protected $m_iProxyPort;
-    protected $m_bProxyTunneling;
-    protected $m_bProxyConnectOnly;
-    protected $m_sOutgoingInterface;
-    protected $m_bEchoResponse = false;
-    protected $m_bVerboseOutput;
-    protected $m_iMaxDownloadSpeed;
-    protected $m_iMaxUploadSpeed;
-    protected $m_mRequestSummary;
-    protected $m_aResponseHeaders;
-    protected $m_mResponseHeadersLcKeys;
-    protected $m_bIsReturnTransferSet;
+    protected $m_url;
+    protected $m_requestBasicProtocol;
+    protected $m_type;
+    protected $m_downloadDestinationFp;
+    protected $m_curl;
+    protected $m_done = false;
+    protected $m_hasError = false;
+    protected $m_errorMessage;
+    protected $m_port;
+    protected $m_requestTimeoutSeconds;
+    protected $m_connectionTimeoutSeconds;
+    protected $m_dnsCacheTimeoutSeconds;
+    protected $m_redirection = true;
+    protected $m_maxNumRedirections;
+    protected $m_redirectionAutoReferer = true;
+    protected $m_failOn400ResponseCodeOrGreater = true;
+    protected $m_requestHeaders;
+    protected $m_postQuery;
+    protected $m_requestCookies;
+    protected $m_downloadFile;
+    protected $m_postFileUploadRecord;
+    protected $m_nonPostFileUploadFp;
+    protected $m_uploadFile;
+    protected $m_fileUploadTempFp;
+    protected $m_sendDefaultAcceptEncodingHeader = true;
+    protected $m_sendDefaultUserAgentHeader = false;
+    protected $m_requestedByteRange;
+    protected $m_certificateVerification = true;
+    protected $m_alternateCertificateFpOrDp;
+    protected $m_hostVerification = true;
+    protected $m_userAndPassword;
+    protected $m_redirectionKeepAuth = false;
+    protected $m_ftpCreateMissingDirectoriesForUpload = true;
+    protected $m_ftpAppendUpload;
+    protected $m_ftpQuoteCommands;
+    protected $m_ftpPostQuoteCommands;
+    protected $m_ftpUseEpsv;
+    protected $m_ftpActiveModeBackAddress;
+    protected $m_ftpUseEprt;
+    protected $m_sslCertificateFp;
+    protected $m_sslPrivateKeyFp;
+    protected $m_sslCertificateFormat;
+    protected $m_sslPrivateKeyFormat;
+    protected $m_sslCertificatePassphrase;
+    protected $m_sslPrivateKeyPassphrase;
+    protected $m_sslVersion;
+    protected $m_sslCipherList;
+    protected $m_sslEngine;
+    protected $m_sslDefaultEngine;
+    protected $m_useKerberos;
+    protected $m_kerberosLevel;
+    protected $m_proxyAddress;
+    protected $m_proxyUserAndPassword;
+    protected $m_proxyType;
+    protected $m_proxyPort;
+    protected $m_proxyTunneling;
+    protected $m_proxyConnectOnly;
+    protected $m_outgoingInterface;
+    protected $m_echoResponse = false;
+    protected $m_verboseOutput;
+    protected $m_maxDownloadSpeed;
+    protected $m_maxUploadSpeed;
+    protected $m_requestSummary;
+    protected $m_responseHeaders;
+    protected $m_responseHeadersLcKeys;
+    protected $m_isReturnTransferSet;
 
     // If the default user agent string is used, each "x.x.x" will be replaced with actual versions of curl/libcurl
     // and OpenSSL.
-    protected static $ms_sDefaultUserAgent = "curl/x.x.x (unknown) libcurl x.x.x (OpenSSL x.x.x) (ipv6 enabled)";
+    protected static $ms_defaultUserAgent = "curl/x.x.x (unknown) libcurl x.x.x (OpenSSL x.x.x) (ipv6 enabled)";
 }
 

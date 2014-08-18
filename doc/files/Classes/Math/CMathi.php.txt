@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * A set of static methods that perform mathematic operations by taking integer or floating-point numbers as parameters
  * but always outputting integer numbers.
@@ -8,27 +9,27 @@
  */
 
 // Method signatures:
-//   static int floor ($nValue)
-//   static int ceil ($nValue)
-//   static int round ($nValue)
-//   static int abs ($nValue)
-//   static int sign ($nValue)
-//   static int min ($nValue0, $nValue1)
-//   static int max ($nValue0, $nValue1)
-//   static void minMax ($nValue0, $nValue1, &$riMin, &$riMax)
-//   static int clamp ($nValue, $nRangeMin, $nRangeMax)
-//   static void div ($nValue, $nDivisor, &$riQuotient, &$riReminder)
-//   static bool isEven ($nValue)
-//   static bool isOdd ($nValue)
-//   static bool isDivisible ($nValue, $nDivisor)
-//   static int sqr ($nValue)
-//   static int pow ($nBase, $nExponent)
-//   static int log2 ($nValue)
-//   static int intervalRandom ($nMin, $nMax)
-//   static void seedRandom ($iSeed)
-//   static bool isPow2 ($nValue)
-//   static int roundToPow2Down ($nValue)
-//   static int roundToPow2Up ($nValue)
+//   static int floor ($value)
+//   static int ceil ($value)
+//   static int round ($value)
+//   static int abs ($value)
+//   static int sign ($value)
+//   static int min ($value0, $value1)
+//   static int max ($value0, $value1)
+//   static void minMax ($value0, $value1, &$min, &$max)
+//   static int clamp ($value, $rangeMin, $rangeMax)
+//   static void div ($value, $divisor, &$quotient, &$reminder)
+//   static bool isEven ($value)
+//   static bool isOdd ($value)
+//   static bool isDivisible ($value, $divisor)
+//   static int sqr ($value)
+//   static int pow ($base, $exponent)
+//   static int log2 ($value)
+//   static int intervalRandom ($min, $max)
+//   static void seedRandom ($seed)
+//   static bool isPow2 ($value)
+//   static int roundToPow2Down ($value)
+//   static int roundToPow2Up ($value)
 
 class CMathi extends CRootClass
 {
@@ -45,15 +46,15 @@ class CMathi extends CRootClass
      *
      * If the number is already rounded, the same number is returned as an integer value.
      *
-     * @param  number $nValue The number to be rounded.
+     * @param  number $value The number to be rounded.
      *
      * @return int The rounded number.
      */
 
-    public static function floor ($nValue)
+    public static function floor ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        return (int)floor($nValue);
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        return (int)floor($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -61,43 +62,43 @@ class CMathi extends CRootClass
      *
      * If the number is already rounded, the same number is returned as an integer value.
      *
-     * @param  number $nValue The number to be rounded.
+     * @param  number $value The number to be rounded.
      *
      * @return int The rounded number.
      */
 
-    public static function ceil ($nValue)
+    public static function ceil ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        return (int)ceil($nValue);
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        return (int)ceil($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Rounds a number to the nearest integer and returns it as an integer value.
      *
-     * @param  number $nValue The number to be rounded.
+     * @param  number $value The number to be rounded.
      *
      * @return int The rounded number.
      */
 
-    public static function round ($nValue)
+    public static function round ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        return (int)round($nValue);
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        return (int)round($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the absolute value of a number.
      *
-     * @param  number $nValue The input number.
+     * @param  number $value The input number.
      *
      * @return int The absolute value of the number.
      */
 
-    public static function abs ($nValue)
+    public static function abs ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        return (int)abs($nValue);
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        return (int)abs($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -105,73 +106,73 @@ class CMathi extends CRootClass
      *
      * The method returns `-1` if the number is negative, `1` if the number is positive, and `0` if the number is zero.
      *
-     * @param  number $nValue The input number.
+     * @param  number $value The input number.
      *
      * @return int The sign of the number.
      */
 
-    public static function sign ($nValue)
+    public static function sign ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        return (int)( $nValue > 0 ) - (int)( $nValue < 0 );
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        return (int)( $value > 0 ) - (int)( $value < 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the smallest out of two numbers.
      *
-     * @param  number $nValue0 The first number for comparison.
-     * @param  number $nValue1 The second number for comparison.
+     * @param  number $value0 The first number for comparison.
+     * @param  number $value1 The second number for comparison.
      *
      * @return int The smallest number.
      */
 
-    public static function min ($nValue0, $nValue1)
+    public static function min ($value0, $value1)
     {
-        assert( 'is_number($nValue0) && is_number($nValue1)', vs(isset($this), get_defined_vars()) );
-        return (int)(( $nValue0 < $nValue1 ) ? $nValue0 : $nValue1);
+        assert( 'is_number($value0) && is_number($value1)', vs(isset($this), get_defined_vars()) );
+        return (int)(( $value0 < $value1 ) ? $value0 : $value1);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the largest out of two numbers.
      *
-     * @param  number $nValue0 The first number for comparison.
-     * @param  number $nValue1 The second number for comparison.
+     * @param  number $value0 The first number for comparison.
+     * @param  number $value1 The second number for comparison.
      *
      * @return int The largest number.
      */
 
-    public static function max ($nValue0, $nValue1)
+    public static function max ($value0, $value1)
     {
-        assert( 'is_number($nValue0) && is_number($nValue1)', vs(isset($this), get_defined_vars()) );
-        return (int)(( $nValue0 > $nValue1 ) ? $nValue0 : $nValue1);
+        assert( 'is_number($value0) && is_number($value1)', vs(isset($this), get_defined_vars()) );
+        return (int)(( $value0 > $value1 ) ? $value0 : $value1);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines which out of two numbers is smallest and which is largest.
      *
-     * @param  number $nValue0 The first number for comparison.
-     * @param  number $nValue1 The second number for comparison.
-     * @param  reference $riMin **OUTPUT.** After the method is called, the value of this parameter, which is of type
+     * @param  number $value0 The first number for comparison.
+     * @param  number $value1 The second number for comparison.
+     * @param  reference $min **OUTPUT.** After the method is called, the value of this parameter, which is of type
      * `int`, is the smallest number.
-     * @param  reference $riMax **OUTPUT.** After the method is called, the value of this parameter, which is of type
+     * @param  reference $max **OUTPUT.** After the method is called, the value of this parameter, which is of type
      * `int`, is the largest number.
      *
      * @return void
      */
 
-    public static function minMax ($nValue0, $nValue1, &$riMin, &$riMax)
+    public static function minMax ($value0, $value1, &$min, &$max)
     {
-        assert( 'is_number($nValue0) && is_number($nValue1)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($value0) && is_number($value1)', vs(isset($this), get_defined_vars()) );
 
-        if ( $nValue0 < $nValue1 )
+        if ( $value0 < $value1 )
         {
-            $riMin = (int)$nValue0;
-            $riMax = (int)$nValue1;
+            $min = (int)$value0;
+            $max = (int)$value1;
         }
         else
         {
-            $riMin = (int)$nValue1;
-            $riMax = (int)$nValue0;
+            $min = (int)$value1;
+            $max = (int)$value0;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -180,52 +181,52 @@ class CMathi extends CRootClass
      *
      * The original (integer) number is returned if it's already within the range.
      *
-     * @param  number $nValue The number to be clamped.
-     * @param  number $nRangeMin The smallest acceptable number for output. Any number less than this value will be
+     * @param  number $value The number to be clamped.
+     * @param  number $rangeMin The smallest acceptable number for output. Any number less than this value will be
      * clamped to it.
-     * @param  number $nRangeMax The largest acceptable number for output. Any number greater than this value will be
+     * @param  number $rangeMax The largest acceptable number for output. Any number greater than this value will be
      * clamped to it.
      *
      * @return int The clamped number.
      */
 
-    public static function clamp ($nValue, $nRangeMin, $nRangeMax)
+    public static function clamp ($value, $rangeMin, $rangeMax)
     {
-        assert( 'is_number($nValue) && is_number($nRangeMin) && is_number($nRangeMax)',
+        assert( 'is_number($value) && is_number($rangeMin) && is_number($rangeMax)',
             vs(isset($this), get_defined_vars()) );
 
-        if ( $nValue > $nRangeMax )
+        if ( $value > $rangeMax )
         {
-            return (int)$nRangeMax;
+            return (int)$rangeMax;
         }
-        if ( $nValue < $nRangeMin )
+        if ( $value < $rangeMin )
         {
-            return (int)$nRangeMin;
+            return (int)$rangeMin;
         }
-        return (int)$nValue;
+        return (int)$value;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Divides a number by another number and outputs the resulting quotient and reminder.
      *
-     * @param  number $nValue The dividend.
-     * @param  number $nDivisor The divisor.
-     * @param  reference $riQuotient **OUTPUT.** After the method is called, the value of this parameter, which is of
+     * @param  number $value The dividend.
+     * @param  number $divisor The divisor.
+     * @param  reference $quotient **OUTPUT.** After the method is called, the value of this parameter, which is of
      * type `int`, is the resulting quotient.
-     * @param  reference $riReminder **OUTPUT.** After the method is called, the value of this parameter, which is of
+     * @param  reference $reminder **OUTPUT.** After the method is called, the value of this parameter, which is of
      * type `int`, is the resulting reminder.
      *
      * @return void
      */
 
-    public static function div ($nValue, $nDivisor, &$riQuotient, &$riReminder)
+    public static function div ($value, $divisor, &$quotient, &$reminder)
     {
-        assert( 'is_number($nValue) && is_number($nDivisor)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($value) && is_number($divisor)', vs(isset($this), get_defined_vars()) );
 
-        $iValue = (int)$nValue;
-        $iDivisor = (int)$nDivisor;
-        $riQuotient = (int)($iValue/$iDivisor);
-        $riReminder = $iValue - $iDivisor*$riQuotient;
+        $intValue = (int)$value;
+        $intDivisor = (int)$divisor;
+        $quotient = (int)($intValue/$intDivisor);
+        $reminder = $intValue - $intDivisor*$quotient;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -233,15 +234,15 @@ class CMathi extends CRootClass
      *
      * As a special case, the method returns `true` for zero.
      *
-     * @param  number $nValue The input number.
+     * @param  number $value The input number.
      *
      * @return bool `true` if the number is even, `false` otherwise.
      */
 
-    public static function isEven ($nValue)
+    public static function isEven ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        return ( (((int)$nValue) & 1) == 0 );
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        return ( (((int)$value) & 1) == 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -249,30 +250,30 @@ class CMathi extends CRootClass
      *
      * As a special case, the method returns `false` for zero.
      *
-     * @param  number $nValue The input number.
+     * @param  number $value The input number.
      *
      * @return bool `true` if the number is odd, `false` otherwise.
      */
 
-    public static function isOdd ($nValue)
+    public static function isOdd ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        return ( (((int)$nValue) & 1) != 0 );
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        return ( (((int)$value) & 1) != 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if a number is divisible by another number.
      *
-     * @param  number $nValue The dividend.
-     * @param  number $nDivisor The divisor.
+     * @param  number $value The dividend.
+     * @param  number $divisor The divisor.
      *
      * @return bool `true` if the number is divisible, `false` otherwise.
      */
 
-    public static function isDivisible ($nValue, $nDivisor)
+    public static function isDivisible ($value, $divisor)
     {
-        assert( 'is_number($nValue) && is_number($nDivisor)', vs(isset($this), get_defined_vars()) );
-        return ( ((int)$nValue) % ((int)$nDivisor) == 0 );
+        assert( 'is_number($value) && is_number($divisor)', vs(isset($this), get_defined_vars()) );
+        return ( ((int)$value) % ((int)$divisor) == 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -280,38 +281,38 @@ class CMathi extends CRootClass
      *
      * This method serves as an alternative to multiplying a number by itself manually with `*` operator.
      *
-     * @param  number $nValue The input number.
+     * @param  number $value The input number.
      *
      * @return int The squared number.
      */
 
-    public static function sqr ($nValue)
+    public static function sqr ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        return (int)($nValue*$nValue);
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        return (int)($value*$value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the result of raising of a number to the power of a specified exponent.
      *
-     * @param  number $nBase The number to be raised.
-     * @param  number $nExponent The exponent (should be positive or zero).
+     * @param  number $base The number to be raised.
+     * @param  number $exponent The exponent (should be positive or zero).
      *
      * @return int The raised number.
      */
 
-    public static function pow ($nBase, $nExponent)
+    public static function pow ($base, $exponent)
     {
-        assert( 'is_number($nBase) && is_number($nExponent)', vs(isset($this), get_defined_vars()) );
-        assert( '$nExponent >= 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($base) && is_number($exponent)', vs(isset($this), get_defined_vars()) );
+        assert( '$exponent >= 0', vs(isset($this), get_defined_vars()) );
 
-        $iExponent = (int)$nExponent;
-        $nProduct = 1;
-        while ( $iExponent-- != 0 )
+        $intExponent = (int)$exponent;
+        $product = 1;
+        while ( $intExponent-- != 0 )
         {
-            $nProduct *= $nBase;
+            $product *= $base;
         }
-        return (int)$nProduct;
+        return (int)$product;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -320,26 +321,26 @@ class CMathi extends CRootClass
      * To rephrase, if the returned number is incremented by one, it indicates the minimum number of bits required to
      * store the value of the input number.
      *
-     * @param  number $nValue The input number (should be positive, non-zero).
+     * @param  number $value The input number (should be positive, non-zero).
      *
      * @return int The integer base-2 logarithm of the number.
      */
 
-    public static function log2 ($nValue)
+    public static function log2 ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        assert( '$nValue > 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        assert( '$value > 0', vs(isset($this), get_defined_vars()) );
 
-        $iValue = (int)$nValue;
-        $iResult = 0;
+        $intValue = (int)$value;
+        $result = 0;
         while ( true )
         {
-            $iValue >>= 1;
-            if ( $iValue == 0 )
+            $intValue >>= 1;
+            if ( $intValue == 0 )
             {
-                return $iResult;
+                return $result;
             }
-            $iResult++;
+            $result++;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -350,33 +351,33 @@ class CMathi extends CRootClass
      *
      * The algorithm behind the random number generator is Mersenne twister.
      *
-     * @param  number $nMin The lower bound of the range, inclusively.
-     * @param  number $nMax The higher bound of the range, inclusively.
+     * @param  number $min The lower bound of the range, inclusively.
+     * @param  number $max The higher bound of the range, inclusively.
      *
      * @return int A random number from the range specified.
      */
 
-    public static function intervalRandom ($nMin, $nMax)
+    public static function intervalRandom ($min, $max)
     {
-        assert( 'is_number($nMin) && is_number($nMax)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($min) && is_number($max)', vs(isset($this), get_defined_vars()) );
 
-        $iMin = (int)$nMin;
-        $iMax = (int)$nMax;
-        return $iMin + (int)(($iMax - $iMin + 1)*CMathf::random());
+        $intMin = (int)$min;
+        $intMax = (int)$max;
+        return $intMin + (int)(($intMax - $intMin + 1)*CMathf::random());
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Seeds the random number generator.
      *
-     * @param  int $iSeed The value with which the generator is to be seeded.
+     * @param  int $seed The value with which the generator is to be seeded.
      *
      * @return void
      */
 
-    public static function seedRandom ($iSeed)
+    public static function seedRandom ($seed)
     {
-        assert( 'is_int($iSeed)', vs(isset($this), get_defined_vars()) );
-        CMathf::seedRandom($iSeed);
+        assert( 'is_int($seed)', vs(isset($this), get_defined_vars()) );
+        CMathf::seedRandom($seed);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -384,17 +385,17 @@ class CMathi extends CRootClass
      *
      * As a special case, the method returns `false` for zero.
      *
-     * @param  number $nValue The input number.
+     * @param  number $value The input number.
      *
      * @return bool `true` if the number is a positive power of 2, `false` otherwise.
      */
 
-    public static function isPow2 ($nValue)
+    public static function isPow2 ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
 
-        $iValue = (int)$nValue;
-        return ( $iValue != 0 && ($iValue & ($iValue - 1)) == 0 );
+        $intValue = (int)$value;
+        return ( $intValue != 0 && ($intValue & ($intValue - 1)) == 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -402,17 +403,17 @@ class CMathi extends CRootClass
      *
      * If the number is already rounded, the same (integer) number is returned.
      *
-     * @param  number $nValue The number to be rounded (should be positive, non-zero).
+     * @param  number $value The number to be rounded (should be positive, non-zero).
      *
      * @return int The rounded number.
      */
 
-    public static function roundToPow2Down ($nValue)
+    public static function roundToPow2Down ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        assert( '$nValue > 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        assert( '$value > 0', vs(isset($this), get_defined_vars()) );
 
-        return 1 << self::log2($nValue);
+        return 1 << self::log2($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -420,22 +421,22 @@ class CMathi extends CRootClass
      *
      * If the number is already rounded, the same (integer) number is returned.
      *
-     * @param  number $nValue The number to be rounded (should be positive or zero).
+     * @param  number $value The number to be rounded (should be positive or zero).
      *
      * @return int The rounded number.
      */
 
-    public static function roundToPow2Up ($nValue)
+    public static function roundToPow2Up ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        assert( '$nValue >= 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        assert( '$value >= 0', vs(isset($this), get_defined_vars()) );
 
-        $iValue = (int)$nValue;
-        if ( $iValue == 0 )
+        $intValue = (int)$value;
+        if ( $intValue == 0 )
         {
             return 1;
         }
-        return ( self::isPow2($iValue) ) ? $iValue : 1 << (self::log2($iValue) + 1);
+        return ( self::isPow2($intValue) ) ? $intValue : 1 << (self::log2($intValue) + 1);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }

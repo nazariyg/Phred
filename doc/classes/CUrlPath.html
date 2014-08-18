@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1992008245"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-715773099"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1992008245" class="accordion-body collapse in">
+            <div id="namespace-715773099" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -226,7 +226,7 @@ in their literal representations, i.e. without any of them being percent-encoded
 constructing an object from a path string or converting an object into the corresponding path string when
 percent-encoding comes into play.</p>
 <p>You can make a copy of a URL path object using <code>clone</code> keyword like so:</p>
-<pre><code>$oUrlPathCopy = clone $oUrlPath;</code></pre>
+<pre><code>$urlPathCopy = clone $urlPath;</code></pre>
 
                     <section id="summary">
                         <h2>Summary</h2>
@@ -267,8 +267,8 @@ percent-encoding comes into play.</p>
                                 <em>N/A</em>
                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/CUrlPath.html#property_m_aComponents" class="">$m_aComponents</a><br />
-                                                                    <a href="../classes/CUrlPath.html#property_m_iCurrPos" class="">$m_iCurrPos</a><br />
+                                                                    <a href="../classes/CUrlPath.html#property_m_components" class="">$m_components</a><br />
+                                                                    <a href="../classes/CUrlPath.html#property_m_currPos" class="">$m_currPos</a><br />
                                                             </section>
                         </section>
                         <section class="row-fluid private">
@@ -373,7 +373,7 @@ percent-encoding comes into play.</p>
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (<span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sPath</span></span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (<span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$path</span></span>)</pre>
                 <p><em><p>Creates a URL path from a path string or as empty.</p></em></p>
                 <p>If a source path string is provided, it should start with "/". Just like in any valid URL, the path string is
 not expected to contain characters that cannot be represented literally and percent-encoding is expected to be
@@ -383,7 +383,7 @@ used for any such characters. No trailing "/" are stripped off the path string, 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPath</code> </td>
+                                <td><code style="border: none; background: none">$path</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>create an empty URL path</em>. A string with the source path.</p></td>
                             </tr>
@@ -527,14 +527,14 @@ method to get to know whether the component that was previously returned by this
             <article class="method">
                 <h3 class="public ">component()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">component (int&nbsp;<span class="argument">$iPos</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">component (int&nbsp;<span class="argument">$pos</span>) : OOPString</pre>
                 <p><em><p>From a URL path, returns the component located at a specified position.</p></em></p>
                 <p>No characters in the returned component are percent-encoded.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iPos</code> </td>
+                                <td><code style="border: none; background: none">$pos</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The component's position. Positions are zero-based, so the position of the first component in
 a URL path is <code>0</code>, the position of the second component is <code>1</code>, and so on.</p></td>
@@ -572,14 +572,14 @@ a URL path is <code>0</code>, the position of the second component is <code>1</c
             <article class="method">
                 <h3 class="public ">addComponent()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">addComponent (string&nbsp;<span class="argument">$sComponent</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">addComponent (string&nbsp;<span class="argument">$component</span>) : void</pre>
                 <p><em><p>Adds a component to a URL path.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sComponent</code> </td>
+                                <td><code style="border: none; background: none">$component</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The component to be added. All the characters in the component's string should be
 represented literally and none of the characters should be percent-encoded.</p></td>
@@ -660,10 +660,10 @@ string to be valid and with the hexadecimal letters in percent-encoded character
 
                                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_aComponents" name="property_m_aComponents" class="anchor"></a>
+            <a id="property_m_components" name="property_m_components" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_aComponents</h3>
-                <pre class="signature">$m_aComponents</pre>
+                <h3 class="protected ">$m_components</h3>
+                <pre class="signature">$m_components</pre>
                 <p><em></em></p>
                 
 
@@ -688,10 +688,10 @@ string to be valid and with the hexadecimal letters in percent-encoded character
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_iCurrPos" name="property_m_iCurrPos" class="anchor"></a>
+            <a id="property_m_currPos" name="property_m_currPos" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_iCurrPos</h3>
-                <pre class="signature">$m_iCurrPos</pre>
+                <h3 class="protected ">$m_currPos</h3>
+                <pre class="signature">$m_currPos</pre>
                 <p><em></em></p>
                 
 
@@ -764,7 +764,7 @@ string to be valid and with the hexadecimal letters in percent-encoded character
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

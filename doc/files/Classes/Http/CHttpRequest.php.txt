@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * The class that enumerates the HTTP methods and HTTP request headers. This is also the base class for the CRequest
  * class.

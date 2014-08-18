@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * @ignore
  */
@@ -11,7 +12,7 @@ class CRootClass
      * @ignore
      */
 
-    public function __set ($sName, $sValue)
+    public function __set ($name, $value)
     {
         // The purpose of this method is to detect references to undeclared object variables (properties) in
         // implementations of non-static methods, where the name of the undeclared variable could be resulting from

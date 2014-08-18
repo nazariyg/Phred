@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * The class of any OOP array, which wraps over the SplFixedArray class for high-performance array functionality.
  *
@@ -36,66 +37,66 @@
  * make a copy of an OOP array using `clone` keyword like so:
  *
  * ```
- * $aArrayCopy = clone $aArray;
+ * $arrayCopy = clone $array;
  * ```
  */
 
 // Method signatures:
-//   __construct ($iLength = 0)
-//   static CArrayObject makeDim2 ($iLengthDim1, $iLengthDim2 = 0)
-//   static CArrayObject makeDim3 ($iLengthDim1, $iLengthDim2, $iLengthDim3 = 0)
-//   static CArrayObject makeDim4 ($iLengthDim1, $iLengthDim2, $iLengthDim3, $iLengthDim4 = 0)
-//   static CArrayObject fromPArray ($mMap)
+//   __construct ($length = 0)
+//   static CArrayObject makeDim2 ($lengthDim1, $lengthDim2 = 0)
+//   static CArrayObject makeDim3 ($lengthDim1, $lengthDim2, $lengthDim3 = 0)
+//   static CArrayObject makeDim4 ($lengthDim1, $lengthDim2, $lengthDim3, $lengthDim4 = 0)
+//   static CArrayObject fromPArray ($map)
 //   CMap toPArray ()
-//   CUStringObject join ($sBinder)
+//   CUStringObject join ($binder)
 //   int length ()
 //   bool isEmpty ()
-//   bool equals ($aToArray, $fnComparator = CComparator::EQUALITY)
-//   int compare ($aToArray, $fnComparator = CComparator::ORDER_ASC)
+//   bool equals ($toArray, $comparator = CComparator::EQUALITY)
+//   int compare ($toArray, $comparator = CComparator::ORDER_ASC)
 //   mixed first ()
 //   mixed last ()
 //   mixed random ()
-//   CArrayObject subar ($iStartPos, $iLength = null)
-//   CArrayObject subarray ($iStartPos, $iEndPos)
-//   CArrayObject slice ($iStartPos, $iEndPos)
-//   bool find ($xWhatElement, $fnComparator = CComparator::EQUALITY, &$riFoundAtPos = null)
-//   bool findScalar ($xWhatElement, &$riFoundAtPos = null)
-//   bool findBinary ($xWhatElement, $fnComparator = CComparator::ORDER_ASC, &$riFoundAtPos = null)
-//   int countElement ($xElement, $fnComparator = CComparator::EQUALITY)
-//   void setLength ($iNewLength)
-//   int push ($xElement)
+//   CArrayObject subar ($startPos, $length = null)
+//   CArrayObject subarray ($startPos, $endPos)
+//   CArrayObject slice ($startPos, $endPos)
+//   bool find ($whatElement, $comparator = CComparator::EQUALITY, &$foundAtPos = null)
+//   bool findScalar ($whatElement, &$foundAtPos = null)
+//   bool findBinary ($whatElement, $comparator = CComparator::ORDER_ASC, &$foundAtPos = null)
+//   int countElement ($element, $comparator = CComparator::EQUALITY)
+//   void setLength ($newLength)
+//   int push ($element)
 //   mixed pop ()
-//   int pushArray ($aPushArray)
-//   int unshift ($xElement)
+//   int pushArray ($pushArray)
+//   int unshift ($element)
 //   mixed shift ()
-//   int unshiftArray ($aAddArray)
-//   void insert ($iAtPos, $xInsertElement)
-//   void insertArray ($iAtPos, $aInsertArray)
-//   void padStart ($xPaddingElement, $iNewLength)
-//   void padEnd ($xPaddingElement, $iNewLength)
-//   void remove ($iElementPos)
-//   bool removeByValue ($xElementValue, $fnComparator = CComparator::EQUALITY)
-//   void removeSubarray ($iStartPos, $iLength = null)
-//   CArrayObject splice ($iStartPos, $iLength = null)
-//   void removeSubarrayByRange ($iStartPos, $iEndPos)
+//   int unshiftArray ($addArray)
+//   void insert ($atPos, $insertElement)
+//   void insertArray ($atPos, $insertArray)
+//   void padStart ($paddingElement, $newLength)
+//   void padEnd ($paddingElement, $newLength)
+//   void remove ($elementPos)
+//   bool removeByValue ($elementValue, $comparator = CComparator::EQUALITY)
+//   void removeSubarray ($startPos, $length = null)
+//   CArrayObject splice ($startPos, $length = null)
+//   void removeSubarrayByRange ($startPos, $endPos)
 //   void reverse ()
 //   void shuffle ()
-//   void sort ($fnComparator = CComparator::ORDER_ASC)
-//   void sortOn ($sOnMethodName, $fnComparator = CComparator::ORDER_ASC/*, methodArg0, methodArg1, ...*/)
-//   void sortUStrings ($bfCollationFlags = CUString::COLLATION_DEFAULT, CULocale $oInLocale = null)
-//   void sortUStringsCi ($bfCollationFlags = CUString::COLLATION_DEFAULT, CULocale $oInLocale = null)
-//   void sortUStringsNat ($bfCollationFlags = CUString::COLLATION_DEFAULT, CULocale $oInLocale = null)
-//   void sortUStringsNatCi ($bfCollationFlags = CUString::COLLATION_DEFAULT, CULocale $oInLocale = null)
-//   CArrayObject filter ($fnFilter)
-//   CArrayObject unique ($fnComparator = CComparator::EQUALITY)
+//   void sort ($comparator = CComparator::ORDER_ASC)
+//   void sortOn ($onMethodName, $comparator = CComparator::ORDER_ASC/*, methodArg0, methodArg1, ...*/)
+//   void sortUStrings ($collationFlags = CUStringObject::COLLATION_DEFAULT, CULocale $inLocale = null)
+//   void sortUStringsCi ($collationFlags = CUStringObject::COLLATION_DEFAULT, CULocale $inLocale = null)
+//   void sortUStringsNat ($collationFlags = CUStringObject::COLLATION_DEFAULT, CULocale $inLocale = null)
+//   void sortUStringsNatCi ($collationFlags = CUStringObject::COLLATION_DEFAULT, CULocale $inLocale = null)
+//   CArrayObject filter ($filter)
+//   CArrayObject unique ($comparator = CComparator::EQUALITY)
 //   number elementsSum ()
 //   number elementsProduct ()
-//   bool isSubsetOf ($aOfArray, $fnComparator = CComparator::EQUALITY)
+//   bool isSubsetOf ($ofArray, $comparator = CComparator::EQUALITY)
 //   CArrayObject union (/*addendArray0, addendArray1, ...*/)
-//   CArrayObject intersection ($aWithArray, $fnComparator = CComparator::EQUALITY)
-//   CArrayObject difference ($aSubtrahendArray, $fnComparator = CComparator::EQUALITY)
-//   CArrayObject symmetricDifference ($aFromArray, $fnComparator = CComparator::EQUALITY)
-//   static CArrayObject repeat ($xElement, $iTimes)
+//   CArrayObject intersection ($withArray, $comparator = CComparator::EQUALITY)
+//   CArrayObject difference ($subtrahendArray, $comparator = CComparator::EQUALITY)
+//   CArrayObject symmetricDifference ($fromArray, $comparator = CComparator::EQUALITY)
+//   static CArrayObject repeat ($element, $times)
 
 class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, IteratorAggregate, Countable
 {
@@ -103,76 +104,76 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
     /**
      * Creates an OOP array as either empty or having a specified length.
      *
-     * @param  int $iLength **OPTIONAL. Default is** `0`. The length of the array. Don't forget to give values to all
+     * @param  int $length **OPTIONAL. Default is** `0`. The length of the array. Don't forget to give values to all
      * of the allocated elements when using this parameter.
      */
 
-    public function __construct ($iLength = 0, $_noinit = false)
+    public function __construct ($length = 0, $_noinit = false)
     {
         if ( $_noinit )
         {
             return;
         }
 
-        $this->m_aSplArray = CArray::make($iLength);
+        $this->m_splArray = CArray::make($length);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Creates a two-dimensional OOP array.
      *
-     * @param  int $iLengthDim1 The length of the array at the first level.
-     * @param  int $iLengthDim2 **OPTIONAL. Default is** `0`. The length(s) of the array(s) at the second level.
+     * @param  int $lengthDim1 The length of the array at the first level.
+     * @param  int $lengthDim2 **OPTIONAL. Default is** `0`. The length(s) of the array(s) at the second level.
      *
      * @return CArrayObject The new array.
      */
 
-    public static function makeDim2 ($iLengthDim1, $iLengthDim2 = 0)
+    public static function makeDim2 ($lengthDim1, $lengthDim2 = 0)
     {
-        return to_oop(CArray::makeDim2($iLengthDim1, $iLengthDim2));
+        return to_oop(CArray::makeDim2($lengthDim1, $lengthDim2));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Creates a three-dimensional OOP array.
      *
-     * @param  int $iLengthDim1 The length of the array at the first level.
-     * @param  int $iLengthDim2 The length(s) of the array(s) at the second level.
-     * @param  int $iLengthDim3 **OPTIONAL. Default is** `0`. The length(s) of the array(s) at the third level.
+     * @param  int $lengthDim1 The length of the array at the first level.
+     * @param  int $lengthDim2 The length(s) of the array(s) at the second level.
+     * @param  int $lengthDim3 **OPTIONAL. Default is** `0`. The length(s) of the array(s) at the third level.
      *
      * @return CArrayObject The new array.
      */
 
-    public static function makeDim3 ($iLengthDim1, $iLengthDim2, $iLengthDim3 = 0)
+    public static function makeDim3 ($lengthDim1, $lengthDim2, $lengthDim3 = 0)
     {
-        return to_oop(CArray::makeDim3($iLengthDim1, $iLengthDim2, $iLengthDim3));
+        return to_oop(CArray::makeDim3($lengthDim1, $lengthDim2, $lengthDim3));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Creates a four-dimensional OOP array.
      *
-     * @param  int $iLengthDim1 The length of the array at the first level.
-     * @param  int $iLengthDim2 The length(s) of the array(s) at the second level.
-     * @param  int $iLengthDim3 The length(s) of the array(s) at the third level.
-     * @param  int $iLengthDim4 **OPTIONAL. Default is** `0`. The length(s) of the array(s) at the fourth level.
+     * @param  int $lengthDim1 The length of the array at the first level.
+     * @param  int $lengthDim2 The length(s) of the array(s) at the second level.
+     * @param  int $lengthDim3 The length(s) of the array(s) at the third level.
+     * @param  int $lengthDim4 **OPTIONAL. Default is** `0`. The length(s) of the array(s) at the fourth level.
      *
      * @return CArrayObject The new array.
      */
 
-    public static function makeDim4 ($iLengthDim1, $iLengthDim2, $iLengthDim3, $iLengthDim4 = 0)
+    public static function makeDim4 ($lengthDim1, $lengthDim2, $lengthDim3, $lengthDim4 = 0)
     {
-        return to_oop(CArray::makeDim4($iLengthDim1, $iLengthDim2, $iLengthDim3, $iLengthDim4));
+        return to_oop(CArray::makeDim4($lengthDim1, $lengthDim2, $lengthDim3, $lengthDim4));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a PHP's associative array or an OOP map into an OOP array.
      *
-     * @param  map $mMap The PHP's associative array or the OOP map to be converted.
+     * @param  map $map The PHP's associative array or the OOP map to be converted.
      *
      * @return CArrayObject The resulting array.
      */
 
-    public static function fromPArray ($mMap)
+    public static function fromPArray ($map)
     {
-        return self::fromSplArray(CArray::fromPArray($mMap));
+        return self::fromSplArray(CArray::fromPArray($map));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -186,7 +187,7 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
 
     public function toPArray ()
     {
-        return $this->m_aSplArray->toArray();
+        return $this->m_splArray->toArray();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -198,15 +199,15 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      *
      * As a special case, the array is allowed to be empty.
      *
-     * @param  string $sBinder The string to be put between any two elements in the resulting string, such as ", ".
+     * @param  string $binder The string to be put between any two elements in the resulting string, such as ", ".
      * Can be empty.
      *
      * @return CUStringObject The resulting string.
      */
 
-    public function join ($sBinder)
+    public function join ($binder)
     {
-        return CArray::join($this->m_aSplArray, $sBinder);
+        return CArray::join($this->m_splArray, $binder);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -217,7 +218,7 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
 
     public function length ()
     {
-        return $this->m_aSplArray->getSize();
+        return $this->m_splArray->getSize();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -228,7 +229,7 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
 
     public function isEmpty ()
     {
-        return ( $this->m_aSplArray->getSize() == 0 );
+        return ( $this->m_splArray->getSize() == 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -243,8 +244,8 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * IEqualityAndOrder interface (static or not), including CUStringObject, CArrayObject, CMapObject, CTime etc. See
      * the [CComparator](CComparator.html) class for more on this.
      *
-     * @param  array $aToArray The second array for comparison.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  array $toArray The second array for comparison.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of any two elements. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being an element from *this* array and the second parameter being an
      * element from the second array, and return `true` if the two elements are equal and `false` otherwise.
@@ -254,9 +255,9 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * @link   CComparator.html CComparator
      */
 
-    public function equals ($aToArray, $fnComparator = CComparator::EQUALITY)
+    public function equals ($toArray, $comparator = CComparator::EQUALITY)
     {
-        return CArray::equals($this->m_aSplArray, $aToArray, $fnComparator);
+        return CArray::equals($this->m_splArray, $toArray, $comparator);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -269,8 +270,8 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * or not), including CUStringObject, CArrayObject, CMapObject, CTime etc. See the [CComparator](CComparator.html)
      * class for more on this.
      *
-     * @param  array $aToArray The second array for comparison.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
+     * @param  array $toArray The second array for comparison.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
      * used for the comparison of any two elements. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being an element from *this* array and the second parameter being an
      * element from the second array, and return `-1` if the element from *this* array would need to go before the
@@ -283,9 +284,9 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * @link   CComparator.html CComparator
      */
 
-    public function compare ($aToArray, $fnComparator = CComparator::ORDER_ASC)
+    public function compare ($toArray, $comparator = CComparator::ORDER_ASC)
     {
-        return CArray::compare($this->m_aSplArray, $aToArray, $fnComparator);
+        return CArray::compare($this->m_splArray, $toArray, $comparator);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -296,7 +297,7 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
 
     public function first ()
     {
-        return CArray::first($this->m_aSplArray);
+        return CArray::first($this->m_splArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -307,7 +308,7 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
 
     public function last ()
     {
-        return CArray::last($this->m_aSplArray);
+        return CArray::last($this->m_splArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -318,7 +319,7 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
 
     public function random ()
     {
-        return CArray::random($this->m_aSplArray);
+        return CArray::random($this->m_splArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -328,16 +329,16 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      *
      * The method allows for an empty array to be returned.
      *
-     * @param  int $iStartPos The position of the first element in the sequence to be copied.
-     * @param  int $iLength **OPTIONAL. Default is** *as many elements as the starting element is followed by*. The
+     * @param  int $startPos The position of the first element in the sequence to be copied.
+     * @param  int $length **OPTIONAL. Default is** *as many elements as the starting element is followed by*. The
      * number of elements in the sequence to be copied.
      *
      * @return CArrayObject The array containing the copied elements.
      */
 
-    public function subar ($iStartPos, $iLength = null)
+    public function subar ($startPos, $length = null)
     {
-        return self::fromSplArray(CArray::subar($this->m_aSplArray, $iStartPos, $iLength));
+        return self::fromSplArray(CArray::subar($this->m_splArray, $startPos, $length));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -348,15 +349,15 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      *
      * The method allows for an empty array to be returned.
      *
-     * @param  int $iStartPos The position of the first element in the sequence to be copied.
-     * @param  int $iEndPos The position of the element that *follows* the last element in the sequence to be copied.
+     * @param  int $startPos The position of the first element in the sequence to be copied.
+     * @param  int $endPos The position of the element that *follows* the last element in the sequence to be copied.
      *
      * @return CArrayObject The array containing the copied elements.
      */
 
-    public function subarray ($iStartPos, $iEndPos)
+    public function subarray ($startPos, $endPos)
     {
-        return self::fromSplArray(CArray::subarray($this->m_aSplArray, $iStartPos, $iEndPos));
+        return self::fromSplArray(CArray::subarray($this->m_splArray, $startPos, $endPos));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -369,15 +370,15 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      *
      * The method allows for an empty array to be returned.
      *
-     * @param  int $iStartPos The position of the first element in the sequence to be copied.
-     * @param  int $iEndPos The position of the element that *follows* the last element in the sequence to be copied.
+     * @param  int $startPos The position of the first element in the sequence to be copied.
+     * @param  int $endPos The position of the element that *follows* the last element in the sequence to be copied.
      *
      * @return CArrayObject The array containing the copied elements.
      */
 
-    public function slice ($iStartPos, $iEndPos)
+    public function slice ($startPos, $endPos)
     {
-        return self::fromSplArray(CArray::slice($this->m_aSplArray, $iStartPos, $iEndPos));
+        return self::fromSplArray(CArray::slice($this->m_splArray, $startPos, $endPos));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -389,12 +390,12 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * (static or not), including CUStringObject, CArrayObject, CMapObject, CTime etc. See the
      * [CComparator](CComparator.html) class for more on this.
      *
-     * @param  mixed $xWhatElement The value of the searched element.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  mixed $whatElement The value of the searched element.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of element values while searching. If this parameter is provided, the comparator should
      * take two parameters, with the first parameter being an element from the array and the second parameter being the
      * searched element, and return `true` if the two elements are equal and `false` otherwise.
-     * @param  reference $riFoundAtPos **OPTIONAL. OUTPUT.** If an element has been found after the method was called
+     * @param  reference $foundAtPos **OPTIONAL. OUTPUT.** If an element has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `int`, indicates the position of the first
      * found element, i.e. the element at the leftmost position if the array contains more than one of such elements.
      *
@@ -403,9 +404,9 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * @link   CComparator.html CComparator
      */
 
-    public function find ($xWhatElement, $fnComparator = CComparator::EQUALITY, &$riFoundAtPos = null)
+    public function find ($whatElement, $comparator = CComparator::EQUALITY, &$foundAtPos = null)
     {
-        return CArray::find($this->m_aSplArray, $xWhatElement, $fnComparator, $riFoundAtPos);
+        return CArray::find($this->m_splArray, $whatElement, $comparator, $foundAtPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -419,8 +420,8 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * `find` method is Unicode-aware) and it was made flexible for you to be able to set your own comparison rules,
      * such as making the search case-insensitive for any kind of strings.
      *
-     * @param  mixed $xWhatElement The value of the searched element.
-     * @param  reference $riFoundAtPos **OPTIONAL. OUTPUT.** If an element has been found after the method was called
+     * @param  mixed $whatElement The value of the searched element.
+     * @param  reference $foundAtPos **OPTIONAL. OUTPUT.** If an element has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `int`, indicates the position of the first
      * found element, i.e. the element at the leftmost position if the array contains more than one of such elements.
      *
@@ -429,9 +430,9 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * @link   #method_find find
      */
 
-    public function findScalar ($xWhatElement, &$riFoundAtPos = null)
+    public function findScalar ($whatElement, &$foundAtPos = null)
     {
-        return CArray::findScalar($this->m_aSplArray, $xWhatElement, $riFoundAtPos);
+        return CArray::findScalar($this->m_splArray, $whatElement, $foundAtPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -442,21 +443,14 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * this method, you should be using the same comparator that was used for sorting the array (typically
      * `CComparator::ORDER_ASC`).
      *
-     * When looking for elements with this method, it's important to use the same comparator that was used for sorting
-     * the array. As a cookbook recipe for string searching, use "CUString::compare" string as the comparator for
-     * `sort` method of this class to sort the strings in an array (or `sortUStrings` method as a shortcut) and then
-     * use the same "CUString::compare" string as the comparator for this method. In case if the elements in an array
-     * are all objects, use `sortOn` method of this class with "CUString::compare" comparator when sorting on strings
-     * as return values and then provide the same comparator to this method.
-     *
-     * @param  mixed $xWhatElement The value of the searched element.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
+     * @param  mixed $whatElement The value of the searched element.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
      * used for the comparison of element values while searching. If this parameter is provided, the comparator should
      * take two parameters, with the first parameter being an element from the array and the second parameter being the
      * searched element, and return `-1` if the value of the first parameter would need to go before the value of the
      * second parameter if the two were being ordered in separate, `1` if the other way around, and `0` if the two
      * elements are equal.
-     * @param  reference $riFoundAtPos **OPTIONAL. OUTPUT.** If an element has been found after the method was called
+     * @param  reference $foundAtPos **OPTIONAL. OUTPUT.** If an element has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `int`, indicates the position of the first
      * found element (if the searched element is not unique in the array, the position can differ from that with linear
      * search).
@@ -466,9 +460,9 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * @link   CComparator.html CComparator
      */
 
-    public function findBinary ($xWhatElement, $fnComparator = CComparator::ORDER_ASC, &$riFoundAtPos = null)
+    public function findBinary ($whatElement, $comparator = CComparator::ORDER_ASC, &$foundAtPos = null)
     {
-        return CArray::findBinary($this->m_aSplArray, $xWhatElement, $fnComparator, $riFoundAtPos);
+        return CArray::findBinary($this->m_splArray, $whatElement, $comparator, $foundAtPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -480,8 +474,8 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * (static or not), including CUStringObject, CArrayObject, CMapObject, CTime etc. See the
      * [CComparator](CComparator.html) class for more on this.
      *
-     * @param  mixed $xElement The value of the searched element.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  mixed $element The value of the searched element.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of element values while searching. If this parameter is provided, the comparator should
      * take two parameters, with the first parameter being an element from the array and the second parameter being the
      * searched element, and return `true` if the two elements are equal and `false` otherwise.
@@ -491,9 +485,9 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * @link   CComparator.html CComparator
      */
 
-    public function countElement ($xElement, $fnComparator = CComparator::EQUALITY)
+    public function countElement ($element, $comparator = CComparator::EQUALITY)
     {
-        return CArray::countElement($this->m_aSplArray, $xElement, $fnComparator);
+        return CArray::countElement($this->m_splArray, $element, $comparator);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -502,27 +496,27 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * No elements are lost if the array grows in size and all elements that are allowed by the new length are kept if
      * the array shrinks.
      *
-     * @param  int $iNewLength The new length.
+     * @param  int $newLength The new length.
      *
      * @return void
      */
 
-    public function setLength ($iNewLength)
+    public function setLength ($newLength)
     {
-        CArray::setLength($this->m_aSplArray, $iNewLength);
+        CArray::setLength($this->m_splArray, $newLength);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Adds an element to the end of an array.
      *
-     * @param  mixed $xElement The element to be added.
+     * @param  mixed $element The element to be added.
      *
      * @return int The array's new length.
      */
 
-    public function push ($xElement)
+    public function push ($element)
     {
-        return CArray::push($this->m_aSplArray, $xElement);
+        return CArray::push($this->m_splArray, $element);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -533,7 +527,7 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
 
     public function pop ()
     {
-        return CArray::pop($this->m_aSplArray);
+        return CArray::pop($this->m_splArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -541,27 +535,27 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      *
      * It is *this* array that grows with the operation.
      *
-     * @param  array $aPushArray The array containing the elements to be added.
+     * @param  array $pushArray The array containing the elements to be added.
      *
      * @return int The array's new length.
      */
 
-    public function pushArray ($aPushArray)
+    public function pushArray ($pushArray)
     {
-        return CArray::pushArray($this->m_aSplArray, $aPushArray);
+        return CArray::pushArray($this->m_splArray, $pushArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Adds an element to the start of an array.
      *
-     * @param  mixed $xElement The element to be added.
+     * @param  mixed $element The element to be added.
      *
      * @return int The array's new length.
      */
 
-    public function unshift ($xElement)
+    public function unshift ($element)
     {
-        return CArray::unshift($this->m_aSplArray, $xElement);
+        return CArray::unshift($this->m_splArray, $element);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -572,7 +566,7 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
 
     public function shift ()
     {
-        return CArray::shift($this->m_aSplArray);
+        return CArray::shift($this->m_splArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -580,14 +574,14 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      *
      * It is *this* array that grows with the operation.
      *
-     * @param  array $aAddArray The array containing the elements to be added.
+     * @param  array $addArray The array containing the elements to be added.
      *
      * @return int The array's new length.
      */
 
-    public function unshiftArray ($aAddArray)
+    public function unshiftArray ($addArray)
     {
-        return CArray::unshiftArray($this->m_aSplArray, $aAddArray);
+        return CArray::unshiftArray($this->m_splArray, $addArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -596,15 +590,15 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * As a special case, the position of insertion can be equal to the array's length, which would make this method
      * work like `push` method.
      *
-     * @param  int $iAtPos The position at which the new element is to be inserted.
-     * @param  mixed $xInsertElement The new element.
+     * @param  int $atPos The position at which the new element is to be inserted.
+     * @param  mixed $insertElement The new element.
      *
      * @return void
      */
 
-    public function insert ($iAtPos, $xInsertElement)
+    public function insert ($atPos, $insertElement)
     {
-        CArray::insert($this->m_aSplArray, $iAtPos, $xInsertElement);
+        CArray::insert($this->m_splArray, $atPos, $insertElement);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -613,56 +607,56 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * As a special case, the position of insertion can be equal to the array's length, which would make this method
      * work like `pushArray` method.
      *
-     * @param  int $iAtPos The position at which the new elements are to be inserted.
-     * @param  array $aInsertArray The array containing the elements to be inserted.
+     * @param  int $atPos The position at which the new elements are to be inserted.
+     * @param  array $insertArray The array containing the elements to be inserted.
      *
      * @return void
      */
 
-    public function insertArray ($iAtPos, $aInsertArray)
+    public function insertArray ($atPos, $insertArray)
     {
-        CArray::insertArray($this->m_aSplArray, $iAtPos, $aInsertArray);
+        CArray::insertArray($this->m_splArray, $atPos, $insertArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Adds elements to the start of an array to make it grow to a specified length.
      *
-     * @param  mixed $xPaddingElement The element to be used for padding.
-     * @param  int $iNewLength The array's new length.
+     * @param  mixed $paddingElement The element to be used for padding.
+     * @param  int $newLength The array's new length.
      *
      * @return void
      */
 
-    public function padStart ($xPaddingElement, $iNewLength)
+    public function padStart ($paddingElement, $newLength)
     {
-        CArray::padStart($this->m_aSplArray, $xPaddingElement, $iNewLength);
+        CArray::padStart($this->m_splArray, $paddingElement, $newLength);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Adds elements to the end of an array to make it grow to a specified length.
      *
-     * @param  mixed $xPaddingElement The element to be used for padding.
-     * @param  int $iNewLength The array's new length.
+     * @param  mixed $paddingElement The element to be used for padding.
+     * @param  int $newLength The array's new length.
      *
      * @return void
      */
 
-    public function padEnd ($xPaddingElement, $iNewLength)
+    public function padEnd ($paddingElement, $newLength)
     {
-        CArray::padEnd($this->m_aSplArray, $xPaddingElement, $iNewLength);
+        CArray::padEnd($this->m_splArray, $paddingElement, $newLength);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes an element from an array.
      *
-     * @param  int $iElementPos The position of the element to be removed.
+     * @param  int $elementPos The position of the element to be removed.
      *
      * @return void
      */
 
-    public function remove ($iElementPos)
+    public function remove ($elementPos)
     {
-        CArray::remove($this->m_aSplArray, $iElementPos);
+        CArray::remove($this->m_splArray, $elementPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -674,8 +668,8 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * (static or not), including CUStringObject, CArrayObject, CMapObject, CTime etc. See the
      * [CComparator](CComparator.html) class for more on this.
      *
-     * @param  mixed $xElementValue The value that is common to the elements to be removed.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  mixed $elementValue The value that is common to the elements to be removed.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of element values while searching. If this parameter is provided, the comparator should
      * take two parameters, with the first parameter being an element from the array and the second parameter being the
      * searched element, and return `true` if the two elements are equal and `false` otherwise.
@@ -685,9 +679,9 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * @link   CComparator.html CComparator
      */
 
-    public function removeByValue ($xElementValue, $fnComparator = CComparator::EQUALITY)
+    public function removeByValue ($elementValue, $comparator = CComparator::EQUALITY)
     {
-        return CArray::removeByValue($this->m_aSplArray, $xElementValue, $fnComparator);
+        return CArray::removeByValue($this->m_splArray, $elementValue, $comparator);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -695,16 +689,16 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      *
      * The method allows for the targeted sequence to be empty.
      *
-     * @param  int $iStartPos The position of the first element in the sequence to be removed.
-     * @param  int $iLength **OPTIONAL. Default is** *as many elements as the starting element is followed by*. The
+     * @param  int $startPos The position of the first element in the sequence to be removed.
+     * @param  int $length **OPTIONAL. Default is** *as many elements as the starting element is followed by*. The
      * number of elements in the sequence to be removed.
      *
      * @return void
      */
 
-    public function removeSubarray ($iStartPos, $iLength = null)
+    public function removeSubarray ($startPos, $length = null)
     {
-        CArray::removeSubarray($this->m_aSplArray, $iStartPos, $iLength);
+        CArray::removeSubarray($this->m_splArray, $startPos, $length);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -714,8 +708,8 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      *
      * The method allows for the targeted sequence to be empty.
      *
-     * @param  int $iStartPos The position of the first element in the sequence to be removed.
-     * @param  int $iLength **OPTIONAL. Default is** *as many elements as the starting element is followed by*. The
+     * @param  int $startPos The position of the first element in the sequence to be removed.
+     * @param  int $length **OPTIONAL. Default is** *as many elements as the starting element is followed by*. The
      * number of elements in the sequence to be removed.
      *
      * @return CArrayObject The array containing the removed elements.
@@ -723,9 +717,9 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * @link   #method_removeSubarray removeSubarray
      */
 
-    public function splice ($iStartPos, $iLength = null)
+    public function splice ($startPos, $length = null)
     {
-        return self::fromSplArray(CArray::splice($this->m_aSplArray, $iStartPos, $iLength));
+        return self::fromSplArray(CArray::splice($this->m_splArray, $startPos, $length));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -733,15 +727,15 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      *
      * The method allows for the targeted sequence to be empty.
      *
-     * @param  int $iStartPos The position of the first element in the sequence to be removed.
-     * @param  int $iEndPos The position of the element that *follows* the last element in the sequence to be removed.
+     * @param  int $startPos The position of the first element in the sequence to be removed.
+     * @param  int $endPos The position of the element that *follows* the last element in the sequence to be removed.
      *
      * @return void
      */
 
-    public function removeSubarrayByRange ($iStartPos, $iEndPos)
+    public function removeSubarrayByRange ($startPos, $endPos)
     {
-        CArray::removeSubarrayByRange($this->m_aSplArray, $iStartPos, $iEndPos);
+        CArray::removeSubarrayByRange($this->m_splArray, $startPos, $endPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -752,7 +746,7 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
 
     public function reverse ()
     {
-        CArray::reverse($this->m_aSplArray);
+        CArray::reverse($this->m_splArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -763,7 +757,7 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
 
     public function shuffle ()
     {
-        CArray::shuffle($this->m_aSplArray);
+        CArray::shuffle($this->m_splArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -776,7 +770,7 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * IEqualityAndOrder interface (static or not), including CUStringObject, CArrayObject, CMapObject, CTime etc. See
      * the [CComparator](CComparator.html) class for more on this.
      *
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
      * used for the comparison of any two elements. If this parameter is provided, the comparator should take two
      * parameters, which are the two elements being compared, and return `-1` if the first element needs to go before
      * the second element in the sorted array, `1` if the other way around, and `0` if the two elements are equal.
@@ -786,9 +780,9 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * @link   CComparator.html CComparator
      */
 
-    public function sort ($fnComparator = CComparator::ORDER_ASC)
+    public function sort ($comparator = CComparator::ORDER_ASC)
     {
-        CArray::sort($this->m_aSplArray, $fnComparator);
+        CArray::sort($this->m_splArray, $comparator);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -796,7 +790,7 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      *
      * For example, if you had an array of UserClass objects and UserClass had a public method named `numPosts` that
      * would return an integer value, you could sort the users by the number of posts they've made by calling this
-     * method with "numPosts" as the value of `$sOnMethodName` parameter.
+     * method with "numPosts" as the value of `$onMethodName` parameter.
      *
      * If you want to pass any custom arguments to the method that the array needs to be sorted on, just add them after
      * the comparator parameter when calling this method and the custom arguments will be passed to that method in the
@@ -813,8 +807,8 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * conform to the IEqualityAndOrder interface (static or not), including CUStringObject, CArrayObject, CMapObject,
      * CTime etc. See the [CComparator](CComparator.html) class for more on this.
      *
-     * @param  string $sOnMethodName The name of the method on which the elements are to be sorted.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
+     * @param  string $onMethodName The name of the method on which the elements are to be sorted.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
      * used for the comparison of any two return values. If this parameter is provided, the comparator should take two
      * parameters, which are the return values for the two elements being compared, and return `-1` if the first
      * element needs to go before the second element in the sorted array, `1` if the other way around, and `0` if the
@@ -825,11 +819,11 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * @link   CComparator.html CComparator
      */
 
-    public function sortOn ($sOnMethodName, $fnComparator = CComparator::ORDER_ASC/*, methodArg0, methodArg1, ...*/)
+    public function sortOn ($onMethodName, $comparator = CComparator::ORDER_ASC/*, methodArg0, methodArg1, ...*/)
     {
-        $mArguments = func_get_args();
-        array_unshift($mArguments, $this->m_aSplArray);
-        call_user_func_array("CArray::sortOn", $mArguments);
+        $arguments = func_get_args();
+        array_unshift($arguments, $this->m_splArray);
+        call_user_func_array("CArray::sortOn", $arguments);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -839,40 +833,40 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      *
      * **NOTE.** This method puts lowercase in front of uppercase on per-character basis.
      *
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `CUString::COLLATION_DEFAULT`. The Unicode collation
-     * option(s) to be used for string comparison. See the [CUString](CUString.html) class for information on collation
-     * options.
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `CUStringObject::COLLATION_DEFAULT`. The Unicode
+     * collation option(s) to be used for string comparison. See the [CUStringObject](CUStringObject.html) class for
+     * information on collation options.
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which
      * strings are to be compared with each other.
      *
      * @return void
      *
-     * @link   CUString.html CUString
+     * @link   CUStringObject.html CUStringObject
      * @link   #method_sort sort
      */
 
-    public function sortUStrings ($bfCollationFlags = CUString::COLLATION_DEFAULT, CULocale $oInLocale = null)
+    public function sortUStrings ($collationFlags = CUStringObject::COLLATION_DEFAULT, CULocale $inLocale = null)
     {
-        CArray::sortUStrings($this->m_aSplArray, $bfCollationFlags, $oInLocale);
+        CArray::sortUStrings($this->m_splArray, $collationFlags, $inLocale);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sorts the elements in an array of Unicode or ASCII strings, in the ascending order, case-insensitively.
      *
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `CUString::COLLATION_DEFAULT`. The Unicode collation
-     * option(s) to be used for string comparison. See the [CUString](CUString.html) class for information on collation
-     * options.
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `CUStringObject::COLLATION_DEFAULT`. The Unicode
+     * collation option(s) to be used for string comparison. See the [CUStringObject](CUStringObject.html) class for
+     * information on collation options.
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which
      * strings are to be compared with each other.
      *
      * @return void
      *
-     * @link   CUString.html CUString
+     * @link   CUStringObject.html CUStringObject
      */
 
-    public function sortUStringsCi ($bfCollationFlags = CUString::COLLATION_DEFAULT, CULocale $oInLocale = null)
+    public function sortUStringsCi ($collationFlags = CUStringObject::COLLATION_DEFAULT, CULocale $inLocale = null)
     {
-        CArray::sortUStringsCi($this->m_aSplArray, $bfCollationFlags, $oInLocale);
+        CArray::sortUStringsCi($this->m_splArray, $collationFlags, $inLocale);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -885,20 +879,20 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      *
      * **NOTE.** This method puts lowercase in front of uppercase on per-character basis.
      *
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `CUString::COLLATION_DEFAULT`. The Unicode collation
-     * option(s) to be used for string comparison. See the [CUString](CUString.html) class for information on collation
-     * options.
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `CUStringObject::COLLATION_DEFAULT`. The Unicode
+     * collation option(s) to be used for string comparison. See the [CUStringObject](CUStringObject.html) class for
+     * information on collation options.
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which
      * strings are to be compared with each other.
      *
      * @return void
      *
-     * @link   CUString.html CUString
+     * @link   CUStringObject.html CUStringObject
      */
 
-    public function sortUStringsNat ($bfCollationFlags = CUString::COLLATION_DEFAULT, CULocale $oInLocale = null)
+    public function sortUStringsNat ($collationFlags = CUStringObject::COLLATION_DEFAULT, CULocale $inLocale = null)
     {
-        CArray::sortUStringsNat($this->m_aSplArray, $bfCollationFlags, $oInLocale);
+        CArray::sortUStringsNat($this->m_splArray, $collationFlags, $inLocale);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -909,21 +903,21 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * same array with `sortUStringsCi` method, but as "a3", "a20", "a100" with this method, which is the order a human
      * being would choose.
      *
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `CUString::COLLATION_DEFAULT`. The Unicode collation
-     * option(s) to be used for string comparison. See the [CUString](CUString.html) class for information on collation
-     * options.
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `CUStringObject::COLLATION_DEFAULT`. The Unicode
+     * collation option(s) to be used for string comparison. See the [CUStringObject](CUStringObject.html) class for
+     * information on collation options.
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which
      * strings are to be compared with each other.
      *
      * @return void
      *
-     * @link   CUString.html CUString
+     * @link   CUStringObject.html CUStringObject
      */
 
-    public function sortUStringsNatCi ($bfCollationFlags = CUString::COLLATION_DEFAULT,
-        CULocale $oInLocale = null)
+    public function sortUStringsNatCi ($collationFlags = CUStringObject::COLLATION_DEFAULT,
+        CULocale $inLocale = null)
     {
-        CArray::sortUStringsNatCi($this->m_aSplArray, $bfCollationFlags, $oInLocale);
+        CArray::sortUStringsNatCi($this->m_splArray, $collationFlags, $inLocale);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -932,15 +926,15 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      *
      * The array is not modified by this method.
      *
-     * @param  callable $fnFilter The function or method to be used for filtering. The filter should take an element as
+     * @param  callable $filter The function or method to be used for filtering. The filter should take an element as
      * a parameter and return `true` if the element should make its way into the resulting array and `false` if not.
      *
      * @return CArrayObject The filtered array.
      */
 
-    public function filter ($fnFilter)
+    public function filter ($filter)
     {
-        return self::fromSplArray(CArray::filter($this->m_aSplArray, $fnFilter));
+        return self::fromSplArray(CArray::filter($this->m_splArray, $filter));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -954,7 +948,7 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * interface (static or not), including CUStringObject, CArrayObject, CMapObject, CTime etc. See the
      * [CComparator](CComparator.html) class for more on this.
      *
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for element comparison. If this parameter is provided, the comparator should take two parameters, which are
      * the two elements being compared, and return `true` if the two elements are equal and `false` otherwise.
      *
@@ -963,9 +957,9 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * @link   CComparator.html CComparator
      */
 
-    public function unique ($fnComparator = CComparator::EQUALITY)
+    public function unique ($comparator = CComparator::EQUALITY)
     {
-        return self::fromSplArray(CArray::unique($this->m_aSplArray, $fnComparator));
+        return self::fromSplArray(CArray::unique($this->m_splArray, $comparator));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -976,7 +970,7 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
 
     public function elementsSum ()
     {
-        return CArray::elementsSum($this->m_aSplArray);
+        return CArray::elementsSum($this->m_splArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -987,7 +981,7 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
 
     public function elementsProduct ()
     {
-        return CArray::elementsProduct($this->m_aSplArray);
+        return CArray::elementsProduct($this->m_splArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -999,8 +993,8 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * IEqualityAndOrder interface (static or not), including CUStringObject, CArrayObject, CMapObject, CTime etc. See
      * the [CComparator](CComparator.html) class for more on this.
      *
-     * @param  array $aOfArray The reference array.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  array $ofArray The reference array.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of any two elements. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being an element from *this* array and the second parameter being an element
      * from the reference array, and return `true` if the two elements are equal and `false` otherwise.
@@ -1010,9 +1004,9 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * @link   CComparator.html CComparator
      */
 
-    public function isSubsetOf ($aOfArray, $fnComparator = CComparator::EQUALITY)
+    public function isSubsetOf ($ofArray, $comparator = CComparator::EQUALITY)
     {
-        return CArray::isSubsetOf($this->m_aSplArray, $aOfArray, $fnComparator);
+        return CArray::isSubsetOf($this->m_splArray, $ofArray, $comparator);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1033,9 +1027,9 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
 
     public function union (/*addendArray0, addendArray1, ...*/)
     {
-        $mArguments = func_get_args();
-        array_unshift($mArguments, $this->m_aSplArray);
-        return self::fromSplArray(call_user_func_array("CArray::union", $mArguments));
+        $arguments = func_get_args();
+        array_unshift($arguments, $this->m_splArray);
+        return self::fromSplArray(call_user_func_array("CArray::union", $arguments));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1050,8 +1044,8 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * IEqualityAndOrder interface (static or not), including CUStringObject, CArrayObject, CMapObject, CTime etc. See
      * the [CComparator](CComparator.html) class for more on this.
      *
-     * @param  array $aWithArray The second array.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  array $withArray The second array.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of any two elements. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being an element from *this* array and the second parameter being an
      * element from the second array, and return `true` if the two elements are equal and `false` otherwise.
@@ -1061,9 +1055,9 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * @link   CComparator.html CComparator
      */
 
-    public function intersection ($aWithArray, $fnComparator = CComparator::EQUALITY)
+    public function intersection ($withArray, $comparator = CComparator::EQUALITY)
     {
-        return self::fromSplArray(CArray::intersection($this->m_aSplArray, $aWithArray, $fnComparator));
+        return self::fromSplArray(CArray::intersection($this->m_splArray, $withArray, $comparator));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1079,8 +1073,8 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * IEqualityAndOrder interface (static or not), including CUStringObject, CArrayObject, CMapObject, CTime etc. See
      * the [CComparator](CComparator.html) class for more on this.
      *
-     * @param  array $aSubtrahendArray The subtrahend array.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  array $subtrahendArray The subtrahend array.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of any two elements. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being an element from the minuend array and the second parameter being an
      * element from the subtrahend array, and return `true` if the two elements are equal and `false` otherwise.
@@ -1090,9 +1084,9 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * @link   CComparator.html CComparator
      */
 
-    public function difference ($aSubtrahendArray, $fnComparator = CComparator::EQUALITY)
+    public function difference ($subtrahendArray, $comparator = CComparator::EQUALITY)
     {
-        return self::fromSplArray(CArray::difference($this->m_aSplArray, $aSubtrahendArray, $fnComparator));
+        return self::fromSplArray(CArray::difference($this->m_splArray, $subtrahendArray, $comparator));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1107,8 +1101,8 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * IEqualityAndOrder interface (static or not), including CUStringObject, CArrayObject, CMapObject, CTime etc. See
      * the [CComparator](CComparator.html) class for more on this.
      *
-     * @param  array $aFromArray The second array.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  array $fromArray The second array.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of any two elements. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being an element from *this* array and the second parameter being an
      * element from the second array, and return `true` if the two elements are equal and `false` otherwise.
@@ -1118,9 +1112,9 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      * @link   CComparator.html CComparator
      */
 
-    public function symmetricDifference ($aFromArray, $fnComparator = CComparator::EQUALITY)
+    public function symmetricDifference ($fromArray, $comparator = CComparator::EQUALITY)
     {
-        return self::fromSplArray(CArray::symmetricDifference($this->m_aSplArray, $aFromArray, $fnComparator));
+        return self::fromSplArray(CArray::symmetricDifference($this->m_splArray, $fromArray, $comparator));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1128,48 +1122,48 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
      *
      * For instance, an element of "a" repeated three times would result in an array of "a", "a", "a".
      *
-     * @param  mixed $xElement The element to be repeated.
-     * @param  int $iTimes The length of the resulting array.
+     * @param  mixed $element The element to be repeated.
+     * @param  int $times The length of the resulting array.
      *
      * @return CArrayObject The resulting array.
      */
 
-    public static function repeat ($xElement, $iTimes)
+    public static function repeat ($element, $times)
     {
-        return self::fromSplArray(CArray::repeat($xElement, $iTimes));
+        return self::fromSplArray(CArray::repeat($element, $times));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    public static function fromArguments ($mArguments)
+    public static function fromArguments ($arguments)
     {
-        $aArray = new self(0, true);
+        $array = new self(0, true);
 
-        if ( empty($mArguments) )
+        if ( empty($arguments) )
         {
-            $aArray->m_aSplArray = new SplFixedArray();
+            $array->m_splArray = new SplFixedArray();
         }
         else
         {
-            $aArray->m_aSplArray = SplFixedArray::fromArray($mArguments, false);
+            $array->m_splArray = SplFixedArray::fromArray($arguments, false);
         }
 
-        return $aArray;
+        return $array;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    public static function fromSplArray ($aSplArray)
+    public static function fromSplArray ($splArray)
     {
-        assert( '$aSplArray instanceof SplFixedArray', vs(isset($this), get_defined_vars()) );
+        assert( '$splArray instanceof SplFixedArray', vs(isset($this), get_defined_vars()) );
 
-        $aArray = new self(0, true);
-        $aArray->m_aSplArray = $aSplArray;
-        return $aArray;
+        $array = new self(0, true);
+        $array->m_splArray = $splArray;
+        return $array;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1178,42 +1172,42 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
 
     public function &toSplArray ()
     {
-        return $this->m_aSplArray;
+        return $this->m_splArray;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    public function offsetExists ($iOffset)
+    public function offsetExists ($offset)
     {
-        assert( 'is_int($iOffset)', vs(isset($this), get_defined_vars()) );
-        return $this->m_aSplArray->offsetExists($iOffset);
+        assert( 'is_int($offset)', vs(isset($this), get_defined_vars()) );
+        return $this->m_splArray->offsetExists($offset);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    public function offsetGet ($iOffset)
+    public function offsetGet ($offset)
     {
-        return $this->m_aSplArray->offsetGet($iOffset);
+        return $this->m_splArray->offsetGet($offset);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    public function offsetSet ($iOffset, $xElement)
+    public function offsetSet ($offset, $element)
     {
-        $this->m_aSplArray->offsetSet($iOffset, $xElement);
+        $this->m_splArray->offsetSet($offset, $element);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    public function offsetUnset ($iOffset)
+    public function offsetUnset ($offset)
     {
         assert( 'false', vs(isset($this), get_defined_vars()) );
     }
@@ -1224,7 +1218,7 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
 
     public function getIterator ()
     {
-        return $this->m_aSplArray;
+        return $this->m_splArray;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1233,7 +1227,7 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
 
     public function count ()
     {
-        return $this->m_aSplArray->getSize();
+        return $this->m_splArray->getSize();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1242,7 +1236,7 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
 
     public function __clone ()
     {
-        $this->m_aSplArray = clone $this->m_aSplArray;
+        $this->m_splArray = clone $this->m_splArray;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1251,10 +1245,10 @@ class CArrayObject extends CRootClass implements IEqualityAndOrder, ArrayAccess,
 
     // public function __debugInfo ()
     // {
-    //     return $this->m_aSplArray->toArray();
+    //     return $this->m_splArray->toArray();
     // }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    protected $m_aSplArray;
+    protected $m_splArray;
 }
 

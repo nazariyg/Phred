@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-64464685"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-651820105"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-64464685" class="accordion-body collapse in">
+            <div id="namespace-651820105" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -949,7 +949,7 @@ another.</p>
                                 <em>N/A</em>
                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/CULocale.html#property_m_sName" class="">$m_sName</a><br />
+                                                                    <a href="../classes/CULocale.html#property_m_name" class="">$m_name</a><br />
                                                             </section>
                         </section>
                         <section class="row-fluid private">
@@ -18810,14 +18810,14 @@ another.</p>
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (string&nbsp;<span class="argument">$sLocaleName</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (string&nbsp;<span class="argument">$localeName</span>)</pre>
                 <p><em><p>Creates a locale from a locale name.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sLocaleName</code> </td>
+                                <td><code style="border: none; background: none">$localeName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the locale (case-insensitive).</p></td>
                             </tr>
@@ -18849,14 +18849,14 @@ another.</p>
             <article class="method">
                 <h3 class="public ">fromCountryCode()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fromCountryCode (string&nbsp;<span class="argument">$sCode</span>) : CULocale</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fromCountryCode (string&nbsp;<span class="argument">$code</span>) : CULocale</pre>
                 <p><em><p>Creates a locale from a country/region code.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sCode</code> </td>
+                                <td><code style="border: none; background: none">$code</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The two-letter ISO 3166 (or ISO 639) country/region code (case-insensitive).</p></td>
                             </tr>
@@ -18894,7 +18894,7 @@ another.</p>
             <article class="method">
                 <h3 class="public ">fromComponents()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fromComponents (string&nbsp;<span class="argument">$sLanguage</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sRegion</span></span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sScript</span></span>) : CULocale</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fromComponents (string&nbsp;<span class="argument">$language</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$region</span></span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$script</span></span>) : CULocale</pre>
                 <p><em><p>Creates a locale from a language code and, optionally, a country/region code, a script code, and variants.</p></em></p>
                 <p>If the locale is to indicate any variants, the variants follow the script code's argument when calling this
 method.</p>
@@ -18902,18 +18902,18 @@ method.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sLanguage</code> </td>
+                                <td><code style="border: none; background: none">$language</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The two-letter ISO 639 language code (case-insensitive).</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sRegion</code> </td>
+                                <td><code style="border: none; background: none">$region</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>none</em>. The two-letter ISO 3166 (or ISO 639) country/region
 code (case-insensitive).</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sScript</code> </td>
+                                <td><code style="border: none; background: none">$script</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>none</em>. The four-letter script code (case-insensitive).</p></td>
                             </tr>
@@ -18951,19 +18951,19 @@ code (case-insensitive).</p></td>
             <article class="method">
                 <h3 class="public ">fromRfc2616()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fromRfc2616 (string&nbsp;<span class="argument">$sLocaleName</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$rbSuccess</span></span>) : CULocale</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fromRfc2616 (string&nbsp;<span class="argument">$localeName</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$success</span></span>) : CULocale</pre>
                 <p><em><p>Tries to create a locale based on the value of an HTTP "Accept-Language" header.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sLocaleName</code> </td>
+                                <td><code style="border: none; background: none">$localeName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the locale (case-insensitive, possibly with "-" used instead of "_").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$rbSuccess</code> </td>
+                                <td><code style="border: none; background: none">$success</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL. OUTPUT.</strong> After an object is constructed, this parameter tells whether
 the provided string was successfully parsed as a valid locale name.</p></td>
@@ -19399,37 +19399,37 @@ the provided string was successfully parsed as a valid locale name.</p></td>
             <article class="method">
                 <h3 class="public ">components()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">components (reference&nbsp;<span class="argument">$rsLanguage</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$rsRegion</span></span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$rsScript</span></span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$raVariants</span></span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$rmKeywords</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">components (reference&nbsp;<span class="argument">$language</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$region</span></span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$script</span></span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$variants</span></span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$keywords</span></span>) : void</pre>
                 <p><em><p>Parses a locale into components.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$rsLanguage</code> </td>
+                                <td><code style="border: none; background: none">$language</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p>The two-letter language code of type <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a> (always lowercased).</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$rsRegion</code> </td>
+                                <td><code style="border: none; background: none">$region</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL. OUTPUT.</strong> The two-letter country/region code of type <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>
 (always uppercased).</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$rsScript</code> </td>
+                                <td><code style="border: none; background: none">$script</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL. OUTPUT.</strong> The four-letter script code of type <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a> (always
 titlecased).</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$raVariants</code> </td>
+                                <td><code style="border: none; background: none">$variants</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL. OUTPUT.</strong> The variants of type <a href="../classes/CArrayObject.html"><span class="label label-info">OOP Array</span></a> with elements of type
 <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a> (always uppercased).</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$rmKeywords</code> </td>
+                                <td><code style="border: none; background: none">$keywords</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL. OUTPUT.</strong> The keyword-value pairs of type <a href="../classes/CMapObject.html"><span class="label label-info">OOP Map</span></a> with values of
 type <a href="../classes/CUStringObject.html"><span class="label label-info">OOP String</span></a>.</p></td>
@@ -19462,14 +19462,14 @@ type <a href="../classes/CUStringObject.html"><span class="label label-info">OOP
             <article class="method">
                 <h3 class="public ">dispName()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">dispName (<span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$oInLocale</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">dispName (<span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inLocale</span></span>) : OOPString</pre>
                 <p><em><p>Returns the name of a locale after localizing it in the default or some other locale.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$oInLocale</code> </td>
+                                <td><code style="border: none; background: none">$inLocale</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CULocale.html">CULocale</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>the application's default locale</em>. The locale in which the
 name is to be localized.</p></td>
@@ -19507,14 +19507,14 @@ name is to be localized.</p></td>
             <article class="method">
                 <h3 class="public ">dispLanguage()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">dispLanguage (<span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$oInLocale</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">dispLanguage (<span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inLocale</span></span>) : OOPString</pre>
                 <p><em><p>Returns the language of a locale after localizing it in the default or some other locale.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$oInLocale</code> </td>
+                                <td><code style="border: none; background: none">$inLocale</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CULocale.html">CULocale</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>the application's default locale</em>. The locale in which the
 language is to be localized.</p></td>
@@ -19552,14 +19552,14 @@ language is to be localized.</p></td>
             <article class="method">
                 <h3 class="public ">dispRegion()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">dispRegion (<span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$oInLocale</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">dispRegion (<span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inLocale</span></span>) : OOPString</pre>
                 <p><em><p>Returns the country/region of a locale after localizing it in the default or some other locale.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$oInLocale</code> </td>
+                                <td><code style="border: none; background: none">$inLocale</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CULocale.html">CULocale</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>the application's default locale</em>. The locale in which the
 country/region is to be localized.</p></td>
@@ -19597,14 +19597,14 @@ country/region is to be localized.</p></td>
             <article class="method">
                 <h3 class="public ">dispScript()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">dispScript (<span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$oInLocale</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">dispScript (<span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inLocale</span></span>) : OOPString</pre>
                 <p><em><p>Returns the script of a locale after localizing it in the default or some other locale.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$oInLocale</code> </td>
+                                <td><code style="border: none; background: none">$inLocale</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CULocale.html">CULocale</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>the application's default locale</em>. The locale in which the
 script is to be localized.</p></td>
@@ -19642,14 +19642,14 @@ script is to be localized.</p></td>
             <article class="method">
                 <h3 class="public ">dispVariants()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">dispVariants (<span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$oInLocale</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">dispVariants (<span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inLocale</span></span>) : OOPString</pre>
                 <p><em><p>Returns the variants of a locale after localizing them in the default or some other locale.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$oInLocale</code> </td>
+                                <td><code style="border: none; background: none">$inLocale</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CULocale.html">CULocale</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>the application's default locale</em>. The locale in which the
 variants are to be localized.</p></td>
@@ -19687,19 +19687,19 @@ variants are to be localized.</p></td>
             <article class="method">
                 <h3 class="public ">addKeyword()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">addKeyword (string&nbsp;<span class="argument">$sKeyword</span>, string&nbsp;<span class="argument">$sValue</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">addKeyword (string&nbsp;<span class="argument">$keyword</span>, string&nbsp;<span class="argument">$value</span>) : void</pre>
                 <p><em><p>Adds a keyword-value pair to a locale.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sKeyword</code> </td>
+                                <td><code style="border: none; background: none">$keyword</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The keyword.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The value.</p></td>
                             </tr>
@@ -19731,14 +19731,14 @@ variants are to be localized.</p></td>
             <article class="method">
                 <h3 class="public ">equals()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">equals (CULocale&nbsp;<span class="argument">$oToLocale</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">equals (CULocale&nbsp;<span class="argument">$toLocale</span>) : bool</pre>
                 <p><em><p>Determines if a locale is equal to another locale, comparing them by normalized names.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$oToLocale</code> </td>
+                                <td><code style="border: none; background: none">$toLocale</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CULocale.html">CULocale</a></code></td>
                                 <td><p>The second locale for comparison.</p></td>
                             </tr>
@@ -19812,14 +19812,14 @@ variants are to be localized.</p></td>
             <article class="method">
                 <h3 class="public ">isCountryCodeKnown()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isCountryCodeKnown (string&nbsp;<span class="argument">$sCode</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isCountryCodeKnown (string&nbsp;<span class="argument">$code</span>) : bool</pre>
                 <p><em><p>Determines if a country/region code is known.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sCode</code> </td>
+                                <td><code style="border: none; background: none">$code</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The two-letter ISO 3166 (or ISO 639) country/region code to be looked for
 .</p></td>
@@ -19858,14 +19858,14 @@ variants are to be localized.</p></td>
             <article class="method">
                 <h3 class="public ">countryEnNameForCountryCode()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> countryEnNameForCountryCode (string&nbsp;<span class="argument">$sCode</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> countryEnNameForCountryCode (string&nbsp;<span class="argument">$code</span>) : OOPString</pre>
                 <p><em><p>Returns the country name for a specified country/region code, in English.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sCode</code> </td>
+                                <td><code style="border: none; background: none">$code</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The two-letter ISO 3166 (or ISO 639) country/region code (case-insensitive).</p></td>
                             </tr>
@@ -19903,14 +19903,14 @@ variants are to be localized.</p></td>
             <article class="method">
                 <h3 class="public ">currencyForCountryCode()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> currencyForCountryCode (string&nbsp;<span class="argument">$sCode</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> currencyForCountryCode (string&nbsp;<span class="argument">$code</span>) : OOPString</pre>
                 <p><em><p>Returns the code of the currency that is default for a specified country/region code.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sCode</code> </td>
+                                <td><code style="border: none; background: none">$code</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The two-letter ISO 3166 (or ISO 639) country/region code (case-insensitive).</p></td>
                             </tr>
@@ -19948,14 +19948,14 @@ variants are to be localized.</p></td>
             <article class="method">
                 <h3 class="public ">isValid()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isValid (string&nbsp;<span class="argument">$sLocaleName</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isValid (string&nbsp;<span class="argument">$localeName</span>) : bool</pre>
                 <p><em><p>Determines if a locale name is valid and known.</p></em></p>
                 <p>Scripts, variants, and keyword-value pairs are ignored.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sLocaleName</code> </td>
+                                <td><code style="border: none; background: none">$localeName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The locale name to be looked into.</p></td>
                             </tr>
@@ -20038,10 +20038,10 @@ variants are to be localized.</p></td>
 
                                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_sName" name="property_m_sName" class="anchor"></a>
+            <a id="property_m_name" name="property_m_name" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_sName</h3>
-                <pre class="signature">$m_sName</pre>
+                <h3 class="protected ">$m_name</h3>
+                <pre class="signature">$m_name</pre>
                 <p><em></em></p>
                 
 
@@ -20114,7 +20114,7 @@ variants are to be localized.</p></td>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

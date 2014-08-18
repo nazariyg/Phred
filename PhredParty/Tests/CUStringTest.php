@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -299,12 +299,12 @@ class CUStringTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetCharAt ()
     {
-        $sString = "¡Hola señor!";
-        CUString::setCharAt($sString, 0, " ");
-        CUString::setCharAt($sString, 1, "L");
-        CUString::setCharAt($sString, 8, "n");
+        $string = "¡Hola señor!";
+        CUString::setCharAt($string, 0, " ");
+        CUString::setCharAt($string, 1, "L");
+        CUString::setCharAt($string, 8, "n");
         $this->assertTrue(
-            CUString::equals($sString, " Lola senor!"));
+            CUString::equals($string, " Lola senor!"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testEquals ()
@@ -674,32 +674,32 @@ class CUStringTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSplit ()
     {
-        $aRes = CUString::split("¡Ho,la,señ,or!", ",");
-        $this->assertTrue( CArray::length($aRes) == 4 &&
-            CUString::equals($aRes[0], "¡Ho") && CUString::equals($aRes[1], "la") &&
-            CUString::equals($aRes[2], "señ") && CUString::equals($aRes[3], "or!") );
+        $res = CUString::split("¡Ho,la,señ,or!", ",");
+        $this->assertTrue( CArray::length($res) == 4 &&
+            CUString::equals($res[0], "¡Ho") && CUString::equals($res[1], "la") &&
+            CUString::equals($res[2], "señ") && CUString::equals($res[3], "or!") );
 
-        $aRes = CUString::split("¡Ho,la·señ.or!", CArray::fromElements(",", "·", ".", "!"));
-        $this->assertTrue( CArray::length($aRes) == 5 &&
-            CUString::equals($aRes[0], "¡Ho") && CUString::equals($aRes[1], "la") &&
-            CUString::equals($aRes[2], "señ") && CUString::equals($aRes[3], "or") && CUString::equals($aRes[4], "") );
+        $res = CUString::split("¡Ho,la·señ.or!", CArray::fromElements(",", "·", ".", "!"));
+        $this->assertTrue( CArray::length($res) == 5 &&
+            CUString::equals($res[0], "¡Ho") && CUString::equals($res[1], "la") &&
+            CUString::equals($res[2], "señ") && CUString::equals($res[3], "or") && CUString::equals($res[4], "") );
 
         // Special cases.
 
-        $aRes = CUString::split("Hey", "");
-        $this->assertTrue( CArray::length($aRes) == 3 &&
-            CUString::equals($aRes[0], "H") && CUString::equals($aRes[1], "e") && CUString::equals($aRes[2], "y") );
+        $res = CUString::split("Hey", "");
+        $this->assertTrue( CArray::length($res) == 3 &&
+            CUString::equals($res[0], "H") && CUString::equals($res[1], "e") && CUString::equals($res[2], "y") );
 
-        $aRes = CUString::split("", "");
-        $this->assertTrue( CArray::length($aRes) == 1 && CUString::equals($aRes[0], "") );
+        $res = CUString::split("", "");
+        $this->assertTrue( CArray::length($res) == 1 && CUString::equals($res[0], "") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSplitIntoChars ()
     {
-        $aRes = CUString::splitIntoChars("Señor");
-        $this->assertTrue( CArray::length($aRes) == 5 &&
-            CUString::equals($aRes[0], "S") && CUString::equals($aRes[1], "e") && CUString::equals($aRes[2], "ñ") &&
-            CUString::equals($aRes[3], "o") && CUString::equals($aRes[4], "r") );
+        $res = CUString::splitIntoChars("Señor");
+        $this->assertTrue( CArray::length($res) == 5 &&
+            CUString::equals($res[0], "S") && CUString::equals($res[1], "e") && CUString::equals($res[2], "ñ") &&
+            CUString::equals($res[3], "o") && CUString::equals($res[4], "r") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testTrimStart ()
@@ -855,10 +855,10 @@ class CUStringTest extends CTestCase
         $this->assertTrue(
             CUString::equals(CUString::replace("¡Hola señor!", "¡Hola", "Hello"), "Hello señor!"));
 
-        $iQuantity;
+        $quantity;
         $this->assertTrue(
-            CUString::equals(CUString::replace("¡Hola-Hola señor!", "Hola", "Hello", $iQuantity),
-            "¡Hello-Hello señor!") && $iQuantity == 2 );
+            CUString::equals(CUString::replace("¡Hola-Hola señor!", "Hola", "Hello", $quantity),
+            "¡Hello-Hello señor!") && $quantity == 2 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testReplaceCi ()
@@ -866,10 +866,10 @@ class CUStringTest extends CTestCase
         $this->assertTrue(
             CUString::equals(CUString::replaceCi("¡Hola señor!", "¡HOLA", "Hello"), "Hello señor!"));
 
-        $iQuantity;
+        $quantity;
         $this->assertTrue(
-            CUString::equals(CUString::replaceCi("¡Hola-Hola señor!", "HOLA", "Hello", $iQuantity),
-            "¡Hello-Hello señor!") && $iQuantity == 2 );
+            CUString::equals(CUString::replaceCi("¡Hola-Hola señor!", "HOLA", "Hello", $quantity),
+            "¡Hello-Hello señor!") && $quantity == 2 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testRemove ()
@@ -877,10 +877,10 @@ class CUStringTest extends CTestCase
         $this->assertTrue(
             CUString::equals(CUString::remove("¡Hola señor!", " señor"), "¡Hola!"));
 
-        $iQuantity;
+        $quantity;
         $this->assertTrue(
-            CUString::equals(CUString::remove("¡Hola señor señor!", " señor", $iQuantity), "¡Hola!") &&
-            $iQuantity == 2 );
+            CUString::equals(CUString::remove("¡Hola señor señor!", " señor", $quantity), "¡Hola!") &&
+            $quantity == 2 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testRemoveCi ()
@@ -888,17 +888,17 @@ class CUStringTest extends CTestCase
         $this->assertTrue(
             CUString::equals(CUString::removeCi("¡Hola señor!", " SEÑOR"), "¡Hola!"));
 
-        $iQuantity;
+        $quantity;
         $this->assertTrue(
-            CUString::equals(CUString::removeCi("¡Hola señor señor!", " SEÑOR", $iQuantity), "¡Hola!") &&
-            $iQuantity == 2 );
+            CUString::equals(CUString::removeCi("¡Hola señor señor!", " SEÑOR", $quantity), "¡Hola!") &&
+            $quantity == 2 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testShuffle ()
     {
-        $sString = "るabĉdéfghijklmñopqrštuvwxŷzの";
-        $sShuffledString = CUString::shuffle($sString);
-        $this->assertTrue(CUString::isSubsetOf($sShuffledString, $sString));
+        $string = "るabĉdéfghijklmñopqrštuvwxŷzの";
+        $shuffledString = CUString::shuffle($string);
+        $this->assertTrue(CUString::isSubsetOf($shuffledString, $string));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testWordWrap ()

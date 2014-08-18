@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -15,7 +15,7 @@
 
 // Method signatures:
 //   static CUStringObject ip ()
-//   static CUStringObject userAgentProperty ($sPropertyName)
+//   static CUStringObject userAgentProperty ($propertyName)
 //   static bool isSecure ()
 //   static int serverPort ()
 //   static enum method ()
@@ -25,11 +25,11 @@
 //   static CUStringObject pathString ()
 //   static CUrlPath path ()
 //   static CUStringObject queryString ()
-//   static CUStringObject header ($sHeaderName, &$rbSuccess = null)
-//   static mixed fieldGet ($sFieldName, CInputFilter $oInputFilter, &$rbSuccess = null)
-//   static mixed fieldPost ($sFieldName, CInputFilter $oInputFilter, &$rbSuccess = null)
+//   static CUStringObject header ($headerName, &$success = null)
+//   static mixed fieldGet ($fieldName, CInputFilter $inputFilter, &$success = null)
+//   static mixed fieldPost ($fieldName, CInputFilter $inputFilter, &$success = null)
 //   static CUStringObject rawPost ()
-//   static mixed cookie ($sCookieName, CInputFilter $oInputFilter, &$rbSuccess = null)
+//   static mixed cookie ($cookieName, CInputFilter $inputFilter, &$success = null)
 //   static bool hasAuthType ()
 //   static CUStringObject authType ()
 //   static bool hasAuthUser ()
@@ -58,20 +58,20 @@ class CRequest extends CHttpRequest
      * The names of the properties and their meanings are defined by the
      * [Browser Capabilities Project](http://browscap.org/).
      *
-     * @param  string $sPropertyName The name of the BrowsCap property.
+     * @param  string $propertyName The name of the BrowsCap property.
      *
      * @return CUStringObject The value of the BrowsCap property.
      */
 
-    public static function userAgentProperty ($sPropertyName)
+    public static function userAgentProperty ($propertyName)
     {
-        assert( 'is_cstring($sPropertyName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($propertyName)', vs(isset($this), get_defined_vars()) );
 
-        if ( !isset(self::$ms_mBrowsCap) )
+        if ( !isset(self::$ms_browsCap) )
         {
-            self::$ms_mBrowsCap = get_browser(null, true);
+            self::$ms_browsCap = get_browser(null, true);
         }
-        return (string)self::$ms_mBrowsCap[$sPropertyName];
+        return (string)self::$ms_browsCap[$propertyName];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -84,10 +84,10 @@ class CRequest extends CHttpRequest
     {
         if ( CMap::hasKey($_SERVER, "HTTPS") )
         {
-            $sValue = $_SERVER["HTTPS"];
-            if ( isset($sValue) )
+            $value = $_SERVER["HTTPS"];
+            if ( isset($value) )
             {
-                return ( !CString::isEmpty($sValue) && !CString::equalsCi($sValue, "off") );
+                return ( !CString::isEmpty($value) && !CString::equalsCi($value, "off") );
             }
         }
         return false;
@@ -112,37 +112,37 @@ class CRequest extends CHttpRequest
 
     public static function method ()
     {
-        $sMethod = $_SERVER["REQUEST_METHOD"];
-        $sMethod = CString::toUpperCase($sMethod);
-        if ( CString::equals($sMethod, "GET") )
+        $method = $_SERVER["REQUEST_METHOD"];
+        $method = CString::toUpperCase($method);
+        if ( CString::equals($method, "GET") )
         {
             return self::GET;
         }
-        if ( CString::equals($sMethod, "HEAD") )
+        if ( CString::equals($method, "HEAD") )
         {
             return self::HEAD;
         }
-        if ( CString::equals($sMethod, "POST") )
+        if ( CString::equals($method, "POST") )
         {
             return self::POST;
         }
-        if ( CString::equals($sMethod, "PUT") )
+        if ( CString::equals($method, "PUT") )
         {
             return self::PUT;
         }
-        if ( CString::equals($sMethod, "DELETE") )
+        if ( CString::equals($method, "DELETE") )
         {
             return self::DELETE;
         }
-        if ( CString::equals($sMethod, "OPTIONS") )
+        if ( CString::equals($method, "OPTIONS") )
         {
             return self::OPTIONS;
         }
-        if ( CString::equals($sMethod, "TRACE") )
+        if ( CString::equals($method, "TRACE") )
         {
             return self::TRACE;
         }
-        if ( CString::equals($sMethod, "CONNECT") )
+        if ( CString::equals($method, "CONNECT") )
         {
             return self::CONNECT;
         }
@@ -168,11 +168,11 @@ class CRequest extends CHttpRequest
 
     public static function protocolVersion ()
     {
-        $sHttpAndVer = $_SERVER["SERVER_PROTOCOL"];
-        $sFoundString;
-        $bRes = CRegex::find($sHttpAndVer, "/(?<=\\/).*\\z/", $sFoundString);
-        assert( '$bRes', vs(isset($this), get_defined_vars()) );
-        return $sFoundString;
+        $httpAndVer = $_SERVER["SERVER_PROTOCOL"];
+        $foundString;
+        $res = CRegex::find($httpAndVer, "/(?<=\\/).*\\z/", $foundString);
+        assert( '$res', vs(isset($this), get_defined_vars()) );
+        return $foundString;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -194,9 +194,9 @@ class CRequest extends CHttpRequest
 
     public static function pathString ()
     {
-        $sUri = $_SERVER["REQUEST_URI"];
-        $sPath = CRegex::remove($sUri, "/\\?.*/");
-        return $sPath;
+        $uri = $_SERVER["REQUEST_URI"];
+        $path = CRegex::remove($uri, "/\\?.*/");
+        return $path;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -224,27 +224,27 @@ class CRequest extends CHttpRequest
     /**
      * Returns the value of an HTTP header that was sent with the request.
      *
-     * @param  string $sHeaderName The name of the HTTP header.
-     * @param  reference $rbSuccess **OPTIONAL.** After the method is called with this parameter provided, the
+     * @param  string $headerName The name of the HTTP header.
+     * @param  reference $success **OPTIONAL.** After the method is called with this parameter provided, the
      * parameter's value tells whether the request contained a header with the name specified.
      *
      * @return CUStringObject The value of the header.
      */
 
-    public static function header ($sHeaderName, &$rbSuccess = null)
+    public static function header ($headerName, &$success = null)
     {
-        assert( 'is_cstring($sHeaderName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($headerName)', vs(isset($this), get_defined_vars()) );
 
-        $rbSuccess = true;
-        $sKey = CString::replace($sHeaderName, "-", "_");
-        $sKey = CString::toUpperCase($sKey);
-        $sKey = "HTTP_$sKey";
-        if ( !CMap::hasKey($_SERVER, $sKey) )
+        $success = true;
+        $key = CString::replace($headerName, "-", "_");
+        $key = CString::toUpperCase($key);
+        $key = "HTTP_$key";
+        if ( !CMap::hasKey($_SERVER, $key) )
         {
-            $rbSuccess = false;
+            $success = false;
             return "";
         }
-        return $_SERVER[$sKey];
+        return $_SERVER[$key];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -252,9 +252,9 @@ class CRequest extends CHttpRequest
      *
      * Different from raw PHP, you can use "." within field names as much as you like.
      *
-     * @param  string $sFieldName The name of the field.
-     * @param  CInputFilter $oInputFilter The input filter to be used to validate and sanitize the field's value.
-     * @param  reference $rbSuccess **OPTIONAL.** After the method is called with this parameter provided, the
+     * @param  string $fieldName The name of the field.
+     * @param  CInputFilter $inputFilter The input filter to be used to validate and sanitize the field's value.
+     * @param  reference $success **OPTIONAL.** After the method is called with this parameter provided, the
      * parameter's value tells whether the query string contained a field with the name specified and the field's value
      * could be successfully retrieved and filtered.
      *
@@ -263,10 +263,10 @@ class CRequest extends CHttpRequest
      * e.g. "name[key0]=value0&name[key1]=value1".
      */
 
-    public static function fieldGet ($sFieldName, CInputFilter $oInputFilter, &$rbSuccess = null)
+    public static function fieldGet ($fieldName, CInputFilter $inputFilter, &$success = null)
     {
-        assert( 'is_cstring($sFieldName)', vs(isset($this), get_defined_vars()) );
-        return oop_x(self::requestField($_GET, $sFieldName, $oInputFilter, $rbSuccess));
+        assert( 'is_cstring($fieldName)', vs(isset($this), get_defined_vars()) );
+        return oop_x(self::requestField($_GET, $fieldName, $inputFilter, $success));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -275,9 +275,9 @@ class CRequest extends CHttpRequest
      *
      * Different from raw PHP, you can use "." within field names as much as you like.
      *
-     * @param  string $sFieldName The name of the field.
-     * @param  CInputFilter $oInputFilter The input filter to be used to validate and sanitize the field's value.
-     * @param  reference $rbSuccess **OPTIONAL.** After the method is called with this parameter provided, the
+     * @param  string $fieldName The name of the field.
+     * @param  CInputFilter $inputFilter The input filter to be used to validate and sanitize the field's value.
+     * @param  reference $success **OPTIONAL.** After the method is called with this parameter provided, the
      * parameter's value tells whether the POST fields included a field with the name specified and the field's value
      * could be successfully retrieved and filtered.
      *
@@ -286,10 +286,10 @@ class CRequest extends CHttpRequest
      * e.g. "name[key0]=value0&name[key1]=value1".
      */
 
-    public static function fieldPost ($sFieldName, CInputFilter $oInputFilter, &$rbSuccess = null)
+    public static function fieldPost ($fieldName, CInputFilter $inputFilter, &$success = null)
     {
-        assert( 'is_cstring($sFieldName)', vs(isset($this), get_defined_vars()) );
-        return oop_x(self::requestField($_POST, $sFieldName, $oInputFilter, $rbSuccess));
+        assert( 'is_cstring($fieldName)', vs(isset($this), get_defined_vars()) );
+        return oop_x(self::requestField($_POST, $fieldName, $inputFilter, $success));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -308,9 +308,9 @@ class CRequest extends CHttpRequest
      *
      * Different from raw PHP, you can use "." within cookie names as much as you like.
      *
-     * @param  string $sCookieName The name of the cookie.
-     * @param  CInputFilter $oInputFilter The input filter to be used to validate and sanitize the cookie's value.
-     * @param  reference $rbSuccess **OPTIONAL.** After the method is called with this parameter provided, the
+     * @param  string $cookieName The name of the cookie.
+     * @param  CInputFilter $inputFilter The input filter to be used to validate and sanitize the cookie's value.
+     * @param  reference $success **OPTIONAL.** After the method is called with this parameter provided, the
      * parameter's value tells whether the request contained a cookie with the name specified and the cookie's value
      * could be successfully retrieved and filtered.
      *
@@ -319,10 +319,10 @@ class CRequest extends CHttpRequest
      * e.g. "name[key0]=value0&name[key1]=value1".
      */
 
-    public static function cookie ($sCookieName, CInputFilter $oInputFilter, &$rbSuccess = null)
+    public static function cookie ($cookieName, CInputFilter $inputFilter, &$success = null)
     {
-        assert( 'is_cstring($sCookieName)', vs(isset($this), get_defined_vars()) );
-        return oop_x(self::requestField($_COOKIE, $sCookieName, $oInputFilter, $rbSuccess));
+        assert( 'is_cstring($cookieName)', vs(isset($this), get_defined_vars()) );
+        return oop_x(self::requestField($_COOKIE, $cookieName, $inputFilter, $success));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -404,167 +404,167 @@ class CRequest extends CHttpRequest
     {
         if ( CMap::hasKey($_SERVER, "REQUEST_TIME_FLOAT") )
         {
-            $fFTime = $_SERVER["REQUEST_TIME_FLOAT"];
-            if ( isset($fFTime) )
+            $FTime = $_SERVER["REQUEST_TIME_FLOAT"];
+            if ( isset($FTime) )
             {
-                return CTime::fromFTime($fFTime);
+                return CTime::fromFTime($FTime);
             }
         }
         return new CTime($_SERVER["REQUEST_TIME"]);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function requestField ($mMap, $sFieldName, CInputFilter $oInputFilter, &$rbSuccess)
+    protected static function requestField ($map, $fieldName, CInputFilter $inputFilter, &$success)
     {
-        $rbSuccess = true;
+        $success = true;
 
         // Account for the fact that, with PHP, GET and POST (and cookie) fields arrive having "." replaced with "_"
         // in their names.
-        $sFieldName = CString::replace($sFieldName, ".", "_");
+        $fieldName = CString::replace($fieldName, ".", "_");
 
-        $xValue;
+        $value;
 
-        $bHasField = false;
-        if ( CMap::hasKey($mMap, $sFieldName) )
+        $hasField = false;
+        if ( CMap::hasKey($map, $fieldName) )
         {
-            $xValue = $mMap[$sFieldName];
-            if ( isset($xValue) )
+            $value = $map[$fieldName];
+            if ( isset($value) )
             {
-                if ( !is_cstring($xValue) && !is_cmap($xValue) )
+                if ( !is_cstring($value) && !is_cmap($value) )
                 {
                     // Should not happen in the known versions of PHP.
                     assert( 'false', vs(isset($this), get_defined_vars()) );
-                    $rbSuccess = false;
-                    return $oInputFilter->defaultValue();
+                    $success = false;
+                    return $inputFilter->defaultValue();
                 }
 
-                if ( !self::$ms_bTreatEmptyRequestValuesAsAbsent )
+                if ( !self::$ms_treatEmptyRequestValuesAsAbsent )
                 {
-                    $bHasField = true;
+                    $hasField = true;
                 }
                 else
                 {
-                    if ( is_cstring($xValue) )
+                    if ( is_cstring($value) )
                     {
-                        $bHasField = !CString::isEmpty($xValue);
+                        $hasField = !CString::isEmpty($value);
                     }
                     else  // a CMap
                     {
-                        $bHasField = ( !CMap::isEmpty($xValue) &&
-                                       !(CMap::length($xValue) == 1 && CMap::hasKey($xValue, 0) &&
-                                       is_cstring($xValue[0]) && CString::isEmpty($xValue[0])) );
+                        $hasField = ( !CMap::isEmpty($value) &&
+                                       !(CMap::length($value) == 1 && CMap::hasKey($value, 0) &&
+                                       is_cstring($value[0]) && CString::isEmpty($value[0])) );
                     }
                 }
             }
         }
-        if ( !$bHasField )
+        if ( !$hasField )
         {
-            $rbSuccess = false;
-            return $oInputFilter->defaultValue();
+            $success = false;
+            return $inputFilter->defaultValue();
         }
 
-        $xInputFilterOrFilterCollection;
-        if ( $oInputFilter->expectedType() != CInputFilter::CARRAY &&
-             $oInputFilter->expectedType() != CInputFilter::CMAP )
+        $inputFilterOrFilterCollection;
+        if ( $inputFilter->expectedType() != CInputFilter::CARRAY &&
+             $inputFilter->expectedType() != CInputFilter::CMAP )
         {
-            $xInputFilterOrFilterCollection = $oInputFilter;
+            $inputFilterOrFilterCollection = $inputFilter;
         }
         else
         {
-            $xInputFilterOrFilterCollection = $oInputFilter->collectionInputFilters();
+            $inputFilterOrFilterCollection = $inputFilter->collectionInputFilters();
         }
 
         // Recursively convert any PHP array that has sequential keys and for which CArray type is expected into a
         // CArray, while leaving PHP arrays for which CMap type is expected untouched.
-        $xValue = self::recurseValueBeforeFiltering($xValue, $xInputFilterOrFilterCollection, $rbSuccess, 0);
-        if ( !$rbSuccess )
+        $value = self::recurseValueBeforeFiltering($value, $inputFilterOrFilterCollection, $success, 0);
+        if ( !$success )
         {
-            return $oInputFilter->defaultValue();
+            return $inputFilter->defaultValue();
         }
 
-        return $oInputFilter->filter($xValue, $rbSuccess);
+        return $inputFilter->filter($value, $success);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function recurseValueBeforeFiltering ($xValue, $xInputFilterOrFilterCollection, &$rbSuccess,
-        $iCurrDepth)
+    protected static function recurseValueBeforeFiltering ($value, $inputFilterOrFilterCollection, &$success,
+        $currDepth)
     {
-        assert( '$xInputFilterOrFilterCollection instanceof CInputFilter || ' .
-                'is_collection($xInputFilterOrFilterCollection)', vs(isset($this), get_defined_vars()) );
+        assert( '$inputFilterOrFilterCollection instanceof CInputFilter || ' .
+                'is_collection($inputFilterOrFilterCollection)', vs(isset($this), get_defined_vars()) );
 
-        if ( $iCurrDepth == self::$ms_iMaxRecursionDepth )
+        if ( $currDepth == self::$ms_maxRecursionDepth )
         {
-            $rbSuccess = false;
+            $success = false;
             return;
         }
-        $iCurrDepth++;
+        $currDepth++;
 
-        if ( !is_cmap($xValue) )
+        if ( !is_cmap($value) )
         {
             // Only interested in PHP arrays.
-            return $xValue;
+            return $value;
         }
 
-        if ( is_carray($xInputFilterOrFilterCollection) )
+        if ( is_carray($inputFilterOrFilterCollection) )
         {
             // The output value is expected to be a CArray; the keys in the arrived PHP array should be sequential.
-            if ( !CMap::areKeysSequential($xValue) )
+            if ( !CMap::areKeysSequential($value) )
             {
-                $rbSuccess = false;
+                $success = false;
                 return;
             }
-            $xValue = CArray::fromPArray($xValue);
+            $value = CArray::fromPArray($value);
 
-            $iLen = CArray::length($xValue);
-            if ( $iLen != CArray::length($xInputFilterOrFilterCollection) )
+            $len = CArray::length($value);
+            if ( $len != CArray::length($inputFilterOrFilterCollection) )
             {
-                $rbSuccess = false;
+                $success = false;
                 return;
             }
-            for ($i = 0; $i < $iLen; $i++)
+            for ($i = 0; $i < $len; $i++)
             {
-                $xInputValue = $xValue[$i];
-                $xInputFilterElement = $xInputFilterOrFilterCollection[$i];
-                $xInputValue = self::recurseValueBeforeFiltering($xInputValue, $xInputFilterElement, $rbSuccess,
-                    $iCurrDepth);
-                if ( !$rbSuccess )
+                $inputValue = $value[$i];
+                $inputFilterElement = $inputFilterOrFilterCollection[$i];
+                $inputValue = self::recurseValueBeforeFiltering($inputValue, $inputFilterElement, $success,
+                    $currDepth);
+                if ( !$success )
                 {
                     return;
                 }
-                $xValue[$i] = $xInputValue;
+                $value[$i] = $inputValue;
             }
         }
-        else if ( is_cmap($xInputFilterOrFilterCollection) )
+        else if ( is_cmap($inputFilterOrFilterCollection) )
         {
             // The output value is expected to be a CMap; already got one.
-            foreach ($xValue as $xInputKey => &$rxInputValue)
+            foreach ($value as $inputKey => &$inputValue)
             {
-                if ( !CMap::hasKey($xInputFilterOrFilterCollection, $xInputKey) )
+                if ( !CMap::hasKey($inputFilterOrFilterCollection, $inputKey) )
                 {
-                    $rbSuccess = false;
+                    $success = false;
                     return;
                 }
-                $xInputFilterElement = $xInputFilterOrFilterCollection[$xInputKey];
-                $rxInputValue = self::recurseValueBeforeFiltering($rxInputValue, $xInputFilterElement, $rbSuccess,
-                    $iCurrDepth);
-                if ( !$rbSuccess )
+                $inputFilterElement = $inputFilterOrFilterCollection[$inputKey];
+                $inputValue = self::recurseValueBeforeFiltering($inputValue, $inputFilterElement, $success,
+                    $currDepth);
+                if ( !$success )
                 {
                     return;
                 }
-            } unset($rxInputValue);
+            } unset($inputValue);
         }
         else
         {
-            $rbSuccess = false;
+            $success = false;
             return;
         }
-        return $xValue;
+        return $value;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    protected static $ms_mBrowsCap;
+    protected static $ms_browsCap;
 
     // When this constant is `true`, a GET/POST/cookie field set to an empty string (or an empty associative array)
     // is considered absent from the request.
-    protected static $ms_bTreatEmptyRequestValuesAsAbsent = false;
+    protected static $ms_treatEmptyRequestValuesAsAbsent = false;
 
-    protected static $ms_iMaxRecursionDepth = CSystem::DEFAULT_MAX_RECURSION_DEPTH;
+    protected static $ms_maxRecursionDepth = CSystem::DEFAULT_MAX_RECURSION_DEPTH;
 }

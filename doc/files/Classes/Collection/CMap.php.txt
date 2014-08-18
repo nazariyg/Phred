@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * The hub for static methods that take care of instances of the PHP's associative array, which is also known as CMap.
  *
@@ -27,25 +28,25 @@
 
 // Method signatures:
 //   static CMap make ()
-//   static CMap makeCopy ($mMap)
-//   static int length ($mMap)
-//   static bool isEmpty ($mMap)
-//   static bool equals ($mMap, $mToMap, $fnComparator = CComparator::EQUALITY)
-//   static int compare ($mMap, $mToMap, $fnComparator = CComparator::ORDER_ASC)
-//   static bool hasKey ($mMap, $xKey)
-//   static bool hasPath ($mMap, $sPath)
-//   static mixed valueByPath ($mMap, $sPath)
-//   static void setValueByPath (&$rmMap, $sPath, $xValue)
-//   static bool find ($mMap, $xWhatValue, $fnComparator = CComparator::EQUALITY, &$rxFoundUnderKey = null)
-//   static bool findScalar ($mMap, $xWhatValue, &$rxFoundUnderKey = null)
-//   static int countValue ($mMap, $xValue, $fnComparator = CComparator::EQUALITY)
-//   static void remove (&$rmMap, $xKey)
-//   static CMap filter ($mMap, $fnFilter)
-//   static CArray keys ($mMap)
-//   static CArray values ($mMap)
+//   static CMap makeCopy ($map)
+//   static int length ($map)
+//   static bool isEmpty ($map)
+//   static bool equals ($map, $toMap, $comparator = CComparator::EQUALITY)
+//   static int compare ($map, $toMap, $comparator = CComparator::ORDER_ASC)
+//   static bool hasKey ($map, $key)
+//   static bool hasPath ($map, $path)
+//   static mixed valueByPath ($map, $path)
+//   static void setValueByPath (&$map, $path, $value)
+//   static bool find ($map, $whatValue, $comparator = CComparator::EQUALITY, &$foundUnderKey = null)
+//   static bool findScalar ($map, $whatValue, &$foundUnderKey = null)
+//   static int countValue ($map, $value, $comparator = CComparator::EQUALITY)
+//   static void remove (&$map, $key)
+//   static CMap filter ($map, $filter)
+//   static CArray keys ($map)
+//   static CArray values ($map)
 //   static CMap merge (/*map, withMap0, withMap1, ...*/)
-//   static bool areKeysSequential ($mMap)
-//   static void insertValue (&$rmMap, $xValue)
+//   static bool areKeysSequential ($map)
+//   static void insertValue (&$map, $value)
 
 class CMap extends CRootClass implements ICopyingStatic, IEqualityAndOrderStatic
 {
@@ -66,52 +67,52 @@ class CMap extends CRootClass implements ICopyingStatic, IEqualityAndOrderStatic
      *
      * This method exists to mirror the same-named method of the CArray class.
      *
-     * @param  map $mMap The map to be copied.
+     * @param  map $map The map to be copied.
      *
      * @return CMap A copy of the map.
      */
 
-    public static function makeCopy ($mMap)
+    public static function makeCopy ($map)
     {
-        assert( 'is_cmap($mMap)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cmap($map)', vs(isset($this), get_defined_vars()) );
 
-        $mMap = parray($mMap);
+        $map = parray($map);
 
-        return $mMap;
+        return $map;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Tells how many key-value pairs there are in a map.
      *
-     * @param  map $mMap The map to be looked into.
+     * @param  map $map The map to be looked into.
      *
      * @return int The length of the map.
      */
 
-    public static function length ($mMap)
+    public static function length ($map)
     {
-        assert( 'is_cmap($mMap)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cmap($map)', vs(isset($this), get_defined_vars()) );
 
-        $mMap = parray($mMap);
+        $map = parray($map);
 
-        return count($mMap);
+        return count($map);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if a map is empty.
      *
-     * @param  map $mMap The map to be looked into.
+     * @param  map $map The map to be looked into.
      *
      * @return bool `true` if the map is empty, `false` otherwise.
      */
 
-    public static function isEmpty ($mMap)
+    public static function isEmpty ($map)
     {
-        assert( 'is_cmap($mMap)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cmap($map)', vs(isset($this), get_defined_vars()) );
 
-        $mMap = parray($mMap);
+        $map = parray($map);
 
-        return ( count($mMap) == 0 );
+        return ( count($map) == 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -125,9 +126,9 @@ class CMap extends CRootClass implements ICopyingStatic, IEqualityAndOrderStatic
      * IEqualityAndOrder interface (static or not), including CArray and CMap. See the [CComparator](CComparator.html)
      * class for more on this.
      *
-     * @param  map $mMap The first map for comparison.
-     * @param  map $mToMap The second map for comparison.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  map $map The first map for comparison.
+     * @param  map $toMap The second map for comparison.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of any two values. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being a value from the first map and the second parameter being a value
      * from the second map, and return `true` if the two values are equal and `false` otherwise.
@@ -137,34 +138,34 @@ class CMap extends CRootClass implements ICopyingStatic, IEqualityAndOrderStatic
      * @link   CComparator.html CComparator
      */
 
-    public static function equals ($mMap, $mToMap, $fnComparator = CComparator::EQUALITY)
+    public static function equals ($map, $toMap, $comparator = CComparator::EQUALITY)
     {
-        assert( 'is_cmap($mMap) && is_cmap($mToMap)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cmap($map) && is_cmap($toMap)', vs(isset($this), get_defined_vars()) );
 
-        $mMap = parray($mMap);
-        $mToMap = parray($mToMap);
+        $map = parray($map);
+        $toMap = parray($toMap);
 
         // Compare the keys.
-        $mKeys = array_keys($mMap);
-        $mToKeys = array_keys($mToMap);
-        if ( count($mKeys) != count($mToKeys) )
+        $keys = array_keys($map);
+        $toKeys = array_keys($toMap);
+        if ( count($keys) != count($toKeys) )
         {
             return false;
         }
-        for ($i = 0; $i < count($mKeys); $i++)
+        for ($i = 0; $i < count($keys); $i++)
         {
-            if ( $mKeys[$i] !== $mToKeys[$i] )
+            if ( $keys[$i] !== $toKeys[$i] )
             {
                 return false;
             }
         }
 
         // Compare the values. The quantities should match at this point.
-        $mValues = array_values($mMap);
-        $mToValues = array_values($mToMap);
-        for ($i = 0; $i < count($mValues); $i++)
+        $values = array_values($map);
+        $toValues = array_values($toMap);
+        for ($i = 0; $i < count($values); $i++)
         {
-            if ( !call_user_func($fnComparator, $mValues[$i], $mToValues[$i]) )
+            if ( !call_user_func($comparator, $values[$i], $toValues[$i]) )
             {
                 return false;
             }
@@ -182,9 +183,9 @@ class CMap extends CRootClass implements ICopyingStatic, IEqualityAndOrderStatic
      * how to compare objects of those classes that conform to the IEqualityAndOrder interface (static or not),
      * including CArray and CMap. See the [CComparator](CComparator.html) class for more on this.
      *
-     * @param  map $mMap The first map for comparison.
-     * @param  map $mToMap The second map for comparison.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
+     * @param  map $map The first map for comparison.
+     * @param  map $toMap The second map for comparison.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
      * used for the comparison of any two values. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being a value from the first map and the second parameter being a value
      * from the second map, and return `-1` if the value from the first map would need to go before the value from the
@@ -197,37 +198,37 @@ class CMap extends CRootClass implements ICopyingStatic, IEqualityAndOrderStatic
      * @link   CComparator.html CComparator
      */
 
-    public static function compare ($mMap, $mToMap, $fnComparator = CComparator::ORDER_ASC)
+    public static function compare ($map, $toMap, $comparator = CComparator::ORDER_ASC)
     {
-        assert( 'is_cmap($mMap) && is_cmap($mToMap)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cmap($map) && is_cmap($toMap)', vs(isset($this), get_defined_vars()) );
 
-        $mMap = parray($mMap);
-        $mToMap = parray($mToMap);
+        $map = parray($map);
+        $toMap = parray($toMap);
 
         // Compare the keys.
-        $mKeys = array_keys($mMap);
-        $mToKeys = array_keys($mToMap);
-        if ( count($mKeys) != count($mToKeys) )
+        $keys = array_keys($map);
+        $toKeys = array_keys($toMap);
+        if ( count($keys) != count($toKeys) )
         {
-            return CMathi::sign(count($mKeys) - count($mToKeys));
+            return CMathi::sign(count($keys) - count($toKeys));
         }
-        for ($i = 0; $i < count($mKeys); $i++)
+        for ($i = 0; $i < count($keys); $i++)
         {
-            if ( $mKeys[$i] !== $mToKeys[$i] )
+            if ( $keys[$i] !== $toKeys[$i] )
             {
-                return ( $mKeys[$i] < $mToKeys[$i] ) ? -1 : 1;
+                return ( $keys[$i] < $toKeys[$i] ) ? -1 : 1;
             }
         }
 
         // Compare the values. The quantities should match at this point.
-        $mValues = array_values($mMap);
-        $mToValues = array_values($mToMap);
-        for ($i = 0; $i < count($mValues); $i++)
+        $values = array_values($map);
+        $toValues = array_values($toMap);
+        for ($i = 0; $i < count($values); $i++)
         {
-            $iCompRes = call_user_func($fnComparator, $mValues[$i], $mToValues[$i]);
-            if ( $iCompRes != 0 )
+            $compRes = call_user_func($comparator, $values[$i], $toValues[$i]);
+            if ( $compRes != 0 )
             {
-                return $iCompRes;
+                return $compRes;
             }
         }
 
@@ -237,112 +238,112 @@ class CMap extends CRootClass implements ICopyingStatic, IEqualityAndOrderStatic
     /**
      * Determines if a map contains a value under a specified key.
      *
-     * @param  map $mMap The map to be looked into.
-     * @param  mixed $xKey The key to be looked for.
+     * @param  map $map The map to be looked into.
+     * @param  mixed $key The key to be looked for.
      *
      * @return bool `true` if the map contains a value under such key, `false` otherwise.
      */
 
-    public static function hasKey ($mMap, $xKey)
+    public static function hasKey ($map, $key)
     {
-        assert( 'is_cmap($mMap)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cmap($map)', vs(isset($this), get_defined_vars()) );
 
-        $mMap = parray($mMap);
+        $map = parray($map);
 
-        return array_key_exists($xKey, $mMap);
+        return array_key_exists($key, $map);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if a map contains a value by a specified key path.
      *
-     * @param  map $mMap The map to be looked into.
-     * @param  string $sPath The key path to be looked by, e.g. "level1key.level2key".
+     * @param  map $map The map to be looked into.
+     * @param  string $path The key path to be looked by, e.g. "level1key.level2key".
      *
      * @return bool `true` if the map contains a value by such key path, `false` otherwise.
      */
 
-    public static function hasPath ($mMap, $sPath)
+    public static function hasPath ($map, $path)
     {
-        assert( 'is_cmap($mMap) && is_cstring($sPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cmap($map) && is_cstring($path)', vs(isset($this), get_defined_vars()) );
 
-        $mPathComps = explode(".", $sPath);
-        $iNumLevels = count($mPathComps) - 1;
-        $mCurrMap = parray($mMap);
-        for ($i = 0; $i < $iNumLevels; $i++)
+        $pathComps = explode(".", $path);
+        $numLevels = count($pathComps) - 1;
+        $currMap = parray($map);
+        for ($i = 0; $i < $numLevels; $i++)
         {
-            $sComp = $mPathComps[$i];
-            if ( !array_key_exists($sComp, $mCurrMap) )
+            $comp = $pathComps[$i];
+            if ( !array_key_exists($comp, $currMap) )
             {
                 return false;
             }
-            $mCurrMap = $mCurrMap[$sComp];
-            if ( !is_cmap($mCurrMap) )
+            $currMap = $currMap[$comp];
+            if ( !is_cmap($currMap) )
             {
                 return false;
             }
-            $mCurrMap = parray($mCurrMap);
+            $currMap = parray($currMap);
         }
-        return array_key_exists($mPathComps[$iNumLevels], $mCurrMap);
+        return array_key_exists($pathComps[$numLevels], $currMap);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * From a map, returns the value found by a specified key path.
      *
-     * @param  map $mMap The map to be looked into.
-     * @param  string $sPath The key path by which the value is to be found, e.g. "level1key.level2key".
+     * @param  map $map The map to be looked into.
+     * @param  string $path The key path by which the value is to be found, e.g. "level1key.level2key".
      *
      * @return mixed The value found by the key path.
      */
 
-    public static function valueByPath ($mMap, $sPath)
+    public static function valueByPath ($map, $path)
     {
-        assert( 'is_cmap($mMap) && is_cstring($sPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cmap($map) && is_cstring($path)', vs(isset($this), get_defined_vars()) );
 
-        $mPathComps = explode(".", $sPath);
-        $iNumLevels = count($mPathComps) - 1;
-        $mCurrMap = parray($mMap);
-        for ($i = 0; $i < $iNumLevels; $i++)
+        $pathComps = explode(".", $path);
+        $numLevels = count($pathComps) - 1;
+        $currMap = parray($map);
+        for ($i = 0; $i < $numLevels; $i++)
         {
-            $mCurrMap = $mCurrMap[$mPathComps[$i]];
-            assert( 'is_cmap($mCurrMap)', vs(isset($this), get_defined_vars()) );
-            $mCurrMap = parray($mCurrMap);
+            $currMap = $currMap[$pathComps[$i]];
+            assert( 'is_cmap($currMap)', vs(isset($this), get_defined_vars()) );
+            $currMap = parray($currMap);
         }
-        return $mCurrMap[$mPathComps[$iNumLevels]];
+        return $currMap[$pathComps[$numLevels]];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * In a map, modifies the value found by a specified key path.
      *
-     * @param  map $rmMap The map to be modified.
-     * @param  string $sPath The key path by which the value is to be found, e.g. "level1key.level2key".
-     * @param  mixed $xValue The new value.
+     * @param  map $map The map to be modified.
+     * @param  string $path The key path by which the value is to be found, e.g. "level1key.level2key".
+     * @param  mixed $value The new value.
      *
      * @return void
      */
 
-    public static function setValueByPath (&$rmMap, $sPath, $xValue)
+    public static function setValueByPath (&$map, $path, $value)
     {
-        assert( 'is_cmap($rmMap) && is_cstring($sPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cmap($map) && is_cstring($path)', vs(isset($this), get_defined_vars()) );
 
-        $mPathComps = explode(".", $sPath);
-        $iNumLevels = count($mPathComps) - 1;
-        $rmCurrMap = &$rmMap;
-        if ( !is_array($rmCurrMap) )
+        $pathComps = explode(".", $path);
+        $numLevels = count($pathComps) - 1;
+        $currMap = &$map;
+        if ( !is_array($currMap) )
         {
             // CMapObject
-            $rmCurrMap = &$rmCurrMap->toPArray();
+            $currMap = &$currMap->toPArray();
         }
-        for ($i = 0; $i < $iNumLevels; $i++)
+        for ($i = 0; $i < $numLevels; $i++)
         {
-            $rmCurrMap = &$rmCurrMap[$mPathComps[$i]];
-            if ( !is_array($rmCurrMap) )
+            $currMap = &$currMap[$pathComps[$i]];
+            if ( !is_array($currMap) )
             {
                 // CMapObject
-                $rmCurrMap = &$rmCurrMap->toPArray();
+                $currMap = &$currMap->toPArray();
             }
-            assert( 'is_cmap($rmCurrMap)', vs(isset($this), get_defined_vars()) );
+            assert( 'is_cmap($currMap)', vs(isset($this), get_defined_vars()) );
         }
-        $rmCurrMap[$mPathComps[$iNumLevels]] = $xValue;
+        $currMap[$pathComps[$numLevels]] = $value;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -353,13 +354,13 @@ class CMap extends CRootClass implements ICopyingStatic, IEqualityAndOrderStatic
      * know how to compare objects of those classes that conform to the IEquality or IEqualityAndOrder interface
      * (static or not), including CArray and CMap. See the [CComparator](CComparator.html) class for more on this.
      *
-     * @param  map $mMap The map to be looked into.
-     * @param  mixed $xWhatValue The searched value.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  map $map The map to be looked into.
+     * @param  mixed $whatValue The searched value.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of values while searching. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being a value from the map and the second parameter being the searched
      * value, and return `true` if the two values are equal and `false` otherwise.
-     * @param  reference $rxFoundUnderKey **OPTIONAL. OUTPUT.** If a value has been found after the method was called
+     * @param  reference $foundUnderKey **OPTIONAL. OUTPUT.** If a value has been found after the method was called
      * with this parameter provided, the parameter's value is being the first key under which the value was seen.
      *
      * @return bool `true` if such value was found in the map, `false` otherwise.
@@ -367,17 +368,17 @@ class CMap extends CRootClass implements ICopyingStatic, IEqualityAndOrderStatic
      * @link   CComparator.html CComparator
      */
 
-    public static function find ($mMap, $xWhatValue, $fnComparator = CComparator::EQUALITY, &$rxFoundUnderKey = null)
+    public static function find ($map, $whatValue, $comparator = CComparator::EQUALITY, &$foundUnderKey = null)
     {
-        assert( 'is_cmap($mMap) && is_callable($fnComparator)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cmap($map) && is_callable($comparator)', vs(isset($this), get_defined_vars()) );
 
-        $mMap = parray($mMap);
+        $map = parray($map);
 
-        foreach ($mMap as $xMapKey => $xMapValue)
+        foreach ($map as $mapKey => $mapValue)
         {
-            if ( call_user_func($fnComparator, $xMapValue, $xWhatValue) )
+            if ( call_user_func($comparator, $mapValue, $whatValue) )
             {
-                $rxFoundUnderKey = $xMapKey;
+                $foundUnderKey = $mapKey;
                 return true;
             }
         }
@@ -391,9 +392,9 @@ class CMap extends CRootClass implements ICopyingStatic, IEqualityAndOrderStatic
      * this method allows for faster searches compared to `find` method. In case of `string` type, the search is
      * case-sensitive.
      *
-     * @param  map $mMap The map to be looked into.
-     * @param  mixed $xWhatValue The searched value.
-     * @param  reference $rxFoundUnderKey **OPTIONAL. OUTPUT.** If a value has been found after the method was called
+     * @param  map $map The map to be looked into.
+     * @param  mixed $whatValue The searched value.
+     * @param  reference $foundUnderKey **OPTIONAL. OUTPUT.** If a value has been found after the method was called
      * with this parameter provided, the parameter's value is being the first key under which the value was seen.
      *
      * @return bool `true` if such value was found in the map, `false` otherwise.
@@ -401,17 +402,17 @@ class CMap extends CRootClass implements ICopyingStatic, IEqualityAndOrderStatic
      * @link   #method_find find
      */
 
-    public static function findScalar ($mMap, $xWhatValue, &$rxFoundUnderKey = null)
+    public static function findScalar ($map, $whatValue, &$foundUnderKey = null)
     {
-        assert( 'is_cmap($mMap) && (is_scalar($xWhatValue) || is_null($xWhatValue))',
+        assert( 'is_cmap($map) && (is_scalar($whatValue) || is_null($whatValue))',
             vs(isset($this), get_defined_vars()) );
 
-        $mMap = parray($mMap);
+        $map = parray($map);
 
-        $xRes = array_search($xWhatValue, $mMap, true);
-        if ( $xRes !== false )
+        $res = array_search($whatValue, $map, true);
+        if ( $res !== false )
         {
-            $rxFoundUnderKey = $xRes;
+            $foundUnderKey = $res;
             return true;
         }
         else
@@ -428,9 +429,9 @@ class CMap extends CRootClass implements ICopyingStatic, IEqualityAndOrderStatic
      * know how to compare objects of those classes that conform to the IEquality or IEqualityAndOrder interface
      * (static or not), including CArray and CMap. See the [CComparator](CComparator.html) class for more on this.
      *
-     * @param  map $mMap The map to be looked into.
-     * @param  mixed $xValue The searched value.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  map $map The map to be looked into.
+     * @param  mixed $value The searched value.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of values while searching. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being a value from the map and the second parameter being the searched
      * value, and return `true` if the two values are equal and `false` otherwise.
@@ -440,45 +441,45 @@ class CMap extends CRootClass implements ICopyingStatic, IEqualityAndOrderStatic
      * @link   CComparator.html CComparator
      */
 
-    public static function countValue ($mMap, $xValue, $fnComparator = CComparator::EQUALITY)
+    public static function countValue ($map, $value, $comparator = CComparator::EQUALITY)
     {
-        assert( 'is_cmap($mMap) && is_callable($fnComparator)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cmap($map) && is_callable($comparator)', vs(isset($this), get_defined_vars()) );
 
-        $mMap = parray($mMap);
+        $map = parray($map);
 
-        $iCount = 0;
-        foreach ($mMap as $xMapValue)
+        $count = 0;
+        foreach ($map as $mapValue)
         {
-            if ( call_user_func($fnComparator, $xMapValue, $xValue) )
+            if ( call_user_func($comparator, $mapValue, $value) )
             {
-                $iCount++;
+                $count++;
             }
         }
-        return $iCount;
+        return $count;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes a key-value pair from a map.
      *
-     * @param  map $rmMap The map to be modified.
-     * @param  mixed $xKey The key of the key-value pair to be removed.
+     * @param  map $map The map to be modified.
+     * @param  mixed $key The key of the key-value pair to be removed.
      *
      * @return void
      */
 
-    public static function remove (&$rmMap, $xKey)
+    public static function remove (&$map, $key)
     {
-        assert( 'is_cmap($rmMap)', vs(isset($this), get_defined_vars()) );
-        assert( 'self::hasKey($rmMap, $xKey)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cmap($map)', vs(isset($this), get_defined_vars()) );
+        assert( 'self::hasKey($map, $key)', vs(isset($this), get_defined_vars()) );
 
-        if ( is_array($rmMap) )
+        if ( is_array($map) )
         {
-            unset($rmMap[$xKey]);
+            unset($map[$key]);
         }
         else  // CMapObject
         {
-            $rmPArray = &$rmMap->toPArray();
-            unset($rmPArray[$xKey]);
+            $pArray = &$map->toPArray();
+            unset($pArray[$key]);
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -488,52 +489,52 @@ class CMap extends CRootClass implements ICopyingStatic, IEqualityAndOrderStatic
      *
      * The input map is not modified by this method.
      *
-     * @param  map $mMap The map to be filtered.
-     * @param  callable $fnFilter The function or method to be used for filtering. The filter should take a value as a
+     * @param  map $map The map to be filtered.
+     * @param  callable $filter The function or method to be used for filtering. The filter should take a value as a
      * parameter and return `true` if the corresponding key-value pair should make its way into the resulting map and
      * `false` if not.
      *
      * @return CMap The filtered map.
      */
 
-    public static function filter ($mMap, $fnFilter)
+    public static function filter ($map, $filter)
     {
-        assert( 'is_cmap($mMap) && is_callable($fnFilter)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cmap($map) && is_callable($filter)', vs(isset($this), get_defined_vars()) );
 
-        $mMap = parray($mMap);
+        $map = parray($map);
 
-        return array_filter($mMap, $fnFilter);
+        return array_filter($map, $filter);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Extracts and returns the keys from a map, as an array.
      *
-     * @param  map $mMap The map to be looked into.
+     * @param  map $map The map to be looked into.
      *
      * @return CArray The map's keys.
      */
 
-    public static function keys ($mMap)
+    public static function keys ($map)
     {
-        assert( 'is_cmap($mMap)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cmap($map)', vs(isset($this), get_defined_vars()) );
 
-        $mMap = parray($mMap);
+        $map = parray($map);
 
-        return CArray::fromPArray(array_keys($mMap));
+        return CArray::fromPArray(array_keys($map));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Extracts and returns the values from a map, as an array.
      *
-     * @param  map $mMap The map to be looked into.
+     * @param  map $map The map to be looked into.
      *
      * @return CArray The map's values.
      */
 
-    public static function values ($mMap)
+    public static function values ($map)
     {
-        assert( 'is_cmap($mMap)', vs(isset($this), get_defined_vars()) );
-        return CArray::fromPArray($mMap);
+        assert( 'is_cmap($map)', vs(isset($this), get_defined_vars()) );
+        return CArray::fromPArray($map);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -556,17 +557,17 @@ class CMap extends CRootClass implements ICopyingStatic, IEqualityAndOrderStatic
 
     public static function merge (/*map, withMap0, withMap1, ...*/)
     {
-        $iFuncNumArgs = func_num_args();
-        assert( '$iFuncNumArgs >= 2', vs(isset($this), get_defined_vars()) );
+        $funcNumArgs = func_num_args();
+        assert( '$funcNumArgs >= 2', vs(isset($this), get_defined_vars()) );
 
-        $mResMap = self::make();
-        $mArguments = func_get_args();
-        foreach ($mArguments as $mMap)
+        $resMap = self::make();
+        $arguments = func_get_args();
+        foreach ($arguments as $map)
         {
-            assert( 'is_cmap($mMap)', vs(isset($this), get_defined_vars()) );
-            self::recurseMergingMaps($mResMap, $mMap);
+            assert( 'is_cmap($map)', vs(isset($this), get_defined_vars()) );
+            self::recurseMergingMaps($resMap, $map);
         }
-        return $mResMap;
+        return $resMap;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -580,22 +581,22 @@ class CMap extends CRootClass implements ICopyingStatic, IEqualityAndOrderStatic
      *
      * As a special case, the method returns `true` for an empty map.
      *
-     * @param  map $mMap The map to be looked into.
+     * @param  map $map The map to be looked into.
      *
      * @return bool `true` if all keys in the map are integer and sequential, `false` otherwise.
      */
 
-    public static function areKeysSequential ($mMap)
+    public static function areKeysSequential ($map)
     {
-        assert( 'is_cmap($mMap)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cmap($map)', vs(isset($this), get_defined_vars()) );
 
-        $mMap = parray($mMap);
+        $map = parray($map);
 
-        $aKeys = self::keys($mMap);
-        $iLen = CArray::length($aKeys);
-        for ($i = 0; $i < $iLen; $i++)
+        $keys = self::keys($map);
+        $len = CArray::length($keys);
+        for ($i = 0; $i < $len; $i++)
         {
-            if ( !is_int($aKeys[$i]) || $aKeys[$i] != $i )
+            if ( !is_int($keys[$i]) || $keys[$i] != $i )
             {
                 return false;
             }
@@ -612,53 +613,53 @@ class CMap extends CRootClass implements ICopyingStatic, IEqualityAndOrderStatic
      * The new value is inserted under the integer key that is greater by one compared to the greatest integer key
      * already in the map or under `0` if there were no integer keys.
      *
-     * @param  map $rmMap The map to be modified.
-     * @param  mixed $xValue The value to be inserted.
+     * @param  map $map The map to be modified.
+     * @param  mixed $value The value to be inserted.
      *
      * @return void
      */
 
-    public static function insertValue (&$rmMap, $xValue)
+    public static function insertValue (&$map, $value)
     {
-        assert( 'is_cmap($rmMap)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cmap($map)', vs(isset($this), get_defined_vars()) );
 
-        if ( is_array($rmMap) )
+        if ( is_array($map) )
         {
-            array_push($rmMap, $xValue);
+            array_push($map, $value);
         }
         else  // CMapObject
         {
-            $rmPArray = &$rmMap->toPArray();
-            array_push($rmPArray, $xValue);
+            $pArray = &$map->toPArray();
+            array_push($pArray, $value);
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function recurseMergingMaps (&$rmThisMap, $mThatMap)
+    protected static function recurseMergingMaps (&$thisMap, $thatMap)
     {
-        if ( !is_array($rmThisMap) )
+        if ( !is_array($thisMap) )
         {
-            $rmThisMap = &$rmThisMap->toPArray();
+            $thisMap = &$thisMap->toPArray();
         }
-        $mThatMap = parray($mThatMap);
-        foreach ($mThatMap as $xThatKey => $xThatValue)
+        $thatMap = parray($thatMap);
+        foreach ($thatMap as $thatKey => $thatValue)
         {
-            $bGoDeeper = false;
-            $rxThisValue;
-            if ( is_cmap($xThatValue) && self::hasKey($rmThisMap, $xThatKey) )
+            $goDeeper = false;
+            $thisValue;
+            if ( is_cmap($thatValue) && self::hasKey($thisMap, $thatKey) )
             {
-                $rxThisValue = &$rmThisMap[$xThatKey];
-                if ( is_cmap($rxThisValue) )
+                $thisValue = &$thisMap[$thatKey];
+                if ( is_cmap($thisValue) )
                 {
-                    $bGoDeeper = true;
+                    $goDeeper = true;
                 }
             }
-            if ( $bGoDeeper )
+            if ( $goDeeper )
             {
-                self::recurseMergingMaps($rxThisValue, $xThatValue);
+                self::recurseMergingMaps($thisValue, $thatValue);
             }
             else
             {
-                $rmThisMap[$xThatKey] = $xThatValue;
+                $thisMap[$thatKey] = $thatValue;
             }
         }
     }

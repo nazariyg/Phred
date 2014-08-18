@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * @ignore
  */
@@ -9,704 +10,704 @@ class CInputFilterTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testMake ()
     {
-        $oFilter = new CInputFilter(CInputFilter::BOOL);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("1", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === true );
+        $filter = new CInputFilter(CInputFilter::BOOL);
+        $success;
+        $filteredValue = $filter->filter("1", $success);
+        $this->assertTrue( $success && $filteredValue === true );
 
-        $oFilter = new CInputFilter(CInputFilter::BOOL);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" on ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === true );
+        $filter = new CInputFilter(CInputFilter::BOOL);
+        $success;
+        $filteredValue = $filter->filter(" on ", $success);
+        $this->assertTrue( $success && $filteredValue === true );
 
-        $oFilter = new CInputFilter(CInputFilter::BOOL);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" no ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === false );
+        $filter = new CInputFilter(CInputFilter::BOOL);
+        $success;
+        $filteredValue = $filter->filter(" no ", $success);
+        $this->assertTrue( $success && $filteredValue === false );
 
-        $oFilter = new CInputFilter(CInputFilter::BOOL);
-        $oFilter->setDefault(true);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("hello", $bSuccess);
-        $this->assertTrue( !$bSuccess && $xFilteredValue === true );
+        $filter = new CInputFilter(CInputFilter::BOOL);
+        $filter->setDefault(true);
+        $success;
+        $filteredValue = $filter->filter("hello", $success);
+        $this->assertTrue( !$success && $filteredValue === true );
 
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1234 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 1234 );
+        $filter = new CInputFilter(CInputFilter::INT);
+        $success;
+        $filteredValue = $filter->filter(" 1234 ", $success);
+        $this->assertTrue( $success && $filteredValue === 1234 );
 
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $oFilter->setDefault(5678);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("hello", $bSuccess);
-        $this->assertTrue( !$bSuccess && $xFilteredValue === 5678 );
+        $filter = new CInputFilter(CInputFilter::INT);
+        $filter->setDefault(5678);
+        $success;
+        $filteredValue = $filter->filter("hello", $success);
+        $this->assertTrue( !$success && $filteredValue === 5678 );
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 12.34 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 12.34 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $success;
+        $filteredValue = $filter->filter(" 12.34 ", $success);
+        $this->assertTrue( $success && $filteredValue === 12.34 );
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1.234e1 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 12.34 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $success;
+        $filteredValue = $filter->filter(" 1.234e1 ", $success);
+        $this->assertTrue( $success && $filteredValue === 12.34 );
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $oFilter->setDefault(56.78);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("hello", $bSuccess);
-        $this->assertTrue( !$bSuccess && $xFilteredValue === 56.78 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $filter->setDefault(56.78);
+        $success;
+        $filteredValue = $filter->filter("hello", $success);
+        $this->assertTrue( !$success && $filteredValue === 56.78 );
 
-        $oFilter = new CInputFilter(CInputFilter::CSTRING);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("hello", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("hello") );
+        $filter = new CInputFilter(CInputFilter::CSTRING);
+        $success;
+        $filteredValue = $filter->filter("hello", $success);
+        $this->assertTrue( $success && $filteredValue->equals("hello") );
 
-        $oFilter = new CInputFilter(CInputFilter::CSTRING);
-        $oFilter->setDefault("default");
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("ブリテネイ スペアルス", $bSuccess);
-        $this->assertTrue( !$bSuccess && $xFilteredValue->equals("default") );
+        $filter = new CInputFilter(CInputFilter::CSTRING);
+        $filter->setDefault("default");
+        $success;
+        $filteredValue = $filter->filter("ブリテネイ スペアルス", $success);
+        $this->assertTrue( !$success && $filteredValue->equals("default") );
 
-        $oFilter = new CInputFilter(CInputFilter::CUSTRING);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("ブリテネイ スペアルス", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("ブリテネイ スペアルス") );
+        $filter = new CInputFilter(CInputFilter::CUSTRING);
+        $success;
+        $filteredValue = $filter->filter("ブリテネイ スペアルス", $success);
+        $this->assertTrue( $success && $filteredValue->equals("ブリテネイ スペアルス") );
 
-        $oFilter = new CInputFilter(CInputFilter::CUSTRING);
-        $oFilter->setDefault("deƒault");
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("\xFF", $bSuccess);
-        $this->assertTrue( !$bSuccess && $xFilteredValue->equals("deƒault") );
+        $filter = new CInputFilter(CInputFilter::CUSTRING);
+        $filter->setDefault("deƒault");
+        $success;
+        $filteredValue = $filter->filter("\xFF", $success);
+        $this->assertTrue( !$success && $filteredValue->equals("deƒault") );
 
-        $oFilter = new CInputFilter(CInputFilter::EMAIL);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" user@example.com ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("user@example.com") );
+        $filter = new CInputFilter(CInputFilter::EMAIL);
+        $success;
+        $filteredValue = $filter->filter(" user@example.com ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("user@example.com") );
 
-        $oFilter = new CInputFilter(CInputFilter::EMAIL);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("user@@example.com", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::EMAIL);
+        $success;
+        $filteredValue = $filter->filter("user@@example.com", $success);
+        $this->assertFalse($success);
 
-        $oFilter = new CInputFilter(CInputFilter::URL);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" http://example.com ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("http://example.com") );
+        $filter = new CInputFilter(CInputFilter::URL);
+        $success;
+        $filteredValue = $filter->filter(" http://example.com ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("http://example.com") );
 
-        $oFilter = new CInputFilter(CInputFilter::URL);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("Not a URL", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::URL);
+        $success;
+        $filteredValue = $filter->filter("Not a URL", $success);
+        $this->assertFalse($success);
 
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 93.184.216.119 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("93.184.216.119") );
+        $filter = new CInputFilter(CInputFilter::IP);
+        $success;
+        $filteredValue = $filter->filter(" 93.184.216.119 ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("93.184.216.119") );
 
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("Not an IP", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::IP);
+        $success;
+        $filteredValue = $filter->filter("Not an IP", $success);
+        $this->assertFalse($success);
 
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $oFilter->setIpV4OrV6(true);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 0:0:0:0:0:FFFF:5DB8:D877 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("0:0:0:0:0:FFFF:5DB8:D877") );
+        $filter = new CInputFilter(CInputFilter::IP);
+        $filter->setIpV4OrV6(true);
+        $success;
+        $filteredValue = $filter->filter(" 0:0:0:0:0:FFFF:5DB8:D877 ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("0:0:0:0:0:FFFF:5DB8:D877") );
 
-        $oFilter = new CInputFilter(CInputFilter::CARRAY,
+        $filter = new CInputFilter(CInputFilter::CARRAY,
             a(new CInputFilter(CInputFilter::BOOL), new CInputFilter(CInputFilter::INT)));
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(a(" on ", " 1234 "), $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals(a(true, 1234)) );
+        $success;
+        $filteredValue = $filter->filter(a(" on ", " 1234 "), $success);
+        $this->assertTrue( $success && $filteredValue->equals(a(true, 1234)) );
 
-        $oFilter = new CInputFilter(CInputFilter::CARRAY,
+        $filter = new CInputFilter(CInputFilter::CARRAY,
             a(new CInputFilter(CInputFilter::BOOL), new CInputFilter(CInputFilter::INT)));
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(a(" on ", " 12.34 "), $bSuccess);
-        $this->assertFalse($bSuccess);
+        $success;
+        $filteredValue = $filter->filter(a(" on ", " 12.34 "), $success);
+        $this->assertFalse($success);
 
-        $oFilter = new CInputFilter(CInputFilter::CMAP,
+        $filter = new CInputFilter(CInputFilter::CMAP,
             m(["key0" => new CInputFilter(CInputFilter::BOOL), "key1" => new CInputFilter(CInputFilter::INT)]));
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(m(["key0" => " on ", "key1" => " 1234 "]), $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals(m(["key0" => true, "key1" => 1234])) );
+        $success;
+        $filteredValue = $filter->filter(m(["key0" => " on ", "key1" => " 1234 "]), $success);
+        $this->assertTrue( $success && $filteredValue->equals(m(["key0" => true, "key1" => 1234])) );
 
-        $oFilter = new CInputFilter(CInputFilter::CMAP,
+        $filter = new CInputFilter(CInputFilter::CMAP,
             m(["key0" => new CInputFilter(CInputFilter::BOOL), "key1" => new CInputFilter(CInputFilter::INT)]));
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(m(["key0" => " on ", "hello" => " 1234 "]), $bSuccess);
-        $this->assertFalse($bSuccess);
+        $success;
+        $filteredValue = $filter->filter(m(["key0" => " on ", "hello" => " 1234 "]), $success);
+        $this->assertFalse($success);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetDefault ()
     {
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $oFilter->setDefault(56.78);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("hello", $bSuccess);
-        $this->assertTrue( !$bSuccess && $xFilteredValue === 56.78 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $filter->setDefault(56.78);
+        $success;
+        $filteredValue = $filter->filter("hello", $success);
+        $this->assertTrue( !$success && $filteredValue === 56.78 );
 
-        $oFilter = new CInputFilter(CInputFilter::CSTRING);
-        $oFilter->setDefault("default");
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("ブリテネイ スペアルス", $bSuccess);
-        $this->assertTrue( !$bSuccess && $xFilteredValue->equals("default") );
+        $filter = new CInputFilter(CInputFilter::CSTRING);
+        $filter->setDefault("default");
+        $success;
+        $filteredValue = $filter->filter("ブリテネイ スペアルス", $success);
+        $this->assertTrue( !$success && $filteredValue->equals("default") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testExpectedType ()
     {
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $this->assertTrue( $oFilter->expectedType() == CInputFilter::FLOAT );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $this->assertTrue( $filter->expectedType() == CInputFilter::FLOAT );
 
-        $oFilter = new CInputFilter(CInputFilter::CUSTRING);
-        $this->assertTrue( $oFilter->expectedType() == CInputFilter::CUSTRING );
+        $filter = new CInputFilter(CInputFilter::CUSTRING);
+        $this->assertTrue( $filter->expectedType() == CInputFilter::CUSTRING );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testDefaultValue ()
     {
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $oFilter->setDefault(56.78);
-        $this->assertTrue( $oFilter->defaultValue() === 56.78 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $filter->setDefault(56.78);
+        $this->assertTrue( $filter->defaultValue() === 56.78 );
 
-        $oFilter = new CInputFilter(CInputFilter::CSTRING);
-        $oFilter->setDefault("default");
-        $this->assertTrue($oFilter->defaultValue()->equals("default"));
+        $filter = new CInputFilter(CInputFilter::CSTRING);
+        $filter->setDefault("default");
+        $this->assertTrue($filter->defaultValue()->equals("default"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetValidMin ()
     {
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $oFilter->setValidMin(1000);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1234 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 1234 );
+        $filter = new CInputFilter(CInputFilter::INT);
+        $filter->setValidMin(1000);
+        $success;
+        $filteredValue = $filter->filter(" 1234 ", $success);
+        $this->assertTrue( $success && $filteredValue === 1234 );
 
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $oFilter->setValidMin(2000);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1234 ", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::INT);
+        $filter->setValidMin(2000);
+        $success;
+        $filteredValue = $filter->filter(" 1234 ", $success);
+        $this->assertFalse($success);
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $oFilter->setValidMin(10.0);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 12.34 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 12.34 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $filter->setValidMin(10.0);
+        $success;
+        $filteredValue = $filter->filter(" 12.34 ", $success);
+        $this->assertTrue( $success && $filteredValue === 12.34 );
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $oFilter->setValidMin(20.0);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 12.34 ", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $filter->setValidMin(20.0);
+        $success;
+        $filteredValue = $filter->filter(" 12.34 ", $success);
+        $this->assertFalse($success);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetValidMax ()
     {
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $oFilter->setValidMax(2000);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1234 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 1234 );
+        $filter = new CInputFilter(CInputFilter::INT);
+        $filter->setValidMax(2000);
+        $success;
+        $filteredValue = $filter->filter(" 1234 ", $success);
+        $this->assertTrue( $success && $filteredValue === 1234 );
 
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $oFilter->setValidMax(1000);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1234 ", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::INT);
+        $filter->setValidMax(1000);
+        $success;
+        $filteredValue = $filter->filter(" 1234 ", $success);
+        $this->assertFalse($success);
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $oFilter->setValidMax(20.0);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 12.34 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 12.34 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $filter->setValidMax(20.0);
+        $success;
+        $filteredValue = $filter->filter(" 12.34 ", $success);
+        $this->assertTrue( $success && $filteredValue === 12.34 );
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $oFilter->setValidMax(10.0);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 12.34 ", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $filter->setValidMax(10.0);
+        $success;
+        $filteredValue = $filter->filter(" 12.34 ", $success);
+        $this->assertFalse($success);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetValidMinMax ()
     {
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $oFilter->setValidMinMax(1000, 2000);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1234 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 1234 );
+        $filter = new CInputFilter(CInputFilter::INT);
+        $filter->setValidMinMax(1000, 2000);
+        $success;
+        $filteredValue = $filter->filter(" 1234 ", $success);
+        $this->assertTrue( $success && $filteredValue === 1234 );
 
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $oFilter->setValidMinMax(2000, 3000);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1234 ", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::INT);
+        $filter->setValidMinMax(2000, 3000);
+        $success;
+        $filteredValue = $filter->filter(" 1234 ", $success);
+        $this->assertFalse($success);
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $oFilter->setValidMinMax(10.0, 20.0);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 12.34 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 12.34 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $filter->setValidMinMax(10.0, 20.0);
+        $success;
+        $filteredValue = $filter->filter(" 12.34 ", $success);
+        $this->assertTrue( $success && $filteredValue === 12.34 );
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $oFilter->setValidMinMax(20.0, 30.0);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 12.34 ", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $filter->setValidMinMax(20.0, 30.0);
+        $success;
+        $filteredValue = $filter->filter(" 12.34 ", $success);
+        $this->assertFalse($success);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetAllowLeadingZeros ()
     {
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1234 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 1234 );
+        $filter = new CInputFilter(CInputFilter::INT);
+        $success;
+        $filteredValue = $filter->filter(" 1234 ", $success);
+        $this->assertTrue( $success && $filteredValue === 1234 );
 
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $oFilter->setAllowLeadingZeros(false);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 01234 ", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::INT);
+        $filter->setAllowLeadingZeros(false);
+        $success;
+        $filteredValue = $filter->filter(" 01234 ", $success);
+        $this->assertFalse($success);
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 12.34 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 12.34 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $success;
+        $filteredValue = $filter->filter(" 12.34 ", $success);
+        $this->assertTrue( $success && $filteredValue === 12.34 );
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $oFilter->setAllowLeadingZeros(false);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 012.34 ", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $filter->setAllowLeadingZeros(false);
+        $success;
+        $filteredValue = $filter->filter(" 012.34 ", $success);
+        $this->assertFalse($success);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetAllowComma ()
     {
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1,234 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 1234 );
+        $filter = new CInputFilter(CInputFilter::INT);
+        $success;
+        $filteredValue = $filter->filter(" 1,234 ", $success);
+        $this->assertTrue( $success && $filteredValue === 1234 );
 
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $oFilter->setAllowComma(false);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1,234 ", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::INT);
+        $filter->setAllowComma(false);
+        $success;
+        $filteredValue = $filter->filter(" 1,234 ", $success);
+        $this->assertFalse($success);
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1,234.5 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 1234.5 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $success;
+        $filteredValue = $filter->filter(" 1,234.5 ", $success);
+        $this->assertTrue( $success && $filteredValue === 1234.5 );
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $oFilter->setAllowComma(false);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1,234.5 ", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $filter->setAllowComma(false);
+        $success;
+        $filteredValue = $filter->filter(" 1,234.5 ", $success);
+        $this->assertFalse($success);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetIgnoreProtocolAbsence ()
     {
-        $oFilter = new CInputFilter(CInputFilter::URL);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" example.com ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("http://example.com") );
+        $filter = new CInputFilter(CInputFilter::URL);
+        $success;
+        $filteredValue = $filter->filter(" example.com ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("http://example.com") );
 
-        $oFilter = new CInputFilter(CInputFilter::URL);
-        $oFilter->setIgnoreProtocolAbsence(false);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" example.com ", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::URL);
+        $filter->setIgnoreProtocolAbsence(false);
+        $success;
+        $filteredValue = $filter->filter(" example.com ", $success);
+        $this->assertFalse($success);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetAllowHex ()
     {
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 0x80 ", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::INT);
+        $success;
+        $filteredValue = $filter->filter(" 0x80 ", $success);
+        $this->assertFalse($success);
 
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $oFilter->setAllowHex(true);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 0x100 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 256 );
+        $filter = new CInputFilter(CInputFilter::INT);
+        $filter->setAllowHex(true);
+        $success;
+        $filteredValue = $filter->filter(" 0x100 ", $success);
+        $this->assertTrue( $success && $filteredValue === 256 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetIpV6 ()
     {
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 93.184.216.119 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("93.184.216.119") );
+        $filter = new CInputFilter(CInputFilter::IP);
+        $success;
+        $filteredValue = $filter->filter(" 93.184.216.119 ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("93.184.216.119") );
 
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 0:0:0:0:0:FFFF:5DB8:D877 ", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::IP);
+        $success;
+        $filteredValue = $filter->filter(" 0:0:0:0:0:FFFF:5DB8:D877 ", $success);
+        $this->assertFalse($success);
 
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $oFilter->setIpV6(true);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 93.184.216.119 ", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::IP);
+        $filter->setIpV6(true);
+        $success;
+        $filteredValue = $filter->filter(" 93.184.216.119 ", $success);
+        $this->assertFalse($success);
 
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $oFilter->setIpV6(true);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 0:0:0:0:0:FFFF:5DB8:D877 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("0:0:0:0:0:FFFF:5DB8:D877") );
+        $filter = new CInputFilter(CInputFilter::IP);
+        $filter->setIpV6(true);
+        $success;
+        $filteredValue = $filter->filter(" 0:0:0:0:0:FFFF:5DB8:D877 ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("0:0:0:0:0:FFFF:5DB8:D877") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetIpV4OrV6 ()
     {
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 93.184.216.119 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("93.184.216.119") );
+        $filter = new CInputFilter(CInputFilter::IP);
+        $success;
+        $filteredValue = $filter->filter(" 93.184.216.119 ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("93.184.216.119") );
 
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 0:0:0:0:0:FFFF:5DB8:D877 ", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::IP);
+        $success;
+        $filteredValue = $filter->filter(" 0:0:0:0:0:FFFF:5DB8:D877 ", $success);
+        $this->assertFalse($success);
 
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $oFilter->setIpV4OrV6(true);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 93.184.216.119 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("93.184.216.119") );
+        $filter = new CInputFilter(CInputFilter::IP);
+        $filter->setIpV4OrV6(true);
+        $success;
+        $filteredValue = $filter->filter(" 93.184.216.119 ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("93.184.216.119") );
 
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $oFilter->setIpV4OrV6(true);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 0:0:0:0:0:FFFF:5DB8:D877 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("0:0:0:0:0:FFFF:5DB8:D877") );
+        $filter = new CInputFilter(CInputFilter::IP);
+        $filter->setIpV4OrV6(true);
+        $success;
+        $filteredValue = $filter->filter(" 0:0:0:0:0:FFFF:5DB8:D877 ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("0:0:0:0:0:FFFF:5DB8:D877") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetAllowPrivateRange ()
     {
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 10.0.0.0 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("10.0.0.0") );
+        $filter = new CInputFilter(CInputFilter::IP);
+        $success;
+        $filteredValue = $filter->filter(" 10.0.0.0 ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("10.0.0.0") );
 
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $oFilter->setAllowPrivateRange(false);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 10.0.0.0 ", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::IP);
+        $filter->setAllowPrivateRange(false);
+        $success;
+        $filteredValue = $filter->filter(" 10.0.0.0 ", $success);
+        $this->assertFalse($success);
 
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $oFilter->setIpV6(true);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" FD:0:0:0:0:FFFF:5DB8:D877 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("FD:0:0:0:0:FFFF:5DB8:D877") );
+        $filter = new CInputFilter(CInputFilter::IP);
+        $filter->setIpV6(true);
+        $success;
+        $filteredValue = $filter->filter(" FD:0:0:0:0:FFFF:5DB8:D877 ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("FD:0:0:0:0:FFFF:5DB8:D877") );
 
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $oFilter->setIpV6(true);
-        $oFilter->setAllowPrivateRange(false);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" FD:0:0:0:0:FFFF:5DB8:D877 ", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::IP);
+        $filter->setIpV6(true);
+        $filter->setAllowPrivateRange(false);
+        $success;
+        $filteredValue = $filter->filter(" FD:0:0:0:0:FFFF:5DB8:D877 ", $success);
+        $this->assertFalse($success);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetAllowReservedRange ()
     {
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 224.0.0.0 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("224.0.0.0") );
+        $filter = new CInputFilter(CInputFilter::IP);
+        $success;
+        $filteredValue = $filter->filter(" 224.0.0.0 ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("224.0.0.0") );
 
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $oFilter->setAllowReservedRange(false);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 224.0.0.0 ", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::IP);
+        $filter->setAllowReservedRange(false);
+        $success;
+        $filteredValue = $filter->filter(" 224.0.0.0 ", $success);
+        $this->assertFalse($success);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetClampingMin ()
     {
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $oFilter->setClampingMin(1000);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1234 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 1234 );
+        $filter = new CInputFilter(CInputFilter::INT);
+        $filter->setClampingMin(1000);
+        $success;
+        $filteredValue = $filter->filter(" 1234 ", $success);
+        $this->assertTrue( $success && $filteredValue === 1234 );
 
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $oFilter->setClampingMin(2000);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1234 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 2000 );
+        $filter = new CInputFilter(CInputFilter::INT);
+        $filter->setClampingMin(2000);
+        $success;
+        $filteredValue = $filter->filter(" 1234 ", $success);
+        $this->assertTrue( $success && $filteredValue === 2000 );
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $oFilter->setClampingMin(10.0);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 12.34 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 12.34 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $filter->setClampingMin(10.0);
+        $success;
+        $filteredValue = $filter->filter(" 12.34 ", $success);
+        $this->assertTrue( $success && $filteredValue === 12.34 );
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $oFilter->setClampingMin(20.0);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 12.34 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 20.0 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $filter->setClampingMin(20.0);
+        $success;
+        $filteredValue = $filter->filter(" 12.34 ", $success);
+        $this->assertTrue( $success && $filteredValue === 20.0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetClampingMax ()
     {
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $oFilter->setClampingMax(2000);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1234 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 1234 );
+        $filter = new CInputFilter(CInputFilter::INT);
+        $filter->setClampingMax(2000);
+        $success;
+        $filteredValue = $filter->filter(" 1234 ", $success);
+        $this->assertTrue( $success && $filteredValue === 1234 );
 
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $oFilter->setClampingMax(1000);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1234 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 1000 );
+        $filter = new CInputFilter(CInputFilter::INT);
+        $filter->setClampingMax(1000);
+        $success;
+        $filteredValue = $filter->filter(" 1234 ", $success);
+        $this->assertTrue( $success && $filteredValue === 1000 );
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $oFilter->setClampingMax(20.0);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 12.34 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 12.34 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $filter->setClampingMax(20.0);
+        $success;
+        $filteredValue = $filter->filter(" 12.34 ", $success);
+        $this->assertTrue( $success && $filteredValue === 12.34 );
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $oFilter->setClampingMax(10.0);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 12.34 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 10.0 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $filter->setClampingMax(10.0);
+        $success;
+        $filteredValue = $filter->filter(" 12.34 ", $success);
+        $this->assertTrue( $success && $filteredValue === 10.0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetClampingMinMax ()
     {
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $oFilter->setClampingMinMax(1000, 2000);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1234 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 1234 );
+        $filter = new CInputFilter(CInputFilter::INT);
+        $filter->setClampingMinMax(1000, 2000);
+        $success;
+        $filteredValue = $filter->filter(" 1234 ", $success);
+        $this->assertTrue( $success && $filteredValue === 1234 );
 
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $oFilter->setClampingMinMax(2000, 3000);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1234 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 2000 );
+        $filter = new CInputFilter(CInputFilter::INT);
+        $filter->setClampingMinMax(2000, 3000);
+        $success;
+        $filteredValue = $filter->filter(" 1234 ", $success);
+        $this->assertTrue( $success && $filteredValue === 2000 );
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $oFilter->setClampingMinMax(10.0, 20.0);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 12.34 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 12.34 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $filter->setClampingMinMax(10.0, 20.0);
+        $success;
+        $filteredValue = $filter->filter(" 12.34 ", $success);
+        $this->assertTrue( $success && $filteredValue === 12.34 );
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $oFilter->setClampingMinMax(20.0, 30.0);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 12.34 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 20.0 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $filter->setClampingMinMax(20.0, 30.0);
+        $success;
+        $filteredValue = $filter->filter(" 12.34 ", $success);
+        $this->assertTrue( $success && $filteredValue === 20.0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetKeepAbnormalNewlines ()
     {
-        $oFilter = new CInputFilter(CInputFilter::CUSTRING);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("Hello\r\nthere!\n", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("Hello\nthere!\n") );
+        $filter = new CInputFilter(CInputFilter::CUSTRING);
+        $success;
+        $filteredValue = $filter->filter("Hello\r\nthere!\n", $success);
+        $this->assertTrue( $success && $filteredValue->equals("Hello\nthere!\n") );
 
-        $oFilter = new CInputFilter(CInputFilter::CUSTRING);
-        $oFilter->setKeepAbnormalNewlines(true);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("Hello\r\nthere!\n", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("Hello\r\nthere!\n") );
+        $filter = new CInputFilter(CInputFilter::CUSTRING);
+        $filter->setKeepAbnormalNewlines(true);
+        $success;
+        $filteredValue = $filter->filter("Hello\r\nthere!\n", $success);
+        $this->assertTrue( $success && $filteredValue->equals("Hello\r\nthere!\n") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetKeepNonPrintable ()
     {
-        $oFilter = new CInputFilter(CInputFilter::CUSTRING);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("\x00Hello there!", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("Hello there!") );
+        $filter = new CInputFilter(CInputFilter::CUSTRING);
+        $success;
+        $filteredValue = $filter->filter("\x00Hello there!", $success);
+        $this->assertTrue( $success && $filteredValue->equals("Hello there!") );
 
-        $oFilter = new CInputFilter(CInputFilter::CUSTRING);
-        $oFilter->setKeepNonPrintable(true);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("\x00Hello there!", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("\x00Hello there!") );
+        $filter = new CInputFilter(CInputFilter::CUSTRING);
+        $filter->setKeepNonPrintable(true);
+        $success;
+        $filteredValue = $filter->filter("\x00Hello there!", $success);
+        $this->assertTrue( $success && $filteredValue->equals("\x00Hello there!") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetKeepTabsAndNewlines ()
     {
-        $oFilter = new CInputFilter(CInputFilter::CUSTRING);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("Hello\tthere!\n", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("Hello\tthere!\n") );
+        $filter = new CInputFilter(CInputFilter::CUSTRING);
+        $success;
+        $filteredValue = $filter->filter("Hello\tthere!\n", $success);
+        $this->assertTrue( $success && $filteredValue->equals("Hello\tthere!\n") );
 
-        $oFilter = new CInputFilter(CInputFilter::CUSTRING);
-        $oFilter->setKeepTabsAndNewlines(false);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("Hello\tthere!\n", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("Hellothere!") );
+        $filter = new CInputFilter(CInputFilter::CUSTRING);
+        $filter->setKeepTabsAndNewlines(false);
+        $success;
+        $filteredValue = $filter->filter("Hello\tthere!\n", $success);
+        $this->assertTrue( $success && $filteredValue->equals("Hellothere!") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetKeepSideSpacing ()
     {
-        $oFilter = new CInputFilter(CInputFilter::CUSTRING);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" Hello  there! ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals(" Hello  there! ") );
+        $filter = new CInputFilter(CInputFilter::CUSTRING);
+        $success;
+        $filteredValue = $filter->filter(" Hello  there! ", $success);
+        $this->assertTrue( $success && $filteredValue->equals(" Hello  there! ") );
 
-        $oFilter = new CInputFilter(CInputFilter::CUSTRING);
-        $oFilter->setKeepSideSpacing(false);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" Hello  there! ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("Hello  there!") );
+        $filter = new CInputFilter(CInputFilter::CUSTRING);
+        $filter->setKeepSideSpacing(false);
+        $success;
+        $filteredValue = $filter->filter(" Hello  there! ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("Hello  there!") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetKeepExtraSpacing ()
     {
-        $oFilter = new CInputFilter(CInputFilter::CUSTRING);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" Hello  there! ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals(" Hello  there! ") );
+        $filter = new CInputFilter(CInputFilter::CUSTRING);
+        $success;
+        $filteredValue = $filter->filter(" Hello  there! ", $success);
+        $this->assertTrue( $success && $filteredValue->equals(" Hello  there! ") );
 
-        $oFilter = new CInputFilter(CInputFilter::CUSTRING);
-        $oFilter->setKeepExtraSpacing(false);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" Hello  there! ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("Hello there!") );
+        $filter = new CInputFilter(CInputFilter::CUSTRING);
+        $filter->setKeepExtraSpacing(false);
+        $success;
+        $filteredValue = $filter->filter(" Hello  there! ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("Hello there!") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFilter ()
     {
-        $oFilter = new CInputFilter(CInputFilter::BOOL);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("1", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === true );
+        $filter = new CInputFilter(CInputFilter::BOOL);
+        $success;
+        $filteredValue = $filter->filter("1", $success);
+        $this->assertTrue( $success && $filteredValue === true );
 
-        $oFilter = new CInputFilter(CInputFilter::BOOL);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" on ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === true );
+        $filter = new CInputFilter(CInputFilter::BOOL);
+        $success;
+        $filteredValue = $filter->filter(" on ", $success);
+        $this->assertTrue( $success && $filteredValue === true );
 
-        $oFilter = new CInputFilter(CInputFilter::BOOL);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" no ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === false );
+        $filter = new CInputFilter(CInputFilter::BOOL);
+        $success;
+        $filteredValue = $filter->filter(" no ", $success);
+        $this->assertTrue( $success && $filteredValue === false );
 
-        $oFilter = new CInputFilter(CInputFilter::BOOL);
-        $oFilter->setDefault(true);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("hello", $bSuccess);
-        $this->assertTrue( !$bSuccess && $xFilteredValue === true );
+        $filter = new CInputFilter(CInputFilter::BOOL);
+        $filter->setDefault(true);
+        $success;
+        $filteredValue = $filter->filter("hello", $success);
+        $this->assertTrue( !$success && $filteredValue === true );
 
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1234 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 1234 );
+        $filter = new CInputFilter(CInputFilter::INT);
+        $success;
+        $filteredValue = $filter->filter(" 1234 ", $success);
+        $this->assertTrue( $success && $filteredValue === 1234 );
 
-        $oFilter = new CInputFilter(CInputFilter::INT);
-        $oFilter->setDefault(5678);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("hello", $bSuccess);
-        $this->assertTrue( !$bSuccess && $xFilteredValue === 5678 );
+        $filter = new CInputFilter(CInputFilter::INT);
+        $filter->setDefault(5678);
+        $success;
+        $filteredValue = $filter->filter("hello", $success);
+        $this->assertTrue( !$success && $filteredValue === 5678 );
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 12.34 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 12.34 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $success;
+        $filteredValue = $filter->filter(" 12.34 ", $success);
+        $this->assertTrue( $success && $filteredValue === 12.34 );
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 1.234e1 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue === 12.34 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $success;
+        $filteredValue = $filter->filter(" 1.234e1 ", $success);
+        $this->assertTrue( $success && $filteredValue === 12.34 );
 
-        $oFilter = new CInputFilter(CInputFilter::FLOAT);
-        $oFilter->setDefault(56.78);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("hello", $bSuccess);
-        $this->assertTrue( !$bSuccess && $xFilteredValue === 56.78 );
+        $filter = new CInputFilter(CInputFilter::FLOAT);
+        $filter->setDefault(56.78);
+        $success;
+        $filteredValue = $filter->filter("hello", $success);
+        $this->assertTrue( !$success && $filteredValue === 56.78 );
 
-        $oFilter = new CInputFilter(CInputFilter::CSTRING);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("hello", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("hello") );
+        $filter = new CInputFilter(CInputFilter::CSTRING);
+        $success;
+        $filteredValue = $filter->filter("hello", $success);
+        $this->assertTrue( $success && $filteredValue->equals("hello") );
 
-        $oFilter = new CInputFilter(CInputFilter::CSTRING);
-        $oFilter->setDefault("default");
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("ブリテネイ スペアルス", $bSuccess);
-        $this->assertTrue( !$bSuccess && $xFilteredValue->equals("default") );
+        $filter = new CInputFilter(CInputFilter::CSTRING);
+        $filter->setDefault("default");
+        $success;
+        $filteredValue = $filter->filter("ブリテネイ スペアルス", $success);
+        $this->assertTrue( !$success && $filteredValue->equals("default") );
 
-        $oFilter = new CInputFilter(CInputFilter::CUSTRING);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("ブリテネイ スペアルス", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("ブリテネイ スペアルス") );
+        $filter = new CInputFilter(CInputFilter::CUSTRING);
+        $success;
+        $filteredValue = $filter->filter("ブリテネイ スペアルス", $success);
+        $this->assertTrue( $success && $filteredValue->equals("ブリテネイ スペアルス") );
 
-        $oFilter = new CInputFilter(CInputFilter::CUSTRING);
-        $oFilter->setDefault("deƒault");
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("\xFF", $bSuccess);
-        $this->assertTrue( !$bSuccess && $xFilteredValue->equals("deƒault") );
+        $filter = new CInputFilter(CInputFilter::CUSTRING);
+        $filter->setDefault("deƒault");
+        $success;
+        $filteredValue = $filter->filter("\xFF", $success);
+        $this->assertTrue( !$success && $filteredValue->equals("deƒault") );
 
-        $oFilter = new CInputFilter(CInputFilter::EMAIL);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" user@example.com ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("user@example.com") );
+        $filter = new CInputFilter(CInputFilter::EMAIL);
+        $success;
+        $filteredValue = $filter->filter(" user@example.com ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("user@example.com") );
 
-        $oFilter = new CInputFilter(CInputFilter::EMAIL);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("user@@example.com", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::EMAIL);
+        $success;
+        $filteredValue = $filter->filter("user@@example.com", $success);
+        $this->assertFalse($success);
 
-        $oFilter = new CInputFilter(CInputFilter::URL);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" http://example.com ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("http://example.com") );
+        $filter = new CInputFilter(CInputFilter::URL);
+        $success;
+        $filteredValue = $filter->filter(" http://example.com ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("http://example.com") );
 
-        $oFilter = new CInputFilter(CInputFilter::URL);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("Not a URL", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::URL);
+        $success;
+        $filteredValue = $filter->filter("Not a URL", $success);
+        $this->assertFalse($success);
 
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 93.184.216.119 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("93.184.216.119") );
+        $filter = new CInputFilter(CInputFilter::IP);
+        $success;
+        $filteredValue = $filter->filter(" 93.184.216.119 ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("93.184.216.119") );
 
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter("Not an IP", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $filter = new CInputFilter(CInputFilter::IP);
+        $success;
+        $filteredValue = $filter->filter("Not an IP", $success);
+        $this->assertFalse($success);
 
-        $oFilter = new CInputFilter(CInputFilter::IP);
-        $oFilter->setIpV4OrV6(true);
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(" 0:0:0:0:0:FFFF:5DB8:D877 ", $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals("0:0:0:0:0:FFFF:5DB8:D877") );
+        $filter = new CInputFilter(CInputFilter::IP);
+        $filter->setIpV4OrV6(true);
+        $success;
+        $filteredValue = $filter->filter(" 0:0:0:0:0:FFFF:5DB8:D877 ", $success);
+        $this->assertTrue( $success && $filteredValue->equals("0:0:0:0:0:FFFF:5DB8:D877") );
 
-        $oFilter = new CInputFilter(CInputFilter::CARRAY,
+        $filter = new CInputFilter(CInputFilter::CARRAY,
             a(new CInputFilter(CInputFilter::BOOL), new CInputFilter(CInputFilter::INT)));
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(a(" on ", " 1234 "), $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals(a(true, 1234)) );
+        $success;
+        $filteredValue = $filter->filter(a(" on ", " 1234 "), $success);
+        $this->assertTrue( $success && $filteredValue->equals(a(true, 1234)) );
 
-        $oFilter = new CInputFilter(CInputFilter::CARRAY,
+        $filter = new CInputFilter(CInputFilter::CARRAY,
             a(new CInputFilter(CInputFilter::BOOL), new CInputFilter(CInputFilter::INT)));
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(a(" on ", " 12.34 "), $bSuccess);
-        $this->assertFalse($bSuccess);
+        $success;
+        $filteredValue = $filter->filter(a(" on ", " 12.34 "), $success);
+        $this->assertFalse($success);
 
-        $oFilter = new CInputFilter(CInputFilter::CMAP,
+        $filter = new CInputFilter(CInputFilter::CMAP,
             m(["key0" => new CInputFilter(CInputFilter::BOOL), "key1" => new CInputFilter(CInputFilter::INT)]));
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(m(["key0" => " on ", "key1" => " 1234 "]), $bSuccess);
-        $this->assertTrue( $bSuccess && $xFilteredValue->equals(m(["key0" => true, "key1" => 1234])) );
+        $success;
+        $filteredValue = $filter->filter(m(["key0" => " on ", "key1" => " 1234 "]), $success);
+        $this->assertTrue( $success && $filteredValue->equals(m(["key0" => true, "key1" => 1234])) );
 
-        $oFilter = new CInputFilter(CInputFilter::CMAP,
+        $filter = new CInputFilter(CInputFilter::CMAP,
             m(["key0" => new CInputFilter(CInputFilter::BOOL), "key1" => new CInputFilter(CInputFilter::INT)]));
-        $bSuccess;
-        $xFilteredValue = $oFilter->filter(m(["key0" => " on ", "hello" => " 1234 "]), $bSuccess);
-        $this->assertFalse($bSuccess);
+        $success;
+        $filteredValue = $filter->filter(m(["key0" => " on ", "hello" => " 1234 "]), $success);
+        $this->assertFalse($success);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }

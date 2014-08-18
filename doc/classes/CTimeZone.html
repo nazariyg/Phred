@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1513507663"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-2054461599"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1513507663" class="accordion-body collapse in">
+            <div id="namespace-2054461599" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -293,7 +293,7 @@ that start with <code>REGION</code>.</p>
                                 <em>N/A</em>
                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/CTimeZone.html#property_m_oDtz" class="">$m_oDtz</a><br />
+                                                                    <a href="../classes/CTimeZone.html#property_m_dtz" class="">$m_dtz</a><br />
                                                             </section>
                         </section>
                         <section class="row-fluid private">
@@ -797,14 +797,14 @@ time if it's currently effective in the time zone.</p></td>
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (string&nbsp;<span class="argument">$sName</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (string&nbsp;<span class="argument">$name</span>)</pre>
                 <p><em><p>Creates a time zone with a specified name.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none">$name</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the time zone (case-sensitive).</p></td>
                             </tr>
@@ -912,20 +912,20 @@ needs to be shown on a screen, consider using <code>dispName</code> method inste
             <article class="method">
                 <h3 class="public ">dispName()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">dispName (<span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eStyle</span></span>, <span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$oInLocale</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">dispName (<span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$style</span></span>, <span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inLocale</span></span>) : OOPString</pre>
                 <p><em><p>Returns the human-readable name of a time zone, written in the language of a specified locale.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$eStyle</code> </td>
+                                <td><code style="border: none; background: none">$style</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>STYLE_LONG</code>. The display style of the name. The available styles
 are <code>STYLE_SHORT</code> and <code>STYLE_LONG</code>.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$oInLocale</code> </td>
+                                <td><code style="border: none; background: none">$inLocale</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CULocale.html">CULocale</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>the application's default locale</em>. The locale in which the
 name is to be displayed.</p></td>
@@ -1116,14 +1116,14 @@ time if it's currently effective in the time zone.</p></em></p>
             <article class="method">
                 <h3 class="public ">equals()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">equals (CTimeZone&nbsp;<span class="argument">$oToTimeZone</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">equals (CTimeZone&nbsp;<span class="argument">$toTimeZone</span>) : bool</pre>
                 <p><em><p>Determines if a time zone is equal to another time zone, comparing them by name.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$oToTimeZone</code> </td>
+                                <td><code style="border: none; background: none">$toTimeZone</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CTimeZone.html">CTimeZone</a></code></td>
                                 <td><p>The second time zone for comparison.</p></td>
                             </tr>
@@ -1160,14 +1160,14 @@ time if it's currently effective in the time zone.</p></em></p>
             <article class="method">
                 <h3 class="public ">dispEnRegion()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> dispEnRegion (enum&nbsp;<span class="argument">$eRegion</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> dispEnRegion (enum&nbsp;<span class="argument">$region</span>) : OOPString</pre>
                 <p><em><p>Returns the human-readable name of a time zone region, in English.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$eRegion</code> </td>
+                                <td><code style="border: none; background: none">$region</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p>The time zone region (see <a href="#summary">Summary</a>).</p></td>
                             </tr>
@@ -1318,14 +1318,14 @@ supported.</p>
             <article class="method">
                 <h3 class="public ">knownNamesForRegion()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> knownNamesForRegion (enum&nbsp;<span class="argument">$eRegion</span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> knownNamesForRegion (enum&nbsp;<span class="argument">$region</span>) : OOPArray</pre>
                 <p><em><p>Returns the names of the time zones that are known for a specified region.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$eRegion</code> </td>
+                                <td><code style="border: none; background: none">$region</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p>The time zone region (see <a href="#summary">Summary</a>).</p></td>
                             </tr>
@@ -1363,7 +1363,7 @@ supported.</p>
             <article class="method">
                 <h3 class="public ">knownNamesForCountry()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> knownNamesForCountry (string&nbsp;<span class="argument">$sCountryCode</span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> knownNamesForCountry (string&nbsp;<span class="argument">$countryCode</span>) : OOPArray</pre>
                 <p><em><p>Returns the names of the time zones that are known for a specified country.</p></em></p>
                 <p>If the country's code is not recognized for any reason, the entire list of the known time zone names is
 returned.</p>
@@ -1371,7 +1371,7 @@ returned.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sCountryCode</code> </td>
+                                <td><code style="border: none; background: none">$countryCode</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The two-letter code of the country, as provided by ISO 3166.</p></td>
                             </tr>
@@ -1409,14 +1409,14 @@ returned.</p>
             <article class="method">
                 <h3 class="public ">isNameKnown()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isNameKnown (string&nbsp;<span class="argument">$sName</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isNameKnown (string&nbsp;<span class="argument">$name</span>) : bool</pre>
                 <p><em><p>Determines if a time zone name is a known one.</p></em></p>
                 <p>The method also searches among the backward compatible names.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none">$name</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The time zone name to be looked for (case-sensitive).</p></td>
                             </tr>
@@ -1455,14 +1455,14 @@ returned.</p>
             <article class="method">
                 <h3 class="protected ">makeEnName()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> makeEnName (&nbsp;<span class="argument">$sName</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> makeEnName (&nbsp;<span class="argument">$name</span>)</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none">$name</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
@@ -1502,10 +1502,10 @@ returned.</p>
 
                                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_oDtz" name="property_m_oDtz" class="anchor"></a>
+            <a id="property_m_dtz" name="property_m_dtz" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_oDtz</h3>
-                <pre class="signature">$m_oDtz</pre>
+                <h3 class="protected ">$m_dtz</h3>
+                <pre class="signature">$m_dtz</pre>
                 <p><em></em></p>
                 
 
@@ -1578,7 +1578,7 @@ returned.</p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * @ignore
  */
@@ -9,1081 +10,1081 @@ class CArrayObjectTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testMake ()
     {
-        $aArray = a();
-        $this->assertTrue( $aArray->length() == 0 );
+        $array = a();
+        $this->assertTrue( $array->length() == 0 );
 
-        $aArray = new CArrayObject();
-        $this->assertTrue( $aArray->length() == 0 );
-        $aArray = new CArrayObject(10);
-        $this->assertTrue( $aArray->length() == 10 );
+        $array = new CArrayObject();
+        $this->assertTrue( $array->length() == 0 );
+        $array = new CArrayObject(10);
+        $this->assertTrue( $array->length() == 10 );
 
-        $aArray = CArrayObject::makeDim2(2, 3);
+        $array = CArrayObject::makeDim2(2, 3);
         $this->assertTrue(
-            $aArray->length() == 2 &&
-            $aArray[0]->length() == 3 && $aArray[1]->length() == 3 );
+            $array->length() == 2 &&
+            $array[0]->length() == 3 && $array[1]->length() == 3 );
 
-        $aArray = CArrayObject::makeDim3(2, 3, 2);
+        $array = CArrayObject::makeDim3(2, 3, 2);
         $this->assertTrue(
-            $aArray->length() == 2 &&
-            $aArray[0]->length() == 3 && $aArray[1]->length() == 3 &&
-            $aArray[0][0]->length() == 2 && $aArray[0][1]->length() == 2 && $aArray[0][2]->length() == 2 );
+            $array->length() == 2 &&
+            $array[0]->length() == 3 && $array[1]->length() == 3 &&
+            $array[0][0]->length() == 2 && $array[0][1]->length() == 2 && $array[0][2]->length() == 2 );
 
-        $aArray = CArrayObject::makeDim4(2, 3, 2, 1);
+        $array = CArrayObject::makeDim4(2, 3, 2, 1);
         $this->assertTrue(
-            $aArray->length() == 2 &&
-            $aArray[0]->length() == 3 && $aArray[1]->length() == 3 &&
-            $aArray[0][0]->length() == 2 && $aArray[0][1]->length() == 2 && $aArray[0][2]->length() == 2 &&
-            $aArray[0][0][0]->length() == 1 && $aArray[0][0][1]->length() == 1 );
+            $array->length() == 2 &&
+            $array[0]->length() == 3 && $array[1]->length() == 3 &&
+            $array[0][0]->length() == 2 && $array[0][1]->length() == 2 && $array[0][2]->length() == 2 &&
+            $array[0][0][0]->length() == 1 && $array[0][0][1]->length() == 1 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFromPArray ()
     {
-        $mMap = [0 => u("a"), 1 => u("b"), 3 => u("c"), 9 => u("d")];
-        $aArray = CArrayObject::fromPArray($mMap);
-        $this->assertTrue($aArray->equals(a("a", "b", "c", "d")));
+        $map = [0 => u("a"), 1 => u("b"), 3 => u("c"), 9 => u("d")];
+        $array = CArrayObject::fromPArray($map);
+        $this->assertTrue($array->equals(a("a", "b", "c", "d")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testToPArray ()
     {
-        $aArray = a("a", "b", "c");
-        $mMap = $aArray->toPArray();
-        $this->assertTrue( $mMap[0]->equals("a") && $mMap[1]->equals("b") && $mMap[2]->equals("c") );
+        $array = a("a", "b", "c");
+        $map = $array->toPArray();
+        $this->assertTrue( $map[0]->equals("a") && $map[1]->equals("b") && $map[2]->equals("c") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testJoin ()
     {
-        $aArray = a("a", "b", "c");
-        $sJoined = $aArray->join(", ");
-        $this->assertTrue($sJoined->equals("a, b, c"));
+        $array = a("a", "b", "c");
+        $joined = $array->join(", ");
+        $this->assertTrue($joined->equals("a, b, c"));
 
-        $aArray = a(true, false, true);
-        $sJoined = $aArray->join(", ");
-        $this->assertTrue($sJoined->equals("1, 0, 1"));
+        $array = a(true, false, true);
+        $joined = $array->join(", ");
+        $this->assertTrue($joined->equals("1, 0, 1"));
 
-        $aArray = a(12, 34, 56);
-        $sJoined = $aArray->join(", ");
-        $this->assertTrue($sJoined->equals("12, 34, 56"));
+        $array = a(12, 34, 56);
+        $joined = $array->join(", ");
+        $this->assertTrue($joined->equals("12, 34, 56"));
 
-        $aArray = a(1.2, 3.4, 5.6);
-        $sJoined = $aArray->join(", ");
-        $this->assertTrue($sJoined->equals("1.2, 3.4, 5.6"));
+        $array = a(1.2, 3.4, 5.6);
+        $joined = $array->join(", ");
+        $this->assertTrue($joined->equals("1.2, 3.4, 5.6"));
 
-        $aArray = a("a", "b", "c");
-        $sJoined = $aArray->join("");
-        $this->assertTrue($sJoined->equals("abc"));
+        $array = a("a", "b", "c");
+        $joined = $array->join("");
+        $this->assertTrue($joined->equals("abc"));
 
         // Special cases.
 
-        $aArray = new CArrayObject();
-        $sJoined = $aArray->join("");
-        $this->assertTrue($sJoined->equals(""));
+        $array = new CArrayObject();
+        $joined = $array->join("");
+        $this->assertTrue($joined->equals(""));
 
-        $aArray = new CArrayObject();
-        $sJoined = $aArray->join(", ");
-        $this->assertTrue($sJoined->equals(""));
+        $array = new CArrayObject();
+        $joined = $array->join(", ");
+        $this->assertTrue($joined->equals(""));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testLength ()
     {
-        $aArray = new CArrayObject();
-        $this->assertTrue( $aArray->length() == 0 );
+        $array = new CArrayObject();
+        $this->assertTrue( $array->length() == 0 );
 
-        $aArray = new CArrayObject(2);
-        $this->assertTrue( $aArray->length() == 2 );
+        $array = new CArrayObject(2);
+        $this->assertTrue( $array->length() == 2 );
 
-        $aArray = a("a", "b", "c");
-        $this->assertTrue( $aArray->length() == 3 );
+        $array = a("a", "b", "c");
+        $this->assertTrue( $array->length() == 3 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testIsEmpty ()
     {
-        $aArray = new CArrayObject();
-        $this->assertTrue($aArray->isEmpty());
+        $array = new CArrayObject();
+        $this->assertTrue($array->isEmpty());
 
-        $aArray = new CArrayObject(2);
-        $this->assertFalse($aArray->isEmpty());
+        $array = new CArrayObject(2);
+        $this->assertFalse($array->isEmpty());
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testEquals ()
     {
         // Using the default comparator.
 
-        $aArray0 = a("a", "b", "c");
-        $aArray1 = a("a", "b", "c");
-        $this->assertTrue($aArray0->equals($aArray1));
+        $array0 = a("a", "b", "c");
+        $array1 = a("a", "b", "c");
+        $this->assertTrue($array0->equals($array1));
 
-        $aArray0 = a("a", "b", "c");
-        $aArray1 = a("a", "b", "d");
-        $this->assertFalse($aArray0->equals($aArray1));
+        $array0 = a("a", "b", "c");
+        $array1 = a("a", "b", "d");
+        $this->assertFalse($array0->equals($array1));
 
-        $aArray0 = a("a", "b", "c");
-        $aArray1 = a("a", "b", "C");
-        $this->assertFalse($aArray0->equals($aArray1));
+        $array0 = a("a", "b", "c");
+        $array1 = a("a", "b", "C");
+        $this->assertFalse($array0->equals($array1));
 
-        $aArray0 = a("a", "b", "c");
-        $aArray1 = a("a", "b", "c", "d");
-        $this->assertFalse($aArray0->equals($aArray1));
+        $array0 = a("a", "b", "c");
+        $array1 = a("a", "b", "c", "d");
+        $this->assertFalse($array0->equals($array1));
 
-        $aArray0 = a(1, 2, 3);
-        $aArray1 = a(1, 2, 3);
-        $this->assertTrue($aArray0->equals($aArray1));
+        $array0 = a(1, 2, 3);
+        $array1 = a(1, 2, 3);
+        $this->assertTrue($array0->equals($array1));
 
-        $aArray0 = a(1.2, 3.4, 5.6);
-        $aArray1 = a(1.2, 3.4, 5.6);
-        $this->assertTrue($aArray0->equals($aArray1));
+        $array0 = a(1.2, 3.4, 5.6);
+        $array1 = a(1.2, 3.4, 5.6);
+        $this->assertTrue($array0->equals($array1));
 
-        $aArray0 = a(u("a"), u("b"), u("c"));
-        $aArray1 = a(u("a"), u("b"), u("c"));
-        $this->assertTrue($aArray0->equals($aArray1));
+        $array0 = a(u("a"), u("b"), u("c"));
+        $array1 = a(u("a"), u("b"), u("c"));
+        $this->assertTrue($array0->equals($array1));
 
-        $aArray0 = new CArrayObject();
-        $aArray1 = a("a", "b", "c");
-        $this->assertFalse($aArray0->equals($aArray1));
+        $array0 = new CArrayObject();
+        $array1 = a("a", "b", "c");
+        $this->assertFalse($array0->equals($array1));
 
-        $aArray0 = a("a", "b", "c");
-        $aArray1 = new CArrayObject();
-        $this->assertFalse($aArray0->equals($aArray1));
+        $array0 = a("a", "b", "c");
+        $array1 = new CArrayObject();
+        $this->assertFalse($array0->equals($array1));
 
         // Using a custom comparator.
-        $aArray0 = a("a", "b", "c");
-        $aArray1 = a("A", "B", "C");
-        $fnComparator = function ($sString0, $sString1)
+        $array0 = a("a", "b", "c");
+        $array1 = a("A", "B", "C");
+        $comparator = function ($string0, $string1)
             {
-                return $sString0->toLowerCase()->equals($sString1->toLowerCase());
+                return $string0->toLowerCase()->equals($string1->toLowerCase());
             };
-        $this->assertTrue($aArray0->equals($aArray1, $fnComparator));
+        $this->assertTrue($array0->equals($array1, $comparator));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testCompare ()
     {
         // Using the default comparator.
 
-        $aArray0 = a("a", "b", "c");
-        $aArray1 = a("a", "b", "c");
-        $this->assertTrue( $aArray0->compare($aArray1) == 0 );
+        $array0 = a("a", "b", "c");
+        $array1 = a("a", "b", "c");
+        $this->assertTrue( $array0->compare($array1) == 0 );
 
-        $aArray0 = a("a", "b", "c");
-        $aArray1 = a("d", "e", "f");
-        $this->assertTrue( $aArray0->compare($aArray1) < 0 );
+        $array0 = a("a", "b", "c");
+        $array1 = a("d", "e", "f");
+        $this->assertTrue( $array0->compare($array1) < 0 );
 
-        $aArray0 = a("d", "e", "f");
-        $aArray1 = a("a", "e", "f");
-        $this->assertTrue( $aArray0->compare($aArray1) > 0 );
+        $array0 = a("d", "e", "f");
+        $array1 = a("a", "e", "f");
+        $this->assertTrue( $array0->compare($array1) > 0 );
 
-        $aArray0 = a("a", "b");
-        $aArray1 = a("a", "b", "c");
-        $this->assertTrue( $aArray0->compare($aArray1) < 0 );
+        $array0 = a("a", "b");
+        $array1 = a("a", "b", "c");
+        $this->assertTrue( $array0->compare($array1) < 0 );
 
-        $aArray0 = a(1, 2, 3);
-        $aArray1 = a(1, 2, 3);
-        $this->assertTrue( $aArray0->compare($aArray1) == 0 );
+        $array0 = a(1, 2, 3);
+        $array1 = a(1, 2, 3);
+        $this->assertTrue( $array0->compare($array1) == 0 );
 
-        $aArray0 = a(1, 2, 3);
-        $aArray1 = a(4, 5, 6);
-        $this->assertTrue( $aArray0->compare($aArray1) < 0 );
+        $array0 = a(1, 2, 3);
+        $array1 = a(4, 5, 6);
+        $this->assertTrue( $array0->compare($array1) < 0 );
 
-        $aArray0 = a(4, 5, 6);
-        $aArray1 = a(3, 5, 6);
-        $this->assertTrue( $aArray0->compare($aArray1) > 0 );
+        $array0 = a(4, 5, 6);
+        $array1 = a(3, 5, 6);
+        $this->assertTrue( $array0->compare($array1) > 0 );
 
-        $aArray0 = a(1.2, 3.4, 5.6);
-        $aArray1 = a(1.2, 3.4, 5.6);
-        $this->assertTrue( $aArray0->compare($aArray1) == 0 );
+        $array0 = a(1.2, 3.4, 5.6);
+        $array1 = a(1.2, 3.4, 5.6);
+        $this->assertTrue( $array0->compare($array1) == 0 );
 
-        $aArray0 = a(u("a"), u("b"), u("c"));
-        $aArray1 = a(u("a"), u("b"), u("c"));
-        $this->assertTrue( $aArray0->compare($aArray1) == 0 );
+        $array0 = a(u("a"), u("b"), u("c"));
+        $array1 = a(u("a"), u("b"), u("c"));
+        $this->assertTrue( $array0->compare($array1) == 0 );
 
         // Using a custom comparator.
 
-        $aArray0 = a("a", "b", "c");
-        $aArray1 = a("A", "B", "C");
-        $fnComparator = function ($sString0, $sString1)
+        $array0 = a("a", "b", "c");
+        $array1 = a("A", "B", "C");
+        $comparator = function ($string0, $string1)
             {
-                return ( $sString0->toLowerCase()->equals($sString1->toLowerCase()) ) ? 0 : -1;
+                return ( $string0->toLowerCase()->equals($string1->toLowerCase()) ) ? 0 : -1;
             };
-        $this->assertTrue( $aArray0->compare($aArray1, $fnComparator) == 0 );
+        $this->assertTrue( $array0->compare($array1, $comparator) == 0 );
 
-        $aArray0 = a(1, 3, 5);
-        $aArray1 = a(2, 4, 6);
-        $fnComparator = function ($iValue0, $iValue1)
+        $array0 = a(1, 3, 5);
+        $array1 = a(2, 4, 6);
+        $comparator = function ($value0, $value1)
             {
-                return ( CMathi::isOdd($iValue0) && CMathi::isEven($iValue1) ) ? 1 : -1;
+                return ( CMathi::isOdd($value0) && CMathi::isEven($value1) ) ? 1 : -1;
             };
-        $this->assertTrue( $aArray0->compare($aArray1, $fnComparator) > 0 );
+        $this->assertTrue( $array0->compare($array1, $comparator) > 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFirst ()
     {
-        $aArray = a("a", "b", "c");
-        $this->assertTrue($aArray->first()->equals("a"));
+        $array = a("a", "b", "c");
+        $this->assertTrue($array->first()->equals("a"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testLast ()
     {
-        $aArray = a("a", "b", "c");
-        $this->assertTrue($aArray->last()->equals("c"));
+        $array = a("a", "b", "c");
+        $this->assertTrue($array->last()->equals("c"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSubar ()
     {
-        $aArray = a("a", "b", "c", "d", "e");
+        $array = a("a", "b", "c", "d", "e");
 
-        $aSubarray = $aArray->subar(3);
-        $this->assertTrue($aSubarray->equals(a("d", "e")));
+        $subarray = $array->subar(3);
+        $this->assertTrue($subarray->equals(a("d", "e")));
 
-        $aSubarray = $aArray->subar(1, 3);
-        $this->assertTrue($aSubarray->equals(a("b", "c", "d")));
+        $subarray = $array->subar(1, 3);
+        $this->assertTrue($subarray->equals(a("b", "c", "d")));
 
         // Special cases.
 
-        $aSubarray = $aArray->subar(5);
-        $this->assertTrue($aSubarray->length() == 0);
+        $subarray = $array->subar(5);
+        $this->assertTrue($subarray->length() == 0);
 
-        $aSubarray = $aArray->subar(5, 0);
-        $this->assertTrue($aSubarray->length() == 0);
+        $subarray = $array->subar(5, 0);
+        $this->assertTrue($subarray->length() == 0);
 
-        $aSubarray = $aArray->subar(0, 0);
-        $this->assertTrue($aSubarray->length() == 0);
+        $subarray = $array->subar(0, 0);
+        $this->assertTrue($subarray->length() == 0);
 
-        $aSubarray = $aArray->subar(2, 0);
-        $this->assertTrue($aSubarray->length() == 0);
+        $subarray = $array->subar(2, 0);
+        $this->assertTrue($subarray->length() == 0);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSubarray ()
     {
-        $aArray = a("a", "b", "c", "d", "e");
+        $array = a("a", "b", "c", "d", "e");
 
-        $aSubarray = $aArray->subarray(1, 4);
-        $this->assertTrue($aSubarray->equals(a("b", "c", "d")));
+        $subarray = $array->subarray(1, 4);
+        $this->assertTrue($subarray->equals(a("b", "c", "d")));
 
-        $aSubarray = $aArray->subarray(3, 5);
-        $this->assertTrue($aSubarray->equals(a("d", "e")));
+        $subarray = $array->subarray(3, 5);
+        $this->assertTrue($subarray->equals(a("d", "e")));
 
         // Special cases.
 
-        $aSubarray = $aArray->subarray(5, 5);
-        $this->assertTrue($aSubarray->length() == 0);
+        $subarray = $array->subarray(5, 5);
+        $this->assertTrue($subarray->length() == 0);
 
-        $aSubarray = $aArray->subarray(0, 0);
-        $this->assertTrue($aSubarray->length() == 0);
+        $subarray = $array->subarray(0, 0);
+        $this->assertTrue($subarray->length() == 0);
 
-        $aSubarray = $aArray->subarray(2, 2);
-        $this->assertTrue($aSubarray->length() == 0);
+        $subarray = $array->subarray(2, 2);
+        $this->assertTrue($subarray->length() == 0);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSlice ()
     {
-        $aArray = a("a", "b", "c", "d", "e");
+        $array = a("a", "b", "c", "d", "e");
 
-        $aSubarray = $aArray->slice(1, 4);
-        $this->assertTrue($aSubarray->equals(a("b", "c", "d")));
+        $subarray = $array->slice(1, 4);
+        $this->assertTrue($subarray->equals(a("b", "c", "d")));
 
-        $aSubarray = $aArray->slice(3, 5);
-        $this->assertTrue($aSubarray->equals(a("d", "e")));
+        $subarray = $array->slice(3, 5);
+        $this->assertTrue($subarray->equals(a("d", "e")));
 
         // Special cases.
 
-        $aSubarray = $aArray->slice(5, 5);
-        $this->assertTrue($aSubarray->length() == 0);
+        $subarray = $array->slice(5, 5);
+        $this->assertTrue($subarray->length() == 0);
 
-        $aSubarray = $aArray->slice(0, 0);
-        $this->assertTrue($aSubarray->length() == 0);
+        $subarray = $array->slice(0, 0);
+        $this->assertTrue($subarray->length() == 0);
 
-        $aSubarray = $aArray->slice(2, 2);
-        $this->assertTrue($aSubarray->length() == 0);
+        $subarray = $array->slice(2, 2);
+        $this->assertTrue($subarray->length() == 0);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFind ()
     {
-        $aArray = a("a", "b", "c", "d", "e");
+        $array = a("a", "b", "c", "d", "e");
 
         // Using the default comparator.
 
-        $bFound = $aArray->find("c");
-        $this->assertTrue($bFound);
+        $found = $array->find("c");
+        $this->assertTrue($found);
 
-        $iFoundAtPos;
-        $bFound = $aArray->find("d", CComparator::EQUALITY, $iFoundAtPos);
-        $this->assertTrue($bFound);
-        $this->assertTrue( $iFoundAtPos == 3 );
+        $foundAtPos;
+        $found = $array->find("d", CComparator::EQUALITY, $foundAtPos);
+        $this->assertTrue($found);
+        $this->assertTrue( $foundAtPos == 3 );
 
-        $bFound = $aArray->find("C");
-        $this->assertFalse($bFound);
+        $found = $array->find("C");
+        $this->assertFalse($found);
 
-        $bFound = $aArray->find("f");
-        $this->assertFalse($bFound);
+        $found = $array->find("f");
+        $this->assertFalse($found);
 
         // Using a custom comparator.
-        $fnComparator = function ($sString0, $sString1)
+        $comparator = function ($string0, $string1)
             {
-                return $sString0->toLowerCase()->equals($sString1->toLowerCase());
+                return $string0->toLowerCase()->equals($string1->toLowerCase());
             };
-        $iFoundAtPos;
-        $bFound = $aArray->find(u("C"), $fnComparator, $iFoundAtPos);
-        $this->assertTrue($bFound);
-        $this->assertTrue( $iFoundAtPos == 2 );
+        $foundAtPos;
+        $found = $array->find(u("C"), $comparator, $foundAtPos);
+        $this->assertTrue($found);
+        $this->assertTrue( $foundAtPos == 2 );
 
         // Special case.
-        $aArray = new CArrayObject();
-        $bFound = $aArray->find("a");
-        $this->assertFalse($bFound);
+        $array = new CArrayObject();
+        $found = $array->find("a");
+        $this->assertFalse($found);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFindScalar ()
     {
-        $aArray = CArrayObject::fromSplArray(CArray::fromElements("a", "b", "c", "d", "e"));
+        $array = CArrayObject::fromSplArray(CArray::fromElements("a", "b", "c", "d", "e"));
 
-        $bFound = $aArray->findScalar("c");
-        $this->assertTrue($bFound);
+        $found = $array->findScalar("c");
+        $this->assertTrue($found);
 
-        $iFoundAtPos;
-        $bFound = $aArray->findScalar("d", $iFoundAtPos);
-        $this->assertTrue($bFound);
-        $this->assertTrue( $iFoundAtPos == 3 );
+        $foundAtPos;
+        $found = $array->findScalar("d", $foundAtPos);
+        $this->assertTrue($found);
+        $this->assertTrue( $foundAtPos == 3 );
 
-        $bFound = $aArray->findScalar("C");
-        $this->assertFalse($bFound);
+        $found = $array->findScalar("C");
+        $this->assertFalse($found);
 
-        $bFound = $aArray->findScalar("f");
-        $this->assertFalse($bFound);
+        $found = $array->findScalar("f");
+        $this->assertFalse($found);
 
         // Special case.
-        $aArray = new CArrayObject();
-        $bFound = $aArray->findScalar("a");
-        $this->assertFalse($bFound);
+        $array = new CArrayObject();
+        $found = $array->findScalar("a");
+        $this->assertFalse($found);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFindBinary ()
     {
-        $aArray = a("oua", "vnf", "fnf", "aod", "tvi", "nbt", "jny", "vor", "rfd", "cvm", "hyh",
+        $array = a("oua", "vnf", "fnf", "aod", "tvi", "nbt", "jny", "vor", "rfd", "cvm", "hyh",
             "kng", "ggo", "uea", "hkb", "qbk", "xla", "uod", "jzi", "chw", "ssy", "olr", "bzl", "oux", "ltk", "bah",
             "khu", "msr", "pqv", "npb", "mtb", "eku", "vcv", "vbv", "wuo", "lrw", "bkw", "ezz", "jtc", "dwk", "dsq",
             "kzu", "oey", "vbi", "seh", "klz", "asj", "gzg", "ccs", "qop");
-        $aArrayOrig = clone $aArray;
-        $iLen = $aArrayOrig->length();
+        $arrayOrig = clone $array;
+        $len = $arrayOrig->length();
 
         // Sort the array first.
-        $aArray->sort(CComparator::ORDER_ASC);
+        $array->sort(CComparator::ORDER_ASC);
 
         // Using the default comparators.
-        for ($i = 0; $i < $iLen; $i += 3)
+        for ($i = 0; $i < $len; $i += 3)
         {
-            $sString = $aArrayOrig[$i];
+            $string = $arrayOrig[$i];
 
-            $iFoundAtPos0;
-            $aArray->find($sString, CComparator::EQUALITY, $iFoundAtPos0);
-            $iFoundAtPos1;
-            $bFound = $aArray->findBinary($sString, CComparator::ORDER_ASC, $iFoundAtPos1);
-            $this->assertTrue($bFound);
-            $this->assertTrue( $iFoundAtPos1 == $iFoundAtPos0 );
+            $foundAtPos0;
+            $array->find($string, CComparator::EQUALITY, $foundAtPos0);
+            $foundAtPos1;
+            $found = $array->findBinary($string, CComparator::ORDER_ASC, $foundAtPos1);
+            $this->assertTrue($found);
+            $this->assertTrue( $foundAtPos1 == $foundAtPos0 );
         }
 
         // Using custom comparators.
-        $fnComparatorEquality = function ($sString0, $sString1)
+        $comparatorEquality = function ($string0, $string1)
             {
-                return $sString0->toLowerCase()->equals($sString1->toLowerCase());
+                return $string0->toLowerCase()->equals($string1->toLowerCase());
             };
-        $fnComparatorOrderAsc = function ($sString0, $sString1)
+        $comparatorOrderAsc = function ($string0, $string1)
             {
-                return $sString0->toLowerCase()->compare($sString1->toLowerCase());
+                return $string0->toLowerCase()->compare($string1->toLowerCase());
             };
-        for ($i = 0; $i < $iLen; $i += 5)
+        for ($i = 0; $i < $len; $i += 5)
         {
-            $sString = $aArrayOrig[$i]->toUpperCase();
+            $string = $arrayOrig[$i]->toUpperCase();
 
-            $iFoundAtPos0;
-            $aArray->find($sString, $fnComparatorEquality, $iFoundAtPos0);
-            $iFoundAtPos1;
-            $bFound = $aArray->findBinary($sString, $fnComparatorOrderAsc, $iFoundAtPos1);
-            $this->assertTrue($bFound);
-            $this->assertTrue( $iFoundAtPos1 == $iFoundAtPos0 );
+            $foundAtPos0;
+            $array->find($string, $comparatorEquality, $foundAtPos0);
+            $foundAtPos1;
+            $found = $array->findBinary($string, $comparatorOrderAsc, $foundAtPos1);
+            $this->assertTrue($found);
+            $this->assertTrue( $foundAtPos1 == $foundAtPos0 );
         }
 
         // Special cases.
 
-        $aArray = a("a", "b");
-        $bFound = $aArray->findBinary("a");
-        $this->assertTrue($bFound);
-        $bFound = $aArray->findBinary("b");
-        $this->assertTrue($bFound);
-        $bFound = $aArray->findBinary("c");
-        $this->assertFalse($bFound);
+        $array = a("a", "b");
+        $found = $array->findBinary("a");
+        $this->assertTrue($found);
+        $found = $array->findBinary("b");
+        $this->assertTrue($found);
+        $found = $array->findBinary("c");
+        $this->assertFalse($found);
 
-        $aArray = a("a");
-        $bFound = $aArray->findBinary("a");
-        $this->assertTrue($bFound);
+        $array = a("a");
+        $found = $array->findBinary("a");
+        $this->assertTrue($found);
 
-        $aArray = new CArrayObject();
-        $bFound = $aArray->findBinary("a");
-        $this->assertFalse($bFound);
+        $array = new CArrayObject();
+        $found = $array->findBinary("a");
+        $this->assertFalse($found);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testCountElement ()
     {
-        $aArray = a("a", "c", "b", "c", "d", "e", "c", "c", "f", "g", "h", "c");
+        $array = a("a", "c", "b", "c", "d", "e", "c", "c", "f", "g", "h", "c");
 
         // Using the default comparator.
-        $this->assertTrue( $aArray->countElement("c") == 5 );
+        $this->assertTrue( $array->countElement("c") == 5 );
 
         // Using a custom comparator.
-        $fnComparator = function ($sString0, $sString1)
+        $comparator = function ($string0, $string1)
             {
-                return $sString0->toLowerCase()->equals($sString1->toLowerCase());
+                return $string0->toLowerCase()->equals($string1->toLowerCase());
             };
-        $this->assertTrue( $aArray->countElement(u("C"), $fnComparator) == 5 );
+        $this->assertTrue( $array->countElement(u("C"), $comparator) == 5 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetLength ()
     {
-        $aArray = a("a", "b");
-        $aArray->setLength(3);
-        $this->assertTrue( $aArray->length() == 3 && $aArray[0]->equals("a") && $aArray[1]->equals("b") );
-        $aArray->setLength(1);
-        $this->assertTrue( $aArray->length() == 1 && $aArray[0]->equals("a") );
+        $array = a("a", "b");
+        $array->setLength(3);
+        $this->assertTrue( $array->length() == 3 && $array[0]->equals("a") && $array[1]->equals("b") );
+        $array->setLength(1);
+        $this->assertTrue( $array->length() == 1 && $array[0]->equals("a") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testPush ()
     {
-        $aArray = a("a", "b", "c");
-        $iNewLength = $aArray->push("d");
-        $this->assertTrue($aArray->equals(a("a", "b", "c", "d")));
-        $this->assertTrue( $iNewLength == 4 );
+        $array = a("a", "b", "c");
+        $newLength = $array->push("d");
+        $this->assertTrue($array->equals(a("a", "b", "c", "d")));
+        $this->assertTrue( $newLength == 4 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testPop ()
     {
-        $aArray = a("a", "b", "c");
-        $sPoppedString = $aArray->pop();
-        $this->assertTrue($aArray->equals(a("a", "b")));
-        $this->assertTrue($sPoppedString->equals("c"));
+        $array = a("a", "b", "c");
+        $poppedString = $array->pop();
+        $this->assertTrue($array->equals(a("a", "b")));
+        $this->assertTrue($poppedString->equals("c"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testPushArray ()
     {
-        $aArray = a("a", "b", "c");
-        $iNewLength = $aArray->pushArray(a("d", "e"));
-        $this->assertTrue($aArray->equals(a("a", "b", "c", "d", "e")));
-        $this->assertTrue( $iNewLength == 5 );
+        $array = a("a", "b", "c");
+        $newLength = $array->pushArray(a("d", "e"));
+        $this->assertTrue($array->equals(a("a", "b", "c", "d", "e")));
+        $this->assertTrue( $newLength == 5 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testUnshift ()
     {
-        $aArray = a("a", "b", "c");
-        $iNewLength = $aArray->unshift("d");
-        $this->assertTrue($aArray->equals(a("d", "a", "b", "c")));
-        $this->assertTrue( $iNewLength == 4 );
+        $array = a("a", "b", "c");
+        $newLength = $array->unshift("d");
+        $this->assertTrue($array->equals(a("d", "a", "b", "c")));
+        $this->assertTrue( $newLength == 4 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testShift ()
     {
-        $aArray = a("a", "b", "c");
-        $sPoppedString = $aArray->shift();
-        $this->assertTrue($aArray->equals(a("b", "c")));
-        $this->assertTrue($sPoppedString->equals("a"));
+        $array = a("a", "b", "c");
+        $poppedString = $array->shift();
+        $this->assertTrue($array->equals(a("b", "c")));
+        $this->assertTrue($poppedString->equals("a"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testUnshiftArray ()
     {
-        $aArray = a("a", "b", "c");
-        $iNewLength = $aArray->unshiftArray(a("d", "e"));
-        $this->assertTrue($aArray->equals(a("d", "e", "a", "b", "c")));
-        $this->assertTrue( $iNewLength == 5 );
+        $array = a("a", "b", "c");
+        $newLength = $array->unshiftArray(a("d", "e"));
+        $this->assertTrue($array->equals(a("d", "e", "a", "b", "c")));
+        $this->assertTrue( $newLength == 5 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testInsert ()
     {
-        $aArray = a("a", "b", "c", "d", "e");
-        $aArray->insert(3, "x");
-        $this->assertTrue($aArray->equals(a("a", "b", "c", "x", "d", "e")));
+        $array = a("a", "b", "c", "d", "e");
+        $array->insert(3, "x");
+        $this->assertTrue($array->equals(a("a", "b", "c", "x", "d", "e")));
 
-        $aArray = a("a", "b", "c", "d", "e");
-        $aArray->insert(0, "x");
-        $this->assertTrue($aArray->equals(a("x", "a", "b", "c", "d", "e")));
+        $array = a("a", "b", "c", "d", "e");
+        $array->insert(0, "x");
+        $this->assertTrue($array->equals(a("x", "a", "b", "c", "d", "e")));
 
         // Special cases.
 
-        $aArray = a("a", "b", "c", "d", "e");
-        $aArray->insert(5, "x");
-        $this->assertTrue($aArray->equals(a("a", "b", "c", "d", "e", "x")));
+        $array = a("a", "b", "c", "d", "e");
+        $array->insert(5, "x");
+        $this->assertTrue($array->equals(a("a", "b", "c", "d", "e", "x")));
 
-        $aArray = new CArrayObject();
-        $aArray->insert(0, "x");
-        $this->assertTrue($aArray->equals(a("x")));
+        $array = new CArrayObject();
+        $array->insert(0, "x");
+        $this->assertTrue($array->equals(a("x")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testInsertArray ()
     {
-        $aArray = a("a", "b", "c", "d", "e");
-        $aArray->insertArray(3, a("x", "y"));
-        $this->assertTrue($aArray->equals(a("a", "b", "c", "x", "y", "d", "e")));
+        $array = a("a", "b", "c", "d", "e");
+        $array->insertArray(3, a("x", "y"));
+        $this->assertTrue($array->equals(a("a", "b", "c", "x", "y", "d", "e")));
 
-        $aArray = a("a", "b", "c", "d", "e");
-        $aArray->insertArray(0, a("x", "y"));
-        $this->assertTrue($aArray->equals(a("x", "y", "a", "b", "c", "d", "e")));
+        $array = a("a", "b", "c", "d", "e");
+        $array->insertArray(0, a("x", "y"));
+        $this->assertTrue($array->equals(a("x", "y", "a", "b", "c", "d", "e")));
 
         // Special cases.
 
-        $aArray = a("a", "b", "c", "d", "e");
-        $aArray->insertArray(5, a("x", "y"));
-        $this->assertTrue($aArray->equals(a("a", "b", "c", "d", "e", "x", "y")));
+        $array = a("a", "b", "c", "d", "e");
+        $array->insertArray(5, a("x", "y"));
+        $this->assertTrue($array->equals(a("a", "b", "c", "d", "e", "x", "y")));
 
-        $aArray = new CArrayObject();
-        $aArray->insertArray(0, a("x", "y"));
-        $this->assertTrue($aArray->equals(a("x", "y")));
+        $array = new CArrayObject();
+        $array->insertArray(0, a("x", "y"));
+        $this->assertTrue($array->equals(a("x", "y")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testPadStart ()
     {
-        $aArray = a("a", "b", "c");
-        $aArray->padStart(" ", 5);
-        $this->assertTrue($aArray->equals(a(" ", " ", "a", "b", "c")));
+        $array = a("a", "b", "c");
+        $array->padStart(" ", 5);
+        $this->assertTrue($array->equals(a(" ", " ", "a", "b", "c")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testPadEnd ()
     {
-        $aArray = a("a", "b", "c");
-        $aArray->padEnd(" ", 5);
-        $this->assertTrue($aArray->equals(a("a", "b", "c", " ", " ")));
+        $array = a("a", "b", "c");
+        $array->padEnd(" ", 5);
+        $this->assertTrue($array->equals(a("a", "b", "c", " ", " ")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testRemove ()
     {
-        $aArray = a("a", "b", "c", "d", "e");
-        $aArray->remove(2);
-        $this->assertTrue($aArray->equals(a("a", "b", "d", "e")));
+        $array = a("a", "b", "c", "d", "e");
+        $array->remove(2);
+        $this->assertTrue($array->equals(a("a", "b", "d", "e")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testRemoveByValue ()
     {
         // Using the default comparator.
 
-        $aArray = a("a", "b", "c", "d", "e");
-        $bAnyRemoval = $aArray->removeByValue("d");
-        $this->assertTrue($aArray->equals(a("a", "b", "c", "e")));
-        $this->assertTrue($bAnyRemoval);
+        $array = a("a", "b", "c", "d", "e");
+        $anyRemoval = $array->removeByValue("d");
+        $this->assertTrue($array->equals(a("a", "b", "c", "e")));
+        $this->assertTrue($anyRemoval);
 
-        $aArray = a("a", "b", "c", "d", "e", "c", "d", "e", "c", "d", "e");
-        $bAnyRemoval = $aArray->removeByValue("d");
-        $this->assertTrue($aArray->equals(a("a", "b", "c", "e", "c", "e", "c", "e")));
-        $this->assertTrue($bAnyRemoval);
+        $array = a("a", "b", "c", "d", "e", "c", "d", "e", "c", "d", "e");
+        $anyRemoval = $array->removeByValue("d");
+        $this->assertTrue($array->equals(a("a", "b", "c", "e", "c", "e", "c", "e")));
+        $this->assertTrue($anyRemoval);
 
-        $aArray = a("a", "b", "c");
-        $bAnyRemoval = $aArray->removeByValue("d");
-        $this->assertFalse($bAnyRemoval);
+        $array = a("a", "b", "c");
+        $anyRemoval = $array->removeByValue("d");
+        $this->assertFalse($anyRemoval);
 
         // Using a custom comparator.
-        $fnComparator = function ($sString0, $sString1)
+        $comparator = function ($string0, $string1)
             {
-                return $sString0->toLowerCase()->equals($sString1->toLowerCase());
+                return $string0->toLowerCase()->equals($string1->toLowerCase());
             };
-        $aArray = a("a", "b", "c", "d", "e");
-        $bAnyRemoval = $aArray->removeByValue(u("D"), $fnComparator);
-        $this->assertTrue($aArray->equals(a("a", "b", "c", "e")));
-        $this->assertTrue($bAnyRemoval);
+        $array = a("a", "b", "c", "d", "e");
+        $anyRemoval = $array->removeByValue(u("D"), $comparator);
+        $this->assertTrue($array->equals(a("a", "b", "c", "e")));
+        $this->assertTrue($anyRemoval);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testRemoveSubarray ()
     {
-        $aArray = a("a", "b", "c", "d", "e");
-        $aArray->removeSubarray(3);
-        $this->assertTrue($aArray->equals(a("a", "b", "c")));
+        $array = a("a", "b", "c", "d", "e");
+        $array->removeSubarray(3);
+        $this->assertTrue($array->equals(a("a", "b", "c")));
 
-        $aArray = a("a", "b", "c", "d", "e");
-        $aArray->removeSubarray(1, 3);
-        $this->assertTrue($aArray->equals(a("a", "e")));
+        $array = a("a", "b", "c", "d", "e");
+        $array->removeSubarray(1, 3);
+        $this->assertTrue($array->equals(a("a", "e")));
 
         // Special cases.
 
-        $aArray = a("a", "b", "c");
-        $aArray->removeSubarray(3);
-        $this->assertTrue($aArray->equals(a("a", "b", "c")));
+        $array = a("a", "b", "c");
+        $array->removeSubarray(3);
+        $this->assertTrue($array->equals(a("a", "b", "c")));
 
-        $aArray = a("a", "b", "c");
-        $aArray->removeSubarray(3, 0);
-        $this->assertTrue($aArray->equals(a("a", "b", "c")));
+        $array = a("a", "b", "c");
+        $array->removeSubarray(3, 0);
+        $this->assertTrue($array->equals(a("a", "b", "c")));
 
-        $aArray = a("a", "b", "c");
-        $aArray->removeSubarray(0, 0);
-        $this->assertTrue($aArray->equals(a("a", "b", "c")));
+        $array = a("a", "b", "c");
+        $array->removeSubarray(0, 0);
+        $this->assertTrue($array->equals(a("a", "b", "c")));
 
-        $aArray = a("a", "b", "c");
-        $aArray->removeSubarray(1, 0);
-        $this->assertTrue($aArray->equals(a("a", "b", "c")));
+        $array = a("a", "b", "c");
+        $array->removeSubarray(1, 0);
+        $this->assertTrue($array->equals(a("a", "b", "c")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSplice ()
     {
-        $aArray = a("a", "b", "c", "d", "e");
-        $aRemArray = $aArray->splice(3);
-        $this->assertTrue($aArray->equals(a("a", "b", "c")));
-        $this->assertTrue($aRemArray->equals(a("d", "e")));
+        $array = a("a", "b", "c", "d", "e");
+        $remArray = $array->splice(3);
+        $this->assertTrue($array->equals(a("a", "b", "c")));
+        $this->assertTrue($remArray->equals(a("d", "e")));
 
-        $aArray = a("a", "b", "c", "d", "e");
-        $aRemArray = $aArray->splice(1, 3);
-        $this->assertTrue($aArray->equals(a("a", "e")));
-        $this->assertTrue($aRemArray->equals(a("b", "c", "d")));
+        $array = a("a", "b", "c", "d", "e");
+        $remArray = $array->splice(1, 3);
+        $this->assertTrue($array->equals(a("a", "e")));
+        $this->assertTrue($remArray->equals(a("b", "c", "d")));
 
         // Special cases.
 
-        $aArray = a("a", "b", "c");
-        $aRemArray = $aArray->splice(3);
-        $this->assertTrue($aArray->equals(a("a", "b", "c")));
-        $this->assertTrue($aRemArray->equals(new CArrayObject()));
+        $array = a("a", "b", "c");
+        $remArray = $array->splice(3);
+        $this->assertTrue($array->equals(a("a", "b", "c")));
+        $this->assertTrue($remArray->equals(new CArrayObject()));
 
-        $aArray = a("a", "b", "c");
-        $aRemArray = $aArray->splice(3, 0);
-        $this->assertTrue($aArray->equals(a("a", "b", "c")));
-        $this->assertTrue($aRemArray->equals(new CArrayObject()));
+        $array = a("a", "b", "c");
+        $remArray = $array->splice(3, 0);
+        $this->assertTrue($array->equals(a("a", "b", "c")));
+        $this->assertTrue($remArray->equals(new CArrayObject()));
 
-        $aArray = a("a", "b", "c");
-        $aRemArray = $aArray->splice(0, 0);
-        $this->assertTrue($aArray->equals(a("a", "b", "c")));
-        $this->assertTrue($aRemArray->equals(new CArrayObject()));
+        $array = a("a", "b", "c");
+        $remArray = $array->splice(0, 0);
+        $this->assertTrue($array->equals(a("a", "b", "c")));
+        $this->assertTrue($remArray->equals(new CArrayObject()));
 
-        $aArray = a("a", "b", "c");
-        $aRemArray = $aArray->splice(1, 0);
-        $this->assertTrue($aArray->equals(a("a", "b", "c")));
-        $this->assertTrue($aRemArray->equals(new CArrayObject()));
+        $array = a("a", "b", "c");
+        $remArray = $array->splice(1, 0);
+        $this->assertTrue($array->equals(a("a", "b", "c")));
+        $this->assertTrue($remArray->equals(new CArrayObject()));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testRemoveSubarrayByRange ()
     {
-        $aArray = a("a", "b", "c", "d", "e");
-        $aArray->removeSubarrayByRange(3, 5);
-        $this->assertTrue($aArray->equals(a("a", "b", "c")));
+        $array = a("a", "b", "c", "d", "e");
+        $array->removeSubarrayByRange(3, 5);
+        $this->assertTrue($array->equals(a("a", "b", "c")));
 
-        $aArray = a("a", "b", "c", "d", "e");
-        $aArray->removeSubarrayByRange(1, 4);
-        $this->assertTrue($aArray->equals(a("a", "e")));
+        $array = a("a", "b", "c", "d", "e");
+        $array->removeSubarrayByRange(1, 4);
+        $this->assertTrue($array->equals(a("a", "e")));
 
         // Special cases.
 
-        $aArray = a("a", "b", "c");
-        $aArray->removeSubarrayByRange(3, 3);
-        $this->assertTrue($aArray->equals(a("a", "b", "c")));
+        $array = a("a", "b", "c");
+        $array->removeSubarrayByRange(3, 3);
+        $this->assertTrue($array->equals(a("a", "b", "c")));
 
-        $aArray = a("a", "b", "c");
-        $aArray->removeSubarrayByRange(0, 0);
-        $this->assertTrue($aArray->equals(a("a", "b", "c")));
+        $array = a("a", "b", "c");
+        $array->removeSubarrayByRange(0, 0);
+        $this->assertTrue($array->equals(a("a", "b", "c")));
 
-        $aArray = a("a", "b", "c");
-        $aArray->removeSubarrayByRange(1, 1);
-        $this->assertTrue($aArray->equals(a("a", "b", "c")));
+        $array = a("a", "b", "c");
+        $array->removeSubarrayByRange(1, 1);
+        $this->assertTrue($array->equals(a("a", "b", "c")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testReverse ()
     {
-        $aArray = a("a", "b", "c", "d", "e");
-        $aArray->reverse();
-        $this->assertTrue($aArray->equals(a("e", "d", "c", "b", "a")));
+        $array = a("a", "b", "c", "d", "e");
+        $array->reverse();
+        $this->assertTrue($array->equals(a("e", "d", "c", "b", "a")));
 
-        $aArray = a("a", "b", "c", "d", "e", "f");
-        $aArray->reverse();
-        $this->assertTrue($aArray->equals(a("f", "e", "d", "c", "b", "a")));
+        $array = a("a", "b", "c", "d", "e", "f");
+        $array->reverse();
+        $this->assertTrue($array->equals(a("f", "e", "d", "c", "b", "a")));
 
         // Special cases.
 
-        $aArray = a("a");
-        $aArray->reverse();
-        $this->assertTrue($aArray->equals(a("a")));
+        $array = a("a");
+        $array->reverse();
+        $this->assertTrue($array->equals(a("a")));
 
-        $aArray = new CArrayObject();
-        $aArray->reverse();
-        $this->assertTrue($aArray->equals(new CArrayObject()));
+        $array = new CArrayObject();
+        $array->reverse();
+        $this->assertTrue($array->equals(new CArrayObject()));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testShuffle ()
     {
-        $aArray = a("a", "b", "c", "d", "e", "f", "g", "h", "i");
-        $aArrayOrig = clone $aArray;
-        $aArray->shuffle();
-        $this->assertTrue($aArray->isSubsetOf($aArrayOrig));
+        $array = a("a", "b", "c", "d", "e", "f", "g", "h", "i");
+        $arrayOrig = clone $array;
+        $array->shuffle();
+        $this->assertTrue($array->isSubsetOf($arrayOrig));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSort ()
     {
-        $aArray = a("oua", "vnf", "fnf", "aod", "tvi", "nbt", "jny", "vor", "rfd", "cvm", "hyh",
+        $array = a("oua", "vnf", "fnf", "aod", "tvi", "nbt", "jny", "vor", "rfd", "cvm", "hyh",
             "kng", "ggo", "uea", "hkb", "qbk", "xla", "uod", "jzi", "chw", "ssy", "olr", "bzl", "oux", "ltk", "bah",
             "khu", "msr", "pqv", "npb", "mtb", "eku", "vcv", "vbv", "wuo", "lrw", "bkw", "ezz", "jtc", "dwk", "dsq",
             "kzu", "oey", "vbi", "seh", "klz", "asj", "gzg", "ccs", "qop");
 
-        $aArray->sort(CComparator::ORDER_ASC);
-        $this->assertTrue($aArray->equals(a("aod", "asj", "bah", "bkw", "bzl", "ccs", "chw",
+        $array->sort(CComparator::ORDER_ASC);
+        $this->assertTrue($array->equals(a("aod", "asj", "bah", "bkw", "bzl", "ccs", "chw",
             "cvm", "dsq", "dwk", "eku", "ezz", "fnf", "ggo", "gzg", "hkb", "hyh", "jny", "jtc", "jzi", "khu", "klz",
             "kng", "kzu", "lrw", "ltk", "msr", "mtb", "nbt", "npb", "oey", "olr", "oua", "oux", "pqv", "qbk", "qop",
             "rfd", "seh", "ssy", "tvi", "uea", "uod", "vbi", "vbv", "vcv", "vnf", "vor", "wuo", "xla")));
 
-        $aArray->sort(CComparator::ORDER_DESC);
-        $this->assertTrue($aArray->equals(a("xla", "wuo", "vor", "vnf", "vcv", "vbv", "vbi",
+        $array->sort(CComparator::ORDER_DESC);
+        $this->assertTrue($array->equals(a("xla", "wuo", "vor", "vnf", "vcv", "vbv", "vbi",
             "uod", "uea", "tvi", "ssy", "seh", "rfd", "qop", "qbk", "pqv", "oux", "oua", "olr", "oey", "npb", "nbt",
             "mtb", "msr", "ltk", "lrw", "kzu", "kng", "klz", "khu", "jzi", "jtc", "jny", "hyh", "hkb", "gzg", "ggo",
             "fnf", "ezz", "eku", "dwk", "dsq", "cvm", "chw", "ccs", "bzl", "bkw", "bah", "asj", "aod")));
 
-        $aArray = a(5, 2, 1, 3, 4);
-        $aArray->sort(CComparator::ORDER_ASC);
-        $this->assertTrue($aArray->equals(a(1, 2, 3, 4, 5)));
+        $array = a(5, 2, 1, 3, 4);
+        $array->sort(CComparator::ORDER_ASC);
+        $this->assertTrue($array->equals(a(1, 2, 3, 4, 5)));
 
         // Special cases.
 
-        $aArray = a("a");
-        $aArray->sort(CComparator::ORDER_ASC);
-        $this->assertTrue($aArray->equals(a("a")));
+        $array = a("a");
+        $array->sort(CComparator::ORDER_ASC);
+        $this->assertTrue($array->equals(a("a")));
 
-        $aArray = new CArrayObject();
-        $aArray->sort(CComparator::ORDER_ASC);
-        $this->assertTrue($aArray->equals(new CArrayObject()));
+        $array = new CArrayObject();
+        $array->sort(CComparator::ORDER_ASC);
+        $this->assertTrue($array->equals(new CArrayObject()));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSortOn ()
     {
-        $aArray = a(
+        $array = a(
             new ClassForSortingObj(u("d")),
             new ClassForSortingObj(u("e")),
             new ClassForSortingObj(u("a")),
             new ClassForSortingObj(u("c")),
             new ClassForSortingObj(u("b")));
-        $aArray->sortOn("value", CComparator::ORDER_ASC);
+        $array->sortOn("value", CComparator::ORDER_ASC);
         $this->assertTrue(
-            $aArray[0]->value()->equals("a") &&
-            $aArray[1]->value()->equals("b") &&
-            $aArray[2]->value()->equals("c") &&
-            $aArray[3]->value()->equals("d") &&
-            $aArray[4]->value()->equals("e") );
+            $array[0]->value()->equals("a") &&
+            $array[1]->value()->equals("b") &&
+            $array[2]->value()->equals("c") &&
+            $array[3]->value()->equals("d") &&
+            $array[4]->value()->equals("e") );
 
-        $aArray = a(
+        $array = a(
             new ClassForSortingObj(5),
             new ClassForSortingObj(2),
             new ClassForSortingObj(1),
             new ClassForSortingObj(3),
             new ClassForSortingObj(4));
-        $aArray->sortOn("value", CComparator::ORDER_ASC);
+        $array->sortOn("value", CComparator::ORDER_ASC);
         $this->assertTrue(
-            $aArray[0]->value() == 1 &&
-            $aArray[1]->value() == 2 &&
-            $aArray[2]->value() == 3 &&
-            $aArray[3]->value() == 4 &&
-            $aArray[4]->value() == 5 );
+            $array[0]->value() == 1 &&
+            $array[1]->value() == 2 &&
+            $array[2]->value() == 3 &&
+            $array[3]->value() == 4 &&
+            $array[4]->value() == 5 );
 
-        $aArray = a(
+        $array = a(
             new ClassForSortingObj(u("d")),
             new ClassForSortingObj(u("e")),
             new ClassForSortingObj(u("a")),
             new ClassForSortingObj(u("c")),
             new ClassForSortingObj(u("b")));
-        $aArray->sortOn("value", CComparator::ORDER_ASC);
+        $array->sortOn("value", CComparator::ORDER_ASC);
         $this->assertTrue(
-            $aArray[0]->value()->equals("a") &&
-            $aArray[1]->value()->equals("b") &&
-            $aArray[2]->value()->equals("c") &&
-            $aArray[3]->value()->equals("d") &&
-            $aArray[4]->value()->equals("e") );
+            $array[0]->value()->equals("a") &&
+            $array[1]->value()->equals("b") &&
+            $array[2]->value()->equals("c") &&
+            $array[3]->value()->equals("d") &&
+            $array[4]->value()->equals("e") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSortUStrings ()
     {
-        $aArray = a(
+        $array = a(
             "c", "B", "d", "E", "D", "C", "a", "e", "b", "A");
-        $aArray->sortUStrings(CUString::COLLATION_DEFAULT);
-        $this->assertTrue($aArray->equals(a(
+        $array->sortUStrings(CUString::COLLATION_DEFAULT);
+        $this->assertTrue($array->equals(a(
             "a", "A", "b", "B", "c", "C", "d", "D", "e", "E")));
 
-        $aArray = a(
+        $array = a(
             "č", "B", "d", "E", "D", "C", "á", "ê", "b", "A");
-        $aArray->sortUStrings(CUString::COLLATION_IGNORE_ACCENTS);
-        $this->assertTrue($aArray->equals(a(
+        $array->sortUStrings(CUString::COLLATION_IGNORE_ACCENTS);
+        $this->assertTrue($array->equals(a(
             "á", "A", "b", "B", "č", "C", "d", "D", "ê", "E")));
 
-        $aArray = a(
+        $array = a(
             " c", ",B", ".d", ":E", ";D", "!C", "?a", "\"e", "(b", "[A");
-        $aArray->sortUStrings(CUString::COLLATION_IGNORE_NONWORD);
-        $this->assertTrue($aArray->equals(a(
+        $array->sortUStrings(CUString::COLLATION_IGNORE_NONWORD);
+        $this->assertTrue($array->equals(a(
             "?a", "[A", "(b", ",B", " c", "!C", ".d", ";D", "\"e", ":E")));
 
-        $aArray = a(
+        $array = a(
             "c", "B", "d", "E", "D", "C", "a", "e", "b", "A");
-        $aArray->sortUStrings(CUString::COLLATION_UPPERCASE_FIRST);
-        $this->assertTrue($aArray->equals(a(
+        $array->sortUStrings(CUString::COLLATION_UPPERCASE_FIRST);
+        $this->assertTrue($array->equals(a(
             "A", "a", "B", "b", "C", "c", "D", "d", "E", "e")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSortUStringsCi ()
     {
-        $aArray = a(
+        $array = a(
             "c", "B", "d", "E", "D", "C", "a", "e", "b", "A");
-        $aArray->sortUStringsCi(CUString::COLLATION_DEFAULT);
-        $this->assertTrue($aArray->equals(a(
+        $array->sortUStringsCi(CUString::COLLATION_DEFAULT);
+        $this->assertTrue($array->equals(a(
             "a", "A", "B", "b", "C", "c", "D", "d", "E", "e")));
 
-        $aArray = a(
+        $array = a(
             "č", "B", "d", "E", "D", "C", "á", "ê", "b", "A");
-        $aArray->sortUStringsCi(CUString::COLLATION_IGNORE_ACCENTS);
-        $this->assertTrue($aArray->equals(a(
+        $array->sortUStringsCi(CUString::COLLATION_IGNORE_ACCENTS);
+        $this->assertTrue($array->equals(a(
             "á", "A", "B", "b", "C", "č", "D", "d", "E", "ê")));
 
-        $aArray = a(
+        $array = a(
             " c", ",B", ".d", ":E", ";D", "!C", "?a", "\"e", "(b", "[A");
-        $aArray->sortUStringsCi(CUString::COLLATION_IGNORE_NONWORD);
-        $this->assertTrue($aArray->equals(a(
+        $array->sortUStringsCi(CUString::COLLATION_IGNORE_NONWORD);
+        $this->assertTrue($array->equals(a(
             "?a", "[A", ",B", "(b", "!C", " c", ";D", ".d", ":E", "\"e")));
 
-        $aArray = a(
+        $array = a(
             "c", "B", "d", "E", "D", "C", "a", "e", "b", "A");
-        $aArray->sortUStringsCi(CUString::COLLATION_UPPERCASE_FIRST);
-        $this->assertTrue($aArray->equals(a(
+        $array->sortUStringsCi(CUString::COLLATION_UPPERCASE_FIRST);
+        $this->assertTrue($array->equals(a(
             "a", "A", "B", "b", "C", "c", "D", "d", "E", "e")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSortUStringsNat ()
     {
-        $aArray = a(
+        $array = a(
             "c", "B", "d", "E", "D", "C", "a", "e", "b", "A3", "A20", "A100");
-        $aArray->sortUStringsNat(CUString::COLLATION_DEFAULT);
-        $this->assertTrue($aArray->equals(a(
+        $array->sortUStringsNat(CUString::COLLATION_DEFAULT);
+        $this->assertTrue($array->equals(a(
             "a", "A3", "A20", "A100", "b", "B", "c", "C", "d", "D", "e", "E")));
 
-        $aArray = a(
+        $array = a(
             "č", "B", "d", "E", "D", "C", "á", "ê", "b", "A3", "A20", "A100");
-        $aArray->sortUStringsNat(CUString::COLLATION_IGNORE_ACCENTS);
-        $this->assertTrue($aArray->equals(a(
+        $array->sortUStringsNat(CUString::COLLATION_IGNORE_ACCENTS);
+        $this->assertTrue($array->equals(a(
             "á", "A3", "A20", "A100", "b", "B", "č", "C", "d", "D", "ê", "E")));
 
-        $aArray = a(
+        $array = a(
             " c", ",B", ".d", ":E", ";D", "!C", "?a", "\"e", "(b", "[A3", "[A20", "[A100");
-        $aArray->sortUStringsNat(CUString::COLLATION_IGNORE_NONWORD);
-        $this->assertTrue($aArray->equals(a(
+        $array->sortUStringsNat(CUString::COLLATION_IGNORE_NONWORD);
+        $this->assertTrue($array->equals(a(
             "?a", "[A3", "[A20", "[A100", "(b", ",B", " c", "!C", ".d", ";D", "\"e", ":E")));
 
-        $aArray = a(
+        $array = a(
             "c", "B", "d", "E", "D", "C", "a", "e", "b", "A3", "A20", "A100");
-        $aArray->sortUStringsNat(CUString::COLLATION_UPPERCASE_FIRST);
-        $this->assertTrue($aArray->equals(a(
+        $array->sortUStringsNat(CUString::COLLATION_UPPERCASE_FIRST);
+        $this->assertTrue($array->equals(a(
             "a", "A3", "A20", "A100", "B", "b", "C", "c", "D", "d", "E", "e")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSortUStringsNatCi ()
     {
-        $aArray = a(
+        $array = a(
             "c", "B", "d", "E", "D", "C", "a", "e", "b", "A3", "A20", "A100");
-        $aArray->sortUStringsNatCi(CUString::COLLATION_DEFAULT);
-        $this->assertTrue($aArray->equals(a(
+        $array->sortUStringsNatCi(CUString::COLLATION_DEFAULT);
+        $this->assertTrue($array->equals(a(
             "a", "A3", "A20", "A100", "b", "B", "C", "c", "d", "D", "e", "E")));
 
-        $aArray = a(
+        $array = a(
             "č", "B", "d", "E", "D", "C", "á", "ê", "b", "A3", "A20", "A100");
-        $aArray->sortUStringsNatCi(CUString::COLLATION_IGNORE_ACCENTS);
-        $this->assertTrue($aArray->equals(a(
+        $array->sortUStringsNatCi(CUString::COLLATION_IGNORE_ACCENTS);
+        $this->assertTrue($array->equals(a(
             "á", "A3", "A20", "A100", "b", "B", "C", "č", "d", "D", "ê", "E")));
 
-        $aArray = a(
+        $array = a(
             " c", ",B", ".d", ":E", ";D", "!C", "?a", "\"e", "(b", "[A3", "[A20", "[A100");
-        $aArray->sortUStringsNatCi(CUString::COLLATION_IGNORE_NONWORD);
-        $this->assertTrue($aArray->equals(a(
+        $array->sortUStringsNatCi(CUString::COLLATION_IGNORE_NONWORD);
+        $this->assertTrue($array->equals(a(
             "?a", "[A3", "[A20", "[A100", "(b", ",B", "!C", " c", ".d", ";D", "\"e", ":E")));
 
-        $aArray = a(
+        $array = a(
             "c", "B", "d", "E", "D", "C", "a", "e", "b", "A3", "A20", "A100");
-        $aArray->sortUStringsNatCi(CUString::COLLATION_UPPERCASE_FIRST);
-        $this->assertTrue($aArray->equals(a(
+        $array->sortUStringsNatCi(CUString::COLLATION_UPPERCASE_FIRST);
+        $this->assertTrue($array->equals(a(
             "a", "A3", "A20", "A100", "b", "B", "C", "c", "d", "D", "e", "E")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFilter ()
     {
-        $aArray = a(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-        $aArray = $aArray->filter(function ($iElement)
+        $array = a(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        $array = $array->filter(function ($element)
             {
-                return CMathi::isEven($iElement);
+                return CMathi::isEven($element);
             });
-        $this->assertTrue($aArray->equals(a(2, 4, 6, 8, 10)));
+        $this->assertTrue($array->equals(a(2, 4, 6, 8, 10)));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testUnique ()
     {
         // Using the default comparator.
-        $aArray = a("a", "b", "c", "d", "e", "a", "c", "e");
-        $aArray = $aArray->unique();
-        $this->assertTrue($aArray->equals(a("a", "b", "c", "d", "e")));
+        $array = a("a", "b", "c", "d", "e", "a", "c", "e");
+        $array = $array->unique();
+        $this->assertTrue($array->equals(a("a", "b", "c", "d", "e")));
 
         // Using a custom comparator.
-        $aArray = a("A", "b", "C", "d", "E", "a", "c", "e");
-        $fnComparator = function ($sString0, $sString1)
+        $array = a("A", "b", "C", "d", "E", "a", "c", "e");
+        $comparator = function ($string0, $string1)
             {
-                return $sString0->toLowerCase()->equals($sString1->toLowerCase());
+                return $string0->toLowerCase()->equals($string1->toLowerCase());
             };
-        $aArray = $aArray->unique($fnComparator);
-        $this->assertTrue($aArray->equals(a("A", "b", "C", "d", "E")));
+        $array = $array->unique($comparator);
+        $this->assertTrue($array->equals(a("A", "b", "C", "d", "E")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testElementsSum ()
     {
-        $aArray = a(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-        $this->assertTrue( $aArray->elementsSum() == 55 );
+        $array = a(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        $this->assertTrue( $array->elementsSum() == 55 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testElementsProduct ()
     {
-        $aArray = a(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-        $this->assertTrue( $aArray->elementsProduct() == 3628800 );
+        $array = a(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        $this->assertTrue( $array->elementsProduct() == 3628800 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testIsSubsetOf ()
     {
         // Using the default comparator.
 
-        $aArray = a("a", "b", "c", "a", "b", "c", "a", "b", "c");
-        $this->assertTrue($aArray->isSubsetOf(a("a", "b", "c")));
+        $array = a("a", "b", "c", "a", "b", "c", "a", "b", "c");
+        $this->assertTrue($array->isSubsetOf(a("a", "b", "c")));
 
-        $aArray = a("a", "b", "c", "a", "b", "c", "a", "d", "b", "c");
-        $this->assertFalse($aArray->isSubsetOf(a("a", "b", "c")));
+        $array = a("a", "b", "c", "a", "b", "c", "a", "d", "b", "c");
+        $this->assertFalse($array->isSubsetOf(a("a", "b", "c")));
 
         // Using a custom comparator.
-        $aArray = a("a", "b", "c", "a", "b", "c", "a", "b", "c");
-        $fnComparator = function ($sString0, $sString1)
+        $array = a("a", "b", "c", "a", "b", "c", "a", "b", "c");
+        $comparator = function ($string0, $string1)
             {
-                return $sString0->toLowerCase()->equals($sString1->toLowerCase());
+                return $string0->toLowerCase()->equals($string1->toLowerCase());
             };
-        $this->assertTrue($aArray->isSubsetOf(a("A", "B", "C"), $fnComparator));
+        $this->assertTrue($array->isSubsetOf(a("A", "B", "C"), $comparator));
 
         // Special case.
-        $aArray = new CArrayObject();
-        $this->assertFalse($aArray->isSubsetOf(a("a", "b", "c")));
+        $array = new CArrayObject();
+        $this->assertFalse($array->isSubsetOf(a("a", "b", "c")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testUnion ()
     {
-        $aArray0 = a("a", "b", "c");
-        $aArray1 = a("d", "e", "f");
-        $aArray2 = a("g", "h", "i");
-        $aArray = $aArray0->union($aArray1, $aArray2);
-        $this->assertTrue($aArray->equals(a("a", "b", "c", "d", "e", "f", "g", "h", "i")));
+        $array0 = a("a", "b", "c");
+        $array1 = a("d", "e", "f");
+        $array2 = a("g", "h", "i");
+        $array = $array0->union($array1, $array2);
+        $this->assertTrue($array->equals(a("a", "b", "c", "d", "e", "f", "g", "h", "i")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testIntersection ()
     {
         // Using the default comparator.
-        $aArray0 = a("a", "b", "c", "d", "e", "f");
-        $aArray1 = a("g", "b", "h", "d", "i", "f");
-        $aArray = $aArray0->intersection($aArray1);
-        $this->assertTrue($aArray->equals(a("b", "d", "f")));
+        $array0 = a("a", "b", "c", "d", "e", "f");
+        $array1 = a("g", "b", "h", "d", "i", "f");
+        $array = $array0->intersection($array1);
+        $this->assertTrue($array->equals(a("b", "d", "f")));
 
         // Using a custom comparator.
-        $aArray0 = a("a", "b", "c", "d", "e", "f");
-        $aArray1 = a("G", "B", "H", "D", "I", "F");
-        $fnComparator = function ($sString0, $sString1)
+        $array0 = a("a", "b", "c", "d", "e", "f");
+        $array1 = a("G", "B", "H", "D", "I", "F");
+        $comparator = function ($string0, $string1)
             {
-                return $sString0->toLowerCase()->equals($sString1->toLowerCase());
+                return $string0->toLowerCase()->equals($string1->toLowerCase());
             };
-        $aArray = $aArray0->intersection($aArray1, $fnComparator);
-        $this->assertTrue($aArray->equals(a("b", "d", "f")));
+        $array = $array0->intersection($array1, $comparator);
+        $this->assertTrue($array->equals(a("b", "d", "f")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testDifference ()
     {
         // Using the default comparator.
-        $aArray0 = a("a", "b", "c", "d", "e", "f");
-        $aArray1 = a("g", "b", "h", "d", "i", "f");
-        $aArray = $aArray0->difference($aArray1);
-        $this->assertTrue($aArray->equals(a("a", "c", "e")));
+        $array0 = a("a", "b", "c", "d", "e", "f");
+        $array1 = a("g", "b", "h", "d", "i", "f");
+        $array = $array0->difference($array1);
+        $this->assertTrue($array->equals(a("a", "c", "e")));
 
         // Using a custom comparator.
-        $aArray0 = a("a", "b", "c", "d", "e", "f");
-        $aArray1 = a("G", "B", "H", "D", "I", "F");
-        $fnComparator = function ($sString0, $sString1)
+        $array0 = a("a", "b", "c", "d", "e", "f");
+        $array1 = a("G", "B", "H", "D", "I", "F");
+        $comparator = function ($string0, $string1)
             {
-                return $sString0->toLowerCase()->equals($sString1->toLowerCase());
+                return $string0->toLowerCase()->equals($string1->toLowerCase());
             };
-        $aArray = $aArray0->difference($aArray1, $fnComparator);
-        $this->assertTrue($aArray->equals(a("a", "c", "e")));
+        $array = $array0->difference($array1, $comparator);
+        $this->assertTrue($array->equals(a("a", "c", "e")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSymmetricDifference ()
     {
         // Using the default comparator.
-        $aArray0 = a("a", "b", "c", "d", "e", "f");
-        $aArray1 = a("g", "b", "h", "d", "i", "f");
-        $aArray = $aArray0->symmetricDifference($aArray1);
-        $this->assertTrue($aArray->equals(a("a", "c", "e", "g", "h", "i")));
+        $array0 = a("a", "b", "c", "d", "e", "f");
+        $array1 = a("g", "b", "h", "d", "i", "f");
+        $array = $array0->symmetricDifference($array1);
+        $this->assertTrue($array->equals(a("a", "c", "e", "g", "h", "i")));
 
         // Using a custom comparator.
-        $aArray0 = a("a", "b", "c", "d", "e", "f");
-        $aArray1 = a("G", "B", "H", "D", "I", "F");
-        $fnComparator = function ($sString0, $sString1)
+        $array0 = a("a", "b", "c", "d", "e", "f");
+        $array1 = a("G", "B", "H", "D", "I", "F");
+        $comparator = function ($string0, $string1)
             {
-                return $sString0->toLowerCase()->equals($sString1->toLowerCase());
+                return $string0->toLowerCase()->equals($string1->toLowerCase());
             };
-        $aArray = $aArray0->symmetricDifference($aArray1, $fnComparator);
-        $this->assertTrue($aArray->equals(a("a", "c", "e", "G", "H", "I")));
+        $array = $array0->symmetricDifference($array1, $comparator);
+        $this->assertTrue($array->equals(a("a", "c", "e", "G", "H", "I")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testRepeat ()
     {
-        $aArray = CArrayObject::repeat("a", 5);
-        $this->assertTrue($aArray->equals(a("a", "a", "a", "a", "a")));
+        $array = CArrayObject::repeat("a", 5);
+        $this->assertTrue($array->equals(a("a", "a", "a", "a", "a")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFromArguments ()
     {
-        $aArray = CArrayObject::fromArguments(["a", "b", "c"]);
-        $this->assertTrue( $aArray[0]->equals("a") && $aArray[1]->equals("b") && $aArray[2]->equals("c") );
+        $array = CArrayObject::fromArguments(["a", "b", "c"]);
+        $this->assertTrue( $array[0]->equals("a") && $array[1]->equals("b") && $array[2]->equals("c") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFromSplArray ()
     {
-        $aArray = CArrayObject::fromSplArray(SplFixedArray::fromArray([u("a"), u("b"), u("c")]));
-        $this->assertTrue( $aArray[0]->equals("a") && $aArray[1]->equals("b") && $aArray[2]->equals("c") );
+        $array = CArrayObject::fromSplArray(SplFixedArray::fromArray([u("a"), u("b"), u("c")]));
+        $this->assertTrue( $array[0]->equals("a") && $array[1]->equals("b") && $array[2]->equals("c") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testToSplArray ()
     {
-        $aArray = a("a", "b", "c");
-        $aSplArray = $aArray->toSplArray();
-        $this->assertTrue( $aSplArray[0]->equals("a") && $aSplArray[1]->equals("b") && $aSplArray[2]->equals("c") );
+        $array = a("a", "b", "c");
+        $splArray = $array->toSplArray();
+        $this->assertTrue( $splArray[0]->equals("a") && $splArray[1]->equals("b") && $splArray[2]->equals("c") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testOffsetExists ()
     {
-        $aArray = a("a", "b", "c");
-        $this->assertTrue(isset($aArray[0]));
-        $this->assertFalse(isset($aArray[3]));
+        $array = a("a", "b", "c");
+        $this->assertTrue(isset($array[0]));
+        $this->assertFalse(isset($array[3]));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testOffsetGet ()
     {
-        $aArray = a("a", "b", "c");
-        $this->assertTrue( $aArray[0]->equals("a") && $aArray[1]->equals("b") && $aArray[2]->equals("c") );
+        $array = a("a", "b", "c");
+        $this->assertTrue( $array[0]->equals("a") && $array[1]->equals("b") && $array[2]->equals("c") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testOffsetSet ()
     {
-        $aArray = a("a", "b", "c");
-        $aArray[0] = "d";
-        $this->assertTrue($aArray[0]->equals("d"));
+        $array = a("a", "b", "c");
+        $array[0] = "d";
+        $this->assertTrue($array[0]->equals("d"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testCount ()
     {
-        $aArray = a("a", "b", "c");
-        $this->assertTrue( count($aArray) == 3 );
+        $array = a("a", "b", "c");
+        $this->assertTrue( count($array) == 3 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testClone ()
     {
-        $aArray0 = a("a", "b", "c");
-        $aArray1 = clone $aArray0;
+        $array0 = a("a", "b", "c");
+        $array1 = clone $array0;
         $this->assertTrue(
-            $aArray0[0]->equals($aArray1[0]) && $aArray0[1]->equals($aArray1[1]) && $aArray0[2]->equals($aArray1[2]) );
-        $aArray0[0] = "d";
-        $this->assertTrue($aArray1[0]->equals("a"));
+            $array0[0]->equals($array1[0]) && $array0[1]->equals($array1[1]) && $array0[2]->equals($array1[2]) );
+        $array0[0] = "d";
+        $this->assertTrue($array1[0]->equals("a"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testForeach ()
     {
-        $aArray = a("a", "b", "c");
+        $array = a("a", "b", "c");
         $i = 0;
-        foreach ($aArray as $sElement)
+        foreach ($array as $element)
         {
-            $this->assertTrue($sElement->equals($aArray[$i]));
+            $this->assertTrue($element->equals($array[$i]));
             $i++;
         }
     }
@@ -1096,14 +1097,14 @@ class CArrayObjectTest extends CTestCase
 
 class ClassForSortingObj
 {
-    public function __construct ($xSortOnValue)
+    public function __construct ($sortOnValue)
     {
-        $this->m_xSortOnValue = $xSortOnValue;
+        $this->m_sortOnValue = $sortOnValue;
     }
     public function value ()
     {
-        return $this->m_xSortOnValue;
+        return $this->m_sortOnValue;
     }
-    protected $m_xSortOnValue;
+    protected $m_sortOnValue;
 }
 

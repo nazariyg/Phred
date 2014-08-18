@@ -1,9 +1,10 @@
 <?php
 
+
 interface IEqualityStatic
 {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    public static function equals ($xValue, $xToValue);
+    public static function equals ($value, $toValue);
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }
 

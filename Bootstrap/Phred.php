@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -54,16 +54,16 @@ require $GLOBALS["PHRED_PATH_TO_THIRD_PARTY"] . "/autoload.php";
 
 function is_oop_on ($trace = false)
 {
-    static $s_bOopIsEnabled;
-    if ( isset($s_bOopIsEnabled) )
+    static $s_oopIsEnabled;
+    if ( isset($s_oopIsEnabled) )
     {
         // Return the cached value.
-        return $s_bOopIsEnabled;
+        return $s_oopIsEnabled;
     }
     if ( CConfiguration::isInitialized() )
     {
-        $s_bOopIsEnabled = CConfiguration::appOption("enableOop");
-        return $s_bOopIsEnabled;
+        $s_oopIsEnabled = CConfiguration::appOption("enableOop");
+        return $s_oopIsEnabled;
     }
     else
     {
@@ -76,17 +76,17 @@ function is_oop_on ($trace = false)
 
 function _is_non_tp_call ()
 {
-    static $s_sThirdPartyAbsDp;
-    if ( !isset($s_sThirdPartyAbsDp) )
+    static $s_thirdPartyAbsDp;
+    if ( !isset($s_thirdPartyAbsDp) )
     {
-        $s_sThirdPartyAbsDp = realpath($GLOBALS["PHRED_PATH_TO_THIRD_PARTY"]);
+        $s_thirdPartyAbsDp = realpath($GLOBALS["PHRED_PATH_TO_THIRD_PARTY"]);
     }
-    $mBackTrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
-    if ( count($mBackTrace) < 2 )
+    $backTrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
+    if ( count($backTrace) < 2 )
     {
         return true;
     }
-    return ( strpos($mBackTrace[1]["file"], $s_sThirdPartyAbsDp) !== 0 );
+    return ( strpos($backTrace[1]["file"], $s_thirdPartyAbsDp) !== 0 );
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -103,9 +103,9 @@ CSystem::initializeFramework();
 // Register the aliases for the core classes.
 
 $GLOBALS["PHRED_CLASS_ALIASES"] = CConfiguration::option("classaliases");
-foreach ($GLOBALS["PHRED_CLASS_ALIASES"] as $sClassName => $sAlias)
+foreach ($GLOBALS["PHRED_CLASS_ALIASES"] as $className => $alias)
 {
-    class_alias($sClassName, $sAlias, true);
+    class_alias($className, $alias, true);
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

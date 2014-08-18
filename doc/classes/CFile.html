@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-19910837"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1974402606"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-19910837" class="accordion-body collapse in">
+            <div id="namespace-1974402606" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -336,10 +336,10 @@ byte starting at which the next portion of data is going to be read from or writ
                                 <em>N/A</em>
                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/CFile.html#property_m_sFilePath" class="">$m_sFilePath</a><br />
-                                                                    <a href="../classes/CFile.html#property_m_eMode" class="">$m_eMode</a><br />
-                                                                    <a href="../classes/CFile.html#property_m_rcFile" class="">$m_rcFile</a><br />
-                                                                    <a href="../classes/CFile.html#property_m_bDone" class="">$m_bDone</a><br />
+                                                                    <a href="../classes/CFile.html#property_m_filePath" class="">$m_filePath</a><br />
+                                                                    <a href="../classes/CFile.html#property_m_mode" class="">$m_mode</a><br />
+                                                                    <a href="../classes/CFile.html#property_m_file" class="">$m_file</a><br />
+                                                                    <a href="../classes/CFile.html#property_m_done" class="">$m_done</a><br />
                                                             </section>
                         </section>
                         <section class="row-fluid private">
@@ -957,7 +957,7 @@ or creating the file if it doesn't exist.</p></p>
             <article class="method">
                 <h3 class="public ">exists()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> exists (string&nbsp;<span class="argument">$sFileOrDirectoryPath</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> exists (string&nbsp;<span class="argument">$fileOrDirectoryPath</span>) : bool</pre>
                 <p><em><p>Determines if a file or directory exists.</p></em></p>
                 <p>The method always reports on a file or directory how it really is at the moment, without using any information
 that was previously cached by the OS.</p>
@@ -965,7 +965,7 @@ that was previously cached by the OS.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFileOrDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$fileOrDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to be checked (in case of a directory, its path is not required to
 end with "/").</p></td>
@@ -1004,7 +1004,7 @@ end with "/").</p></td>
             <article class="method">
                 <h3 class="public ">size()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> size (string&nbsp;<span class="argument">$sFilePath</span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> size (string&nbsp;<span class="argument">$filePath</span>) : int</pre>
                 <p><em><p>Returns the size of a file.</p></em></p>
                 <p>The method always reports on a file how it really is at the moment, without using any information that was
 previously cached by the OS.</p>
@@ -1012,7 +1012,7 @@ previously cached by the OS.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFilePath</code> </td>
+                                <td><code style="border: none; background: none">$filePath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the file.</p></td>
                             </tr>
@@ -1050,14 +1050,14 @@ previously cached by the OS.</p>
             <article class="method">
                 <h3 class="public ">read()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> read (string&nbsp;<span class="argument">$sFilePath</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> read (string&nbsp;<span class="argument">$filePath</span>) : OOPString</pre>
                 <p><em><p>Reads and returns the entire contents of a file.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFilePath</code> </td>
+                                <td><code style="border: none; background: none">$filePath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the source file.</p></td>
                             </tr>
@@ -1095,7 +1095,7 @@ previously cached by the OS.</p>
             <article class="method">
                 <h3 class="public ">write()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> write (string&nbsp;<span class="argument">$sFilePath</span>, data&nbsp;<span class="argument">$byData</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> write (string&nbsp;<span class="argument">$filePath</span>, data&nbsp;<span class="argument">$data</span>) : void</pre>
                 <p><em><p>Writes specified contents into a file, replacing any previous contents or creating the file if it doesn't exist.</p></em></p>
                 <p>To prevent any other process from writing into the file during the operation, the method locks the file until
 the operation is complete.</p>
@@ -1103,12 +1103,12 @@ the operation is complete.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFilePath</code> </td>
+                                <td><code style="border: none; background: none">$filePath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the destination file.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$byData</code> </td>
+                                <td><code style="border: none; background: none">$data</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">data</code></td>
                                 <td><p>The contents to be written into the file.</p></td>
                             </tr>
@@ -1141,7 +1141,7 @@ the operation is complete.</p>
             <article class="method">
                 <h3 class="public ">append()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> append (string&nbsp;<span class="argument">$sFilePath</span>, data&nbsp;<span class="argument">$byData</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> append (string&nbsp;<span class="argument">$filePath</span>, data&nbsp;<span class="argument">$data</span>) : void</pre>
                 <p><em><p>Appends specified contents to the end of a file, creating the file if it doesn't exist.</p></em></p>
                 <p>To prevent any other process from writing into the file during the operation, the method locks the file until
 the operation is complete.</p>
@@ -1149,12 +1149,12 @@ the operation is complete.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFilePath</code> </td>
+                                <td><code style="border: none; background: none">$filePath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the destination file.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$byData</code> </td>
+                                <td><code style="border: none; background: none">$data</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">data</code></td>
                                 <td><p>The contents to be appended to the file.</p></td>
                             </tr>
@@ -1187,19 +1187,19 @@ the operation is complete.</p>
             <article class="method">
                 <h3 class="public ">create()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> create (string&nbsp;<span class="argument">$sFilePath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSetPermissions</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> create (string&nbsp;<span class="argument">$filePath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$setPermissions</span></span>) : void</pre>
                 <p><em><p>Creates an empty file at a specified path.</p></em></p>
                 <p>If a file already exists at the specified path, it will be overwritten.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFilePath</code> </td>
+                                <td><code style="border: none; background: none">$filePath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path at which the file is to be created.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSetPermissions</code> </td>
+                                <td><code style="border: none; background: none">$setPermissions</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether to set access permissions for the
 file. If this parameter is <code>false</code>, then the permissions default to the ones determined by the OS's
@@ -1236,7 +1236,7 @@ other users.</p></td>
             <article class="method">
                 <h3 class="public ">createTemporary()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> createTemporary (<span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sInDirectoryPath</span></span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sNamePrefix</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> createTemporary (<span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inDirectoryPath</span></span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$namePrefix</span></span>) : OOPString</pre>
                 <p><em><p>Creates an empty file with a unique name in the default directory for temporary files or in a specified
 directory, and returns the path to the created file.</p></em></p>
                 <p>After creating the file, the method sets the file's access permissions as "644", which means read/write access
@@ -1245,7 +1245,7 @@ for the file's owner (the user on whose behalf the application runs) and read-on
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>the default directory for temporary files</em>. The path
 to the directory where the file is to be created. If this parameter is omitted, the used directory is either the
@@ -1253,7 +1253,7 @@ OS's default directory for temporary files or, if specified, the directory read 
 configuration. If specified, the path is not required to end with "/".</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sNamePrefix</code> </td>
+                                <td><code style="border: none; background: none">$namePrefix</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> "tmp-". The name prefix for the file.</p></td>
                             </tr>
@@ -1291,19 +1291,19 @@ configuration. If specified, the path is not required to end with "/".</p></td>
             <article class="method">
                 <h3 class="public ">createDirectory()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> createDirectory (string&nbsp;<span class="argument">$sDirectoryPath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSetPermissions</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> createDirectory (string&nbsp;<span class="argument">$directoryPath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$setPermissions</span></span>) : void</pre>
                 <p><em><p>Creates a directory at a specified path.</p></em></p>
                 <p>If the path along the way mentions any other directories that don't exist, all of them will be created as well.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$directoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path at which the directory is to be created (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSetPermissions</code> </td>
+                                <td><code style="border: none; background: none">$setPermissions</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether to set access permissions for the
 directory. If this parameter is <code>false</code>, then the permissions default to the ones determined by the OS's
@@ -1341,7 +1341,7 @@ same level of access except adding/removing items for other users.</p></td>
             <article class="method">
                 <h3 class="public ">copy()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> copy (string&nbsp;<span class="argument">$sFileOrDirectoryPath</span>, string&nbsp;<span class="argument">$sCopyPath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bCopyPermissions</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> copy (string&nbsp;<span class="argument">$fileOrDirectoryPath</span>, string&nbsp;<span class="argument">$copyPath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$copyPermissions</span></span>) : void</pre>
                 <p><em><p>Copies a file or directory.</p></em></p>
                 <p>If any file or directory already exists at the destination path, it will be overwritten.</p>
 <p>When copying a directory, it is copied recursively so that any subdirectories, including all of their files and
@@ -1350,18 +1350,18 @@ subdirectories and so on, are all copied as well, maintaining the directory hier
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFileOrDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$fileOrDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the file or directory to be copied (in case of a directory, its
 path is not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sCopyPath</code> </td>
+                                <td><code style="border: none; background: none">$copyPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The destination path.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bCopyPermissions</code> </td>
+                                <td><code style="border: none; background: none">$copyPermissions</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>true</code>. Tells whether the access permissions should be
 copied too per each item.</p></td>
@@ -1395,20 +1395,20 @@ copied too per each item.</p></td>
             <article class="method">
                 <h3 class="public ">move()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> move (string&nbsp;<span class="argument">$sFileOrDirectoryPath</span>, string&nbsp;<span class="argument">$sNewPath</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> move (string&nbsp;<span class="argument">$fileOrDirectoryPath</span>, string&nbsp;<span class="argument">$newPath</span>) : void</pre>
                 <p><em><p>Moves a file or directory.</p></em></p>
                 <p>If any file or directory already exists at the destination path, it will be overwritten.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFileOrDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$fileOrDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the file or directory to be moved (in case of a directory, its
 path is not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sNewPath</code> </td>
+                                <td><code style="border: none; background: none">$newPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The destination path.</p></td>
                             </tr>
@@ -1441,20 +1441,20 @@ path is not required to end with "/").</p></td>
             <article class="method">
                 <h3 class="public ">rename()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> rename (string&nbsp;<span class="argument">$sFileOrDirectoryPath</span>, string&nbsp;<span class="argument">$sNewName</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> rename (string&nbsp;<span class="argument">$fileOrDirectoryPath</span>, string&nbsp;<span class="argument">$newName</span>) : void</pre>
                 <p><em><p>Renames a file or directory.</p></em></p>
                 <p>If any file or directory already exists at the resulting path, it will be overwritten.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFileOrDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$fileOrDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the file or directory to be renamed (in case of a directory,
 its path is not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sNewName</code> </td>
+                                <td><code style="border: none; background: none">$newName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The new name for the file or directory.</p></td>
                             </tr>
@@ -1487,14 +1487,14 @@ its path is not required to end with "/").</p></td>
             <article class="method">
                 <h3 class="public ">delete()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> delete (string&nbsp;<span class="argument">$sFilePath</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> delete (string&nbsp;<span class="argument">$filePath</span>) : void</pre>
                 <p><em><p>Deletes a file.</p></em></p>
                 <p>Use either <code>deleteEmptyDirectory</code> or <code>deleteDirectoryRecursive</code> method to delete a directory.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFilePath</code> </td>
+                                <td><code style="border: none; background: none">$filePath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the file to be deleted.</p></td>
                             </tr>
@@ -1530,7 +1530,7 @@ its path is not required to end with "/").</p></td>
             <article class="method">
                 <h3 class="public ">deleteEmptyDirectory()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> deleteEmptyDirectory (string&nbsp;<span class="argument">$sDirectoryPath</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> deleteEmptyDirectory (string&nbsp;<span class="argument">$directoryPath</span>) : void</pre>
                 <p><em><p>Deletes a directory that is known to be empty.</p></em></p>
                 <p>This method is a safeguard against data losses. Use <code>deleteDirectoryRecursive</code> method to delete a directory that
 contains or may contain files or subdirectories.</p>
@@ -1538,7 +1538,7 @@ contains or may contain files or subdirectories.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$directoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be deleted (not required to end with "/").</p></td>
                             </tr>
@@ -1573,14 +1573,14 @@ contains or may contain files or subdirectories.</p>
             <article class="method">
                 <h3 class="public ">deleteDirectoryRecursive()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> deleteDirectoryRecursive (string&nbsp;<span class="argument">$sDirectoryPath</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> deleteDirectoryRecursive (string&nbsp;<span class="argument">$directoryPath</span>) : void</pre>
                 <p><em><p>Deletes a directory together with all of its files and subdirectories.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$directoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be deleted (not required to end with "/").</p></td>
                             </tr>
@@ -1613,7 +1613,7 @@ contains or may contain files or subdirectories.</p>
             <article class="method">
                 <h3 class="public ">permissions()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> permissions (string&nbsp;<span class="argument">$sFileOrDirectoryPath</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> permissions (string&nbsp;<span class="argument">$fileOrDirectoryPath</span>) : OOPString</pre>
                 <p><em><p>Returns the access permissions for a file or directory.</p></em></p>
                 <p>The permissions are embodied in a string with three digits. For instance, the permissions on a file that is
 allowed to be accessed by any user and with any intent are "777".</p>
@@ -1623,7 +1623,7 @@ that was previously cached by the OS.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFileOrDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$fileOrDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the file or directory (in case of a directory, its path is not
 required to end with "/").</p></td>
@@ -1662,7 +1662,7 @@ required to end with "/").</p></td>
             <article class="method">
                 <h3 class="public ">setPermissions()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setPermissions (string&nbsp;<span class="argument">$sFileOrDirectoryPath</span>, string&nbsp;<span class="argument">$sPermissions</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setPermissions (string&nbsp;<span class="argument">$fileOrDirectoryPath</span>, string&nbsp;<span class="argument">$permissions</span>) : void</pre>
                 <p><em><p>Sets access permissions for a file or directory.</p></em></p>
                 <p>The permissions are embodied in a string with three digits. For instance, the permissions on a file that is
 allowed to be accessed by any user and with any intent are "777".</p>
@@ -1670,13 +1670,13 @@ allowed to be accessed by any user and with any intent are "777".</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFileOrDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$fileOrDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the file or directory (in case of a directory, its path is not
 required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPermissions</code> </td>
+                                <td><code style="border: none; background: none">$permissions</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The access permissions to be used for the file or directory.</p></td>
                             </tr>
@@ -1709,7 +1709,7 @@ required to end with "/").</p></td>
             <article class="method">
                 <h3 class="public ">modificationTime()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> modificationTime (string&nbsp;<span class="argument">$sFilePath</span>) : CTime</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> modificationTime (string&nbsp;<span class="argument">$filePath</span>) : CTime</pre>
                 <p><em><p>Returns the point in time when the file was last modified.</p></em></p>
                 <p>The method always reports on a file how it really is at the moment, without using any information that was
 previously cached by the OS.</p>
@@ -1717,7 +1717,7 @@ previously cached by the OS.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFilePath</code> </td>
+                                <td><code style="border: none; background: none">$filePath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the file.</p></td>
                             </tr>
@@ -1755,7 +1755,7 @@ previously cached by the OS.</p>
             <article class="method">
                 <h3 class="public ">isFile()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isFile (string&nbsp;<span class="argument">$sPath</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isFile (string&nbsp;<span class="argument">$path</span>) : bool</pre>
                 <p><em><p>Determines if a path leads to a file.</p></em></p>
                 <p>The method always reports on a path how it really is at the moment, without using any information that was
 previously cached by the OS.</p>
@@ -1763,7 +1763,7 @@ previously cached by the OS.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPath</code> </td>
+                                <td><code style="border: none; background: none">$path</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to be checked.</p></td>
                             </tr>
@@ -1801,7 +1801,7 @@ previously cached by the OS.</p>
             <article class="method">
                 <h3 class="public ">isDirectory()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isDirectory (string&nbsp;<span class="argument">$sPath</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isDirectory (string&nbsp;<span class="argument">$path</span>) : bool</pre>
                 <p><em><p>Determines if a path leads to a directory.</p></em></p>
                 <p>The method always reports on a path how it really is at the moment, without using any information that was
 previously cached by the OS.</p>
@@ -1809,7 +1809,7 @@ previously cached by the OS.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPath</code> </td>
+                                <td><code style="border: none; background: none">$path</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to be checked (not required to end with "/").</p></td>
                             </tr>
@@ -1847,7 +1847,7 @@ previously cached by the OS.</p>
             <article class="method">
                 <h3 class="public ">listItems()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> listItems (string&nbsp;<span class="argument">$sInDirectoryPath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> listItems (string&nbsp;<span class="argument">$inDirectoryPath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the files and subdirectories contained in a directory.</p></em></p>
                 <p>To find out what items are also contained in the subdirectories of the specified directory and so on, you can
 use <code>listItemsRecursive</code> method.</p>
@@ -1856,12 +1856,12 @@ use <code>listItemsRecursive</code> method.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be looked into (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -1902,7 +1902,7 @@ ascending order.</p></td>
             <article class="method">
                 <h3 class="public ">listFiles()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> listFiles (string&nbsp;<span class="argument">$sInDirectoryPath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> listFiles (string&nbsp;<span class="argument">$inDirectoryPath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the files contained in a directory.</p></em></p>
                 <p>To find out what files are also contained in the subdirectories of the specified directory and so on, you can
 use <code>listFilesRecursive</code> method.</p>
@@ -1911,12 +1911,12 @@ use <code>listFilesRecursive</code> method.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be looked into (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -1957,7 +1957,7 @@ ascending order.</p></td>
             <article class="method">
                 <h3 class="public ">listDirectories()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> listDirectories (string&nbsp;<span class="argument">$sInDirectoryPath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> listDirectories (string&nbsp;<span class="argument">$inDirectoryPath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the subdirectories contained in a directory.</p></em></p>
                 <p>To find out what subdirectories are also contained in the subdirectories of the specified directory and so on,
 you can use <code>listDirectoriesRecursive</code> method.</p>
@@ -1966,12 +1966,12 @@ you can use <code>listDirectoriesRecursive</code> method.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be looked into (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -2012,19 +2012,19 @@ ascending order.</p></td>
             <article class="method">
                 <h3 class="public ">listItemsRecursive()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> listItemsRecursive (string&nbsp;<span class="argument">$sInDirectoryPath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> listItemsRecursive (string&nbsp;<span class="argument">$inDirectoryPath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the files and subdirectories contained in a directory, in its subdirectories, and so on.</p></em></p>
                 <p>The returned paths are always absolute.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be looked into (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -2064,19 +2064,19 @@ subdirectories of the directory, and so on.</p>
             <article class="method">
                 <h3 class="public ">listFilesRecursive()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> listFilesRecursive (string&nbsp;<span class="argument">$sInDirectoryPath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> listFilesRecursive (string&nbsp;<span class="argument">$inDirectoryPath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the files contained in a directory, in its subdirectories, and so on.</p></em></p>
                 <p>The returned paths are always absolute.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be looked into (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -2116,19 +2116,19 @@ directory, and so on.</p>
             <article class="method">
                 <h3 class="public ">listDirectoriesRecursive()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> listDirectoriesRecursive (string&nbsp;<span class="argument">$sInDirectoryPath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> listDirectoriesRecursive (string&nbsp;<span class="argument">$inDirectoryPath</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the subdirectories contained in a directory, in its subdirectories, and so on.</p></em></p>
                 <p>The returned paths are always absolute.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be looked into (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -2168,7 +2168,7 @@ of the directory, and so on.</p>
             <article class="method">
                 <h3 class="public ">findItems()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> findItems (string&nbsp;<span class="argument">$sWildcardPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> findItems (string&nbsp;<span class="argument">$wildcardPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the files and subdirectories found by a wildcard pattern.</p></em></p>
                 <p>Wildcard patterns use "*" to match zero or more arbitrary characters, except the character of "/", and "?" to
 match any single arbitrary character, again except the character of "/". For example, "*.png" pattern searches
@@ -2185,12 +2185,12 @@ on, you can use <code>findItemsRecursive</code> method.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sWildcardPattern</code> </td>
+                                <td><code style="border: none; background: none">$wildcardPattern</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The wildcard pattern to be used for searching.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -2231,7 +2231,7 @@ ascending order.</p></td>
             <article class="method">
                 <h3 class="public ">findFiles()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> findFiles (string&nbsp;<span class="argument">$sWildcardPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> findFiles (string&nbsp;<span class="argument">$wildcardPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the files found by a wildcard pattern.</p></em></p>
                 <p>Wildcard patterns use "*" to match zero or more arbitrary characters, except the character of "/", and "?" to
 match any single arbitrary character, again except the character of "/". For example, "*.png" pattern searches
@@ -2248,12 +2248,12 @@ on, you can use <code>findFilesRecursive</code> method.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sWildcardPattern</code> </td>
+                                <td><code style="border: none; background: none">$wildcardPattern</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The wildcard pattern to be used for searching.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -2294,7 +2294,7 @@ ascending order.</p></td>
             <article class="method">
                 <h3 class="public ">findDirectories()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> findDirectories (string&nbsp;<span class="argument">$sWildcardPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> findDirectories (string&nbsp;<span class="argument">$wildcardPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the subdirectories found by a wildcard pattern.</p></em></p>
                 <p>Wildcard patterns use "*" to match zero or more arbitrary characters, except the character of "/", and "?" to
 match any single arbitrary character, again except the character of "/". For example, "*.png" pattern searches
@@ -2311,12 +2311,12 @@ pattern and so on, you can use <code>findDirectoriesRecursive</code> method.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sWildcardPattern</code> </td>
+                                <td><code style="border: none; background: none">$wildcardPattern</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The wildcard pattern to be used for searching.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -2357,7 +2357,7 @@ ascending order.</p></td>
             <article class="method">
                 <h3 class="public ">findItemsRecursive()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> findItemsRecursive (string&nbsp;<span class="argument">$sWildcardPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> findItemsRecursive (string&nbsp;<span class="argument">$wildcardPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the files and subdirectories found by a wildcard pattern, also searching in the
 subdirectories and so on.</p></em></p>
                 <p>Wildcard patterns use "*" to match zero or more arbitrary characters, except the character of "/", and "?" to
@@ -2373,12 +2373,12 @@ small portion of what regular expressions can do.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sWildcardPattern</code> </td>
+                                <td><code style="border: none; background: none">$wildcardPattern</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The wildcard pattern to be used for searching.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -2418,7 +2418,7 @@ including ones found in the subdirectories and so on.</p>
             <article class="method">
                 <h3 class="public ">findFilesRecursive()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> findFilesRecursive (string&nbsp;<span class="argument">$sWildcardPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> findFilesRecursive (string&nbsp;<span class="argument">$wildcardPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the files found by a wildcard pattern, also searching in the subdirectories and so on.</p></em></p>
                 <p>Wildcard patterns use "*" to match zero or more arbitrary characters, except the character of "/", and "?" to
 match any single arbitrary character, again except the character of "/". For example, "*.png" pattern searches
@@ -2433,12 +2433,12 @@ small portion of what regular expressions can do.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sWildcardPattern</code> </td>
+                                <td><code style="border: none; background: none">$wildcardPattern</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The wildcard pattern to be used for searching.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -2478,7 +2478,7 @@ subdirectories and so on.</p>
             <article class="method">
                 <h3 class="public ">findDirectoriesRecursive()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> findDirectoriesRecursive (string&nbsp;<span class="argument">$sWildcardPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> findDirectoriesRecursive (string&nbsp;<span class="argument">$wildcardPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the subdirectories found by a wildcard pattern, also searching in the subdirectories and so
 on.</p></em></p>
                 <p>Wildcard patterns use "*" to match zero or more arbitrary characters, except the character of "/", and "?" to
@@ -2494,12 +2494,12 @@ small portion of what regular expressions can do.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sWildcardPattern</code> </td>
+                                <td><code style="border: none; background: none">$wildcardPattern</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The wildcard pattern to be used for searching.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -2539,7 +2539,7 @@ found in the subdirectories and so on.</p>
             <article class="method">
                 <h3 class="public ">reFindItems()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindItems (string&nbsp;<span class="argument">$sInDirectoryPath</span>, string&nbsp;<span class="argument">$sRegexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindItems (string&nbsp;<span class="argument">$inDirectoryPath</span>, string&nbsp;<span class="argument">$regexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the files and subdirectories found in a directory by a regular expression pattern,
 searching in the whole path of every contained item with the pattern.</p></em></p>
                 <p>To also search among the items that are contained in the subdirectories of a directory and so on, you can use
@@ -2549,17 +2549,17 @@ searching in the whole path of every contained item with the pattern.</p></em></
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be looked into (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sRegexPattern</code> </td>
+                                <td><code style="border: none; background: none">$regexPattern</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The regular expression pattern to be used for searching.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -2601,7 +2601,7 @@ specified.</p>
             <article class="method">
                 <h3 class="public ">reFindFiles()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindFiles (string&nbsp;<span class="argument">$sInDirectoryPath</span>, string&nbsp;<span class="argument">$sRegexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindFiles (string&nbsp;<span class="argument">$inDirectoryPath</span>, string&nbsp;<span class="argument">$regexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the files found in a directory by a regular expression pattern, searching in the whole path
 of every contained file with the pattern.</p></em></p>
                 <p>To also search among the files that are contained in the subdirectories of a directory and so on, you can use
@@ -2611,17 +2611,17 @@ of every contained file with the pattern.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be looked into (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sRegexPattern</code> </td>
+                                <td><code style="border: none; background: none">$regexPattern</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The regular expression pattern to be used for searching.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -2662,7 +2662,7 @@ ascending order.</p></td>
             <article class="method">
                 <h3 class="public ">reFindDirectories()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindDirectories (string&nbsp;<span class="argument">$sInDirectoryPath</span>, string&nbsp;<span class="argument">$sRegexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindDirectories (string&nbsp;<span class="argument">$inDirectoryPath</span>, string&nbsp;<span class="argument">$regexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the subdirectories found in a directory by a regular expression pattern, searching in the
 whole path of every contained subdirectory with the pattern.</p></em></p>
                 <p>To also search among the subdirectories that are contained in the subdirectories of a directory and so on, you
@@ -2672,17 +2672,17 @@ can use <code>reFindDirectoriesRecursive</code> method.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be looked into (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sRegexPattern</code> </td>
+                                <td><code style="border: none; background: none">$regexPattern</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The regular expression pattern to be used for searching.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -2723,7 +2723,7 @@ ascending order.</p></td>
             <article class="method">
                 <h3 class="public ">reFindItemsRecursive()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindItemsRecursive (string&nbsp;<span class="argument">$sInDirectoryPath</span>, string&nbsp;<span class="argument">$sRegexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindItemsRecursive (string&nbsp;<span class="argument">$inDirectoryPath</span>, string&nbsp;<span class="argument">$regexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the files and subdirectories found in a directory by a regular expression pattern,
 searching in the whole path of every contained item with the pattern, also looking into the subdirectories of
 the directory and so on.</p></em></p>
@@ -2732,17 +2732,17 @@ the directory and so on.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be looked into (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sRegexPattern</code> </td>
+                                <td><code style="border: none; background: none">$regexPattern</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The regular expression pattern to be used for searching.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -2782,7 +2782,7 @@ specified, including ones found in the subdirectories of the specified directory
             <article class="method">
                 <h3 class="public ">reFindFilesRecursive()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindFilesRecursive (string&nbsp;<span class="argument">$sInDirectoryPath</span>, string&nbsp;<span class="argument">$sRegexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindFilesRecursive (string&nbsp;<span class="argument">$inDirectoryPath</span>, string&nbsp;<span class="argument">$regexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the files found in a directory by a regular expression pattern, searching in the whole path
 of every contained file with the pattern, also looking into the subdirectories of the directory and so on.</p></em></p>
                 <p>The returned paths are always absolute.</p>
@@ -2790,17 +2790,17 @@ of every contained file with the pattern, also looking into the subdirectories o
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be looked into (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sRegexPattern</code> </td>
+                                <td><code style="border: none; background: none">$regexPattern</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The regular expression pattern to be used for searching.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -2840,7 +2840,7 @@ found in the subdirectories of the specified directory and so on.</p>
             <article class="method">
                 <h3 class="public ">reFindDirectoriesRecursive()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindDirectoriesRecursive (string&nbsp;<span class="argument">$sInDirectoryPath</span>, string&nbsp;<span class="argument">$sRegexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindDirectoriesRecursive (string&nbsp;<span class="argument">$inDirectoryPath</span>, string&nbsp;<span class="argument">$regexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the subdirectories found in a directory by a regular expression pattern, searching in the
 whole path of every contained subdirectory with the pattern, also looking into the subdirectories of the
 directory and so on.</p></em></p>
@@ -2849,17 +2849,17 @@ directory and so on.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be looked into (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sRegexPattern</code> </td>
+                                <td><code style="border: none; background: none">$regexPattern</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The regular expression pattern to be used for searching.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -2899,7 +2899,7 @@ including ones found in the subdirectories of the specified directory and so on.
             <article class="method">
                 <h3 class="public ">reFindItemsOnName()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindItemsOnName (string&nbsp;<span class="argument">$sInDirectoryPath</span>, string&nbsp;<span class="argument">$sRegexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindItemsOnName (string&nbsp;<span class="argument">$inDirectoryPath</span>, string&nbsp;<span class="argument">$regexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the files and subdirectories found in a directory by a regular expression pattern,
 searching only in the name of every contained item with the pattern.</p></em></p>
                 <p>To also search among the items that are contained in the subdirectories of a directory and so on, you can use
@@ -2909,17 +2909,17 @@ searching only in the name of every contained item with the pattern.</p></em></p
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be looked into (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sRegexPattern</code> </td>
+                                <td><code style="border: none; background: none">$regexPattern</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The regular expression pattern to be used for searching.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -2961,7 +2961,7 @@ specified.</p>
             <article class="method">
                 <h3 class="public ">reFindFilesOnName()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindFilesOnName (string&nbsp;<span class="argument">$sInDirectoryPath</span>, string&nbsp;<span class="argument">$sRegexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindFilesOnName (string&nbsp;<span class="argument">$inDirectoryPath</span>, string&nbsp;<span class="argument">$regexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the files found in a directory by a regular expression pattern, searching only in the name
 of every contained file with the pattern.</p></em></p>
                 <p>To also search among the files that are contained in the subdirectories of a directory and so on, you can use
@@ -2971,17 +2971,17 @@ of every contained file with the pattern.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be looked into (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sRegexPattern</code> </td>
+                                <td><code style="border: none; background: none">$regexPattern</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The regular expression pattern to be used for searching.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -3022,7 +3022,7 @@ ascending order.</p></td>
             <article class="method">
                 <h3 class="public ">reFindDirectoriesOnName()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindDirectoriesOnName (string&nbsp;<span class="argument">$sInDirectoryPath</span>, string&nbsp;<span class="argument">$sRegexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindDirectoriesOnName (string&nbsp;<span class="argument">$inDirectoryPath</span>, string&nbsp;<span class="argument">$regexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the subdirectories found in a directory by a regular expression pattern, searching only in
 the name of every contained subdirectory with the pattern.</p></em></p>
                 <p>To also search among the subdirectories that are contained in the subdirectories of a directory and so on, you
@@ -3032,17 +3032,17 @@ can use <code>reFindDirectoriesOnNameRecursive</code> method.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be looked into (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sRegexPattern</code> </td>
+                                <td><code style="border: none; background: none">$regexPattern</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The regular expression pattern to be used for searching.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -3083,7 +3083,7 @@ ascending order.</p></td>
             <article class="method">
                 <h3 class="public ">reFindItemsOnNameRecursive()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindItemsOnNameRecursive (string&nbsp;<span class="argument">$sInDirectoryPath</span>, string&nbsp;<span class="argument">$sRegexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindItemsOnNameRecursive (string&nbsp;<span class="argument">$inDirectoryPath</span>, string&nbsp;<span class="argument">$regexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the files and subdirectories found in a directory by a regular expression pattern,
 searching only in the name of every contained item with the pattern, also looking into the subdirectories of the
 directory and so on.</p></em></p>
@@ -3092,17 +3092,17 @@ directory and so on.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be looked into (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sRegexPattern</code> </td>
+                                <td><code style="border: none; background: none">$regexPattern</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The regular expression pattern to be used for searching.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -3142,7 +3142,7 @@ specified, including ones found in the subdirectories of the specified directory
             <article class="method">
                 <h3 class="public ">reFindFilesOnNameRecursive()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindFilesOnNameRecursive (string&nbsp;<span class="argument">$sInDirectoryPath</span>, string&nbsp;<span class="argument">$sRegexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindFilesOnNameRecursive (string&nbsp;<span class="argument">$inDirectoryPath</span>, string&nbsp;<span class="argument">$regexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the files found in a directory by a regular expression pattern, searching only in the name
 of every contained file with the pattern, also looking into the subdirectories of the directory and so on.</p></em></p>
                 <p>The returned paths are always absolute.</p>
@@ -3150,17 +3150,17 @@ of every contained file with the pattern, also looking into the subdirectories o
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be looked into (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sRegexPattern</code> </td>
+                                <td><code style="border: none; background: none">$regexPattern</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The regular expression pattern to be used for searching.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -3200,7 +3200,7 @@ found in the subdirectories of the specified directory and so on.</p>
             <article class="method">
                 <h3 class="public ">reFindDirectoriesOnNameRecursive()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindDirectoriesOnNameRecursive (string&nbsp;<span class="argument">$sInDirectoryPath</span>, string&nbsp;<span class="argument">$sRegexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bSort</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> reFindDirectoriesOnNameRecursive (string&nbsp;<span class="argument">$inDirectoryPath</span>, string&nbsp;<span class="argument">$regexPattern</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sort</span></span>) : OOPArray</pre>
                 <p><em><p>Returns the paths to the subdirectories found in a directory by a regular expression pattern, searching only in
 the name of every contained subdirectory with the pattern, also looking into the subdirectories of the directory
 and so on.</p></em></p>
@@ -3209,17 +3209,17 @@ and so on.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sInDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$inDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the directory to be looked into (not required to end with "/").</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sRegexPattern</code> </td>
+                                <td><code style="border: none; background: none">$regexPattern</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The regular expression pattern to be used for searching.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the returned paths should be sorted, in the
 ascending order.</p></td>
@@ -3259,7 +3259,7 @@ including ones found in the subdirectories of the specified directory and so on.
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (string&nbsp;<span class="argument">$sFilePath</span>, enum&nbsp;<span class="argument">$eMode</span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$eWrapper</span></span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (string&nbsp;<span class="argument">$filePath</span>, enum&nbsp;<span class="argument">$mode</span>, <span style="color: rgb(144, 144, 144)">enum&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$wrapper</span></span>)</pre>
                 <p><em><p>Creates a file accessor for performing sequential read/write operations on a file.</p></em></p>
                 <p>The purpose of this constructor is to open the file in the specified access mode. If the access mode is <code>READ</code>
 or <code>READ_WRITE</code>, the file should already exist when calling the constructor. With the rest of the modes, the
@@ -3271,19 +3271,19 @@ file manually.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFilePath</code> </td>
+                                <td><code style="border: none; background: none">$filePath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the file to be opened for access.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$eMode</code> </td>
+                                <td><code style="border: none; background: none">$mode</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p>The access mode to be used for the file. Can be <code>READ</code>, <code>READ_WRITE</code>, <code>WRITE_NEW</code>,
 <code>READ_WRITE_NEW</code>, <code>WRITE_APPEND</code>, and <code>READ_WRITE_APPEND</code>. See <a href="#summary">Summary</a> for the description of a
 mode.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$eWrapper</code> </td>
+                                <td><code style="border: none; background: none">$wrapper</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>NONE</code>. The wrapper to be used for accessing the file.
 Currently, only <code>ZLIB</code> wrapper is supported.</p></td>
@@ -3425,14 +3425,14 @@ Currently, only <code>ZLIB</code> wrapper is supported.</p></td>
             <article class="method">
                 <h3 class="public ">equals()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">equals (CFile&nbsp;<span class="argument">$oToFile</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">equals (CFile&nbsp;<span class="argument">$toFile</span>) : bool</pre>
                 <p><em><p>Determines if an accessor is associated with the same file as another accessor.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$oToFile</code> </td>
+                                <td><code style="border: none; background: none">$toFile</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CFile.html">CFile</a></code></td>
                                 <td><p>The second accessor for comparison.</p></td>
                             </tr>
@@ -3469,14 +3469,14 @@ Currently, only <code>ZLIB</code> wrapper is supported.</p></td>
             <article class="method">
                 <h3 class="public ">readBytes()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">readBytes (int&nbsp;<span class="argument">$iQuantity</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">readBytes (int&nbsp;<span class="argument">$quantity</span>) : OOPString</pre>
                 <p><em><p>Reads a specified number of bytes from the file opened by an accessor and returns them.</p></em></p>
                 <p>Bytes are read starting from the current reading/writing position.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iQuantity</code> </td>
+                                <td><code style="border: none; background: none">$quantity</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The number of bytes to be read (cannot be zero).</p></td>
                             </tr>
@@ -3513,7 +3513,7 @@ Currently, only <code>ZLIB</code> wrapper is supported.</p></td>
             <article class="method">
                 <h3 class="public ">readAvailableBytes()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">readAvailableBytes (int&nbsp;<span class="argument">$iMaxQuantity</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">readAvailableBytes (int&nbsp;<span class="argument">$maxQuantity</span>) : OOPString</pre>
                 <p><em><p>Reads no more than a specified number of bytes from the file opened by an accessor and returns them.</p></em></p>
                 <p>Bytes are read starting from the current reading/writing position and, even when there are less bytes left
 available than indicated by the parameter's value, the operation will succeed and the bytes starting from the
@@ -3522,7 +3522,7 @@ current reading/writing position and up to the end of the file will be returned.
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iMaxQuantity</code> </td>
+                                <td><code style="border: none; background: none">$maxQuantity</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The maximum number of available bytes to be read (cannot be zero).</p></td>
                             </tr>
@@ -3559,19 +3559,19 @@ current reading/writing position and up to the end of the file will be returned.
             <article class="method">
                 <h3 class="public ">writeBytes()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">writeBytes (data&nbsp;<span class="argument">$byData</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$iMaxQuantity</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">writeBytes (data&nbsp;<span class="argument">$data</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$maxQuantity</span></span>) : void</pre>
                 <p><em><p>Writes specified bytes into the file opened by an accessor.</p></em></p>
                 <p>Bytes are written starting from the current reading/writing position.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$byData</code> </td>
+                                <td><code style="border: none; background: none">$data</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">data</code></td>
                                 <td><p>The bytes to be written.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iMaxQuantity</code> </td>
+                                <td><code style="border: none; background: none">$maxQuantity</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>all of the provided bytes</em>. The maximum number of bytes to
 be written.</p></td>
@@ -3641,7 +3641,7 @@ be written.</p></td>
             <article class="method">
                 <h3 class="public ">setPos()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setPos (int&nbsp;<span class="argument">$iPos</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setPos (int&nbsp;<span class="argument">$pos</span>) : void</pre>
                 <p><em><p>Sets the current reading/writing position of an accessor.</p></em></p>
                 <p>Positions are zero-based, so the position of the first byte in a file is <code>0</code>, the position of the second byte is
 <code>1</code>, and so on.</p>
@@ -3649,7 +3649,7 @@ be written.</p></td>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iPos</code> </td>
+                                <td><code style="border: none; background: none">$pos</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The new reading/writing position.</p></td>
                             </tr>
@@ -3681,14 +3681,14 @@ be written.</p></td>
             <article class="method">
                 <h3 class="public ">shiftPos()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">shiftPos (int&nbsp;<span class="argument">$iShift</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">shiftPos (int&nbsp;<span class="argument">$shift</span>) : void</pre>
                 <p><em><p>Shifts the current reading/writing position of an accessor in any direction by a specified number of bytes.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iShift</code> </td>
+                                <td><code style="border: none; background: none">$shift</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The positive or negative number of bytes by which the reading/writing position is to be
 shifted.</p></td>
@@ -3888,24 +3888,24 @@ destroyed by the runtime.</p>
             <article class="method">
                 <h3 class="protected ">recurseCopy()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseCopy (&nbsp;<span class="argument">$sFileOrDirectoryPath</span>, &nbsp;<span class="argument">$sCopyPath</span>, &nbsp;<span class="argument">$bCopyPermissions</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseCopy (&nbsp;<span class="argument">$fileOrDirectoryPath</span>, &nbsp;<span class="argument">$copyPath</span>, &nbsp;<span class="argument">$copyPermissions</span>)</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFileOrDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$fileOrDirectoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sCopyPath</code> </td>
+                                <td><code style="border: none; background: none">$copyPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bCopyPermissions</code> </td>
+                                <td><code style="border: none; background: none">$copyPermissions</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
@@ -3938,14 +3938,14 @@ destroyed by the runtime.</p>
             <article class="method">
                 <h3 class="protected ">recurseDeleteDirectory()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseDeleteDirectory (&nbsp;<span class="argument">$sDirectoryPath</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseDeleteDirectory (&nbsp;<span class="argument">$directoryPath</span>)</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$directoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
@@ -3978,19 +3978,19 @@ destroyed by the runtime.</p>
             <article class="method">
                 <h3 class="protected ">recurseListItems()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseListItems (&nbsp;<span class="argument">$sDirectoryPath</span>, &nbsp;<span class="argument">$bSort</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseListItems (&nbsp;<span class="argument">$directoryPath</span>, &nbsp;<span class="argument">$sort</span>)</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$directoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
@@ -4023,24 +4023,24 @@ destroyed by the runtime.</p>
             <article class="method">
                 <h3 class="protected ">recurseFindItems()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseFindItems (&nbsp;<span class="argument">$sDirectoryPath</span>, &nbsp;<span class="argument">$sWc</span>, &nbsp;<span class="argument">$bSort</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseFindItems (&nbsp;<span class="argument">$directoryPath</span>, &nbsp;<span class="argument">$wc</span>, &nbsp;<span class="argument">$sort</span>)</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sDirectoryPath</code> </td>
+                                <td><code style="border: none; background: none">$directoryPath</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sWc</code> </td>
+                                <td><code style="border: none; background: none">$wc</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bSort</code> </td>
+                                <td><code style="border: none; background: none">$sort</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
@@ -4111,10 +4111,10 @@ destroyed by the runtime.</p>
 
                                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_sFilePath" name="property_m_sFilePath" class="anchor"></a>
+            <a id="property_m_filePath" name="property_m_filePath" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_sFilePath</h3>
-                <pre class="signature">$m_sFilePath</pre>
+                <h3 class="protected ">$m_filePath</h3>
+                <pre class="signature">$m_filePath</pre>
                 <p><em></em></p>
                 
 
@@ -4139,10 +4139,10 @@ destroyed by the runtime.</p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_eMode" name="property_m_eMode" class="anchor"></a>
+            <a id="property_m_mode" name="property_m_mode" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_eMode</h3>
-                <pre class="signature">$m_eMode</pre>
+                <h3 class="protected ">$m_mode</h3>
+                <pre class="signature">$m_mode</pre>
                 <p><em></em></p>
                 
 
@@ -4167,10 +4167,10 @@ destroyed by the runtime.</p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_rcFile" name="property_m_rcFile" class="anchor"></a>
+            <a id="property_m_file" name="property_m_file" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_rcFile</h3>
-                <pre class="signature">$m_rcFile</pre>
+                <h3 class="protected ">$m_file</h3>
+                <pre class="signature">$m_file</pre>
                 <p><em></em></p>
                 
 
@@ -4195,10 +4195,10 @@ destroyed by the runtime.</p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_bDone" name="property_m_bDone" class="anchor"></a>
+            <a id="property_m_done" name="property_m_done" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_bDone</h3>
-                <pre class="signature">$m_bDone</pre>
+                <h3 class="protected ">$m_done</h3>
+                <pre class="signature">$m_done</pre>
                 <p><em></em></p>
                 
 
@@ -4271,7 +4271,7 @@ destroyed by the runtime.</p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

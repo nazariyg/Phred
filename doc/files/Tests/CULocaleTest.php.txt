@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * @ignore
  */
@@ -9,281 +10,281 @@ class CULocaleTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testMake ()
     {
-        $oLocale = new CULocale(CULocale::GERMAN_GERMANY);
-        $this->assertTrue($oLocale->name()->equals("de_DE"));
+        $locale = new CULocale(CULocale::GERMAN_GERMANY);
+        $this->assertTrue($locale->name()->equals("de_DE"));
 
-        $oLocale = new CULocale("DE_de");
-        $this->assertTrue($oLocale->name()->equals("de_DE"));
+        $locale = new CULocale("DE_de");
+        $this->assertTrue($locale->name()->equals("de_DE"));
 
-        $oLocale = new CULocale("DE_lATN_de_variant0_variant1@KEYWORD0=VALUE0;KEYWORD1=VALUE1");
-        $this->assertTrue($oLocale->name()->equals("de_Latn_DE_VARIANT0_VARIANT1@keyword0=VALUE0;keyword1=VALUE1"));
+        $locale = new CULocale("DE_lATN_de_variant0_variant1@KEYWORD0=VALUE0;KEYWORD1=VALUE1");
+        $this->assertTrue($locale->name()->equals("de_Latn_DE_VARIANT0_VARIANT1@keyword0=VALUE0;keyword1=VALUE1"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFromCountryCode ()
     {
-        $oLocale = CULocale::fromCountryCode("DE");
-        $this->assertTrue($oLocale->name()->equals("de_DE"));
+        $locale = CULocale::fromCountryCode("DE");
+        $this->assertTrue($locale->name()->equals("de_DE"));
 
-        $oLocale = CULocale::fromCountryCode("de");
-        $this->assertTrue($oLocale->name()->equals("de_DE"));
+        $locale = CULocale::fromCountryCode("de");
+        $this->assertTrue($locale->name()->equals("de_DE"));
 
-        $oLocale = CULocale::fromCountryCode("US");
-        $this->assertTrue($oLocale->name()->equals("en_US"));
+        $locale = CULocale::fromCountryCode("US");
+        $this->assertTrue($locale->name()->equals("en_US"));
 
-        $oLocale = CULocale::fromCountryCode("GB");
-        $this->assertTrue($oLocale->name()->equals("en_GB"));
+        $locale = CULocale::fromCountryCode("GB");
+        $this->assertTrue($locale->name()->equals("en_GB"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFromComponents ()
     {
-        $oLocale = CULocale::fromComponents("de");
-        $this->assertTrue($oLocale->name()->equals("de"));
+        $locale = CULocale::fromComponents("de");
+        $this->assertTrue($locale->name()->equals("de"));
 
-        $oLocale = CULocale::fromComponents("DE");
-        $this->assertTrue($oLocale->name()->equals("de"));
+        $locale = CULocale::fromComponents("DE");
+        $this->assertTrue($locale->name()->equals("de"));
 
-        $oLocale = CULocale::fromComponents("de", "BE");
-        $this->assertTrue($oLocale->name()->equals("de_BE"));
+        $locale = CULocale::fromComponents("de", "BE");
+        $this->assertTrue($locale->name()->equals("de_BE"));
 
-        $oLocale = CULocale::fromComponents("de", "be", "Latn");
-        $this->assertTrue($oLocale->name()->equals("de_Latn_BE"));
+        $locale = CULocale::fromComponents("de", "be", "Latn");
+        $this->assertTrue($locale->name()->equals("de_Latn_BE"));
 
-        $oLocale = CULocale::fromComponents("de", "BE", "Latn", "VARIANT");
-        $this->assertTrue($oLocale->name()->equals("de_Latn_BE_VARIANT"));
+        $locale = CULocale::fromComponents("de", "BE", "Latn", "VARIANT");
+        $this->assertTrue($locale->name()->equals("de_Latn_BE_VARIANT"));
 
-        $oLocale = CULocale::fromComponents("de", "BE", "latn", "VARIANT0", "VARIANT1");
-        $this->assertTrue($oLocale->name()->equals("de_Latn_BE_VARIANT0_VARIANT1"));
+        $locale = CULocale::fromComponents("de", "BE", "latn", "VARIANT0", "VARIANT1");
+        $this->assertTrue($locale->name()->equals("de_Latn_BE_VARIANT0_VARIANT1"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFromRfc2616 ()
     {
-        $oLocale = CULocale::fromRfc2616("en-us");
-        $this->assertTrue($oLocale->name()->equals("en_US"));
+        $locale = CULocale::fromRfc2616("en-us");
+        $this->assertTrue($locale->name()->equals("en_US"));
 
-        $oLocale = CULocale::fromRfc2616("de-de");
-        $this->assertTrue($oLocale->name()->equals("de_DE"));
+        $locale = CULocale::fromRfc2616("de-de");
+        $this->assertTrue($locale->name()->equals("de_DE"));
 
-        $oLocale = CULocale::fromRfc2616("fr");
-        $this->assertTrue($oLocale->name()->equals("fr"));
+        $locale = CULocale::fromRfc2616("fr");
+        $this->assertTrue($locale->name()->equals("fr"));
 
-        $bSuccess;
-        $oLocale = CULocale::fromRfc2616("de_de", $bSuccess);
-        $this->assertTrue( $oLocale->name()->equals("de_DE") && $bSuccess );
+        $success;
+        $locale = CULocale::fromRfc2616("de_de", $success);
+        $this->assertTrue( $locale->name()->equals("de_DE") && $success );
 
-        $bSuccess;
-        $oLocale = CULocale::fromRfc2616("\x00", $bSuccess);
-        $this->assertFalse($bSuccess);
+        $success;
+        $locale = CULocale::fromRfc2616("\x00", $success);
+        $this->assertFalse($success);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testMakeDefault ()
     {
-        $oLocale = CULocale::makeDefault();
-        $this->assertTrue($oLocale->name()->equals("en_US"));
+        $locale = CULocale::makeDefault();
+        $this->assertTrue($locale->name()->equals("en_US"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testName ()
     {
-        $oLocale = new CULocale(CULocale::GERMAN_GERMANY);
-        $this->assertTrue($oLocale->name()->equals("de_DE"));
+        $locale = new CULocale(CULocale::GERMAN_GERMANY);
+        $this->assertTrue($locale->name()->equals("de_DE"));
 
-        $oLocale = new CULocale("az_latn_az");
-        $this->assertTrue($oLocale->name()->equals("az_Latn_AZ"));
+        $locale = new CULocale("az_latn_az");
+        $this->assertTrue($locale->name()->equals("az_Latn_AZ"));
 
-        $oLocale = new CULocale("az_latn_az_variant");
-        $this->assertTrue($oLocale->name()->equals("az_Latn_AZ_VARIANT"));
+        $locale = new CULocale("az_latn_az_variant");
+        $this->assertTrue($locale->name()->equals("az_Latn_AZ_VARIANT"));
 
-        $oLocale = new CULocale("az_latn_az_variant@keyword=value");
-        $this->assertTrue($oLocale->name()->equals("az_Latn_AZ_VARIANT@keyword=value"));
+        $locale = new CULocale("az_latn_az_variant@keyword=value");
+        $this->assertTrue($locale->name()->equals("az_Latn_AZ_VARIANT@keyword=value"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testLanguageCode ()
     {
-        $oLocale = new CULocale(CULocale::GERMAN_GERMANY);
-        $this->assertTrue($oLocale->languageCode()->equals("de"));
+        $locale = new CULocale(CULocale::GERMAN_GERMANY);
+        $this->assertTrue($locale->languageCode()->equals("de"));
 
-        $oLocale = new CULocale("EN_US");
-        $this->assertTrue($oLocale->languageCode()->equals("en"));
+        $locale = new CULocale("EN_US");
+        $this->assertTrue($locale->languageCode()->equals("en"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testHasRegionCode ()
     {
-        $oLocale = new CULocale("de_DE");
-        $this->assertTrue($oLocale->hasRegionCode());
+        $locale = new CULocale("de_DE");
+        $this->assertTrue($locale->hasRegionCode());
 
-        $oLocale = new CULocale("de");
-        $this->assertFalse($oLocale->hasRegionCode());
+        $locale = new CULocale("de");
+        $this->assertFalse($locale->hasRegionCode());
 
-        $oLocale = new CULocale("de_Latn");
-        $this->assertFalse($oLocale->hasRegionCode());
+        $locale = new CULocale("de_Latn");
+        $this->assertFalse($locale->hasRegionCode());
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testRegionCode ()
     {
-        $oLocale = new CULocale("de_DE");
-        $this->assertTrue($oLocale->regionCode()->equals("DE"));
+        $locale = new CULocale("de_DE");
+        $this->assertTrue($locale->regionCode()->equals("DE"));
 
-        $oLocale = new CULocale("en_US");
-        $this->assertTrue($oLocale->regionCode()->equals("US"));
+        $locale = new CULocale("en_US");
+        $this->assertTrue($locale->regionCode()->equals("US"));
 
-        $oLocale = new CULocale("en_Latn_gb");
-        $this->assertTrue($oLocale->regionCode()->equals("GB"));
+        $locale = new CULocale("en_Latn_gb");
+        $this->assertTrue($locale->regionCode()->equals("GB"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testHasScriptCode ()
     {
-        $oLocale = new CULocale("de_Latn_DE");
-        $this->assertTrue($oLocale->hasScriptCode());
+        $locale = new CULocale("de_Latn_DE");
+        $this->assertTrue($locale->hasScriptCode());
 
-        $oLocale = new CULocale("de_DE");
-        $this->assertFalse($oLocale->hasScriptCode());
+        $locale = new CULocale("de_DE");
+        $this->assertFalse($locale->hasScriptCode());
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testScriptCode ()
     {
-        $oLocale = new CULocale("de_Latn_DE");
-        $this->assertTrue($oLocale->scriptCode()->equals("Latn"));
+        $locale = new CULocale("de_Latn_DE");
+        $this->assertTrue($locale->scriptCode()->equals("Latn"));
 
-        $oLocale = new CULocale("sr_Cyrl");
-        $this->assertTrue($oLocale->scriptCode()->equals("Cyrl"));
+        $locale = new CULocale("sr_Cyrl");
+        $this->assertTrue($locale->scriptCode()->equals("Cyrl"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testHasVariants ()
     {
-        $oLocale = new CULocale("de_DE_VARIANT");
-        $this->assertTrue($oLocale->hasVariants());
+        $locale = new CULocale("de_DE_VARIANT");
+        $this->assertTrue($locale->hasVariants());
 
-        $oLocale = new CULocale("en_GB");
-        $this->assertFalse($oLocale->hasVariants());
+        $locale = new CULocale("en_GB");
+        $this->assertFalse($locale->hasVariants());
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testVariants ()
     {
-        $oLocale = new CULocale("de_DE_VARIANT");
-        $this->assertTrue($oLocale->variants()->equals(a("VARIANT")));
+        $locale = new CULocale("de_DE_VARIANT");
+        $this->assertTrue($locale->variants()->equals(a("VARIANT")));
 
-        $oLocale = new CULocale("de_DE_VARIANT0_VARIANT1");
-        $this->assertTrue($oLocale->variants()->equals(a("VARIANT0", "VARIANT1")));
+        $locale = new CULocale("de_DE_VARIANT0_VARIANT1");
+        $this->assertTrue($locale->variants()->equals(a("VARIANT0", "VARIANT1")));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testHasKeywords ()
     {
-        $oLocale = new CULocale("de_DE@keyword=value");
-        $this->assertTrue($oLocale->hasKeywords());
+        $locale = new CULocale("de_DE@keyword=value");
+        $this->assertTrue($locale->hasKeywords());
 
-        $oLocale = new CULocale("de_DE");
-        $this->assertFalse($oLocale->hasKeywords());
+        $locale = new CULocale("de_DE");
+        $this->assertFalse($locale->hasKeywords());
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testKeywords ()
     {
-        $oLocale = new CULocale("de_DE@keyword=value");
-        $this->assertTrue($oLocale->keywords()->equals(m(["keyword" => "value"])));
+        $locale = new CULocale("de_DE@keyword=value");
+        $this->assertTrue($locale->keywords()->equals(m(["keyword" => "value"])));
 
-        $oLocale = new CULocale("de_DE@keyword0=value0;keyword1=value1");
-        $this->assertTrue($oLocale->keywords()->equals(m(["keyword0" => "value0", "keyword1" => "value1"])));
+        $locale = new CULocale("de_DE@keyword0=value0;keyword1=value1");
+        $this->assertTrue($locale->keywords()->equals(m(["keyword0" => "value0", "keyword1" => "value1"])));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testComponents ()
     {
-        $oLocale = new CULocale("de_Latn_DE_VARIANT0_VARIANT1@keyword0=value0;keyword1=value1");
-        $sLanguage;
-        $sRegion;
-        $sScript;
-        $aVariants;
-        $mKeywords;
-        $oLocale->components($sLanguage, $sRegion, $sScript, $aVariants, $mKeywords);
-        $this->assertTrue( $sLanguage->equals("de") && $sRegion->equals("DE") && $sScript->equals("Latn") &&
-            $aVariants->equals(a("VARIANT0", "VARIANT1")) &&
-            $mKeywords->equals(m(["keyword0" => "value0", "keyword1" => "value1"])) );
+        $locale = new CULocale("de_Latn_DE_VARIANT0_VARIANT1@keyword0=value0;keyword1=value1");
+        $language;
+        $region;
+        $script;
+        $variants;
+        $keywords;
+        $locale->components($language, $region, $script, $variants, $keywords);
+        $this->assertTrue( $language->equals("de") && $region->equals("DE") && $script->equals("Latn") &&
+            $variants->equals(a("VARIANT0", "VARIANT1")) &&
+            $keywords->equals(m(["keyword0" => "value0", "keyword1" => "value1"])) );
 
-        $oLocale = new CULocale("DE_lATN_de_variant0_variant1@KEYWORD0=VALUE0;KEYWORD1=VALUE1");
-        $sLanguage;
-        $sRegion;
-        $sScript;
-        $aVariants;
-        $mKeywords;
-        $oLocale->components($sLanguage, $sRegion, $sScript, $aVariants, $mKeywords);
-        $this->assertTrue( $sLanguage->equals("de") && $sRegion->equals("DE") && $sScript->equals("Latn") &&
-            $aVariants->equals(a("VARIANT0", "VARIANT1")) &&
-            $mKeywords->equals(m(["keyword0" => "VALUE0", "keyword1" => "VALUE1"])) );
+        $locale = new CULocale("DE_lATN_de_variant0_variant1@KEYWORD0=VALUE0;KEYWORD1=VALUE1");
+        $language;
+        $region;
+        $script;
+        $variants;
+        $keywords;
+        $locale->components($language, $region, $script, $variants, $keywords);
+        $this->assertTrue( $language->equals("de") && $region->equals("DE") && $script->equals("Latn") &&
+            $variants->equals(a("VARIANT0", "VARIANT1")) &&
+            $keywords->equals(m(["keyword0" => "VALUE0", "keyword1" => "VALUE1"])) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testDispName ()
     {
-        $oLocale = new CULocale("de_DE");
-        $this->assertTrue($oLocale->dispName()->equals("German (Germany)"));
+        $locale = new CULocale("de_DE");
+        $this->assertTrue($locale->dispName()->equals("German (Germany)"));
 
-        $oLocale = new CULocale("de_DE");
-        $this->assertTrue($oLocale->dispName(new CULocale("de_DE"))->equals("Deutsch (Deutschland)"));
+        $locale = new CULocale("de_DE");
+        $this->assertTrue($locale->dispName(new CULocale("de_DE"))->equals("Deutsch (Deutschland)"));
 
-        $oLocale = new CULocale("de_Latn_DE_VARIANT0_VARIANT1@keyword0=value0;keyword1=value1");
-        $this->assertTrue($oLocale->dispName()->equals(
+        $locale = new CULocale("de_Latn_DE_VARIANT0_VARIANT1@keyword0=value0;keyword1=value1");
+        $this->assertTrue($locale->dispName()->equals(
             "German (Latin, Germany, VARIANT0_VARIANT1, keyword0=value0, keyword1=value1)"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testDispLanguage ()
     {
-        $oLocale = new CULocale("de_DE");
-        $this->assertTrue($oLocale->dispLanguage()->equals("German"));
+        $locale = new CULocale("de_DE");
+        $this->assertTrue($locale->dispLanguage()->equals("German"));
 
-        $oLocale = new CULocale("de_DE");
-        $this->assertTrue($oLocale->dispLanguage(new CULocale("de_DE"))->equals("Deutsch"));
+        $locale = new CULocale("de_DE");
+        $this->assertTrue($locale->dispLanguage(new CULocale("de_DE"))->equals("Deutsch"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testDispRegion ()
     {
-        $oLocale = new CULocale("de_DE");
-        $this->assertTrue($oLocale->dispRegion()->equals("Germany"));
+        $locale = new CULocale("de_DE");
+        $this->assertTrue($locale->dispRegion()->equals("Germany"));
 
-        $oLocale = new CULocale("de_DE");
-        $this->assertTrue($oLocale->dispRegion(new CULocale("de_DE"))->equals("Deutschland"));
+        $locale = new CULocale("de_DE");
+        $this->assertTrue($locale->dispRegion(new CULocale("de_DE"))->equals("Deutschland"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testDispScript ()
     {
-        $oLocale = new CULocale("de_Latn_DE");
-        $this->assertTrue($oLocale->dispScript()->equals("Latin"));
+        $locale = new CULocale("de_Latn_DE");
+        $this->assertTrue($locale->dispScript()->equals("Latin"));
 
-        $oLocale = new CULocale("de_Latn_DE");
-        $this->assertTrue($oLocale->dispScript(new CULocale("de_DE"))->equals("Lateinisch"));
+        $locale = new CULocale("de_Latn_DE");
+        $this->assertTrue($locale->dispScript(new CULocale("de_DE"))->equals("Lateinisch"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testDispVariants ()
     {
-        $oLocale = new CULocale("de_DE_VARIANT0_VARIANT1");
-        $this->assertTrue($oLocale->dispVariants()->equals("VARIANT0_VARIANT1"));
+        $locale = new CULocale("de_DE_VARIANT0_VARIANT1");
+        $this->assertTrue($locale->dispVariants()->equals("VARIANT0_VARIANT1"));
 
-        $oLocale = new CULocale("de_DE_VARIANT0_VARIANT1");
-        $this->assertTrue($oLocale->dispVariants(new CULocale("de_DE"))->equals("VARIANT0_VARIANT1"));
+        $locale = new CULocale("de_DE_VARIANT0_VARIANT1");
+        $this->assertTrue($locale->dispVariants(new CULocale("de_DE"))->equals("VARIANT0_VARIANT1"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testAddKeyword ()
     {
-        $oLocale = new CULocale("de_DE");
-        $oLocale->addKeyword("keyword0", "value0");
-        $oLocale->addKeyword("keyword1", "value1");
-        $this->assertTrue($oLocale->name()->equals("de_DE@keyword0=value0;keyword1=value1"));
+        $locale = new CULocale("de_DE");
+        $locale->addKeyword("keyword0", "value0");
+        $locale->addKeyword("keyword1", "value1");
+        $this->assertTrue($locale->name()->equals("de_DE@keyword0=value0;keyword1=value1"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testEquals ()
     {
-        $oLocale0 = new CULocale("de_DE");
-        $oLocale1 = new CULocale("de_de");
-        $this->assertTrue($oLocale0->equals($oLocale1));
+        $locale0 = new CULocale("de_DE");
+        $locale1 = new CULocale("de_de");
+        $this->assertTrue($locale0->equals($locale1));
 
-        $oLocale0 = new CULocale("de_DE");
-        $oLocale1 = new CULocale("de_BE");
-        $this->assertFalse($oLocale0->equals($oLocale1));
+        $locale0 = new CULocale("de_DE");
+        $locale1 = new CULocale("de_BE");
+        $this->assertFalse($locale0->equals($locale1));
 
-        $oLocale0 = new CULocale("de_DE");
-        $oLocale1 = new CULocale("de_Latn_DE");
-        $this->assertFalse($oLocale0->equals($oLocale1));
+        $locale0 = new CULocale("de_DE");
+        $locale1 = new CULocale("de_Latn_DE");
+        $this->assertFalse($locale0->equals($locale1));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testKnownCountryCodes ()
     {
-        $aCodes = CULocale::knownCountryCodes();
-        $this->assertTrue( $aCodes->find("DE") && $aCodes->find("BE") && $aCodes->find("US") );
+        $codes = CULocale::knownCountryCodes();
+        $this->assertTrue( $codes->find("DE") && $codes->find("BE") && $codes->find("US") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testIsCountryCodeKnown ()

@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -23,32 +23,32 @@
  */
 
 // Method signatures:
-//   static CMail makeSmtp ($sOutgoingServer, $sUsername, $sPassword, $xFrom = null, $xTo = null,
-//     $eSecurity = self::SECURITY_STARTTLS)
-//   static CMail makeSystem ($xFrom = null, $xTo = null, $sSendmailCommand = null)
-//   static CMail makeGmail ($sUsername, $sPassword, $xFrom = null, $xTo = null)
-//   void setFrom ($sAddress, $sName = null)
-//   void addFrom ($sAddress, $sName = null)
-//   void setTo ($sAddress, $sName = null)
-//   void addTo ($sAddress, $sName = null)
-//   void addCc ($sAddress, $sName = null)
-//   void addBcc ($sAddress, $sName = null)
-//   void setSender ($sAddress, $sName = null)
-//   void setReturnAddress ($sAddress)
-//   void setReplyAddress ($sAddress)
-//   void setSubject ($sSubject)
-//   void setBody ($sBody, $sType = CMimeType::PLAIN_TEXT)
-//   void addAltBody ($sBody, $sType = CMimeType::PLAIN_TEXT)
+//   static CMail makeSmtp ($outgoingServer, $username, $password, $from = null, $to = null,
+//     $security = self::SECURITY_STARTTLS)
+//   static CMail makeSystem ($from = null, $to = null, $sendmailCommand = null)
+//   static CMail makeGmail ($username, $password, $from = null, $to = null)
+//   void setFrom ($address, $name = null)
+//   void addFrom ($address, $name = null)
+//   void setTo ($address, $name = null)
+//   void addTo ($address, $name = null)
+//   void addCc ($address, $name = null)
+//   void addBcc ($address, $name = null)
+//   void setSender ($address, $name = null)
+//   void setReturnAddress ($address)
+//   void setReplyAddress ($address)
+//   void setSubject ($subject)
+//   void setBody ($body, $type = CMimeType::PLAIN_TEXT)
+//   void addAltBody ($body, $type = CMimeType::PLAIN_TEXT)
 //   void disableWordWrapping ()
-//   void setWordWrapping ($iWidth)
-//   void attachFile ($sAttachmentFp, $sType = null)
-//   void attachFileWithFilename ($sAttachmentFp, $sFilename, $sType = null)
-//   void attachData ($byData, $sFilename, $sType)
-//   CUStringObject embeddableCidForFile ($sEmbedFp)
-//   CUStringObject embeddableCidForData ($byData, $sFilename, $sType)
-//   void setTime (CTime $oTime)
-//   void setPriority ($ePriority)
-//   int send (&$raFailedAddresses = null)
+//   void setWordWrapping ($width)
+//   void attachFile ($attachmentFp, $type = null)
+//   void attachFileWithFilename ($attachmentFp, $filename, $type = null)
+//   void attachData ($data, $filename, $type)
+//   CUStringObject embeddableCidForFile ($embedFp)
+//   CUStringObject embeddableCidForData ($data, $filename, $type)
+//   void setTime (CTime $time)
+//   void setPriority ($priority)
+//   int send (&$failedAddresses = null)
 
 class CMail extends CRootClass
 {
@@ -108,150 +108,150 @@ class CMail extends CRootClass
     /**
      * Creates an email message to be sent via an account on a remote or local SMTP server and returns it.
      *
-     * @param  string $sOutgoingServer The address of the SMTP server.
-     * @param  string $sUsername The username of the account.
-     * @param  string $sPassword The password to the account.
-     * @param  mixed $xFrom **OPTIONAL.** The email address of the sender on whose behalf the message is composed or
+     * @param  string $outgoingServer The address of the SMTP server.
+     * @param  string $username The username of the account.
+     * @param  string $password The password to the account.
+     * @param  mixed $from **OPTIONAL.** The email address of the sender on whose behalf the message is composed or
      * multiple such addresses. This can be a string, an array of strings, or a map where a key is an email address and
      * the associated value is the name of the sender with that address. In case of a map, it's not required that all
      * the keys have values associated with them.
-     * @param  mixed $xTo **OPTIONAL.** The email address of the recipient to whom the message is composed or multiple
+     * @param  mixed $to **OPTIONAL.** The email address of the recipient to whom the message is composed or multiple
      * such addresses. This can be a string, an array of strings, or a map where a key is an email address and the
      * associated value is the name of the recipient with that address. In case of a map, it's not required that all
      * the keys have values associated with them.
-     * @param  enum $eSecurity **OPTIONAL. Default is** `SECURITY_STARTTLS`. The security to be used for the
+     * @param  enum $security **OPTIONAL. Default is** `SECURITY_STARTTLS`. The security to be used for the
      * connection. Can be `SECURITY_NONE`, `SECURITY_STARTTLS`, or `SECURITY_SSL_TLS`.
      *
      * @return CMail A new email message ready for content to be added.
      */
 
-    public static function makeSmtp ($sOutgoingServer, $sUsername, $sPassword, $xFrom = null, $xTo = null,
-        $eSecurity = self::SECURITY_STARTTLS)
+    public static function makeSmtp ($outgoingServer, $username, $password, $from = null, $to = null,
+        $security = self::SECURITY_STARTTLS)
     {
-        assert( 'is_cstring($sOutgoingServer) && is_cstring($sUsername) && is_cstring($sPassword) && ' .
-                '(!isset($xFrom) || is_cstring($xFrom) || is_collection($xFrom)) && ' .
-                '(!isset($xTo) || is_cstring($xTo) || is_collection($xTo)) && is_enum($eSecurity)',
+        assert( 'is_cstring($outgoingServer) && is_cstring($username) && is_cstring($password) && ' .
+                '(!isset($from) || is_cstring($from) || is_collection($from)) && ' .
+                '(!isset($to) || is_cstring($to) || is_collection($to)) && is_enum($security)',
             vs(isset($this), get_defined_vars()) );
 
-        $xFrom = _from_oop_tp($xFrom);
-        $xTo = _from_oop_tp($xTo);
+        $from = _from_oop_tp($from);
+        $to = _from_oop_tp($to);
 
-        $oMail = new self();
+        $mail = new self();
 
-        $bSecure = false;
-        $sSecurity;
-        $iPort;
-        switch ( $eSecurity )
+        $secure = false;
+        $security;
+        $port;
+        switch ( $security )
         {
         case self::SECURITY_NONE:
-            $iPort = 25;
+            $port = 25;
             break;
         case self::SECURITY_STARTTLS:
-            $bSecure = true;
-            $sSecurity = "tls";
-            $iPort = 587;
+            $secure = true;
+            $security = "tls";
+            $port = 587;
             break;
         case self::SECURITY_SSL_TLS:
-            $bSecure = true;
-            $sSecurity = "ssl";
-            $iPort = 465;
+            $secure = true;
+            $security = "ssl";
+            $port = 465;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
-        $oTransport;
-        if ( $bSecure )
+        $transport;
+        if ( $secure )
         {
-            $oTransport = Swift_SmtpTransport::newInstance($sOutgoingServer, $iPort, $sSecurity);
+            $transport = Swift_SmtpTransport::newInstance($outgoingServer, $port, $security);
         }
         else
         {
-            $oTransport = Swift_SmtpTransport::newInstance($sOutgoingServer, $iPort);
+            $transport = Swift_SmtpTransport::newInstance($outgoingServer, $port);
         }
-        $oTransport->setUsername($sUsername);
-        $oTransport->setPassword($sPassword);
-        $oMail->m_oSwiftMailer = Swift_Mailer::newInstance($oTransport);
+        $transport->setUsername($username);
+        $transport->setPassword($password);
+        $mail->m_swiftMailer = Swift_Mailer::newInstance($transport);
 
-        $oMail->m_oSwiftMessage = Swift_Message::newInstance();
-        if ( isset($xFrom) )
+        $mail->m_swiftMessage = Swift_Message::newInstance();
+        if ( isset($from) )
         {
-            $oMail->m_xFrom = $xFrom;
+            $mail->m_from = $from;
         }
-        if ( isset($xTo) )
+        if ( isset($to) )
         {
-            $oMail->m_xTo = $xTo;
+            $mail->m_to = $to;
         }
-        $oMail->m_oSwiftMessage->setCharset("utf-8");
-        $oMail->m_oSwiftMessage->setSubject(self::$ms_sDefaultSubject);
+        $mail->m_swiftMessage->setCharset("utf-8");
+        $mail->m_swiftMessage->setSubject(self::$ms_defaultSubject);
 
-        return $oMail;
+        return $mail;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Creates an email message to be sent via the OS's emailing facility and returns it.
      *
-     * @param  mixed $xFrom **OPTIONAL.** The email address of the sender on whose behalf the message is composed or
+     * @param  mixed $from **OPTIONAL.** The email address of the sender on whose behalf the message is composed or
      * multiple such addresses. This can be a string, an array of strings, or a map where a key is an email address and
      * the associated value is the name of the sender with that address. In case of a map, it's not required that all
      * the keys have values associated with them.
-     * @param  mixed $xTo **OPTIONAL.** The email address of the recipient to whom the message is composed or multiple
+     * @param  mixed $to **OPTIONAL.** The email address of the recipient to whom the message is composed or multiple
      * such addresses. This can be a string, an array of strings, or a map where a key is an email address and the
      * associated value is the name of the recipient with that address. In case of a map, it's not required that all
      * the keys have values associated with them.
-     * @param  string $sSendmailCommand **OPTIONAL. Default is** *OS's default*. The custom command to be used for
+     * @param  string $sendmailCommand **OPTIONAL. Default is** *OS's default*. The custom command to be used for
      * sending the message, e.g. `/usr/sbin/sendmail -oi -t`.
      *
      * @return CMail A new email message ready for content to be added.
      */
 
-    public static function makeSystem ($xFrom = null, $xTo = null, $sSendmailCommand = null)
+    public static function makeSystem ($from = null, $to = null, $sendmailCommand = null)
     {
-        assert( '(!isset($xFrom) || is_cstring($xFrom) || is_collection($xFrom)) && ' .
-                '(!isset($xTo) || is_cstring($xTo) || is_collection($xTo)) && ' .
-                '(!isset($sSendmailCommand) || is_cstring($sSendmailCommand))', vs(isset($this), get_defined_vars()) );
+        assert( '(!isset($from) || is_cstring($from) || is_collection($from)) && ' .
+                '(!isset($to) || is_cstring($to) || is_collection($to)) && ' .
+                '(!isset($sendmailCommand) || is_cstring($sendmailCommand))', vs(isset($this), get_defined_vars()) );
 
-        $xFrom = _from_oop_tp($xFrom);
-        $xTo = _from_oop_tp($xTo);
+        $from = _from_oop_tp($from);
+        $to = _from_oop_tp($to);
 
-        $oMail = new self();
+        $mail = new self();
 
-        $oTransport;
-        if ( !isset($sSendmailCommand) )
+        $transport;
+        if ( !isset($sendmailCommand) )
         {
-            $oTransport = Swift_SendmailTransport::newInstance();
+            $transport = Swift_SendmailTransport::newInstance();
         }
         else
         {
-            $oTransport = Swift_SendmailTransport::newInstance($sSendmailCommand);
+            $transport = Swift_SendmailTransport::newInstance($sendmailCommand);
         }
-        $oMail->m_oSwiftMailer = Swift_Mailer::newInstance($oTransport);
+        $mail->m_swiftMailer = Swift_Mailer::newInstance($transport);
 
-        $oMail->m_oSwiftMessage = Swift_Message::newInstance();
-        if ( isset($xFrom) )
+        $mail->m_swiftMessage = Swift_Message::newInstance();
+        if ( isset($from) )
         {
-            $oMail->m_xFrom = $xFrom;
+            $mail->m_from = $from;
         }
-        if ( isset($xTo) )
+        if ( isset($to) )
         {
-            $oMail->m_xTo = $xTo;
+            $mail->m_to = $to;
         }
-        $oMail->m_oSwiftMessage->setCharset("utf-8");
-        $oMail->m_oSwiftMessage->setSubject(self::$ms_sDefaultSubject);
+        $mail->m_swiftMessage->setCharset("utf-8");
+        $mail->m_swiftMessage->setSubject(self::$ms_defaultSubject);
 
-        return $oMail;
+        return $mail;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Creates an email message to be sent via a Gmail account.
      *
-     * @param  string $sUsername The username of the account.
-     * @param  string $sPassword The password to the account.
-     * @param  mixed $xFrom **OPTIONAL.** The email address of the sender on whose behalf the message is composed or
+     * @param  string $username The username of the account.
+     * @param  string $password The password to the account.
+     * @param  mixed $from **OPTIONAL.** The email address of the sender on whose behalf the message is composed or
      * multiple such addresses. This can be a string, an array of strings, or a map where a key is an email address and
      * the associated value is the name of the sender with that address. In case of a map, it's not required that all
      * the keys have values associated with them.
-     * @param  mixed $xTo **OPTIONAL.** The email address of the recipient to whom the message is composed or multiple
+     * @param  mixed $to **OPTIONAL.** The email address of the recipient to whom the message is composed or multiple
      * such addresses. This can be a string, an array of strings, or a map where a key is an email address and the
      * associated value is the name of the recipient with that address. In case of a map, it's not required that all
      * the keys have values associated with them.
@@ -259,36 +259,36 @@ class CMail extends CRootClass
      * @return CMail A new email message ready for content to be added.
      */
 
-    public static function makeGmail ($sUsername, $sPassword, $xFrom = null, $xTo = null)
+    public static function makeGmail ($username, $password, $from = null, $to = null)
     {
-        assert( 'is_cstring($sUsername) && is_cstring($sPassword) && ' .
-                '(!isset($xFrom) || is_cstring($xFrom) || is_collection($xFrom)) && ' .
-                '(!isset($xTo) || is_cstring($xTo) || is_collection($xTo))', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($username) && is_cstring($password) && ' .
+                '(!isset($from) || is_cstring($from) || is_collection($from)) && ' .
+                '(!isset($to) || is_cstring($to) || is_collection($to))', vs(isset($this), get_defined_vars()) );
 
-        return self::makeSmtp("smtp.googlemail.com", $sUsername, $sPassword, $xFrom, $xTo, self::SECURITY_SSL_TLS);
+        return self::makeSmtp("smtp.googlemail.com", $username, $password, $from, $to, self::SECURITY_SSL_TLS);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the email address and, optionally, the name of the sender on whose behalf a message is composed.
      *
-     * @param  string $sAddress The email address of the sender.
-     * @param  string $sName **OPTIONAL.** The name of the sender.
+     * @param  string $address The email address of the sender.
+     * @param  string $name **OPTIONAL.** The name of the sender.
      *
      * @return void
      */
 
-    public function setFrom ($sAddress, $sName = null)
+    public function setFrom ($address, $name = null)
     {
-        assert( 'is_cstring($sAddress) && (!isset($sName) || is_cstring($sName))',
+        assert( 'is_cstring($address) && (!isset($name) || is_cstring($name))',
             vs(isset($this), get_defined_vars()) );
 
-        if ( !isset($sName) )
+        if ( !isset($name) )
         {
-            $this->m_xFrom = $sAddress;
+            $this->m_from = $address;
         }
         else
         {
-            $this->m_xFrom = [$sAddress => $sName];
+            $this->m_from = [$address => $name];
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -296,57 +296,57 @@ class CMail extends CRootClass
      * Adds the email address and, optionally, the name of a sender on whose behalf a message is composed to the list
      * of other senders.
      *
-     * @param  string $sAddress The email address of the sender.
-     * @param  string $sName **OPTIONAL.** The name of the sender.
+     * @param  string $address The email address of the sender.
+     * @param  string $name **OPTIONAL.** The name of the sender.
      *
      * @return void
      */
 
-    public function addFrom ($sAddress, $sName = null)
+    public function addFrom ($address, $name = null)
     {
-        assert( 'is_cstring($sAddress) && (!isset($sName) || is_cstring($sName))',
+        assert( 'is_cstring($address) && (!isset($name) || is_cstring($name))',
             vs(isset($this), get_defined_vars()) );
 
-        if ( !isset($this->m_xFrom) )
+        if ( !isset($this->m_from) )
         {
-            $this->m_xFrom = CMap::make();
+            $this->m_from = CMap::make();
         }
-        else if ( is_cstring($this->m_xFrom) )
+        else if ( is_cstring($this->m_from) )
         {
-            $this->m_xFrom = [$this->m_xFrom];
+            $this->m_from = [$this->m_from];
         }
 
-        if ( !isset($sName) )
+        if ( !isset($name) )
         {
-            CMap::insertValue($this->m_xFrom, $sAddress);
+            CMap::insertValue($this->m_from, $address);
         }
         else
         {
-            $this->m_xFrom[$sAddress] = $sName;
+            $this->m_from[$address] = $name;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the email address and, optionally, the name of the recipient to whom a message is composed.
      *
-     * @param  string $sAddress The email address of the recipient.
-     * @param  string $sName **OPTIONAL.** The name of the recipient.
+     * @param  string $address The email address of the recipient.
+     * @param  string $name **OPTIONAL.** The name of the recipient.
      *
      * @return void
      */
 
-    public function setTo ($sAddress, $sName = null)
+    public function setTo ($address, $name = null)
     {
-        assert( 'is_cstring($sAddress) && (!isset($sName) || is_cstring($sName))',
+        assert( 'is_cstring($address) && (!isset($name) || is_cstring($name))',
             vs(isset($this), get_defined_vars()) );
 
-        if ( !isset($sName) )
+        if ( !isset($name) )
         {
-            $this->m_xTo = $sAddress;
+            $this->m_to = $address;
         }
         else
         {
-            $this->m_xTo = [$sAddress => $sName];
+            $this->m_to = [$address => $name];
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -354,33 +354,33 @@ class CMail extends CRootClass
      * Adds the email address and, optionally, the name of a recipient to whom a message is composed to the list of
      * other recipients.
      *
-     * @param  string $sAddress The email address of the recipient.
-     * @param  string $sName **OPTIONAL.** The name of the recipient.
+     * @param  string $address The email address of the recipient.
+     * @param  string $name **OPTIONAL.** The name of the recipient.
      *
      * @return void
      */
 
-    public function addTo ($sAddress, $sName = null)
+    public function addTo ($address, $name = null)
     {
-        assert( 'is_cstring($sAddress) && (!isset($sName) || is_cstring($sName))',
+        assert( 'is_cstring($address) && (!isset($name) || is_cstring($name))',
             vs(isset($this), get_defined_vars()) );
 
-        if ( !isset($this->m_xTo) )
+        if ( !isset($this->m_to) )
         {
-            $this->m_xTo = CMap::make();
+            $this->m_to = CMap::make();
         }
-        else if ( is_cstring($this->m_xTo) )
+        else if ( is_cstring($this->m_to) )
         {
-            $this->m_xTo = [$this->m_xTo];
+            $this->m_to = [$this->m_to];
         }
 
-        if ( !isset($sName) )
+        if ( !isset($name) )
         {
-            CMap::insertValue($this->m_xTo, $sAddress);
+            CMap::insertValue($this->m_to, $address);
         }
         else
         {
-            $this->m_xTo[$sAddress] = $sName;
+            $this->m_to[$address] = $name;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -388,29 +388,29 @@ class CMail extends CRootClass
      * Adds the email address and, optionally, the name of a "carbon copy" recipient who should receive a copy of a
      * message so that this recipient is visible to all other recipients.
      *
-     * @param  string $sAddress The email address of the recipient.
-     * @param  string $sName **OPTIONAL.** The name of the recipient.
+     * @param  string $address The email address of the recipient.
+     * @param  string $name **OPTIONAL.** The name of the recipient.
      *
      * @return void
      */
 
-    public function addCc ($sAddress, $sName = null)
+    public function addCc ($address, $name = null)
     {
-        assert( 'is_cstring($sAddress) && (!isset($sName) || is_cstring($sName))',
+        assert( 'is_cstring($address) && (!isset($name) || is_cstring($name))',
             vs(isset($this), get_defined_vars()) );
 
-        if ( !isset($this->m_xCc) )
+        if ( !isset($this->m_cc) )
         {
-            $this->m_xCc = CMap::make();
+            $this->m_cc = CMap::make();
         }
 
-        if ( !isset($sName) )
+        if ( !isset($name) )
         {
-            CMap::insertValue($this->m_xCc, $sAddress);
+            CMap::insertValue($this->m_cc, $address);
         }
         else
         {
-            $this->m_xCc[$sAddress] = $sName;
+            $this->m_cc[$address] = $name;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -418,29 +418,29 @@ class CMail extends CRootClass
      * Adds the email address and, optionally, the name of a "blind carbon copy" recipient who should receive a copy of
      * a message so that this recipient is not visible to any other recipients.
      *
-     * @param  string $sAddress The email address of the recipient.
-     * @param  string $sName **OPTIONAL.** The name of the recipient.
+     * @param  string $address The email address of the recipient.
+     * @param  string $name **OPTIONAL.** The name of the recipient.
      *
      * @return void
      */
 
-    public function addBcc ($sAddress, $sName = null)
+    public function addBcc ($address, $name = null)
     {
-        assert( 'is_cstring($sAddress) && (!isset($sName) || is_cstring($sName))',
+        assert( 'is_cstring($address) && (!isset($name) || is_cstring($name))',
             vs(isset($this), get_defined_vars()) );
 
-        if ( !isset($this->m_xBcc) )
+        if ( !isset($this->m_bcc) )
         {
-            $this->m_xBcc = CMap::make();
+            $this->m_bcc = CMap::make();
         }
 
-        if ( !isset($sName) )
+        if ( !isset($name) )
         {
-            CMap::insertValue($this->m_xBcc, $sAddress);
+            CMap::insertValue($this->m_bcc, $address);
         }
         else
         {
-            $this->m_xBcc[$sAddress] = $sName;
+            $this->m_bcc[$address] = $name;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -450,109 +450,109 @@ class CMail extends CRootClass
      *
      * This field has a higher precedence than the regular "From" sender(s).
      *
-     * @param  string $sAddress The email address of the sender.
-     * @param  string $sName **OPTIONAL.** The name of the sender.
+     * @param  string $address The email address of the sender.
+     * @param  string $name **OPTIONAL.** The name of the sender.
      *
      * @return void
      */
 
-    public function setSender ($sAddress, $sName = null)
+    public function setSender ($address, $name = null)
     {
-        assert( 'is_cstring($sAddress) && (!isset($sName) || is_cstring($sName))',
+        assert( 'is_cstring($address) && (!isset($name) || is_cstring($name))',
             vs(isset($this), get_defined_vars()) );
 
-        if ( !isset($sName) )
+        if ( !isset($name) )
         {
-            $this->m_xSender = $sAddress;
+            $this->m_sender = $address;
         }
         else
         {
-            $this->m_xSender = [$sAddress => $sName];
+            $this->m_sender = [$address => $name];
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the email address to which a message should be "bounced" if it could not be properly delivered.
      *
-     * @param  string $sAddress The email address to which the message should be "bounced" if it could not be properly
+     * @param  string $address The email address to which the message should be "bounced" if it could not be properly
      * delivered.
      *
      * @return void
      */
 
-    public function setReturnAddress ($sAddress)
+    public function setReturnAddress ($address)
     {
-        assert( 'is_cstring($sAddress)', vs(isset($this), get_defined_vars()) );
-        $this->m_sReturnAddress = $sAddress;
+        assert( 'is_cstring($address)', vs(isset($this), get_defined_vars()) );
+        $this->m_returnAddress = $address;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the email address to which any replies to a message should be sent.
      *
-     * @param  string $sAddress The email address to which any replies to the message should be sent.
+     * @param  string $address The email address to which any replies to the message should be sent.
      *
      * @return void
      */
 
-    public function setReplyAddress ($sAddress)
+    public function setReplyAddress ($address)
     {
-        assert( 'is_cstring($sAddress)', vs(isset($this), get_defined_vars()) );
-        $this->m_sReplyAddress = $sAddress;
+        assert( 'is_cstring($address)', vs(isset($this), get_defined_vars()) );
+        $this->m_replyAddress = $address;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the subject line of a message.
      *
-     * @param  string $sSubject The subject line of the message.
+     * @param  string $subject The subject line of the message.
      *
      * @return void
      */
 
-    public function setSubject ($sSubject)
+    public function setSubject ($subject)
     {
-        assert( 'is_cstring($sSubject)', vs(isset($this), get_defined_vars()) );
-        assert( 'isset($this->m_oSwiftMessage)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($subject)', vs(isset($this), get_defined_vars()) );
+        assert( 'isset($this->m_swiftMessage)', vs(isset($this), get_defined_vars()) );
 
-        $this->m_oSwiftMessage->setSubject($sSubject);
+        $this->m_swiftMessage->setSubject($subject);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the body of a message.
      *
-     * @param  string $sBody The body of the message.
-     * @param  string $sType **OPTIONAL. Default is** `CMimeType::PLAIN_TEXT`. The MIME type of the body.
+     * @param  string $body The body of the message.
+     * @param  string $type **OPTIONAL. Default is** `CMimeType::PLAIN_TEXT`. The MIME type of the body.
      *
      * @return void
      */
 
-    public function setBody ($sBody, $sType = CMimeType::PLAIN_TEXT)
+    public function setBody ($body, $type = CMimeType::PLAIN_TEXT)
     {
-        assert( 'is_cstring($sBody) && is_cstring($sType)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($body) && is_cstring($type)', vs(isset($this), get_defined_vars()) );
 
-        $this->m_sBody = $sBody;
-        $this->m_sBodyType = $sType;
+        $this->m_body = $body;
+        $this->m_bodyType = $type;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the alternative body of a message to be used if the primary body cannot be displayed.
      *
-     * @param  string $sBody The alternative body of the message.
-     * @param  string $sType **OPTIONAL. Default is** `CMimeType::PLAIN_TEXT`. The MIME type of the alternative body.
+     * @param  string $body The alternative body of the message.
+     * @param  string $type **OPTIONAL. Default is** `CMimeType::PLAIN_TEXT`. The MIME type of the alternative body.
      *
      * @return void
      */
 
-    public function addAltBody ($sBody, $sType = CMimeType::PLAIN_TEXT)
+    public function addAltBody ($body, $type = CMimeType::PLAIN_TEXT)
     {
-        assert( 'is_cstring($sBody) && is_cstring($sType)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($body) && is_cstring($type)', vs(isset($this), get_defined_vars()) );
 
-        if ( !isset($this->m_aAltBodiesAndTypes) )
+        if ( !isset($this->m_altBodiesAndTypes) )
         {
-            $this->m_aAltBodiesAndTypes = CArray::make();
+            $this->m_altBodiesAndTypes = CArray::make();
         }
 
-        $aBodyAndType = CArray::fromElements($sBody, $sType);
-        CArray::push($this->m_aAltBodiesAndTypes, $aBodyAndType);
+        $bodyAndType = CArray::fromElements($body, $type);
+        CArray::push($this->m_altBodiesAndTypes, $bodyAndType);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -563,115 +563,115 @@ class CMail extends CRootClass
 
     public function disableWordWrapping ()
     {
-        $this->m_bBodyWordWrappingIsDisabled = true;
+        $this->m_bodyWordWrappingIsDisabled = true;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the width to which the text in the body of a message should be wrapped.
      *
-     * @param  int $iWidth The wrapping width, in characters.
+     * @param  int $width The wrapping width, in characters.
      *
      * @return void
      */
 
-    public function setWordWrapping ($iWidth)
+    public function setWordWrapping ($width)
     {
-        assert( 'is_int($iWidth)', vs(isset($this), get_defined_vars()) );
-        $this->m_iBodyWordWrappingWidth = $iWidth;
+        assert( 'is_int($width)', vs(isset($this), get_defined_vars()) );
+        $this->m_bodyWordWrappingWidth = $width;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Attaches a file to a message.
      *
-     * @param  string $sAttachmentFp The path to the file to be attached.
-     * @param  string $sType **OPTIONAL.** The MIME type of the file's contents.
+     * @param  string $attachmentFp The path to the file to be attached.
+     * @param  string $type **OPTIONAL.** The MIME type of the file's contents.
      *
      * @return void
      */
 
-    public function attachFile ($sAttachmentFp, $sType = null)
+    public function attachFile ($attachmentFp, $type = null)
     {
-        assert( 'is_cstring($sAttachmentFp) && (!isset($sType) || is_cstring($sType))',
+        assert( 'is_cstring($attachmentFp) && (!isset($type) || is_cstring($type))',
             vs(isset($this), get_defined_vars()) );
-        assert( 'isset($this->m_oSwiftMessage)', vs(isset($this), get_defined_vars()) );
+        assert( 'isset($this->m_swiftMessage)', vs(isset($this), get_defined_vars()) );
 
-        $sAttachmentFp = CFilePath::frameworkPath($sAttachmentFp);
+        $attachmentFp = CFilePath::frameworkPath($attachmentFp);
 
-        $oAttachment;
-        if ( !isset($sType) )
+        $attachment;
+        if ( !isset($type) )
         {
-            $oAttachment = Swift_Attachment::fromPath($sAttachmentFp);
+            $attachment = Swift_Attachment::fromPath($attachmentFp);
         }
         else
         {
-            $oAttachment = Swift_Attachment::fromPath($sAttachmentFp, $sType);
+            $attachment = Swift_Attachment::fromPath($attachmentFp, $type);
         }
-        if ( self::$ms_bAllAttachmentsAreInline )
+        if ( self::$ms_allAttachmentsAreInline )
         {
-            $oAttachment->setDisposition("inline");
+            $attachment->setDisposition("inline");
         }
-        $this->m_oSwiftMessage->attach($oAttachment);
+        $this->m_swiftMessage->attach($attachment);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Attaches a file to a message, also assigning a custom name to the attached file.
      *
-     * @param  string $sAttachmentFp The path to the file to be attached.
-     * @param  string $sFilename The custom name for the file.
-     * @param  string $sType **OPTIONAL.** The MIME type of the file's contents.
+     * @param  string $attachmentFp The path to the file to be attached.
+     * @param  string $filename The custom name for the file.
+     * @param  string $type **OPTIONAL.** The MIME type of the file's contents.
      *
      * @return void
      */
 
-    public function attachFileWithFilename ($sAttachmentFp, $sFilename, $sType = null)
+    public function attachFileWithFilename ($attachmentFp, $filename, $type = null)
     {
-        assert( 'is_cstring($sAttachmentFp) && is_cstring($sFilename) && (!isset($sType) || is_cstring($sType))',
+        assert( 'is_cstring($attachmentFp) && is_cstring($filename) && (!isset($type) || is_cstring($type))',
             vs(isset($this), get_defined_vars()) );
-        assert( 'isset($this->m_oSwiftMessage)', vs(isset($this), get_defined_vars()) );
+        assert( 'isset($this->m_swiftMessage)', vs(isset($this), get_defined_vars()) );
 
-        $sAttachmentFp = CFilePath::frameworkPath($sAttachmentFp);
+        $attachmentFp = CFilePath::frameworkPath($attachmentFp);
 
-        $oAttachment;
-        if ( !isset($sType) )
+        $attachment;
+        if ( !isset($type) )
         {
-            $oAttachment = Swift_Attachment::fromPath($sAttachmentFp);
+            $attachment = Swift_Attachment::fromPath($attachmentFp);
         }
         else
         {
-            $oAttachment = Swift_Attachment::fromPath($sAttachmentFp, $sType);
+            $attachment = Swift_Attachment::fromPath($attachmentFp, $type);
         }
-        $oAttachment->setFilename($sFilename);
-        if ( self::$ms_bAllAttachmentsAreInline )
+        $attachment->setFilename($filename);
+        if ( self::$ms_allAttachmentsAreInline )
         {
-            $oAttachment->setDisposition("inline");
+            $attachment->setDisposition("inline");
         }
-        $this->m_oSwiftMessage->attach($oAttachment);
+        $this->m_swiftMessage->attach($attachment);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Attaches a data to a message.
      *
-     * @param  data $byData The data to be attached.
-     * @param  string $sFilename The name by which the data is to be seen as a file by the recipient(s).
-     * @param  string $sType The MIME type of the data's contents.
+     * @param  data $data The data to be attached.
+     * @param  string $filename The name by which the data is to be seen as a file by the recipient(s).
+     * @param  string $type The MIME type of the data's contents.
      *
      * @return void
      */
 
-    public function attachData ($byData, $sFilename, $sType)
+    public function attachData ($data, $filename, $type)
     {
-        assert( 'is_cstring($byData) && is_cstring($sFilename) && is_cstring($sType)',
+        assert( 'is_cstring($data) && is_cstring($filename) && is_cstring($type)',
             vs(isset($this), get_defined_vars()) );
-        assert( 'isset($this->m_oSwiftMessage)', vs(isset($this), get_defined_vars()) );
+        assert( 'isset($this->m_swiftMessage)', vs(isset($this), get_defined_vars()) );
 
-        $byData = _from_oop_tp($byData);
+        $data = _from_oop_tp($data);
 
-        $oAttachment = Swift_Attachment::newInstance($byData, $sFilename, $sType);
-        if ( self::$ms_bAllAttachmentsAreInline )
+        $attachment = Swift_Attachment::newInstance($data, $filename, $type);
+        if ( self::$ms_allAttachmentsAreInline )
         {
-            $oAttachment->setDisposition("inline");
+            $attachment->setDisposition("inline");
         }
-        $this->m_oSwiftMessage->attach($oAttachment);
+        $this->m_swiftMessage->attach($attachment);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -682,20 +682,20 @@ class CMail extends CRootClass
      * For example, an image for which a CID was generated and put into `$cid` variable can be embedded into a message
      * with HTML type of body by `<img src="' . $cid . '" alt="Title" />`.
      *
-     * @param  string $sEmbedFp The path to the file to be embedded.
+     * @param  string $embedFp The path to the file to be embedded.
      *
      * @return CUStringObject The embeddable CID of the file.
      */
 
-    public function embeddableCidForFile ($sEmbedFp)
+    public function embeddableCidForFile ($embedFp)
     {
-        assert( 'is_cstring($sEmbedFp)', vs(isset($this), get_defined_vars()) );
-        assert( 'isset($this->m_oSwiftMessage)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($embedFp)', vs(isset($this), get_defined_vars()) );
+        assert( 'isset($this->m_swiftMessage)', vs(isset($this), get_defined_vars()) );
 
-        $sEmbedFp = CFilePath::frameworkPath($sEmbedFp);
+        $embedFp = CFilePath::frameworkPath($embedFp);
 
-        $oEmbeddedFile = Swift_EmbeddedFile::fromPath($sEmbedFp);
-        return $this->m_oSwiftMessage->embed($oEmbeddedFile);
+        $embeddedFile = Swift_EmbeddedFile::fromPath($embedFp);
+        return $this->m_swiftMessage->embed($embeddedFile);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -706,177 +706,177 @@ class CMail extends CRootClass
      * For example, an image for which a CID was generated and put into `$cid` variable can be embedded into a message
      * with HTML type of body by `<img src="' . $cid . '" alt="Title" />`.
      *
-     * @param  data $byData The data to be embedded.
-     * @param  string $sFilename The filename to be associated with the embedded data.
-     * @param  string $sType The MIME type of the data's contents.
+     * @param  data $data The data to be embedded.
+     * @param  string $filename The filename to be associated with the embedded data.
+     * @param  string $type The MIME type of the data's contents.
      *
      * @return CUStringObject The embeddable CID of the data.
      */
 
-    public function embeddableCidForData ($byData, $sFilename, $sType)
+    public function embeddableCidForData ($data, $filename, $type)
     {
-        assert( 'is_cstring($byData) && is_cstring($sFilename) && is_cstring($sType)',
+        assert( 'is_cstring($data) && is_cstring($filename) && is_cstring($type)',
             vs(isset($this), get_defined_vars()) );
-        assert( 'isset($this->m_oSwiftMessage)', vs(isset($this), get_defined_vars()) );
+        assert( 'isset($this->m_swiftMessage)', vs(isset($this), get_defined_vars()) );
 
-        $byData = _from_oop_tp($byData);
+        $data = _from_oop_tp($data);
 
-        $oEmbeddedFile = Swift_EmbeddedFile::newInstance($byData, $sFilename, $sType);
-        return $this->m_oSwiftMessage->embed($oEmbeddedFile);
+        $embeddedFile = Swift_EmbeddedFile::newInstance($data, $filename, $type);
+        return $this->m_swiftMessage->embed($embeddedFile);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the declarative time when a message was sent.
      *
-     * @param  CTime $oTime The point in time to be declared as the moment of the message's dispatching.
+     * @param  CTime $time The point in time to be declared as the moment of the message's dispatching.
      *
      * @return void
      */
 
-    public function setTime (CTime $oTime)
+    public function setTime (CTime $time)
     {
-        assert( 'isset($this->m_oSwiftMessage)', vs(isset($this), get_defined_vars()) );
-        $this->m_oSwiftMessage->setDate($oTime->UTime());
+        assert( 'isset($this->m_swiftMessage)', vs(isset($this), get_defined_vars()) );
+        $this->m_swiftMessage->setDate($time->UTime());
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the priority of a message.
      *
-     * @param  enum $ePriority The priority of the message. Can be `PRIORITY_HIGHEST`, `PRIORITY_HIGH`,
+     * @param  enum $priority The priority of the message. Can be `PRIORITY_HIGHEST`, `PRIORITY_HIGH`,
      * `PRIORITY_NORMAL`, `PRIORITY_LOW`, or `PRIORITY_LOWEST`.
      *
      * @return void
      */
 
-    public function setPriority ($ePriority)
+    public function setPriority ($priority)
     {
-        assert( 'is_enum($ePriority)', vs(isset($this), get_defined_vars()) );
-        assert( 'isset($this->m_oSwiftMessage)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_enum($priority)', vs(isset($this), get_defined_vars()) );
+        assert( 'isset($this->m_swiftMessage)', vs(isset($this), get_defined_vars()) );
 
-        $this->m_oSwiftMessage->setPriority($ePriority + 1);
+        $this->m_swiftMessage->setPriority($priority + 1);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sends a message to the recipient(s).
      *
-     * @param  reference $raFailedAddresses **OPTIONAL. OUTPUT.** After the method is called with this parameter
+     * @param  reference $failedAddresses **OPTIONAL. OUTPUT.** After the method is called with this parameter
      * provided, the parameter's value, which is of type `CArrayObject`, is an array containing the email addresses of
      * the recipients who failed to receive the message.
      *
      * @return int The number of recipients who have successfully received the message.
      */
 
-    public function send (&$raFailedAddresses = null)
+    public function send (&$failedAddresses = null)
     {
-        assert( 'isset($this->m_oSwiftMailer) && isset($this->m_oSwiftMessage)', vs(isset($this), get_defined_vars()) );
-        assert( '(isset($this->m_xFrom) || isset($this->m_xSender) || isset($this->m_sReturnAddress)) && ' .
-                '(isset($this->m_xTo) || isset($this->m_xCc) || isset($this->m_xBcc))',
+        assert( 'isset($this->m_swiftMailer) && isset($this->m_swiftMessage)', vs(isset($this), get_defined_vars()) );
+        assert( '(isset($this->m_from) || isset($this->m_sender) || isset($this->m_returnAddress)) && ' .
+                '(isset($this->m_to) || isset($this->m_cc) || isset($this->m_bcc))',
             vs(isset($this), get_defined_vars()) );
 
-        $oMessage = $this->m_oSwiftMessage;
+        $message = $this->m_swiftMessage;
 
-        if ( isset($this->m_xFrom) )
+        if ( isset($this->m_from) )
         {
-            $oMessage->setFrom($this->m_xFrom);
+            $message->setFrom($this->m_from);
         }
-        if ( isset($this->m_xTo) )
+        if ( isset($this->m_to) )
         {
-            $oMessage->setTo($this->m_xTo);
+            $message->setTo($this->m_to);
         }
-        if ( isset($this->m_xCc) )
+        if ( isset($this->m_cc) )
         {
-            $oMessage->setCc($this->m_xCc);
+            $message->setCc($this->m_cc);
         }
-        if ( isset($this->m_xBcc) )
+        if ( isset($this->m_bcc) )
         {
-            $oMessage->setBcc($this->m_xBcc);
+            $message->setBcc($this->m_bcc);
         }
-        if ( isset($this->m_xSender) )
+        if ( isset($this->m_sender) )
         {
-            $oMessage->setSender($this->m_xSender);
+            $message->setSender($this->m_sender);
         }
-        if ( isset($this->m_sReturnAddress) )
+        if ( isset($this->m_returnAddress) )
         {
-            $oMessage->setReturnPath($this->m_sReturnAddress);
+            $message->setReturnPath($this->m_returnAddress);
         }
-        if ( isset($this->m_sReplyAddress) )
+        if ( isset($this->m_replyAddress) )
         {
-            $oMessage->setReplyTo($this->m_sReplyAddress);
+            $message->setReplyTo($this->m_replyAddress);
         }
 
-        if ( isset($this->m_sBody) )
+        if ( isset($this->m_body) )
         {
-            if ( CString::equals($this->m_sBodyType, CMimeType::PLAIN_TEXT) )
+            if ( CString::equals($this->m_bodyType, CMimeType::PLAIN_TEXT) )
             {
-                $this->m_sBody = $this->maybeWrapText($this->m_sBody);
+                $this->m_body = $this->maybeWrapText($this->m_body);
             }
-            $oMessage->setBody($this->m_sBody, $this->m_sBodyType);
+            $message->setBody($this->m_body, $this->m_bodyType);
         }
 
-        if ( isset($this->m_aAltBodiesAndTypes) )
+        if ( isset($this->m_altBodiesAndTypes) )
         {
-            $iLen = CArray::length($this->m_aAltBodiesAndTypes);
-            for ($i = 0; $i < $iLen; $i++)
+            $len = CArray::length($this->m_altBodiesAndTypes);
+            for ($i = 0; $i < $len; $i++)
             {
-                $aBodyAndType = $this->m_aAltBodiesAndTypes[$i];
-                $sBody = $aBodyAndType[0];
-                $sType = $aBodyAndType[1];
-                if ( CString::equals($sType, CMimeType::PLAIN_TEXT) )
+                $bodyAndType = $this->m_altBodiesAndTypes[$i];
+                $body = $bodyAndType[0];
+                $type = $bodyAndType[1];
+                if ( CString::equals($type, CMimeType::PLAIN_TEXT) )
                 {
-                    $sBody = $this->maybeWrapText($sBody);
+                    $body = $this->maybeWrapText($body);
                 }
-                $oMessage->addPart($sBody, $sType);
+                $message->addPart($body, $type);
             }
         }
 
-        $mFailedAddresses;
-        $iRes = $this->m_oSwiftMailer->send($oMessage, $mFailedAddresses);
-        if ( is_cmap($mFailedAddresses) )
+        $paFailedAddresses;
+        $res = $this->m_swiftMailer->send($message, $paFailedAddresses);
+        if ( is_cmap($paFailedAddresses) )
         {
-            $raFailedAddresses = oop_a(CArray::fromPArray($mFailedAddresses));
+            $failedAddresses = oop_a(CArray::fromPArray($paFailedAddresses));
         }
-        $iRes = ( is_int($iRes) ) ? $iRes : 0;
-        return $iRes;
+        $res = ( is_int($res) ) ? $res : 0;
+        return $res;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected function maybeWrapText ($sText)
+    protected function maybeWrapText ($text)
     {
-        if ( !isset($this->m_bBodyWordWrappingIsDisabled) || !$this->m_bBodyWordWrappingIsDisabled )
+        if ( !isset($this->m_bodyWordWrappingIsDisabled) || !$this->m_bodyWordWrappingIsDisabled )
         {
             // Wrap the text.
-            $iWidth;
-            if ( !isset($this->m_iBodyWordWrappingWidth) )
+            $width;
+            if ( !isset($this->m_bodyWordWrappingWidth) )
             {
-                $iWidth = self::$ms_iDefaultWordWrappingWidth;
+                $width = self::$ms_defaultWordWrappingWidth;
             }
             else
             {
-                $iWidth = $this->m_iBodyWordWrappingWidth;
+                $width = $this->m_bodyWordWrappingWidth;
             }
-            $sText = CUString::wordWrap($sText, $iWidth);
+            $text = CUString::wordWrap($text, $width);
         }
-        return $sText;
+        return $text;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    protected $m_oSwiftMailer;
-    protected $m_oSwiftMessage;
-    protected $m_xFrom;
-    protected $m_xTo;
-    protected $m_xCc;
-    protected $m_xBcc;
-    protected $m_xSender;
-    protected $m_sReturnAddress;
-    protected $m_sReplyAddress;
-    protected $m_iBodyWordWrappingWidth;
-    protected $m_bBodyWordWrappingIsDisabled;
-    protected $m_sBody;
-    protected $m_sBodyType;
-    protected $m_aAltBodiesAndTypes;
+    protected $m_swiftMailer;
+    protected $m_swiftMessage;
+    protected $m_from;
+    protected $m_to;
+    protected $m_cc;
+    protected $m_bcc;
+    protected $m_sender;
+    protected $m_returnAddress;
+    protected $m_replyAddress;
+    protected $m_bodyWordWrappingWidth;
+    protected $m_bodyWordWrappingIsDisabled;
+    protected $m_body;
+    protected $m_bodyType;
+    protected $m_altBodiesAndTypes;
 
-    protected static $ms_sDefaultSubject = "";
-    protected static $ms_iDefaultWordWrappingWidth = 80;
+    protected static $ms_defaultSubject = "";
+    protected static $ms_defaultWordWrappingWidth = 80;
 
     // "Inline" attachments are expected to be displayed inline and, if possible, at the message's end.
-    protected static $ms_bAllAttachmentsAreInline = true;
+    protected static $ms_allAttachmentsAreInline = true;
 }

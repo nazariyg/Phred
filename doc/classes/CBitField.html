@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-838614156"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-928337848"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-838614156" class="accordion-body collapse in">
+            <div id="namespace-928337848" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -1323,22 +1323,22 @@ bitwise operations available PHP, so this class exists to make things bit easier
             <article class="method">
                 <h3 class="public ">isBitSet()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isBitSet (bitfield&nbsp;<span class="argument">$bfField</span>, bitfield&nbsp;<span class="argument">$bfBit</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isBitSet (bitfield&nbsp;<span class="argument">$field</span>, bitfield&nbsp;<span class="argument">$bit</span>) : bool</pre>
                 <p><em><p>Determines if a bit is set in a bitfield.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bfField</code> </td>
+                                <td><code style="border: none; background: none">$field</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
                                 <td><p>The bitfield to be looked into.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bfBit</code> </td>
+                                <td><code style="border: none; background: none">$bit</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
                                 <td><p>A bitfield where exactly one bit is set, which is the bit to be tested against the bits
-in <code>$bfField</code>. This is something you often get as a constant e.g. <code>SOME_OPTION</code> and you test it against e.g.
+in <code>$field</code>. This is something you often get as a constant e.g. <code>SOME_OPTION</code> and you test it against e.g.
 <code>AVAILABLE_OPTIONS</code> to see if the option is enabled.</p></td>
                             </tr>
                                             </table>
@@ -1375,22 +1375,22 @@ in <code>$bfField</code>. This is something you often get as a constant e.g. <co
             <article class="method">
                 <h3 class="public ">setBit()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setBit (bitfield&nbsp;<span class="argument">$bfField</span>, bitfield&nbsp;<span class="argument">$bfBit</span>) : bitfield</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setBit (bitfield&nbsp;<span class="argument">$field</span>, bitfield&nbsp;<span class="argument">$bit</span>) : bitfield</pre>
                 <p><em><p>Sets a bit in a bitfield and returns the new bitfield.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bfField</code> </td>
+                                <td><code style="border: none; background: none">$field</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
                                 <td><p>The bitfield to be modified.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bfBit</code> </td>
+                                <td><code style="border: none; background: none">$bit</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
                                 <td><p>A bitfield where exactly one bit is set, which indicates the position of the bit to be
-set in <code>$bfField</code>.</p></td>
+set in <code>$field</code>.</p></td>
                             </tr>
                                             </table>
                 
@@ -1426,22 +1426,22 @@ set in <code>$bfField</code>.</p></td>
             <article class="method">
                 <h3 class="public ">unsetBit()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> unsetBit (bitfield&nbsp;<span class="argument">$bfField</span>, bitfield&nbsp;<span class="argument">$bfBit</span>) : bitfield</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> unsetBit (bitfield&nbsp;<span class="argument">$field</span>, bitfield&nbsp;<span class="argument">$bit</span>) : bitfield</pre>
                 <p><em><p>Unsets a bit in a bitfield and returns the new bitfield.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bfField</code> </td>
+                                <td><code style="border: none; background: none">$field</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
                                 <td><p>The bitfield to be modified.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bfBit</code> </td>
+                                <td><code style="border: none; background: none">$bit</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
                                 <td><p>A bitfield where exactly one bit is set, which indicates the position of the bit to be
-unset in <code>$bfField</code>.</p></td>
+unset in <code>$field</code>.</p></td>
                             </tr>
                                             </table>
                 
@@ -1477,22 +1477,22 @@ unset in <code>$bfField</code>.</p></td>
             <article class="method">
                 <h3 class="public ">toggleBit()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> toggleBit (bitfield&nbsp;<span class="argument">$bfField</span>, bitfield&nbsp;<span class="argument">$bfBit</span>) : bitfield</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> toggleBit (bitfield&nbsp;<span class="argument">$field</span>, bitfield&nbsp;<span class="argument">$bit</span>) : bitfield</pre>
                 <p><em><p>Toggles the value of a bit in a bitfield and returns the new bitfield.</p></em></p>
                 <p>If the bit is <code>0</code> (unset), it becomes <code>1</code> (set), and vice versa.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bfField</code> </td>
+                                <td><code style="border: none; background: none">$field</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
                                 <td><p>The bitfield to be modified.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bfBit</code> </td>
+                                <td><code style="border: none; background: none">$bit</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
                                 <td><p>A bitfield where exactly one bit is set, which indicates the position of the bit to be
-toggled in <code>$bfField</code>.</p></td>
+toggled in <code>$field</code>.</p></td>
                             </tr>
                                             </table>
                 
@@ -1528,14 +1528,14 @@ toggled in <code>$bfField</code>.</p></td>
             <article class="method">
                 <h3 class="public ">numBitsSet()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> numBitsSet (bitfield&nbsp;<span class="argument">$bfField</span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> numBitsSet (bitfield&nbsp;<span class="argument">$field</span>) : int</pre>
                 <p><em><p>Counts the number of bits that are set in a bitfield.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bfField</code> </td>
+                                <td><code style="border: none; background: none">$field</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
                                 <td><p>The bitfield to be looked into.</p></td>
                             </tr>
@@ -1621,7 +1621,7 @@ toggled in <code>$bfField</code>.</p></td>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

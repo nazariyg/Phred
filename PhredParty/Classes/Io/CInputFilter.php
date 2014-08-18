@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -49,32 +49,32 @@
  */
 
 // Method signatures:
-//   __construct ($eExpectedType, $xCollectionInputFilters = null)
-//   void setDefault ($xValue)
-//   void setJsonStrictness ($eStrictness)
+//   __construct ($expectedType, $collectionInputFilters = null)
+//   void setDefault ($value)
+//   void setJsonStrictness ($strictness)
 //   enum expectedType ()
 //   mixed defaultValue ()
 //   mixed collectionInputFilters ()
-//   void setValidMin ($xMin)
-//   void setValidMax ($xMax)
-//   void setValidMinMax ($xMin, $xMax)
-//   void setAllowLeadingZeros ($bEnable)
-//   void setAllowComma ($bEnable)
-//   void setIgnoreProtocolAbsence ($bEnable)
-//   void setAllowHex ($bEnable)
-//   void setIpV6 ($bEnable)
-//   void setIpV4OrV6 ($bEnable)
-//   void setAllowPrivateRange ($bEnable)
-//   void setAllowReservedRange ($bEnable)
-//   void setClampingMin ($xMin)
-//   void setClampingMax ($xMax)
-//   void setClampingMinMax ($xMin, $xMax)
-//   void setKeepAbnormalNewlines ($bEnable)
-//   void setKeepNonPrintable ($bEnable)
-//   void setKeepTabsAndNewlines ($bEnable)
-//   void setKeepSideSpacing ($bEnable)
-//   void setKeepExtraSpacing ($bEnable)
-//   mixed filter ($xInputStringOrDecodedCollection, &$rbSuccess)
+//   void setValidMin ($min)
+//   void setValidMax ($max)
+//   void setValidMinMax ($min, $max)
+//   void setAllowLeadingZeros ($enable)
+//   void setAllowComma ($enable)
+//   void setIgnoreProtocolAbsence ($enable)
+//   void setAllowHex ($enable)
+//   void setIpV6 ($enable)
+//   void setIpV4OrV6 ($enable)
+//   void setAllowPrivateRange ($enable)
+//   void setAllowReservedRange ($enable)
+//   void setClampingMin ($min)
+//   void setClampingMax ($max)
+//   void setClampingMinMax ($min, $max)
+//   void setKeepAbnormalNewlines ($enable)
+//   void setKeepNonPrintable ($enable)
+//   void setKeepTabsAndNewlines ($enable)
+//   void setKeepSideSpacing ($enable)
+//   void setKeepExtraSpacing ($enable)
+//   mixed filter ($inputStringOrDecodedCollection, &$success)
 
 class CInputFilter extends CRootClass
 {
@@ -144,8 +144,8 @@ class CInputFilter extends CRootClass
     /**
      * Creates a filter suited for a specified data type to be outputted.
      *
-     * @param  enum $eExpectedType The output data type that is expected (see [Summary](#summary)).
-     * @param  mixed $xCollectionInputFilters **OPTIONAL.** *Required only when the expected type is `CARRAY` or
+     * @param  enum $expectedType The output data type that is expected (see [Summary](#summary)).
+     * @param  mixed $collectionInputFilters **OPTIONAL.** *Required only when the expected type is `CARRAY` or
      * `CMAP`*. The array or map containing the filters to be applied to the elements in the input array if the
      * expected type is `CARRAY` or to the values in the input map if the expected type is `CMAP`. If the input value
      * is going to be an array, the number of filters in this parameter should match the length of the input array, and
@@ -153,41 +153,41 @@ class CInputFilter extends CRootClass
      * as input arrays and maps, this parameter can be multidimensional in order to correspond with the input value.
      */
 
-    public function __construct ($eExpectedType, $xCollectionInputFilters = null)
+    public function __construct ($expectedType, $collectionInputFilters = null)
     {
-        assert( 'is_enum($eExpectedType) && !($eExpectedType != self::CARRAY && $eExpectedType != self::CMAP && ' .
-                'isset($xCollectionInputFilters)) && !($eExpectedType == self::CARRAY && ' .
-                '!is_carray($xCollectionInputFilters)) && !($eExpectedType == self::CMAP && ' .
-                '!is_cmap($xCollectionInputFilters))', vs(isset($this), get_defined_vars()) );
+        assert( 'is_enum($expectedType) && !($expectedType != self::CARRAY && $expectedType != self::CMAP && ' .
+                'isset($collectionInputFilters)) && !($expectedType == self::CARRAY && ' .
+                '!is_carray($collectionInputFilters)) && !($expectedType == self::CMAP && ' .
+                '!is_cmap($collectionInputFilters))', vs(isset($this), get_defined_vars()) );
 
-        $this->m_eExpectedType = $eExpectedType;
-        $this->m_xCollectionInputFilters = $xCollectionInputFilters;
+        $this->m_expectedType = $expectedType;
+        $this->m_collectionInputFilters = $collectionInputFilters;
 
-        switch ( $eExpectedType )
+        switch ( $expectedType )
         {
         case self::BOOL:
-            $this->m_xDefaultValue = false;
+            $this->m_defaultValue = false;
             break;
         case self::INT:
-            $this->m_xDefaultValue = 0;
+            $this->m_defaultValue = 0;
             break;
         case self::FLOAT:
-            $this->m_xDefaultValue = 0.0;
+            $this->m_defaultValue = 0.0;
             break;
         case self::CSTRING:
         case self::CUSTRING:
-            $this->m_xDefaultValue = "";
+            $this->m_defaultValue = "";
             break;
         case self::CARRAY:
-            $this->m_xDefaultValue = CArray::make();
+            $this->m_defaultValue = CArray::make();
             break;
         case self::CMAP:
-            $this->m_xDefaultValue = CMap::make();
+            $this->m_defaultValue = CMap::make();
             break;
         case self::EMAIL:
         case self::URL:
         case self::IP:
-            $this->m_xDefaultValue = "";
+            $this->m_defaultValue = "";
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
@@ -199,39 +199,39 @@ class CInputFilter extends CRootClass
      * Sets the default value to be returned by `filter` method in case if the input value does not pass the filtering
      * process.
      *
-     * @param  mixed $xValue The default value for the filter.
+     * @param  mixed $value The default value for the filter.
      *
      * @return void
      */
 
-    public function setDefault ($xValue)
+    public function setDefault ($value)
     {
-        assert( '($this->m_eExpectedType == self::BOOL && is_bool($xValue)) || ' .
-                '($this->m_eExpectedType == self::INT && is_int($xValue)) || ' .
-                '($this->m_eExpectedType == self::FLOAT && is_float($xValue)) || ' .
-                '($this->m_eExpectedType == self::CSTRING && is_cstring($xValue)) || ' .
-                '($this->m_eExpectedType == self::CUSTRING && is_cstring($xValue)) || ' .
-                '($this->m_eExpectedType == self::CARRAY && is_carray($xValue)) || ' .
-                '($this->m_eExpectedType == self::CMAP && is_cmap($xValue)) || ' .
-                '($this->m_eExpectedType == self::EMAIL && is_cstring($xValue)) || ' .
-                '($this->m_eExpectedType == self::URL && is_cstring($xValue)) || ' .
-                '($this->m_eExpectedType == self::IP && is_cstring($xValue))', vs(isset($this), get_defined_vars()) );
+        assert( '($this->m_expectedType == self::BOOL && is_bool($value)) || ' .
+                '($this->m_expectedType == self::INT && is_int($value)) || ' .
+                '($this->m_expectedType == self::FLOAT && is_float($value)) || ' .
+                '($this->m_expectedType == self::CSTRING && is_cstring($value)) || ' .
+                '($this->m_expectedType == self::CUSTRING && is_cstring($value)) || ' .
+                '($this->m_expectedType == self::CARRAY && is_carray($value)) || ' .
+                '($this->m_expectedType == self::CMAP && is_cmap($value)) || ' .
+                '($this->m_expectedType == self::EMAIL && is_cstring($value)) || ' .
+                '($this->m_expectedType == self::URL && is_cstring($value)) || ' .
+                '($this->m_expectedType == self::IP && is_cstring($value))', vs(isset($this), get_defined_vars()) );
 
-        $this->m_xDefaultValue = $xValue;
+        $this->m_defaultValue = $value;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the JSON decoding strictness to be used for JSON input.
      *
-     * @param  enum $eStrictness The JSON decoding strictness (see [CJson Summary](CJson.html#summary)).
+     * @param  enum $strictness The JSON decoding strictness (see [CJson Summary](CJson.html#summary)).
      *
      * @return void
      */
 
-    public function setJsonStrictness ($eStrictness)
+    public function setJsonStrictness ($strictness)
     {
-        assert( 'is_enum($eStrictness)', vs(isset($this), get_defined_vars()) );
-        $this->m_eJsonStrictness = $eStrictness;
+        assert( 'is_enum($strictness)', vs(isset($this), get_defined_vars()) );
+        $this->m_jsonStrictness = $strictness;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -242,7 +242,7 @@ class CInputFilter extends CRootClass
 
     public function expectedType ()
     {
-        return $this->m_eExpectedType;
+        return $this->m_expectedType;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -253,7 +253,7 @@ class CInputFilter extends CRootClass
 
     public function defaultValue ()
     {
-        return oop_x($this->m_xDefaultValue);
+        return oop_x($this->m_defaultValue);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -265,8 +265,8 @@ class CInputFilter extends CRootClass
 
     public function collectionInputFilters ()
     {
-        assert( 'isset($this->m_xCollectionInputFilters)', vs(isset($this), get_defined_vars()) );
-        return $this->m_xCollectionInputFilters;
+        assert( 'isset($this->m_collectionInputFilters)', vs(isset($this), get_defined_vars()) );
+        return $this->m_collectionInputFilters;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -274,23 +274,23 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the validation methods.
      *
-     * @param  mixed $xMin The minimum acceptable value. The parameter's type should match the expected output type.
+     * @param  mixed $min The minimum acceptable value. The parameter's type should match the expected output type.
      *
      * @return void
      */
 
-    public function setValidMin ($xMin)
+    public function setValidMin ($min)
     {
-        assert( '($this->m_eExpectedType == self::INT && is_int($xMin)) || ' .
-                '($this->m_eExpectedType == self::FLOAT && is_float($xMin))', vs(isset($this), get_defined_vars()) );
+        assert( '($this->m_expectedType == self::INT && is_int($min)) || ' .
+                '($this->m_expectedType == self::FLOAT && is_float($min))', vs(isset($this), get_defined_vars()) );
 
-        if ( $this->m_eExpectedType == self::INT )
+        if ( $this->m_expectedType == self::INT )
         {
-            $this->m_iValidMin = $xMin;
+            $this->m_intValidMin = $min;
         }
-        else  // $this->m_eExpectedType = self::FLOAT
+        else  // $this->m_expectedType = self::FLOAT
         {
-            $this->m_fValidMin = $xMin;
+            $this->m_floatValidMin = $min;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -299,23 +299,23 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the validation methods.
      *
-     * @param  mixed $xMax The maximum acceptable value. The parameter's type should match the expected output type.
+     * @param  mixed $max The maximum acceptable value. The parameter's type should match the expected output type.
      *
      * @return void
      */
 
-    public function setValidMax ($xMax)
+    public function setValidMax ($max)
     {
-        assert( '($this->m_eExpectedType == self::INT && is_int($xMax)) || ' .
-                '($this->m_eExpectedType == self::FLOAT && is_float($xMax))', vs(isset($this), get_defined_vars()) );
+        assert( '($this->m_expectedType == self::INT && is_int($max)) || ' .
+                '($this->m_expectedType == self::FLOAT && is_float($max))', vs(isset($this), get_defined_vars()) );
 
-        if ( $this->m_eExpectedType == self::INT )
+        if ( $this->m_expectedType == self::INT )
         {
-            $this->m_iValidMax = $xMax;
+            $this->m_intValidMax = $max;
         }
-        else  // $this->m_eExpectedType = self::FLOAT
+        else  // $this->m_expectedType = self::FLOAT
         {
-            $this->m_fValidMax = $xMax;
+            $this->m_floatValidMax = $max;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -325,28 +325,28 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the validation methods.
      *
-     * @param  mixed $xMin The minimum acceptable value. The parameter's type should match the expected output type.
-     * @param  mixed $xMax The maximum acceptable value. The parameter's type should match the expected output type.
+     * @param  mixed $min The minimum acceptable value. The parameter's type should match the expected output type.
+     * @param  mixed $max The maximum acceptable value. The parameter's type should match the expected output type.
      *
      * @return void
      */
 
-    public function setValidMinMax ($xMin, $xMax)
+    public function setValidMinMax ($min, $max)
     {
-        assert( '($this->m_eExpectedType == self::INT && is_int($xMin) && is_int($xMax)) || ' .
-                '($this->m_eExpectedType == self::FLOAT && is_float($xMin) && is_float($xMax))',
+        assert( '($this->m_expectedType == self::INT && is_int($min) && is_int($max)) || ' .
+                '($this->m_expectedType == self::FLOAT && is_float($min) && is_float($max))',
             vs(isset($this), get_defined_vars()) );
-        assert( '$xMin <= $xMax', vs(isset($this), get_defined_vars()) );
+        assert( '$min <= $max', vs(isset($this), get_defined_vars()) );
 
-        if ( $this->m_eExpectedType == self::INT )
+        if ( $this->m_expectedType == self::INT )
         {
-            $this->m_iValidMin = $xMin;
-            $this->m_iValidMax = $xMax;
+            $this->m_intValidMin = $min;
+            $this->m_intValidMax = $max;
         }
-        else  // $this->m_eExpectedType = self::FLOAT
+        else  // $this->m_expectedType = self::FLOAT
         {
-            $this->m_fValidMin = $xMin;
-            $this->m_fValidMax = $xMax;
+            $this->m_floatValidMin = $min;
+            $this->m_floatValidMax = $max;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -356,18 +356,18 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the validation methods.
      *
-     * @param  bool $bEnable `true` to allow an input value to contain leading zeros, `false` otherwise.
+     * @param  bool $enable `true` to allow an input value to contain leading zeros, `false` otherwise.
      *
      * @return void
      */
 
-    public function setAllowLeadingZeros ($bEnable)
+    public function setAllowLeadingZeros ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eExpectedType == self::INT || ' .
-                '$this->m_eExpectedType == self::FLOAT', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_expectedType == self::INT || ' .
+                '$this->m_expectedType == self::FLOAT', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bAllowLeadingZeros = $bEnable;
+        $this->m_allowLeadingZeros = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -376,18 +376,18 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the validation methods.
      *
-     * @param  bool $bEnable `true` to allow an input value to contain commas, `false` otherwise.
+     * @param  bool $enable `true` to allow an input value to contain commas, `false` otherwise.
      *
      * @return void
      */
 
-    public function setAllowComma ($bEnable)
+    public function setAllowComma ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eExpectedType == self::INT || ' .
-                '$this->m_eExpectedType == self::FLOAT', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_expectedType == self::INT || ' .
+                '$this->m_expectedType == self::FLOAT', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bAllowComma = $bEnable;
+        $this->m_allowComma = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -395,17 +395,17 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the validation methods.
      *
-     * @param  bool $bEnable `true` to ignore the absence of a protocol in an input URL, `false` otherwise.
+     * @param  bool $enable `true` to ignore the absence of a protocol in an input URL, `false` otherwise.
      *
      * @return void
      */
 
-    public function setIgnoreProtocolAbsence ($bEnable)
+    public function setIgnoreProtocolAbsence ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eExpectedType == self::URL', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_expectedType == self::URL', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bIgnoreProtocolAbsence = $bEnable;
+        $this->m_ignoreProtocolAbsence = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -414,18 +414,18 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the validation methods.
      *
-     * @param  bool $bEnable `true` to allow an input value to be a hexadecimal integer prefixed with "0x", `false`
+     * @param  bool $enable `true` to allow an input value to be a hexadecimal integer prefixed with "0x", `false`
      * otherwise.
      *
      * @return void
      */
 
-    public function setAllowHex ($bEnable)
+    public function setAllowHex ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eExpectedType == self::INT', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_expectedType == self::INT', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bAllowHex = $bEnable;
+        $this->m_allowHex = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -433,17 +433,17 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the validation methods.
      *
-     * @param  bool $bEnable `true` if an input IP is expected to be IPv6 only, `false` otherwise.
+     * @param  bool $enable `true` if an input IP is expected to be IPv6 only, `false` otherwise.
      *
      * @return void
      */
 
-    public function setIpV6 ($bEnable)
+    public function setIpV6 ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eExpectedType == self::IP', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_expectedType == self::IP', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bIpV6 = $bEnable;
+        $this->m_ipV6 = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -451,17 +451,17 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the validation methods.
      *
-     * @param  bool $bEnable `true` if an input IP is allowed to be IPv6 in addition to IPv4, `false` otherwise.
+     * @param  bool $enable `true` if an input IP is allowed to be IPv6 in addition to IPv4, `false` otherwise.
      *
      * @return void
      */
 
-    public function setIpV4OrV6 ($bEnable)
+    public function setIpV4OrV6 ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eExpectedType == self::IP', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_expectedType == self::IP', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bIpV4OrV6 = $bEnable;
+        $this->m_ipV4OrV6 = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -469,17 +469,17 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the validation methods.
      *
-     * @param  bool $bEnable `true` to allow an input IP to be in a private IP range, `false` otherwise.
+     * @param  bool $enable `true` to allow an input IP to be in a private IP range, `false` otherwise.
      *
      * @return void
      */
 
-    public function setAllowPrivateRange ($bEnable)
+    public function setAllowPrivateRange ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eExpectedType == self::IP', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_expectedType == self::IP', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bAllowPrivateRange = $bEnable;
+        $this->m_allowPrivateRange = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -487,17 +487,17 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the validation methods.
      *
-     * @param  bool $bEnable `true` to allow an input IP to be in a reserved IP range, `false` otherwise.
+     * @param  bool $enable `true` to allow an input IP to be in a reserved IP range, `false` otherwise.
      *
      * @return void
      */
 
-    public function setAllowReservedRange ($bEnable)
+    public function setAllowReservedRange ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eExpectedType == self::IP', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_expectedType == self::IP', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bAllowReservedRange = $bEnable;
+        $this->m_allowReservedRange = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -506,23 +506,23 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the sanitization methods.
      *
-     * @param  mixed $xMin The minimum acceptable value. The parameter's type should match the expected output type.
+     * @param  mixed $min The minimum acceptable value. The parameter's type should match the expected output type.
      *
      * @return void
      */
 
-    public function setClampingMin ($xMin)
+    public function setClampingMin ($min)
     {
-        assert( '($this->m_eExpectedType == self::INT && is_int($xMin)) || ' .
-                '($this->m_eExpectedType == self::FLOAT && is_float($xMin))', vs(isset($this), get_defined_vars()) );
+        assert( '($this->m_expectedType == self::INT && is_int($min)) || ' .
+                '($this->m_expectedType == self::FLOAT && is_float($min))', vs(isset($this), get_defined_vars()) );
 
-        if ( $this->m_eExpectedType == self::INT )
+        if ( $this->m_expectedType == self::INT )
         {
-            $this->m_iClampingMin = $xMin;
+            $this->m_intClampingMin = $min;
         }
-        else  // $this->m_eExpectedType = self::FLOAT
+        else  // $this->m_expectedType = self::FLOAT
         {
-            $this->m_fClampingMin = $xMin;
+            $this->m_floatClampingMin = $min;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -532,23 +532,23 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the sanitization methods.
      *
-     * @param  mixed $xMax The maximum acceptable value. The parameter's type should match the expected output type.
+     * @param  mixed $max The maximum acceptable value. The parameter's type should match the expected output type.
      *
      * @return void
      */
 
-    public function setClampingMax ($xMax)
+    public function setClampingMax ($max)
     {
-        assert( '($this->m_eExpectedType == self::INT && is_int($xMax)) || ' .
-                '($this->m_eExpectedType == self::FLOAT && is_float($xMax))', vs(isset($this), get_defined_vars()) );
+        assert( '($this->m_expectedType == self::INT && is_int($max)) || ' .
+                '($this->m_expectedType == self::FLOAT && is_float($max))', vs(isset($this), get_defined_vars()) );
 
-        if ( $this->m_eExpectedType == self::INT )
+        if ( $this->m_expectedType == self::INT )
         {
-            $this->m_iClampingMax = $xMax;
+            $this->m_intClampingMax = $max;
         }
-        else  // $this->m_eExpectedType = self::FLOAT
+        else  // $this->m_expectedType = self::FLOAT
         {
-            $this->m_fClampingMax = $xMax;
+            $this->m_floatClampingMax = $max;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -558,28 +558,28 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the sanitization methods.
      *
-     * @param  mixed $xMin The minimum acceptable value. The parameter's type should match the expected output type.
-     * @param  mixed $xMax The maximum acceptable value. The parameter's type should match the expected output type.
+     * @param  mixed $min The minimum acceptable value. The parameter's type should match the expected output type.
+     * @param  mixed $max The maximum acceptable value. The parameter's type should match the expected output type.
      *
      * @return void
      */
 
-    public function setClampingMinMax ($xMin, $xMax)
+    public function setClampingMinMax ($min, $max)
     {
-        assert( '($this->m_eExpectedType == self::INT && is_int($xMin) && is_int($xMax)) || ' .
-                '($this->m_eExpectedType == self::FLOAT && is_float($xMin) && is_float($xMax))',
+        assert( '($this->m_expectedType == self::INT && is_int($min) && is_int($max)) || ' .
+                '($this->m_expectedType == self::FLOAT && is_float($min) && is_float($max))',
             vs(isset($this), get_defined_vars()) );
-        assert( '$xMin <= $xMax', vs(isset($this), get_defined_vars()) );
+        assert( '$min <= $max', vs(isset($this), get_defined_vars()) );
 
-        if ( $this->m_eExpectedType == self::INT )
+        if ( $this->m_expectedType == self::INT )
         {
-            $this->m_iClampingMin = $xMin;
-            $this->m_iClampingMax = $xMax;
+            $this->m_intClampingMin = $min;
+            $this->m_intClampingMax = $max;
         }
-        else  // $this->m_eExpectedType = self::FLOAT
+        else  // $this->m_expectedType = self::FLOAT
         {
-            $this->m_fClampingMin = $xMin;
-            $this->m_fClampingMax = $xMax;
+            $this->m_floatClampingMin = $min;
+            $this->m_floatClampingMax = $max;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -589,19 +589,19 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the sanitization methods.
      *
-     * @param  bool $bEnable `true` to keep any non-LF newlines in the output string, `false` to convert any such
+     * @param  bool $enable `true` to keep any non-LF newlines in the output string, `false` to convert any such
      * newlines to LF.
      *
      * @return void
      */
 
-    public function setKeepAbnormalNewlines ($bEnable)
+    public function setKeepAbnormalNewlines ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eExpectedType == self::CSTRING || ' .
-                '$this->m_eExpectedType == self::CUSTRING', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_expectedType == self::CSTRING || ' .
+                '$this->m_expectedType == self::CUSTRING', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bKeepAbnormalNewlines = $bEnable;
+        $this->m_keepAbnormalNewlines = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -612,19 +612,19 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the sanitization methods.
      *
-     * @param  bool $bEnable `true` to keep any non-printable characters in the output string, `false` to remove any
+     * @param  bool $enable `true` to keep any non-printable characters in the output string, `false` to remove any
      * such characters.
      *
      * @return void
      */
 
-    public function setKeepNonPrintable ($bEnable)
+    public function setKeepNonPrintable ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eExpectedType == self::CSTRING || ' .
-                '$this->m_eExpectedType == self::CUSTRING', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_expectedType == self::CSTRING || ' .
+                '$this->m_expectedType == self::CUSTRING', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bKeepNonPrintable = $bEnable;
+        $this->m_keepNonPrintable = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -633,18 +633,18 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the sanitization methods.
      *
-     * @param  bool $bEnable `true` to keep any tabs and newlines in the output string, `false` to remove them.
+     * @param  bool $enable `true` to keep any tabs and newlines in the output string, `false` to remove them.
      *
      * @return void
      */
 
-    public function setKeepTabsAndNewlines ($bEnable)
+    public function setKeepTabsAndNewlines ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eExpectedType == self::CSTRING || ' .
-                '$this->m_eExpectedType == self::CUSTRING', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_expectedType == self::CSTRING || ' .
+                '$this->m_expectedType == self::CUSTRING', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bKeepTabsAndNewlines = $bEnable;
+        $this->m_keepTabsAndNewlines = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -653,18 +653,18 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the sanitization methods.
      *
-     * @param  bool $bEnable `true` to keep any whitespace at the both sides of the output string, `false` to trim it.
+     * @param  bool $enable `true` to keep any whitespace at the both sides of the output string, `false` to trim it.
      *
      * @return void
      */
 
-    public function setKeepSideSpacing ($bEnable)
+    public function setKeepSideSpacing ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eExpectedType == self::CSTRING || ' .
-                '$this->m_eExpectedType == self::CUSTRING', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_expectedType == self::CSTRING || ' .
+                '$this->m_expectedType == self::CUSTRING', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bKeepSideSpacing = $bEnable;
+        $this->m_keepSideSpacing = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -674,563 +674,563 @@ class CInputFilter extends CRootClass
      *
      * This method is one of the sanitization methods.
      *
-     * @param  bool $bEnable `true` to keep any whitespace at the both sides of the output string and to keep any
+     * @param  bool $enable `true` to keep any whitespace at the both sides of the output string and to keep any
      * sequence of whitespace characters within the string as-is, `false` to trim the string from whitespace on both
      * sides and to replace any sequence of whitespace characters with a single space character.
      *
      * @return void
      */
 
-    public function setKeepExtraSpacing ($bEnable)
+    public function setKeepExtraSpacing ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eExpectedType == self::CSTRING || ' .
-                '$this->m_eExpectedType == self::CUSTRING', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_expectedType == self::CSTRING || ' .
+                '$this->m_expectedType == self::CUSTRING', vs(isset($this), get_defined_vars()) );
 
-        $this->m_bKeepExtraSpacing = $bEnable;
+        $this->m_keepExtraSpacing = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Filters a string or a collection of strings according to the expected output type(s) and returns the output
      * value(s).
      *
-     * @param  mixed $xInputStringOrDecodedCollection The string to be filtered or the array or map containing the
+     * @param  mixed $inputStringOrDecodedCollection The string to be filtered or the array or map containing the
      * strings to be filtered. If the parameter's value is a JSON-encoded string, the output value is going to be
      * either an array or map.
-     * @param  reference $rbSuccess **OUTPUT.** After the method is called, the value of this parameter tells whether
+     * @param  reference $success **OUTPUT.** After the method is called, the value of this parameter tells whether
      * the filtering was successful.
      *
      * @return mixed The output value or a collection of values of the expected type(s) after having been put through
      * the filter.
      */
 
-    public function filter ($xInputStringOrDecodedCollection, &$rbSuccess)
+    public function filter ($inputStringOrDecodedCollection, &$success)
     {
-        assert( 'is_cstring($xInputStringOrDecodedCollection) || is_collection($xInputStringOrDecodedCollection)',
+        assert( 'is_cstring($inputStringOrDecodedCollection) || is_collection($inputStringOrDecodedCollection)',
             vs(isset($this), get_defined_vars()) );
 
-        $rbSuccess = true;
+        $success = true;
 
-        if ( $this->m_eExpectedType != self::CARRAY &&
-             $this->m_eExpectedType != self::CMAP )
+        if ( $this->m_expectedType != self::CARRAY &&
+             $this->m_expectedType != self::CMAP )
         {
             // The expected output type is not a collection; the input value must be of string type.
 
-            if ( !is_cstring($xInputStringOrDecodedCollection) )
+            if ( !is_cstring($inputStringOrDecodedCollection) )
             {
-                $rbSuccess = false;
-                return oop_x($this->m_xDefaultValue);
+                $success = false;
+                return oop_x($this->m_defaultValue);
             }
 
-            $sInputString = $xInputStringOrDecodedCollection;
+            $inputString = $inputStringOrDecodedCollection;
 
-            if ( $this->m_eExpectedType == self::BOOL ||
-                 $this->m_eExpectedType == self::INT ||
-                 $this->m_eExpectedType == self::FLOAT ||
-                 $this->m_eExpectedType == self::EMAIL ||
-                 $this->m_eExpectedType == self::URL ||
-                 $this->m_eExpectedType == self::IP )
+            if ( $this->m_expectedType == self::BOOL ||
+                 $this->m_expectedType == self::INT ||
+                 $this->m_expectedType == self::FLOAT ||
+                 $this->m_expectedType == self::EMAIL ||
+                 $this->m_expectedType == self::URL ||
+                 $this->m_expectedType == self::IP )
             {
                 // Trim the input string on both sides from whitespace, including Unicode whitespace and control
                 // characters.
-                $sTrimmingSubjectRe = CUString::TRIMMING_AND_SPACING_NORM_SUBJECT_RE;
-                $sInputString = CRegex::remove($sInputString, "/^($sTrimmingSubjectRe)+|($sTrimmingSubjectRe)+\\z/u");
+                $trimmingSubjectRe = CUString::TRIMMING_AND_SPACING_NORM_SUBJECT_RE;
+                $inputString = CRegex::remove($inputString, "/^($trimmingSubjectRe)+|($trimmingSubjectRe)+\\z/u");
             }
 
             // Pre-process the string for integer and floating-point types.
-            $bLooksLikeHex;
-            if ( $this->m_eExpectedType == self::INT ||
-                 $this->m_eExpectedType == self::FLOAT )
+            $looksLikeHex;
+            if ( $this->m_expectedType == self::INT ||
+                 $this->m_expectedType == self::FLOAT )
             {
-                if ( CString::startsWith($sInputString, "+") )
+                if ( CString::startsWith($inputString, "+") )
                 {
                     // Remove the plus sign.
-                    $sInputString = CString::substr($sInputString, 1);
+                    $inputString = CString::substr($inputString, 1);
                 }
 
-                $bLooksLikeHex = CRegex::find($sInputString, "/^-?0x/i");
+                $looksLikeHex = CRegex::find($inputString, "/^-?0x/i");
 
-                if ( $this->m_bAllowLeadingZeros &&
-                     !($this->m_eExpectedType == self::INT && $this->m_bAllowHex && $bLooksLikeHex) )
+                if ( $this->m_allowLeadingZeros &&
+                     !($this->m_expectedType == self::INT && $this->m_allowHex && $looksLikeHex) )
                 {
                     // Remove any leading zeros (except for special cases).
-                    $sInputString = CRegex::replace($sInputString, "/^(\\D*)0*(?!\\b)/", "$1");
+                    $inputString = CRegex::replace($inputString, "/^(\\D*)0*(?!\\b)/", "$1");
                 }
 
-                if ( $this->m_bAllowComma )
+                if ( $this->m_allowComma )
                 {
-                    $sInputString = CRegex::remove($sInputString, "/,(?=\\d{3}\\b)/");
+                    $inputString = CRegex::remove($inputString, "/,(?=\\d{3}\\b)/");
                 }
             }
 
             // Validate and sanitize the value according to its expected type.
 
-            if ( $this->m_eExpectedType == self::BOOL )
+            if ( $this->m_expectedType == self::BOOL )
             {
-                if ( !CRegex::find($sInputString, "/^(1|true|yes|on|0|false|no|off)\\z/i") )
+                if ( !CRegex::find($inputString, "/^(1|true|yes|on|0|false|no|off)\\z/i") )
                 {
-                    $rbSuccess = false;
-                    return $this->m_xDefaultValue;
+                    $success = false;
+                    return $this->m_defaultValue;
                 }
 
                 return (
-                    CString::equals($sInputString, "1") ||
-                    CString::equalsCi($sInputString, "true") ||
-                    CString::equalsCi($sInputString, "yes") ||
-                    CString::equalsCi($sInputString, "on") );
+                    CString::equals($inputString, "1") ||
+                    CString::equalsCi($inputString, "true") ||
+                    CString::equalsCi($inputString, "yes") ||
+                    CString::equalsCi($inputString, "on") );
             }
 
-            if ( $this->m_eExpectedType == self::INT )
+            if ( $this->m_expectedType == self::INT )
             {
-                $iValue;
-                if ( !($this->m_bAllowHex && $bLooksLikeHex) )
+                $value;
+                if ( !($this->m_allowHex && $looksLikeHex) )
                 {
                     // Regular.
-                    if ( !CRegex::find($sInputString, "/^-?(?!0(?!\\b))\\d+\\z/") )
+                    if ( !CRegex::find($inputString, "/^-?(?!0(?!\\b))\\d+\\z/") )
                     {
-                        $rbSuccess = false;
-                        return $this->m_xDefaultValue;
+                        $success = false;
+                        return $this->m_defaultValue;
                     }
-                    $iValue = CString::toInt($sInputString);
+                    $value = CString::toInt($inputString);
                 }
                 else
                 {
                     // Hex.
-                    if ( !CRegex::find($sInputString, "/^-?0x[0-9A-F]+\\z/i") )
+                    if ( !CRegex::find($inputString, "/^-?0x[0-9A-F]+\\z/i") )
                     {
-                        $rbSuccess = false;
-                        return $this->m_xDefaultValue;
+                        $success = false;
+                        return $this->m_defaultValue;
                     }
-                    $iValue = CString::toIntFromHex($sInputString);
+                    $value = CString::toIntFromHex($inputString);
                 }
 
-                if ( (isset($this->m_iValidMin) && $iValue < $this->m_iValidMin) ||
-                     (isset($this->m_iValidMax) && $iValue > $this->m_iValidMax) )
+                if ( (isset($this->m_intValidMin) && $value < $this->m_intValidMin) ||
+                     (isset($this->m_intValidMax) && $value > $this->m_intValidMax) )
                 {
-                    $rbSuccess = false;
-                    return $this->m_xDefaultValue;
+                    $success = false;
+                    return $this->m_defaultValue;
                 }
 
-                if ( isset($this->m_iClampingMin) && $iValue < $this->m_iClampingMin )
+                if ( isset($this->m_intClampingMin) && $value < $this->m_intClampingMin )
                 {
-                    $iValue = $this->m_iClampingMin;
+                    $value = $this->m_intClampingMin;
                 }
-                if ( isset($this->m_iClampingMax) && $iValue > $this->m_iClampingMax )
+                if ( isset($this->m_intClampingMax) && $value > $this->m_intClampingMax )
                 {
-                    $iValue = $this->m_iClampingMax;
+                    $value = $this->m_intClampingMax;
                 }
 
-                return $iValue;
+                return $value;
             }
 
-            if ( $this->m_eExpectedType == self::FLOAT )
+            if ( $this->m_expectedType == self::FLOAT )
             {
-                if ( !CRegex::find($sInputString, "/^-?(?!0(?!\\b))\\d*\\.?\\d+(e[\\-+]?\\d+)?\\z/i") )
+                if ( !CRegex::find($inputString, "/^-?(?!0(?!\\b))\\d*\\.?\\d+(e[\\-+]?\\d+)?\\z/i") )
                 {
-                    $rbSuccess = false;
-                    return $this->m_xDefaultValue;
+                    $success = false;
+                    return $this->m_defaultValue;
                 }
 
-                $fValue = CString::toFloat($sInputString);
+                $value = CString::toFloat($inputString);
 
-                if ( (isset($this->m_fValidMin) && $fValue < $this->m_fValidMin) ||
-                     (isset($this->m_fValidMax) && $fValue > $this->m_fValidMax) )
+                if ( (isset($this->m_floatValidMin) && $value < $this->m_floatValidMin) ||
+                     (isset($this->m_floatValidMax) && $value > $this->m_floatValidMax) )
                 {
-                    $rbSuccess = false;
-                    return $this->m_xDefaultValue;
+                    $success = false;
+                    return $this->m_defaultValue;
                 }
 
-                if ( isset($this->m_fClampingMin) && $fValue < $this->m_fClampingMin )
+                if ( isset($this->m_floatClampingMin) && $value < $this->m_floatClampingMin )
                 {
-                    $fValue = $this->m_fClampingMin;
+                    $value = $this->m_floatClampingMin;
                 }
-                if ( isset($this->m_fClampingMax) && $fValue > $this->m_fClampingMax )
+                if ( isset($this->m_floatClampingMax) && $value > $this->m_floatClampingMax )
                 {
-                    $fValue = $this->m_fClampingMax;
+                    $value = $this->m_floatClampingMax;
                 }
 
-                return $fValue;
+                return $value;
             }
 
-            if ( $this->m_eExpectedType == self::CSTRING )
+            if ( $this->m_expectedType == self::CSTRING )
             {
-                $sValue = $sInputString;
+                $value = $inputString;
 
-                if ( !CString::isValid($sValue) )
+                if ( !CString::isValid($value) )
                 {
-                    $rbSuccess = false;
-                    return $this->m_xDefaultValue;
+                    $success = false;
+                    return $this->m_defaultValue;
                 }
 
-                if ( !$this->m_bKeepAbnormalNewlines )
+                if ( !$this->m_keepAbnormalNewlines )
                 {
-                    $sValue = CString::normNewlines($sValue);
+                    $value = CString::normNewlines($value);
                 }
 
-                if ( !$this->m_bKeepNonPrintable )
+                if ( !$this->m_keepNonPrintable )
                 {
-                    if ( !$this->m_bKeepTabsAndNewlines )
+                    if ( !$this->m_keepTabsAndNewlines )
                     {
-                        $sValue = CRegex::remove($sValue, "/[\\x00-\\x1F\\x7F-\\xFF]/");
-                    }
-                    else
-                    {
-                        $sValue = CRegex::remove($sValue, "/[\\x00-\\x1F\\x7F-\\xFF](?<![\\x09\\x0A\\x0D])/");
-                    }
-                }
-                else if ( !$this->m_bKeepTabsAndNewlines )
-                {
-                    $sValue = CRegex::remove($sValue, "/[\\x09\\x0A\\x0D]/");
-                }
-
-                if ( !$this->m_bKeepSideSpacing )
-                {
-                    $sValue = CString::trim($sValue);
-                }
-
-                if ( !$this->m_bKeepExtraSpacing )
-                {
-                    $sValue = CString::normSpacing($sValue);
-                }
-
-                return $sValue;
-            }
-
-            if ( $this->m_eExpectedType == self::CUSTRING )
-            {
-                $sValue = $sInputString;
-
-                if ( !CUString::isValid($sValue) )
-                {
-                    $rbSuccess = false;
-                    return $this->m_xDefaultValue;
-                }
-
-                if ( !$this->m_bKeepAbnormalNewlines )
-                {
-                    $sValue = CUString::normNewlines($sValue);
-                }
-
-                if ( !$this->m_bKeepNonPrintable )
-                {
-                    if ( !$this->m_bKeepTabsAndNewlines )
-                    {
-                        $sValue = CRegex::remove($sValue, "/\\p{C}|\\p{Zl}|\\p{Zp}/u");
+                        $value = CRegex::remove($value, "/[\\x00-\\x1F\\x7F-\\xFF]/");
                     }
                     else
                     {
-                        $sValue = CRegex::remove($sValue, "/\\p{C}(?<!\\x{0009}|\\x{000A}|\\x{000D})/u");
+                        $value = CRegex::remove($value, "/[\\x00-\\x1F\\x7F-\\xFF](?<![\\x09\\x0A\\x0D])/");
                     }
                 }
-                else if ( !$this->m_bKeepTabsAndNewlines )
+                else if ( !$this->m_keepTabsAndNewlines )
                 {
-                    $sValue = CRegex::remove($sValue, "/\\x{0009}|\\x{000A}|\\x{000D}|\\p{Zl}|\\p{Zp}/u");
+                    $value = CRegex::remove($value, "/[\\x09\\x0A\\x0D]/");
                 }
 
-                if ( !$this->m_bKeepSideSpacing )
+                if ( !$this->m_keepSideSpacing )
                 {
-                    $sValue = CUString::trim($sValue);
+                    $value = CString::trim($value);
                 }
 
-                if ( !$this->m_bKeepExtraSpacing )
+                if ( !$this->m_keepExtraSpacing )
                 {
-                    $sValue = CUString::normSpacing($sValue);
+                    $value = CString::normSpacing($value);
                 }
 
-                return $sValue;
+                return $value;
             }
 
-            if ( $this->m_eExpectedType == self::EMAIL )
+            if ( $this->m_expectedType == self::CUSTRING )
             {
-                $sValue = filter_var($sInputString, FILTER_VALIDATE_EMAIL);
-                if ( !is_cstring($sValue) )
+                $value = $inputString;
+
+                if ( !CUString::isValid($value) )
                 {
-                    $rbSuccess = false;
-                    return $this->m_xDefaultValue;
+                    $success = false;
+                    return $this->m_defaultValue;
                 }
-                return $sValue;
+
+                if ( !$this->m_keepAbnormalNewlines )
+                {
+                    $value = CUString::normNewlines($value);
+                }
+
+                if ( !$this->m_keepNonPrintable )
+                {
+                    if ( !$this->m_keepTabsAndNewlines )
+                    {
+                        $value = CRegex::remove($value, "/\\p{C}|\\p{Zl}|\\p{Zp}/u");
+                    }
+                    else
+                    {
+                        $value = CRegex::remove($value, "/\\p{C}(?<!\\x{0009}|\\x{000A}|\\x{000D})/u");
+                    }
+                }
+                else if ( !$this->m_keepTabsAndNewlines )
+                {
+                    $value = CRegex::remove($value, "/\\x{0009}|\\x{000A}|\\x{000D}|\\p{Zl}|\\p{Zp}/u");
+                }
+
+                if ( !$this->m_keepSideSpacing )
+                {
+                    $value = CUString::trim($value);
+                }
+
+                if ( !$this->m_keepExtraSpacing )
+                {
+                    $value = CUString::normSpacing($value);
+                }
+
+                return $value;
             }
 
-            if ( $this->m_eExpectedType == self::URL )
+            if ( $this->m_expectedType == self::EMAIL )
             {
-                $sValue = $sInputString;
-                if ( !CUrl::isValid($sValue, $this->m_bIgnoreProtocolAbsence) )
+                $value = filter_var($inputString, FILTER_VALIDATE_EMAIL);
+                if ( !is_cstring($value) )
                 {
-                    $rbSuccess = false;
-                    return $this->m_xDefaultValue;
+                    $success = false;
+                    return $this->m_defaultValue;
                 }
-                if ( $this->m_bIgnoreProtocolAbsence )
-                {
-                    $sValue = CUrl::ensureProtocol($sValue);
-                }
-                return $sValue;
+                return $value;
             }
 
-            if ( $this->m_eExpectedType == self::IP )
+            if ( $this->m_expectedType == self::URL )
             {
-                $sValue = $sInputString;
-                $bfOptions = CBitField::ALL_UNSET;
-                if ( !$this->m_bAllowPrivateRange )
+                $value = $inputString;
+                if ( !CUrl::isValid($value, $this->m_ignoreProtocolAbsence) )
                 {
-                    $bfOptions |= CIp::DISALLOW_PRIVATE_RANGE;
+                    $success = false;
+                    return $this->m_defaultValue;
                 }
-                if ( !$this->m_bAllowReservedRange )
+                if ( $this->m_ignoreProtocolAbsence )
                 {
-                    $bfOptions |= CIp::DISALLOW_RESERVED_RANGE;
+                    $value = CUrl::ensureProtocol($value);
                 }
-                $bIsValid;
-                if ( !$this->m_bIpV6 && !$this->m_bIpV4OrV6 )
+                return $value;
+            }
+
+            if ( $this->m_expectedType == self::IP )
+            {
+                $value = $inputString;
+                $options = CBitField::ALL_UNSET;
+                if ( !$this->m_allowPrivateRange )
                 {
-                    $bIsValid = CIp::isValidV4($sValue, $bfOptions);
+                    $options |= CIp::DISALLOW_PRIVATE_RANGE;
                 }
-                else if ( !$this->m_bIpV4OrV6 )
+                if ( !$this->m_allowReservedRange )
                 {
-                    $bIsValid = CIp::isValidV6($sValue, $bfOptions);
+                    $options |= CIp::DISALLOW_RESERVED_RANGE;
+                }
+                $isValid;
+                if ( !$this->m_ipV6 && !$this->m_ipV4OrV6 )
+                {
+                    $isValid = CIp::isValidV4($value, $options);
+                }
+                else if ( !$this->m_ipV4OrV6 )
+                {
+                    $isValid = CIp::isValidV6($value, $options);
                 }
                 else
                 {
-                    $bIsValid = ( CIp::isValidV4($sValue, $bfOptions) || CIp::isValidV6($sValue, $bfOptions) );
+                    $isValid = ( CIp::isValidV4($value, $options) || CIp::isValidV6($value, $options) );
                 }
-                if ( !$bIsValid )
+                if ( !$isValid )
                 {
-                    $rbSuccess = false;
-                    return $this->m_xDefaultValue;
+                    $success = false;
+                    return $this->m_defaultValue;
                 }
-                return $sValue;
+                return $value;
             }
         }
-        else if ( $this->m_eExpectedType == self::CARRAY )
+        else if ( $this->m_expectedType == self::CARRAY )
         {
-            if ( !is_cstring($xInputStringOrDecodedCollection) && !is_carray($xInputStringOrDecodedCollection) )
+            if ( !is_cstring($inputStringOrDecodedCollection) && !is_carray($inputStringOrDecodedCollection) )
             {
-                $rbSuccess = false;
-                return oop_x($this->m_xDefaultValue);
+                $success = false;
+                return oop_x($this->m_defaultValue);
             }
 
-            $aValue;
-            if ( is_cstring($xInputStringOrDecodedCollection) )
+            $value;
+            if ( is_cstring($inputStringOrDecodedCollection) )
             {
                 // Assume JSON format for the input string.
-                $oJson = new CJson($xInputStringOrDecodedCollection, $this->m_eJsonStrictness);
-                $aValue = $oJson->decode($rbSuccess);
-                if ( !$rbSuccess )
+                $json = new CJson($inputStringOrDecodedCollection, $this->m_jsonStrictness);
+                $value = $json->decode($success);
+                if ( !$success )
                 {
-                    return oop_x($this->m_xDefaultValue);
+                    return oop_x($this->m_defaultValue);
                 }
-                if ( !is_carray($aValue) )
+                if ( !is_carray($value) )
                 {
-                    $rbSuccess = false;
-                    return oop_x($this->m_xDefaultValue);
+                    $success = false;
+                    return oop_x($this->m_defaultValue);
                 }
             }
             else  // a CArray
             {
-                $aValue = $xInputStringOrDecodedCollection;
+                $value = $inputStringOrDecodedCollection;
             }
 
-            $aValue = self::recurseCollectionFiltering($aValue, $this->m_xCollectionInputFilters, $rbSuccess, 0);
-            if ( !$rbSuccess )
+            $value = self::recurseCollectionFiltering($value, $this->m_collectionInputFilters, $success, 0);
+            if ( !$success )
             {
-                return oop_x($this->m_xDefaultValue);
+                return oop_x($this->m_defaultValue);
             }
 
-            return $aValue;
+            return $value;
         }
-        else  // $this->m_eExpectedType = self::CMAP
+        else  // $this->m_expectedType = self::CMAP
         {
-            if ( !is_cstring($xInputStringOrDecodedCollection) && !is_cmap($xInputStringOrDecodedCollection) )
+            if ( !is_cstring($inputStringOrDecodedCollection) && !is_cmap($inputStringOrDecodedCollection) )
             {
-                $rbSuccess = false;
-                return oop_x($this->m_xDefaultValue);
+                $success = false;
+                return oop_x($this->m_defaultValue);
             }
 
-            $mValue;
-            if ( is_cstring($xInputStringOrDecodedCollection) )
+            $value;
+            if ( is_cstring($inputStringOrDecodedCollection) )
             {
                 // Assume JSON format for the input string.
-                $oJson = new CJson($xInputStringOrDecodedCollection, $this->m_eJsonStrictness);
-                $mValue = $oJson->decode($rbSuccess);
-                if ( !$rbSuccess )
+                $json = new CJson($inputStringOrDecodedCollection, $this->m_jsonStrictness);
+                $value = $json->decode($success);
+                if ( !$success )
                 {
-                    return oop_x($this->m_xDefaultValue);
+                    return oop_x($this->m_defaultValue);
                 }
-                if ( !is_cmap($mValue) )
+                if ( !is_cmap($value) )
                 {
-                    $rbSuccess = false;
-                    return oop_x($this->m_xDefaultValue);
+                    $success = false;
+                    return oop_x($this->m_defaultValue);
                 }
             }
             else  // a CMap
             {
-                $mValue = $xInputStringOrDecodedCollection;
+                $value = $inputStringOrDecodedCollection;
             }
 
-            $mValue = self::recurseCollectionFiltering($mValue, $this->m_xCollectionInputFilters, $rbSuccess, 0);
-            if ( !$rbSuccess )
+            $value = self::recurseCollectionFiltering($value, $this->m_collectionInputFilters, $success, 0);
+            if ( !$success )
             {
-                return oop_x($this->m_xDefaultValue);
+                return oop_x($this->m_defaultValue);
             }
 
-            return $mValue;
+            return $value;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function recurseCollectionFiltering ($xInputCollection, $xFilterOrFilterCollection, &$rbSuccess,
-        $iCurrDepth)
+    protected static function recurseCollectionFiltering ($inputCollection, $filterOrFilterCollection, &$success,
+        $currDepth)
     {
-        assert( 'is_a($xFilterOrFilterCollection, get_called_class()) || is_collection($xFilterOrFilterCollection)',
+        assert( 'is_a($filterOrFilterCollection, get_called_class()) || is_collection($filterOrFilterCollection)',
             vs(isset($this), get_defined_vars()) );
 
-        if ( $iCurrDepth == self::$ms_iMaxRecursionDepth )
+        if ( $currDepth == self::$ms_maxRecursionDepth )
         {
-            $rbSuccess = false;
+            $success = false;
             return;
         }
-        $iCurrDepth++;
+        $currDepth++;
 
-        if ( is_carray($xInputCollection) )
+        if ( is_carray($inputCollection) )
         {
-            if ( !is_carray($xFilterOrFilterCollection) )
+            if ( !is_carray($filterOrFilterCollection) )
             {
-                $rbSuccess = false;
+                $success = false;
                 return;
             }
-            $iLen = CArray::length($xInputCollection);
-            if ( $iLen != CArray::length($xFilterOrFilterCollection) )
+            $len = CArray::length($inputCollection);
+            if ( $len != CArray::length($filterOrFilterCollection) )
             {
-                $rbSuccess = false;
+                $success = false;
                 return;
             }
-            for ($i = 0; $i < $iLen; $i++)
+            for ($i = 0; $i < $len; $i++)
             {
-                $xInputValue = $xInputCollection[$i];
-                $xFilterElement = $xFilterOrFilterCollection[$i];
-                if ( !is_collection($xInputValue) )
+                $inputValue = $inputCollection[$i];
+                $filterElement = $filterOrFilterCollection[$i];
+                if ( !is_collection($inputValue) )
                 {
-                    $sInputValue = self::collectionElementToString($xInputValue, $rbSuccess);
-                    if ( !$rbSuccess )
+                    $strInputValue = self::collectionElementToString($inputValue, $success);
+                    if ( !$success )
                     {
                         return;
                     }
-                    if ( !is_a($xFilterElement, get_called_class()) )
+                    if ( !is_a($filterElement, get_called_class()) )
                     {
-                        $rbSuccess = false;
+                        $success = false;
                         return;
                     }
-                    $xInputValue = $xFilterElement->filter($sInputValue, $rbSuccess);
-                    if ( !$rbSuccess )
+                    $inputValue = $filterElement->filter($strInputValue, $success);
+                    if ( !$success )
                     {
                         return;
                     }
                 }
                 else
                 {
-                    $xInputValue = self::recurseCollectionFiltering($xInputValue, $xFilterElement, $rbSuccess,
-                        $iCurrDepth);
-                    if ( !$rbSuccess )
+                    $inputValue = self::recurseCollectionFiltering($inputValue, $filterElement, $success,
+                        $currDepth);
+                    if ( !$success )
                     {
                         return;
                     }
                 }
-                $xInputCollection[$i] = $xInputValue;
+                $inputCollection[$i] = $inputValue;
             }
         }
         else  // a CMap
         {
-            if ( !is_cmap($xFilterOrFilterCollection) )
+            if ( !is_cmap($filterOrFilterCollection) )
             {
-                $rbSuccess = false;
+                $success = false;
                 return;
             }
-            foreach ($xInputCollection as $xInputKey => &$rxInputValue)
+            foreach ($inputCollection as $inputKey => &$inputValue)
             {
-                if ( !CMap::hasKey($xFilterOrFilterCollection, $xInputKey) )
+                if ( !CMap::hasKey($filterOrFilterCollection, $inputKey) )
                 {
-                    $rbSuccess = false;
+                    $success = false;
                     return;
                 }
-                $xFilterElement = $xFilterOrFilterCollection[$xInputKey];
-                if ( !is_collection($rxInputValue) )
+                $filterElement = $filterOrFilterCollection[$inputKey];
+                if ( !is_collection($inputValue) )
                 {
-                    $sInputValue = self::collectionElementToString($rxInputValue, $rbSuccess);
-                    if ( !$rbSuccess )
+                    $strInputValue = self::collectionElementToString($inputValue, $success);
+                    if ( !$success )
                     {
                         return;
                     }
-                    if ( !is_a($xFilterElement, get_called_class()) )
+                    if ( !is_a($filterElement, get_called_class()) )
                     {
-                        $rbSuccess = false;
+                        $success = false;
                         return;
                     }
-                    $rxInputValue = $xFilterElement->filter($sInputValue, $rbSuccess);
-                    if ( !$rbSuccess )
+                    $inputValue = $filterElement->filter($strInputValue, $success);
+                    if ( !$success )
                     {
                         return;
                     }
                 }
                 else
                 {
-                    $rxInputValue = self::recurseCollectionFiltering($rxInputValue, $xFilterElement, $rbSuccess,
-                        $iCurrDepth);
-                    if ( !$rbSuccess )
+                    $inputValue = self::recurseCollectionFiltering($inputValue, $filterElement, $success,
+                        $currDepth);
+                    if ( !$success )
                     {
                         return;
                     }
                 }
-            } unset($rxInputValue);
+            } unset($inputValue);
         }
-        return $xInputCollection;
+        return $inputCollection;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function collectionElementToString ($xElementValue, &$rbSuccess)
+    protected static function collectionElementToString ($elementValue, &$success)
     {
-        if ( is_cstring($xElementValue) )
+        if ( is_cstring($elementValue) )
         {
-            return $xElementValue;
+            return $elementValue;
         }
-        if ( is_bool($xElementValue) )
+        if ( is_bool($elementValue) )
         {
-            return CString::fromBool10($xElementValue);
+            return CString::fromBool10($elementValue);
         }
-        if ( is_int($xElementValue) )
+        if ( is_int($elementValue) )
         {
-            return CString::fromInt($xElementValue);
+            return CString::fromInt($elementValue);
         }
-        if ( is_float($xElementValue) )
+        if ( is_float($elementValue) )
         {
-            return CString::fromFloat($xElementValue);
+            return CString::fromFloat($elementValue);
         }
-        $rbSuccess = false;
+        $success = false;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     // Properties and defaults.
-    protected $m_eExpectedType;
-    protected $m_xCollectionInputFilters;
-    protected $m_xDefaultValue;
-    protected $m_eJsonStrictness = CJson::STRICT;
-    protected $m_iValidMin;
-    protected $m_iValidMax;
-    protected $m_fValidMin;
-    protected $m_fValidMax;
-    protected $m_bAllowLeadingZeros = true;
-    protected $m_bAllowHex = false;
-    protected $m_bAllowComma = true;
-    protected $m_bIgnoreProtocolAbsence = true;
-    protected $m_bIpV6 = false;
-    protected $m_bIpV4OrV6 = false;
-    protected $m_bAllowPrivateRange = true;
-    protected $m_bAllowReservedRange = true;
-    protected $m_iClampingMin;
-    protected $m_iClampingMax;
-    protected $m_fClampingMin;
-    protected $m_fClampingMax;
-    protected $m_bKeepAbnormalNewlines = false;
-    protected $m_bKeepNonPrintable = false;
-    protected $m_bKeepTabsAndNewlines = true;
-    protected $m_bKeepSideSpacing = true;
-    protected $m_bKeepExtraSpacing = true;
+    protected $m_expectedType;
+    protected $m_collectionInputFilters;
+    protected $m_defaultValue;
+    protected $m_jsonStrictness = CJson::STRICT;
+    protected $m_intValidMin;
+    protected $m_intValidMax;
+    protected $m_floatValidMin;
+    protected $m_floatValidMax;
+    protected $m_allowLeadingZeros = true;
+    protected $m_allowHex = false;
+    protected $m_allowComma = true;
+    protected $m_ignoreProtocolAbsence = true;
+    protected $m_ipV6 = false;
+    protected $m_ipV4OrV6 = false;
+    protected $m_allowPrivateRange = true;
+    protected $m_allowReservedRange = true;
+    protected $m_intClampingMin;
+    protected $m_intClampingMax;
+    protected $m_floatClampingMin;
+    protected $m_floatClampingMax;
+    protected $m_keepAbnormalNewlines = false;
+    protected $m_keepNonPrintable = false;
+    protected $m_keepTabsAndNewlines = true;
+    protected $m_keepSideSpacing = true;
+    protected $m_keepExtraSpacing = true;
 
     // Global defaults.
-    protected static $ms_iMaxRecursionDepth = CSystem::DEFAULT_MAX_RECURSION_DEPTH;
+    protected static $ms_maxRecursionDepth = CSystem::DEFAULT_MAX_RECURSION_DEPTH;
 }

@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * The class that lets you send multiple requests over the Internet in a time-efficient way and with HTTP cookies
  * supported.
@@ -24,10 +25,10 @@
 // Method signatures:
 //   __construct ()
 //   CUStringObject errorMessage ()
-//   void addRequest (CInetRequest $oRequest, $fnOnCompleteCallback = null, $bNewCookieSession = false)
-//   void setEnableCookies ($bEnable)
-//   void setMaxNumConcurrentRequests ($iMaxNumConcurrentRequests)
-//   void start (&$rbSuccess = null)
+//   void addRequest (CInetRequest $request, $onCompleteCallback = null, $newCookieSession = false)
+//   void setEnableCookies ($enable)
+//   void setMaxNumConcurrentRequests ($maxNumConcurrentRequests)
+//   void start (&$success = null)
 
 class CInetSession extends CRootClass
 {
@@ -38,13 +39,13 @@ class CInetSession extends CRootClass
 
     public function __construct ()
     {
-        $this->m_aRequestRecordsQueue = CArray::make();
+        $this->m_requestRecordsQueue = CArray::make();
 
-        $this->m_rcMultiCurl = curl_multi_init();
-        if ( !is_resource($this->m_rcMultiCurl) )
+        $this->m_multiCurl = curl_multi_init();
+        if ( !is_resource($this->m_multiCurl) )
         {
-            $this->m_bHasError = true;
-            $this->m_sErrorMessage = "Multi cURL initialization failed.";
+            $this->m_hasError = true;
+            $this->m_errorMessage = "Multi cURL initialization failed.";
             $this->finalize();
             return;
         }
@@ -58,21 +59,21 @@ class CInetSession extends CRootClass
 
     public function errorMessage ()
     {
-        assert( '$this->m_bHasError', vs(isset($this), get_defined_vars()) );
-        return $this->m_sErrorMessage;
+        assert( '$this->m_hasError', vs(isset($this), get_defined_vars()) );
+        return $this->m_errorMessage;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Adds a request to a session.
      *
-     * @param  CInetRequest $oRequest The request to be added.
-     * @param  callable $fnOnCompleteCallback **OPTIONAL.** The callback function or method to be called by the session
+     * @param  CInetRequest $request The request to be added.
+     * @param  callable $onCompleteCallback **OPTIONAL.** The callback function or method to be called by the session
      * when the request completes. The function is expected to take four parameters: a flag of type `bool` that tells
      * whether the request was successful, the response of type `CUStringObject` that was received for the request, an
      * object of type `CInetRequest` that represents the request, and an object of type `CInetSession` that represents
      * the session to which the request belongs, in this order. You can use the session's object to add more requests
      * to the request queue of the session depending on the response or any other factors.
-     * @param  bool $bNewCookieSession **OPTIONAL. Default is** `false`. Tells whether to delete all previously stored
+     * @param  bool $newCookieSession **OPTIONAL. Default is** `false`. Tells whether to delete all previously stored
      * cookies that were set by the remote server(s) to expire when the "browsing session" during which those cookies
      * were received comes to an end (you can have as much of such "browsing sessions" as you like). If this parameter
      * is `true`, the "browsing session" cookies are deleted before the request is sent.
@@ -80,164 +81,164 @@ class CInetSession extends CRootClass
      * @return void
      */
 
-    public function addRequest (CInetRequest $oRequest, $fnOnCompleteCallback = null, $bNewCookieSession = false)
+    public function addRequest (CInetRequest $request, $onCompleteCallback = null, $newCookieSession = false)
     {
-        assert( '(!isset($fnOnCompleteCallback) || is_callable($fnOnCompleteCallback)) && is_bool($bNewCookieSession)',
+        assert( '(!isset($onCompleteCallback) || is_callable($onCompleteCallback)) && is_bool($newCookieSession)',
             vs(isset($this), get_defined_vars()) );
 
-        $aRequestRecord = CArray::fromElements($oRequest, $fnOnCompleteCallback, $bNewCookieSession);
-        CArray::push($this->m_aRequestRecordsQueue, $aRequestRecord);
+        $requestRecord = CArray::fromElements($request, $onCompleteCallback, $newCookieSession);
+        CArray::push($this->m_requestRecordsQueue, $requestRecord);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Enables or disables cookies for a session.
      *
-     * @param  bool $bEnable `true` to enable cookies for the session, `false` otherwise.
+     * @param  bool $enable `true` to enable cookies for the session, `false` otherwise.
      *
      * @return void
      */
 
-    public function setEnableCookies ($bEnable)
+    public function setEnableCookies ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
-        $this->m_bCookiesAreEnabled = $bEnable;
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
+        $this->m_cookiesAreEnabled = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the maximum number of requests that are allowed to be processed in parallel by a session.
      *
-     * @param  int $iMaxNumConcurrentRequests The maximum number of concurrent requests.
+     * @param  int $maxNumConcurrentRequests The maximum number of concurrent requests.
      *
      * @return void
      */
 
-    public function setMaxNumConcurrentRequests ($iMaxNumConcurrentRequests)
+    public function setMaxNumConcurrentRequests ($maxNumConcurrentRequests)
     {
-        assert( 'is_int($iMaxNumConcurrentRequests)', vs(isset($this), get_defined_vars()) );
-        assert( '$iMaxNumConcurrentRequests > 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($maxNumConcurrentRequests)', vs(isset($this), get_defined_vars()) );
+        assert( '$maxNumConcurrentRequests > 0', vs(isset($this), get_defined_vars()) );
 
-        $this->m_iMaxNumConcurrentRequests = $iMaxNumConcurrentRequests;
+        $this->m_maxNumConcurrentRequests = $maxNumConcurrentRequests;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Starts a session by sending out the added requests.
      *
-     * @param  reference $rbSuccess **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
+     * @param  reference $success **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value tells whether the session was successful.
      *
      * @return void
      */
 
-    public function start (&$rbSuccess = null)
+    public function start (&$success = null)
     {
-        $rbSuccess = true;
+        $success = true;
 
-        if ( $this->m_bHasError )
+        if ( $this->m_hasError )
         {
-            $rbSuccess = false;
+            $success = false;
             return;
         }
 
-        if ( CArray::isEmpty($this->m_aRequestRecordsQueue) )
+        if ( CArray::isEmpty($this->m_requestRecordsQueue) )
         {
             // Nothing to do.
             return;
         }
 
         // Current policy is to disable HTTP pipelining.
-        $bRes = curl_multi_setopt($this->m_rcMultiCurl, CURLMOPT_PIPELINING, 0);
-        if ( !$bRes )
+        $res = curl_multi_setopt($this->m_multiCurl, CURLMOPT_PIPELINING, 0);
+        if ( !$res )
         {
             // Should never get in here as long as cURL options are being set correctly, hence the assertion.
             assert( 'false', vs(isset($this), get_defined_vars()) );
-            $this->m_bHasError = true;
-            $this->m_sErrorMessage = "The 'curl_multi_setopt' function failed.";
-            $rbSuccess = false;
+            $this->m_hasError = true;
+            $this->m_errorMessage = "The 'curl_multi_setopt' function failed.";
+            $success = false;
             $this->finalize();
             return;
         }
 
-        $bAnySuccessfulRequests = false;
+        $anySuccessfulRequests = false;
 
         // Disable the script's execution timeout before getting into the session.
-        $oTimeoutPause = new CTimeoutPause();
+        $timeoutPause = new CTimeoutPause();
 
-        $iNumRunningRequests = 0;  // also the index of the next request to send
+        $numRunningRequests = 0;  // also the index of the next request to send
         while ( true )
         {
             // From the request queue, add as many normal cURL handles to the multi cURL handle as it is allowed by the
             // maximum number of concurrent requests, priorly setting internal options for every request.
-            while ( $iNumRunningRequests < CArray::length($this->m_aRequestRecordsQueue) &&
-                    $iNumRunningRequests < $this->m_iMaxNumConcurrentRequests )
+            while ( $numRunningRequests < CArray::length($this->m_requestRecordsQueue) &&
+                    $numRunningRequests < $this->m_maxNumConcurrentRequests )
             {
-                $aRequestRecord = $this->m_aRequestRecordsQueue[$iNumRunningRequests];
-                $oRequest = $aRequestRecord[0];
-                $fnOnCompleteCallback = $aRequestRecord[1];
-                $bNewCookieSession = $aRequestRecord[2];
-                $rcRequestCurl = $oRequest->curl();
+                $requestRecord = $this->m_requestRecordsQueue[$numRunningRequests];
+                $request = $requestRecord[0];
+                $onCompleteCallback = $requestRecord[1];
+                $newCookieSession = $requestRecord[2];
+                $requestCurl = $request->curl();
 
                 // Set cURL options for the normal cURL handle, having created a temporary file for cookie storage if
                 // needed.
-                $bRequestSetOptSuccess;
-                if ( $this->m_bCookiesAreEnabled && $oRequest->isHttp() )
+                $requestSetOptSuccess;
+                if ( $this->m_cookiesAreEnabled && $request->isHttp() )
                 {
-                    if ( !isset($this->m_sCookiesFp) )
+                    if ( !isset($this->m_cookiesFp) )
                     {
-                        $this->m_sCookiesFp = CFile::createTemporary();
+                        $this->m_cookiesFp = CFile::createTemporary();
                     }
-                    $oRequest->setInternalOptions($bRequestSetOptSuccess, $this->m_sCookiesFp, $bNewCookieSession);
+                    $request->setInternalOptions($requestSetOptSuccess, $this->m_cookiesFp, $newCookieSession);
                 }
                 else
                 {
-                    $oRequest->setInternalOptions($bRequestSetOptSuccess);
+                    $request->setInternalOptions($requestSetOptSuccess);
                 }
-                if ( !$bRequestSetOptSuccess )
+                if ( !$requestSetOptSuccess )
                 {
-                    if ( isset($fnOnCompleteCallback) )
+                    if ( isset($onCompleteCallback) )
                     {
-                        call_user_func($fnOnCompleteCallback, false, "", $oRequest, $this);
+                        call_user_func($onCompleteCallback, false, "", $request, $this);
                     }
-                    CArray::remove($this->m_aRequestRecordsQueue, $iNumRunningRequests);
+                    CArray::remove($this->m_requestRecordsQueue, $numRunningRequests);
                     continue;
                 }
 
                 // Add the normal cURL handle to the multi cURL handle.
-                $iRes = curl_multi_add_handle($this->m_rcMultiCurl, $rcRequestCurl);
-                if ( $iRes != 0 )
+                $res = curl_multi_add_handle($this->m_multiCurl, $requestCurl);
+                if ( $res != 0 )
                 {
-                    $this->m_bHasError = true;
-                    $sCurlError = curl_multi_strerror($iRes);
-                    $this->m_sErrorMessage = ( is_cstring($sCurlError) && !CString::isEmpty($sCurlError) ) ?
-                        $sCurlError : "The 'curl_multi_add_handle' function failed.";
-                    $rbSuccess = false;
-                    $oTimeoutPause->end();
+                    $this->m_hasError = true;
+                    $curlError = curl_multi_strerror($res);
+                    $this->m_errorMessage = ( is_cstring($curlError) && !CString::isEmpty($curlError) ) ?
+                        $curlError : "The 'curl_multi_add_handle' function failed.";
+                    $success = false;
+                    $timeoutPause->end();
                     $this->finalize();
                     return;
                 }
 
-                $iNumRunningRequests++;
+                $numRunningRequests++;
             }
 
-            if ( $iNumRunningRequests == 0 )
+            if ( $numRunningRequests == 0 )
             {
                 break;
             }
 
             // Process the currently added requests until complete or no more data is available. Although
             // `CURLM_CALL_MULTI_PERFORM` is deprecated since libcurl 7.20, keep it for compatibility reasons.
-            $iNumRunningTransfers;
+            $numRunningTransfers;
             do
             {
-                $eMultiExecRes = curl_multi_exec($this->m_rcMultiCurl, $iNumRunningTransfers);
-            } while ( $eMultiExecRes == CURLM_CALL_MULTI_PERFORM );
-            if ( $eMultiExecRes != CURLM_OK )
+                $multiExecRes = curl_multi_exec($this->m_multiCurl, $numRunningTransfers);
+            } while ( $multiExecRes == CURLM_CALL_MULTI_PERFORM );
+            if ( $multiExecRes != CURLM_OK )
             {
-                $this->m_bHasError = true;
-                $sCurlError = curl_multi_strerror($eMultiExecRes);
-                $this->m_sErrorMessage = ( is_cstring($sCurlError) && !CString::isEmpty($sCurlError) ) ? $sCurlError :
+                $this->m_hasError = true;
+                $curlError = curl_multi_strerror($multiExecRes);
+                $this->m_errorMessage = ( is_cstring($curlError) && !CString::isEmpty($curlError) ) ? $curlError :
                     "The 'curl_multi_exec' function failed.";
-                $rbSuccess = false;
-                $oTimeoutPause->end();
+                $success = false;
+                $timeoutPause->end();
                 $this->finalize();
                 return;
             }
@@ -246,104 +247,104 @@ class CInetSession extends CRootClass
             // defined), finalize completed requests, and remove completed requests from the queue.
             while ( true )
             {
-                $xCompletedRequestInfo = curl_multi_info_read($this->m_rcMultiCurl);
-                if ( !is_cmap($xCompletedRequestInfo) )
+                $completedRequestInfo = curl_multi_info_read($this->m_multiCurl);
+                if ( !is_cmap($completedRequestInfo) )
                 {
                     break;
                 }
 
                 // A request has completed.
-                assert( '$xCompletedRequestInfo["msg"] == CURLMSG_DONE', vs(isset($this), get_defined_vars()) );
-                $rcRequestCurl = $xCompletedRequestInfo["handle"];
-                $eRequestRes = $xCompletedRequestInfo["result"];
-                $iRequestRecordPos;
-                $bFound = CArray::find($this->m_aRequestRecordsQueue, $rcRequestCurl,
-                    function ($aRequestRecord, $rcRequestCurl)
+                assert( '$completedRequestInfo["msg"] == CURLMSG_DONE', vs(isset($this), get_defined_vars()) );
+                $requestCurl = $completedRequestInfo["handle"];
+                $requestRes = $completedRequestInfo["result"];
+                $requestRecordPos;
+                $found = CArray::find($this->m_requestRecordsQueue, $requestCurl,
+                    function ($requestRecord, $requestCurl)
                     {
-                        $oRequest = $aRequestRecord[0];
-                        return ( $oRequest->curl() == $rcRequestCurl );
+                        $request = $requestRecord[0];
+                        return ( $request->curl() == $requestCurl );
                     },
-                    $iRequestRecordPos);
-                assert( '$bFound', vs(isset($this), get_defined_vars()) );
-                $aRequestRecord = $this->m_aRequestRecordsQueue[$iRequestRecordPos];
-                $oRequest = $aRequestRecord[0];
-                $fnOnCompleteCallback = $aRequestRecord[1];
+                    $requestRecordPos);
+                assert( '$found', vs(isset($this), get_defined_vars()) );
+                $requestRecord = $this->m_requestRecordsQueue[$requestRecordPos];
+                $request = $requestRecord[0];
+                $onCompleteCallback = $requestRecord[1];
 
                 // Remove the normal cURL handle from the multi cURL handle.
-                $iRes = curl_multi_remove_handle($this->m_rcMultiCurl, $rcRequestCurl);
-                if ( $iRes != 0 )
+                $res = curl_multi_remove_handle($this->m_multiCurl, $requestCurl);
+                if ( $res != 0 )
                 {
-                    $this->m_bHasError = true;
-                    $sCurlError = curl_multi_strerror($iRes);
-                    $this->m_sErrorMessage = ( is_cstring($sCurlError) && !CString::isEmpty($sCurlError) ) ?
-                        $sCurlError : "The 'curl_multi_remove_handle' function failed.";
-                    $rbSuccess = false;
-                    $oTimeoutPause->end();
+                    $this->m_hasError = true;
+                    $curlError = curl_multi_strerror($res);
+                    $this->m_errorMessage = ( is_cstring($curlError) && !CString::isEmpty($curlError) ) ?
+                        $curlError : "The 'curl_multi_remove_handle' function failed.";
+                    $success = false;
+                    $timeoutPause->end();
                     $this->finalize();
                     return;
                 }
 
-                if ( $eRequestRes == CURLE_OK )
+                if ( $requestRes == CURLE_OK )
                 {
                     // The request has succeeded.
 
-                    if ( isset($fnOnCompleteCallback) )
+                    if ( isset($onCompleteCallback) )
                     {
-                        $sResponse;
-                        if ( $oRequest->isReturnTransferSet() )
+                        $response;
+                        if ( $request->isReturnTransferSet() )
                         {
-                            $sResponse = curl_multi_getcontent($rcRequestCurl);
-                            assert( 'is_cstring($sResponse)', vs(isset($this), get_defined_vars()) );
+                            $response = curl_multi_getcontent($requestCurl);
+                            assert( 'is_cstring($response)', vs(isset($this), get_defined_vars()) );
                         }
                         else
                         {
-                            $sResponse = "";
+                            $response = "";
                         }
-                        $oRequest->onRequestCompleteOk();  // also close the normal cURL handle
-                        call_user_func($fnOnCompleteCallback, true, $sResponse, $oRequest, $this);
+                        $request->onRequestCompleteOk();  // also close the normal cURL handle
+                        call_user_func($onCompleteCallback, true, $response, $request, $this);
                     }
                     else
                     {
-                        $oRequest->onRequestCompleteOk();  // also close the normal cURL handle
+                        $request->onRequestCompleteOk();  // also close the normal cURL handle
                     }
 
-                    $bAnySuccessfulRequests = true;
+                    $anySuccessfulRequests = true;
                 }
                 else
                 {
                     // The request has failed.
 
-                    $sCurlError = curl_strerror($eRequestRes);
-                    if ( !is_cstring($sCurlError) )
+                    $curlError = curl_strerror($requestRes);
+                    if ( !is_cstring($curlError) )
                     {
-                        $sCurlError = "";
+                        $curlError = "";
                     }
-                    $oRequest->onRequestCompleteWithError($sCurlError);  // also close the normal cURL handle
+                    $request->onRequestCompleteWithError($curlError);  // also close the normal cURL handle
 
-                    if ( isset($fnOnCompleteCallback) )
+                    if ( isset($onCompleteCallback) )
                     {
-                        call_user_func($fnOnCompleteCallback, false, "", $oRequest, $this);
+                        call_user_func($onCompleteCallback, false, "", $request, $this);
                     }
                 }
 
-                CArray::remove($this->m_aRequestRecordsQueue, $iRequestRecordPos);
-                $iNumRunningRequests--;
+                CArray::remove($this->m_requestRecordsQueue, $requestRecordPos);
+                $numRunningRequests--;
             }
 
-            assert( '$iNumRunningRequests == $iNumRunningTransfers', vs(isset($this), get_defined_vars()) );
-            if ( $iNumRunningTransfers > 0 )
+            assert( '$numRunningRequests == $numRunningTransfers', vs(isset($this), get_defined_vars()) );
+            if ( $numRunningTransfers > 0 )
             {
                 // Some requests are still being processed (by remote machines). Wait for more data to appear on
                 // sockets, without getting hard on the CPU.
                 do
                 {
-                    $iMultiSelectRes = curl_multi_select($this->m_rcMultiCurl);
-                } while ( $iMultiSelectRes == -1 );
+                    $multiSelectRes = curl_multi_select($this->m_multiCurl);
+                } while ( $multiSelectRes == -1 );
             }
             else
             {
                 // No requests are being processed. Check if any requests are pending.
-                if ( CArray::isEmpty($this->m_aRequestRecordsQueue) )
+                if ( CArray::isEmpty($this->m_requestRecordsQueue) )
                 {
                     // No requests are pending.
                     break;
@@ -352,13 +353,13 @@ class CInetSession extends CRootClass
         }
 
         // Set the script's execution time limit like the session has never happened.
-        $oTimeoutPause->end();
+        $timeoutPause->end();
 
-        if ( !$bAnySuccessfulRequests )
+        if ( !$anySuccessfulRequests )
         {
-            $this->m_bHasError = true;
-            $this->m_sErrorMessage = "None of the session's requests succeeded.";
-            $rbSuccess = false;
+            $this->m_hasError = true;
+            $this->m_errorMessage = "None of the session's requests succeeded.";
+            $success = false;
         }
 
         $this->finalize();
@@ -370,7 +371,7 @@ class CInetSession extends CRootClass
 
     public function __destruct ()
     {
-        if ( !$this->m_bDone )
+        if ( !$this->m_done )
         {
             $this->finalize();
         }
@@ -378,28 +379,28 @@ class CInetSession extends CRootClass
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected function finalize ()
     {
-        if ( is_resource($this->m_rcMultiCurl) )
+        if ( is_resource($this->m_multiCurl) )
         {
-            curl_multi_close($this->m_rcMultiCurl);
+            curl_multi_close($this->m_multiCurl);
         }
 
-        if ( isset($this->m_sCookiesFp) && CFile::exists($this->m_sCookiesFp) )
+        if ( isset($this->m_cookiesFp) && CFile::exists($this->m_cookiesFp) )
         {
-            CFile::delete($this->m_sCookiesFp);
+            CFile::delete($this->m_cookiesFp);
         }
 
-        $this->m_bDone = true;
+        $this->m_done = true;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     // Properties and defaults.
-    protected $m_aRequestRecordsQueue;
-    protected $m_rcMultiCurl;
-    protected $m_bDone = false;
-    protected $m_bHasError = false;
-    protected $m_sErrorMessage;
-    protected $m_bCookiesAreEnabled = true;
-    protected $m_iMaxNumConcurrentRequests = 8;
-    protected $m_sCookiesFp;
+    protected $m_requestRecordsQueue;
+    protected $m_multiCurl;
+    protected $m_done = false;
+    protected $m_hasError = false;
+    protected $m_errorMessage;
+    protected $m_cookiesAreEnabled = true;
+    protected $m_maxNumConcurrentRequests = 8;
+    protected $m_cookiesFp;
 }
 

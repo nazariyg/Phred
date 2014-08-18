@@ -1,5 +1,6 @@
 <?php
 
+
 // This class is to serve documentation only and is never actually declared.
 
 if ( false )

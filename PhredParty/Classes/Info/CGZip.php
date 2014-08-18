@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -10,8 +10,8 @@
  */
 
 // Method signatures:
-//   static CUStringObject decompress ($byCompressedData, &$rbSuccess = null)
-//   static CUStringObject compress ($byData, $eCompressionLevel = self::NORMAL)
+//   static CUStringObject decompress ($compressedData, &$success = null)
+//   static CUStringObject compress ($data, $compressionLevel = self::NORMAL)
 
 class CGZip extends CRootClass
 {
@@ -45,49 +45,49 @@ class CGZip extends CRootClass
     /**
      * Decompresses a gzip-compressed data and returns the result.
      *
-     * @param  data $byCompressedData The data to be decompressed.
-     * @param  reference $rbSuccess **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
+     * @param  data $compressedData The data to be decompressed.
+     * @param  reference $success **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value tells whether the data was decompressed successfully.
      *
      * @return CUStringObject The decompressed data.
      */
 
-    public static function decompress ($byCompressedData, &$rbSuccess = null)
+    public static function decompress ($compressedData, &$success = null)
     {
-        assert( 'is_cstring($byCompressedData)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($compressedData)', vs(isset($this), get_defined_vars()) );
 
-        $byData = @gzdecode($byCompressedData);
-        $rbSuccess = is_cstring($byData);
-        if ( !$rbSuccess )
+        $data = @gzdecode($compressedData);
+        $success = is_cstring($data);
+        if ( !$success )
         {
-            $byData = "";
+            $data = "";
         }
-        return $byData;
+        return $data;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Compresses a data into gzip format and returns the result.
      *
-     * @param  data $byData The data to be compressed.
-     * @param  enum $eCompressionLevel **OPTIONAL. Default is** `NORMAL`. The compression level. Can be `FASTEST`,
+     * @param  data $data The data to be compressed.
+     * @param  enum $compressionLevel **OPTIONAL. Default is** `NORMAL`. The compression level. Can be `FASTEST`,
      * `FAST`, `NORMAL`, or `MAXIMUM`.
      *
      * @return CUStringObject The compressed data.
      */
 
-    public static function compress ($byData, $eCompressionLevel = self::NORMAL)
+    public static function compress ($data, $compressionLevel = self::NORMAL)
     {
-        assert( 'is_cstring($byData) && is_enum($eCompressionLevel)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($data) && is_enum($compressionLevel)', vs(isset($this), get_defined_vars()) );
 
-        $iCompressionLevelGZip = self::compressionLevelEnumToGZip($eCompressionLevel);
-        $byCompressedData = gzencode($byData, $iCompressionLevelGZip, FORCE_GZIP);
-        assert( 'is_cstring($byCompressedData)', vs(isset($this), get_defined_vars()) );
-        return $byCompressedData;
+        $compressionLevelGZip = self::compressionLevelEnumToGZip($compressionLevel);
+        $compressedData = gzencode($data, $compressionLevelGZip, FORCE_GZIP);
+        assert( 'is_cstring($compressedData)', vs(isset($this), get_defined_vars()) );
+        return $compressedData;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function compressionLevelEnumToGZip ($eCompressionLevel)
+    protected static function compressionLevelEnumToGZip ($compressionLevel)
     {
-        switch ( $eCompressionLevel )
+        switch ( $compressionLevel )
         {
         case self::FASTEST:
             return 1;

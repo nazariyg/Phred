@@ -1,9 +1,10 @@
 <?php
 
+
 interface ICopyingStatic
 {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    public static function makeCopy ($xValue);
+    public static function makeCopy ($value);
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }
 

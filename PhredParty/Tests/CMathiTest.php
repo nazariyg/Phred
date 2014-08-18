@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -88,25 +88,25 @@ class CMathiTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testMinMax ()
     {
-        $iMin;
-        $iMax;
-        CMathi::minMax(1234, 5678, $iMin, $iMax);
-        $this->assertTrue( $iMin === 1234 && $iMax === 5678 );
+        $min;
+        $max;
+        CMathi::minMax(1234, 5678, $min, $max);
+        $this->assertTrue( $min === 1234 && $max === 5678 );
 
-        $iMin;
-        $iMax;
-        CMathi::minMax(-1234, -5678, $iMin, $iMax);
-        $this->assertTrue( $iMin === -5678 && $iMax === -1234 );
+        $min;
+        $max;
+        CMathi::minMax(-1234, -5678, $min, $max);
+        $this->assertTrue( $min === -5678 && $max === -1234 );
 
-        $iMin;
-        $iMax;
-        CMathi::minMax(1234.01, 5678.01, $iMin, $iMax);
-        $this->assertTrue( $iMin === 1234 && $iMax === 5678 );
+        $min;
+        $max;
+        CMathi::minMax(1234.01, 5678.01, $min, $max);
+        $this->assertTrue( $min === 1234 && $max === 5678 );
 
-        $iMin;
-        $iMax;
-        CMathi::minMax(-1234.01, -5678.01, $iMin, $iMax);
-        $this->assertTrue( $iMin === -5678 && $iMax === -1234 );
+        $min;
+        $max;
+        CMathi::minMax(-1234.01, -5678.01, $min, $max);
+        $this->assertTrue( $min === -5678 && $max === -1234 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testClamp ()
@@ -122,35 +122,35 @@ class CMathiTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testDiv ()
     {
-        $iQuotient;
-        $iReminder;
-        CMathi::div(11, 5, $iQuotient, $iReminder);
-        $this->assertTrue( $iQuotient === 2 && $iReminder === 1 );
+        $quotient;
+        $reminder;
+        CMathi::div(11, 5, $quotient, $reminder);
+        $this->assertTrue( $quotient === 2 && $reminder === 1 );
 
-        $iQuotient;
-        $iReminder;
-        CMathi::div(9, 3, $iQuotient, $iReminder);
-        $this->assertTrue( $iQuotient === 3 && $iReminder === 0 );
+        $quotient;
+        $reminder;
+        CMathi::div(9, 3, $quotient, $reminder);
+        $this->assertTrue( $quotient === 3 && $reminder === 0 );
 
-        $iQuotient;
-        $iReminder;
-        CMathi::div(-25, 7, $iQuotient, $iReminder);
-        $this->assertTrue( $iQuotient === -3 && $iReminder === -4 );
+        $quotient;
+        $reminder;
+        CMathi::div(-25, 7, $quotient, $reminder);
+        $this->assertTrue( $quotient === -3 && $reminder === -4 );
 
-        $iQuotient;
-        $iReminder;
-        CMathi::div(-25, -7, $iQuotient, $iReminder);
-        $this->assertTrue( $iQuotient === 3 && $iReminder === -4 );
+        $quotient;
+        $reminder;
+        CMathi::div(-25, -7, $quotient, $reminder);
+        $this->assertTrue( $quotient === 3 && $reminder === -4 );
 
-        $iQuotient;
-        $iReminder;
-        CMathi::div(11.01, 5.01, $iQuotient, $iReminder);
-        $this->assertTrue( $iQuotient === 2 && $iReminder === 1 );
+        $quotient;
+        $reminder;
+        CMathi::div(11.01, 5.01, $quotient, $reminder);
+        $this->assertTrue( $quotient === 2 && $reminder === 1 );
 
-        $iQuotient;
-        $iReminder;
-        CMathi::div(9.01, 3.01, $iQuotient, $iReminder);
-        $this->assertTrue( $iQuotient === 3 && $iReminder === 0 );
+        $quotient;
+        $reminder;
+        CMathi::div(9.01, 3.01, $quotient, $reminder);
+        $this->assertTrue( $quotient === 3 && $reminder === 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testIsEven ()
@@ -231,20 +231,20 @@ class CMathiTest extends CTestCase
     {
         for ($i = 0; $i < 10; $i++)
         {
-            $iRnd = CMathi::intervalRandom(12, 34);
-            $this->assertTrue( 12 <= $iRnd && $iRnd <= 34 );
+            $rnd = CMathi::intervalRandom(12, 34);
+            $this->assertTrue( 12 <= $rnd && $rnd <= 34 );
         }
 
         for ($i = 0; $i < 10; $i++)
         {
-            $iRnd = CMathi::intervalRandom(56, 78);
-            $this->assertTrue( 56 <= $iRnd && $iRnd <= 78 );
+            $rnd = CMathi::intervalRandom(56, 78);
+            $this->assertTrue( 56 <= $rnd && $rnd <= 78 );
         }
 
         for ($i = 0; $i < 10; $i++)
         {
-            $iRnd = CMathi::intervalRandom(56.01, 78.01);
-            $this->assertTrue( 56 <= $iRnd && $iRnd <= 78 );
+            $rnd = CMathi::intervalRandom(56.01, 78.01);
+            $this->assertTrue( 56 <= $rnd && $rnd <= 78 );
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

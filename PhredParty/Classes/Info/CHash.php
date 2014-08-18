@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -10,20 +10,20 @@
  */
 
 // Method signatures:
-//   static CUStringObject compute ($byData, $eHashType, $bAsBinary = false)
-//   static CUStringObject computeFromFile ($sDataFp, $eHashType, $bAsBinary = false)
-//   static CUStringObject computeHmac ($byData, $eHashType, $sKey, $bAsBinary = false)
-//   static CUStringObject computeHmacFromFile ($sDataFp, $eHashType, $sKey, $bAsBinary = false)
-//   static CUStringObject computePbkdf2 ($sPassword, $eHashType, $sSalt, $iNumIterations, $iOutputLength = null,
-//     $bAsBinary = false)
-//   static CUStringObject computeForPassword ($sPassword)
-//   static bool matchPasswordWithHash ($sPassword, $sHash)
-//   static bool doesPasswordNeedRehashing ($sPasswordHash)
-//   __construct ($eHashType)
-//   void computeMore ($byData)
-//   void computeMoreFromFile ($sDataFp)
-//   int computeMoreFromStream ($rcStream, $iMaxNumInputBytes = null)
-//   CUStringObject finalize ($bAsBinary = false)
+//   static CUStringObject compute ($data, $hashType, $asBinary = false)
+//   static CUStringObject computeFromFile ($dataFp, $hashType, $asBinary = false)
+//   static CUStringObject computeHmac ($data, $hashType, $key, $asBinary = false)
+//   static CUStringObject computeHmacFromFile ($dataFp, $hashType, $key, $asBinary = false)
+//   static CUStringObject computePbkdf2 ($password, $hashType, $salt, $numIterations, $outputLength = null,
+//     $asBinary = false)
+//   static CUStringObject computeForPassword ($password)
+//   static bool matchPasswordWithHash ($password, $hash)
+//   static bool doesPasswordNeedRehashing ($passwordHash)
+//   __construct ($hashType)
+//   void computeMore ($data)
+//   void computeMoreFromFile ($dataFp)
+//   int computeMoreFromStream ($stream, $maxNumInputBytes = null)
+//   CUStringObject finalize ($asBinary = false)
 
 class CHash extends CRootClass
 {
@@ -290,251 +290,251 @@ class CHash extends CRootClass
     /**
      * From a data, computes a hash string using a specified hashing algorithm and returns it.
      *
-     * @param  data $byData The source data.
-     * @param  enum $eHashType The hashing algorithm to be used (see [Summary](#summary)).
-     * @param  bool $bAsBinary **OPTIONAL. Default is** `false`. Tells whether the hash should be returned as a raw
+     * @param  data $data The source data.
+     * @param  enum $hashType The hashing algorithm to be used (see [Summary](#summary)).
+     * @param  bool $asBinary **OPTIONAL. Default is** `false`. Tells whether the hash should be returned as a raw
      * binary data.
      *
      * @return CUStringObject The computed hash.
      */
 
-    public static function compute ($byData, $eHashType, $bAsBinary = false)
+    public static function compute ($data, $hashType, $asBinary = false)
     {
-        assert( 'is_cstring($byData) && is_enum($eHashType) && is_bool($bAsBinary)',
+        assert( 'is_cstring($data) && is_enum($hashType) && is_bool($asBinary)',
             vs(isset($this), get_defined_vars()) );
 
-        $sHashType = self::hashTypeToString($eHashType);
-        return hash($sHashType, $byData, $bAsBinary);
+        $strHashType = self::hashTypeToString($hashType);
+        return hash($strHashType, $data, $asBinary);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * From a file, computes a hash string using a specified hashing algorithm and returns it.
      *
-     * @param  string $sDataFp The path to the source file.
-     * @param  enum $eHashType The hashing algorithm to be used (see [Summary](#summary)).
-     * @param  bool $bAsBinary **OPTIONAL. Default is** `false`. Tells whether the hash should be returned as a raw
+     * @param  string $dataFp The path to the source file.
+     * @param  enum $hashType The hashing algorithm to be used (see [Summary](#summary)).
+     * @param  bool $asBinary **OPTIONAL. Default is** `false`. Tells whether the hash should be returned as a raw
      * binary data.
      *
      * @return CUStringObject The computed hash.
      */
 
-    public static function computeFromFile ($sDataFp, $eHashType, $bAsBinary = false)
+    public static function computeFromFile ($dataFp, $hashType, $asBinary = false)
     {
-        assert( 'is_cstring($sDataFp) && is_enum($eHashType) && is_bool($bAsBinary)',
+        assert( 'is_cstring($dataFp) && is_enum($hashType) && is_bool($asBinary)',
             vs(isset($this), get_defined_vars()) );
 
-        $sDataFp = CFilePath::frameworkPath($sDataFp);
+        $dataFp = CFilePath::frameworkPath($dataFp);
 
-        $sHashType = self::hashTypeToString($eHashType);
-        return hash_file($sHashType, $sDataFp, $bAsBinary);
+        $strHashType = self::hashTypeToString($hashType);
+        return hash_file($strHashType, $dataFp, $asBinary);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * From a data, computes a keyed hash string using a specified hashing algorithm combined with the HMAC method and
      * returns it.
      *
-     * @param  data $byData The source data.
-     * @param  enum $eHashType The hashing algorithm to be used (see [Summary](#summary)).
-     * @param  string $sKey The shared secret key.
-     * @param  bool $bAsBinary **OPTIONAL. Default is** `false`. Tells whether the hash should be returned as a raw
+     * @param  data $data The source data.
+     * @param  enum $hashType The hashing algorithm to be used (see [Summary](#summary)).
+     * @param  string $key The shared secret key.
+     * @param  bool $asBinary **OPTIONAL. Default is** `false`. Tells whether the hash should be returned as a raw
      * binary data.
      *
      * @return CUStringObject The computed hash.
      */
 
-    public static function computeHmac ($byData, $eHashType, $sKey, $bAsBinary = false)
+    public static function computeHmac ($data, $hashType, $key, $asBinary = false)
     {
-        assert( 'is_cstring($byData) && is_enum($eHashType) && is_cstring($sKey) && is_bool($bAsBinary)',
+        assert( 'is_cstring($data) && is_enum($hashType) && is_cstring($key) && is_bool($asBinary)',
             vs(isset($this), get_defined_vars()) );
 
-        $sHashType = self::hashTypeToString($eHashType);
-        return hash_hmac($sHashType, $byData, $sKey, $bAsBinary);
+        $strHashType = self::hashTypeToString($hashType);
+        return hash_hmac($strHashType, $data, $key, $asBinary);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * From a file, computes a keyed hash string using a specified hashing algorithm combined with the HMAC method and
      * returns it.
      *
-     * @param  string $sDataFp The path to the source file.
-     * @param  enum $eHashType The hashing algorithm to be used (see [Summary](#summary)).
-     * @param  string $sKey The shared secret key.
-     * @param  bool $bAsBinary **OPTIONAL. Default is** `false`. Tells whether the hash should be returned as a raw
+     * @param  string $dataFp The path to the source file.
+     * @param  enum $hashType The hashing algorithm to be used (see [Summary](#summary)).
+     * @param  string $key The shared secret key.
+     * @param  bool $asBinary **OPTIONAL. Default is** `false`. Tells whether the hash should be returned as a raw
      * binary data.
      *
      * @return CUStringObject The computed hash.
      */
 
-    public static function computeHmacFromFile ($sDataFp, $eHashType, $sKey, $bAsBinary = false)
+    public static function computeHmacFromFile ($dataFp, $hashType, $key, $asBinary = false)
     {
-        assert( 'is_cstring($sDataFp) && is_enum($eHashType) && is_cstring($sKey) && is_bool($bAsBinary)',
+        assert( 'is_cstring($dataFp) && is_enum($hashType) && is_cstring($key) && is_bool($asBinary)',
             vs(isset($this), get_defined_vars()) );
 
-        $sDataFp = CFilePath::frameworkPath($sDataFp);
+        $dataFp = CFilePath::frameworkPath($dataFp);
 
-        $sHashType = self::hashTypeToString($eHashType);
-        return hash_hmac_file($sHashType, $sDataFp, $sKey, $bAsBinary);
+        $strHashType = self::hashTypeToString($hashType);
+        return hash_hmac_file($strHashType, $dataFp, $key, $asBinary);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * From a password, computes a salted hash string that can be safely stored in a database or other places and
      * returns it.
      *
-     * @param  string $sPassword The password to be hashed.
+     * @param  string $password The password to be hashed.
      *
      * @return CUStringObject The computed hash.
      */
 
-    public static function computeForPassword ($sPassword)
+    public static function computeForPassword ($password)
     {
-        assert( 'is_cstring($sPassword)', vs(isset($this), get_defined_vars()) );
-        return password_hash($sPassword, PASSWORD_DEFAULT);
+        assert( 'is_cstring($password)', vs(isset($this), get_defined_vars()) );
+        return password_hash($password, PASSWORD_DEFAULT);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if a password matches a salted hash.
      *
-     * @param  string $sPassword The password to be verified.
-     * @param  string $sHash The salted hash against which the password is to be verified.
+     * @param  string $password The password to be verified.
+     * @param  string $hash The salted hash against which the password is to be verified.
      *
      * @return bool `true` if the password matches the hash, `false` otherwise.
      */
 
-    public static function matchPasswordWithHash ($sPassword, $sHash)
+    public static function matchPasswordWithHash ($password, $hash)
     {
-        assert( 'is_cstring($sPassword) && is_cstring($sHash)', vs(isset($this), get_defined_vars()) );
-        return password_verify($sPassword, $sHash);
+        assert( 'is_cstring($password) && is_cstring($hash)', vs(isset($this), get_defined_vars()) );
+        return password_verify($password, $hash);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Tells whether a salted hash that was computed from a password needs to be refreshed due to an update to the
      * hash computing algorithm.
      *
-     * @param  string $sPasswordHash The salted hash to be looked into.
+     * @param  string $passwordHash The salted hash to be looked into.
      *
      * @return bool `true` if the password that is associated with the hash needs to be rehashed, `false` otherwise.
      */
 
-    public static function doesPasswordNeedRehashing ($sPasswordHash)
+    public static function doesPasswordNeedRehashing ($passwordHash)
     {
-        assert( 'is_cstring($sPasswordHash)', vs(isset($this), get_defined_vars()) );
-        return password_needs_rehash($sPasswordHash, PASSWORD_DEFAULT);
+        assert( 'is_cstring($passwordHash)', vs(isset($this), get_defined_vars()) );
+        return password_needs_rehash($passwordHash, PASSWORD_DEFAULT);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Computes a hash string that is a PBKDF2 key derivation of a password, using a specified hashing algorithm, and
      * returns it.
      *
-     * @param  string $sPassword The password to be used for derivation.
-     * @param  enum $eHashType The hashing algorithm to be used (see [Summary](#summary)).
-     * @param  string $sSalt The salt to be used for derivation.
-     * @param  int $iNumIterations The number of internal iterations to be performed in the process of derivation.
-     * @param  int $iOutputLength **OPTIONAL. Default is** *unlimited*. The length of the resulting string.
-     * @param  bool $bAsBinary **OPTIONAL. Default is** `false`. Tells whether the hash should be returned as a raw
+     * @param  string $password The password to be used for derivation.
+     * @param  enum $hashType The hashing algorithm to be used (see [Summary](#summary)).
+     * @param  string $salt The salt to be used for derivation.
+     * @param  int $numIterations The number of internal iterations to be performed in the process of derivation.
+     * @param  int $outputLength **OPTIONAL. Default is** *unlimited*. The length of the resulting string.
+     * @param  bool $asBinary **OPTIONAL. Default is** `false`. Tells whether the hash should be returned as a raw
      * binary data.
      *
      * @return CUStringObject The computed hash.
      */
 
-    public static function computePbkdf2 ($sPassword, $eHashType, $sSalt, $iNumIterations, $iOutputLength = null,
-        $bAsBinary = false)
+    public static function computePbkdf2 ($password, $hashType, $salt, $numIterations, $outputLength = null,
+        $asBinary = false)
     {
-        assert( 'is_cstring($sPassword) && is_enum($eHashType) && is_cstring($sSalt) && is_int($iNumIterations) && ' .
-                '(!isset($iOutputLength) || is_int($iOutputLength)) && is_bool($bAsBinary)',
+        assert( 'is_cstring($password) && is_enum($hashType) && is_cstring($salt) && is_int($numIterations) && ' .
+                '(!isset($outputLength) || is_int($outputLength)) && is_bool($asBinary)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$iNumIterations > 0', vs(isset($this), get_defined_vars()) );
-        assert( '!isset($iOutputLength) || $iOutputLength > 0', vs(isset($this), get_defined_vars()) );
+        assert( '$numIterations > 0', vs(isset($this), get_defined_vars()) );
+        assert( '!isset($outputLength) || $outputLength > 0', vs(isset($this), get_defined_vars()) );
 
-        $sHashType = self::hashTypeToString($eHashType);
-        if ( !isset($iOutputLength) )
+        $strHashType = self::hashTypeToString($hashType);
+        if ( !isset($outputLength) )
         {
-            $iOutputLength = 0;
+            $outputLength = 0;
         }
-        return hash_pbkdf2($sHashType, $sPassword, $sSalt, $iNumIterations, $iOutputLength, $bAsBinary);
+        return hash_pbkdf2($strHashType, $password, $salt, $numIterations, $outputLength, $asBinary);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Creates an object for incremental hashing.
      *
-     * @param  enum $eHashType The hashing algorithm to be used (see [Summary](#summary)).
+     * @param  enum $hashType The hashing algorithm to be used (see [Summary](#summary)).
      */
 
-    public function __construct ($eHashType)
+    public function __construct ($hashType)
     {
-        assert( 'is_enum($eHashType)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_enum($hashType)', vs(isset($this), get_defined_vars()) );
 
-        $sHashType = self::hashTypeToString($eHashType);
-        $this->m_rcHashingContext = hash_init($sHashType);
+        $strHashType = self::hashTypeToString($hashType);
+        $this->m_hashingContext = hash_init($strHashType);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Computes more of the hash from a data.
      *
-     * @param  data $byData The source data.
+     * @param  data $data The source data.
      *
      * @return void
      */
 
-    public function computeMore ($byData)
+    public function computeMore ($data)
     {
-        assert( 'is_cstring($byData)', vs(isset($this), get_defined_vars()) );
-        hash_update($this->m_rcHashingContext, $byData);
+        assert( 'is_cstring($data)', vs(isset($this), get_defined_vars()) );
+        hash_update($this->m_hashingContext, $data);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Computes more of the hash from a file.
      *
-     * @param  string $sDataFp The path to the source file.
+     * @param  string $dataFp The path to the source file.
      *
      * @return void
      */
 
-    public function computeMoreFromFile ($sDataFp)
+    public function computeMoreFromFile ($dataFp)
     {
-        assert( 'is_cstring($sDataFp)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($dataFp)', vs(isset($this), get_defined_vars()) );
 
-        $sDataFp = CFilePath::frameworkPath($sDataFp);
+        $dataFp = CFilePath::frameworkPath($dataFp);
 
-        hash_update_file($this->m_rcHashingContext, $sDataFp);
+        hash_update_file($this->m_hashingContext, $dataFp);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Computes more of the hash from a stream.
      *
-     * @param  resource $rcStream The handle of an open stream.
-     * @param  int $iMaxNumInputBytes **OPTIONAL. Default is** *determine automatically*. The maximum number of bytes
+     * @param  resource $stream The handle of an open stream.
+     * @param  int $maxNumInputBytes **OPTIONAL. Default is** *determine automatically*. The maximum number of bytes
      * to be processed from the stream.
      *
      * @return int The actual number of bytes that were processed from the stream.
      */
 
-    public function computeMoreFromStream ($rcStream, $iMaxNumInputBytes = null)
+    public function computeMoreFromStream ($stream, $maxNumInputBytes = null)
     {
-        assert( 'is_resource($rcStream) && (!isset($iMaxNumInputBytes) || is_int($iMaxNumInputBytes))',
+        assert( 'is_resource($stream) && (!isset($maxNumInputBytes) || is_int($maxNumInputBytes))',
             vs(isset($this), get_defined_vars()) );
 
-        if ( !isset($iMaxNumInputBytes) )
+        if ( !isset($maxNumInputBytes) )
         {
-            return hash_update_stream($this->m_rcHashingContext, $rcStream);
+            return hash_update_stream($this->m_hashingContext, $stream);
         }
         else
         {
-            return hash_update_stream($this->m_rcHashingContext, $rcStream, $iMaxNumInputBytes);
+            return hash_update_stream($this->m_hashingContext, $stream, $maxNumInputBytes);
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Finalizes the incremental hashing and returns the computed hash.
      *
-     * @param  bool $bAsBinary **OPTIONAL. Default is** `false`. Tells whether the hash should be returned as a raw
+     * @param  bool $asBinary **OPTIONAL. Default is** `false`. Tells whether the hash should be returned as a raw
      * binary data.
      *
      * @return CUStringObject The computed hash.
      */
 
-    public function finalize ($bAsBinary = false)
+    public function finalize ($asBinary = false)
     {
-        assert( 'is_bool($bAsBinary)', vs(isset($this), get_defined_vars()) );
-        return hash_final($this->m_rcHashingContext, $bAsBinary);
+        assert( 'is_bool($asBinary)', vs(isset($this), get_defined_vars()) );
+        return hash_final($this->m_hashingContext, $asBinary);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -543,12 +543,12 @@ class CHash extends CRootClass
 
     public function __clone ()
     {
-        $this->m_rcHashingContext = hash_copy($this->m_rcHashingContext);
+        $this->m_hashingContext = hash_copy($this->m_hashingContext);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function hashTypeToString ($eHashType)
+    protected static function hashTypeToString ($hashType)
     {
-        switch ( $eHashType )
+        switch ( $hashType )
         {
         case self::MD2:
             return "md2";
@@ -642,5 +642,5 @@ class CHash extends CRootClass
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    protected $m_rcHashingContext;
+    protected $m_hashingContext;
 }

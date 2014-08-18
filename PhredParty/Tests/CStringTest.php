@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -466,31 +466,31 @@ class CStringTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSplit ()
     {
-        $aRes = CString::split("He,llo,th,ere!", ",");
-        $this->assertTrue( CArray::length($aRes) == 4 &&
-            CString::equals($aRes[0], "He") && CString::equals($aRes[1], "llo") &&
-            CString::equals($aRes[2], "th") && CString::equals($aRes[3], "ere!") );
+        $res = CString::split("He,llo,th,ere!", ",");
+        $this->assertTrue( CArray::length($res) == 4 &&
+            CString::equals($res[0], "He") && CString::equals($res[1], "llo") &&
+            CString::equals($res[2], "th") && CString::equals($res[3], "ere!") );
 
-        $aRes = CString::split("He,llo;th.ere!", CArray::fromElements(",", ";", ".", "!"));
-        $this->assertTrue( CArray::length($aRes) == 5 &&
-            CString::equals($aRes[0], "He") && CString::equals($aRes[1], "llo") &&
-            CString::equals($aRes[2], "th") && CString::equals($aRes[3], "ere") && CString::equals($aRes[4], "") );
+        $res = CString::split("He,llo;th.ere!", CArray::fromElements(",", ";", ".", "!"));
+        $this->assertTrue( CArray::length($res) == 5 &&
+            CString::equals($res[0], "He") && CString::equals($res[1], "llo") &&
+            CString::equals($res[2], "th") && CString::equals($res[3], "ere") && CString::equals($res[4], "") );
 
         // Special cases.
 
-        $aRes = CString::split("Hey", "");
-        $this->assertTrue( CArray::length($aRes) == 3 &&
-            CString::equals($aRes[0], "H") && CString::equals($aRes[1], "e") && CString::equals($aRes[2], "y") );
+        $res = CString::split("Hey", "");
+        $this->assertTrue( CArray::length($res) == 3 &&
+            CString::equals($res[0], "H") && CString::equals($res[1], "e") && CString::equals($res[2], "y") );
 
-        $aRes = CString::split("", "");
-        $this->assertTrue( CArray::length($aRes) == 1 && CString::equals($aRes[0], "") );
+        $res = CString::split("", "");
+        $this->assertTrue( CArray::length($res) == 1 && CString::equals($res[0], "") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSplitIntoChars ()
     {
-        $aRes = CString::splitIntoChars("Hey");
-        $this->assertTrue( CArray::length($aRes) == 3 &&
-            CString::equals($aRes[0], "H") && CString::equals($aRes[1], "e") && CString::equals($aRes[2], "y") );
+        $res = CString::splitIntoChars("Hey");
+        $this->assertTrue( CArray::length($res) == 3 &&
+            CString::equals($res[0], "H") && CString::equals($res[1], "e") && CString::equals($res[2], "y") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testTrimStart ()
@@ -639,10 +639,10 @@ class CStringTest extends CTestCase
         $this->assertTrue(
             CString::equals(CString::replace("Hello there!", "Hello", "Hola"), "Hola there!"));
 
-        $iQuantity;
+        $quantity;
         $this->assertTrue(
-            CString::equals(CString::replace("Hello-Hello there!", "Hello", "Hola", $iQuantity),
-            "Hola-Hola there!") && $iQuantity == 2 );
+            CString::equals(CString::replace("Hello-Hello there!", "Hello", "Hola", $quantity),
+            "Hola-Hola there!") && $quantity == 2 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testReplaceCi ()
@@ -650,10 +650,10 @@ class CStringTest extends CTestCase
         $this->assertTrue(
             CString::equals(CString::replaceCi("Hello there!", "HELLO", "Hola"), "Hola there!"));
 
-        $iQuantity;
+        $quantity;
         $this->assertTrue(
-            CString::equals(CString::replaceCi("Hello-Hello there!", "HELLO", "Hola", $iQuantity),
-            "Hola-Hola there!") && $iQuantity == 2 );
+            CString::equals(CString::replaceCi("Hello-Hello there!", "HELLO", "Hola", $quantity),
+            "Hola-Hola there!") && $quantity == 2 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testRemove ()
@@ -661,10 +661,10 @@ class CStringTest extends CTestCase
         $this->assertTrue(
             CString::equals(CString::remove("Hello there!", " there"), "Hello!"));
 
-        $iQuantity;
+        $quantity;
         $this->assertTrue(
-            CString::equals(CString::remove("Hello there there!", " there", $iQuantity), "Hello!") &&
-            $iQuantity == 2 );
+            CString::equals(CString::remove("Hello there there!", " there", $quantity), "Hello!") &&
+            $quantity == 2 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testRemoveCi ()
@@ -672,17 +672,17 @@ class CStringTest extends CTestCase
         $this->assertTrue(
             CString::equals(CString::removeCi("Hello there!", " THERE"), "Hello!"));
 
-        $iQuantity;
+        $quantity;
         $this->assertTrue(
-            CString::equals(CString::removeCi("Hello there there!", " THERE", $iQuantity), "Hello!") &&
-            $iQuantity == 2 );
+            CString::equals(CString::removeCi("Hello there there!", " THERE", $quantity), "Hello!") &&
+            $quantity == 2 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testShuffle ()
     {
-        $sString = "abcdefghijklmnopqrstuvwxyz";
-        $sShuffledString = CString::shuffle($sString);
-        $this->assertTrue(CString::isSubsetOf($sShuffledString, $sString));
+        $string = "abcdefghijklmnopqrstuvwxyz";
+        $shuffledString = CString::shuffle($string);
+        $this->assertTrue(CString::isSubsetOf($shuffledString, $string));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testWordWrap ()

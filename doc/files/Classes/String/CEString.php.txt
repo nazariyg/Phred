@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * A collection of static methods that let you convert strings from one character encoding into another, "flatten" any
  * Unicode string to ASCII, find out the encoding of a string, and not get lost in the multitude of character encoding
@@ -32,22 +33,22 @@
  */
 
 // Method signatures:
-//   static CUStringObject convert ($sString, $xFromEnc, $xToEnc)
-//   static CUStringObject convertLatin1ToUtf8 ($sString)
-//   static CUStringObject flattenUnicodeToAscii ($sString, $bTransliterate = true)
-//   static bool looksLikeUtf8 ($sString)
-//   static bool looksLikeAscii ($sString)
-//   static bool looksLikeLatin1 ($sString)
-//   static bool guessEnc ($sString, &$reEnc)
+//   static CUStringObject convert ($string, $fromEnc, $toEnc)
+//   static CUStringObject convertLatin1ToUtf8 ($string)
+//   static CUStringObject flattenUnicodeToAscii ($string, $transliterate = true)
+//   static bool looksLikeUtf8 ($string)
+//   static bool looksLikeAscii ($string)
+//   static bool looksLikeLatin1 ($string)
+//   static bool guessEnc ($string, &$enc)
 //   static CArrayObject knownPrimaryEncNames ()
-//   static bool isEncNameKnown ($sName)
-//   static CArrayObject encNameAliases ($sName)
-//   static bool areEncNamesEquivalent ($sName0, $sName1)
-//   static bool isEncNameUtf8 ($sName)
-//   static bool isEncNameAscii ($sName)
-//   static bool isEncNameLatin1 ($sName)
-//   static CUStringObject fixUtf8 ($sString)
-//   static CUStringObject fixUtf8More ($sString)
+//   static bool isEncNameKnown ($name)
+//   static CArrayObject encNameAliases ($name)
+//   static bool areEncNamesEquivalent ($name0, $name1)
+//   static bool isEncNameUtf8 ($name)
+//   static bool isEncNameAscii ($name)
+//   static bool isEncNameLatin1 ($name)
+//   static CUStringObject fixUtf8 ($string)
+//   static CUStringObject fixUtf8More ($string)
 
 class CEString extends CRootClass
 {
@@ -82,38 +83,38 @@ class CEString extends CRootClass
      * If the source string contains any bytes that are invalid in the character encoding declared for it, each of them
      * will come out as "�" (U+FFFD) when converting to Unicode or as "?" when converting to ASCII.
      *
-     * @param  string $sString The string to be converted.
-     * @param  enum|string $xFromEnc The character encoding of the string. This is either the enumerand of one of the
+     * @param  string $string The string to be converted.
+     * @param  enum|string $fromEnc The character encoding of the string. This is either the enumerand of one of the
      * three main encodings, which are `UTF8`, `ASCII`, and `LATIN1`, or a character encoding name, primary one or an
      * alias.
-     * @param  enum|string $xToEnc The output character encoding. This is either the enumerand of one of the three
+     * @param  enum|string $toEnc The output character encoding. This is either the enumerand of one of the three
      * main encodings, which are `UTF8`, `ASCII`, and `LATIN1`, or a character encoding name, primary one or an alias.
      *
      * @return CUStringObject The converted string.
      */
 
-    public static function convert ($sString, $xFromEnc, $xToEnc)
+    public static function convert ($string, $fromEnc, $toEnc)
     {
-        assert( 'is_cstring($sString) && (is_cstring($xFromEnc) || is_enum($xFromEnc)) && ' .
-                '(is_cstring($xToEnc) || is_enum($xToEnc))', vs(isset($this), get_defined_vars()) );
-        assert( '(is_enum($xFromEnc) || self::isEncNameKnown($xFromEnc)) && ' .
-                '(is_enum($xToEnc) || self::isEncNameKnown($xToEnc))', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string) && (is_cstring($fromEnc) || is_enum($fromEnc)) && ' .
+                '(is_cstring($toEnc) || is_enum($toEnc))', vs(isset($this), get_defined_vars()) );
+        assert( '(is_enum($fromEnc) || self::isEncNameKnown($fromEnc)) && ' .
+                '(is_enum($toEnc) || self::isEncNameKnown($toEnc))', vs(isset($this), get_defined_vars()) );
 
-        $aEncs = CArray::fromElements($xFromEnc, $xToEnc);
+        $encs = CArray::fromElements($fromEnc, $toEnc);
         for ($i = 0; $i < 2; $i++)
         {
-            if ( is_enum($aEncs[$i]) )
+            if ( is_enum($encs[$i]) )
             {
-                switch ( $aEncs[$i] )
+                switch ( $encs[$i] )
                 {
                 case self::UTF8:
-                    $aEncs[$i] = "utf-8";
+                    $encs[$i] = "utf-8";
                     break;
                 case self::ASCII:
-                    $aEncs[$i] = "ascii";
+                    $encs[$i] = "ascii";
                     break;
                 case self::LATIN1:
-                    $aEncs[$i] = "latin1";
+                    $encs[$i] = "latin1";
                     break;
                 default:
                     assert( 'false', vs(isset($this), get_defined_vars()) );
@@ -121,76 +122,76 @@ class CEString extends CRootClass
                 }
             }
         }
-        $sFromEnc = (string)$aEncs[0];
-        $sToEnc = (string)$aEncs[1];
+        $fromEnc = (string)$encs[0];
+        $toEnc = (string)$encs[1];
 
-        $bDstEncIsUtf8 = self::areEncNamesEquivalent($sToEnc, "utf-8");
-        $bDstEncIsOtherUtf = false;
-        if ( !$bDstEncIsUtf8 )
+        $dstEncIsUtf8 = self::areEncNamesEquivalent($toEnc, "utf-8");
+        $dstEncIsOtherUtf = false;
+        if ( !$dstEncIsUtf8 )
         {
-            $bDstEncIsOtherUtf = (
-                self::areEncNamesEquivalent($sToEnc, "utf-16") ||
-                self::areEncNamesEquivalent($sToEnc, "utf-32") ||
-                self::areEncNamesEquivalent($sToEnc, "utf-16le") ||
-                self::areEncNamesEquivalent($sToEnc, "utf-16be") ||
-                self::areEncNamesEquivalent($sToEnc, "utf-32le") ||
-                self::areEncNamesEquivalent($sToEnc, "utf-32be") );
+            $dstEncIsOtherUtf = (
+                self::areEncNamesEquivalent($toEnc, "utf-16") ||
+                self::areEncNamesEquivalent($toEnc, "utf-32") ||
+                self::areEncNamesEquivalent($toEnc, "utf-16le") ||
+                self::areEncNamesEquivalent($toEnc, "utf-16be") ||
+                self::areEncNamesEquivalent($toEnc, "utf-32le") ||
+                self::areEncNamesEquivalent($toEnc, "utf-32be") );
         }
 
         // Set a substitution character for any invalid character/byte in the source string.
-        $oQmConv = new UConverter($sToEnc, "utf-8");
-        if ( $bDstEncIsUtf8 || $bDstEncIsOtherUtf )
+        $qmConv = new UConverter($toEnc, "utf-8");
+        if ( $dstEncIsUtf8 || $dstEncIsOtherUtf )
         {
             // Targeting a Unicode encoding, use U+FFFD question mark.
-            $sQm = $oQmConv->convert("\xEF\xBF\xBD");
+            $qm = $qmConv->convert("\xEF\xBF\xBD");
         }
         else
         {
             // Targeting a non-Unicode encoding, use "?".
-            $sQm = $oQmConv->convert("\x3F");
+            $qm = $qmConv->convert("\x3F");
         }
-        if ( !is_cstring($sQm) )
+        if ( !is_cstring($qm) )
         {
-            $sQm = "";
+            $qm = "";
         }
 
-        $oConv = new UConverter($sToEnc, $sFromEnc);
-        $oConv->setSubstChars($sQm);
-        $xRes = $oConv->convert($sString);
-        $sRes = ( is_cstring($xRes) ) ? $xRes : "";
-        if ( $bDstEncIsUtf8 || $bDstEncIsOtherUtf )
+        $conv = new UConverter($toEnc, $fromEnc);
+        $conv->setSubstChars($qm);
+        $res = $conv->convert($string);
+        $strRes = ( is_cstring($res) ) ? $res : "";
+        if ( $dstEncIsUtf8 || $dstEncIsOtherUtf )
         {
-            if ( $bDstEncIsUtf8 )
+            if ( $dstEncIsUtf8 )
             {
-                return $sRes;
+                return $strRes;
             }
             else  // other Unicode encoding
             {
-                return $sRes;
+                return $strRes;
             }
         }
-        else if ( self::areEncNamesEquivalent($sToEnc, "ascii") )
+        else if ( self::areEncNamesEquivalent($toEnc, "ascii") )
         {
-            return $sRes;
+            return $strRes;
         }
         else
         {
-            return $sRes;
+            return $strRes;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a Latin-1 (ISO-8859-1) string into a UTF-8 string and returns it.
      *
-     * @param  string $sString The string to be converted.
+     * @param  string $string The string to be converted.
      *
      * @return CUStringObject The converted string.
      */
 
-    public static function convertLatin1ToUtf8 ($sString)
+    public static function convertLatin1ToUtf8 ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
-        return self::convert($sString, self::LATIN1, self::UTF8);
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
+        return self::convert($string, self::LATIN1, self::UTF8);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -206,8 +207,8 @@ class CEString extends CRootClass
      * Unicode characters that have similar appearance or meaning. The Unicode Line Separator and Paragraph Separator
      * characters are converted into ASCII LF characters. ASCII control characters (0x00-0x1F) are not affected.
      *
-     * @param  string $sString The string to be flattened.
-     * @param  bool $bTransliterate **OPTIONAL. Default is** `true`. Tells whether to transliterate the string into the
+     * @param  string $string The string to be flattened.
+     * @param  bool $transliterate **OPTIONAL. Default is** `true`. Tells whether to transliterate the string into the
      * Latin script before flattening. This is what you would normally wish to happen for an arbitrary Unicode string
      * since there is no way of mapping e.g. Japanese characters to ASCII ones but the transliteration makes any string
      * in Japanese sound same or similar in Latin by rewriting it with Latin characters, after which mapping to ASCII
@@ -216,16 +217,16 @@ class CEString extends CRootClass
      * @return CUStringObject The flattened string.
      */
 
-    public static function flattenUnicodeToAscii ($sString, $bTransliterate = true)
+    public static function flattenUnicodeToAscii ($string, $transliterate = true)
     {
-        assert( 'is_cstring($sString) && is_bool($bTransliterate)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string) && is_bool($transliterate)', vs(isset($this), get_defined_vars()) );
 
-        if ( $bTransliterate )
+        if ( $transliterate )
         {
             // For Unicode texts that may contain scripts other than Latin.
-            $oTranslit = Transliterator::create("latin");
-            $sString = $oTranslit->transliterate($sString);
-            if ( !is_cstring($sString) )
+            $translit = Transliterator::create("latin");
+            $string = $translit->transliterate($string);
+            if ( !is_cstring($string) )
             {
                 assert( 'false', vs(isset($this), get_defined_vars()) );
                 return "";
@@ -235,13 +236,13 @@ class CEString extends CRootClass
         // Latin Extended-A (part 1). Goes first to avoid Middle dots being produced from U+013F and U+0140
         // L-with-a-dot characters by the upcoming NFKD normalization step and the subsequent conversion of Middle dots
         // into spaces by the Latin-1 Supplement mapping step.
-        $sString = preg_replace(DEString::$FlatteningReplaceWhatPt1, DEString::$FlatteningReplaceWithPt1, $sString);
+        $string = preg_replace(DEString::$FlatteningReplaceWhatPt1, DEString::$FlatteningReplaceWithPt1, $string);
 
         // Decompose characters by compatibility and by canonical equivalence (NFKD). Gives ICU a chance to flatten on
         // its own some of the characters that can be represented by one or more lower-code characters. Combining
         // characters, such as marks, become isolated code points.
-        $sString = Normalizer::normalize($sString, Normalizer::FORM_KD);
-        if ( !is_cstring($sString) )
+        $string = Normalizer::normalize($string, Normalizer::FORM_KD);
+        if ( !is_cstring($string) )
         {
             assert( 'false', vs(isset($this), get_defined_vars()) );
             return "";
@@ -249,19 +250,19 @@ class CEString extends CRootClass
 
         // Remove combining marks. NFKD normalization, unlike NFD, produces preceding spaces for lone marks, so remove
         // those spaces too.
-        $sString = preg_replace("/\\x20?\\p{M}/u", "", $sString);
+        $string = preg_replace("/\\x20?\\p{M}/u", "", $string);
 
         // Part 2 of all the character-to-character replacements.
-        $sString = preg_replace(DEString::$FlatteningReplaceWhatPt2, DEString::$FlatteningReplaceWithPt2, $sString);
+        $string = preg_replace(DEString::$FlatteningReplaceWhatPt2, DEString::$FlatteningReplaceWithPt2, $string);
 
         // In addition to the alias/cross-reference conversion performed earlier, convert all characters in the "Zs"
         // Unicode category into spaces.
-        $sString = preg_replace("/\\p{Zs}/u", " ", $sString);
+        $string = preg_replace("/\\p{Zs}/u", " ", $string);
 
         // Remove all non-ASCII bytes.
-        $sString = preg_replace("/[\\x80-\\xFF]/", "", $sString);
+        $string = preg_replace("/[\\x80-\\xFF]/", "", $string);
 
-        return $sString;
+        return $string;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -270,16 +271,16 @@ class CEString extends CRootClass
      * Thanks to the fact that the ASCII charset and encoding are compatible with UTF-8, this method will return `true`
      * for any valid ASCII string.
      *
-     * @param  string $sString The string to be looked into.
+     * @param  string $string The string to be looked into.
      *
      * @return bool `true` if the string looks like a valid UTF-8 string, `false` otherwise.
      */
 
-    public static function looksLikeUtf8 ($sString)
+    public static function looksLikeUtf8 ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
 
-        $sPattern = "/^(" .
+        $pattern = "/^(" .
             "[\\x09\\x0A\\x0D\\x20-\\x7E]" .         // ASCII, some bytes
             "|[\\xC2-\\xDF][\\x80-\\xBF]" .          // non-overlong 2-byte
             "|\\xE0[\\xA0-\\xBF][\\x80-\\xBF]" .     // excluding overlongs
@@ -291,7 +292,7 @@ class CEString extends CRootClass
             "|[\\xF1-\\xF3][\\x80-\\xBF]{3}" .       // planes 4-15
             "|\\xF4[\\x80-\\x8F][\\x80-\\xBF]{2}" .  // plane 16
             ")*\\z/";
-        return CRegex::find($sString, $sPattern);
+        return CRegex::find($string, $pattern);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -300,17 +301,17 @@ class CEString extends CRootClass
      * The method will return `false` if the string contains any control characters other than HT (0x09), LF (0x0A),
      * and CR (0x0D).
      *
-     * @param  string $sString The string to be looked into.
+     * @param  string $string The string to be looked into.
      *
      * @return bool `true` if the string looks like an ASCII string, `false` otherwise.
      */
 
-    public static function looksLikeAscii ($sString)
+    public static function looksLikeAscii ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
 
-        $sPattern = "/^[\\x09\\x0A\\x0D\\x20-\\x7E]*\\z/";
-        return CRegex::find($sString, $sPattern);
+        $pattern = "/^[\\x09\\x0A\\x0D\\x20-\\x7E]*\\z/";
+        return CRegex::find($string, $pattern);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -319,17 +320,17 @@ class CEString extends CRootClass
      * The method will return `false` if the string contains any control characters other than HT (0x09), LF (0x0A),
      * and CR (0x0D).
      *
-     * @param  string $sString The string to be looked into.
+     * @param  string $string The string to be looked into.
      *
      * @return bool `true` if the string looks like a Latin-1 string, `false` otherwise.
      */
 
-    public static function looksLikeLatin1 ($sString)
+    public static function looksLikeLatin1 ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
 
-        $sPattern = "/^[\\x09\\x0A\\x0D\\x20-\\x7E\\xA0-\\xFF]*\\z/";
-        return CRegex::find($sString, $sPattern);
+        $pattern = "/^[\\x09\\x0A\\x0D\\x20-\\x7E\\xA0-\\xFF]*\\z/";
+        return CRegex::find($string, $pattern);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -338,25 +339,25 @@ class CEString extends CRootClass
      * For the reason that any ASCII string is indistinguishable from the same UTF-8 string, the character encoding of
      * a string is guessed only between UTF-8 and Latin-1.
      *
-     * @param  string $sString The string to be looked into.
-     * @param  reference $reEnc **OUTPUT.** If the method returned `true`, the value of this parameter is the enumerand
+     * @param  string $string The string to be looked into.
+     * @param  reference $enc **OUTPUT.** If the method returned `true`, the value of this parameter is the enumerand
      * of the character encoding determined for the string, that is either `UTF8` or `LATIN1`.
      *
      * @return bool `true` if the method was able to guess the character encoding of the string, `false` otherwise.
      */
 
-    public static function guessEnc ($sString, &$reEnc)
+    public static function guessEnc ($string, &$enc)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
 
-        if ( self::looksLikeUtf8($sString) )
+        if ( self::looksLikeUtf8($string) )
         {
-            $reEnc = self::UTF8;
+            $enc = self::UTF8;
             return true;
         }
-        if ( self::looksLikeLatin1($sString) )
+        if ( self::looksLikeLatin1($string) )
         {
-            $reEnc = self::LATIN1;
+            $enc = self::LATIN1;
             return true;
         }
         return false;
@@ -386,15 +387,15 @@ class CEString extends CRootClass
      * underscores, or whitespace in it, the method will focus on just the meaningful parts and will get any valid name
      * right.
      *
-     * @param  string $sName The character encoding name to be looked for.
+     * @param  string $name The character encoding name to be looked for.
      *
      * @return bool `true` if the name is known to the class, `false` otherwise.
      */
 
-    public static function isEncNameKnown ($sName)
+    public static function isEncNameKnown ($name)
     {
-        assert( 'is_cstring($sName)', vs(isset($this), get_defined_vars()) );
-        return ( count(UConverter::getAliases($sName)) != 0 );
+        assert( 'is_cstring($name)', vs(isset($this), get_defined_vars()) );
+        return ( count(UConverter::getAliases($name)) != 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -404,17 +405,17 @@ class CEString extends CRootClass
      * underscores, or whitespace in it, the method will focus on just the meaningful parts and will get any valid name
      * right.
      *
-     * @param  string $sName The character encoding name to be looked for. Can be an alias itself.
+     * @param  string $name The character encoding name to be looked for. Can be an alias itself.
      *
      * @return CArrayObject The name's aliases of type `CUStringObject`.
      */
 
-    public static function encNameAliases ($sName)
+    public static function encNameAliases ($name)
     {
-        assert( 'is_cstring($sName)', vs(isset($this), get_defined_vars()) );
-        assert( 'self::isEncNameKnown($sName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($name)', vs(isset($this), get_defined_vars()) );
+        assert( 'self::isEncNameKnown($name)', vs(isset($this), get_defined_vars()) );
 
-        return oop_a(CArray::fromPArray(UConverter::getAliases($sName)));
+        return oop_a(CArray::fromPArray(UConverter::getAliases($name)));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -426,28 +427,28 @@ class CEString extends CRootClass
      * underscores, or whitespace in them, the method will focus on just the meaningful parts and will get any valid
      * name right.
      *
-     * @param  string $sName0 The first character encoding name for comparison.
-     * @param  string $sName1 The second character encoding name for comparison.
+     * @param  string $name0 The first character encoding name for comparison.
+     * @param  string $name1 The second character encoding name for comparison.
      *
      * @return bool `true` if the two names are equivalent, `false` otherwise.
      */
 
-    public static function areEncNamesEquivalent ($sName0, $sName1)
+    public static function areEncNamesEquivalent ($name0, $name1)
     {
-        assert( 'is_cstring($sName0) && is_cstring($sName1)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($name0) && is_cstring($name1)', vs(isset($this), get_defined_vars()) );
 
-        if ( CString::equals(self::flattenEncName($sName0), self::flattenEncName($sName1)) )
+        if ( CString::equals(self::flattenEncName($name0), self::flattenEncName($name1)) )
         {
             return true;
         }
 
-        $mAliases0 = UConverter::getAliases($sName0);
-        $mAliases1 = UConverter::getAliases($sName1);
-        foreach ($mAliases0 as $sAlias0)
+        $aliases0 = UConverter::getAliases($name0);
+        $aliases1 = UConverter::getAliases($name1);
+        foreach ($aliases0 as $alias0)
         {
-            foreach ($mAliases1 as $sAlias1)
+            foreach ($aliases1 as $alias1)
             {
-                if ( CString::equals($sAlias0, $sAlias1) )
+                if ( CString::equals($alias0, $alias1) )
                 {
                     return true;
                 }
@@ -463,15 +464,15 @@ class CEString extends CRootClass
      * underscores, or whitespace in it, the method will focus on just the meaningful parts and will get any valid name
      * right.
      *
-     * @param  string $sName The character encoding name to be looked into.
+     * @param  string $name The character encoding name to be looked into.
      *
      * @return bool `true` if the name refers to the UTF-8 character encoding, `false` otherwise.
      */
 
-    public static function isEncNameUtf8 ($sName)
+    public static function isEncNameUtf8 ($name)
     {
-        assert( 'is_cstring($sName)', vs(isset($this), get_defined_vars()) );
-        return self::areEncNamesEquivalent($sName, "utf-8");
+        assert( 'is_cstring($name)', vs(isset($this), get_defined_vars()) );
+        return self::areEncNamesEquivalent($name, "utf-8");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -481,15 +482,15 @@ class CEString extends CRootClass
      * underscores, or whitespace in it, the method will focus on just the meaningful parts and will get any valid name
      * right.
      *
-     * @param  string $sName The character encoding name to be looked into.
+     * @param  string $name The character encoding name to be looked into.
      *
      * @return bool `true` if the name refers to the ASCII character encoding, `false` otherwise.
      */
 
-    public static function isEncNameAscii ($sName)
+    public static function isEncNameAscii ($name)
     {
-        assert( 'is_cstring($sName)', vs(isset($this), get_defined_vars()) );
-        return self::areEncNamesEquivalent($sName, "ascii");
+        assert( 'is_cstring($name)', vs(isset($this), get_defined_vars()) );
+        return self::areEncNamesEquivalent($name, "ascii");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -499,15 +500,15 @@ class CEString extends CRootClass
      * underscores, or whitespace in it, the method will focus on just the meaningful parts and will get any valid name
      * right.
      *
-     * @param  string $sName The character encoding name to be looked into.
+     * @param  string $name The character encoding name to be looked into.
      *
      * @return bool `true` if the name refers to the Latin-1 (ISO-8859-1) character encoding, `false` otherwise.
      */
 
-    public static function isEncNameLatin1 ($sName)
+    public static function isEncNameLatin1 ($name)
     {
-        assert( 'is_cstring($sName)', vs(isset($this), get_defined_vars()) );
-        return self::areEncNamesEquivalent($sName, "latin1");
+        assert( 'is_cstring($name)', vs(isset($this), get_defined_vars()) );
+        return self::areEncNamesEquivalent($name, "latin1");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /*
@@ -543,108 +544,108 @@ class CEString extends CRootClass
      * Tries to fix a presumably UTF-8 string that contains or may contain UTF-8 text mixed with Latin-1 (ISO-8859-1)
      * or Windows-1252 text and returns the new UTF-8 string.
      *
-     * @param  string $sString The string to be fixed.
+     * @param  string $string The string to be fixed.
      *
      * @return CUStringObject The resulting string.
      */
 
-    public static function fixUtf8 ($sString)
+    public static function fixUtf8 ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
 
-        $iMax = CString::length($sString);
-        $sNewString = "";
-        for ($i = 0; $i < $iMax; $i++)
+        $max = CString::length($string);
+        $newString = "";
+        for ($i = 0; $i < $max; $i++)
         {
-            $sC1 = $sString[$i];
-            if ( $sC1 >= "\xC0" )
+            $c1 = $string[$i];
+            if ( $c1 >= "\xC0" )
             {
                 // Should be converted to UTF-8, if it is not UTF-8 already.
-                $sC2 = ( $i + 1 >= $iMax ) ? "\x00" : $sString[$i + 1];
-                $sC3 = ( $i + 2 >= $iMax ) ? "\x00" : $sString[$i + 2];
-                $sC4 = ( $i + 3 >= $iMax ) ? "\x00" : $sString[$i + 3];
-                if ( $sC1 >= "\xC0" & $sC1 <= "\xDF" )
+                $c2 = ( $i + 1 >= $max ) ? "\x00" : $string[$i + 1];
+                $c3 = ( $i + 2 >= $max ) ? "\x00" : $string[$i + 2];
+                $c4 = ( $i + 3 >= $max ) ? "\x00" : $string[$i + 3];
+                if ( $c1 >= "\xC0" & $c1 <= "\xDF" )
                 {
                     // Looks like 2 bytes of UTF-8.
-                    if ( $sC2 >= "\x80" && $sC2 <= "\xBF" )
+                    if ( $c2 >= "\x80" && $c2 <= "\xBF" )
                     {
                         // Almost sure it is UTF-8 already.
-                        $sNewString .= $sC1 . $sC2;
+                        $newString .= $c1 . $c2;
                         $i++;
                     }
                     else
                     {
                         // Not a valid UTF-8, convert it.
-                        $sCc1 = CString::fromCharCode(CString::toCharCode($sC1) >> 6) | "\xC0";
-                        $sCc2 = ($sC1 & "\x3F") | "\x80";
-                        $sNewString .= $sCc1 . $sCc2;
+                        $cc1 = CString::fromCharCode(CString::toCharCode($c1) >> 6) | "\xC0";
+                        $cc2 = ($c1 & "\x3F") | "\x80";
+                        $newString .= $cc1 . $cc2;
                     }
                 }
-                else if ( $sC1 >= "\xE0" & $sC1 <= "\xEF" )
+                else if ( $c1 >= "\xE0" & $c1 <= "\xEF" )
                 {
                     // Looks like 3 bytes of UTF-8.
-                    if ( $sC2 >= "\x80" && $sC2 <= "\xBF" && $sC3 >= "\x80" && $sC3 <= "\xBF" )
+                    if ( $c2 >= "\x80" && $c2 <= "\xBF" && $c3 >= "\x80" && $c3 <= "\xBF" )
                     {
                         // Almost sure it is UTF-8 already.
-                        $sNewString .= $sC1 . $sC2 . $sC3;
+                        $newString .= $c1 . $c2 . $c3;
                         $i += 2;
                     }
                     else
                     {
                         // Not a valid UTF-8, convert it.
-                        $sCc1 = CString::fromCharCode(CString::toCharCode($sC1) >> 6) | "\xC0";
-                        $sCc2 = ($sC1 & "\x3F") | "\x80";
-                        $sNewString .= $sCc1 . $sCc2;
+                        $cc1 = CString::fromCharCode(CString::toCharCode($c1) >> 6) | "\xC0";
+                        $cc2 = ($c1 & "\x3F") | "\x80";
+                        $newString .= $cc1 . $cc2;
                     }
                 }
-                else if ( $sC1 >= "\xF0" & $sC1 <= "\xF7" )
+                else if ( $c1 >= "\xF0" & $c1 <= "\xF7" )
                 {
                     // Looks like 4 bytes of UTF-8.
-                    if ( $sC2 >= "\x80" && $sC2 <= "\xBF" && $sC3 >= "\x80" && $sC3 <= "\xBF" &&
-                         $sC4 >= "\x80" && $sC4 <= "\xBF" )
+                    if ( $c2 >= "\x80" && $c2 <= "\xBF" && $c3 >= "\x80" && $c3 <= "\xBF" &&
+                         $c4 >= "\x80" && $c4 <= "\xBF" )
                     {
                         // Almost sure it is UTF-8 already.
-                        $sNewString .= $sC1 . $sC2 . $sC3;
+                        $newString .= $c1 . $c2 . $c3;
                         $i += 2;
                     }
                     else
                     {
                         // Not a valid UTF-8, convert it.
-                        $sCc1 = CString::fromCharCode(CString::toCharCode($sC1) >> 6) | "\xC0";
-                        $sCc2 = ($sC1 & "\x3F") | "\x80";
-                        $sNewString .= $sCc1 . $sCc2;
+                        $cc1 = CString::fromCharCode(CString::toCharCode($c1) >> 6) | "\xC0";
+                        $cc2 = ($c1 & "\x3F") | "\x80";
+                        $newString .= $cc1 . $cc2;
                     }
                 }
                 else
                 {
                     // Does not look like UTF-8, but should be converted.
-                    $sCc1 = CString::fromCharCode(CString::toCharCode($sC1) >> 6) | "\xC0";
-                    $sCc2 = ($sC1 & "\x3F") | "\x80";
-                    $sNewString .= $sCc1 . $sCc2;
+                    $cc1 = CString::fromCharCode(CString::toCharCode($c1) >> 6) | "\xC0";
+                    $cc2 = ($c1 & "\x3F") | "\x80";
+                    $newString .= $cc1 . $cc2;
                 }
             }
-            else if ( ($sC1 & "\xC0") === "\x80" )
+            else if ( ($c1 & "\xC0") === "\x80" )
             {
                 // Needs to be converted.
-                if ( isset(self::$ms_mWin1252ToUtf8[CString::toCharCode($sC1)]) )
+                if ( isset(self::$ms_win1252ToUtf8[CString::toCharCode($c1)]) )
                 {
                     // Found in Windows-1252 special cases.
-                    $sNewString .= self::$ms_mWin1252ToUtf8[CString::toCharCode($sC1)];
+                    $newString .= self::$ms_win1252ToUtf8[CString::toCharCode($c1)];
                 }
                 else
                 {
-                    $sCc1 = CString::fromCharCode(CString::toCharCode($sC1) >> 6) | "\xC0";
-                    $sCc2 = ($sC1 & "\x3F") | "\x80";
-                    $sNewString .= $sCc1 . $sCc2;
+                    $cc1 = CString::fromCharCode(CString::toCharCode($c1) >> 6) | "\xC0";
+                    $cc2 = ($c1 & "\x3F") | "\x80";
+                    $newString .= $cc1 . $cc2;
                 }
             }
             else
             {
                 // Needs no conversion.
-                $sNewString .= $sC1;
+                $newString .= $c1;
             }
         }
-        return $sNewString;
+        return $newString;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /*
@@ -683,38 +684,38 @@ class CEString extends CRootClass
      * For example, if this method is given "FÃ©dÃ©ration Camerounaise de Football", it will return "Fédération
      * Camerounaise de Football".
      *
-     * @param  string $sString The string to be fixed.
+     * @param  string $string The string to be fixed.
      *
      * @return CUStringObject The resulting string.
      */
 
-    public static function fixUtf8More ($sString)
+    public static function fixUtf8More ($string)
     {
-        assert( 'is_cstring($sString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($string)', vs(isset($this), get_defined_vars()) );
 
-        for ($i = 0; $i < self::$ms_iFixUtf8MoreMaxNumIterations; $i++)
+        for ($i = 0; $i < self::$ms_fixUtf8MoreMaxNumIterations; $i++)
         {
-            $sPrevString = $sString;
-            $sString = str_replace(array_keys(self::$ms_mUtf8ToWin1252), array_values(self::$ms_mUtf8ToWin1252),
-                $sString);
-            $sString = self::convert($sString, self::UTF8, self::LATIN1);
-            $sString = self::fixUtf8($sString);
-            if ( CString::equals($sString, $sPrevString) )
+            $prevString = $string;
+            $string = str_replace(array_keys(self::$ms_utf8ToWin1252), array_values(self::$ms_utf8ToWin1252),
+                $string);
+            $string = self::convert($string, self::UTF8, self::LATIN1);
+            $string = self::fixUtf8($string);
+            if ( CString::equals($string, $prevString) )
             {
                 break;
             }
         }
-        return $sString;
+        return $string;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function flattenEncName ($sName)
+    protected static function flattenEncName ($name)
     {
         // Make the encoding name lowercase and remove everything that is not a letter or digit.
-        return CRegex::remove(CString::toLowerCase($sName), "/[^a-z0-9]/");
+        return CRegex::remove(CString::toLowerCase($name), "/[^a-z0-9]/");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    protected static $ms_mWin1252ToUtf8 = [
+    protected static $ms_win1252ToUtf8 = [
         128 => "\xE2\x82\xAC", 130 => "\xE2\x80\x9A", 131 => "\xC6\x92", 132 => "\xE2\x80\x9E",
         133 => "\xE2\x80\xA6", 134 => "\xE2\x80\xA0", 135 => "\xE2\x80\xA1", 136 => "\xCB\x86",
         137 => "\xE2\x80\xB0", 138 => "\xC5\xA0", 139 => "\xE2\x80\xB9", 140 => "\xC5\x92",
@@ -723,7 +724,7 @@ class CEString extends CRootClass
         152 => "\xCB\x9C", 153 => "\xE2\x84\xA2", 154 => "\xC5\xA1", 155 => "\xE2\x80\xBA",
         156 => "\xC5\x93", 158 => "\xC5\xBE", 159 => "\xC5\xB8"];
 
-    protected static $ms_mUtf8ToWin1252 = [
+    protected static $ms_utf8ToWin1252 = [
         "\xE2\x82\xAC" => "\x80", "\xE2\x80\x9A" => "\x82", "\xC6\x92" => "\x83", "\xE2\x80\x9E" => "\x84",
         "\xE2\x80\xA6" => "\x85", "\xE2\x80\xA0" => "\x86", "\xE2\x80\xA1" => "\x87", "\xCB\x86" => "\x88",
         "\xE2\x80\xB0" => "\x89", "\xC5\xA0" => "\x8A", "\xE2\x80\xB9" => "\x8B", "\xC5\x92" => "\x8C",
@@ -732,6 +733,6 @@ class CEString extends CRootClass
         "\xCB\x9C" => "\x98", "\xE2\x84\xA2" => "\x99", "\xC5\xA1" => "\x9A", "\xE2\x80\xBA" => "\x9B",
         "\xC5\x93" => "\x9C", "\xC5\xBE" => "\x9E", "\xC5\xB8" => "\x9F"];
 
-    protected static $ms_iFixUtf8MoreMaxNumIterations = 8;
+    protected static $ms_fixUtf8MoreMaxNumIterations = 8;
 }
 

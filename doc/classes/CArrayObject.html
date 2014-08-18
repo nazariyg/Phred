@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-867699456"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1175617148"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-867699456" class="accordion-body collapse in">
+            <div id="namespace-1175617148" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -246,7 +246,7 @@ ready to be assigned, or from existing values using <code>a</code> function. Som
 implementation is that, if the length of an array is known beforehand, it takes less time to preallocate the
 elements and then assign values to them as opposed to adding the elements one by one with <code>push</code> method. You can
 make a copy of an OOP array using <code>clone</code> keyword like so:</p>
-<pre><code>$aArrayCopy = clone $aArray;</code></pre>
+<pre><code>$arrayCopy = clone $array;</code></pre>
 
                     <section id="summary">
                         <h2>Summary</h2>
@@ -335,7 +335,7 @@ make a copy of an OOP array using <code>clone</code> keyword like so:</p>
                                 <em>N/A</em>
                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/CArrayObject.html#property_m_aSplArray" class="">$m_aSplArray</a><br />
+                                                                    <a href="../classes/CArrayObject.html#property_m_splArray" class="">$m_splArray</a><br />
                                                             </section>
                         </section>
                         <section class="row-fluid private">
@@ -643,14 +643,14 @@ new array.</p></td>
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (<span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$iLength</span></span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (<span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$length</span></span>)</pre>
                 <p><em><p>Creates an OOP array as either empty or having a specified length.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iLength</code> </td>
+                                <td><code style="border: none; background: none">$length</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>0</code>. The length of the array. Don't forget to give values to all
 of the allocated elements when using this parameter.</p></td>
@@ -683,19 +683,19 @@ of the allocated elements when using this parameter.</p></td>
             <article class="method">
                 <h3 class="public ">makeDim2()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> makeDim2 (int&nbsp;<span class="argument">$iLengthDim1</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$iLengthDim2</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> makeDim2 (int&nbsp;<span class="argument">$lengthDim1</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$lengthDim2</span></span>) : OOPArray</pre>
                 <p><em><p>Creates a two-dimensional OOP array.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iLengthDim1</code> </td>
+                                <td><code style="border: none; background: none">$lengthDim1</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The length of the array at the first level.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iLengthDim2</code> </td>
+                                <td><code style="border: none; background: none">$lengthDim2</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>0</code>. The length(s) of the array(s) at the second level.</p></td>
                             </tr>
@@ -733,24 +733,24 @@ of the allocated elements when using this parameter.</p></td>
             <article class="method">
                 <h3 class="public ">makeDim3()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> makeDim3 (int&nbsp;<span class="argument">$iLengthDim1</span>, int&nbsp;<span class="argument">$iLengthDim2</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$iLengthDim3</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> makeDim3 (int&nbsp;<span class="argument">$lengthDim1</span>, int&nbsp;<span class="argument">$lengthDim2</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$lengthDim3</span></span>) : OOPArray</pre>
                 <p><em><p>Creates a three-dimensional OOP array.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iLengthDim1</code> </td>
+                                <td><code style="border: none; background: none">$lengthDim1</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The length of the array at the first level.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iLengthDim2</code> </td>
+                                <td><code style="border: none; background: none">$lengthDim2</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The length(s) of the array(s) at the second level.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iLengthDim3</code> </td>
+                                <td><code style="border: none; background: none">$lengthDim3</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>0</code>. The length(s) of the array(s) at the third level.</p></td>
                             </tr>
@@ -788,29 +788,29 @@ of the allocated elements when using this parameter.</p></td>
             <article class="method">
                 <h3 class="public ">makeDim4()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> makeDim4 (int&nbsp;<span class="argument">$iLengthDim1</span>, int&nbsp;<span class="argument">$iLengthDim2</span>, int&nbsp;<span class="argument">$iLengthDim3</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$iLengthDim4</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> makeDim4 (int&nbsp;<span class="argument">$lengthDim1</span>, int&nbsp;<span class="argument">$lengthDim2</span>, int&nbsp;<span class="argument">$lengthDim3</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$lengthDim4</span></span>) : OOPArray</pre>
                 <p><em><p>Creates a four-dimensional OOP array.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iLengthDim1</code> </td>
+                                <td><code style="border: none; background: none">$lengthDim1</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The length of the array at the first level.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iLengthDim2</code> </td>
+                                <td><code style="border: none; background: none">$lengthDim2</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The length(s) of the array(s) at the second level.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iLengthDim3</code> </td>
+                                <td><code style="border: none; background: none">$lengthDim3</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The length(s) of the array(s) at the third level.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iLengthDim4</code> </td>
+                                <td><code style="border: none; background: none">$lengthDim4</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>0</code>. The length(s) of the array(s) at the fourth level.</p></td>
                             </tr>
@@ -848,14 +848,14 @@ of the allocated elements when using this parameter.</p></td>
             <article class="method">
                 <h3 class="public ">fromPArray()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fromPArray (map&nbsp;<span class="argument">$mMap</span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fromPArray (map&nbsp;<span class="argument">$map</span>) : OOPArray</pre>
                 <p><em><p>Converts a PHP's associative array or an OOP map into an OOP array.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$mMap</code> </td>
+                                <td><code style="border: none; background: none">$map</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/map.html">map</a></code></td>
                                 <td><p>The PHP's associative array or the OOP map to be converted.</p></td>
                             </tr>
@@ -930,7 +930,7 @@ second element under <code>1</code>, and so forth.</p>
             <article class="method">
                 <h3 class="public ">join()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">join (string&nbsp;<span class="argument">$sBinder</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">join (string&nbsp;<span class="argument">$binder</span>) : OOPString</pre>
                 <p><em><p>Joins the elements of an array into an OOP string.</p></em></p>
                 <p>The elements in the array are not required to be all strings and, in addition to types that know how to become a
 string, an element can be <code>int</code>, <code>float</code>, or <code>bool</code>. In the resulting string, a boolean value of <code>true</code> becomes
@@ -940,7 +940,7 @@ string, an element can be <code>int</code>, <code>float</code>, or <code>bool</c
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sBinder</code> </td>
+                                <td><code style="border: none; background: none">$binder</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The string to be put between any two elements in the resulting string, such as ", ".
 Can be empty.</p></td>
@@ -1050,7 +1050,7 @@ Can be empty.</p></td>
             <article class="method">
                 <h3 class="public ">equals()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">equals (array&nbsp;<span class="argument">$aToArray</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fnComparator</span></span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">equals (array&nbsp;<span class="argument">$toArray</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$comparator</span></span>) : bool</pre>
                 <p><em><p>Determines if an array is equal to another array.</p></em></p>
                 <p>For any two arrays to be equal, they need to have the same number of the same elements arranged in the same
 order.</p>
@@ -1063,12 +1063,12 @@ the <a href="CComparator.html">CComparator</a> class for more on this.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$aToArray</code> </td>
+                                <td><code style="border: none; background: none">$toArray</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/array.html">array</a></code></td>
                                 <td><p>The second array for comparison.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnComparator</code> </td>
+                                <td><code style="border: none; background: none">$comparator</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CComparator::EQUALITY</code>. The function or method to be
 used for the comparison of any two elements. If this parameter is provided, the comparator should take two
@@ -1110,7 +1110,7 @@ element from the second array, and return <code>true</code> if the two elements 
             <article class="method">
                 <h3 class="public ">compare()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">compare (array&nbsp;<span class="argument">$aToArray</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fnComparator</span></span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">compare (array&nbsp;<span class="argument">$toArray</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$comparator</span></span>) : int</pre>
                 <p><em><p>Determines the order in which two arrays should appear in a place where it matters.</p></em></p>
                 <p>You can use your own comparator for the comparison of the elements in the arrays, but the default comparator has
 got you covered when comparing scalar values, such as <code>string</code>, <code>int</code>, <code>float</code>, and <code>bool</code> in the ascending
@@ -1122,12 +1122,12 @@ class for more on this.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$aToArray</code> </td>
+                                <td><code style="border: none; background: none">$toArray</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/array.html">array</a></code></td>
                                 <td><p>The second array for comparison.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnComparator</code> </td>
+                                <td><code style="border: none; background: none">$comparator</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CComparator::ORDER_ASC</code>. The function or method to be
 used for the comparison of any two elements. If this parameter is provided, the comparator should take two
@@ -1280,7 +1280,7 @@ value (typically <code>1</code>) if the other way around, and <code>0</code> if 
             <article class="method">
                 <h3 class="public ">subar()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">subar (int&nbsp;<span class="argument">$iStartPos</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$iLength</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">subar (int&nbsp;<span class="argument">$startPos</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$length</span></span>) : OOPArray</pre>
                 <p><em><p>Returns a sequence of elements from an array, as another array.</p></em></p>
                 <p>This method works much like <code>substr</code> method of the CUStringObject class.</p>
 <p>The method allows for an empty array to be returned.</p>
@@ -1288,12 +1288,12 @@ value (typically <code>1</code>) if the other way around, and <code>0</code> if 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iStartPos</code> </td>
+                                <td><code style="border: none; background: none">$startPos</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The position of the first element in the sequence to be copied.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iLength</code> </td>
+                                <td><code style="border: none; background: none">$length</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>as many elements as the starting element is followed by</em>. The
 number of elements in the sequence to be copied.</p></td>
@@ -1331,7 +1331,7 @@ number of elements in the sequence to be copied.</p></td>
             <article class="method">
                 <h3 class="public ">subarray()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">subarray (int&nbsp;<span class="argument">$iStartPos</span>, int&nbsp;<span class="argument">$iEndPos</span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">subarray (int&nbsp;<span class="argument">$startPos</span>, int&nbsp;<span class="argument">$endPos</span>) : OOPArray</pre>
                 <p><em><p>Returns a sequence of elements from an array, as another array, with both starting and ending positions
 specified.</p></em></p>
                 <p>This method works much like <code>substring</code> method of the CUStringObject class.</p>
@@ -1340,12 +1340,12 @@ specified.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iStartPos</code> </td>
+                                <td><code style="border: none; background: none">$startPos</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The position of the first element in the sequence to be copied.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iEndPos</code> </td>
+                                <td><code style="border: none; background: none">$endPos</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The position of the element that <em>follows</em> the last element in the sequence to be copied.</p></td>
                             </tr>
@@ -1382,7 +1382,7 @@ specified.</p></em></p>
             <article class="method">
                 <h3 class="public ">slice()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">slice (int&nbsp;<span class="argument">$iStartPos</span>, int&nbsp;<span class="argument">$iEndPos</span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">slice (int&nbsp;<span class="argument">$startPos</span>, int&nbsp;<span class="argument">$endPos</span>) : OOPArray</pre>
                 <p><em><p>An alias for the previous method.</p></em></p>
                 <p>Returns a sequence of elements from an array, as another array, with both starting and ending positions
 specified.</p>
@@ -1392,12 +1392,12 @@ specified.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iStartPos</code> </td>
+                                <td><code style="border: none; background: none">$startPos</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The position of the first element in the sequence to be copied.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iEndPos</code> </td>
+                                <td><code style="border: none; background: none">$endPos</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The position of the element that <em>follows</em> the last element in the sequence to be copied.</p></td>
                             </tr>
@@ -1434,7 +1434,7 @@ specified.</p>
             <article class="method">
                 <h3 class="public ">find()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">find (mixed&nbsp;<span class="argument">$xWhatElement</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fnComparator</span></span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$riFoundAtPos</span></span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">find (mixed&nbsp;<span class="argument">$whatElement</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$comparator</span></span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$foundAtPos</span></span>) : bool</pre>
                 <p><em><p>Determines if an array contains an element with a specified value, using linear search.</p></em></p>
                 <p>You can use your own comparator for the search, but the default comparator has got you covered when searching
 for scalar values, such as <code>string</code>, <code>int</code>, <code>float</code>, and <code>bool</code>. And the default comparator is smart enough to
@@ -1445,12 +1445,12 @@ know how to compare objects of those classes that conform to the IEquality or IE
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xWhatElement</code> </td>
+                                <td><code style="border: none; background: none">$whatElement</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The value of the searched element.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnComparator</code> </td>
+                                <td><code style="border: none; background: none">$comparator</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CComparator::EQUALITY</code>. The function or method to be
 used for the comparison of element values while searching. If this parameter is provided, the comparator should
@@ -1458,7 +1458,7 @@ take two parameters, with the first parameter being an element from the array an
 searched element, and return <code>true</code> if the two elements are equal and <code>false</code> otherwise.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$riFoundAtPos</code> </td>
+                                <td><code style="border: none; background: none">$foundAtPos</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL. OUTPUT.</strong> If an element has been found after the method was called
 with this parameter provided, the parameter's value, which is of type <code>int</code>, indicates the position of the first
@@ -1499,7 +1499,7 @@ found element, i.e. the element at the leftmost position if the array contains m
             <article class="method">
                 <h3 class="public ">findScalar()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">findScalar (mixed&nbsp;<span class="argument">$xWhatElement</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$riFoundAtPos</span></span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">findScalar (mixed&nbsp;<span class="argument">$whatElement</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$foundAtPos</span></span>) : bool</pre>
                 <p><em><p>Determines if an array contains an element with a specified scalar value, using linear search.</p></em></p>
                 <p>If an array only contains values of scalar types i.e. <code>int</code>, <code>float</code>, <code>bool</code>, <code>string</code> (ASCII only), or <code>null</code>,
 this method allows for faster searches compared to <code>find</code> method. In case of <code>string</code> type, the search is
@@ -1511,12 +1511,12 @@ such as making the search case-insensitive for any kind of strings.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xWhatElement</code> </td>
+                                <td><code style="border: none; background: none">$whatElement</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The value of the searched element.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$riFoundAtPos</code> </td>
+                                <td><code style="border: none; background: none">$foundAtPos</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL. OUTPUT.</strong> If an element has been found after the method was called
 with this parameter provided, the parameter's value, which is of type <code>int</code>, indicates the position of the first
@@ -1557,28 +1557,22 @@ found element, i.e. the element at the leftmost position if the array contains m
             <article class="method">
                 <h3 class="public ">findBinary()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">findBinary (mixed&nbsp;<span class="argument">$xWhatElement</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fnComparator</span></span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$riFoundAtPos</span></span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">findBinary (mixed&nbsp;<span class="argument">$whatElement</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$comparator</span></span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$foundAtPos</span></span>) : bool</pre>
                 <p><em><p>Determines if an array contains an element with a specified value, using faster binary search.</p></em></p>
                 <p>Binary search is much faster than linear search inside an array that was preliminary sorted. So using binary
 search makes sense when many searches need to be run over the same large array. When looking for elements with
 this method, you should be using the same comparator that was used for sorting the array (typically
 <code>CComparator::ORDER_ASC</code>).</p>
-<p>When looking for elements with this method, it's important to use the same comparator that was used for sorting
-the array. As a cookbook recipe for string searching, use "CUString::compare" string as the comparator for
-<code>sort</code> method of this class to sort the strings in an array (or <code>sortUStrings</code> method as a shortcut) and then
-use the same "CUString::compare" string as the comparator for this method. In case if the elements in an array
-are all objects, use <code>sortOn</code> method of this class with "CUString::compare" comparator when sorting on strings
-as return values and then provide the same comparator to this method.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xWhatElement</code> </td>
+                                <td><code style="border: none; background: none">$whatElement</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The value of the searched element.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnComparator</code> </td>
+                                <td><code style="border: none; background: none">$comparator</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CComparator::ORDER_ASC</code>. The function or method to be
 used for the comparison of element values while searching. If this parameter is provided, the comparator should
@@ -1588,7 +1582,7 @@ second parameter if the two were being ordered in separate, <code>1</code> if th
 elements are equal.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$riFoundAtPos</code> </td>
+                                <td><code style="border: none; background: none">$foundAtPos</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL. OUTPUT.</strong> If an element has been found after the method was called
 with this parameter provided, the parameter's value, which is of type <code>int</code>, indicates the position of the first
@@ -1630,7 +1624,7 @@ search).</p></td>
             <article class="method">
                 <h3 class="public ">countElement()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">countElement (mixed&nbsp;<span class="argument">$xElement</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fnComparator</span></span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">countElement (mixed&nbsp;<span class="argument">$element</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$comparator</span></span>) : int</pre>
                 <p><em><p>Tells how many elements with a specified value there are in an array.</p></em></p>
                 <p>You can use your own comparator for the search, but the default comparator has got you covered when searching
 for scalar values, such as <code>string</code>, <code>int</code>, <code>float</code>, and <code>bool</code>. And the default comparator is smart enough to
@@ -1641,12 +1635,12 @@ know how to compare objects of those classes that conform to the IEquality or IE
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xElement</code> </td>
+                                <td><code style="border: none; background: none">$element</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The value of the searched element.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnComparator</code> </td>
+                                <td><code style="border: none; background: none">$comparator</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CComparator::EQUALITY</code>. The function or method to be
 used for the comparison of element values while searching. If this parameter is provided, the comparator should
@@ -1688,7 +1682,7 @@ searched element, and return <code>true</code> if the two elements are equal and
             <article class="method">
                 <h3 class="public ">setLength()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setLength (int&nbsp;<span class="argument">$iNewLength</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setLength (int&nbsp;<span class="argument">$newLength</span>) : void</pre>
                 <p><em><p>Resizes an array to a new length.</p></em></p>
                 <p>No elements are lost if the array grows in size and all elements that are allowed by the new length are kept if
 the array shrinks.</p>
@@ -1696,7 +1690,7 @@ the array shrinks.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iNewLength</code> </td>
+                                <td><code style="border: none; background: none">$newLength</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The new length.</p></td>
                             </tr>
@@ -1728,14 +1722,14 @@ the array shrinks.</p>
             <article class="method">
                 <h3 class="public ">push()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">push (mixed&nbsp;<span class="argument">$xElement</span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">push (mixed&nbsp;<span class="argument">$element</span>) : int</pre>
                 <p><em><p>Adds an element to the end of an array.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xElement</code> </td>
+                                <td><code style="border: none; background: none">$element</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The element to be added.</p></td>
                             </tr>
@@ -1808,14 +1802,14 @@ the array shrinks.</p>
             <article class="method">
                 <h3 class="public ">pushArray()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">pushArray (array&nbsp;<span class="argument">$aPushArray</span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">pushArray (array&nbsp;<span class="argument">$pushArray</span>) : int</pre>
                 <p><em><p>Adds the elements of an array to the end of another array.</p></em></p>
                 <p>It is <em>this</em> array that grows with the operation.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$aPushArray</code> </td>
+                                <td><code style="border: none; background: none">$pushArray</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/array.html">array</a></code></td>
                                 <td><p>The array containing the elements to be added.</p></td>
                             </tr>
@@ -1852,14 +1846,14 @@ the array shrinks.</p>
             <article class="method">
                 <h3 class="public ">unshift()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">unshift (mixed&nbsp;<span class="argument">$xElement</span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">unshift (mixed&nbsp;<span class="argument">$element</span>) : int</pre>
                 <p><em><p>Adds an element to the start of an array.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xElement</code> </td>
+                                <td><code style="border: none; background: none">$element</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The element to be added.</p></td>
                             </tr>
@@ -1932,14 +1926,14 @@ the array shrinks.</p>
             <article class="method">
                 <h3 class="public ">unshiftArray()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">unshiftArray (array&nbsp;<span class="argument">$aAddArray</span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">unshiftArray (array&nbsp;<span class="argument">$addArray</span>) : int</pre>
                 <p><em><p>Adds the elements of an array to the start of another array.</p></em></p>
                 <p>It is <em>this</em> array that grows with the operation.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$aAddArray</code> </td>
+                                <td><code style="border: none; background: none">$addArray</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/array.html">array</a></code></td>
                                 <td><p>The array containing the elements to be added.</p></td>
                             </tr>
@@ -1976,7 +1970,7 @@ the array shrinks.</p>
             <article class="method">
                 <h3 class="public ">insert()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">insert (int&nbsp;<span class="argument">$iAtPos</span>, mixed&nbsp;<span class="argument">$xInsertElement</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">insert (int&nbsp;<span class="argument">$atPos</span>, mixed&nbsp;<span class="argument">$insertElement</span>) : void</pre>
                 <p><em><p>Inserts an element into an array.</p></em></p>
                 <p>As a special case, the position of insertion can be equal to the array's length, which would make this method
 work like <code>push</code> method.</p>
@@ -1984,12 +1978,12 @@ work like <code>push</code> method.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iAtPos</code> </td>
+                                <td><code style="border: none; background: none">$atPos</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The position at which the new element is to be inserted.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$xInsertElement</code> </td>
+                                <td><code style="border: none; background: none">$insertElement</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The new element.</p></td>
                             </tr>
@@ -2021,7 +2015,7 @@ work like <code>push</code> method.</p>
             <article class="method">
                 <h3 class="public ">insertArray()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">insertArray (int&nbsp;<span class="argument">$iAtPos</span>, array&nbsp;<span class="argument">$aInsertArray</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">insertArray (int&nbsp;<span class="argument">$atPos</span>, array&nbsp;<span class="argument">$insertArray</span>) : void</pre>
                 <p><em><p>Inserts the elements of an array into another array.</p></em></p>
                 <p>As a special case, the position of insertion can be equal to the array's length, which would make this method
 work like <code>pushArray</code> method.</p>
@@ -2029,12 +2023,12 @@ work like <code>pushArray</code> method.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iAtPos</code> </td>
+                                <td><code style="border: none; background: none">$atPos</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The position at which the new elements are to be inserted.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$aInsertArray</code> </td>
+                                <td><code style="border: none; background: none">$insertArray</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/array.html">array</a></code></td>
                                 <td><p>The array containing the elements to be inserted.</p></td>
                             </tr>
@@ -2066,19 +2060,19 @@ work like <code>pushArray</code> method.</p>
             <article class="method">
                 <h3 class="public ">padStart()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">padStart (mixed&nbsp;<span class="argument">$xPaddingElement</span>, int&nbsp;<span class="argument">$iNewLength</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">padStart (mixed&nbsp;<span class="argument">$paddingElement</span>, int&nbsp;<span class="argument">$newLength</span>) : void</pre>
                 <p><em><p>Adds elements to the start of an array to make it grow to a specified length.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xPaddingElement</code> </td>
+                                <td><code style="border: none; background: none">$paddingElement</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The element to be used for padding.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iNewLength</code> </td>
+                                <td><code style="border: none; background: none">$newLength</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The array's new length.</p></td>
                             </tr>
@@ -2110,19 +2104,19 @@ work like <code>pushArray</code> method.</p>
             <article class="method">
                 <h3 class="public ">padEnd()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">padEnd (mixed&nbsp;<span class="argument">$xPaddingElement</span>, int&nbsp;<span class="argument">$iNewLength</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">padEnd (mixed&nbsp;<span class="argument">$paddingElement</span>, int&nbsp;<span class="argument">$newLength</span>) : void</pre>
                 <p><em><p>Adds elements to the end of an array to make it grow to a specified length.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xPaddingElement</code> </td>
+                                <td><code style="border: none; background: none">$paddingElement</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The element to be used for padding.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iNewLength</code> </td>
+                                <td><code style="border: none; background: none">$newLength</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The array's new length.</p></td>
                             </tr>
@@ -2154,14 +2148,14 @@ work like <code>pushArray</code> method.</p>
             <article class="method">
                 <h3 class="public ">remove()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">remove (int&nbsp;<span class="argument">$iElementPos</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">remove (int&nbsp;<span class="argument">$elementPos</span>) : void</pre>
                 <p><em><p>Removes an element from an array.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iElementPos</code> </td>
+                                <td><code style="border: none; background: none">$elementPos</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The position of the element to be removed.</p></td>
                             </tr>
@@ -2193,7 +2187,7 @@ work like <code>pushArray</code> method.</p>
             <article class="method">
                 <h3 class="public ">removeByValue()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">removeByValue (mixed&nbsp;<span class="argument">$xElementValue</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fnComparator</span></span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">removeByValue (mixed&nbsp;<span class="argument">$elementValue</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$comparator</span></span>) : bool</pre>
                 <p><em><p>From an array, removes all elements that have a specified value.</p></em></p>
                 <p>You can use your own comparator for the search, but the default comparator has got you covered when searching
 for scalar values, such as <code>string</code>, <code>int</code>, <code>float</code>, and <code>bool</code>. And the default comparator is smart enough to
@@ -2204,12 +2198,12 @@ know how to compare objects of those classes that conform to the IEquality or IE
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xElementValue</code> </td>
+                                <td><code style="border: none; background: none">$elementValue</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The value that is common to the elements to be removed.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnComparator</code> </td>
+                                <td><code style="border: none; background: none">$comparator</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CComparator::EQUALITY</code>. The function or method to be
 used for the comparison of element values while searching. If this parameter is provided, the comparator should
@@ -2251,19 +2245,19 @@ searched element, and return <code>true</code> if the two elements are equal and
             <article class="method">
                 <h3 class="public ">removeSubarray()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">removeSubarray (int&nbsp;<span class="argument">$iStartPos</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$iLength</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">removeSubarray (int&nbsp;<span class="argument">$startPos</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$length</span></span>) : void</pre>
                 <p><em><p>Removes a sequence of elements from an array.</p></em></p>
                 <p>The method allows for the targeted sequence to be empty.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iStartPos</code> </td>
+                                <td><code style="border: none; background: none">$startPos</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The position of the first element in the sequence to be removed.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iLength</code> </td>
+                                <td><code style="border: none; background: none">$length</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>as many elements as the starting element is followed by</em>. The
 number of elements in the sequence to be removed.</p></td>
@@ -2296,7 +2290,7 @@ number of elements in the sequence to be removed.</p></td>
             <article class="method">
                 <h3 class="public ">splice()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">splice (int&nbsp;<span class="argument">$iStartPos</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$iLength</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">splice (int&nbsp;<span class="argument">$startPos</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$length</span></span>) : OOPArray</pre>
                 <p><em><p>Removes a sequence of elements from an array and returns the removed elements, as another array.</p></em></p>
                 <p>Use <code>removeSubarray</code> method if you don't care about what happens to the elements after they are removed.</p>
 <p>The method allows for the targeted sequence to be empty.</p>
@@ -2304,12 +2298,12 @@ number of elements in the sequence to be removed.</p></td>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iStartPos</code> </td>
+                                <td><code style="border: none; background: none">$startPos</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The position of the first element in the sequence to be removed.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iLength</code> </td>
+                                <td><code style="border: none; background: none">$length</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>as many elements as the starting element is followed by</em>. The
 number of elements in the sequence to be removed.</p></td>
@@ -2349,19 +2343,19 @@ number of elements in the sequence to be removed.</p></td>
             <article class="method">
                 <h3 class="public ">removeSubarrayByRange()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">removeSubarrayByRange (int&nbsp;<span class="argument">$iStartPos</span>, int&nbsp;<span class="argument">$iEndPos</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">removeSubarrayByRange (int&nbsp;<span class="argument">$startPos</span>, int&nbsp;<span class="argument">$endPos</span>) : void</pre>
                 <p><em><p>Removes a sequence of elements from an array, with both starting and ending positions specified.</p></em></p>
                 <p>The method allows for the targeted sequence to be empty.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iStartPos</code> </td>
+                                <td><code style="border: none; background: none">$startPos</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The position of the first element in the sequence to be removed.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iEndPos</code> </td>
+                                <td><code style="border: none; background: none">$endPos</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The position of the element that <em>follows</em> the last element in the sequence to be removed.</p></td>
                             </tr>
@@ -2455,7 +2449,7 @@ number of elements in the sequence to be removed.</p></td>
             <article class="method">
                 <h3 class="public ">sort()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">sort (<span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fnComparator</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">sort (<span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$comparator</span></span>) : void</pre>
                 <p><em><p>Sorts the elements in an array.</p></em></p>
                 <p>You can use your own comparator for element comparison, but the default comparators, such as
 <code>CComparator::ORDER_ASC</code> and <code>CComparator::ORDER_DESC</code>, have got you covered when sorting scalar values, such as
@@ -2467,7 +2461,7 @@ the <a href="CComparator.html">CComparator</a> class for more on this.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnComparator</code> </td>
+                                <td><code style="border: none; background: none">$comparator</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CComparator::ORDER_ASC</code>. The function or method to be
 used for the comparison of any two elements. If this parameter is provided, the comparator should take two
@@ -2504,11 +2498,11 @@ the second element in the sorted array, <code>1</code> if the other way around, 
             <article class="method">
                 <h3 class="public ">sortOn()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">sortOn (string&nbsp;<span class="argument">$sOnMethodName</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fnComparator</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">sortOn (string&nbsp;<span class="argument">$onMethodName</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$comparator</span></span>) : void</pre>
                 <p><em><p>Sorts the elements in an array by comparing return values from a specified method being called on each element.</p></em></p>
                 <p>For example, if you had an array of UserClass objects and UserClass had a public method named <code>numPosts</code> that
 would return an integer value, you could sort the users by the number of posts they've made by calling this
-method with "numPosts" as the value of <code>$sOnMethodName</code> parameter.</p>
+method with "numPosts" as the value of <code>$onMethodName</code> parameter.</p>
 <p>If you want to pass any custom arguments to the method that the array needs to be sorted on, just add them after
 the comparator parameter when calling this method and the custom arguments will be passed to that method in the
 same order.</p>
@@ -2525,12 +2519,12 @@ CTime etc. See the <a href="CComparator.html">CComparator</a> class for more on 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOnMethodName</code> </td>
+                                <td><code style="border: none; background: none">$onMethodName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the method on which the elements are to be sorted.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnComparator</code> </td>
+                                <td><code style="border: none; background: none">$comparator</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CComparator::ORDER_ASC</code>. The function or method to be
 used for the comparison of any two return values. If this parameter is provided, the comparator should take two
@@ -2568,7 +2562,7 @@ two elements are considered equal based on the return values.</p></td>
             <article class="method">
                 <h3 class="public ">sortUStrings()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">sortUStrings (<span style="color: rgb(144, 144, 144)">bitfield&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bfCollationFlags</span></span>, <span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$oInLocale</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">sortUStrings (<span style="color: rgb(144, 144, 144)">bitfield&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$collationFlags</span></span>, <span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inLocale</span></span>) : void</pre>
                 <p><em><p>Sorts the elements in an array of Unicode or ASCII strings, in the ascending order, case-sensitively.</p></em></p>
                 <p>For an array that only contains strings, this method is usually preferred over more omnivorous <code>sort</code> method.</p>
 <p><strong>NOTE.</strong> This method puts lowercase in front of uppercase on per-character basis.</p>
@@ -2576,14 +2570,14 @@ two elements are considered equal based on the return values.</p></td>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bfCollationFlags</code> </td>
+                                <td><code style="border: none; background: none">$collationFlags</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
-                                <td><p><strong>OPTIONAL. Default is</strong> <code>CUString::COLLATION_DEFAULT</code>. The Unicode collation
-option(s) to be used for string comparison. See the <a href="CUString.html">CUString</a> class for information on collation
-options.</p></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>CUStringObject::COLLATION_DEFAULT</code>. The Unicode
+collation option(s) to be used for string comparison. See the <a href="CUStringObject.html">CUStringObject</a> class for
+information on collation options.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$oInLocale</code> </td>
+                                <td><code style="border: none; background: none">$inLocale</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CULocale.html">CULocale</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>the application's default locale</em>. The locale in which
 strings are to be compared with each other.</p></td>
@@ -2597,7 +2591,7 @@ strings are to be compared with each other.</p></td>
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
                                                                                             <dt>See also</dt>
-                                                                <dd><a href="CUString.html"><span class="namespace-wrapper">CUString</span></a></dd>
+                                                                <dd><a href="CUStringObject.html"><span class="namespace-wrapper">CUStringObject</span></a></dd>
                                             <dd><a href="#method_sort"><span class="namespace-wrapper">sort</span></a></dd>
                                                                 </dl>
             <h2 style="visibility: hidden">Tags</h2>
@@ -2619,21 +2613,21 @@ strings are to be compared with each other.</p></td>
             <article class="method">
                 <h3 class="public ">sortUStringsCi()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">sortUStringsCi (<span style="color: rgb(144, 144, 144)">bitfield&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bfCollationFlags</span></span>, <span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$oInLocale</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">sortUStringsCi (<span style="color: rgb(144, 144, 144)">bitfield&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$collationFlags</span></span>, <span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inLocale</span></span>) : void</pre>
                 <p><em><p>Sorts the elements in an array of Unicode or ASCII strings, in the ascending order, case-insensitively.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bfCollationFlags</code> </td>
+                                <td><code style="border: none; background: none">$collationFlags</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
-                                <td><p><strong>OPTIONAL. Default is</strong> <code>CUString::COLLATION_DEFAULT</code>. The Unicode collation
-option(s) to be used for string comparison. See the <a href="CUString.html">CUString</a> class for information on collation
-options.</p></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>CUStringObject::COLLATION_DEFAULT</code>. The Unicode
+collation option(s) to be used for string comparison. See the <a href="CUStringObject.html">CUStringObject</a> class for
+information on collation options.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$oInLocale</code> </td>
+                                <td><code style="border: none; background: none">$inLocale</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CULocale.html">CULocale</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>the application's default locale</em>. The locale in which
 strings are to be compared with each other.</p></td>
@@ -2647,7 +2641,7 @@ strings are to be compared with each other.</p></td>
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
                                                                                             <dt>See also</dt>
-                                                                <dd><a href="CUString.html"><span class="namespace-wrapper">CUString</span></a></dd>
+                                                                <dd><a href="CUStringObject.html"><span class="namespace-wrapper">CUStringObject</span></a></dd>
                                                                 </dl>
             <h2 style="visibility: hidden">Tags</h2>
             <table class="table table-condensed" style="visibility: hidden">
@@ -2668,7 +2662,7 @@ strings are to be compared with each other.</p></td>
             <article class="method">
                 <h3 class="public ">sortUStringsNat()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">sortUStringsNat (<span style="color: rgb(144, 144, 144)">bitfield&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bfCollationFlags</span></span>, <span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$oInLocale</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">sortUStringsNat (<span style="color: rgb(144, 144, 144)">bitfield&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$collationFlags</span></span>, <span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inLocale</span></span>) : void</pre>
                 <p><em><p>Sorts the elements in an array of Unicode or ASCII strings, in the ascending order, case-sensitively, using
 natural order comparison.</p></em></p>
                 <p>To illustrate natural order with an example, an array with strings "a100", "a20", "a3" would be sorted into the
@@ -2679,14 +2673,14 @@ being would choose.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bfCollationFlags</code> </td>
+                                <td><code style="border: none; background: none">$collationFlags</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
-                                <td><p><strong>OPTIONAL. Default is</strong> <code>CUString::COLLATION_DEFAULT</code>. The Unicode collation
-option(s) to be used for string comparison. See the <a href="CUString.html">CUString</a> class for information on collation
-options.</p></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>CUStringObject::COLLATION_DEFAULT</code>. The Unicode
+collation option(s) to be used for string comparison. See the <a href="CUStringObject.html">CUStringObject</a> class for
+information on collation options.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$oInLocale</code> </td>
+                                <td><code style="border: none; background: none">$inLocale</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CULocale.html">CULocale</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>the application's default locale</em>. The locale in which
 strings are to be compared with each other.</p></td>
@@ -2700,7 +2694,7 @@ strings are to be compared with each other.</p></td>
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
                                                                                             <dt>See also</dt>
-                                                                <dd><a href="CUString.html"><span class="namespace-wrapper">CUString</span></a></dd>
+                                                                <dd><a href="CUStringObject.html"><span class="namespace-wrapper">CUStringObject</span></a></dd>
                                                                 </dl>
             <h2 style="visibility: hidden">Tags</h2>
             <table class="table table-condensed" style="visibility: hidden">
@@ -2721,7 +2715,7 @@ strings are to be compared with each other.</p></td>
             <article class="method">
                 <h3 class="public ">sortUStringsNatCi()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">sortUStringsNatCi (<span style="color: rgb(144, 144, 144)">bitfield&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bfCollationFlags</span></span>, <span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$oInLocale</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">sortUStringsNatCi (<span style="color: rgb(144, 144, 144)">bitfield&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$collationFlags</span></span>, <span style="color: rgb(144, 144, 144)">CULocale&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$inLocale</span></span>) : void</pre>
                 <p><em><p>Sorts the elements in an array of Unicode or ASCII strings, in the ascending order, case-insensitively, using
 natural order comparison.</p></em></p>
                 <p>To illustrate natural order with an example, an array with strings "a100", "a20", "a3" would be sorted into the
@@ -2731,14 +2725,14 @@ being would choose.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bfCollationFlags</code> </td>
+                                <td><code style="border: none; background: none">$collationFlags</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/bitfield.html">bitfield</a></code></td>
-                                <td><p><strong>OPTIONAL. Default is</strong> <code>CUString::COLLATION_DEFAULT</code>. The Unicode collation
-option(s) to be used for string comparison. See the <a href="CUString.html">CUString</a> class for information on collation
-options.</p></td>
+                                <td><p><strong>OPTIONAL. Default is</strong> <code>CUStringObject::COLLATION_DEFAULT</code>. The Unicode
+collation option(s) to be used for string comparison. See the <a href="CUStringObject.html">CUStringObject</a> class for
+information on collation options.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$oInLocale</code> </td>
+                                <td><code style="border: none; background: none">$inLocale</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CULocale.html">CULocale</a></code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>the application's default locale</em>. The locale in which
 strings are to be compared with each other.</p></td>
@@ -2752,7 +2746,7 @@ strings are to be compared with each other.</p></td>
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
                                                                                             <dt>See also</dt>
-                                                                <dd><a href="CUString.html"><span class="namespace-wrapper">CUString</span></a></dd>
+                                                                <dd><a href="CUStringObject.html"><span class="namespace-wrapper">CUStringObject</span></a></dd>
                                                                 </dl>
             <h2 style="visibility: hidden">Tags</h2>
             <table class="table table-condensed" style="visibility: hidden">
@@ -2773,7 +2767,7 @@ strings are to be compared with each other.</p></td>
             <article class="method">
                 <h3 class="public ">filter()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">filter (callable&nbsp;<span class="argument">$fnFilter</span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">filter (callable&nbsp;<span class="argument">$filter</span>) : OOPArray</pre>
                 <p><em><p>Filters the elements in an array by calling a function or method on each element and returns a new array with
 only those elements that were let through by the filter.</p></em></p>
                 <p>The array is not modified by this method.</p>
@@ -2781,7 +2775,7 @@ only those elements that were let through by the filter.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnFilter</code> </td>
+                                <td><code style="border: none; background: none">$filter</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p>The function or method to be used for filtering. The filter should take an element as
 a parameter and return <code>true</code> if the element should make its way into the resulting array and <code>false</code> if not.</p></td>
@@ -2819,7 +2813,7 @@ a parameter and return <code>true</code> if the element should make its way into
             <article class="method">
                 <h3 class="public ">unique()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">unique (<span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fnComparator</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">unique (<span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$comparator</span></span>) : OOPArray</pre>
                 <p><em><p>Removes repeating elements from an array so that only unique elements are kept and returns the new array.</p></em></p>
                 <p>The array is not modified by this method.</p>
 <p>You can use your own comparator for element comparison, but the default comparator has got you covered when
@@ -2831,7 +2825,7 @@ interface (static or not), including CUStringObject, CArrayObject, CMapObject, C
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnComparator</code> </td>
+                                <td><code style="border: none; background: none">$comparator</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CComparator::EQUALITY</code>. The function or method to be
 used for element comparison. If this parameter is provided, the comparator should take two parameters, which are
@@ -2944,7 +2938,7 @@ the two elements being compared, and return <code>true</code> if the two element
             <article class="method">
                 <h3 class="public ">isSubsetOf()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">isSubsetOf (array&nbsp;<span class="argument">$aOfArray</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fnComparator</span></span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">isSubsetOf (array&nbsp;<span class="argument">$ofArray</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$comparator</span></span>) : bool</pre>
                 <p><em><p>Determines if an array is a subset of another array.</p></em></p>
                 <p>You can use your own comparator for the comparison of the elements in the arrays, but the default comparator has
 got you covered when comparing scalar values, such as <code>string</code>, <code>int</code>, <code>float</code>, and <code>bool</code>. And the default
@@ -2955,12 +2949,12 @@ the <a href="CComparator.html">CComparator</a> class for more on this.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$aOfArray</code> </td>
+                                <td><code style="border: none; background: none">$ofArray</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/array.html">array</a></code></td>
                                 <td><p>The reference array.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnComparator</code> </td>
+                                <td><code style="border: none; background: none">$comparator</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CComparator::EQUALITY</code>. The function or method to be
 used for the comparison of any two elements. If this parameter is provided, the comparator should take two
@@ -3044,7 +3038,7 @@ going in front of the elements of other arrays.</p>
             <article class="method">
                 <h3 class="public ">intersection()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">intersection (array&nbsp;<span class="argument">$aWithArray</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fnComparator</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">intersection (array&nbsp;<span class="argument">$withArray</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$comparator</span></span>) : OOPArray</pre>
                 <p><em><p>Compares elements from one array with elements from another array and returns the common elements as a new
 array.</p></em></p>
                 <p>None of the source arrays is modified by this method.</p>
@@ -3057,12 +3051,12 @@ the <a href="CComparator.html">CComparator</a> class for more on this.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$aWithArray</code> </td>
+                                <td><code style="border: none; background: none">$withArray</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/array.html">array</a></code></td>
                                 <td><p>The second array.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnComparator</code> </td>
+                                <td><code style="border: none; background: none">$comparator</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CComparator::EQUALITY</code>. The function or method to be
 used for the comparison of any two elements. If this parameter is provided, the comparator should take two
@@ -3104,7 +3098,7 @@ element from the second array, and return <code>true</code> if the two elements 
             <article class="method">
                 <h3 class="public ">difference()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">difference (array&nbsp;<span class="argument">$aSubtrahendArray</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fnComparator</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">difference (array&nbsp;<span class="argument">$subtrahendArray</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$comparator</span></span>) : OOPArray</pre>
                 <p><em><p>From an array, removes only those elements that are present in another array and returns the new array.</p></em></p>
                 <p>In the operation, <em>this</em> array is the minuend and the parameter array is the subtrahend.</p>
 <p>None of the source arrays is modified by this method.</p>
@@ -3117,12 +3111,12 @@ the <a href="CComparator.html">CComparator</a> class for more on this.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$aSubtrahendArray</code> </td>
+                                <td><code style="border: none; background: none">$subtrahendArray</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/array.html">array</a></code></td>
                                 <td><p>The subtrahend array.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnComparator</code> </td>
+                                <td><code style="border: none; background: none">$comparator</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CComparator::EQUALITY</code>. The function or method to be
 used for the comparison of any two elements. If this parameter is provided, the comparator should take two
@@ -3164,7 +3158,7 @@ element from the subtrahend array, and return <code>true</code> if the two eleme
             <article class="method">
                 <h3 class="public ">symmetricDifference()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">symmetricDifference (array&nbsp;<span class="argument">$aFromArray</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fnComparator</span></span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">symmetricDifference (array&nbsp;<span class="argument">$fromArray</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$comparator</span></span>) : OOPArray</pre>
                 <p><em><p>From two arrays, returns only those elements that are present in one of the arrays but not in the other, as a
 new array.</p></em></p>
                 <p>None of the source arrays is modified by this method.</p>
@@ -3177,12 +3171,12 @@ the <a href="CComparator.html">CComparator</a> class for more on this.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$aFromArray</code> </td>
+                                <td><code style="border: none; background: none">$fromArray</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/array.html">array</a></code></td>
                                 <td><p>The second array.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnComparator</code> </td>
+                                <td><code style="border: none; background: none">$comparator</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CComparator::EQUALITY</code>. The function or method to be
 used for the comparison of any two elements. If this parameter is provided, the comparator should take two
@@ -3224,19 +3218,19 @@ element from the second array, and return <code>true</code> if the two elements 
             <article class="method">
                 <h3 class="public ">repeat()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> repeat (mixed&nbsp;<span class="argument">$xElement</span>, int&nbsp;<span class="argument">$iTimes</span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> repeat (mixed&nbsp;<span class="argument">$element</span>, int&nbsp;<span class="argument">$times</span>) : OOPArray</pre>
                 <p><em><p>Repeats an element for a specified number of times and returns the resulting array.</p></em></p>
                 <p>For instance, an element of "a" repeated three times would result in an array of "a", "a", "a".</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xElement</code> </td>
+                                <td><code style="border: none; background: none">$element</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The element to be repeated.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iTimes</code> </td>
+                                <td><code style="border: none; background: none">$times</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The length of the resulting array.</p></td>
                             </tr>
@@ -3282,10 +3276,10 @@ element from the second array, and return <code>true</code> if the two elements 
 
                                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_aSplArray" name="property_m_aSplArray" class="anchor"></a>
+            <a id="property_m_splArray" name="property_m_splArray" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_aSplArray</h3>
-                <pre class="signature">$m_aSplArray</pre>
+                <h3 class="protected ">$m_splArray</h3>
+                <pre class="signature">$m_splArray</pre>
                 <p><em></em></p>
                 
 
@@ -3358,7 +3352,7 @@ element from the second array, and return <code>true</code> if the two elements 
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

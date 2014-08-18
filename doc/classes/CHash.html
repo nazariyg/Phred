@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1712660349"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-2046496369"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1712660349" class="accordion-body collapse in">
+            <div id="namespace-2046496369" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -309,7 +309,7 @@
                                 <em>N/A</em>
                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/CHash.html#property_m_rcHashingContext" class="">$m_rcHashingContext</a><br />
+                                                                    <a href="../classes/CHash.html#property_m_hashingContext" class="">$m_hashingContext</a><br />
                                                             </section>
                         </section>
                         <section class="row-fluid private">
@@ -1612,24 +1612,24 @@ returns it.</p></td>
             <article class="method">
                 <h3 class="public ">compute()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> compute (data&nbsp;<span class="argument">$byData</span>, enum&nbsp;<span class="argument">$eHashType</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bAsBinary</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> compute (data&nbsp;<span class="argument">$data</span>, enum&nbsp;<span class="argument">$hashType</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$asBinary</span></span>) : OOPString</pre>
                 <p><em><p>From a data, computes a hash string using a specified hashing algorithm and returns it.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$byData</code> </td>
+                                <td><code style="border: none; background: none">$data</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">data</code></td>
                                 <td><p>The source data.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$eHashType</code> </td>
+                                <td><code style="border: none; background: none">$hashType</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p>The hashing algorithm to be used (see <a href="#summary">Summary</a>).</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bAsBinary</code> </td>
+                                <td><code style="border: none; background: none">$asBinary</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the hash should be returned as a raw
 binary data.</p></td>
@@ -1668,24 +1668,24 @@ binary data.</p></td>
             <article class="method">
                 <h3 class="public ">computeFromFile()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> computeFromFile (string&nbsp;<span class="argument">$sDataFp</span>, enum&nbsp;<span class="argument">$eHashType</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bAsBinary</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> computeFromFile (string&nbsp;<span class="argument">$dataFp</span>, enum&nbsp;<span class="argument">$hashType</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$asBinary</span></span>) : OOPString</pre>
                 <p><em><p>From a file, computes a hash string using a specified hashing algorithm and returns it.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sDataFp</code> </td>
+                                <td><code style="border: none; background: none">$dataFp</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the source file.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$eHashType</code> </td>
+                                <td><code style="border: none; background: none">$hashType</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p>The hashing algorithm to be used (see <a href="#summary">Summary</a>).</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bAsBinary</code> </td>
+                                <td><code style="border: none; background: none">$asBinary</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the hash should be returned as a raw
 binary data.</p></td>
@@ -1724,7 +1724,7 @@ binary data.</p></td>
             <article class="method">
                 <h3 class="public ">computeHmac()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> computeHmac (data&nbsp;<span class="argument">$byData</span>, enum&nbsp;<span class="argument">$eHashType</span>, string&nbsp;<span class="argument">$sKey</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bAsBinary</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> computeHmac (data&nbsp;<span class="argument">$data</span>, enum&nbsp;<span class="argument">$hashType</span>, string&nbsp;<span class="argument">$key</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$asBinary</span></span>) : OOPString</pre>
                 <p><em><p>From a data, computes a keyed hash string using a specified hashing algorithm combined with the HMAC method and
 returns it.</p></em></p>
                 
@@ -1732,22 +1732,22 @@ returns it.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$byData</code> </td>
+                                <td><code style="border: none; background: none">$data</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">data</code></td>
                                 <td><p>The source data.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$eHashType</code> </td>
+                                <td><code style="border: none; background: none">$hashType</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p>The hashing algorithm to be used (see <a href="#summary">Summary</a>).</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sKey</code> </td>
+                                <td><code style="border: none; background: none">$key</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The shared secret key.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bAsBinary</code> </td>
+                                <td><code style="border: none; background: none">$asBinary</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the hash should be returned as a raw
 binary data.</p></td>
@@ -1786,7 +1786,7 @@ binary data.</p></td>
             <article class="method">
                 <h3 class="public ">computeHmacFromFile()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> computeHmacFromFile (string&nbsp;<span class="argument">$sDataFp</span>, enum&nbsp;<span class="argument">$eHashType</span>, string&nbsp;<span class="argument">$sKey</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bAsBinary</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> computeHmacFromFile (string&nbsp;<span class="argument">$dataFp</span>, enum&nbsp;<span class="argument">$hashType</span>, string&nbsp;<span class="argument">$key</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$asBinary</span></span>) : OOPString</pre>
                 <p><em><p>From a file, computes a keyed hash string using a specified hashing algorithm combined with the HMAC method and
 returns it.</p></em></p>
                 
@@ -1794,22 +1794,22 @@ returns it.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sDataFp</code> </td>
+                                <td><code style="border: none; background: none">$dataFp</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the source file.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$eHashType</code> </td>
+                                <td><code style="border: none; background: none">$hashType</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p>The hashing algorithm to be used (see <a href="#summary">Summary</a>).</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sKey</code> </td>
+                                <td><code style="border: none; background: none">$key</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The shared secret key.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bAsBinary</code> </td>
+                                <td><code style="border: none; background: none">$asBinary</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the hash should be returned as a raw
 binary data.</p></td>
@@ -1848,7 +1848,7 @@ binary data.</p></td>
             <article class="method">
                 <h3 class="public ">computeForPassword()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> computeForPassword (string&nbsp;<span class="argument">$sPassword</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> computeForPassword (string&nbsp;<span class="argument">$password</span>) : OOPString</pre>
                 <p><em><p>From a password, computes a salted hash string that can be safely stored in a database or other places and
 returns it.</p></em></p>
                 
@@ -1856,7 +1856,7 @@ returns it.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPassword</code> </td>
+                                <td><code style="border: none; background: none">$password</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The password to be hashed.</p></td>
                             </tr>
@@ -1894,19 +1894,19 @@ returns it.</p></em></p>
             <article class="method">
                 <h3 class="public ">matchPasswordWithHash()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> matchPasswordWithHash (string&nbsp;<span class="argument">$sPassword</span>, string&nbsp;<span class="argument">$sHash</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> matchPasswordWithHash (string&nbsp;<span class="argument">$password</span>, string&nbsp;<span class="argument">$hash</span>) : bool</pre>
                 <p><em><p>Determines if a password matches a salted hash.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPassword</code> </td>
+                                <td><code style="border: none; background: none">$password</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The password to be verified.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sHash</code> </td>
+                                <td><code style="border: none; background: none">$hash</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The salted hash against which the password is to be verified.</p></td>
                             </tr>
@@ -1944,7 +1944,7 @@ returns it.</p></em></p>
             <article class="method">
                 <h3 class="public ">doesPasswordNeedRehashing()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> doesPasswordNeedRehashing (string&nbsp;<span class="argument">$sPasswordHash</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> doesPasswordNeedRehashing (string&nbsp;<span class="argument">$passwordHash</span>) : bool</pre>
                 <p><em><p>Tells whether a salted hash that was computed from a password needs to be refreshed due to an update to the
 hash computing algorithm.</p></em></p>
                 
@@ -1952,7 +1952,7 @@ hash computing algorithm.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPasswordHash</code> </td>
+                                <td><code style="border: none; background: none">$passwordHash</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The salted hash to be looked into.</p></td>
                             </tr>
@@ -1990,7 +1990,7 @@ hash computing algorithm.</p></em></p>
             <article class="method">
                 <h3 class="public ">computePbkdf2()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> computePbkdf2 (string&nbsp;<span class="argument">$sPassword</span>, enum&nbsp;<span class="argument">$eHashType</span>, string&nbsp;<span class="argument">$sSalt</span>, int&nbsp;<span class="argument">$iNumIterations</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$iOutputLength</span></span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bAsBinary</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> computePbkdf2 (string&nbsp;<span class="argument">$password</span>, enum&nbsp;<span class="argument">$hashType</span>, string&nbsp;<span class="argument">$salt</span>, int&nbsp;<span class="argument">$numIterations</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$outputLength</span></span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$asBinary</span></span>) : OOPString</pre>
                 <p><em><p>Computes a hash string that is a PBKDF2 key derivation of a password, using a specified hashing algorithm, and
 returns it.</p></em></p>
                 
@@ -1998,32 +1998,32 @@ returns it.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPassword</code> </td>
+                                <td><code style="border: none; background: none">$password</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The password to be used for derivation.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$eHashType</code> </td>
+                                <td><code style="border: none; background: none">$hashType</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p>The hashing algorithm to be used (see <a href="#summary">Summary</a>).</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sSalt</code> </td>
+                                <td><code style="border: none; background: none">$salt</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The salt to be used for derivation.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iNumIterations</code> </td>
+                                <td><code style="border: none; background: none">$numIterations</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The number of internal iterations to be performed in the process of derivation.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iOutputLength</code> </td>
+                                <td><code style="border: none; background: none">$outputLength</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>unlimited</em>. The length of the resulting string.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bAsBinary</code> </td>
+                                <td><code style="border: none; background: none">$asBinary</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the hash should be returned as a raw
 binary data.</p></td>
@@ -2062,14 +2062,14 @@ binary data.</p></td>
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (enum&nbsp;<span class="argument">$eHashType</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">__construct (enum&nbsp;<span class="argument">$hashType</span>)</pre>
                 <p><em><p>Creates an object for incremental hashing.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$eHashType</code> </td>
+                                <td><code style="border: none; background: none">$hashType</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a></code></td>
                                 <td><p>The hashing algorithm to be used (see <a href="#summary">Summary</a>).</p></td>
                             </tr>
@@ -2101,14 +2101,14 @@ binary data.</p></td>
             <article class="method">
                 <h3 class="public ">computeMore()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">computeMore (data&nbsp;<span class="argument">$byData</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">computeMore (data&nbsp;<span class="argument">$data</span>) : void</pre>
                 <p><em><p>Computes more of the hash from a data.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$byData</code> </td>
+                                <td><code style="border: none; background: none">$data</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">data</code></td>
                                 <td><p>The source data.</p></td>
                             </tr>
@@ -2140,14 +2140,14 @@ binary data.</p></td>
             <article class="method">
                 <h3 class="public ">computeMoreFromFile()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">computeMoreFromFile (string&nbsp;<span class="argument">$sDataFp</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">computeMoreFromFile (string&nbsp;<span class="argument">$dataFp</span>) : void</pre>
                 <p><em><p>Computes more of the hash from a file.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sDataFp</code> </td>
+                                <td><code style="border: none; background: none">$dataFp</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the source file.</p></td>
                             </tr>
@@ -2179,19 +2179,19 @@ binary data.</p></td>
             <article class="method">
                 <h3 class="public ">computeMoreFromStream()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">computeMoreFromStream (resource&nbsp;<span class="argument">$rcStream</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$iMaxNumInputBytes</span></span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">computeMoreFromStream (resource&nbsp;<span class="argument">$stream</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$maxNumInputBytes</span></span>) : int</pre>
                 <p><em><p>Computes more of the hash from a stream.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$rcStream</code> </td>
+                                <td><code style="border: none; background: none">$stream</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">resource</code></td>
                                 <td><p>The handle of an open stream.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iMaxNumInputBytes</code> </td>
+                                <td><code style="border: none; background: none">$maxNumInputBytes</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <em>determine automatically</em>. The maximum number of bytes
 to be processed from the stream.</p></td>
@@ -2229,14 +2229,14 @@ to be processed from the stream.</p></td>
             <article class="method">
                 <h3 class="public ">finalize()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">finalize (<span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bAsBinary</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">finalize (<span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$asBinary</span></span>) : OOPString</pre>
                 <p><em><p>Finalizes the incremental hashing and returns the computed hash.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bAsBinary</code> </td>
+                                <td><code style="border: none; background: none">$asBinary</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether the hash should be returned as a raw
 binary data.</p></td>
@@ -2275,14 +2275,14 @@ binary data.</p></td>
             <article class="method">
                 <h3 class="protected ">hashTypeToString()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> hashTypeToString (&nbsp;<span class="argument">$eHashType</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> hashTypeToString (&nbsp;<span class="argument">$hashType</span>)</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$eHashType</code> </td>
+                                <td><code style="border: none; background: none">$hashType</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
@@ -2322,10 +2322,10 @@ binary data.</p></td>
 
                                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_rcHashingContext" name="property_m_rcHashingContext" class="anchor"></a>
+            <a id="property_m_hashingContext" name="property_m_hashingContext" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_rcHashingContext</h3>
-                <pre class="signature">$m_rcHashingContext</pre>
+                <h3 class="protected ">$m_hashingContext</h3>
+                <pre class="signature">$m_hashingContext</pre>
                 <p><em></em></p>
                 
 
@@ -2398,7 +2398,7 @@ binary data.</p></td>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

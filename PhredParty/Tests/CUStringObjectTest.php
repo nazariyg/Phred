@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -14,8 +14,8 @@ class CUStringObjectTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testMake ()
     {
-        $sString = u("¡Hola señor!");
-        $this->assertTrue($sString->equals("¡Hola señor!"));
+        $string = u("¡Hola señor!");
+        $this->assertTrue($string->equals("¡Hola señor!"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testIsValid ()
@@ -303,12 +303,12 @@ class CUStringObjectTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetCharAt ()
     {
-        // $sString = u("¡Hola señor!");
-        // $sString->setCharAt(0, " ");
-        // $sString->setCharAt(1, "L");
-        // $sString->setCharAt(8, "n");
+        // $string = u("¡Hola señor!");
+        // $string->setCharAt(0, " ");
+        // $string->setCharAt(1, "L");
+        // $string->setCharAt(8, "n");
         // $this->assertTrue(
-        //     $sString->equals(" Lola senor!"));
+        //     $string->equals(" Lola senor!"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testEquals ()
@@ -683,32 +683,32 @@ class CUStringObjectTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSplit ()
     {
-        $aRes = u("¡Ho,la,señ,or!")->split(",");
-        $this->assertTrue( $aRes->length() == 4 &&
-            $aRes[0]->equals("¡Ho") && $aRes[1]->equals("la") &&
-            $aRes[2]->equals("señ") && $aRes[3]->equals("or!") );
+        $res = u("¡Ho,la,señ,or!")->split(",");
+        $this->assertTrue( $res->length() == 4 &&
+            $res[0]->equals("¡Ho") && $res[1]->equals("la") &&
+            $res[2]->equals("señ") && $res[3]->equals("or!") );
 
-        $aRes = u("¡Ho,la·señ.or!")->split(a(",", "·", ".", "!"));
-        $this->assertTrue( $aRes->length() == 5 &&
-            $aRes[0]->equals("¡Ho") && $aRes[1]->equals("la") &&
-            $aRes[2]->equals("señ") && $aRes[3]->equals("or") && $aRes[4]->equals("") );
+        $res = u("¡Ho,la·señ.or!")->split(a(",", "·", ".", "!"));
+        $this->assertTrue( $res->length() == 5 &&
+            $res[0]->equals("¡Ho") && $res[1]->equals("la") &&
+            $res[2]->equals("señ") && $res[3]->equals("or") && $res[4]->equals("") );
 
         // Special cases.
 
-        $aRes = u("Hey")->split("");
-        $this->assertTrue( $aRes->length() == 3 &&
-            $aRes[0]->equals("H") && $aRes[1]->equals("e") && $aRes[2]->equals("y") );
+        $res = u("Hey")->split("");
+        $this->assertTrue( $res->length() == 3 &&
+            $res[0]->equals("H") && $res[1]->equals("e") && $res[2]->equals("y") );
 
-        $aRes = u("")->split("");
-        $this->assertTrue( $aRes->length() == 1 && $aRes[0]->equals("") );
+        $res = u("")->split("");
+        $this->assertTrue( $res->length() == 1 && $res[0]->equals("") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSplitIntoChars ()
     {
-        $aRes = u("Señor")->splitIntoChars();
-        $this->assertTrue( $aRes->length() == 5 &&
-            $aRes[0]->equals("S") && $aRes[1]->equals("e") && $aRes[2]->equals("ñ") &&
-            $aRes[3]->equals("o") && $aRes[4]->equals("r") );
+        $res = u("Señor")->splitIntoChars();
+        $this->assertTrue( $res->length() == 5 &&
+            $res[0]->equals("S") && $res[1]->equals("e") && $res[2]->equals("ñ") &&
+            $res[3]->equals("o") && $res[4]->equals("r") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testTrimStart ()
@@ -751,18 +751,18 @@ class CUStringObjectTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testAdd ()
     {
-        $sString0 = u("Hello");
-        $sString1 = u(" there!");
-        $sResString = $sString0->add($sString1);
-        $this->assertTrue($sResString->equals("Hello there!"));
+        $string0 = u("Hello");
+        $string1 = u(" there!");
+        $resString = $string0->add($string1);
+        $this->assertTrue($resString->equals("Hello there!"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testAddWs ()
     {
-        $sString0 = u("Hello");
-        $sString1 = u("there!");
-        $sResString = $sString0->addWs($sString1);
-        $this->assertTrue($sResString->equals("Hello there!"));
+        $string0 = u("Hello");
+        $string1 = u("there!");
+        $resString = $string0->addWs($string1);
+        $this->assertTrue($resString->equals("Hello there!"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testPadStart ()
@@ -872,10 +872,10 @@ class CUStringObjectTest extends CTestCase
         $this->assertTrue(
             u("¡Hola señor!")->replace("¡Hola", "Hello")->equals("Hello señor!"));
 
-        $iQuantity;
+        $quantity;
         $this->assertTrue(
-            u("¡Hola-Hola señor!")->replace("Hola", "Hello", $iQuantity)->equals("¡Hello-Hello señor!") &&
-            $iQuantity == 2 );
+            u("¡Hola-Hola señor!")->replace("Hola", "Hello", $quantity)->equals("¡Hello-Hello señor!") &&
+            $quantity == 2 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testReplaceCi ()
@@ -883,10 +883,10 @@ class CUStringObjectTest extends CTestCase
         $this->assertTrue(
             u("¡Hola señor!")->replaceCi("¡HOLA", "Hello")->equals("Hello señor!"));
 
-        $iQuantity;
+        $quantity;
         $this->assertTrue(
-            u("¡Hola-Hola señor!")->replaceCi("HOLA", "Hello", $iQuantity)->equals("¡Hello-Hello señor!") &&
-            $iQuantity == 2 );
+            u("¡Hola-Hola señor!")->replaceCi("HOLA", "Hello", $quantity)->equals("¡Hello-Hello señor!") &&
+            $quantity == 2 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testRemove ()
@@ -894,10 +894,10 @@ class CUStringObjectTest extends CTestCase
         $this->assertTrue(
             u("¡Hola señor!")->remove(" señor")->equals("¡Hola!"));
 
-        $iQuantity;
+        $quantity;
         $this->assertTrue(
-            u("¡Hola señor señor!")->remove(" señor", $iQuantity)->equals("¡Hola!") &&
-            $iQuantity == 2 );
+            u("¡Hola señor señor!")->remove(" señor", $quantity)->equals("¡Hola!") &&
+            $quantity == 2 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testRemoveCi ()
@@ -905,17 +905,17 @@ class CUStringObjectTest extends CTestCase
         $this->assertTrue(
             u("¡Hola señor!")->removeCi(" SEÑOR")->equals("¡Hola!"));
 
-        $iQuantity;
+        $quantity;
         $this->assertTrue(
-            u("¡Hola señor señor!")->removeCi(" SEÑOR", $iQuantity)->equals("¡Hola!") &&
-            $iQuantity == 2 );
+            u("¡Hola señor señor!")->removeCi(" SEÑOR", $quantity)->equals("¡Hola!") &&
+            $quantity == 2 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testShuffle ()
     {
-        $sString = u("るabĉdéfghijklmñopqrštuvwxŷzの");
-        $sShuffledString = $sString->shuffle();
-        $this->assertTrue($sShuffledString->isSubsetOf($sString));
+        $string = u("るabĉdéfghijklmñopqrštuvwxŷzの");
+        $shuffledString = $string->shuffle();
+        $this->assertTrue($shuffledString->isSubsetOf($string));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testWordWrap ()
@@ -1040,9 +1040,9 @@ class CUStringObjectTest extends CTestCase
 
         $this->assertTrue( u("¡Hello! There!")->reIndexOf("/[^\\p{L} ]/u", 8) == 14 );
 
-        $sFoundString;
-        $iPos = u("¡Hello SEÑOR there!")->reIndexOf("/\\p{Lu}{2,}/u", 0, $sFoundString);
-        $this->assertTrue( $iPos == 8 && $sFoundString->equals("SEÑOR") );
+        $foundString;
+        $pos = u("¡Hello SEÑOR there!")->reIndexOf("/\\p{Lu}{2,}/u", 0, $foundString);
+        $this->assertTrue( $pos == 8 && $foundString->equals("SEÑOR") );
 
         $this->assertTrue( u("¡Hello there!")->reIndexOf("/\\d/u") == -1 );
     }
@@ -1053,9 +1053,9 @@ class CUStringObjectTest extends CTestCase
 
         $this->assertTrue( u("¿¡Hello! There!?")->reLastIndexOf("/[^\\p{L} ]/u", 0) == 17 );
 
-        $sFoundString;
-        $iPos = u("¿¡Hello YOU there!? ¿¡Hello SEÑOR there!?")->reLastIndexOf("/\\p{Lu}{2,}/u", 0, $sFoundString);
-        $this->assertTrue( $iPos == 32 && $sFoundString->equals("SEÑOR") );
+        $foundString;
+        $pos = u("¿¡Hello YOU there!? ¿¡Hello SEÑOR there!?")->reLastIndexOf("/\\p{Lu}{2,}/u", 0, $foundString);
+        $this->assertTrue( $pos == 32 && $foundString->equals("SEÑOR") );
 
         $this->assertTrue( u("¿¡Hello there!?")->reLastIndexOf("/\\d/u") == -1 );
     }
@@ -1064,231 +1064,231 @@ class CUStringObjectTest extends CTestCase
     {
         $this->assertTrue(u("¡Hello there!")->reFind("/[^\\p{L} ]/u"));
 
-        $sFoundString;
-        $bFound = u("¡Hello There!")->reFind("/[^\\p{L} ]/u", $sFoundString);
-        $this->assertTrue( $bFound && $sFoundString->equals("¡") );
+        $foundString;
+        $found = u("¡Hello There!")->reFind("/[^\\p{L} ]/u", $foundString);
+        $this->assertTrue( $found && $foundString->equals("¡") );
 
-        $sFoundString;
-        $this->assertFalse(u("¡Hello there!")->reFind("/\\d/u", $sFoundString));
+        $foundString;
+        $this->assertFalse(u("¡Hello there!")->reFind("/\\d/u", $foundString));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testReFindFrom ()
     {
         $this->assertTrue(u("¡Hello there!")->reFindFrom("/[^\\p{L} ]/u", 2));
 
-        $sFoundString;
-        $bFound = u("¡Hello? There!")->reFindFrom("/[^\\p{L} ]/u", 8, $sFoundString);
-        $this->assertTrue( $bFound && $sFoundString->equals("!") );
+        $foundString;
+        $found = u("¡Hello? There!")->reFindFrom("/[^\\p{L} ]/u", 8, $foundString);
+        $this->assertTrue( $found && $foundString->equals("!") );
 
         $this->assertFalse(u("¡Hello 2 you there!")->reFindFrom("/\\d/u", 9));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testReFindGroups ()
     {
-        $aFoundGroups;
-        $bFound = u("¡Hello señor!")->reFindGroups("/(\\w+) (\\w+)/u", $aFoundGroups);
+        $foundGroups;
+        $found = u("¡Hello señor!")->reFindGroups("/(\\w+) (\\w+)/u", $foundGroups);
         $this->assertTrue(
-            $bFound && $aFoundGroups->length() == 2 &&
-            $aFoundGroups[0]->equals("Hello") && $aFoundGroups[1]->equals("señor") );
+            $found && $foundGroups->length() == 2 &&
+            $foundGroups[0]->equals("Hello") && $foundGroups[1]->equals("señor") );
 
-        $aFoundGroups;
-        $sFoundString;
-        $bFound = u("¡Hello señor!")->reFindGroups("/(\\w+) (\\S+)/u", $aFoundGroups, $sFoundString);
+        $foundGroups;
+        $foundString;
+        $found = u("¡Hello señor!")->reFindGroups("/(\\w+) (\\S+)/u", $foundGroups, $foundString);
         $this->assertTrue(
-            $bFound && $aFoundGroups->length() == 2 &&
-            $aFoundGroups[0]->equals("Hello") && $aFoundGroups[1]->equals("señor!") &&
-            $sFoundString->equals("Hello señor!") );
+            $found && $foundGroups->length() == 2 &&
+            $foundGroups[0]->equals("Hello") && $foundGroups[1]->equals("señor!") &&
+            $foundString->equals("Hello señor!") );
 
-        $aFoundGroups;
-        $this->assertFalse(u("¡Hello señor!")->reFindGroups("/^(\\w+) (\\w+)/u", $aFoundGroups));
+        $foundGroups;
+        $this->assertFalse(u("¡Hello señor!")->reFindGroups("/^(\\w+) (\\w+)/u", $foundGroups));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testReFindGroupsFrom ()
     {
-        $aFoundGroups;
-        $bFound = u("¡Hello señor you!")->reFindGroupsFrom("/(\\w+) (\\w+)/u", 7, $aFoundGroups);
+        $foundGroups;
+        $found = u("¡Hello señor you!")->reFindGroupsFrom("/(\\w+) (\\w+)/u", 7, $foundGroups);
         $this->assertTrue(
-            $bFound && $aFoundGroups->length() == 2 &&
-            $aFoundGroups[0]->equals("señor") && $aFoundGroups[1]->equals("you") );
+            $found && $foundGroups->length() == 2 &&
+            $foundGroups[0]->equals("señor") && $foundGroups[1]->equals("you") );
 
-        $aFoundGroups;
-        $sFoundString;
-        $bFound = u("¡Hello señor you!")->reFindGroupsFrom("/(\\w+) (\\S+)/u", 7, $aFoundGroups, $sFoundString);
+        $foundGroups;
+        $foundString;
+        $found = u("¡Hello señor you!")->reFindGroupsFrom("/(\\w+) (\\S+)/u", 7, $foundGroups, $foundString);
         $this->assertTrue(
-            $bFound && $aFoundGroups->length() == 2 &&
-            $aFoundGroups[0]->equals("señor") && $aFoundGroups[1]->equals("you!") &&
-            $sFoundString->equals("señor you!") );
+            $found && $foundGroups->length() == 2 &&
+            $foundGroups[0]->equals("señor") && $foundGroups[1]->equals("you!") &&
+            $foundString->equals("señor you!") );
 
-        $aFoundGroups;
-        $this->assertFalse(u("¡Hello señor!")->reFindGroupsFrom("/(\\w+) (\\w+)/u", 7, $aFoundGroups));
+        $foundGroups;
+        $this->assertFalse(u("¡Hello señor!")->reFindGroupsFrom("/(\\w+) (\\w+)/u", 7, $foundGroups));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testReFindAll ()
     {
-        $iNumFound = u("¡Hello señor!")->reFindAll("/\\w+/u");
-        $this->assertTrue( $iNumFound == 2 );
+        $numFound = u("¡Hello señor!")->reFindAll("/\\w+/u");
+        $this->assertTrue( $numFound == 2 );
 
-        $aFoundStrings;
-        $iNumFound = u("¡Hello señor!")->reFindAll("/\\w+/u", $aFoundStrings);
+        $foundStrings;
+        $numFound = u("¡Hello señor!")->reFindAll("/\\w+/u", $foundStrings);
         $this->assertTrue(
-            $iNumFound == 2 && $aFoundStrings->length() == 2 &&
-            $aFoundStrings[0]->equals("Hello") && $aFoundStrings[1]->equals("señor") );
+            $numFound == 2 && $foundStrings->length() == 2 &&
+            $foundStrings[0]->equals("Hello") && $foundStrings[1]->equals("señor") );
 
-        $aFoundStrings;
-        $iNumFound = u("¡Hello señor!")->reFindAll("/a\\w+/u", $aFoundStrings);
-        $this->assertTrue( $iNumFound == 0 );
+        $foundStrings;
+        $numFound = u("¡Hello señor!")->reFindAll("/a\\w+/u", $foundStrings);
+        $this->assertTrue( $numFound == 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testReFindAllFrom ()
     {
-        $aFoundStrings;
-        $iNumFound = u("¡Hello señor!")->reFindAllFrom("/\\S+/u", 7, $aFoundStrings);
+        $foundStrings;
+        $numFound = u("¡Hello señor!")->reFindAllFrom("/\\S+/u", 7, $foundStrings);
         $this->assertTrue(
-            $iNumFound == 1 && $aFoundStrings->length() == 1 &&
-            $aFoundStrings[0]->equals("señor!") );
+            $numFound == 1 && $foundStrings->length() == 1 &&
+            $foundStrings[0]->equals("señor!") );
 
-        $aFoundStrings;
-        $iNumFound = u("¡Hello señor!")->reFindAllFrom("/H\\w+/u", 7, $aFoundStrings);
-        $this->assertTrue( $iNumFound == 0 );
+        $foundStrings;
+        $numFound = u("¡Hello señor!")->reFindAllFrom("/H\\w+/u", 7, $foundStrings);
+        $this->assertTrue( $numFound == 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testReFindAllGroups ()
     {
-        $aFoundGroupArrays;
-        $iNumFound = u("¡Hello señor!")->reFindAllGroups("/(\\w\\w)(\\w\\w)/u", $aFoundGroupArrays);
+        $foundGroupArrays;
+        $numFound = u("¡Hello señor!")->reFindAllGroups("/(\\w\\w)(\\w\\w)/u", $foundGroupArrays);
         $this->assertTrue(
-            $iNumFound == 2 && $aFoundGroupArrays->length() == 2 &&
-            $aFoundGroupArrays[0][0]->equals("He") && $aFoundGroupArrays[0][1]->equals("ll") &&
-            $aFoundGroupArrays[1][0]->equals("se") && $aFoundGroupArrays[1][1]->equals("ño") );
+            $numFound == 2 && $foundGroupArrays->length() == 2 &&
+            $foundGroupArrays[0][0]->equals("He") && $foundGroupArrays[0][1]->equals("ll") &&
+            $foundGroupArrays[1][0]->equals("se") && $foundGroupArrays[1][1]->equals("ño") );
 
-        $aFoundGroupArrays;
-        $aFoundStrings;
-        $iNumFound = u("¡Hello señor!")->reFindAllGroups("/(\\w\\w)(\\w\\w)/u", $aFoundGroupArrays, $aFoundStrings);
+        $foundGroupArrays;
+        $foundStrings;
+        $numFound = u("¡Hello señor!")->reFindAllGroups("/(\\w\\w)(\\w\\w)/u", $foundGroupArrays, $foundStrings);
         $this->assertTrue(
-            $iNumFound == 2 && $aFoundGroupArrays->length() == 2 &&
-            $aFoundGroupArrays[0][0]->equals("He") && $aFoundGroupArrays[0][1]->equals("ll") &&
-            $aFoundGroupArrays[1][0]->equals("se") && $aFoundGroupArrays[1][1]->equals("ño") &&
-            $aFoundStrings->length() == 2 &&
-            $aFoundStrings[0]->equals("Hell") && $aFoundStrings[1]->equals("seño") );
+            $numFound == 2 && $foundGroupArrays->length() == 2 &&
+            $foundGroupArrays[0][0]->equals("He") && $foundGroupArrays[0][1]->equals("ll") &&
+            $foundGroupArrays[1][0]->equals("se") && $foundGroupArrays[1][1]->equals("ño") &&
+            $foundStrings->length() == 2 &&
+            $foundStrings[0]->equals("Hell") && $foundStrings[1]->equals("seño") );
 
-        $aFoundGroupArrays;
-        $iNumFound = u("¡Hello señor!")->reFindAllGroups("/(\\w\\w\\w)(\\w\\w\\w)/u", $aFoundGroupArrays);
-        $this->assertTrue( $iNumFound == 0 );
+        $foundGroupArrays;
+        $numFound = u("¡Hello señor!")->reFindAllGroups("/(\\w\\w\\w)(\\w\\w\\w)/u", $foundGroupArrays);
+        $this->assertTrue( $numFound == 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testReFindAllGroupsFrom ()
     {
-        $aFoundGroupArrays;
-        $iNumFound = u("¡Hello señor!")->reFindAllGroupsFrom("/(\\w\\w)(\\w\\w)/u", 3, $aFoundGroupArrays);
+        $foundGroupArrays;
+        $numFound = u("¡Hello señor!")->reFindAllGroupsFrom("/(\\w\\w)(\\w\\w)/u", 3, $foundGroupArrays);
         $this->assertTrue(
-            $iNumFound == 2 && $aFoundGroupArrays->length() == 2 &&
-            $aFoundGroupArrays[0][0]->equals("el") && $aFoundGroupArrays[0][1]->equals("lo") &&
-            $aFoundGroupArrays[1][0]->equals("se") && $aFoundGroupArrays[1][1]->equals("ño") );
+            $numFound == 2 && $foundGroupArrays->length() == 2 &&
+            $foundGroupArrays[0][0]->equals("el") && $foundGroupArrays[0][1]->equals("lo") &&
+            $foundGroupArrays[1][0]->equals("se") && $foundGroupArrays[1][1]->equals("ño") );
 
-        $aFoundGroupArrays;
-        $aFoundStrings;
-        $iNumFound = u("¡Hello señor!")->reFindAllGroupsFrom("/(\\w\\w)(\\w\\w)/u", 3, $aFoundGroupArrays,
-            $aFoundStrings);
+        $foundGroupArrays;
+        $foundStrings;
+        $numFound = u("¡Hello señor!")->reFindAllGroupsFrom("/(\\w\\w)(\\w\\w)/u", 3, $foundGroupArrays,
+            $foundStrings);
         $this->assertTrue(
-            $iNumFound == 2 && $aFoundGroupArrays->length() == 2 &&
-            $aFoundGroupArrays[0][0]->equals("el") && $aFoundGroupArrays[0][1]->equals("lo") &&
-            $aFoundGroupArrays[1][0]->equals("se") && $aFoundGroupArrays[1][1]->equals("ño") &&
-            $aFoundStrings->length() == 2 &&
-            $aFoundStrings[0]->equals("ello") && $aFoundStrings[1]->equals("seño") );
+            $numFound == 2 && $foundGroupArrays->length() == 2 &&
+            $foundGroupArrays[0][0]->equals("el") && $foundGroupArrays[0][1]->equals("lo") &&
+            $foundGroupArrays[1][0]->equals("se") && $foundGroupArrays[1][1]->equals("ño") &&
+            $foundStrings->length() == 2 &&
+            $foundStrings[0]->equals("ello") && $foundStrings[1]->equals("seño") );
 
-        $aFoundGroupArrays;
-        $iNumFound = u("¡Hello señor!")->reFindAllGroupsFrom("/(\\w\\w\\w)(\\w\\w\\w)/u", 3, $aFoundGroupArrays);
-        $this->assertTrue( $iNumFound == 0 );
+        $foundGroupArrays;
+        $numFound = u("¡Hello señor!")->reFindAllGroupsFrom("/(\\w\\w\\w)(\\w\\w\\w)/u", 3, $foundGroupArrays);
+        $this->assertTrue( $numFound == 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testReReplace ()
     {
-        $sRes = u("¡Hello señor!")->reReplace("/[eoñ]/u", "a");
-        $this->assertTrue($sRes->equals("¡Halla saaar!"));
+        $res = u("¡Hello señor!")->reReplace("/[eoñ]/u", "a");
+        $this->assertTrue($res->equals("¡Halla saaar!"));
 
-        $iQuantity;
-        $sRes = u("¡Hello señor!")->reReplace("/[eoñ]/u", "a", $iQuantity);
-        $this->assertTrue( $sRes->equals("¡Halla saaar!") && $iQuantity == 5 );
+        $quantity;
+        $res = u("¡Hello señor!")->reReplace("/[eoñ]/u", "a", $quantity);
+        $this->assertTrue( $res->equals("¡Halla saaar!") && $quantity == 5 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testReReplaceWithCallback ()
     {
-        $sRes = u("¡Hello señor!")->reReplaceWithCallback("/[eoñ]/u", function ($mMatches)
+        $res = u("¡Hello señor!")->reReplaceWithCallback("/[eoñ]/u", function ($matches)
             {
-                return ( $mMatches[0]->equals("ñ") ) ? "n" : $mMatches[0];
+                return ( $matches[0]->equals("ñ") ) ? "n" : $matches[0];
             });
-        $this->assertTrue($sRes->equals("¡Hello senor!"));
+        $this->assertTrue($res->equals("¡Hello senor!"));
 
-        $iQuantity;
-        $sRes = u("¡Hello señor!")->reReplaceWithCallback("/[eoñ]/u", function ($mMatches)
+        $quantity;
+        $res = u("¡Hello señor!")->reReplaceWithCallback("/[eoñ]/u", function ($matches)
             {
-                return ( $mMatches[0]->equals("ñ") ) ? "n" : $mMatches[0];
-            }, $iQuantity);
-        $this->assertTrue( $sRes->equals("¡Hello senor!") && $iQuantity == 5 );
+                return ( $matches[0]->equals("ñ") ) ? "n" : $matches[0];
+            }, $quantity);
+        $this->assertTrue( $res->equals("¡Hello senor!") && $quantity == 5 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testReRemove ()
     {
-        $sRes = u("¡Hello señor!")->reRemove("/[eoñ]/u");
-        $this->assertTrue($sRes->equals("¡Hll sr!"));
+        $res = u("¡Hello señor!")->reRemove("/[eoñ]/u");
+        $this->assertTrue($res->equals("¡Hll sr!"));
 
-        $iQuantity;
-        $sRes = u("¡Hello señor!")->reRemove("/[eoñ]/u", $iQuantity);
-        $this->assertTrue( $sRes->equals("¡Hll sr!") && $iQuantity == 5 );
+        $quantity;
+        $res = u("¡Hello señor!")->reRemove("/[eoñ]/u", $quantity);
+        $this->assertTrue( $res->equals("¡Hll sr!") && $quantity == 5 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testReSplit ()
     {
-        $aRes = u("¡He,llo·se,ñor!")->reSplit("/[,·]/u");
-        $this->assertTrue( $aRes->length() == 4 &&
-            $aRes[0]->equals("¡He") && $aRes[1]->equals("llo") &&
-            $aRes[2]->equals("se") && $aRes[3]->equals("ñor!") );
+        $res = u("¡He,llo·se,ñor!")->reSplit("/[,·]/u");
+        $this->assertTrue( $res->length() == 4 &&
+            $res[0]->equals("¡He") && $res[1]->equals("llo") &&
+            $res[2]->equals("se") && $res[3]->equals("ñor!") );
 
-        $aRes = u("¡He,llo·se.ñor!")->reSplit(a("/[,·]/u", "/\\./u"));
-        $this->assertTrue( $aRes->length() == 4 &&
-            $aRes[0]->equals("¡He") && $aRes[1]->equals("llo") &&
-            $aRes[2]->equals("se") && $aRes[3]->equals("ñor!") );
+        $res = u("¡He,llo·se.ñor!")->reSplit(a("/[,·]/u", "/\\./u"));
+        $this->assertTrue( $res->length() == 4 &&
+            $res[0]->equals("¡He") && $res[1]->equals("llo") &&
+            $res[2]->equals("se") && $res[3]->equals("ñor!") );
 
         // Special cases.
 
-        $aRes = u("")->reSplit("/[,·]/u");
-        $this->assertTrue( $aRes->length() == 1 && $aRes[0]->equals("") );
+        $res = u("")->reSplit("/[,·]/u");
+        $this->assertTrue( $res->length() == 1 && $res[0]->equals("") );
 
-        $aRes = u("Héy")->reSplit("//u");
-        $this->assertTrue( $aRes->length() == 3 &&
-            $aRes[0]->equals("H") && $aRes[1]->equals("é") && $aRes[2]->equals("y") );
+        $res = u("Héy")->reSplit("//u");
+        $this->assertTrue( $res->length() == 3 &&
+            $res[0]->equals("H") && $res[1]->equals("é") && $res[2]->equals("y") );
 
-        $aRes = u("")->reSplit("//u");
-        $this->assertTrue( $aRes->length() == 1 && $aRes[0]->equals("") );
+        $res = u("")->reSplit("//u");
+        $this->assertTrue( $res->length() == 1 && $res[0]->equals("") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testReEnterTd ()
     {
-        $sRes = u(".(señor]/u")->reEnterTd("/u");
-        $this->assertTrue($sRes->equals("\\.\\(señor\\]\\/u"));
+        $res = u(".(señor]/u")->reEnterTd("/u");
+        $this->assertTrue($res->equals("\\.\\(señor\\]\\/u"));
 
-        $sRes = u(".(señor]#")->reEnterTd("#");
-        $this->assertTrue($sRes->equals("\\.\\(señor\\]\\#"));
+        $res = u(".(señor]#")->reEnterTd("#");
+        $this->assertTrue($res->equals("\\.\\(señor\\]\\#"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // public function testOffsetExists ()
     // {
-    //     $sString = u("abc");
-    //     $this->assertTrue(isset($sString[0]));
-    //     $this->assertFalse(isset($sString[3]));
+    //     $string = u("abc");
+    //     $this->assertTrue(isset($string[0]));
+    //     $this->assertFalse(isset($string[3]));
     // }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // public function testOffsetGet ()
     // {
-    //     $sString = u("abc");
-    //     $this->assertTrue( $sString[0]->equals("a") && $sString[1]->equals("b") && $sString[2]->equals("c") );
+    //     $string = u("abc");
+    //     $this->assertTrue( $string[0]->equals("a") && $string[1]->equals("b") && $string[2]->equals("c") );
     // }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // public function testOffsetSet ()
     // {
-    //     $sString = u("ñññ");
-    //     $sString[1] = "a";
-    //     $this->assertTrue($sString->equals("ñañ"));
+    //     $string = u("ñññ");
+    //     $string[1] = "a";
+    //     $this->assertTrue($string->equals("ñañ"));
     // }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }

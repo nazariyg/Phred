@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -13,16 +13,16 @@
  */
 
 // Method signatures:
-//   static CUStringObject number ($nNumber, CULocale $oInLocale = null)
-//   static CUStringObject numberWithoutGrouping ($nNumber, CULocale $oInLocale = null)
-//   static CUStringObject numberScientific ($nNumber, CULocale $oInLocale = null)
-//   static CUStringObject numberOrdinal ($iOrdinal, CULocale $oInLocale = null)
-//   static CUStringObject numberSpellOut ($nNumber, CULocale $oInLocale = null)
-//   static CUStringObject percent ($nNumber, CULocale $oInLocale = null)
-//   static CUStringObject currency ($nNumber, CULocale $oInLocale = null, $sInCurrency = null)
-//   static CUStringObject timeWithStyles (CTime $oTime, CTimeZone $oTimeZone, $eDateStyle, $eTimeStyle,
-//     CULocale $oInLocale = null)
-//   static CUStringObject timeWithPattern (CTime $oTime, CTimeZone $oTimeZone, $sPattern, CULocale $oInLocale = null)
+//   static CUStringObject number ($number, CULocale $inLocale = null)
+//   static CUStringObject numberWithoutGrouping ($number, CULocale $inLocale = null)
+//   static CUStringObject numberScientific ($number, CULocale $inLocale = null)
+//   static CUStringObject numberOrdinal ($ordinal, CULocale $inLocale = null)
+//   static CUStringObject numberSpellOut ($number, CULocale $inLocale = null)
+//   static CUStringObject percent ($number, CULocale $inLocale = null)
+//   static CUStringObject currency ($number, CULocale $inLocale = null, $inCurrency = null)
+//   static CUStringObject timeWithStyles (CTime $time, CTimeZone $timeZone, $dateStyle, $timeStyle,
+//     CULocale $inLocale = null)
+//   static CUStringObject timeWithPattern (CTime $time, CTimeZone $timeZone, $pattern, CULocale $inLocale = null)
 
 // Date and Time Format Patterns.
 //
@@ -367,24 +367,24 @@ class CUFormat extends CRootClass
      * Formats a number according to the formatting rules used in the default or some other locale, putting grouping
      * separators where applicable, and returns the formatted string.
      *
-     * @param  number $nNumber The number to be formatted.
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  number $number The number to be formatted.
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * number is to be formatted.
      *
      * @return CUStringObject A string with the formatted number.
      */
 
-    public static function number ($nNumber, CULocale $oInLocale = null)
+    public static function number ($number, CULocale $inLocale = null)
     {
-        assert( 'is_number($nNumber)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($number)', vs(isset($this), get_defined_vars()) );
 
-        $sLocale = ( isset($oInLocale) ) ? $oInLocale->name() : CULocale::defaultLocaleName();
-        $oNumberFormatter = new NumberFormatter($sLocale, NumberFormatter::DECIMAL);
-        self::doFracLength($oNumberFormatter);
-        $sNumber = $oNumberFormatter->format($nNumber);
-        if ( is_cstring($sNumber) )
+        $locale = ( isset($inLocale) ) ? $inLocale->name() : CULocale::defaultLocaleName();
+        $numberFormatter = new NumberFormatter($locale, NumberFormatter::DECIMAL);
+        self::doFracLength($numberFormatter);
+        $strNumber = $numberFormatter->format($number);
+        if ( is_cstring($strNumber) )
         {
-            return $sNumber;
+            return $strNumber;
         }
         else
         {
@@ -397,25 +397,25 @@ class CUFormat extends CRootClass
      * Formats a number according to the formatting rules used in the default or some other locale, without any
      * grouping separators put, and returns the formatted string.
      *
-     * @param  number $nNumber The number to be formatted.
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  number $number The number to be formatted.
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * number is to be formatted.
      *
      * @return CUStringObject A string with the formatted number.
      */
 
-    public static function numberWithoutGrouping ($nNumber, CULocale $oInLocale = null)
+    public static function numberWithoutGrouping ($number, CULocale $inLocale = null)
     {
-        assert( 'is_number($nNumber)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($number)', vs(isset($this), get_defined_vars()) );
 
-        $sLocale = ( isset($oInLocale) ) ? $oInLocale->name() : CULocale::defaultLocaleName();
-        $oNumberFormatter = new NumberFormatter($sLocale, NumberFormatter::DECIMAL);
-        self::doFracLength($oNumberFormatter);
-        $oNumberFormatter->setAttribute(NumberFormatter::GROUPING_USED, 0);
-        $sNumber = $oNumberFormatter->format($nNumber);
-        if ( is_cstring($sNumber) )
+        $locale = ( isset($inLocale) ) ? $inLocale->name() : CULocale::defaultLocaleName();
+        $numberFormatter = new NumberFormatter($locale, NumberFormatter::DECIMAL);
+        self::doFracLength($numberFormatter);
+        $numberFormatter->setAttribute(NumberFormatter::GROUPING_USED, 0);
+        $strNumber = $numberFormatter->format($number);
+        if ( is_cstring($strNumber) )
         {
-            return $sNumber;
+            return $strNumber;
         }
         else
         {
@@ -428,24 +428,24 @@ class CUFormat extends CRootClass
      * Formats a number in a scientific fashion and according to the formatting rules used in the default or some other
      * locale and returns the formatted string.
      *
-     * @param  number $nNumber The number to be formatted.
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  number $number The number to be formatted.
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * number is to be formatted.
      *
      * @return CUStringObject A string with the formatted number.
      */
 
-    public static function numberScientific ($nNumber, CULocale $oInLocale = null)
+    public static function numberScientific ($number, CULocale $inLocale = null)
     {
-        assert( 'is_number($nNumber)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($number)', vs(isset($this), get_defined_vars()) );
 
-        $sLocale = ( isset($oInLocale) ) ? $oInLocale->name() : CULocale::defaultLocaleName();
-        $oNumberFormatter = new NumberFormatter($sLocale, NumberFormatter::SCIENTIFIC);
-        self::doFracLength($oNumberFormatter);
-        $sNumber = $oNumberFormatter->format($nNumber);
-        if ( is_cstring($sNumber) )
+        $locale = ( isset($inLocale) ) ? $inLocale->name() : CULocale::defaultLocaleName();
+        $numberFormatter = new NumberFormatter($locale, NumberFormatter::SCIENTIFIC);
+        self::doFracLength($numberFormatter);
+        $strNumber = $numberFormatter->format($number);
+        if ( is_cstring($strNumber) )
         {
-            return $sNumber;
+            return $strNumber;
         }
         else
         {
@@ -458,24 +458,24 @@ class CUFormat extends CRootClass
      * Formats an integer as an ordinal number and according to the language of the default or some other locale and
      * returns the formatted string.
      *
-     * @param  int $iOrdinal The number to be formatted.
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  int $ordinal The number to be formatted.
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * number is to be formatted.
      *
      * @return CUStringObject A string with the formatted number.
      */
 
-    public static function numberOrdinal ($iOrdinal, CULocale $oInLocale = null)
+    public static function numberOrdinal ($ordinal, CULocale $inLocale = null)
     {
-        assert( 'is_int($iOrdinal)', vs(isset($this), get_defined_vars()) );
-        assert( '$iOrdinal >= 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($ordinal)', vs(isset($this), get_defined_vars()) );
+        assert( '$ordinal >= 0', vs(isset($this), get_defined_vars()) );
 
-        $sLocale = ( isset($oInLocale) ) ? $oInLocale->name() : CULocale::defaultLocaleName();
-        $oNumberFormatter = new NumberFormatter($sLocale, NumberFormatter::ORDINAL);
-        $sOrdinal = $oNumberFormatter->format($iOrdinal);
-        if ( is_cstring($sOrdinal) )
+        $locale = ( isset($inLocale) ) ? $inLocale->name() : CULocale::defaultLocaleName();
+        $numberFormatter = new NumberFormatter($locale, NumberFormatter::ORDINAL);
+        $strOrdinal = $numberFormatter->format($ordinal);
+        if ( is_cstring($strOrdinal) )
         {
-            return $sOrdinal;
+            return $strOrdinal;
         }
         else
         {
@@ -487,23 +487,23 @@ class CUFormat extends CRootClass
     /**
      * Spells out a number according to the language of the default or some other locale and returns the string.
      *
-     * @param  number $nNumber The number to be spelled out.
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  number $number The number to be spelled out.
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * number is to be spelled out.
      *
      * @return CUStringObject A string with the spelled out number.
      */
 
-    public static function numberSpellOut ($nNumber, CULocale $oInLocale = null)
+    public static function numberSpellOut ($number, CULocale $inLocale = null)
     {
-        assert( 'is_number($nNumber)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($number)', vs(isset($this), get_defined_vars()) );
 
-        $sLocale = ( isset($oInLocale) ) ? $oInLocale->name() : CULocale::defaultLocaleName();
-        $oNumberFormatter = new NumberFormatter($sLocale, NumberFormatter::SPELLOUT);
-        $sNumber = $oNumberFormatter->format($nNumber);
-        if ( is_cstring($sNumber) )
+        $locale = ( isset($inLocale) ) ? $inLocale->name() : CULocale::defaultLocaleName();
+        $numberFormatter = new NumberFormatter($locale, NumberFormatter::SPELLOUT);
+        $strNumber = $numberFormatter->format($number);
+        if ( is_cstring($strNumber) )
         {
-            return $sNumber;
+            return $strNumber;
         }
         else
         {
@@ -518,24 +518,24 @@ class CUFormat extends CRootClass
      *
      * The value of `0.0` of the input number corresponds to 0% and the value of `1.0` corresponds to 100%.
      *
-     * @param  number $nNumber The number to be formatted. Can be from `0.0` to `1.0`.
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  number $number The number to be formatted. Can be from `0.0` to `1.0`.
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * number is to be formatted.
      *
      * @return CUStringObject A string with the formatted number.
      */
 
-    public static function percent ($nNumber, CULocale $oInLocale = null)
+    public static function percent ($number, CULocale $inLocale = null)
     {
-        assert( 'is_number($nNumber)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($number)', vs(isset($this), get_defined_vars()) );
 
-        $sLocale = ( isset($oInLocale) ) ? $oInLocale->name() : CULocale::defaultLocaleName();
-        $oNumberFormatter = new NumberFormatter($sLocale, NumberFormatter::PERCENT);
-        self::doFracLength($oNumberFormatter);
-        $sNumber = $oNumberFormatter->format($nNumber);
-        if ( is_cstring($sNumber) )
+        $locale = ( isset($inLocale) ) ? $inLocale->name() : CULocale::defaultLocaleName();
+        $numberFormatter = new NumberFormatter($locale, NumberFormatter::PERCENT);
+        self::doFracLength($numberFormatter);
+        $strNumber = $numberFormatter->format($number);
+        if ( is_cstring($strNumber) )
         {
-            return $sNumber;
+            return $strNumber;
         }
         else
         {
@@ -548,34 +548,34 @@ class CUFormat extends CRootClass
      * In the default or some other locale, formats a number as an amount of money in the currency that is used by the
      * locale's main country and returns the formatted string.
      *
-     * @param  number $nNumber The number to be formatted.
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  number $number The number to be formatted.
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * number is to be formatted.
-     * @param  string $sInCurrency **OPTIONAL. Default is** *the locale's default currency*. The three-letter currency
+     * @param  string $inCurrency **OPTIONAL. Default is** *the locale's default currency*. The three-letter currency
      * code.
      *
      * @return CUStringObject A string with the formatted number.
      */
 
-    public static function currency ($nNumber, CULocale $oInLocale = null, $sInCurrency = null)
+    public static function currency ($number, CULocale $inLocale = null, $inCurrency = null)
     {
-        assert( 'is_number($nNumber) && (!isset($sInCurrency) || is_cstring($sInCurrency))',
+        assert( 'is_number($number) && (!isset($inCurrency) || is_cstring($inCurrency))',
             vs(isset($this), get_defined_vars()) );
 
-        $sLocale = ( isset($oInLocale) ) ? $oInLocale->name() : CULocale::defaultLocaleName();
-        $oNumberFormatter = new NumberFormatter($sLocale, NumberFormatter::CURRENCY);
-        self::doFracLength($oNumberFormatter, true);
-        if ( !isset($sInCurrency) )
+        $locale = ( isset($inLocale) ) ? $inLocale->name() : CULocale::defaultLocaleName();
+        $numberFormatter = new NumberFormatter($locale, NumberFormatter::CURRENCY);
+        self::doFracLength($numberFormatter, true);
+        if ( !isset($inCurrency) )
         {
-            $sNumber = $oNumberFormatter->format($nNumber);
+            $strNumber = $numberFormatter->format($number);
         }
         else
         {
-            $sNumber = $oNumberFormatter->formatCurrency($nNumber, $sInCurrency);
+            $strNumber = $numberFormatter->formatCurrency($number, $inCurrency);
         }
-        if ( is_cstring($sNumber) )
+        if ( is_cstring($strNumber) )
         {
-            return $sNumber;
+            return $strNumber;
         }
         else
         {
@@ -589,54 +589,54 @@ class CUFormat extends CRootClass
      * default or some other locale, displaying the date and time parts to the extent of specified predefined styles,
      * and returns the formatted string.
      *
-     * @param  CTime $oTime The point in time to be formatted.
-     * @param  CTimeZone $oTimeZone The time zone in which the components in the resulting string are to appear.
-     * @param  enum $eDateStyle The display style of the date part in the formatted string. Can be `STYLE_SHORT`,
+     * @param  CTime $time The point in time to be formatted.
+     * @param  CTimeZone $timeZone The time zone in which the components in the resulting string are to appear.
+     * @param  enum $dateStyle The display style of the date part in the formatted string. Can be `STYLE_SHORT`,
      * `STYLE_MEDIUM`, `STYLE_LONG`, or `STYLE_FULL`.
-     * @param  enum $eTimeStyle The display style of the time part in the formatted string. Can be `STYLE_SHORT`,
+     * @param  enum $timeStyle The display style of the time part in the formatted string. Can be `STYLE_SHORT`,
      * `STYLE_MEDIUM`, `STYLE_LONG`, or `STYLE_FULL`.
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * point in time is to be formatted.
      *
      * @return CUStringObject A string with the formatted point in time.
      */
 
-    public static function timeWithStyles (CTime $oTime, CTimeZone $oTimeZone, $eDateStyle, $eTimeStyle,
-        CULocale $oInLocale = null)
+    public static function timeWithStyles (CTime $time, CTimeZone $timeZone, $dateStyle, $timeStyle,
+        CULocale $inLocale = null)
     {
-        assert( 'is_enum($eDateStyle) && is_enum($eTimeStyle)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_enum($dateStyle) && is_enum($timeStyle)', vs(isset($this), get_defined_vars()) );
 
-        $aStyles = CArray::fromElements($eDateStyle, $eTimeStyle);
+        $styles = CArray::fromElements($dateStyle, $timeStyle);
         for ($i = 0; $i < 2; $i++)
         {
-            switch ( $aStyles[$i] )
+            switch ( $styles[$i] )
             {
             case self::STYLE_SHORT:
-                $aStyles[$i] = IntlDateFormatter::SHORT;
+                $styles[$i] = IntlDateFormatter::SHORT;
                 break;
             case self::STYLE_MEDIUM:
-                $aStyles[$i] = IntlDateFormatter::MEDIUM;
+                $styles[$i] = IntlDateFormatter::MEDIUM;
                 break;
             case self::STYLE_LONG:
-                $aStyles[$i] = IntlDateFormatter::LONG;
+                $styles[$i] = IntlDateFormatter::LONG;
                 break;
             case self::STYLE_FULL:
-                $aStyles[$i] = IntlDateFormatter::FULL;
+                $styles[$i] = IntlDateFormatter::FULL;
                 break;
             default:
                 assert( 'false', vs(isset($this), get_defined_vars()) );
                 break;
             }
         }
-        $iIdfDateStyle = $aStyles[0];
-        $iIdfTimeStyle = $aStyles[1];
+        $idfDateStyle = $styles[0];
+        $idfTimeStyle = $styles[1];
 
-        $sLocale = ( isset($oInLocale) ) ? $oInLocale->name() : CULocale::defaultLocaleName();
-        $oIntlDateFormatter = new IntlDateFormatter($sLocale, $iIdfDateStyle, $iIdfTimeStyle, $oTimeZone->ITimeZone());
-        $sTime = $oIntlDateFormatter->format($oTime->UTime());
-        if ( is_cstring($sTime) )
+        $locale = ( isset($inLocale) ) ? $inLocale->name() : CULocale::defaultLocaleName();
+        $intlDateFormatter = new IntlDateFormatter($locale, $idfDateStyle, $idfTimeStyle, $timeZone->ITimeZone());
+        $strTime = $intlDateFormatter->format($time->UTime());
+        if ( is_cstring($strTime) )
         {
-            return $sTime;
+            return $strTime;
         }
         else
         {
@@ -653,27 +653,27 @@ class CUFormat extends CRootClass
      * [Date Format Patterns](http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns) of the Unicode
      * Technical Standard #35.
      *
-     * @param  CTime $oTime The point in time to be formatted.
-     * @param  CTimeZone $oTimeZone The time zone in which the components in the resulting string are to appear.
-     * @param  string $sPattern The formatting pattern.
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  CTime $time The point in time to be formatted.
+     * @param  CTimeZone $timeZone The time zone in which the components in the resulting string are to appear.
+     * @param  string $pattern The formatting pattern.
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * point in time is to be formatted.
      *
      * @return CUStringObject A string with the formatted point in time.
      */
 
-    public static function timeWithPattern (CTime $oTime, CTimeZone $oTimeZone, $sPattern,
-        CULocale $oInLocale = null)
+    public static function timeWithPattern (CTime $time, CTimeZone $timeZone, $pattern,
+        CULocale $inLocale = null)
     {
-        assert( 'is_cstring($sPattern)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($pattern)', vs(isset($this), get_defined_vars()) );
 
-        $sLocale = ( isset($oInLocale) ) ? $oInLocale->name() : CULocale::defaultLocaleName();
-        $oIntlDateFormatter = new IntlDateFormatter($sLocale, IntlDateFormatter::FULL, IntlDateFormatter::FULL,
-            $oTimeZone->ITimeZone(), null, $sPattern);
-        $sTime = $oIntlDateFormatter->format($oTime->UTime());
-        if ( is_cstring($sTime) )
+        $locale = ( isset($inLocale) ) ? $inLocale->name() : CULocale::defaultLocaleName();
+        $intlDateFormatter = new IntlDateFormatter($locale, IntlDateFormatter::FULL, IntlDateFormatter::FULL,
+            $timeZone->ITimeZone(), null, $pattern);
+        $strTime = $intlDateFormatter->format($time->UTime());
+        if ( is_cstring($strTime) )
         {
-            return $sTime;
+            return $strTime;
         }
         else
         {
@@ -682,15 +682,15 @@ class CUFormat extends CRootClass
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function doFracLength (NumberFormatter $oNumberFormatter, $bForCurrency = false)
+    protected static function doFracLength (NumberFormatter $numberFormatter, $forCurrency = false)
     {
-        if ( !$bForCurrency )
+        if ( !$forCurrency )
         {
-            $oNumberFormatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, 0);
+            $numberFormatter->setAttribute(NumberFormatter::MIN_FRACTION_DIGITS, 0);
         }
-        $oNumberFormatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, self::$ms_iMaxNumFractionDigits);
+        $numberFormatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, self::$ms_maxNumFractionDigits);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    protected static $ms_iMaxNumFractionDigits = 64;
+    protected static $ms_maxNumFractionDigits = 64;
 }

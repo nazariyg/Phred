@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-919833142"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-536827957"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-919833142" class="accordion-body collapse in">
+            <div id="namespace-536827957" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -292,8 +292,8 @@ pipelines.</p>
                                 <em>N/A</em>
                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/CShell.html#property_ms_sLogFp" class="">$ms_sLogFp</a><br />
-                                                                    <a href="../classes/CShell.html#property_ms_oMail" class="">$ms_oMail</a><br />
+                                                                    <a href="../classes/CShell.html#property_ms_logFp" class="">$ms_logFp</a><br />
+                                                                    <a href="../classes/CShell.html#property_ms_mail" class="">$ms_mail</a><br />
                                                             </section>
                         </section>
                         <section class="row-fluid private">
@@ -512,7 +512,7 @@ message if the pipeline fails.</p></td>
             <article class="method">
                 <h3 class="public ">setLogging()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setLogging (string&nbsp;<span class="argument">$sLogFp</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setLogging (string&nbsp;<span class="argument">$logFp</span>) : void</pre>
                 <p><em><p>Enables the logging of messages issued with <code>say</code> and <code>speak</code> methods and error messages into a file located at
 a specified path.</p></em></p>
                 
@@ -520,7 +520,7 @@ a specified path.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sLogFp</code> </td>
+                                <td><code style="border: none; background: none">$logFp</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The path to the log file.</p></td>
                             </tr>
@@ -553,14 +553,14 @@ a specified path.</p></em></p>
             <article class="method">
                 <h3 class="public ">setMailing()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setMailing (CMail&nbsp;<span class="argument">$oMail</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setMailing (CMail&nbsp;<span class="argument">$mail</span>) : void</pre>
                 <p><em><p>Enables mailing about occurred errors with a specified message template.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$oMail</code> </td>
+                                <td><code style="border: none; background: none">$mail</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CMail.html">CMail</a></code></td>
                                 <td><p>The message template to be used for sending emails.</p></td>
                             </tr>
@@ -593,14 +593,14 @@ a specified path.</p></em></p>
             <article class="method">
                 <h3 class="public ">hasOption()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> hasOption (string&nbsp;<span class="argument">$sOptionName</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> hasOption (string&nbsp;<span class="argument">$optionName</span>) : bool</pre>
                 <p><em><p>Determines if the script was run with a specified short option, e.g. "-o".</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option, excluding "-".</p></td>
                             </tr>
@@ -638,7 +638,7 @@ a specified path.</p></em></p>
             <article class="method">
                 <h3 class="public ">hasOptionWithValue()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> hasOptionWithValue (string&nbsp;<span class="argument">$sOptionName</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> hasOptionWithValue (string&nbsp;<span class="argument">$optionName</span>) : bool</pre>
                 <p><em><p>Determines if the script was run with a specified short option and the option had a value assigned to it,
 e.g. "-o=value".</p></em></p>
                 
@@ -646,7 +646,7 @@ e.g. "-o=value".</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option, excluding "-".</p></td>
                             </tr>
@@ -685,14 +685,14 @@ e.g. "-o=value".</p></em></p>
             <article class="method">
                 <h3 class="public ">hasLongOption()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> hasLongOption (string&nbsp;<span class="argument">$sOptionName</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> hasLongOption (string&nbsp;<span class="argument">$optionName</span>) : bool</pre>
                 <p><em><p>Determines if the script was run with a specified long option, e.g. "--option".</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option, excluding "-".</p></td>
                             </tr>
@@ -730,7 +730,7 @@ e.g. "-o=value".</p></em></p>
             <article class="method">
                 <h3 class="public ">hasLongOptionWithValue()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> hasLongOptionWithValue (string&nbsp;<span class="argument">$sOptionName</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> hasLongOptionWithValue (string&nbsp;<span class="argument">$optionName</span>) : bool</pre>
                 <p><em><p>Determines if the script was run with a specified long option and the option had a value assigned to it,
 e.g. "--option=value".</p></em></p>
                 
@@ -738,7 +738,7 @@ e.g. "--option=value".</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option, excluding "-".</p></td>
                             </tr>
@@ -777,14 +777,14 @@ e.g. "--option=value".</p></em></p>
             <article class="method">
                 <h3 class="public ">valueForOption()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> valueForOption (string&nbsp;<span class="argument">$sOptionName</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> valueForOption (string&nbsp;<span class="argument">$optionName</span>) : OOPString</pre>
                 <p><em><p>Returns the value of a specified short option with which the script was run, as a string.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option, excluding "-".</p></td>
                             </tr>
@@ -822,14 +822,14 @@ e.g. "--option=value".</p></em></p>
             <article class="method">
                 <h3 class="public ">valueForLongOption()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> valueForLongOption (string&nbsp;<span class="argument">$sOptionName</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> valueForLongOption (string&nbsp;<span class="argument">$optionName</span>) : OOPString</pre>
                 <p><em><p>Returns the value of a specified long option with which the script was run, as a string.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option, excluding "-".</p></td>
                             </tr>
@@ -867,7 +867,7 @@ e.g. "--option=value".</p></em></p>
             <article class="method">
                 <h3 class="public ">valuesForOption()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> valuesForOption (string&nbsp;<span class="argument">$sOptionName</span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> valuesForOption (string&nbsp;<span class="argument">$optionName</span>) : OOPArray</pre>
                 <p><em><p>Returns all the values assigned to a specified short option with which the script was run,
 e.g. "-o=value1 -o=value2".</p></em></p>
                 
@@ -875,7 +875,7 @@ e.g. "-o=value1 -o=value2".</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option, excluding "-".</p></td>
                             </tr>
@@ -913,7 +913,7 @@ e.g. "-o=value1 -o=value2".</p></em></p>
             <article class="method">
                 <h3 class="public ">valuesForLongOption()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> valuesForLongOption (string&nbsp;<span class="argument">$sOptionName</span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> valuesForLongOption (string&nbsp;<span class="argument">$optionName</span>) : OOPArray</pre>
                 <p><em><p>Returns all the values assigned to a specified long option with which the script was run,
 e.g. "--option=value1 --option=value2".</p></em></p>
                 
@@ -921,7 +921,7 @@ e.g. "--option=value1 --option=value2".</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option, excluding "-".</p></td>
                             </tr>
@@ -959,7 +959,7 @@ e.g. "--option=value1 --option=value2".</p></em></p>
             <article class="method">
                 <h3 class="public ">valueForOptionBool()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> valueForOptionBool (string&nbsp;<span class="argument">$sOptionName</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> valueForOptionBool (string&nbsp;<span class="argument">$optionName</span>) : bool</pre>
                 <p><em><p>Returns the value of a specified short option with which the script was run, as a boolean value.</p></em></p>
                 <p>If the option's value is "1", "true", "yes", or "on", case-insensitively, it's recognized as <code>true</code>, and as
 <code>false</code> for any other value.</p>
@@ -967,7 +967,7 @@ e.g. "--option=value1 --option=value2".</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option, excluding "-".</p></td>
                             </tr>
@@ -1005,7 +1005,7 @@ e.g. "--option=value1 --option=value2".</p></em></p>
             <article class="method">
                 <h3 class="public ">valueForLongOptionBool()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> valueForLongOptionBool (string&nbsp;<span class="argument">$sOptionName</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> valueForLongOptionBool (string&nbsp;<span class="argument">$optionName</span>) : bool</pre>
                 <p><em><p>Returns the value of a specified long option with which the script was run, as a boolean value.</p></em></p>
                 <p>If the option's value is "1", "true", "yes", or "on", case-insensitively, it's recognized as <code>true</code>, and as
 <code>false</code> for any other value.</p>
@@ -1013,7 +1013,7 @@ e.g. "--option=value1 --option=value2".</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option, excluding "-".</p></td>
                             </tr>
@@ -1051,14 +1051,14 @@ e.g. "--option=value1 --option=value2".</p></em></p>
             <article class="method">
                 <h3 class="public ">valueForOptionInt()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> valueForOptionInt (string&nbsp;<span class="argument">$sOptionName</span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> valueForOptionInt (string&nbsp;<span class="argument">$optionName</span>) : int</pre>
                 <p><em><p>Returns the value of a specified short option with which the script was run, as an integer value.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option, excluding "-".</p></td>
                             </tr>
@@ -1096,14 +1096,14 @@ e.g. "--option=value1 --option=value2".</p></em></p>
             <article class="method">
                 <h3 class="public ">valueForLongOptionInt()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> valueForLongOptionInt (string&nbsp;<span class="argument">$sOptionName</span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> valueForLongOptionInt (string&nbsp;<span class="argument">$optionName</span>) : int</pre>
                 <p><em><p>Returns the value of a specified long option with which the script was run, as an integer value.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sOptionName</code> </td>
+                                <td><code style="border: none; background: none">$optionName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the option, excluding "-".</p></td>
                             </tr>
@@ -1322,7 +1322,7 @@ on the system.</p></em></p>
             <article class="method">
                 <h3 class="public ">say()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> say (string&nbsp;<span class="argument">$sMessage</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bWriteToLog</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> say (string&nbsp;<span class="argument">$message</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$writeToLog</span></span>) : void</pre>
                 <p><em><p>Echoes a message into the output and, if logging is enabled, into the log file, making a new line after the
 message's text unless the message is already ending in a newline.</p></em></p>
                 
@@ -1330,12 +1330,12 @@ message's text unless the message is already ending in a newline.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sMessage</code> </td>
+                                <td><code style="border: none; background: none">$message</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The message to be echoed.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bWriteToLog</code> </td>
+                                <td><code style="border: none; background: none">$writeToLog</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>true</code>. If logging is enabled, tells whether the message
 should also be written to the log file.</p></td>
@@ -1369,7 +1369,7 @@ should also be written to the log file.</p></td>
             <article class="method">
                 <h3 class="public ">speak()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> speak (string&nbsp;<span class="argument">$sMessage</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bWriteToLog</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> speak (string&nbsp;<span class="argument">$message</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$writeToLog</span></span>) : void</pre>
                 <p><em><p>Echoes a message into the output and, if logging is enabled, into the log file, adding a space after the
 message's text unless the message is already ending in a space.</p></em></p>
                 
@@ -1377,12 +1377,12 @@ message's text unless the message is already ending in a space.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sMessage</code> </td>
+                                <td><code style="border: none; background: none">$message</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The message to be echoed.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bWriteToLog</code> </td>
+                                <td><code style="border: none; background: none">$writeToLog</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>true</code>. If logging is enabled, tells whether the message
 should also be written to the log file.</p></td>
@@ -1491,19 +1491,19 @@ screen.</p></em></p>
             <article class="method">
                 <h3 class="public ">execCommand()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> execCommand (string&nbsp;<span class="argument">$sCommand</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$rbSuccess</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> execCommand (string&nbsp;<span class="argument">$command</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$success</span></span>) : OOPString</pre>
                 <p><em><p>Executes a command and returns the output.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sCommand</code> </td>
+                                <td><code style="border: none; background: none">$command</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The command to be executed.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$rbSuccess</code> </td>
+                                <td><code style="border: none; background: none">$success</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL. OUTPUT.</strong> After the method is called with this parameter provided, the
 parameter's value tells whether the command was run successfully.</p></td>
@@ -1542,7 +1542,7 @@ parameter's value tells whether the command was run successfully.</p></td>
             <article class="method">
                 <h3 class="public ">execCommandPipe()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> execCommandPipe (string&nbsp;<span class="argument">$sCommands</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$rbSuccess</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> execCommandPipe (string&nbsp;<span class="argument">$commands</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$success</span></span>) : OOPString</pre>
                 <p><em><p>Executes a command pipeline, e.g. "command1 | command2", and returns the output.</p></em></p>
                 <p>Using this method instead of <code>execCommand</code> method ensures that, if a command in the pipeline fails, so does the
 entire pipeline.</p>
@@ -1550,12 +1550,12 @@ entire pipeline.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sCommands</code> </td>
+                                <td><code style="border: none; background: none">$commands</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The command pipeline to be executed.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$rbSuccess</code> </td>
+                                <td><code style="border: none; background: none">$success</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL. OUTPUT.</strong> After the method is called with this parameter provided, the
 parameter's value tells whether the pipeline was run successfully.</p></td>
@@ -1594,26 +1594,26 @@ parameter's value tells whether the pipeline was run successfully.</p></td>
             <article class="method">
                 <h3 class="public ">execCommandM()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> execCommandM (string&nbsp;<span class="argument">$sCommand</span>, mixed&nbsp;<span class="argument">$xMessage</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bExitOnFail</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> execCommandM (string&nbsp;<span class="argument">$command</span>, mixed&nbsp;<span class="argument">$message</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$exitOnFail</span></span>) : OOPString</pre>
                 <p><em><p>Executes a command and returns the output, issuing a specified error message if the command fails.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sCommand</code> </td>
+                                <td><code style="border: none; background: none">$command</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The command to be executed.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$xMessage</code> </td>
+                                <td><code style="border: none; background: none">$message</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The error message to be issued if the command fails or the number of the line at which
 the error occurred (obtained using <code>__LINE__</code> magic constant). In the latter case, the error message is
 generated automatically.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bExitOnFail</code> </td>
+                                <td><code style="border: none; background: none">$exitOnFail</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>true</code>. Tells whether to exit the script if the command did
 not succeed.</p></td>
@@ -1652,7 +1652,7 @@ not succeed.</p></td>
             <article class="method">
                 <h3 class="public ">execCommandPipeM()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> execCommandPipeM (string&nbsp;<span class="argument">$sCommands</span>, mixed&nbsp;<span class="argument">$xMessage</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bExitOnFail</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> execCommandPipeM (string&nbsp;<span class="argument">$commands</span>, mixed&nbsp;<span class="argument">$message</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$exitOnFail</span></span>) : OOPString</pre>
                 <p><em><p>Executes a command pipeline, e.g. "command1 | command2", and returns the output, issuing a specified error
 message if the pipeline fails.</p></em></p>
                 <p>Using this method instead of <code>execCommandM</code> method ensures that, if a command in the pipeline fails, so does the
@@ -1661,19 +1661,19 @@ entire pipeline.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sCommands</code> </td>
+                                <td><code style="border: none; background: none">$commands</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The command pipeline to be executed.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$xMessage</code> </td>
+                                <td><code style="border: none; background: none">$message</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The error message to be issued if the pipeline fails or the number of the line at which
 the error occurred (obtained using <code>__LINE__</code> magic constant). In the latter case, the error message is
 generated automatically.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bExitOnFail</code> </td>
+                                <td><code style="border: none; background: none">$exitOnFail</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>true</code>. Tells whether to exit the script if the pipeline did
 not succeed.</p></td>
@@ -1712,14 +1712,14 @@ not succeed.</p></td>
             <article class="method">
                 <h3 class="public ">exitOkM()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> exitOkM (string&nbsp;<span class="argument">$sMessage</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> exitOkM (string&nbsp;<span class="argument">$message</span>) : void</pre>
                 <p><em><p>Exits the script with the success code, issuing a specified message.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sMessage</code> </td>
+                                <td><code style="border: none; background: none">$message</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The message to be issued.</p></td>
                             </tr>
@@ -1752,19 +1752,19 @@ not succeed.</p></td>
             <article class="method">
                 <h3 class="public ">errorM()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> errorM (string&nbsp;<span class="argument">$sMessage</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$iLineNum</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> errorM (string&nbsp;<span class="argument">$message</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$lineNum</span></span>) : void</pre>
                 <p><em><p>Reports an error with a specified message and exits the script.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sMessage</code> </td>
+                                <td><code style="border: none; background: none">$message</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The error message to be issued.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iLineNum</code> </td>
+                                <td><code style="border: none; background: none">$lineNum</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p><strong>OPTIONAL.</strong> The number of the line at which the error occurred.</p></td>
                             </tr>
@@ -1797,19 +1797,19 @@ not succeed.</p></td>
             <article class="method">
                 <h3 class="public ">warningM()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> warningM (string&nbsp;<span class="argument">$sMessage</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$iLineNum</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> warningM (string&nbsp;<span class="argument">$message</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$lineNum</span></span>) : void</pre>
                 <p><em><p>Reports an error with a specified message but does not exit the script.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sMessage</code> </td>
+                                <td><code style="border: none; background: none">$message</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The error message to be issued.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iLineNum</code> </td>
+                                <td><code style="border: none; background: none">$lineNum</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p><strong>OPTIONAL.</strong> The number of the line at which the error occurred.</p></td>
                             </tr>
@@ -1842,14 +1842,14 @@ not succeed.</p></td>
             <article class="method">
                 <h3 class="public ">writeToLog()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> writeToLog (string&nbsp;<span class="argument">$sString</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> writeToLog (string&nbsp;<span class="argument">$string</span>) : void</pre>
                 <p><em><p>If logging is enabled, writes a string into the log file.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none">$string</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The string to be logged.</p></td>
                             </tr>
@@ -1882,14 +1882,14 @@ not succeed.</p></td>
             <article class="method">
                 <h3 class="public ">sendMail()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> sendMail (string&nbsp;<span class="argument">$sMessage</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> sendMail (string&nbsp;<span class="argument">$message</span>) : void</pre>
                 <p><em><p>If mailing is enabled, sends a message out.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sMessage</code> </td>
+                                <td><code style="border: none; background: none">$message</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The message to be sent.</p></td>
                             </tr>
@@ -1922,19 +1922,19 @@ not succeed.</p></td>
             <article class="method">
                 <h3 class="public ">exitScript()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> exitScript (bool&nbsp;<span class="argument">$bStatusIsOk</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bWriteNewlineToLog</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> exitScript (bool&nbsp;<span class="argument">$statusIsOk</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$writeNewlineToLog</span></span>) : void</pre>
                 <p><em><p>Exits the script with a specified status.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bStatusIsOk</code> </td>
+                                <td><code style="border: none; background: none">$statusIsOk</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><code>true</code> if the script has run successfully, <code>false</code> if not.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bWriteNewlineToLog</code> </td>
+                                <td><code style="border: none; background: none">$writeNewlineToLog</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>true</code>. If logging is enabled, tells whether the
 current entries in the log file should be concluded with a newline.</p></td>
@@ -1976,10 +1976,10 @@ current entries in the log file should be concluded with a newline.</p></td>
 
                                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_ms_sLogFp" name="property_ms_sLogFp" class="anchor"></a>
+            <a id="property_ms_logFp" name="property_ms_logFp" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$ms_sLogFp</h3>
-                <pre class="signature">$ms_sLogFp</pre>
+                <h3 class="protected ">$ms_logFp</h3>
+                <pre class="signature">$ms_logFp</pre>
                 <p><em></em></p>
                 
 
@@ -2004,10 +2004,10 @@ current entries in the log file should be concluded with a newline.</p></td>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_ms_oMail" name="property_ms_oMail" class="anchor"></a>
+            <a id="property_ms_mail" name="property_ms_mail" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$ms_oMail</h3>
-                <pre class="signature">$ms_oMail</pre>
+                <h3 class="protected ">$ms_mail</h3>
+                <pre class="signature">$ms_mail</pre>
                 <p><em></em></p>
                 
 
@@ -2080,7 +2080,7 @@ current entries in the log file should be concluded with a newline.</p></td>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

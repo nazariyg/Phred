@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * @ignore
  */
@@ -9,140 +10,140 @@ class CEStringTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testConvert ()
     {
-        $sStringUtf8 = u("Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.");
-        $byStringLatin1 = CEString::convert($sStringUtf8, CEString::UTF8, CEString::LATIN1);
-        $this->assertTrue($byStringLatin1->equalsBi("\x41\x73\x79\x6E\x63\x68\x72\x6F\x6E\x65\x20\x42\x61\x73\x73" .
+        $stringUtf8 = u("Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.");
+        $stringLatin1 = CEString::convert($stringUtf8, CEString::UTF8, CEString::LATIN1);
+        $this->assertTrue($stringLatin1->equalsBi("\x41\x73\x79\x6E\x63\x68\x72\x6F\x6E\x65\x20\x42\x61\x73\x73" .
             "\x6B\x6C\xE4\x6E\x67\x65\x20\x76\x6F\x6D\x20\x4A\x61\x7A\x7A\x71\x75\x69\x6E\x74\x65\x74\x74\x20\x73" .
             "\x69\x6E\x64\x20\x6E\x69\x78\x20\x66\xFC\x72\x20\x73\x70\x69\x65\xDF\x69\x67\x65\x20\x4C\xF6\x77\x65" .
             "\x6E\x2E"));
 
-        $byStringLatin1 = u("\x41\x73\x79\x6E\x63\x68\x72\x6F\x6E\x65\x20\x42\x61\x73\x73\x6B\x6C\xE4\x6E\x67\x65" .
+        $stringLatin1 = u("\x41\x73\x79\x6E\x63\x68\x72\x6F\x6E\x65\x20\x42\x61\x73\x73\x6B\x6C\xE4\x6E\x67\x65" .
             "\x20\x76\x6F\x6D\x20\x4A\x61\x7A\x7A\x71\x75\x69\x6E\x74\x65\x74\x74\x20\x73\x69\x6E\x64\x20\x6E\x69" .
             "\x78\x20\x66\xFC\x72\x20\x73\x70\x69\x65\xDF\x69\x67\x65\x20\x4C\xF6\x77\x65\x6E\x2E");
-        $sStringUtf8 = CEString::convert($byStringLatin1, CEString::LATIN1, CEString::UTF8);
-        $this->assertTrue($sStringUtf8->equalsBi(
+        $stringUtf8 = CEString::convert($stringLatin1, CEString::LATIN1, CEString::UTF8);
+        $this->assertTrue($stringUtf8->equalsBi(
             "Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen."));
 
-        $sStringUtf8 = u("Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.");
-        $sStringAscii = CEString::convert($sStringUtf8, CEString::UTF8, CEString::ASCII);
-        $this->assertTrue($sStringAscii->equalsBi(
+        $stringUtf8 = u("Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.");
+        $stringAscii = CEString::convert($stringUtf8, CEString::UTF8, CEString::ASCII);
+        $this->assertTrue($stringAscii->equalsBi(
             "Asynchrone Basskl?nge vom Jazzquintett sind nix f?r spie?ige L?wen."));
 
-        $sStringUtf8 = u("Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.");
-        $byStringUtf16 = CEString::convert($sStringUtf8, CEString::UTF8, "utf-16be");
-        $this->assertTrue($byStringUtf16->equalsBi("\x00\x41\x00\x73\x00\x79\x00\x6E\x00\x63\x00\x68\x00\x72\x00" .
+        $stringUtf8 = u("Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.");
+        $stringUtf16 = CEString::convert($stringUtf8, CEString::UTF8, "utf-16be");
+        $this->assertTrue($stringUtf16->equalsBi("\x00\x41\x00\x73\x00\x79\x00\x6E\x00\x63\x00\x68\x00\x72\x00" .
             "\x6F\x00\x6E\x00\x65\x00\x20\x00\x42\x00\x61\x00\x73\x00\x73\x00\x6B\x00\x6C\x00\xE4\x00\x6E\x00\x67" .
             "\x00\x65\x00\x20\x00\x76\x00\x6F\x00\x6D\x00\x20\x00\x4A\x00\x61\x00\x7A\x00\x7A\x00\x71\x00\x75\x00" .
             "\x69\x00\x6E\x00\x74\x00\x65\x00\x74\x00\x74\x00\x20\x00\x73\x00\x69\x00\x6E\x00\x64\x00\x20\x00\x6E" .
             "\x00\x69\x00\x78\x00\x20\x00\x66\x00\xFC\x00\x72\x00\x20\x00\x73\x00\x70\x00\x69\x00\x65\x00\xDF\x00" .
             "\x69\x00\x67\x00\x65\x00\x20\x00\x4C\x00\xF6\x00\x77\x00\x65\x00\x6E\x00\x2E"));
 
-        $sStringUtf8 = u("\xFEAsynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.\xFF");
-        $sStringUtf8 = CEString::convert($sStringUtf8, CEString::UTF8, CEString::UTF8);
-        $this->assertTrue($sStringUtf8->equalsBi(
+        $stringUtf8 = u("\xFEAsynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.\xFF");
+        $stringUtf8 = CEString::convert($stringUtf8, CEString::UTF8, CEString::UTF8);
+        $this->assertTrue($stringUtf8->equalsBi(
             "�Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.�"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testConvertLatin1ToUtf8 ()
     {
-        $byStringLatin1 = u("\x41\x73\x79\x6E\x63\x68\x72\x6F\x6E\x65\x20\x42\x61\x73\x73\x6B\x6C\xE4\x6E\x67\x65" .
+        $stringLatin1 = u("\x41\x73\x79\x6E\x63\x68\x72\x6F\x6E\x65\x20\x42\x61\x73\x73\x6B\x6C\xE4\x6E\x67\x65" .
             "\x20\x76\x6F\x6D\x20\x4A\x61\x7A\x7A\x71\x75\x69\x6E\x74\x65\x74\x74\x20\x73\x69\x6E\x64\x20\x6E\x69" .
             "\x78\x20\x66\xFC\x72\x20\x73\x70\x69\x65\xDF\x69\x67\x65\x20\x4C\xF6\x77\x65\x6E\x2E");
-        $sStringUtf8 = CEString::convertLatin1ToUtf8($byStringLatin1);
-        $this->assertTrue($sStringUtf8->equalsBi(
+        $stringUtf8 = CEString::convertLatin1ToUtf8($stringLatin1);
+        $this->assertTrue($stringUtf8->equalsBi(
             "Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen."));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFlattenUnicodeToAscii ()
     {
-        $sStringUtf8 = u("Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.");
-        $sStringAscii = CEString::flattenUnicodeToAscii($sStringUtf8);
-        $this->assertTrue($sStringAscii->equalsBi(
+        $stringUtf8 = u("Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.");
+        $stringAscii = CEString::flattenUnicodeToAscii($stringUtf8);
+        $this->assertTrue($stringAscii->equalsBi(
             "Asynchrone Bassklange vom Jazzquintett sind nix fur spiessige Lowen."));
 
-        $sStringUtf8 = u("1a とりなくこゑす ゆめさませ みよあけわたる ひんかしを そらいろはえて おきつへに ほふねむれゐぬ もやのうち");
-        $sStringAscii = CEString::flattenUnicodeToAscii($sStringUtf8);
-        $this->assertTrue($sStringAscii->equalsBi(
+        $stringUtf8 = u("1a とりなくこゑす ゆめさませ みよあけわたる ひんかしを そらいろはえて おきつへに ほふねむれゐぬ もやのうち");
+        $stringAscii = CEString::flattenUnicodeToAscii($stringUtf8);
+        $this->assertTrue($stringAscii->equalsBi(
             "1a torinakukowesu yumesamase miyoakewataru hinkashiwo sorairohaete okitsuheni hofunemurewinu moyanouchi"));
 
-        $sStringUtf8 = u("1a とりなくこゑす ゆめさませ みよあけわたる ひんかしを そらいろはえて おきつへに ほふねむれゐぬ もやのうち");
-        $sStringAscii = CEString::flattenUnicodeToAscii($sStringUtf8, false);
-        $this->assertTrue($sStringAscii->equalsBi("1a        "));
+        $stringUtf8 = u("1a とりなくこゑす ゆめさませ みよあけわたる ひんかしを そらいろはえて おきつへに ほふねむれゐぬ もやのうち");
+        $stringAscii = CEString::flattenUnicodeToAscii($stringUtf8, false);
+        $this->assertTrue($stringAscii->equalsBi("1a        "));
 
-        $sStringUtf8 = u("æß");
-        $sStringAscii = CEString::flattenUnicodeToAscii($sStringUtf8);
-        $this->assertTrue($sStringAscii->equalsBi("aess"));
+        $stringUtf8 = u("æß");
+        $stringAscii = CEString::flattenUnicodeToAscii($stringUtf8);
+        $this->assertTrue($stringAscii->equalsBi("aess"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testLooksLikeUtf8 ()
     {
-        $sString = u("Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.");
-        $this->assertTrue(CEString::looksLikeUtf8($sString));
+        $string = u("Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.");
+        $this->assertTrue(CEString::looksLikeUtf8($string));
 
-        $byString = u("\x41\x73\x79\x6E\x63\x68\x72\x6F\x6E\x65\x20\x42\x61\x73\x73\x6B\x6C\xE4\x6E\x67\x65\x20\x76" .
+        $escString = u("\x41\x73\x79\x6E\x63\x68\x72\x6F\x6E\x65\x20\x42\x61\x73\x73\x6B\x6C\xE4\x6E\x67\x65\x20\x76" .
             "\x6F\x6D\x20\x4A\x61\x7A\x7A\x71\x75\x69\x6E\x74\x65\x74\x74\x20\x73\x69\x6E\x64\x20\x6E\x69\x78\x20" .
             "\x66\xFC\x72\x20\x73\x70\x69\x65\xDF\x69\x67\x65\x20\x4C\xF6\x77\x65\x6E\x2E");
-        $this->assertFalse(CEString::looksLikeUtf8($byString));
+        $this->assertFalse(CEString::looksLikeUtf8($escString));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testLooksLikeAscii ()
     {
-        $sString = u("Hello there!");
-        $this->assertTrue(CEString::looksLikeAscii($sString));
+        $string = u("Hello there!");
+        $this->assertTrue(CEString::looksLikeAscii($string));
 
-        $sString = u("Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.");
-        $this->assertFalse(CEString::looksLikeAscii($sString));
+        $string = u("Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.");
+        $this->assertFalse(CEString::looksLikeAscii($string));
 
-        $byString = u("\x41\x73\x79\x6E\x63\x68\x72\x6F\x6E\x65\x20\x42\x61\x73\x73\x6B\x6C\xE4\x6E\x67\x65\x20\x76" .
+        $escString = u("\x41\x73\x79\x6E\x63\x68\x72\x6F\x6E\x65\x20\x42\x61\x73\x73\x6B\x6C\xE4\x6E\x67\x65\x20\x76" .
             "\x6F\x6D\x20\x4A\x61\x7A\x7A\x71\x75\x69\x6E\x74\x65\x74\x74\x20\x73\x69\x6E\x64\x20\x6E\x69\x78\x20" .
             "\x66\xFC\x72\x20\x73\x70\x69\x65\xDF\x69\x67\x65\x20\x4C\xF6\x77\x65\x6E\x2E");
-        $this->assertFalse(CEString::looksLikeAscii($byString));
+        $this->assertFalse(CEString::looksLikeAscii($escString));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testLooksLikeLatin1 ()
     {
-        $byString = u("\x41\x73\x79\x6E\x63\x68\x72\x6F\x6E\x65\x20\x42\x61\x73\x73\x6B\x6C\xE4\x6E\x67\x65\x20\x76" .
+        $escString = u("\x41\x73\x79\x6E\x63\x68\x72\x6F\x6E\x65\x20\x42\x61\x73\x73\x6B\x6C\xE4\x6E\x67\x65\x20\x76" .
             "\x6F\x6D\x20\x4A\x61\x7A\x7A\x71\x75\x69\x6E\x74\x65\x74\x74\x20\x73\x69\x6E\x64\x20\x6E\x69\x78\x20" .
             "\x66\xFC\x72\x20\x73\x70\x69\x65\xDF\x69\x67\x65\x20\x4C\xF6\x77\x65\x6E\x2E");
-        $this->assertTrue(CEString::looksLikeLatin1($byString));
+        $this->assertTrue(CEString::looksLikeLatin1($escString));
 
-        $sString = u("Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.");
-        $this->assertFalse(CEString::looksLikeLatin1($sString));
+        $string = u("Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.");
+        $this->assertFalse(CEString::looksLikeLatin1($string));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testGuessEnc ()
     {
-        $sString = u("Hello there!");
-        $eEnc;
-        $bSuccess = CEString::guessEnc($sString, $eEnc);
-        $this->assertTrue( $bSuccess && $eEnc == CEString::UTF8 );
+        $string = u("Hello there!");
+        $enc;
+        $success = CEString::guessEnc($string, $enc);
+        $this->assertTrue( $success && $enc == CEString::UTF8 );
 
-        $sString = u("Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.");
-        $eEnc;
-        $bSuccess = CEString::guessEnc($sString, $eEnc);
-        $this->assertTrue( $bSuccess && $eEnc == CEString::UTF8 );
+        $string = u("Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen.");
+        $enc;
+        $success = CEString::guessEnc($string, $enc);
+        $this->assertTrue( $success && $enc == CEString::UTF8 );
 
-        $byString = u("\x41\x73\x79\x6E\x63\x68\x72\x6F\x6E\x65\x20\x42\x61\x73\x73\x6B\x6C\xE4\x6E\x67\x65\x20\x76" .
+        $string = u("\x41\x73\x79\x6E\x63\x68\x72\x6F\x6E\x65\x20\x42\x61\x73\x73\x6B\x6C\xE4\x6E\x67\x65\x20\x76" .
             "\x6F\x6D\x20\x4A\x61\x7A\x7A\x71\x75\x69\x6E\x74\x65\x74\x74\x20\x73\x69\x6E\x64\x20\x6E\x69\x78\x20" .
             "\x66\xFC\x72\x20\x73\x70\x69\x65\xDF\x69\x67\x65\x20\x4C\xF6\x77\x65\x6E\x2E");
-        $eEnc;
-        $bSuccess = CEString::guessEnc($byString, $eEnc);
-        $this->assertTrue( $bSuccess && $eEnc == CEString::LATIN1 );
+        $enc;
+        $success = CEString::guessEnc($string, $enc);
+        $this->assertTrue( $success && $enc == CEString::LATIN1 );
 
-        $byString = u("\xFE\x00\xFF");
-        $eEnc;
-        $bSuccess = CEString::guessEnc($byString, $eEnc);
-        $this->assertFalse($bSuccess);
+        $string = u("\xFE\x00\xFF");
+        $enc;
+        $success = CEString::guessEnc($string, $enc);
+        $this->assertFalse($success);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testKnownPrimaryEncNames ()
     {
-        $aEncNames = CEString::knownPrimaryEncNames();
-        $this->assertTrue($aEncNames->find("UTF-8"));
-        $this->assertTrue($aEncNames->find("UTF-16"));
-        $this->assertTrue($aEncNames->find("ISO-8859-1"));
-        $this->assertTrue($aEncNames->find("macos-0_2-10.2"));
-        $this->assertFalse($aEncNames->find("csMacintosh"));
+        $encNames = CEString::knownPrimaryEncNames();
+        $this->assertTrue($encNames->find("UTF-8"));
+        $this->assertTrue($encNames->find("UTF-16"));
+        $this->assertTrue($encNames->find("ISO-8859-1"));
+        $this->assertTrue($encNames->find("macos-0_2-10.2"));
+        $this->assertFalse($encNames->find("csMacintosh"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testIsEncNameKnown ()
@@ -156,15 +157,15 @@ class CEStringTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testEncNameAliases ()
     {
-        $aAliases = CEString::encNameAliases("UTF-8");
-        $this->assertTrue($aAliases->find("ibm-1208"));
-        $this->assertTrue($aAliases->find("cp1208"));
-        $this->assertTrue($aAliases->find("x-UTF_8J"));
+        $aliases = CEString::encNameAliases("UTF-8");
+        $this->assertTrue($aliases->find("ibm-1208"));
+        $this->assertTrue($aliases->find("cp1208"));
+        $this->assertTrue($aliases->find("x-UTF_8J"));
 
-        $aAliases = CEString::encNameAliases("x-UTF_8J");
-        $this->assertTrue($aAliases->find("UTF-8"));
-        $this->assertTrue($aAliases->find("ibm-1208"));
-        $this->assertTrue($aAliases->find("cp1208"));
+        $aliases = CEString::encNameAliases("x-UTF_8J");
+        $this->assertTrue($aliases->find("UTF-8"));
+        $this->assertTrue($aliases->find("ibm-1208"));
+        $this->assertTrue($aliases->find("cp1208"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testAreEncNamesEquivalent ()
@@ -201,22 +202,22 @@ class CEStringTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFixUtf8 ()
     {
-        $sString = u("Asynchrone \x42\x61\x73\x73\x6B\x6C\xE4\x6E\x67\x65 vom Jazzquintett sind nix \x66\xFC\x72 " .
+        $string = u("Asynchrone \x42\x61\x73\x73\x6B\x6C\xE4\x6E\x67\x65 vom Jazzquintett sind nix \x66\xFC\x72 " .
             "\x73\x70\x69\x65\xDF\x69\x67\x65 Löwen.");
-        $sString = CEString::fixUtf8($sString);
-        $this->assertTrue($sString->equalsBi(
+        $string = CEString::fixUtf8($string);
+        $this->assertTrue($string->equalsBi(
             "Asynchrone Bassklänge vom Jazzquintett sind nix für spießige Löwen."));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFixUtf8More ()
     {
-        $sString = u("FÃ©dÃ©ration Camerounaise de Football");
-        $sString = CEString::fixUtf8More($sString);
-        $this->assertTrue($sString->equalsBi("Fédération Camerounaise de Football"));
+        $string = u("FÃ©dÃ©ration Camerounaise de Football");
+        $string = CEString::fixUtf8More($string);
+        $this->assertTrue($string->equalsBi("Fédération Camerounaise de Football"));
 
-        $sString = u("FÃÂ©dÃÂ©ration Camerounaise de Football");
-        $sString = CEString::fixUtf8More($sString);
-        $this->assertTrue($sString->equalsBi("Fédération Camerounaise de Football"));
+        $string = u("FÃÂ©dÃÂ©ration Camerounaise de Football");
+        $string = CEString::fixUtf8More($string);
+        $this->assertTrue($string->equalsBi("Fédération Camerounaise de Football"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }

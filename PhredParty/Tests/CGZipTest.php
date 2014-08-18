@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -14,32 +14,32 @@ class CGZipTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testDecompress ()
     {
-        $byData = "The quick brown fox jumps over the lazy dog.";
+        $data = "The quick brown fox jumps over the lazy dog.";
 
-        $byCompressedData = CGZip::compress($byData, CGZip::FASTEST);
-        $bSuccess;
-        $byDecompressedData = CGZip::decompress($byCompressedData, $bSuccess);
-        $this->assertTrue( $bSuccess && $byDecompressedData->equals($byData) );
+        $compressedData = CGZip::compress($data, CGZip::FASTEST);
+        $success;
+        $decompressedData = CGZip::decompress($compressedData, $success);
+        $this->assertTrue( $success && $decompressedData->equals($data) );
 
-        $byCompressedData = CGZip::compress($byData, CGZip::FAST);
-        $bSuccess;
-        $byDecompressedData = CGZip::decompress($byCompressedData, $bSuccess);
-        $this->assertTrue( $bSuccess && $byDecompressedData->equals($byData) );
+        $compressedData = CGZip::compress($data, CGZip::FAST);
+        $success;
+        $decompressedData = CGZip::decompress($compressedData, $success);
+        $this->assertTrue( $success && $decompressedData->equals($data) );
 
-        $byCompressedData = CGZip::compress($byData, CGZip::NORMAL);
-        $bSuccess;
-        $byDecompressedData = CGZip::decompress($byCompressedData, $bSuccess);
-        $this->assertTrue( $bSuccess && $byDecompressedData->equals($byData) );
+        $compressedData = CGZip::compress($data, CGZip::NORMAL);
+        $success;
+        $decompressedData = CGZip::decompress($compressedData, $success);
+        $this->assertTrue( $success && $decompressedData->equals($data) );
 
-        $byCompressedData = CGZip::compress($byData, CGZip::MAXIMUM);
-        $bSuccess;
-        $byDecompressedData = CGZip::decompress($byCompressedData, $bSuccess);
-        $this->assertTrue( $bSuccess && $byDecompressedData->equals($byData) );
+        $compressedData = CGZip::compress($data, CGZip::MAXIMUM);
+        $success;
+        $decompressedData = CGZip::decompress($compressedData, $success);
+        $this->assertTrue( $success && $decompressedData->equals($data) );
 
-        $byCompressedData = "BEEF";
-        $bSuccess;
-        $byDecompressedData = CGZip::decompress($byCompressedData, $bSuccess);
-        $this->assertTrue( !$bSuccess && $byDecompressedData->equals("") );
+        $compressedData = "BEEF";
+        $success;
+        $decompressedData = CGZip::decompress($compressedData, $success);
+        $this->assertTrue( !$success && $decompressedData->equals("") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }

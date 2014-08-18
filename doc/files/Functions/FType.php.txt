@@ -1,107 +1,108 @@
 <?php
 
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function is_cstring ($xValue)
+function is_cstring ($value)
 {
-    return is_string($xValue);
+    return is_string($value);
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function is_number ($xValue)
+function is_number ($value)
 {
-    return ( is_int($xValue) || is_float($xValue) );
+    return ( is_int($value) || is_float($value) );
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function is_enum ($xValue)
+function is_enum ($value)
 {
-    return is_int($xValue);
+    return is_int($value);
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function is_bitfield ($xValue)
+function is_bitfield ($value)
 {
-    return is_int($xValue);
+    return is_int($value);
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function is_carray ($xValue)
+function is_carray ($value)
 {
-    return ( $xValue instanceof SplFixedArray || $xValue instanceof CArrayObject );
+    return ( $value instanceof SplFixedArray || $value instanceof CArrayObject );
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function is_cmap ($xValue)
+function is_cmap ($value)
 {
-    return ( is_array($xValue) || $xValue instanceof CMapObject );
+    return ( is_array($value) || $value instanceof CMapObject );
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function is_collection ($xValue)
+function is_collection ($value)
 {
-    return ( is_carray($xValue) || is_cmap($xValue) );
+    return ( is_carray($value) || is_cmap($value) );
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function is_ctime ($xValue)
+function is_ctime ($value)
 {
     // Used when parameter type hinting is inapplicable.
-    return $xValue instanceof CTime;
+    return $value instanceof CTime;
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function is_ctimezone ($xValue)
+function is_ctimezone ($value)
 {
     // Used when parameter type hinting is inapplicable.
-    return $xValue instanceof CTimeZone;
+    return $value instanceof CTimeZone;
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function is_cfile ($xValue)
+function is_cfile ($value)
 {
     // Used when parameter type hinting is inapplicable.
-    return $xValue instanceof CFile;
+    return $value instanceof CFile;
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function is_culocale ($xValue)
+function is_culocale ($value)
 {
     // Used when parameter type hinting is inapplicable.
-    return $xValue instanceof CULocale;
+    return $value instanceof CULocale;
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
@@ -126,106 +127,106 @@ function m ()
  * @ignore
  */
 
-function to_oop ($xValue)
+function to_oop ($value)
 {
-    if ( is_carray($xValue) )
+    if ( is_carray($value) )
     {
-        $xValue = splarray($xValue);
-        $iLen = CArray::length($xValue);
-        for ($i = 0; $i < $iLen; $i++)
+        $value = splarray($value);
+        $len = CArray::length($value);
+        for ($i = 0; $i < $len; $i++)
         {
-            $xValue[$i] = to_oop($xValue[$i]);
+            $value[$i] = to_oop($value[$i]);
         }
-        $xValue = CArrayObject::fromSplArray($xValue);
-        return $xValue;
+        $value = CArrayObject::fromSplArray($value);
+        return $value;
     }
-    if ( is_cmap($xValue) )
+    if ( is_cmap($value) )
     {
-        $xValue = parray($xValue);
-        foreach ($xValue as &$rxMapValue)
+        $value = parray($value);
+        foreach ($value as &$mapValue)
         {
-            $rxMapValue = to_oop($rxMapValue);
-        } unset($rxMapValue);
-        $xValue = CMapObject::fromPArray($xValue);
-        return $xValue;
+            $mapValue = to_oop($mapValue);
+        } unset($mapValue);
+        $value = CMapObject::fromPArray($value);
+        return $value;
     }
-    return $xValue;
+    return $value;
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function splarray ($aArray)
+function splarray ($array)
 {
-    return ( $aArray instanceof SplFixedArray ) ? $aArray : $aArray->toSplArray();
+    return ( $array instanceof SplFixedArray ) ? $array : $array->toSplArray();
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function parray ($mMap)
+function parray ($map)
 {
-    return ( is_array($mMap) ) ? $mMap : $mMap->toPArray();
+    return ( is_array($map) ) ? $map : $map->toPArray();
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function oop_a ($aArray)
+function oop_a ($array)
 {
-    return ( is_oop_on() && $aArray instanceof SplFixedArray ) ? CArrayObject::fromSplArray($aArray) : $aArray;
+    return ( is_oop_on() && $array instanceof SplFixedArray ) ? CArrayObject::fromSplArray($array) : $array;
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function oop_m ($mMap)
+function oop_m ($map)
 {
-    return ( is_oop_on() && is_array($mMap) ) ? CMapObject::fromPArray($mMap) : $mMap;
+    return ( is_oop_on() && is_array($map) ) ? CMapObject::fromPArray($map) : $map;
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function oop_x ($xValue)
+function oop_x ($value)
 {
-    return ( is_oop_on() ) ? to_oop($xValue) : $xValue;
+    return ( is_oop_on() ) ? to_oop($value) : $value;
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function phred_classify ($xValue, &$rsClassName)
+function phred_classify ($value, &$className)
 {
     // This function is only used internally and it tries to find out the class name for a known type.
-    if ( is_string($xValue) )
+    if ( is_string($value) )
     {
-        $rsClassName = "CUString";
+        $className = "CUString";
         return true;
     }
-    if ( is_int($xValue) || is_float($xValue) || is_bool($xValue) )
+    if ( is_int($value) || is_float($value) || is_bool($value) )
     {
         return false;
     }
-    if ( is_carray($xValue) )
+    if ( is_carray($value) )
     {
-        $rsClassName = "CArray";
+        $className = "CArray";
         return true;
     }
-    if ( is_cmap($xValue) )
+    if ( is_cmap($value) )
     {
-        $rsClassName = "CMap";
+        $className = "CMap";
         return true;
     }
-    if ( is_object($xValue) )
+    if ( is_object($value) )
     {
-        $rsClassName = get_class($xValue);
+        $className = get_class($value);
         return true;
     }
     return false;
@@ -235,89 +236,89 @@ function phred_classify ($xValue, &$rsClassName)
  * @ignore
  */
 
-function phred_classify_duo ($xValue0, $xValue1, &$rsClassName)
+function phred_classify_duo ($value0, $value1, &$className)
 {
-    if ( !is_object($xValue0) || !is_object($xValue1) )
+    if ( !is_object($value0) || !is_object($value1) )
     {
-        return phred_classify($xValue0, $rsClassName);
+        return phred_classify($value0, $className);
     }
 
-    if ( $xValue0 instanceof CArrayObject && $xValue1 instanceof CArrayObject )
+    if ( $value0 instanceof CArrayObject && $value1 instanceof CArrayObject )
     {
-        $rsClassName = "CArrayObject";
+        $className = "CArrayObject";
         return true;
     }
-    if ( $xValue0 instanceof CMapObject && $xValue1 instanceof CMapObject )
+    if ( $value0 instanceof CMapObject && $value1 instanceof CMapObject )
     {
-        $rsClassName = "CMapObject";
+        $className = "CMapObject";
         return true;
     }
 
-    return phred_classify($xValue0, $rsClassName);
+    return phred_classify($value0, $className);
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function _from_oop_tp ($xValue)
+function _from_oop_tp ($value)
 {
     // Only used with OOP wrapping for third-party components.
-    if ( is_carray($xValue) )
+    if ( is_carray($value) )
     {
-        $xValue = splarray($xValue);
-        $iLen = CArray::length($xValue);
-        for ($i = 0; $i < $iLen; $i++)
+        $value = splarray($value);
+        $len = CArray::length($value);
+        for ($i = 0; $i < $len; $i++)
         {
-            $xValue[$i] = _from_oop_tp($xValue[$i]);
+            $value[$i] = _from_oop_tp($value[$i]);
         }
-        return $xValue->toArray();
+        return $value->toArray();
     }
-    if ( is_cmap($xValue) )
+    if ( is_cmap($value) )
     {
-        $xValue = parray($xValue);
-        foreach ($xValue as &$rxMapValue)
+        $value = parray($value);
+        foreach ($value as &$mapValue)
         {
-            $rxMapValue = _from_oop_tp($rxMapValue);
-        } unset($rxMapValue);
-        return $xValue;
+            $mapValue = _from_oop_tp($mapValue);
+        } unset($mapValue);
+        return $value;
     }
-    return $xValue;
+    return $value;
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /**
  * @ignore
  */
 
-function _to_oop_tp ($xValue)
+function _to_oop_tp ($value)
 {
     // Only used with OOP wrapping for third-party components.
-    if ( is_array($xValue) )
+    if ( is_array($value) )
     {
-        foreach ($xValue as &$rxMapValue)
+        foreach ($value as &$mapValue)
         {
-            $rxMapValue = _to_oop_tp($rxMapValue);
-        } unset($rxMapValue);
-        if ( !CMap::areKeysSequential($xValue) )
+            $mapValue = _to_oop_tp($mapValue);
+        } unset($mapValue);
+        if ( !CMap::areKeysSequential($value) )
         {
-            $xValue = oop_m($xValue);
+            $value = oop_m($value);
         }
         else
         {
-            $xValue = oop_a(CArray::fromPArray($xValue));
+            $value = oop_a(CArray::fromPArray($value));
         }
-        return $xValue;
+        return $value;
     }
-    if ( $xValue instanceof SplFixedArray )
+    if ( $value instanceof SplFixedArray )
     {
-        $iLen = CArray::length($xValue);
-        for ($i = 0; $i < $iLen; $i++)
+        $len = CArray::length($value);
+        for ($i = 0; $i < $len; $i++)
         {
-            $xValue[$i] = _to_oop_tp($xValue[$i]);
+            $value[$i] = _to_oop_tp($value[$i]);
         }
-        return oop_a($xValue);
+        return oop_a($value);
     }
-    return $xValue;
+    return $value;
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

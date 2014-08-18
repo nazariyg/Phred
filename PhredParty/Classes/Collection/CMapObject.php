@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -27,7 +27,7 @@
  * way. You can make a copy of an OOP map using `clone` keyword like so:
  *
  * ```
- * $mMapCopy = clone $mMap;
+ * $mapCopy = clone $map;
  * ```
  */
 
@@ -35,22 +35,22 @@
 //   __construct ()
 //   int length ()
 //   bool isEmpty ()
-//   bool equals ($mToMap, $fnComparator = CComparator::EQUALITY)
-//   int compare ($mToMap, $fnComparator = CComparator::ORDER_ASC)
-//   bool hasKey ($xKey)
-//   bool hasPath ($sPath)
-//   mixed valueByPath ($sPath)
-//   void setValueByPath ($sPath, $xValue)
-//   bool find ($xWhatValue, $fnComparator = CComparator::EQUALITY, &$rxFoundUnderKey = null)
-//   bool findScalar ($xWhatValue, &$rxFoundUnderKey = null)
-//   int countValue ($xValue, $fnComparator = CComparator::EQUALITY)
-//   void remove ($xKey)
-//   CMapObject filter ($fnFilter)
+//   bool equals ($toMap, $comparator = CComparator::EQUALITY)
+//   int compare ($toMap, $comparator = CComparator::ORDER_ASC)
+//   bool hasKey ($key)
+//   bool hasPath ($path)
+//   mixed valueByPath ($path)
+//   void setValueByPath ($path, $value)
+//   bool find ($whatValue, $comparator = CComparator::EQUALITY, &$foundUnderKey = null)
+//   bool findScalar ($whatValue, &$foundUnderKey = null)
+//   int countValue ($value, $comparator = CComparator::EQUALITY)
+//   void remove ($key)
+//   CMapObject filter ($filter)
 //   CArrayObject keys ()
 //   CArrayObject values ()
 //   CMapObject merge (/*withMap0, withMap1, ...*/)
 //   bool areKeysSequential ()
-//   void insertValue ($xValue)
+//   void insertValue ($value)
 
 class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, IteratorAggregate, Countable
 {
@@ -66,7 +66,7 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
             return;
         }
 
-        $this->m_mMap = [];
+        $this->m_map = [];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -77,7 +77,7 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
 
     public function length ()
     {
-        return count($this->m_mMap);
+        return count($this->m_map);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -88,7 +88,7 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
 
     public function isEmpty ()
     {
-        return ( count($this->m_mMap) == 0 );
+        return ( count($this->m_map) == 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -102,8 +102,8 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
      * IEqualityAndOrder interface (static or not), including CUStringObject, CArrayObject, CMapObject, CTime etc. See
      * the [CComparator](CComparator.html) class for more on this.
      *
-     * @param  map $mToMap The second map for comparison.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  map $toMap The second map for comparison.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of any two values. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being a value from *this* map and the second parameter being a value from
      * the second map, and return `true` if the two values are equal and `false` otherwise.
@@ -113,9 +113,9 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
      * @link   CComparator.html CComparator
      */
 
-    public function equals ($mToMap, $fnComparator = CComparator::EQUALITY)
+    public function equals ($toMap, $comparator = CComparator::EQUALITY)
     {
-        return CMap::equals($this->m_mMap, $mToMap, $fnComparator);
+        return CMap::equals($this->m_map, $toMap, $comparator);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -128,8 +128,8 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
      * including CUStringObject, CArrayObject, CMapObject, CTime etc. See the [CComparator](CComparator.html) class for
      * more on this.
      *
-     * @param  map $mToMap The second map for comparison.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
+     * @param  map $toMap The second map for comparison.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
      * used for the comparison of any two values. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being a value from *this* map and the second parameter being a value from
      * the second map, and return `-1` if the value from *this* map would need to go before the value from the second
@@ -141,62 +141,62 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
      * @link   CComparator.html CComparator
      */
 
-    public function compare ($mToMap, $fnComparator = CComparator::ORDER_ASC)
+    public function compare ($toMap, $comparator = CComparator::ORDER_ASC)
     {
-        return CMap::compare($this->m_mMap, $mToMap, $fnComparator);
+        return CMap::compare($this->m_map, $toMap, $comparator);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if a map contains a value under a specified key.
      *
-     * @param  mixed $xKey The key to be looked for.
+     * @param  mixed $key The key to be looked for.
      *
      * @return bool `true` if the map contains a value under such key, `false` otherwise.
      */
 
-    public function hasKey ($xKey)
+    public function hasKey ($key)
     {
-        return array_key_exists($xKey, $this->m_mMap);
+        return array_key_exists($key, $this->m_map);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if a map contains a value by a specified key path.
      *
-     * @param  string $sPath The key path to be looked by, e.g. "level1key.level2key".
+     * @param  string $path The key path to be looked by, e.g. "level1key.level2key".
      *
      * @return bool `true` if the map contains a value by such key path, `false` otherwise.
      */
 
-    public function hasPath ($sPath)
+    public function hasPath ($path)
     {
-        return CMap::hasPath($this->m_mMap, $sPath);
+        return CMap::hasPath($this->m_map, $path);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * From a map, returns the value found by a specified key path.
      *
-     * @param  string $sPath The key path by which the value is to be found, e.g. "level1key.level2key".
+     * @param  string $path The key path by which the value is to be found, e.g. "level1key.level2key".
      *
      * @return mixed The value found by the key path.
      */
 
-    public function valueByPath ($sPath)
+    public function valueByPath ($path)
     {
-        return CMap::valueByPath($this->m_mMap, $sPath);
+        return CMap::valueByPath($this->m_map, $path);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * In a map, modifies the value found by a specified key path.
      *
-     * @param  string $sPath The key path by which the value is to be found, e.g. "level1key.level2key".
-     * @param  mixed $xValue The new value.
+     * @param  string $path The key path by which the value is to be found, e.g. "level1key.level2key".
+     * @param  mixed $value The new value.
      *
      * @return void
      */
 
-    public function setValueByPath ($sPath, $xValue)
+    public function setValueByPath ($path, $value)
     {
-        CMap::setValueByPath($this->m_mMap, $sPath, $xValue);
+        CMap::setValueByPath($this->m_map, $path, $value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -208,12 +208,12 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
      * (static or not), including CUStringObject, CArrayObject, CMapObject, CTime etc. See the
      * [CComparator](CComparator.html) class for more on this.
      *
-     * @param  mixed $xWhatValue The searched value.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  mixed $whatValue The searched value.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of values while searching. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being a value from the map and the second parameter being the searched
      * value, and return `true` if the two values are equal and `false` otherwise.
-     * @param  reference $rxFoundUnderKey **OPTIONAL. OUTPUT.** If a value has been found after the method was called
+     * @param  reference $foundUnderKey **OPTIONAL. OUTPUT.** If a value has been found after the method was called
      * with this parameter provided, the parameter's value is being the first key under which the value was seen. If
      * the key is a string, its output type is `CUStringObject`.
      *
@@ -222,10 +222,10 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
      * @link   CComparator.html CComparator
      */
 
-    public function find ($xWhatValue, $fnComparator = CComparator::EQUALITY, &$rxFoundUnderKey = null)
+    public function find ($whatValue, $comparator = CComparator::EQUALITY, &$foundUnderKey = null)
     {
-        $bFound = CMap::find($this->m_mMap, $xWhatValue, $fnComparator, $rxFoundUnderKey);
-        return $bFound;
+        $found = CMap::find($this->m_map, $whatValue, $comparator, $foundUnderKey);
+        return $found;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -239,8 +239,8 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
      * `find` method is Unicode-aware) and it was made flexible for you to be able to set your own comparison rules,
      * such as making the search case-insensitive for any kind of strings.
      *
-     * @param  mixed $xWhatValue The searched value.
-     * @param  reference $rxFoundUnderKey **OPTIONAL. OUTPUT.** If a value has been found after the method was called
+     * @param  mixed $whatValue The searched value.
+     * @param  reference $foundUnderKey **OPTIONAL. OUTPUT.** If a value has been found after the method was called
      * with this parameter provided, the parameter's value is being the first key under which the value was seen. If
      * the key is a string, its output type is `CUStringObject`.
      *
@@ -249,10 +249,10 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
      * @link   #method_find find
      */
 
-    public function findScalar ($xWhatValue, &$rxFoundUnderKey = null)
+    public function findScalar ($whatValue, &$foundUnderKey = null)
     {
-        $bFound = CMap::findScalar($this->m_mMap, $xWhatValue, $rxFoundUnderKey);
-        return $bFound;
+        $found = CMap::findScalar($this->m_map, $whatValue, $foundUnderKey);
+        return $found;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -264,8 +264,8 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
      * (static or not), including CUStringObject, CArrayObject, CMapObject, CTime etc. See the
      * [CComparator](CComparator.html) class for more on this.
      *
-     * @param  mixed $xValue The searched value.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  mixed $value The searched value.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of values while searching. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being a value from the map and the second parameter being the searched
      * value, and return `true` if the two values are equal and `false` otherwise.
@@ -275,22 +275,22 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
      * @link   CComparator.html CComparator
      */
 
-    public function countValue ($xValue, $fnComparator = CComparator::EQUALITY)
+    public function countValue ($value, $comparator = CComparator::EQUALITY)
     {
-        return CMap::countValue($this->m_mMap, $xValue, $fnComparator);
+        return CMap::countValue($this->m_map, $value, $comparator);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes a key-value pair from a map.
      *
-     * @param  mixed $xKey The key of the key-value pair to be removed.
+     * @param  mixed $key The key of the key-value pair to be removed.
      *
      * @return void
      */
 
-    public function remove ($xKey)
+    public function remove ($key)
     {
-        CMap::remove($this->m_mMap, $xKey);
+        CMap::remove($this->m_map, $key);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -299,16 +299,16 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
      *
      * The map is not modified by this method.
      *
-     * @param  callable $fnFilter The function or method to be used for filtering. The filter should take a value as a
+     * @param  callable $filter The function or method to be used for filtering. The filter should take a value as a
      * parameter and return `true` if the corresponding key-value pair should make its way into the resulting map and
      * `false` if not.
      *
      * @return CMapObject The filtered map.
      */
 
-    public function filter ($fnFilter)
+    public function filter ($filter)
     {
-        return self::fromPArray(CMap::filter($this->m_mMap, $fnFilter));
+        return self::fromPArray(CMap::filter($this->m_map, $filter));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -319,7 +319,7 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
 
     public function keys ()
     {
-        return CArrayObject::fromSplArray(CMap::keys($this->m_mMap));
+        return CArrayObject::fromSplArray(CMap::keys($this->m_map));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -330,7 +330,7 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
 
     public function values ()
     {
-        return CArrayObject::fromSplArray(CMap::values($this->m_mMap));
+        return CArrayObject::fromSplArray(CMap::values($this->m_map));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -353,9 +353,9 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
 
     public function merge (/*withMap0, withMap1, ...*/)
     {
-        $mArguments = func_get_args();
-        array_unshift($mArguments, $this->m_mMap);
-        return self::fromPArray(call_user_func_array("CMap::merge", $mArguments));
+        $arguments = func_get_args();
+        array_unshift($arguments, $this->m_map);
+        return self::fromPArray(call_user_func_array("CMap::merge", $arguments));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -374,7 +374,7 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
 
     public function areKeysSequential ()
     {
-        return CMap::areKeysSequential($this->m_mMap);
+        return CMap::areKeysSequential($this->m_map);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -386,50 +386,50 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
      * The new value is inserted under the integer key that is greater by one compared to the greatest integer key
      * already in the map or under `0` if there were no integer keys.
      *
-     * @param  mixed $xValue The value to be inserted.
+     * @param  mixed $value The value to be inserted.
      *
      * @return void
      */
 
-    public function insertValue ($xValue)
+    public function insertValue ($value)
     {
-        CMap::insertValue($this->m_mMap, $xValue);
+        CMap::insertValue($this->m_map, $value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    public static function fromArguments ($mArguments)
+    public static function fromArguments ($arguments)
     {
-        assert( 'empty($mArguments) || (count($mArguments) == 1 && is_array($mArguments[0]))',
+        assert( 'empty($arguments) || (count($arguments) == 1 && is_array($arguments[0]))',
             vs(isset($this), get_defined_vars()) );
 
-        $mMap = new self(true);
+        $map = new self(true);
 
-        if ( empty($mArguments) )
+        if ( empty($arguments) )
         {
-            $mMap->m_mMap = [];
+            $map->m_map = [];
         }
         else
         {
-            $mMap->m_mMap = $mArguments[0];
+            $map->m_map = $arguments[0];
         }
 
-        return $mMap;
+        return $map;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    public static function fromPArray ($mPArray)
+    public static function fromPArray ($pArray)
     {
-        assert( 'is_array($mPArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_array($pArray)', vs(isset($this), get_defined_vars()) );
 
-        $mMap = new self(true);
-        $mMap->m_mMap = $mPArray;
-        return $mMap;
+        $map = new self(true);
+        $map->m_map = $pArray;
+        return $map;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -438,43 +438,43 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
 
     public function &toPArray ()
     {
-        return $this->m_mMap;
+        return $this->m_map;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    public function offsetExists ($xOffset)
+    public function offsetExists ($offset)
     {
-        return isset($this->m_mMap[$xOffset]);
+        return isset($this->m_map[$offset]);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    public function offsetGet ($xOffset)
+    public function offsetGet ($offset)
     {
-        return $this->m_mMap[$xOffset];
+        return $this->m_map[$offset];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    public function offsetSet ($xOffset, $xValue)
+    public function offsetSet ($offset, $value)
     {
-        $this->m_mMap[$xOffset] = $xValue;
+        $this->m_map[$offset] = $value;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * @ignore
      */
 
-    public function offsetUnset ($xOffset)
+    public function offsetUnset ($offset)
     {
-        unset($this->m_mMap[$xOffset]);
+        unset($this->m_map[$offset]);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -492,14 +492,14 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
 
     public function count ()
     {
-        return count($this->m_mMap);
+        return count($this->m_map);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected function &generateIterator ()
     {
-        foreach ($this->m_mMap as $xKey => &$rxValue)
+        foreach ($this->m_map as $key => &$value)
         {
-            yield $xKey => $rxValue;
+            yield $key => $value;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -509,9 +509,9 @@ class CMapObject extends CRootClass implements IEqualityAndOrder, ArrayAccess, I
 
     // public function __debugInfo ()
     // {
-    //     return $this->m_mMap;
+    //     return $this->m_map;
     // }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    protected $m_mMap;
+    protected $m_map;
 }

@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -31,13 +31,13 @@
 // Method signatures:
 //   static bool isDebugModeOn ()
 //   static bool assertionsLevel1 ()
-//   static void setAssertionsLevel1 ($bEnable)
+//   static void setAssertionsLevel1 ($enable)
 //   static bool assertionsLevel2 ()
 //   static bool aL2 ()
-//   static void setAssertionsLevel2 ($bEnable)
-//   static void setLogging ($sErrorLogFp)
-//   static void setMailing (CMail $oMail,
-//     $iMinTimeBetweenSendMailHours = self::DEFAULT_MIN_TIME_BETWEEN_SEND_MAIL_HOURS)
+//   static void setAssertionsLevel2 ($enable)
+//   static void setLogging ($errorLogFp)
+//   static void setMailing (CMail $mail,
+//     $minTimeBetweenSendMailHours = self::DEFAULT_MIN_TIME_BETWEEN_SEND_MAIL_HOURS)
 
 /**
  * @ignore
@@ -59,12 +59,12 @@ class CDebug extends CRootClass
         return ( assert_options(ASSERT_ACTIVE) === 1 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    public static function setAssertionsLevel1 ($bEnable)
+    public static function setAssertionsLevel1 ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
 
-        assert_options(ASSERT_ACTIVE, $bEnable);
-        if ( self::$ms_bAnyFailedAssertionIsFatal && $bEnable )
+        assert_options(ASSERT_ACTIVE, $enable);
+        if ( self::$ms_anyFailedAssertionIsFatal && $enable )
         {
             assert_options(ASSERT_BAIL, true);
         }
@@ -73,7 +73,7 @@ class CDebug extends CRootClass
     public static function assertionsLevel2 ()
     {
         // Checks whether the level 2 assertions are enabled.
-        return ( self::$ms_bAssertionsLevel2 && self::assertionsLevel1() );
+        return ( self::$ms_assertionsLevel2 && self::assertionsLevel1() );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public static function aL2 ()
@@ -82,329 +82,329 @@ class CDebug extends CRootClass
         return self::assertionsLevel2();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    public static function setAssertionsLevel2 ($bEnable)
+    public static function setAssertionsLevel2 ($enable)
     {
-        assert( 'is_bool($bEnable)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($enable)', vs(isset($this), get_defined_vars()) );
 
-        if ( $bEnable )
+        if ( $enable )
         {
             self::setAssertionsLevel1(true);
         }
-        self::$ms_bAssertionsLevel2 = $bEnable;
+        self::$ms_assertionsLevel2 = $enable;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    public static function setLogging ($sErrorLogFp)
+    public static function setLogging ($errorLogFp)
     {
         // Enables the logging of error messages into the file located at the specified path.
 
-        assert( 'is_cstring($sErrorLogFp)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($errorLogFp)', vs(isset($this), get_defined_vars()) );
 
-        self::$ms_bLogging = true;
-        self::$ms_sErrorLogFp = $sErrorLogFp;
+        self::$ms_logging = true;
+        self::$ms_errorLogFp = $errorLogFp;
 
         self::registerHandlers();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    public static function setMailing (CMail $oMail,
-        $iMinTimeBetweenSendMailHours = self::DEFAULT_MIN_TIME_BETWEEN_SEND_MAIL_HOURS)
+    public static function setMailing (CMail $mail,
+        $minTimeBetweenSendMailHours = self::DEFAULT_MIN_TIME_BETWEEN_SEND_MAIL_HOURS)
     {
         // Enables mailing about encountered errors with the provided CMail object.
 
-        assert( 'is_int($iMinTimeBetweenSendMailHours)', vs(isset($this), get_defined_vars()) );
-        assert( '$iMinTimeBetweenSendMailHours >= 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($minTimeBetweenSendMailHours)', vs(isset($this), get_defined_vars()) );
+        assert( '$minTimeBetweenSendMailHours >= 0', vs(isset($this), get_defined_vars()) );
 
-        self::$ms_bMailing = true;
-        self::$ms_oMail = $oMail;
-        self::$ms_iMinTimeBetweenSendMailHours = $iMinTimeBetweenSendMailHours;
+        self::$ms_mailing = true;
+        self::$ms_mail = $mail;
+        self::$ms_minTimeBetweenSendMailHours = $minTimeBetweenSendMailHours;
 
         self::registerHandlers();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    public static function definedVarsToString ($mVars)
+    public static function definedVarsToString ($vars)
     {
-        if ( empty($mVars) )
+        if ( empty($vars) )
         {
             return "";
         }
 
         // Convert the associative array to string.
-        $sVars = var_export($mVars, true);
+        $strVars = var_export($vars, true);
 
         // Do some cleanup.
-        $sVars = preg_replace("/^\\s*\\w+\\s*\\(\\s*/", "\n  ", $sVars);
-        $sVars = preg_replace("/\\s*,?\\s*\\)\\s*\\z/", "", $sVars);
-        $sVars = preg_replace("/\\n(?! {2}\\S)\\h*/", " ", $sVars);
+        $strVars = preg_replace("/^\\s*\\w+\\s*\\(\\s*/", "\n  ", $strVars);
+        $strVars = preg_replace("/\\s*,?\\s*\\)\\s*\\z/", "", $strVars);
+        $strVars = preg_replace("/\\n(?! {2}\\S)\\h*/", " ", $strVars);
 
         // See if the resulting string is not too big.
-        if ( strlen($sVars) > self::$ms_iDebugVarStringMaxLength )
+        if ( strlen($strVars) > self::$ms_debugVarStringMaxLength )
         {
             // The string is exceeding the limit, so shorten it to the maximum allowed length.
-            $sVars = substr($sVars, 0, self::$ms_iDebugVarStringMaxLength - 3);
-            $sVars .= "...";
+            $strVars = substr($strVars, 0, self::$ms_debugVarStringMaxLength - 3);
+            $strVars .= "...";
         }
 
         // Put a marker indicating it is a variable dump.
-        $sVars .= self::$ms_sAssertVarsMarker;
+        $strVars .= self::$ms_assertVarsMarker;
 
-        return $sVars;
+        return $strVars;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    public static function errorHandler ($eErrorLevel, $sErrorDesc, $sFilePath, $iLine)
+    public static function errorHandler ($errorLevel, $errorDesc, $filePath, $line)
     {
         // If any error processing is enabled, this function is called by the PHP runtime on a failed assertion or
         // runtime error.
 
-        settype($eErrorLevel, "int");
-        settype($iLine, "int");
+        settype($errorLevel, "int");
+        settype($line, "int");
 
-        $bReportThisError = true;
+        $reportThisError = true;
         if ( CConfiguration::isInitialized() )
         {
-            $eErrorReportingLevel = constant(CConfiguration::option("debug.errorReportingLevel"));
-            if ( $eErrorLevel & $eErrorReportingLevel == 0 )
+            $errorReportingLevel = constant(CConfiguration::option("debug.errorReportingLevel"));
+            if ( $errorLevel & $errorReportingLevel == 0 )
             {
-                $bReportThisError = false;
+                $reportThisError = false;
             }
         }
-        if ( $bReportThisError )
+        if ( $reportThisError )
         {
             // Avoid double reporting of the same error if the method registered with `register_shutdown_function` is
             // called by the runtime after an error occurred.
-            $mErrorFileAndLine = [];
-            $mErrorFileAndLine["file"] = $sFilePath;
-            $mErrorFileAndLine["line"] = $iLine;
-            self::$ms_mProcessedErrors[] = $mErrorFileAndLine;
+            $errorFileAndLine = [];
+            $errorFileAndLine["file"] = $filePath;
+            $errorFileAndLine["line"] = $line;
+            self::$ms_processedErrors[] = $errorFileAndLine;
 
-            $sTime = gmdate(self::$ms_sLogRecordDateTimePattern, time());
+            $strErrorLevel;
+            switch ( $errorLevel )
+            {
+            case E_ERROR:  // 1
+                $strErrorLevel = "E_ERROR";
+                break;
+            case E_WARNING:  // 2
+                $strErrorLevel = "E_WARNING";
+                break;
+            case E_PARSE:  // 4
+                $strErrorLevel = "E_PARSE";
+                break;
+            case E_NOTICE:  // 8
+                $strErrorLevel = "E_NOTICE";
+                break;
+            case E_CORE_ERROR:  // 16
+                $strErrorLevel = "E_CORE_ERROR";
+                break;
+            case E_CORE_WARNING:  // 32
+                $strErrorLevel = "E_CORE_WARNING";
+                break;
+            case E_COMPILE_ERROR:  // 64
+                $strErrorLevel = "E_COMPILE_ERROR";
+                break;
+            case E_COMPILE_WARNING:  // 128
+                $strErrorLevel = "E_COMPILE_WARNING";
+                break;
+            case E_USER_ERROR:  // 256
+                $strErrorLevel = "E_USER_ERROR";
+                break;
+            case E_USER_WARNING:  // 512
+                $strErrorLevel = "E_USER_WARNING";
+                break;
+            case E_USER_NOTICE:  // 1024
+                $strErrorLevel = "E_USER_NOTICE";
+                break;
+            case E_STRICT:  // 2048
+                $strErrorLevel = "E_STRICT";
+                break;
+            case E_RECOVERABLE_ERROR:  // 4096
+                $strErrorLevel = "E_RECOVERABLE_ERROR";
+                break;
+            case E_DEPRECATED:  // 8192
+                $strErrorLevel = "E_DEPRECATED";
+                break;
+            case E_USER_DEPRECATED:  // 16384
+                $strErrorLevel = "E_USER_DEPRECATED";
+                break;
+            default:
+                $strErrorLevel = (string)$errorLevel;
+                break;
+            }
 
-            $sFileRelPath = str_replace(realpath($GLOBALS["PHRED_PATH_TO_FRAMEWORK_ROOT"]) . "/", "", $sFilePath);
+            $time = gmdate(self::$ms_logRecordDateTimePattern, time());
 
-            $bIsAssertWithVars = ( is_int(strpos($sErrorDesc, self::$ms_sAssertVarsMarker)) );
+            $fileRelPath = str_replace(realpath($GLOBALS["PHRED_PATH_TO_FRAMEWORK_ROOT"]) . "/", "", $filePath);
 
-            $sErrorDesc = preg_replace("/\\n{2,}/", "\n", $sErrorDesc);
-            if ( !$bIsAssertWithVars )
+            $isAssertWithVars = ( is_int(strpos($errorDesc, self::$ms_assertVarsMarker)) );
+
+            $errorDesc = preg_replace("/\\n{2,}/", "\n", $errorDesc);
+            if ( !$isAssertWithVars )
             {
                 // In case of an assert without vars.
-                $sErrorDesc = preg_replace("/^assert\\(\\)\\s*:\\s*/", "", $sErrorDesc);
+                $errorDesc = preg_replace("/^assert\\(\\)\\s*:\\s*/", "", $errorDesc);
             }
             else
             {
-                $sErrorDesc = preg_replace(
-                    "/^[^\\n]*\\n(.*)" . self::$ms_sAssertVarsMarker . "\\s*:\\s*([\"'][^\\n]*)\\s*\\z/s",
-                    "$2 ($sErrorLevel)\n$1", $sErrorDesc);
-                if ( preg_match("/^\\s*assert/i", $sErrorDesc) !== 1 )
+                $errorDesc = preg_replace(
+                    "/^[^\\n]*\\n(.*)" . self::$ms_assertVarsMarker . "\\s*:\\s*([\"'][^\\n]*)\\s*\\z/s",
+                    "$2 ($strErrorLevel)\n$1", $errorDesc);
+                if ( preg_match("/^\\s*assert/i", $errorDesc) !== 1 )
                 {
-                    $sErrorDesc = "Assertion $sErrorDesc";
+                    $errorDesc = "Assertion $errorDesc";
                 }
-            }
-
-            $sErrorLevel;
-            switch ( $eErrorLevel )
-            {
-            case E_ERROR:  // 1
-                $sErrorLevel = "E_ERROR";
-                break;
-            case E_WARNING:  // 2
-                $sErrorLevel = "E_WARNING";
-                break;
-            case E_PARSE:  // 4
-                $sErrorLevel = "E_PARSE";
-                break;
-            case E_NOTICE:  // 8
-                $sErrorLevel = "E_NOTICE";
-                break;
-            case E_CORE_ERROR:  // 16
-                $sErrorLevel = "E_CORE_ERROR";
-                break;
-            case E_CORE_WARNING:  // 32
-                $sErrorLevel = "E_CORE_WARNING";
-                break;
-            case E_COMPILE_ERROR:  // 64
-                $sErrorLevel = "E_COMPILE_ERROR";
-                break;
-            case E_COMPILE_WARNING:  // 128
-                $sErrorLevel = "E_COMPILE_WARNING";
-                break;
-            case E_USER_ERROR:  // 256
-                $sErrorLevel = "E_USER_ERROR";
-                break;
-            case E_USER_WARNING:  // 512
-                $sErrorLevel = "E_USER_WARNING";
-                break;
-            case E_USER_NOTICE:  // 1024
-                $sErrorLevel = "E_USER_NOTICE";
-                break;
-            case E_STRICT:  // 2048
-                $sErrorLevel = "E_STRICT";
-                break;
-            case E_RECOVERABLE_ERROR:  // 4096
-                $sErrorLevel = "E_RECOVERABLE_ERROR";
-                break;
-            case E_DEPRECATED:  // 8192
-                $sErrorLevel = "E_DEPRECATED";
-                break;
-            case E_USER_DEPRECATED:  // 16384
-                $sErrorLevel = "E_USER_DEPRECATED";
-                break;
-            default:
-                $sErrorLevel = (string)$eErrorLevel;
-                break;
             }
 
             // Backtrace.
             ob_start();
             debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
-            $sBacktrace = ob_get_clean();
-            $sBacktrace = preg_replace("/\\n{2,}/", "\n", $sBacktrace);
-            $sBacktrace = preg_replace("/^\\s*#.*?(?=#)/s", "", $sBacktrace);  // remove the first line that is useless
-            $sBacktrace = str_replace(realpath($GLOBALS["PHRED_PATH_TO_FRAMEWORK_ROOT"]) . "/", "", $sBacktrace);
-            $sBacktrace = preg_replace("/\\s+\\z/", "", $sBacktrace);
+            $backtrace = ob_get_clean();
+            $backtrace = preg_replace("/\\n{2,}/", "\n", $backtrace);
+            $backtrace = preg_replace("/^\\s*#.*?(?=#)/s", "", $backtrace);  // remove the first line that is useless
+            $backtrace = str_replace(realpath($GLOBALS["PHRED_PATH_TO_FRAMEWORK_ROOT"]) . "/", "", $backtrace);
+            $backtrace = preg_replace("/\\s+\\z/", "", $backtrace);
 
             // Format the error message.
-            if ( !$bIsAssertWithVars )
+            if ( !$isAssertWithVars )
             {
-                $sErrorMessage =
-                    "[Time:] $sTime\n\n[Location:] $sFileRelPath, line $iLine\n\n$sErrorDesc ($sErrorLevel)\n\n" .
-                    "[Backtrace:]\n$sBacktrace\n";
+                $errorMessage =
+                    "[Time:] $time\n\n[Location:] $fileRelPath, line $line\n\n$errorDesc ($strErrorLevel)\n\n" .
+                    "[Backtrace:]\n$backtrace\n";
             }
             else
             {
-                $sErrorMessage =
-                    "[Time:] $sTime\n\n[Location:] $sFileRelPath, line $iLine\n\n$sErrorDesc\n\n" .
-                    "[Backtrace:]\n$sBacktrace\n";
+                $errorMessage =
+                    "[Time:] $time\n\n[Location:] $fileRelPath, line $line\n\n$errorDesc\n\n" .
+                    "[Backtrace:]\n$backtrace\n";
             }
 
-            $sLogRecordSep = rtrim(str_repeat("- ", 60));
-            $sLeSep = "\n\n$sLogRecordSep\n\n";
+            $logRecordSep = rtrim(str_repeat("- ", 60));
+            $leSep = "\n\n$logRecordSep\n\n";
 
-            if ( self::$ms_bLogging )
+            if ( self::$ms_logging )
             {
                 // Log the record.
-                $sLogRecord = "$sErrorMessage\n$sLogRecordSep\n\n";
-                if ( file_exists(self::$ms_sErrorLogFp) )
+                $logRecord = "$errorMessage\n$logRecordSep\n\n";
+                if ( file_exists(self::$ms_errorLogFp) )
                 {
                     // Check if log rotation needs to be performed for the error log.
-                    $sLog = file_get_contents(self::$ms_sErrorLogFp);
-                    $iNumRecords = substr_count($sLog, $sLeSep);
-                    if ( $iNumRecords >= self::$ms_iMaxNumRecordsInLog )
+                    $log = file_get_contents(self::$ms_errorLogFp);
+                    $numRecords = substr_count($log, $leSep);
+                    if ( $numRecords >= self::$ms_maxNumRecordsInLog )
                     {
-                        $iNumDelFirstRecords = $iNumRecords - self::$ms_iMaxNumRecordsInLog + 1;
-                        $iPos;
-                        for ($i = 0; $i < $iNumDelFirstRecords; $i++)
+                        $numDelFirstRecords = $numRecords - self::$ms_maxNumRecordsInLog + 1;
+                        $pos;
+                        for ($i = 0; $i < $numDelFirstRecords; $i++)
                         {
-                            $iPos = ( !isset($iPos) ) ? 0 : $iPos + 1;
-                            $iPos = strpos($sLog, $sLeSep, $iPos);
+                            $pos = ( !isset($pos) ) ? 0 : $pos + 1;
+                            $pos = strpos($log, $leSep, $pos);
                         }
-                        $sLog = substr($sLog, $iPos);
-                        $sLog = "\n$sLogRecordSep\n\n" . preg_replace("/^$sLeSep/", "", $sLog);
+                        $log = substr($log, $pos);
+                        $log = "\n$logRecordSep\n\n" . preg_replace("/^$leSep/", "", $log);
 
-                        file_put_contents(self::$ms_sErrorLogFp, $sLog);
+                        file_put_contents(self::$ms_errorLogFp, $log);
                     }
                 }
                 else
                 {
-                    file_put_contents(self::$ms_sErrorLogFp, "\n$sLogRecordSep\n\n");
+                    file_put_contents(self::$ms_errorLogFp, "\n$logRecordSep\n\n");
                 }
-                file_put_contents(self::$ms_sErrorLogFp, $sLogRecord, FILE_APPEND);
+                file_put_contents(self::$ms_errorLogFp, $logRecord, FILE_APPEND);
             }
 
-            if ( self::$ms_bMailing )
+            if ( self::$ms_mailing )
             {
-                $bDoMail = true;
+                $doMail = true;
 
-                $sDestDp = sys_get_temp_dir();
-                $sDocRoot = ( isset($_SERVER["DOCUMENT_ROOT"]) ) ? $_SERVER["DOCUMENT_ROOT"] : "";
-                $sDocRootHash = hash("crc32", $sDocRoot, false);
-                $sLastMailTimeFp = $sDestDp . "/" . self::$ms_sLastMailingTimeFnPrefix . $sDocRootHash;
+                $destDp = sys_get_temp_dir();
+                $docRoot = ( isset($_SERVER["DOCUMENT_ROOT"]) ) ? $_SERVER["DOCUMENT_ROOT"] : "";
+                $docRootHash = hash("crc32", $docRoot, false);
+                $lastMailTimeFp = $destDp . "/" . self::$ms_lastMailingTimeFnPrefix . $docRootHash;
 
-                if ( file_exists($sLastMailTimeFp) )
+                if ( file_exists($lastMailTimeFp) )
                 {
-                    $iLastMailTime = (int)file_get_contents($sLastMailTimeFp);
-                    $iLastMailTimeDiffSeconds = time() - $iLastMailTime;
+                    $lastMailTime = (int)file_get_contents($lastMailTimeFp);
+                    $lastMailTimeDiffSeconds = time() - $lastMailTime;
 
                     // If the difference is negative, which is wrong, the mailing should not be canceled.
-                    if ( $iLastMailTimeDiffSeconds >= 0 )
+                    if ( $lastMailTimeDiffSeconds >= 0 )
                     {
-                        if ( $iLastMailTimeDiffSeconds < self::$ms_iMinTimeBetweenSendMailHours*3600 )
+                        if ( $lastMailTimeDiffSeconds < self::$ms_minTimeBetweenSendMailHours*3600 )
                         {
                             // Too little time has passed since the last mailing, so cancel this one.
-                            $bDoMail = false;
+                            $doMail = false;
                         }
                     }
                 }
 
-                if ( $bDoMail )
+                if ( $doMail )
                 {
                     // Notify about the error by mail.
 
                     // Format the subject.
-                    $sSubject = "Something curious was encountered on ";  // alternative: ""
-                    $sServerName = ( isset($_SERVER["SERVER_NAME"]) ) ? $_SERVER["SERVER_NAME"] : "";
-                    $sServerIp = ( isset($_SERVER["SERVER_ADDR"]) ) ? $_SERVER["SERVER_ADDR"] : "";
-                    $sDocRoot = ( isset($_SERVER["DOCUMENT_ROOT"]) ) ? basename($_SERVER["DOCUMENT_ROOT"]) : "";
-                    if ( $sServerName !== "" )
+                    $subject = "Something curious was encountered on ";  // alternative: ""
+                    $serverName = ( isset($_SERVER["SERVER_NAME"]) ) ? $_SERVER["SERVER_NAME"] : "";
+                    $serverIp = ( isset($_SERVER["SERVER_ADDR"]) ) ? $_SERVER["SERVER_ADDR"] : "";
+                    $docRoot = ( isset($_SERVER["DOCUMENT_ROOT"]) ) ? basename($_SERVER["DOCUMENT_ROOT"]) : "";
+                    if ( $serverName !== "" )
                     {
-                        $sSubject .= $sServerName;
-                        if ( $sServerIp !== "" )
+                        $subject .= $serverName;
+                        if ( $serverIp !== "" )
                         {
-                            $sSubject .= " ($sServerIp)";
+                            $subject .= " ($serverIp)";
                         }
-                        if ( $sDocRoot !== "" )
+                        if ( $docRoot !== "" )
                         {
-                            $sSubject .= " in ";
+                            $subject .= " in ";
                         }
                         else
                         {
-                            $sSubject .= "";  // alternative: ": "
+                            $subject .= "";  // alternative: ": "
                         }
                     }
-                    if ( $sDocRoot !== "" )
+                    if ( $docRoot !== "" )
                     {
-                        $sSubject .= "'$sDocRoot'";  // alternative: "'$sDocRoot': "
+                        $subject .= "'$docRoot'";  // alternative: "'$docRoot': "
                     }
                     // Alternative:
-                    // $sSubject .= "PHP Encountered a Problem";
+                    // $subject .= "PHP Encountered a Problem";
 
                     // Compose the message.
-                    $sMailMessage = "$sSubject\n\n$sErrorMessage";
-                    if ( self::$ms_bLogging && file_exists(self::$ms_sErrorLogFp) )
+                    $mailMessage = "$subject\n\n$errorMessage";
+                    if ( self::$ms_logging && file_exists(self::$ms_errorLogFp) )
                     {
                         // Add the latest log records to the message.
-                        $sLog = file_get_contents(self::$ms_sErrorLogFp);
-                        $sLog .= "\n";  // to be able to use `-1` in `strrpos` below
-                        $iLogLength = strlen($sLog);
-                        $xRes = strrpos($sLog, $sLeSep, -1);
-                        if ( is_int($xRes) )
+                        $log = file_get_contents(self::$ms_errorLogFp);
+                        $log .= "\n";  // to be able to use `-1` in `strrpos` below
+                        $logLength = strlen($log);
+                        $res = strrpos($log, $leSep, -1);
+                        if ( is_int($res) )
                         {
-                            for ($i = 0; $i < self::$ms_iMaxNumLatestLogRecordsInMailMessage; $i++)
+                            for ($i = 0; $i < self::$ms_maxNumLatestLogRecordsInMailMessage; $i++)
                             {
-                                $xRes = strrpos($sLog, $sLeSep, $xRes - $iLogLength - 1);
-                                if ( !is_int($xRes) )
+                                $res = strrpos($log, $leSep, $res - $logLength - 1);
+                                if ( !is_int($res) )
                                 {
                                     break;
                                 }
                             }
-                            if ( !is_int($xRes) )
+                            if ( !is_int($res) )
                             {
-                                $xRes = 0;
+                                $res = 0;
                             }
-                            $sLatestRecords = substr($sLog, $xRes);
-                            $sLatestRecords = trim($sLatestRecords);
+                            $latestRecords = substr($log, $res);
+                            $latestRecords = trim($latestRecords);
 
-                            $sMailMessage .=
-                                "\n\n\n\n[Latest error log records, chronologically:]\n\n$sLatestRecords\n";
+                            $mailMessage .=
+                                "\n\n\n\n[Latest error log records, chronologically:]\n\n$latestRecords\n";
                         }
                     }
 
                     // Send.
-                    self::$ms_oMail->setSubject($sSubject);
-                    self::$ms_oMail->setBody($sMailMessage);
-                    self::$ms_oMail->disableWordWrapping();
-                    $iNumMailsSent = self::$ms_oMail->send();
+                    self::$ms_mail->setSubject($subject);
+                    self::$ms_mail->setBody($mailMessage);
+                    self::$ms_mail->disableWordWrapping();
+                    $numMailsSent = self::$ms_mail->send();
 
-                    if ( $iNumMailsSent > 0 )
+                    if ( $numMailsSent > 0 )
                     {
-                        file_put_contents($sLastMailTimeFp, time());
+                        file_put_contents($lastMailTimeFp, time());
                     }
                 }
             }
@@ -417,58 +417,58 @@ class CDebug extends CRootClass
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public static function fatalErrorHandler()
     {
-        $mError = error_get_last();
+        $error = error_get_last();
 
         // Avoid double reporting of the same error if this method (registered with `register_shutdown_function`) is
         // called by the runtime after an error occurred.
-        $mErrorFileAndLine = [];
-        $mErrorFileAndLine["file"] = $mError["file"];
-        $mErrorFileAndLine["line"] = $mError["line"];
-        if ( in_array($mErrorFileAndLine, self::$ms_mProcessedErrors) )
+        $errorFileAndLine = [];
+        $errorFileAndLine["file"] = $error["file"];
+        $errorFileAndLine["line"] = $error["line"];
+        if ( in_array($errorFileAndLine, self::$ms_processedErrors) )
         {
             return;
         }
 
-        if ( isset($mError) )
+        if ( isset($error) )
         {
-            $sFile = $mError["file"];
-            $iLine = (int)$mError["line"];
-            $sErrorDesc = $mError["message"];
-            $eErrorLevel = (int)$mError["type"];
+            $file = $error["file"];
+            $line = (int)$error["line"];
+            $errorDesc = $error["message"];
+            $errorLevel = (int)$error["type"];
 
-            self::errorHandler($eErrorLevel, $sErrorDesc, $sFile, $iLine);
+            self::errorHandler($errorLevel, $errorDesc, $file, $line);
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected static function registerHandlers ()
     {
-        static $s_bAlreadyRegistered = false;
-        if ( $s_bAlreadyRegistered )
+        static $s_alreadyRegistered = false;
+        if ( $s_alreadyRegistered )
         {
             return;
         }
 
-        $sClassName = get_called_class();
-        set_error_handler("$sClassName::errorHandler");
-        register_shutdown_function("$sClassName::fatalErrorHandler");
+        $className = get_called_class();
+        set_error_handler("$className::errorHandler");
+        register_shutdown_function("$className::fatalErrorHandler");
 
-        $s_bAlreadyRegistered = true;
+        $s_alreadyRegistered = true;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     // Properties and defaults.
-    protected static $ms_bAssertionsLevel2 = false;
-    protected static $ms_bLogging = false;
-    protected static $ms_sErrorLogFp;
-    protected static $ms_bMailing = false;
-    protected static $ms_oMail;
-    protected static $ms_iMinTimeBetweenSendMailHours;
-    protected static $ms_iMaxNumRecordsInLog = 1024;
-    protected static $ms_sLogRecordDateTimePattern = "Y-m-d H:i:s e";
-    protected static $ms_iMaxNumLatestLogRecordsInMailMessage = 16;
-    protected static $ms_iDebugVarStringMaxLength = 65536;  // 64 KB
-    protected static $ms_bAnyFailedAssertionIsFatal = false;
-    protected static $ms_sLastMailingTimeFnPrefix = "tmp-phred-on-error-last-mailing-time-for-docroot-";
-    protected static $ms_sAssertVarsMarker = "\t \t\t \t \t\t \t \n";
-    protected static $ms_mProcessedErrors = [];
+    protected static $ms_assertionsLevel2 = false;
+    protected static $ms_logging = false;
+    protected static $ms_errorLogFp;
+    protected static $ms_mailing = false;
+    protected static $ms_mail;
+    protected static $ms_minTimeBetweenSendMailHours;
+    protected static $ms_maxNumRecordsInLog = 1024;
+    protected static $ms_logRecordDateTimePattern = "Y-m-d H:i:s e";
+    protected static $ms_maxNumLatestLogRecordsInMailMessage = 16;
+    protected static $ms_debugVarStringMaxLength = 65536;  // 64 KB
+    protected static $ms_anyFailedAssertionIsFatal = false;
+    protected static $ms_lastMailingTimeFnPrefix = "tmp-phred-on-error-last-mailing-time-for-docroot-";
+    protected static $ms_assertVarsMarker = "\t \t\t \t \t\t \t \n";
+    protected static $ms_processedErrors = [];
 }

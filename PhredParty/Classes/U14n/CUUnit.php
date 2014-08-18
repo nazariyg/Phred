@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -17,22 +17,22 @@
  */
 
 // Method signatures:
-//   static int convertStoragei ($iQuantity, $eFromUnit, $eToUnit)
-//   static float convertStoragef ($fQuantity, $eFromUnit, $eToUnit)
-//   static int convertTimei ($iQuantity, $eFromUnit, $eToUnit)
-//   static float convertTimef ($fQuantity, $eFromUnit, $eToUnit)
-//   static int convertLengthi ($iQuantity, $eFromUnit, $eToUnit)
-//   static float convertLengthf ($fQuantity, $eFromUnit, $eToUnit)
-//   static int convertSpeedi ($iQuantity, $eFromUnit, $eToUnit)
-//   static float convertSpeedf ($fQuantity, $eFromUnit, $eToUnit)
-//   static int convertTemperaturei ($iQuantity, $eFromUnit, $eToUnit)
-//   static float convertTemperaturef ($fQuantity, $eFromUnit, $eToUnit)
-//   static int convertAreai ($iQuantity, $eFromUnit, $eToUnit)
-//   static float convertAreaf ($fQuantity, $eFromUnit, $eToUnit)
-//   static int convertVolumei ($iQuantity, $eFromUnit, $eToUnit)
-//   static float convertVolumef ($fQuantity, $eFromUnit, $eToUnit)
-//   static int convertMassi ($iQuantity, $eFromUnit, $eToUnit)
-//   static float convertMassf ($fQuantity, $eFromUnit, $eToUnit)
+//   static int convertStoragei ($quantity, $fromUnit, $toUnit)
+//   static float convertStoragef ($quantity, $fromUnit, $toUnit)
+//   static int convertTimei ($quantity, $fromUnit, $toUnit)
+//   static float convertTimef ($quantity, $fromUnit, $toUnit)
+//   static int convertLengthi ($quantity, $fromUnit, $toUnit)
+//   static float convertLengthf ($quantity, $fromUnit, $toUnit)
+//   static int convertSpeedi ($quantity, $fromUnit, $toUnit)
+//   static float convertSpeedf ($quantity, $fromUnit, $toUnit)
+//   static int convertTemperaturei ($quantity, $fromUnit, $toUnit)
+//   static float convertTemperaturef ($quantity, $fromUnit, $toUnit)
+//   static int convertAreai ($quantity, $fromUnit, $toUnit)
+//   static float convertAreaf ($quantity, $fromUnit, $toUnit)
+//   static int convertVolumei ($quantity, $fromUnit, $toUnit)
+//   static float convertVolumef ($quantity, $fromUnit, $toUnit)
+//   static int convertMassi ($quantity, $fromUnit, $toUnit)
+//   static float convertMassf ($quantity, $fromUnit, $toUnit)
 
 class CUUnit extends CRootClass
 {
@@ -494,1525 +494,1525 @@ class CUUnit extends CRootClass
     /**
      * Converts an integer quantity of digital storage from one unit into another and returns the result.
      *
-     * @param  int $iQuantity The quantity to be converted.
-     * @param  enum $eFromUnit The source unit.
-     * @param  enum $eToUnit The destination unit.
+     * @param  int $quantity The quantity to be converted.
+     * @param  enum $fromUnit The source unit.
+     * @param  enum $toUnit The destination unit.
      *
      * @return int The converted quantity, after rounding to the nearest integer.
      */
 
-    public static function convertStoragei ($iQuantity, $eFromUnit, $eToUnit)
+    public static function convertStoragei ($quantity, $fromUnit, $toUnit)
     {
-        assert( 'is_int($iQuantity) && is_enum($eFromUnit) && is_enum($eToUnit)',
+        assert( 'is_int($quantity) && is_enum($fromUnit) && is_enum($toUnit)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$iQuantity >= 0', vs(isset($this), get_defined_vars()) );
+        assert( '$quantity >= 0', vs(isset($this), get_defined_vars()) );
 
-        if ( $eFromUnit == $eToUnit )
+        if ( $fromUnit == $toUnit )
         {
-            return $iQuantity;
+            return $quantity;
         }
 
-        $iBitQty;
-        switch ( $eFromUnit )
+        $bitQty;
+        switch ( $fromUnit )
         {
         case self::BIT:
-            $iBitQty = $iQuantity;
+            $bitQty = $quantity;
             break;
         case self::BYTE:
-            $iBitQty = $iQuantity*8;
+            $bitQty = $quantity*8;
             break;
         case self::KILOBIT:
-            $iBitQty = $iQuantity*1024;
+            $bitQty = $quantity*1024;
             break;
         case self::KILOBYTE:
-            $iBitQty = $iQuantity*8192;
+            $bitQty = $quantity*8192;
             break;
         case self::MEGABIT:
-            $iBitQty = $iQuantity*1048576;
+            $bitQty = $quantity*1048576;
             break;
         case self::MEGABYTE:
-            $iBitQty = $iQuantity*8388608;
+            $bitQty = $quantity*8388608;
             break;
         case self::GIGABIT:
-            $iBitQty = $iQuantity*1073741824;
+            $bitQty = $quantity*1073741824;
             break;
         case self::GIGABYTE:
-            $iBitQty = $iQuantity*8589934592;
+            $bitQty = $quantity*8589934592;
             break;
         case self::TERABIT:
-            $iBitQty = $iQuantity*1099511627776;
+            $bitQty = $quantity*1099511627776;
             break;
         case self::TERABYTE:
-            $iBitQty = $iQuantity*8796093022208;
+            $bitQty = $quantity*8796093022208;
             break;
         case self::PETABIT:
-            $iBitQty = $iQuantity*1125899906842624;
+            $bitQty = $quantity*1125899906842624;
             break;
         case self::PETABYTE:
-            $iBitQty = $iQuantity*9007199254740992;
+            $bitQty = $quantity*9007199254740992;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        $iOutputQty;
-        switch ( $eToUnit )
+        $outputQty;
+        switch ( $toUnit )
         {
         case self::BIT:
-            $iOutputQty = $iBitQty;
+            $outputQty = $bitQty;
             break;
         case self::BYTE:
-            $iOutputQty = CMathi::round(((float)$iBitQty)/8);
+            $outputQty = CMathi::round(((float)$bitQty)/8);
             break;
         case self::KILOBIT:
-            $iOutputQty = CMathi::round(((float)$iBitQty)/1024);
+            $outputQty = CMathi::round(((float)$bitQty)/1024);
             break;
         case self::KILOBYTE:
-            $iOutputQty = CMathi::round(((float)$iBitQty)/8192);
+            $outputQty = CMathi::round(((float)$bitQty)/8192);
             break;
         case self::MEGABIT:
-            $iOutputQty = CMathi::round(((float)$iBitQty)/1048576);
+            $outputQty = CMathi::round(((float)$bitQty)/1048576);
             break;
         case self::MEGABYTE:
-            $iOutputQty = CMathi::round(((float)$iBitQty)/8388608);
+            $outputQty = CMathi::round(((float)$bitQty)/8388608);
             break;
         case self::GIGABIT:
-            $iOutputQty = CMathi::round(((float)$iBitQty)/1073741824);
+            $outputQty = CMathi::round(((float)$bitQty)/1073741824);
             break;
         case self::GIGABYTE:
-            $iOutputQty = CMathi::round(((float)$iBitQty)/8589934592);
+            $outputQty = CMathi::round(((float)$bitQty)/8589934592);
             break;
         case self::TERABIT:
-            $iOutputQty = CMathi::round(((float)$iBitQty)/1099511627776);
+            $outputQty = CMathi::round(((float)$bitQty)/1099511627776);
             break;
         case self::TERABYTE:
-            $iOutputQty = CMathi::round(((float)$iBitQty)/8796093022208);
+            $outputQty = CMathi::round(((float)$bitQty)/8796093022208);
             break;
         case self::PETABIT:
-            $iOutputQty = CMathi::round(((float)$iBitQty)/1125899906842624);
+            $outputQty = CMathi::round(((float)$bitQty)/1125899906842624);
             break;
         case self::PETABYTE:
-            $iOutputQty = CMathi::round(((float)$iBitQty)/9007199254740992);
+            $outputQty = CMathi::round(((float)$bitQty)/9007199254740992);
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        return $iOutputQty;
+        return $outputQty;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a floating-point quantity of digital storage from one unit into another and returns the result.
      *
-     * @param  float $fQuantity The quantity to be converted.
-     * @param  enum $eFromUnit The source unit.
-     * @param  enum $eToUnit The destination unit.
+     * @param  float $quantity The quantity to be converted.
+     * @param  enum $fromUnit The source unit.
+     * @param  enum $toUnit The destination unit.
      *
      * @return float The converted quantity.
      */
 
-    public static function convertStoragef ($fQuantity, $eFromUnit, $eToUnit)
+    public static function convertStoragef ($quantity, $fromUnit, $toUnit)
     {
-        assert( 'is_float($fQuantity) && is_enum($eFromUnit) && is_enum($eToUnit)',
+        assert( 'is_float($quantity) && is_enum($fromUnit) && is_enum($toUnit)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$fQuantity >= 0.0', vs(isset($this), get_defined_vars()) );
+        assert( '$quantity >= 0.0', vs(isset($this), get_defined_vars()) );
 
-        if ( $eFromUnit == $eToUnit )
+        if ( $fromUnit == $toUnit )
         {
-            return $fQuantity;
+            return $quantity;
         }
 
-        $fBitQty;
-        switch ( $eFromUnit )
+        $bitQty;
+        switch ( $fromUnit )
         {
         case self::BIT:
-            $fBitQty = $fQuantity;
+            $bitQty = $quantity;
             break;
         case self::BYTE:
-            $fBitQty = $fQuantity*8;
+            $bitQty = $quantity*8;
             break;
         case self::KILOBIT:
-            $fBitQty = $fQuantity*1024;
+            $bitQty = $quantity*1024;
             break;
         case self::KILOBYTE:
-            $fBitQty = $fQuantity*8192;
+            $bitQty = $quantity*8192;
             break;
         case self::MEGABIT:
-            $fBitQty = $fQuantity*1048576;
+            $bitQty = $quantity*1048576;
             break;
         case self::MEGABYTE:
-            $fBitQty = $fQuantity*8388608;
+            $bitQty = $quantity*8388608;
             break;
         case self::GIGABIT:
-            $fBitQty = $fQuantity*1073741824;
+            $bitQty = $quantity*1073741824;
             break;
         case self::GIGABYTE:
-            $fBitQty = $fQuantity*8589934592;
+            $bitQty = $quantity*8589934592;
             break;
         case self::TERABIT:
-            $fBitQty = $fQuantity*1099511627776;
+            $bitQty = $quantity*1099511627776;
             break;
         case self::TERABYTE:
-            $fBitQty = $fQuantity*8796093022208;
+            $bitQty = $quantity*8796093022208;
             break;
         case self::PETABIT:
-            $fBitQty = $fQuantity*1125899906842624;
+            $bitQty = $quantity*1125899906842624;
             break;
         case self::PETABYTE:
-            $fBitQty = $fQuantity*9007199254740992;
+            $bitQty = $quantity*9007199254740992;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        $fOutputQty;
-        switch ( $eToUnit )
+        $outputQty;
+        switch ( $toUnit )
         {
         case self::BIT:
-            $fOutputQty = $fBitQty;
+            $outputQty = $bitQty;
             break;
         case self::BYTE:
-            $fOutputQty = $fBitQty/8;
+            $outputQty = $bitQty/8;
             break;
         case self::KILOBIT:
-            $fOutputQty = $fBitQty/1024;
+            $outputQty = $bitQty/1024;
             break;
         case self::KILOBYTE:
-            $fOutputQty = $fBitQty/8192;
+            $outputQty = $bitQty/8192;
             break;
         case self::MEGABIT:
-            $fOutputQty = $fBitQty/1048576;
+            $outputQty = $bitQty/1048576;
             break;
         case self::MEGABYTE:
-            $fOutputQty = $fBitQty/8388608;
+            $outputQty = $bitQty/8388608;
             break;
         case self::GIGABIT:
-            $fOutputQty = $fBitQty/1073741824;
+            $outputQty = $bitQty/1073741824;
             break;
         case self::GIGABYTE:
-            $fOutputQty = $fBitQty/8589934592;
+            $outputQty = $bitQty/8589934592;
             break;
         case self::TERABIT:
-            $fOutputQty = $fBitQty/1099511627776;
+            $outputQty = $bitQty/1099511627776;
             break;
         case self::TERABYTE:
-            $fOutputQty = $fBitQty/8796093022208;
+            $outputQty = $bitQty/8796093022208;
             break;
         case self::PETABIT:
-            $fOutputQty = $fBitQty/1125899906842624;
+            $outputQty = $bitQty/1125899906842624;
             break;
         case self::PETABYTE:
-            $fOutputQty = $fBitQty/9007199254740992;
+            $outputQty = $bitQty/9007199254740992;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        return $fOutputQty;
+        return $outputQty;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts an integer quantity of time from one unit into another and returns the result.
      *
-     * @param  int $iQuantity The quantity to be converted.
-     * @param  enum $eFromUnit The source unit.
-     * @param  enum $eToUnit The destination unit.
+     * @param  int $quantity The quantity to be converted.
+     * @param  enum $fromUnit The source unit.
+     * @param  enum $toUnit The destination unit.
      *
      * @return int The converted quantity, after rounding to the nearest integer.
      */
 
-    public static function convertTimei ($iQuantity, $eFromUnit, $eToUnit)
+    public static function convertTimei ($quantity, $fromUnit, $toUnit)
     {
-        assert( 'is_int($iQuantity) && is_enum($eFromUnit) && is_enum($eToUnit)',
+        assert( 'is_int($quantity) && is_enum($fromUnit) && is_enum($toUnit)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$iQuantity >= 0', vs(isset($this), get_defined_vars()) );
+        assert( '$quantity >= 0', vs(isset($this), get_defined_vars()) );
 
-        if ( $eFromUnit == $eToUnit )
+        if ( $fromUnit == $toUnit )
         {
-            return $iQuantity;
+            return $quantity;
         }
 
-        $iMillisecondQty;
-        switch ( $eFromUnit )
+        $millisecondQty;
+        switch ( $fromUnit )
         {
         case self::MILLISECOND:
-            $iMillisecondQty = $iQuantity;
+            $millisecondQty = $quantity;
             break;
         case self::SECOND:
-            $iMillisecondQty = $iQuantity*1000;
+            $millisecondQty = $quantity*1000;
             break;
         case self::MINUTE:
-            $iMillisecondQty = $iQuantity*1000*CTime::SECONDS_PER_MINUTE;
+            $millisecondQty = $quantity*1000*CTime::SECONDS_PER_MINUTE;
             break;
         case self::HOUR:
-            $iMillisecondQty = $iQuantity*1000*CTime::SECONDS_PER_HOUR;
+            $millisecondQty = $quantity*1000*CTime::SECONDS_PER_HOUR;
             break;
         case self::DAY:
-            $iMillisecondQty = $iQuantity*1000*CTime::SECONDS_PER_DAY;
+            $millisecondQty = $quantity*1000*CTime::SECONDS_PER_DAY;
             break;
         case self::WEEK:
-            $iMillisecondQty = $iQuantity*1000*CTime::SECONDS_PER_WEEK;
+            $millisecondQty = $quantity*1000*CTime::SECONDS_PER_WEEK;
             break;
         case self::MONTH:
-            $iMillisecondQty = $iQuantity*1000*CTime::SECONDS_PER_MONTH;
+            $millisecondQty = $quantity*1000*CTime::SECONDS_PER_MONTH;
             break;
         case self::YEAR:
-            $iMillisecondQty = $iQuantity*1000*CTime::SECONDS_PER_YEAR;
+            $millisecondQty = $quantity*1000*CTime::SECONDS_PER_YEAR;
             break;
         case self::DECADE:
-            $iMillisecondQty = $iQuantity*1000*CTime::SECONDS_PER_YEAR*10;
+            $millisecondQty = $quantity*1000*CTime::SECONDS_PER_YEAR*10;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        $iOutputQty;
-        switch ( $eToUnit )
+        $outputQty;
+        switch ( $toUnit )
         {
         case self::MILLISECOND:
-            $iOutputQty = $iMillisecondQty;
+            $outputQty = $millisecondQty;
             break;
         case self::SECOND:
-            $iOutputQty = CMathi::round(((float)$iMillisecondQty)/1000);
+            $outputQty = CMathi::round(((float)$millisecondQty)/1000);
             break;
         case self::MINUTE:
-            $iOutputQty = CMathi::round(((float)$iMillisecondQty)/(1000*CTime::SECONDS_PER_MINUTE));
+            $outputQty = CMathi::round(((float)$millisecondQty)/(1000*CTime::SECONDS_PER_MINUTE));
             break;
         case self::HOUR:
-            $iOutputQty = CMathi::round(((float)$iMillisecondQty)/(1000*CTime::SECONDS_PER_HOUR));
+            $outputQty = CMathi::round(((float)$millisecondQty)/(1000*CTime::SECONDS_PER_HOUR));
             break;
         case self::DAY:
-            $iOutputQty = CMathi::round(((float)$iMillisecondQty)/(1000*CTime::SECONDS_PER_DAY));
+            $outputQty = CMathi::round(((float)$millisecondQty)/(1000*CTime::SECONDS_PER_DAY));
             break;
         case self::WEEK:
-            $iOutputQty = CMathi::round(((float)$iMillisecondQty)/(1000*CTime::SECONDS_PER_WEEK));
+            $outputQty = CMathi::round(((float)$millisecondQty)/(1000*CTime::SECONDS_PER_WEEK));
             break;
         case self::MONTH:
-            $iOutputQty = CMathi::round(((float)$iMillisecondQty)/(1000*CTime::SECONDS_PER_MONTH));
+            $outputQty = CMathi::round(((float)$millisecondQty)/(1000*CTime::SECONDS_PER_MONTH));
             break;
         case self::YEAR:
-            $iOutputQty = CMathi::round(((float)$iMillisecondQty)/(1000*CTime::SECONDS_PER_YEAR));
+            $outputQty = CMathi::round(((float)$millisecondQty)/(1000*CTime::SECONDS_PER_YEAR));
             break;
         case self::DECADE:
-            $iOutputQty = CMathi::round(((float)$iMillisecondQty)/(1000*CTime::SECONDS_PER_YEAR*10));
+            $outputQty = CMathi::round(((float)$millisecondQty)/(1000*CTime::SECONDS_PER_YEAR*10));
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        return $iOutputQty;
+        return $outputQty;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a floating-point quantity of time from one unit into another and returns the result.
      *
-     * @param  float $fQuantity The quantity to be converted.
-     * @param  enum $eFromUnit The source unit.
-     * @param  enum $eToUnit The destination unit.
+     * @param  float $quantity The quantity to be converted.
+     * @param  enum $fromUnit The source unit.
+     * @param  enum $toUnit The destination unit.
      *
      * @return float The converted quantity.
      */
 
-    public static function convertTimef ($fQuantity, $eFromUnit, $eToUnit)
+    public static function convertTimef ($quantity, $fromUnit, $toUnit)
     {
-        assert( 'is_float($fQuantity) && is_enum($eFromUnit) && is_enum($eToUnit)',
+        assert( 'is_float($quantity) && is_enum($fromUnit) && is_enum($toUnit)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$fQuantity >= 0.0', vs(isset($this), get_defined_vars()) );
+        assert( '$quantity >= 0.0', vs(isset($this), get_defined_vars()) );
 
-        if ( $eFromUnit == $eToUnit )
+        if ( $fromUnit == $toUnit )
         {
-            return $fQuantity;
+            return $quantity;
         }
 
-        $fMillisecondQty;
-        switch ( $eFromUnit )
+        $millisecondQty;
+        switch ( $fromUnit )
         {
         case self::MILLISECOND:
-            $fMillisecondQty = $fQuantity;
+            $millisecondQty = $quantity;
             break;
         case self::SECOND:
-            $fMillisecondQty = $fQuantity*1000;
+            $millisecondQty = $quantity*1000;
             break;
         case self::MINUTE:
-            $fMillisecondQty = $fQuantity*1000*CTime::SECONDS_PER_MINUTE;
+            $millisecondQty = $quantity*1000*CTime::SECONDS_PER_MINUTE;
             break;
         case self::HOUR:
-            $fMillisecondQty = $fQuantity*1000*CTime::SECONDS_PER_HOUR;
+            $millisecondQty = $quantity*1000*CTime::SECONDS_PER_HOUR;
             break;
         case self::DAY:
-            $fMillisecondQty = $fQuantity*1000*CTime::SECONDS_PER_DAY;
+            $millisecondQty = $quantity*1000*CTime::SECONDS_PER_DAY;
             break;
         case self::WEEK:
-            $fMillisecondQty = $fQuantity*1000*CTime::SECONDS_PER_WEEK;
+            $millisecondQty = $quantity*1000*CTime::SECONDS_PER_WEEK;
             break;
         case self::MONTH:
-            $fMillisecondQty = $fQuantity*1000*CTime::SECONDS_PER_MONTH;
+            $millisecondQty = $quantity*1000*CTime::SECONDS_PER_MONTH;
             break;
         case self::YEAR:
-            $fMillisecondQty = $fQuantity*1000*CTime::SECONDS_PER_YEAR;
+            $millisecondQty = $quantity*1000*CTime::SECONDS_PER_YEAR;
             break;
         case self::DECADE:
-            $fMillisecondQty = $fQuantity*1000*CTime::SECONDS_PER_YEAR*10;
+            $millisecondQty = $quantity*1000*CTime::SECONDS_PER_YEAR*10;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        $fOutputQty;
-        switch ( $eToUnit )
+        $outputQty;
+        switch ( $toUnit )
         {
         case self::MILLISECOND:
-            $fOutputQty = $fMillisecondQty;
+            $outputQty = $millisecondQty;
             break;
         case self::SECOND:
-            $fOutputQty = $fMillisecondQty/1000;
+            $outputQty = $millisecondQty/1000;
             break;
         case self::MINUTE:
-            $fOutputQty = $fMillisecondQty/(1000*CTime::SECONDS_PER_MINUTE);
+            $outputQty = $millisecondQty/(1000*CTime::SECONDS_PER_MINUTE);
             break;
         case self::HOUR:
-            $fOutputQty = $fMillisecondQty/(1000*CTime::SECONDS_PER_HOUR);
+            $outputQty = $millisecondQty/(1000*CTime::SECONDS_PER_HOUR);
             break;
         case self::DAY:
-            $fOutputQty = $fMillisecondQty/(1000*CTime::SECONDS_PER_DAY);
+            $outputQty = $millisecondQty/(1000*CTime::SECONDS_PER_DAY);
             break;
         case self::WEEK:
-            $fOutputQty = $fMillisecondQty/(1000*CTime::SECONDS_PER_WEEK);
+            $outputQty = $millisecondQty/(1000*CTime::SECONDS_PER_WEEK);
             break;
         case self::MONTH:
-            $fOutputQty = $fMillisecondQty/(1000*CTime::SECONDS_PER_MONTH);
+            $outputQty = $millisecondQty/(1000*CTime::SECONDS_PER_MONTH);
             break;
         case self::YEAR:
-            $fOutputQty = $fMillisecondQty/(1000*CTime::SECONDS_PER_YEAR);
+            $outputQty = $millisecondQty/(1000*CTime::SECONDS_PER_YEAR);
             break;
         case self::DECADE:
-            $fOutputQty = $fMillisecondQty/(1000*CTime::SECONDS_PER_YEAR*10);
+            $outputQty = $millisecondQty/(1000*CTime::SECONDS_PER_YEAR*10);
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        return $fOutputQty;
+        return $outputQty;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts an integer quantity of length from one unit into another and returns the result.
      *
-     * @param  int $iQuantity The quantity to be converted.
-     * @param  enum $eFromUnit The source unit.
-     * @param  enum $eToUnit The destination unit.
+     * @param  int $quantity The quantity to be converted.
+     * @param  enum $fromUnit The source unit.
+     * @param  enum $toUnit The destination unit.
      *
      * @return int The converted quantity, after rounding to the nearest integer.
      */
 
-    public static function convertLengthi ($iQuantity, $eFromUnit, $eToUnit)
+    public static function convertLengthi ($quantity, $fromUnit, $toUnit)
     {
-        assert( 'is_int($iQuantity) && is_enum($eFromUnit) && is_enum($eToUnit)',
+        assert( 'is_int($quantity) && is_enum($fromUnit) && is_enum($toUnit)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$iQuantity >= 0', vs(isset($this), get_defined_vars()) );
+        assert( '$quantity >= 0', vs(isset($this), get_defined_vars()) );
 
-        if ( $eFromUnit == $eToUnit )
+        if ( $fromUnit == $toUnit )
         {
-            return $iQuantity;
+            return $quantity;
         }
 
-        $fQuantity = (float)$iQuantity;
+        $floatQuantity = (float)$quantity;
 
-        $fMillimeterQty;
-        switch ( $eFromUnit )
+        $millimeterQty;
+        switch ( $fromUnit )
         {
         case self::MILLIMETER:
-            $fMillimeterQty = $fQuantity;
+            $millimeterQty = $floatQuantity;
             break;
         case self::CENTIMETER:
-            $fMillimeterQty = $fQuantity*10;
+            $millimeterQty = $floatQuantity*10;
             break;
         case self::METER:
-            $fMillimeterQty = $fQuantity*1000;
+            $millimeterQty = $floatQuantity*1000;
             break;
         case self::KILOMETER:
-            $fMillimeterQty = $fQuantity*1000000;
+            $millimeterQty = $floatQuantity*1000000;
             break;
         case self::INCH:
-            $fMillimeterQty = $fQuantity*25.4001;
+            $millimeterQty = $floatQuantity*25.4001;
             break;
         case self::FOOT:
-            $fMillimeterQty = $fQuantity*304.8;
+            $millimeterQty = $floatQuantity*304.8;
             break;
         case self::YARD:
-            $fMillimeterQty = $fQuantity*914.4;
+            $millimeterQty = $floatQuantity*914.4;
             break;
         case self::MILE:
-            $fMillimeterQty = $fQuantity*1609344;
+            $millimeterQty = $floatQuantity*1609344;
             break;
         case self::NAUTICAL_MILE:
-            $fMillimeterQty = $fQuantity*1852000;
+            $millimeterQty = $floatQuantity*1852000;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        $iOutputQty;
-        switch ( $eToUnit )
+        $outputQty;
+        switch ( $toUnit )
         {
         case self::MILLIMETER:
-            $iOutputQty = CMathi::round($fMillimeterQty);
+            $outputQty = CMathi::round($millimeterQty);
             break;
         case self::CENTIMETER:
-            $iOutputQty = CMathi::round($fMillimeterQty/10);
+            $outputQty = CMathi::round($millimeterQty/10);
             break;
         case self::METER:
-            $iOutputQty = CMathi::round($fMillimeterQty/1000);
+            $outputQty = CMathi::round($millimeterQty/1000);
             break;
         case self::KILOMETER:
-            $iOutputQty = CMathi::round($fMillimeterQty/1000000);
+            $outputQty = CMathi::round($millimeterQty/1000000);
             break;
         case self::INCH:
-            $iOutputQty = CMathi::round($fMillimeterQty/25.4001);
+            $outputQty = CMathi::round($millimeterQty/25.4001);
             break;
         case self::FOOT:
-            $iOutputQty = CMathi::round($fMillimeterQty/304.8);
+            $outputQty = CMathi::round($millimeterQty/304.8);
             break;
         case self::YARD:
-            $iOutputQty = CMathi::round($fMillimeterQty/914.4);
+            $outputQty = CMathi::round($millimeterQty/914.4);
             break;
         case self::MILE:
-            $iOutputQty = CMathi::round($fMillimeterQty/1609344);
+            $outputQty = CMathi::round($millimeterQty/1609344);
             break;
         case self::NAUTICAL_MILE:
-            $iOutputQty = CMathi::round($fMillimeterQty/1852000);
+            $outputQty = CMathi::round($millimeterQty/1852000);
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        return $iOutputQty;
+        return $outputQty;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a floating-point quantity of length from one unit into another and returns the result.
      *
-     * @param  float $fQuantity The quantity to be converted.
-     * @param  enum $eFromUnit The source unit.
-     * @param  enum $eToUnit The destination unit.
+     * @param  float $quantity The quantity to be converted.
+     * @param  enum $fromUnit The source unit.
+     * @param  enum $toUnit The destination unit.
      *
      * @return float The converted quantity.
      */
 
-    public static function convertLengthf ($fQuantity, $eFromUnit, $eToUnit)
+    public static function convertLengthf ($quantity, $fromUnit, $toUnit)
     {
-        assert( 'is_float($fQuantity) && is_enum($eFromUnit) && is_enum($eToUnit)',
+        assert( 'is_float($quantity) && is_enum($fromUnit) && is_enum($toUnit)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$fQuantity >= 0.0', vs(isset($this), get_defined_vars()) );
+        assert( '$quantity >= 0.0', vs(isset($this), get_defined_vars()) );
 
-        if ( $eFromUnit == $eToUnit )
+        if ( $fromUnit == $toUnit )
         {
-            return $fQuantity;
+            return $quantity;
         }
 
-        $fMillimeterQty;
-        switch ( $eFromUnit )
+        $millimeterQty;
+        switch ( $fromUnit )
         {
         case self::MILLIMETER:
-            $fMillimeterQty = $fQuantity;
+            $millimeterQty = $quantity;
             break;
         case self::CENTIMETER:
-            $fMillimeterQty = $fQuantity*10;
+            $millimeterQty = $quantity*10;
             break;
         case self::METER:
-            $fMillimeterQty = $fQuantity*1000;
+            $millimeterQty = $quantity*1000;
             break;
         case self::KILOMETER:
-            $fMillimeterQty = $fQuantity*1000000;
+            $millimeterQty = $quantity*1000000;
             break;
         case self::INCH:
-            $fMillimeterQty = $fQuantity*25.4001;
+            $millimeterQty = $quantity*25.4001;
             break;
         case self::FOOT:
-            $fMillimeterQty = $fQuantity*304.8;
+            $millimeterQty = $quantity*304.8;
             break;
         case self::YARD:
-            $fMillimeterQty = $fQuantity*914.4;
+            $millimeterQty = $quantity*914.4;
             break;
         case self::MILE:
-            $fMillimeterQty = $fQuantity*1609344;
+            $millimeterQty = $quantity*1609344;
             break;
         case self::NAUTICAL_MILE:
-            $fMillimeterQty = $fQuantity*1852000;
+            $millimeterQty = $quantity*1852000;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        $fOutputQty;
-        switch ( $eToUnit )
+        $outputQty;
+        switch ( $toUnit )
         {
         case self::MILLIMETER:
-            $fOutputQty = $fMillimeterQty;
+            $outputQty = $millimeterQty;
             break;
         case self::CENTIMETER:
-            $fOutputQty = $fMillimeterQty/10;
+            $outputQty = $millimeterQty/10;
             break;
         case self::METER:
-            $fOutputQty = $fMillimeterQty/1000;
+            $outputQty = $millimeterQty/1000;
             break;
         case self::KILOMETER:
-            $fOutputQty = $fMillimeterQty/1000000;
+            $outputQty = $millimeterQty/1000000;
             break;
         case self::INCH:
-            $fOutputQty = $fMillimeterQty/25.4001;
+            $outputQty = $millimeterQty/25.4001;
             break;
         case self::FOOT:
-            $fOutputQty = $fMillimeterQty/304.8;
+            $outputQty = $millimeterQty/304.8;
             break;
         case self::YARD:
-            $fOutputQty = $fMillimeterQty/914.4;
+            $outputQty = $millimeterQty/914.4;
             break;
         case self::MILE:
-            $fOutputQty = $fMillimeterQty/1609344;
+            $outputQty = $millimeterQty/1609344;
             break;
         case self::NAUTICAL_MILE:
-            $fOutputQty = $fMillimeterQty/1852000;
+            $outputQty = $millimeterQty/1852000;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        return $fOutputQty;
+        return $outputQty;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts an integer quantity of speed from one unit into another and returns the result.
      *
-     * @param  int $iQuantity The quantity to be converted.
-     * @param  enum $eFromUnit The source unit.
-     * @param  enum $eToUnit The destination unit.
+     * @param  int $quantity The quantity to be converted.
+     * @param  enum $fromUnit The source unit.
+     * @param  enum $toUnit The destination unit.
      *
      * @return int The converted quantity, after rounding to the nearest integer.
      */
 
-    public static function convertSpeedi ($iQuantity, $eFromUnit, $eToUnit)
+    public static function convertSpeedi ($quantity, $fromUnit, $toUnit)
     {
-        assert( 'is_int($iQuantity) && is_enum($eFromUnit) && is_enum($eToUnit)',
+        assert( 'is_int($quantity) && is_enum($fromUnit) && is_enum($toUnit)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$iQuantity >= 0', vs(isset($this), get_defined_vars()) );
+        assert( '$quantity >= 0', vs(isset($this), get_defined_vars()) );
 
-        if ( $eFromUnit == $eToUnit )
+        if ( $fromUnit == $toUnit )
         {
-            return $iQuantity;
+            return $quantity;
         }
 
-        $iCentimetersPerHourQty;
-        switch ( $eFromUnit )
+        $centimetersPerHourQty;
+        switch ( $fromUnit )
         {
         case self::METERS_PER_SECOND:
-            $iCentimetersPerHourQty = $iQuantity*360000;
+            $centimetersPerHourQty = $quantity*360000;
             break;
         case self::KILOMETERS_PER_HOUR:
-            $iCentimetersPerHourQty = $iQuantity*100000;
+            $centimetersPerHourQty = $quantity*100000;
             break;
         case self::FEET_PER_SECOND:
-            $iCentimetersPerHourQty = $iQuantity*109728;
+            $centimetersPerHourQty = $quantity*109728;
             break;
         case self::MILES_PER_HOUR:
-            $iCentimetersPerHourQty = $iQuantity*160935;
+            $centimetersPerHourQty = $quantity*160935;
             break;
         case self::KNOT:
-            $iCentimetersPerHourQty = $iQuantity*185200;
+            $centimetersPerHourQty = $quantity*185200;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        $iOutputQty;
-        switch ( $eToUnit )
+        $outputQty;
+        switch ( $toUnit )
         {
         case self::METERS_PER_SECOND:
-            $iOutputQty = CMathi::round(((float)$iCentimetersPerHourQty)/360000);
+            $outputQty = CMathi::round(((float)$centimetersPerHourQty)/360000);
             break;
         case self::KILOMETERS_PER_HOUR:
-            $iOutputQty = CMathi::round(((float)$iCentimetersPerHourQty)/100000);
+            $outputQty = CMathi::round(((float)$centimetersPerHourQty)/100000);
             break;
         case self::FEET_PER_SECOND:
-            $iOutputQty = CMathi::round(((float)$iCentimetersPerHourQty)/109728);
+            $outputQty = CMathi::round(((float)$centimetersPerHourQty)/109728);
             break;
         case self::MILES_PER_HOUR:
-            $iOutputQty = CMathi::round(((float)$iCentimetersPerHourQty)/160935);
+            $outputQty = CMathi::round(((float)$centimetersPerHourQty)/160935);
             break;
         case self::KNOT:
-            $iOutputQty = CMathi::round(((float)$iCentimetersPerHourQty)/185200);
+            $outputQty = CMathi::round(((float)$centimetersPerHourQty)/185200);
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        return $iOutputQty;
+        return $outputQty;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a floating-point quantity of speed from one unit into another and returns the result.
      *
-     * @param  float $fQuantity The quantity to be converted.
-     * @param  enum $eFromUnit The source unit.
-     * @param  enum $eToUnit The destination unit.
+     * @param  float $quantity The quantity to be converted.
+     * @param  enum $fromUnit The source unit.
+     * @param  enum $toUnit The destination unit.
      *
      * @return float The converted quantity.
      */
 
-    public static function convertSpeedf ($fQuantity, $eFromUnit, $eToUnit)
+    public static function convertSpeedf ($quantity, $fromUnit, $toUnit)
     {
-        assert( 'is_float($fQuantity) && is_enum($eFromUnit) && is_enum($eToUnit)',
+        assert( 'is_float($quantity) && is_enum($fromUnit) && is_enum($toUnit)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$fQuantity >= 0.0', vs(isset($this), get_defined_vars()) );
+        assert( '$quantity >= 0.0', vs(isset($this), get_defined_vars()) );
 
-        if ( $eFromUnit == $eToUnit )
+        if ( $fromUnit == $toUnit )
         {
-            return $fQuantity;
+            return $quantity;
         }
 
-        $fCentimetersPerHourQty;
-        switch ( $eFromUnit )
+        $centimetersPerHourQty;
+        switch ( $fromUnit )
         {
         case self::METERS_PER_SECOND:
-            $fCentimetersPerHourQty = $fQuantity*360000;
+            $centimetersPerHourQty = $quantity*360000;
             break;
         case self::KILOMETERS_PER_HOUR:
-            $fCentimetersPerHourQty = $fQuantity*100000;
+            $centimetersPerHourQty = $quantity*100000;
             break;
         case self::FEET_PER_SECOND:
-            $fCentimetersPerHourQty = $fQuantity*109728;
+            $centimetersPerHourQty = $quantity*109728;
             break;
         case self::MILES_PER_HOUR:
-            $fCentimetersPerHourQty = $fQuantity*160935;
+            $centimetersPerHourQty = $quantity*160935;
             break;
         case self::KNOT:
-            $fCentimetersPerHourQty = $fQuantity*185200;
+            $centimetersPerHourQty = $quantity*185200;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        $fOutputQty;
-        switch ( $eToUnit )
+        $outputQty;
+        switch ( $toUnit )
         {
         case self::METERS_PER_SECOND:
-            $fOutputQty = $fCentimetersPerHourQty/360000;
+            $outputQty = $centimetersPerHourQty/360000;
             break;
         case self::KILOMETERS_PER_HOUR:
-            $fOutputQty = $fCentimetersPerHourQty/100000;
+            $outputQty = $centimetersPerHourQty/100000;
             break;
         case self::FEET_PER_SECOND:
-            $fOutputQty = $fCentimetersPerHourQty/109728;
+            $outputQty = $centimetersPerHourQty/109728;
             break;
         case self::MILES_PER_HOUR:
-            $fOutputQty = $fCentimetersPerHourQty/160935;
+            $outputQty = $centimetersPerHourQty/160935;
             break;
         case self::KNOT:
-            $fOutputQty = $fCentimetersPerHourQty/185200;
+            $outputQty = $centimetersPerHourQty/185200;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        return $fOutputQty;
+        return $outputQty;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts an integer quantity of temperature from one unit into another and returns the result.
      *
-     * @param  int $iQuantity The quantity to be converted.
-     * @param  enum $eFromUnit The source unit.
-     * @param  enum $eToUnit The destination unit.
+     * @param  int $quantity The quantity to be converted.
+     * @param  enum $fromUnit The source unit.
+     * @param  enum $toUnit The destination unit.
      *
      * @return int The converted quantity, after rounding to the nearest integer.
      */
 
-    public static function convertTemperaturei ($iQuantity, $eFromUnit, $eToUnit)
+    public static function convertTemperaturei ($quantity, $fromUnit, $toUnit)
     {
-        assert( 'is_int($iQuantity) && is_enum($eFromUnit) && is_enum($eToUnit)',
+        assert( 'is_int($quantity) && is_enum($fromUnit) && is_enum($toUnit)',
             vs(isset($this), get_defined_vars()) );
 
-        if ( $eFromUnit == $eToUnit )
+        if ( $fromUnit == $toUnit )
         {
-            return $iQuantity;
+            return $quantity;
         }
 
-        $fQuantity = (float)$iQuantity;
+        $floatQuantity = (float)$quantity;
 
-        $fKelvinQty;
-        switch ( $eFromUnit )
+        $kelvinQty;
+        switch ( $fromUnit )
         {
         case self::CELSIUS:
-            $fKelvinQty = $fQuantity + 273.15;
+            $kelvinQty = $floatQuantity + 273.15;
             break;
         case self::FAHRENHEIT:
-            $fKelvinQty = ($fQuantity + 459.67)*5/9;
+            $kelvinQty = ($floatQuantity + 459.67)*5/9;
             break;
         case self::KELVIN:
-            $fKelvinQty = $fQuantity;
+            $kelvinQty = $floatQuantity;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        $iOutputQty;
-        switch ( $eToUnit )
+        $outputQty;
+        switch ( $toUnit )
         {
         case self::CELSIUS:
-            $iOutputQty = CMathi::round($fKelvinQty - 273.15);
+            $outputQty = CMathi::round($kelvinQty - 273.15);
             break;
         case self::FAHRENHEIT:
-            $iOutputQty = CMathi::round($fKelvinQty*9/5 - 459.67);
+            $outputQty = CMathi::round($kelvinQty*9/5 - 459.67);
             break;
         case self::KELVIN:
-            $iOutputQty = CMathi::round($fKelvinQty);
+            $outputQty = CMathi::round($kelvinQty);
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        return $iOutputQty;
+        return $outputQty;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a floating-point quantity of temperature from one unit into another and returns the result.
      *
-     * @param  float $fQuantity The quantity to be converted.
-     * @param  enum $eFromUnit The source unit.
-     * @param  enum $eToUnit The destination unit.
+     * @param  float $quantity The quantity to be converted.
+     * @param  enum $fromUnit The source unit.
+     * @param  enum $toUnit The destination unit.
      *
      * @return float The converted quantity.
      */
 
-    public static function convertTemperaturef ($fQuantity, $eFromUnit, $eToUnit)
+    public static function convertTemperaturef ($quantity, $fromUnit, $toUnit)
     {
-        assert( 'is_float($fQuantity) && is_enum($eFromUnit) && is_enum($eToUnit)',
+        assert( 'is_float($quantity) && is_enum($fromUnit) && is_enum($toUnit)',
             vs(isset($this), get_defined_vars()) );
 
-        if ( $eFromUnit == $eToUnit )
+        if ( $fromUnit == $toUnit )
         {
-            return $fQuantity;
+            return $quantity;
         }
 
-        $fKelvinQty;
-        switch ( $eFromUnit )
+        $kelvinQty;
+        switch ( $fromUnit )
         {
         case self::CELSIUS:
-            $fKelvinQty = $fQuantity + 273.15;
+            $kelvinQty = $quantity + 273.15;
             break;
         case self::FAHRENHEIT:
-            $fKelvinQty = ($fQuantity + 459.67)*5/9;
+            $kelvinQty = ($quantity + 459.67)*5/9;
             break;
         case self::KELVIN:
-            $fKelvinQty = $fQuantity;
+            $kelvinQty = $quantity;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        $fOutputQty;
-        switch ( $eToUnit )
+        $outputQty;
+        switch ( $toUnit )
         {
         case self::CELSIUS:
-            $fOutputQty = $fKelvinQty - 273.15;
+            $outputQty = $kelvinQty - 273.15;
             break;
         case self::FAHRENHEIT:
-            $fOutputQty = $fKelvinQty*9/5 - 459.67;
+            $outputQty = $kelvinQty*9/5 - 459.67;
             break;
         case self::KELVIN:
-            $fOutputQty = $fKelvinQty;
+            $outputQty = $kelvinQty;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        return $fOutputQty;
+        return $outputQty;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts an integer quantity of area from one unit into another and returns the result.
      *
-     * @param  int $iQuantity The quantity to be converted.
-     * @param  enum $eFromUnit The source unit.
-     * @param  enum $eToUnit The destination unit.
+     * @param  int $quantity The quantity to be converted.
+     * @param  enum $fromUnit The source unit.
+     * @param  enum $toUnit The destination unit.
      *
      * @return int The converted quantity, after rounding to the nearest integer.
      */
 
-    public static function convertAreai ($iQuantity, $eFromUnit, $eToUnit)
+    public static function convertAreai ($quantity, $fromUnit, $toUnit)
     {
-        assert( 'is_int($iQuantity) && is_enum($eFromUnit) && is_enum($eToUnit)',
+        assert( 'is_int($quantity) && is_enum($fromUnit) && is_enum($toUnit)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$iQuantity >= 0', vs(isset($this), get_defined_vars()) );
+        assert( '$quantity >= 0', vs(isset($this), get_defined_vars()) );
 
-        if ( $eFromUnit == $eToUnit )
+        if ( $fromUnit == $toUnit )
         {
-            return $iQuantity;
+            return $quantity;
         }
 
-        $fQuantity = (float)$iQuantity;
+        $floatQuantity = (float)$quantity;
 
-        $fSquareCentimeterQty;
-        switch ( $eFromUnit )
+        $squareCentimeterQty;
+        switch ( $fromUnit )
         {
         case self::SQUARE_METER:
-            $fSquareCentimeterQty = $fQuantity*10000;
+            $squareCentimeterQty = $floatQuantity*10000;
             break;
         case self::HECTARE:
-            $fSquareCentimeterQty = $fQuantity*100000000;
+            $squareCentimeterQty = $floatQuantity*100000000;
             break;
         case self::SQUARE_KILOMETER:
-            $fSquareCentimeterQty = $fQuantity*10000000000;
+            $squareCentimeterQty = $floatQuantity*10000000000;
             break;
         case self::SQUARE_INCH:
-            $fSquareCentimeterQty = $fQuantity*6.4516;
+            $squareCentimeterQty = $floatQuantity*6.4516;
             break;
         case self::SQUARE_FOOT:
-            $fSquareCentimeterQty = $fQuantity*929.03;
+            $squareCentimeterQty = $floatQuantity*929.03;
             break;
         case self::SQUARE_YARD:
-            $fSquareCentimeterQty = $fQuantity*8361.27;
+            $squareCentimeterQty = $floatQuantity*8361.27;
             break;
         case self::ACRE:
-            $fSquareCentimeterQty = $fQuantity*40468600;
+            $squareCentimeterQty = $floatQuantity*40468600;
             break;
         case self::SQUARE_MILE:
-            $fSquareCentimeterQty = $fQuantity*25899900000;
+            $squareCentimeterQty = $floatQuantity*25899900000;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        $iOutputQty;
-        switch ( $eToUnit )
+        $outputQty;
+        switch ( $toUnit )
         {
         case self::SQUARE_METER:
-            $iOutputQty = CMathi::round($fSquareCentimeterQty/10000);
+            $outputQty = CMathi::round($squareCentimeterQty/10000);
             break;
         case self::HECTARE:
-            $iOutputQty = CMathi::round($fSquareCentimeterQty/100000000);
+            $outputQty = CMathi::round($squareCentimeterQty/100000000);
             break;
         case self::SQUARE_KILOMETER:
-            $iOutputQty = CMathi::round($fSquareCentimeterQty/10000000000);
+            $outputQty = CMathi::round($squareCentimeterQty/10000000000);
             break;
         case self::SQUARE_INCH:
-            $iOutputQty = CMathi::round($fSquareCentimeterQty/6.4516);
+            $outputQty = CMathi::round($squareCentimeterQty/6.4516);
             break;
         case self::SQUARE_FOOT:
-            $iOutputQty = CMathi::round($fSquareCentimeterQty/929.03);
+            $outputQty = CMathi::round($squareCentimeterQty/929.03);
             break;
         case self::SQUARE_YARD:
-            $iOutputQty = CMathi::round($fSquareCentimeterQty/8361.27);
+            $outputQty = CMathi::round($squareCentimeterQty/8361.27);
             break;
         case self::ACRE:
-            $iOutputQty = CMathi::round($fSquareCentimeterQty/40468600);
+            $outputQty = CMathi::round($squareCentimeterQty/40468600);
             break;
         case self::SQUARE_MILE:
-            $iOutputQty = CMathi::round($fSquareCentimeterQty/25899900000);
+            $outputQty = CMathi::round($squareCentimeterQty/25899900000);
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        return $iOutputQty;
+        return $outputQty;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a floating-point quantity of area from one unit into another and returns the result.
      *
-     * @param  float $fQuantity The quantity to be converted.
-     * @param  enum $eFromUnit The source unit.
-     * @param  enum $eToUnit The destination unit.
+     * @param  float $quantity The quantity to be converted.
+     * @param  enum $fromUnit The source unit.
+     * @param  enum $toUnit The destination unit.
      *
      * @return float The converted quantity.
      */
 
-    public static function convertAreaf ($fQuantity, $eFromUnit, $eToUnit)
+    public static function convertAreaf ($quantity, $fromUnit, $toUnit)
     {
-        assert( 'is_float($fQuantity) && is_enum($eFromUnit) && is_enum($eToUnit)',
+        assert( 'is_float($quantity) && is_enum($fromUnit) && is_enum($toUnit)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$fQuantity >= 0.0', vs(isset($this), get_defined_vars()) );
+        assert( '$quantity >= 0.0', vs(isset($this), get_defined_vars()) );
 
-        if ( $eFromUnit == $eToUnit )
+        if ( $fromUnit == $toUnit )
         {
-            return $fQuantity;
+            return $quantity;
         }
 
-        $fSquareCentimeterQty;
-        switch ( $eFromUnit )
+        $squareCentimeterQty;
+        switch ( $fromUnit )
         {
         case self::SQUARE_METER:
-            $fSquareCentimeterQty = $fQuantity*10000;
+            $squareCentimeterQty = $quantity*10000;
             break;
         case self::HECTARE:
-            $fSquareCentimeterQty = $fQuantity*100000000;
+            $squareCentimeterQty = $quantity*100000000;
             break;
         case self::SQUARE_KILOMETER:
-            $fSquareCentimeterQty = $fQuantity*10000000000;
+            $squareCentimeterQty = $quantity*10000000000;
             break;
         case self::SQUARE_INCH:
-            $fSquareCentimeterQty = $fQuantity*6.4516;
+            $squareCentimeterQty = $quantity*6.4516;
             break;
         case self::SQUARE_FOOT:
-            $fSquareCentimeterQty = $fQuantity*929.03;
+            $squareCentimeterQty = $quantity*929.03;
             break;
         case self::SQUARE_YARD:
-            $fSquareCentimeterQty = $fQuantity*8361.27;
+            $squareCentimeterQty = $quantity*8361.27;
             break;
         case self::ACRE:
-            $fSquareCentimeterQty = $fQuantity*40468600;
+            $squareCentimeterQty = $quantity*40468600;
             break;
         case self::SQUARE_MILE:
-            $fSquareCentimeterQty = $fQuantity*25899900000;
+            $squareCentimeterQty = $quantity*25899900000;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        $fOutputQty;
-        switch ( $eToUnit )
+        $outputQty;
+        switch ( $toUnit )
         {
         case self::SQUARE_METER:
-            $fOutputQty = $fSquareCentimeterQty/10000;
+            $outputQty = $squareCentimeterQty/10000;
             break;
         case self::HECTARE:
-            $fOutputQty = $fSquareCentimeterQty/100000000;
+            $outputQty = $squareCentimeterQty/100000000;
             break;
         case self::SQUARE_KILOMETER:
-            $fOutputQty = $fSquareCentimeterQty/10000000000;
+            $outputQty = $squareCentimeterQty/10000000000;
             break;
         case self::SQUARE_INCH:
-            $fOutputQty = $fSquareCentimeterQty/6.4516;
+            $outputQty = $squareCentimeterQty/6.4516;
             break;
         case self::SQUARE_FOOT:
-            $fOutputQty = $fSquareCentimeterQty/929.03;
+            $outputQty = $squareCentimeterQty/929.03;
             break;
         case self::SQUARE_YARD:
-            $fOutputQty = $fSquareCentimeterQty/8361.27;
+            $outputQty = $squareCentimeterQty/8361.27;
             break;
         case self::ACRE:
-            $fOutputQty = $fSquareCentimeterQty/40468600;
+            $outputQty = $squareCentimeterQty/40468600;
             break;
         case self::SQUARE_MILE:
-            $fOutputQty = $fSquareCentimeterQty/25899900000;
+            $outputQty = $squareCentimeterQty/25899900000;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        return $fOutputQty;
+        return $outputQty;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts an integer quantity of volume from one unit into another and returns the result.
      *
-     * @param  int $iQuantity The quantity to be converted.
-     * @param  enum $eFromUnit The source unit.
-     * @param  enum $eToUnit The destination unit.
+     * @param  int $quantity The quantity to be converted.
+     * @param  enum $fromUnit The source unit.
+     * @param  enum $toUnit The destination unit.
      *
      * @return int The converted quantity, after rounding to the nearest integer.
      */
 
-    public static function convertVolumei ($iQuantity, $eFromUnit, $eToUnit)
+    public static function convertVolumei ($quantity, $fromUnit, $toUnit)
     {
-        assert( 'is_int($iQuantity) && is_enum($eFromUnit) && is_enum($eToUnit)',
+        assert( 'is_int($quantity) && is_enum($fromUnit) && is_enum($toUnit)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$iQuantity >= 0', vs(isset($this), get_defined_vars()) );
+        assert( '$quantity >= 0', vs(isset($this), get_defined_vars()) );
 
-        if ( $eFromUnit == $eToUnit )
+        if ( $fromUnit == $toUnit )
         {
-            return $iQuantity;
+            return $quantity;
         }
 
-        $fQuantity = (float)$iQuantity;
+        $floatQuantity = (float)$quantity;
 
-        $fMilliliterQty;
-        switch ( $eFromUnit )
+        $milliliterQty;
+        switch ( $fromUnit )
         {
         case self::MILLILITER:
-            $fMilliliterQty = $fQuantity;
+            $milliliterQty = $floatQuantity;
             break;
         case self::LITER:
-            $fMilliliterQty = $fQuantity*1000;
+            $milliliterQty = $floatQuantity*1000;
             break;
         case self::CUBIC_METER:
-            $fMilliliterQty = $fQuantity*1000000;
+            $milliliterQty = $floatQuantity*1000000;
             break;
         case self::CUBIC_INCH:
-            $fMilliliterQty = $fQuantity*16.3871;
+            $milliliterQty = $floatQuantity*16.3871;
             break;
         case self::CUBIC_FOOT:
-            $fMilliliterQty = $fQuantity*28316.8;
+            $milliliterQty = $floatQuantity*28316.8;
             break;
         case self::US_TEASPOON:
-            $fMilliliterQty = $fQuantity*4.928922;
+            $milliliterQty = $floatQuantity*4.928922;
             break;
         case self::US_TABLESPOON:
-            $fMilliliterQty = $fQuantity*14.786765;
+            $milliliterQty = $floatQuantity*14.786765;
             break;
         case self::US_FLUID_OUNCE:
-            $fMilliliterQty = $fQuantity*29.5735295625;
+            $milliliterQty = $floatQuantity*29.5735295625;
             break;
         case self::US_CUP:
-            $fMilliliterQty = $fQuantity*236.588237;
+            $milliliterQty = $floatQuantity*236.588237;
             break;
         case self::US_PINT:
-            $fMilliliterQty = $fQuantity*473.176473;
+            $milliliterQty = $floatQuantity*473.176473;
             break;
         case self::US_QUART:
-            $fMilliliterQty = $fQuantity*946.352946;
+            $milliliterQty = $floatQuantity*946.352946;
             break;
         case self::US_GALLON:
-            $fMilliliterQty = $fQuantity*3785.411784;
+            $milliliterQty = $floatQuantity*3785.411784;
             break;
         case self::IMPERIAL_TEASPOON:
-            $fMilliliterQty = $fQuantity*5.91939047;
+            $milliliterQty = $floatQuantity*5.91939047;
             break;
         case self::IMPERIAL_TABLESPOON:
-            $fMilliliterQty = $fQuantity*17.7581714;
+            $milliliterQty = $floatQuantity*17.7581714;
             break;
         case self::IMPERIAL_FLUID_OUNCE:
-            $fMilliliterQty = $fQuantity*28.4130742;
+            $milliliterQty = $floatQuantity*28.4130742;
             break;
         case self::IMPERIAL_PINT:
-            $fMilliliterQty = $fQuantity*568.261485;
+            $milliliterQty = $floatQuantity*568.261485;
             break;
         case self::IMPERIAL_QUART:
-            $fMilliliterQty = $fQuantity*1136.52297;
+            $milliliterQty = $floatQuantity*1136.52297;
             break;
         case self::IMPERIAL_GALLON:
-            $fMilliliterQty = $fQuantity*4546.09188;
+            $milliliterQty = $floatQuantity*4546.09188;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        $iOutputQty;
-        switch ( $eToUnit )
+        $outputQty;
+        switch ( $toUnit )
         {
         case self::MILLILITER:
-            $iOutputQty = CMathi::round($fMilliliterQty);
+            $outputQty = CMathi::round($milliliterQty);
             break;
         case self::LITER:
-            $iOutputQty = CMathi::round($fMilliliterQty/1000);
+            $outputQty = CMathi::round($milliliterQty/1000);
             break;
         case self::CUBIC_METER:
-            $iOutputQty = CMathi::round($fMilliliterQty/1000000);
+            $outputQty = CMathi::round($milliliterQty/1000000);
             break;
         case self::CUBIC_INCH:
-            $iOutputQty = CMathi::round($fMilliliterQty/16.3871);
+            $outputQty = CMathi::round($milliliterQty/16.3871);
             break;
         case self::CUBIC_FOOT:
-            $iOutputQty = CMathi::round($fMilliliterQty/28316.8);
+            $outputQty = CMathi::round($milliliterQty/28316.8);
             break;
         case self::US_TEASPOON:
-            $iOutputQty = CMathi::round($fMilliliterQty/4.928922);
+            $outputQty = CMathi::round($milliliterQty/4.928922);
             break;
         case self::US_TABLESPOON:
-            $iOutputQty = CMathi::round($fMilliliterQty/14.786765);
+            $outputQty = CMathi::round($milliliterQty/14.786765);
             break;
         case self::US_FLUID_OUNCE:
-            $iOutputQty = CMathi::round($fMilliliterQty/29.5735295625);
+            $outputQty = CMathi::round($milliliterQty/29.5735295625);
             break;
         case self::US_CUP:
-            $iOutputQty = CMathi::round($fMilliliterQty/236.588237);
+            $outputQty = CMathi::round($milliliterQty/236.588237);
             break;
         case self::US_PINT:
-            $iOutputQty = CMathi::round($fMilliliterQty/473.176473);
+            $outputQty = CMathi::round($milliliterQty/473.176473);
             break;
         case self::US_QUART:
-            $iOutputQty = CMathi::round($fMilliliterQty/946.352946);
+            $outputQty = CMathi::round($milliliterQty/946.352946);
             break;
         case self::US_GALLON:
-            $iOutputQty = CMathi::round($fMilliliterQty/3785.411784);
+            $outputQty = CMathi::round($milliliterQty/3785.411784);
             break;
         case self::IMPERIAL_TEASPOON:
-            $iOutputQty = CMathi::round($fMilliliterQty/5.91939047);
+            $outputQty = CMathi::round($milliliterQty/5.91939047);
             break;
         case self::IMPERIAL_TABLESPOON:
-            $iOutputQty = CMathi::round($fMilliliterQty/17.7581714);
+            $outputQty = CMathi::round($milliliterQty/17.7581714);
             break;
         case self::IMPERIAL_FLUID_OUNCE:
-            $iOutputQty = CMathi::round($fMilliliterQty/28.4130742);
+            $outputQty = CMathi::round($milliliterQty/28.4130742);
             break;
         case self::IMPERIAL_PINT:
-            $iOutputQty = CMathi::round($fMilliliterQty/568.261485);
+            $outputQty = CMathi::round($milliliterQty/568.261485);
             break;
         case self::IMPERIAL_QUART:
-            $iOutputQty = CMathi::round($fMilliliterQty/1136.52297);
+            $outputQty = CMathi::round($milliliterQty/1136.52297);
             break;
         case self::IMPERIAL_GALLON:
-            $iOutputQty = CMathi::round($fMilliliterQty/4546.09188);
+            $outputQty = CMathi::round($milliliterQty/4546.09188);
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        return $iOutputQty;
+        return $outputQty;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a floating-point quantity of volume from one unit into another and returns the result.
      *
-     * @param  float $fQuantity The quantity to be converted.
-     * @param  enum $eFromUnit The source unit.
-     * @param  enum $eToUnit The destination unit.
+     * @param  float $quantity The quantity to be converted.
+     * @param  enum $fromUnit The source unit.
+     * @param  enum $toUnit The destination unit.
      *
      * @return float The converted quantity.
      */
 
-    public static function convertVolumef ($fQuantity, $eFromUnit, $eToUnit)
+    public static function convertVolumef ($quantity, $fromUnit, $toUnit)
     {
-        assert( 'is_float($fQuantity) && is_enum($eFromUnit) && is_enum($eToUnit)',
+        assert( 'is_float($quantity) && is_enum($fromUnit) && is_enum($toUnit)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$fQuantity >= 0.0', vs(isset($this), get_defined_vars()) );
+        assert( '$quantity >= 0.0', vs(isset($this), get_defined_vars()) );
 
-        if ( $eFromUnit == $eToUnit )
+        if ( $fromUnit == $toUnit )
         {
-            return $fQuantity;
+            return $quantity;
         }
 
-        $fMilliliterQty;
-        switch ( $eFromUnit )
+        $milliliterQty;
+        switch ( $fromUnit )
         {
         case self::MILLILITER:
-            $fMilliliterQty = $fQuantity;
+            $milliliterQty = $quantity;
             break;
         case self::LITER:
-            $fMilliliterQty = $fQuantity*1000;
+            $milliliterQty = $quantity*1000;
             break;
         case self::CUBIC_METER:
-            $fMilliliterQty = $fQuantity*1000000;
+            $milliliterQty = $quantity*1000000;
             break;
         case self::CUBIC_INCH:
-            $fMilliliterQty = $fQuantity*16.3871;
+            $milliliterQty = $quantity*16.3871;
             break;
         case self::CUBIC_FOOT:
-            $fMilliliterQty = $fQuantity*28316.8;
+            $milliliterQty = $quantity*28316.8;
             break;
         case self::US_TEASPOON:
-            $fMilliliterQty = $fQuantity*4.928922;
+            $milliliterQty = $quantity*4.928922;
             break;
         case self::US_TABLESPOON:
-            $fMilliliterQty = $fQuantity*14.786765;
+            $milliliterQty = $quantity*14.786765;
             break;
         case self::US_FLUID_OUNCE:
-            $fMilliliterQty = $fQuantity*29.5735295625;
+            $milliliterQty = $quantity*29.5735295625;
             break;
         case self::US_CUP:
-            $fMilliliterQty = $fQuantity*236.588237;
+            $milliliterQty = $quantity*236.588237;
             break;
         case self::US_PINT:
-            $fMilliliterQty = $fQuantity*473.176473;
+            $milliliterQty = $quantity*473.176473;
             break;
         case self::US_QUART:
-            $fMilliliterQty = $fQuantity*946.352946;
+            $milliliterQty = $quantity*946.352946;
             break;
         case self::US_GALLON:
-            $fMilliliterQty = $fQuantity*3785.411784;
+            $milliliterQty = $quantity*3785.411784;
             break;
         case self::IMPERIAL_TEASPOON:
-            $fMilliliterQty = $fQuantity*5.91939047;
+            $milliliterQty = $quantity*5.91939047;
             break;
         case self::IMPERIAL_TABLESPOON:
-            $fMilliliterQty = $fQuantity*17.7581714;
+            $milliliterQty = $quantity*17.7581714;
             break;
         case self::IMPERIAL_FLUID_OUNCE:
-            $fMilliliterQty = $fQuantity*28.4130742;
+            $milliliterQty = $quantity*28.4130742;
             break;
         case self::IMPERIAL_PINT:
-            $fMilliliterQty = $fQuantity*568.261485;
+            $milliliterQty = $quantity*568.261485;
             break;
         case self::IMPERIAL_QUART:
-            $fMilliliterQty = $fQuantity*1136.52297;
+            $milliliterQty = $quantity*1136.52297;
             break;
         case self::IMPERIAL_GALLON:
-            $fMilliliterQty = $fQuantity*4546.09188;
+            $milliliterQty = $quantity*4546.09188;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        $fOutputQty;
-        switch ( $eToUnit )
+        $outputQty;
+        switch ( $toUnit )
         {
         case self::MILLILITER:
-            $fOutputQty = $fMilliliterQty;
+            $outputQty = $milliliterQty;
             break;
         case self::LITER:
-            $fOutputQty = $fMilliliterQty/1000;
+            $outputQty = $milliliterQty/1000;
             break;
         case self::CUBIC_METER:
-            $fOutputQty = $fMilliliterQty/1000000;
+            $outputQty = $milliliterQty/1000000;
             break;
         case self::CUBIC_INCH:
-            $fOutputQty = $fMilliliterQty/16.3871;
+            $outputQty = $milliliterQty/16.3871;
             break;
         case self::CUBIC_FOOT:
-            $fOutputQty = $fMilliliterQty/28316.8;
+            $outputQty = $milliliterQty/28316.8;
             break;
         case self::US_TEASPOON:
-            $fOutputQty = $fMilliliterQty/4.928922;
+            $outputQty = $milliliterQty/4.928922;
             break;
         case self::US_TABLESPOON:
-            $fOutputQty = $fMilliliterQty/14.786765;
+            $outputQty = $milliliterQty/14.786765;
             break;
         case self::US_FLUID_OUNCE:
-            $fOutputQty = $fMilliliterQty/29.5735295625;
+            $outputQty = $milliliterQty/29.5735295625;
             break;
         case self::US_CUP:
-            $fOutputQty = $fMilliliterQty/236.588237;
+            $outputQty = $milliliterQty/236.588237;
             break;
         case self::US_PINT:
-            $fOutputQty = $fMilliliterQty/473.176473;
+            $outputQty = $milliliterQty/473.176473;
             break;
         case self::US_QUART:
-            $fOutputQty = $fMilliliterQty/946.352946;
+            $outputQty = $milliliterQty/946.352946;
             break;
         case self::US_GALLON:
-            $fOutputQty = $fMilliliterQty/3785.411784;
+            $outputQty = $milliliterQty/3785.411784;
             break;
         case self::IMPERIAL_TEASPOON:
-            $fOutputQty = $fMilliliterQty/5.91939047;
+            $outputQty = $milliliterQty/5.91939047;
             break;
         case self::IMPERIAL_TABLESPOON:
-            $fOutputQty = $fMilliliterQty/17.7581714;
+            $outputQty = $milliliterQty/17.7581714;
             break;
         case self::IMPERIAL_FLUID_OUNCE:
-            $fOutputQty = $fMilliliterQty/28.4130742;
+            $outputQty = $milliliterQty/28.4130742;
             break;
         case self::IMPERIAL_PINT:
-            $fOutputQty = $fMilliliterQty/568.261485;
+            $outputQty = $milliliterQty/568.261485;
             break;
         case self::IMPERIAL_QUART:
-            $fOutputQty = $fMilliliterQty/1136.52297;
+            $outputQty = $milliliterQty/1136.52297;
             break;
         case self::IMPERIAL_GALLON:
-            $fOutputQty = $fMilliliterQty/4546.09188;
+            $outputQty = $milliliterQty/4546.09188;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        return $fOutputQty;
+        return $outputQty;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts an integer quantity of mass from one unit into another and returns the result.
      *
-     * @param  int $iQuantity The quantity to be converted.
-     * @param  enum $eFromUnit The source unit.
-     * @param  enum $eToUnit The destination unit.
+     * @param  int $quantity The quantity to be converted.
+     * @param  enum $fromUnit The source unit.
+     * @param  enum $toUnit The destination unit.
      *
      * @return int The converted quantity, after rounding to the nearest integer.
      */
 
-    public static function convertMassi ($iQuantity, $eFromUnit, $eToUnit)
+    public static function convertMassi ($quantity, $fromUnit, $toUnit)
     {
-        assert( 'is_int($iQuantity) && is_enum($eFromUnit) && is_enum($eToUnit)',
+        assert( 'is_int($quantity) && is_enum($fromUnit) && is_enum($toUnit)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$iQuantity >= 0', vs(isset($this), get_defined_vars()) );
+        assert( '$quantity >= 0', vs(isset($this), get_defined_vars()) );
 
-        if ( $eFromUnit == $eToUnit )
+        if ( $fromUnit == $toUnit )
         {
-            return $iQuantity;
+            return $quantity;
         }
 
-        $fQuantity = (float)$iQuantity;
+        $floatQuantity = (float)$quantity;
 
-        $fMilligramQty;
-        switch ( $eFromUnit )
+        $milligramQty;
+        switch ( $fromUnit )
         {
         case self::MILLIGRAM:
-            $fMilligramQty = $fQuantity;
+            $milligramQty = $floatQuantity;
             break;
         case self::GRAM:
-            $fMilligramQty = $fQuantity*1000;
+            $milligramQty = $floatQuantity*1000;
             break;
         case self::KILOGRAM:
-            $fMilligramQty = $fQuantity*1000000;
+            $milligramQty = $floatQuantity*1000000;
             break;
         case self::TON:
-            $fMilligramQty = $fQuantity*1000000000;
+            $milligramQty = $floatQuantity*1000000000;
             break;
         case self::OUNCE:
-            $fMilligramQty = $fQuantity*28349.5231;
+            $milligramQty = $floatQuantity*28349.5231;
             break;
         case self::POUND:
-            $fMilligramQty = $fQuantity*453592.37;
+            $milligramQty = $floatQuantity*453592.37;
             break;
         case self::STONE:
-            $fMilligramQty = $fQuantity*6350293.18;
+            $milligramQty = $floatQuantity*6350293.18;
             break;
         case self::SHORT_TON:
-            $fMilligramQty = $fQuantity*907184740;
+            $milligramQty = $floatQuantity*907184740;
             break;
         case self::LONG_TON:
-            $fMilligramQty = $fQuantity*1016046908.8;
+            $milligramQty = $floatQuantity*1016046908.8;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        $iOutputQty;
-        switch ( $eToUnit )
+        $outputQty;
+        switch ( $toUnit )
         {
         case self::MILLIGRAM:
-            $iOutputQty = CMathi::round($fMilligramQty);
+            $outputQty = CMathi::round($milligramQty);
             break;
         case self::GRAM:
-            $iOutputQty = CMathi::round($fMilligramQty/1000);
+            $outputQty = CMathi::round($milligramQty/1000);
             break;
         case self::KILOGRAM:
-            $iOutputQty = CMathi::round($fMilligramQty/1000000);
+            $outputQty = CMathi::round($milligramQty/1000000);
             break;
         case self::TON:
-            $iOutputQty = CMathi::round($fMilligramQty/1000000000);
+            $outputQty = CMathi::round($milligramQty/1000000000);
             break;
         case self::OUNCE:
-            $iOutputQty = CMathi::round($fMilligramQty/28349.5231);
+            $outputQty = CMathi::round($milligramQty/28349.5231);
             break;
         case self::POUND:
-            $iOutputQty = CMathi::round($fMilligramQty/453592.37);
+            $outputQty = CMathi::round($milligramQty/453592.37);
             break;
         case self::STONE:
-            $iOutputQty = CMathi::round($fMilligramQty/6350293.18);
+            $outputQty = CMathi::round($milligramQty/6350293.18);
             break;
         case self::SHORT_TON:
-            $iOutputQty = CMathi::round($fMilligramQty/907184740);
+            $outputQty = CMathi::round($milligramQty/907184740);
             break;
         case self::LONG_TON:
-            $iOutputQty = CMathi::round($fMilligramQty/1016046908.8);
+            $outputQty = CMathi::round($milligramQty/1016046908.8);
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        return $iOutputQty;
+        return $outputQty;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a floating-point quantity of mass from one unit into another and returns the result.
      *
-     * @param  float $fQuantity The quantity to be converted.
-     * @param  enum $eFromUnit The source unit.
-     * @param  enum $eToUnit The destination unit.
+     * @param  float $quantity The quantity to be converted.
+     * @param  enum $fromUnit The source unit.
+     * @param  enum $toUnit The destination unit.
      *
      * @return float The converted quantity.
      */
 
-    public static function convertMassf ($fQuantity, $eFromUnit, $eToUnit)
+    public static function convertMassf ($quantity, $fromUnit, $toUnit)
     {
-        assert( 'is_float($fQuantity) && is_enum($eFromUnit) && is_enum($eToUnit)',
+        assert( 'is_float($quantity) && is_enum($fromUnit) && is_enum($toUnit)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$fQuantity >= 0.0', vs(isset($this), get_defined_vars()) );
+        assert( '$quantity >= 0.0', vs(isset($this), get_defined_vars()) );
 
-        if ( $eFromUnit == $eToUnit )
+        if ( $fromUnit == $toUnit )
         {
-            return $fQuantity;
+            return $quantity;
         }
 
-        $fMilligramQty;
-        switch ( $eFromUnit )
+        $milligramQty;
+        switch ( $fromUnit )
         {
         case self::MILLIGRAM:
-            $fMilligramQty = $fQuantity;
+            $milligramQty = $quantity;
             break;
         case self::GRAM:
-            $fMilligramQty = $fQuantity*1000;
+            $milligramQty = $quantity*1000;
             break;
         case self::KILOGRAM:
-            $fMilligramQty = $fQuantity*1000000;
+            $milligramQty = $quantity*1000000;
             break;
         case self::TON:
-            $fMilligramQty = $fQuantity*1000000000;
+            $milligramQty = $quantity*1000000000;
             break;
         case self::OUNCE:
-            $fMilligramQty = $fQuantity*28349.5231;
+            $milligramQty = $quantity*28349.5231;
             break;
         case self::POUND:
-            $fMilligramQty = $fQuantity*453592.37;
+            $milligramQty = $quantity*453592.37;
             break;
         case self::STONE:
-            $fMilligramQty = $fQuantity*6350293.18;
+            $milligramQty = $quantity*6350293.18;
             break;
         case self::SHORT_TON:
-            $fMilligramQty = $fQuantity*907184740;
+            $milligramQty = $quantity*907184740;
             break;
         case self::LONG_TON:
-            $fMilligramQty = $fQuantity*1016046908.8;
+            $milligramQty = $quantity*1016046908.8;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        $fOutputQty;
-        switch ( $eToUnit )
+        $outputQty;
+        switch ( $toUnit )
         {
         case self::MILLIGRAM:
-            $fOutputQty = $fMilligramQty;
+            $outputQty = $milligramQty;
             break;
         case self::GRAM:
-            $fOutputQty = $fMilligramQty/1000;
+            $outputQty = $milligramQty/1000;
             break;
         case self::KILOGRAM:
-            $fOutputQty = $fMilligramQty/1000000;
+            $outputQty = $milligramQty/1000000;
             break;
         case self::TON:
-            $fOutputQty = $fMilligramQty/1000000000;
+            $outputQty = $milligramQty/1000000000;
             break;
         case self::OUNCE:
-            $fOutputQty = $fMilligramQty/28349.5231;
+            $outputQty = $milligramQty/28349.5231;
             break;
         case self::POUND:
-            $fOutputQty = $fMilligramQty/453592.37;
+            $outputQty = $milligramQty/453592.37;
             break;
         case self::STONE:
-            $fOutputQty = $fMilligramQty/6350293.18;
+            $outputQty = $milligramQty/6350293.18;
             break;
         case self::SHORT_TON:
-            $fOutputQty = $fMilligramQty/907184740;
+            $outputQty = $milligramQty/907184740;
             break;
         case self::LONG_TON:
-            $fOutputQty = $fMilligramQty/1016046908.8;
+            $outputQty = $milligramQty/1016046908.8;
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        return $fOutputQty;
+        return $outputQty;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }

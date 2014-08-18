@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1832959783"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1770833606"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1832959783" class="accordion-body collapse in">
+            <div id="namespace-1770833606" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -4134,14 +4134,14 @@ e.g. "nosniff".</p></p>
             <article class="method">
                 <h3 class="public ">setCode()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setCode (string&nbsp;<span class="argument">$sCodeString</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setCode (string&nbsp;<span class="argument">$codeString</span>) : void</pre>
                 <p><em><p>Sets the response code of the response.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sCodeString</code> </td>
+                                <td><code style="border: none; background: none">$codeString</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The response code's string, e.g. "100 Continue" (see <a href="#summary">Summary</a>).</p></td>
                             </tr>
@@ -4174,7 +4174,7 @@ e.g. "nosniff".</p></p>
             <article class="method">
                 <h3 class="public ">addHeader()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> addHeader (string&nbsp;<span class="argument">$sHeaderName</span>, string&nbsp;<span class="argument">$sValue</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> addHeader (string&nbsp;<span class="argument">$headerName</span>, string&nbsp;<span class="argument">$value</span>) : void</pre>
                 <p><em><p>Adds an HTTP header to the response.</p></em></p>
                 <p>If there has already been a header added to the response by the same name, the new value does not override any
 of the existing ones and the header will be sent with all of the added values being comma-separated.</p>
@@ -4182,12 +4182,12 @@ of the existing ones and the header will be sent with all of the added values be
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sHeaderName</code> </td>
+                                <td><code style="border: none; background: none">$headerName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the header.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The value of the header.</p></td>
                             </tr>
@@ -4220,7 +4220,7 @@ of the existing ones and the header will be sent with all of the added values be
             <article class="method">
                 <h3 class="public ">addHeaderPlural()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> addHeaderPlural (string&nbsp;<span class="argument">$sHeaderName</span>, string&nbsp;<span class="argument">$sValue</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> addHeaderPlural (string&nbsp;<span class="argument">$headerName</span>, string&nbsp;<span class="argument">$value</span>) : void</pre>
                 <p><em><p>Adds an HTTP header to the response so that it is allowed to appear repeated in the outgoing header list if the
 list already contains a header with the same name.</p></em></p>
                 
@@ -4228,12 +4228,12 @@ list already contains a header with the same name.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sHeaderName</code> </td>
+                                <td><code style="border: none; background: none">$headerName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the header.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The value of the header.</p></td>
                             </tr>
@@ -4266,14 +4266,14 @@ list already contains a header with the same name.</p></em></p>
             <article class="method">
                 <h3 class="public ">addCookie()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> addCookie (CCookie&nbsp;<span class="argument">$oCookie</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> addCookie (CCookie&nbsp;<span class="argument">$cookie</span>) : void</pre>
                 <p><em><p>Adds an HTTP cookie to the response for the cookie to be set on the client side when the response is received.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$oCookie</code> </td>
+                                <td><code style="border: none; background: none">$cookie</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CCookie.html">CCookie</a></code></td>
                                 <td><p>The cookie to be added.</p></td>
                             </tr>
@@ -4306,14 +4306,14 @@ list already contains a header with the same name.</p></em></p>
             <article class="method">
                 <h3 class="public ">setCookieForDeletion()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setCookieForDeletion (string&nbsp;<span class="argument">$sCookieName</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setCookieForDeletion (string&nbsp;<span class="argument">$cookieName</span>) : void</pre>
                 <p><em><p>Marks an HTTP cookie for deletion to take place on the client side when the response is received.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sCookieName</code> </td>
+                                <td><code style="border: none; background: none">$cookieName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the cookie to be deleted.</p></td>
                             </tr>
@@ -4346,7 +4346,7 @@ list already contains a header with the same name.</p></em></p>
             <article class="method">
                 <h3 class="public ">setRedirect()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setRedirect (string&nbsp;<span class="argument">$sTargetUrl</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sCodeString</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setRedirect (string&nbsp;<span class="argument">$targetUrl</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$codeString</span></span>) : void</pre>
                 <p><em><p>Makes the response redirect the user's agent to a specified location.</p></em></p>
                 <p>With this method, the HTTP response takes the following form:</p>
 <hr />
@@ -4357,13 +4357,13 @@ list already contains a header with the same name.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sTargetUrl</code> </td>
+                                <td><code style="border: none; background: none">$targetUrl</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The location to which the user's agent should be redirected (can be absolute or
 relative).</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sCodeString</code> </td>
+                                <td><code style="border: none; background: none">$codeString</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>FOUND</code> ("302 Found"). The response code's string of the
 response. This is usually <code>FOUND</code>, <code>MOVED_PERMANENTLY</code>, or <code>SEE_OTHER</code>.</p></td>
@@ -4397,7 +4397,7 @@ response. This is usually <code>FOUND</code>, <code>MOVED_PERMANENTLY</code>, or
             <article class="method">
                 <h3 class="public ">setRefresh()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setRefresh (int&nbsp;<span class="argument">$iInNumSeconds</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$sTargetUrl</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setRefresh (int&nbsp;<span class="argument">$inNumSeconds</span>, <span style="color: rgb(144, 144, 144)">string&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$targetUrl</span></span>) : void</pre>
                 <p><em><p>Makes the response refresh the page in the user's agent after displaying it for a specified amount of time.</p></em></p>
                 <p>With this method, the HTTP response takes the following form:</p>
 <hr />
@@ -4407,12 +4407,12 @@ response. This is usually <code>FOUND</code>, <code>MOVED_PERMANENTLY</code>, or
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iInNumSeconds</code> </td>
+                                <td><code style="border: none; background: none">$inNumSeconds</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The number of seconds for the user's agent to wait before refreshing.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sTargetUrl</code> </td>
+                                <td><code style="border: none; background: none">$targetUrl</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p><strong>OPTIONAL.</strong> The location to which the user's agent should be redirected instead of
 refreshing to the same page (can be absolute or relative).</p></td>
@@ -4483,7 +4483,7 @@ refreshing to the same page (can be absolute or relative).</p></td>
             <article class="method">
                 <h3 class="public ">setFileDownload()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setFileDownload (string&nbsp;<span class="argument">$sFileName</span>, int&nbsp;<span class="argument">$iFileSize</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> setFileDownload (string&nbsp;<span class="argument">$fileName</span>, int&nbsp;<span class="argument">$fileSize</span>) : void</pre>
                 <p><em><p>Makes the response trigger file downloading on the client side for the response's contents.</p></em></p>
                 <p>With this method, the HTTP response takes the following form:</p>
 <hr />
@@ -4496,13 +4496,13 @@ refreshing to the same page (can be absolute or relative).</p></td>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFileName</code> </td>
+                                <td><code style="border: none; background: none">$fileName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name by which the response's contents should be downloaded by the user's agent as
 a file.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iFileSize</code> </td>
+                                <td><code style="border: none; background: none">$fileSize</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The size of the data to be downloaded by the user's agent, in bytes.</p></td>
                             </tr>
@@ -4535,14 +4535,14 @@ a file.</p></td>
             <article class="method">
                 <h3 class="public ">hasHeader()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> hasHeader (string&nbsp;<span class="argument">$sHeaderName</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> hasHeader (string&nbsp;<span class="argument">$headerName</span>) : bool</pre>
                 <p><em><p>Determines if the response includes an HTTP header with a specified name.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sHeaderName</code> </td>
+                                <td><code style="border: none; background: none">$headerName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the header to be looked for.</p></td>
                             </tr>
@@ -4580,14 +4580,14 @@ a file.</p></td>
             <article class="method">
                 <h3 class="public ">header()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> header (string&nbsp;<span class="argument">$sHeaderName</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> header (string&nbsp;<span class="argument">$headerName</span>) : OOPString</pre>
                 <p><em><p>Returns the value of an HTTP header included in the response.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sHeaderName</code> </td>
+                                <td><code style="border: none; background: none">$headerName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the header.</p></td>
                             </tr>
@@ -4625,14 +4625,14 @@ a file.</p></td>
             <article class="method">
                 <h3 class="public ">removeHeader()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> removeHeader (string&nbsp;<span class="argument">$sHeaderName</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> removeHeader (string&nbsp;<span class="argument">$headerName</span>) : void</pre>
                 <p><em><p>Removes an HTTP header from the response.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sHeaderName</code> </td>
+                                <td><code style="border: none; background: none">$headerName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the header to be removed.</p></td>
                             </tr>
@@ -4745,7 +4745,7 @@ a file.</p></td>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -14,18 +14,18 @@
  */
 
 // Method signatures:
-//   static void setCode ($sCodeString)
-//   static void addHeader ($sHeaderName, $sValue)
-//   static void addHeaderPlural ($sHeaderName, $sValue)
-//   static void addCookie (CCookie $oCookie)
-//   static void setCookieForDeletion ($sCookieName)
-//   static void setRedirect ($sTargetUrl, $sCodeString = self::FOUND)
-//   static void setRefresh ($iInNumSeconds, $sTargetUrl = null)
+//   static void setCode ($codeString)
+//   static void addHeader ($headerName, $value)
+//   static void addHeaderPlural ($headerName, $value)
+//   static void addCookie (CCookie $cookie)
+//   static void setCookieForDeletion ($cookieName)
+//   static void setRedirect ($targetUrl, $codeString = self::FOUND)
+//   static void setRefresh ($inNumSeconds, $targetUrl = null)
 //   static void disableCaching ()
-//   static void setFileDownload ($sFileName, $iFileSize)
-//   static bool hasHeader ($sHeaderName)
-//   static CUStringObject header ($sHeaderName)
-//   static void removeHeader ($sHeaderName)
+//   static void setFileDownload ($fileName, $fileSize)
+//   static bool hasHeader ($headerName)
+//   static CUStringObject header ($headerName)
+//   static void removeHeader ($headerName)
 
 class CResponse extends CHttpResponse
 {
@@ -33,20 +33,20 @@ class CResponse extends CHttpResponse
     /**
      * Sets the response code of the response.
      *
-     * @param  string $sCodeString The response code's string, e.g. "100 Continue" (see [Summary](#summary)).
+     * @param  string $codeString The response code's string, e.g. "100 Continue" (see [Summary](#summary)).
      *
      * @return void
      */
 
-    public static function setCode ($sCodeString)
+    public static function setCode ($codeString)
     {
-        assert( 'is_cstring($sCodeString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($codeString)', vs(isset($this), get_defined_vars()) );
 
-        $sFoundString;
-        $bRes = CRegex::find($sCodeString, "/^\\d+/", $sFoundString);
-        assert( '$bRes', vs(isset($this), get_defined_vars()) );
-        $iCode = CString::toInt($sFoundString);
-        http_response_code($iCode);
+        $foundString;
+        $res = CRegex::find($codeString, "/^\\d+/", $foundString);
+        assert( '$res', vs(isset($this), get_defined_vars()) );
+        $code = CString::toInt($foundString);
+        http_response_code($code);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -55,97 +55,97 @@ class CResponse extends CHttpResponse
      * If there has already been a header added to the response by the same name, the new value does not override any
      * of the existing ones and the header will be sent with all of the added values being comma-separated.
      *
-     * @param  string $sHeaderName The name of the header.
-     * @param  string $sValue The value of the header.
+     * @param  string $headerName The name of the header.
+     * @param  string $value The value of the header.
      *
      * @return void
      */
 
-    public static function addHeader ($sHeaderName, $sValue)
+    public static function addHeader ($headerName, $value)
     {
-        assert( 'is_cstring($sHeaderName) && is_cstring($sValue)', vs(isset($this), get_defined_vars()) );
-        assert( 'CRegex::find($sHeaderName, "/^[\\\\w\\\\-]+\\\\z/")', vs(isset($this), get_defined_vars()) );
-        assert( '!CRegex::find($sValue, "/\\\\v/")', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($headerName) && is_cstring($value)', vs(isset($this), get_defined_vars()) );
+        assert( 'CRegex::find($headerName, "/^[\\\\w\\\\-]+\\\\z/")', vs(isset($this), get_defined_vars()) );
+        assert( '!CRegex::find($value, "/\\\\v/")', vs(isset($this), get_defined_vars()) );
 
-        $sHeaderLine;
-        $sValue = CString::trim($sValue);
-        if ( !self::hasHeader($sHeaderName) )
+        $headerLine;
+        $value = CString::trim($value);
+        if ( !self::hasHeader($headerName) )
         {
-            $sHeaderLine = "$sHeaderName: $sValue";
+            $headerLine = "$headerName: $value";
         }
         else
         {
             // The header already exists. Combine the header values, removing duplicates based on case-insensitive
             // equality.
-            $sCurrValue = self::header($sHeaderName);
-            $aValues = CString::split("$sCurrValue, $sValue", ",");
-            $iLen = CArray::length($aValues);
-            for ($i = 0; $i < $iLen; $i++)
+            $currValue = self::header($headerName);
+            $values = CString::split("$currValue, $value", ",");
+            $len = CArray::length($values);
+            for ($i = 0; $i < $len; $i++)
             {
-                $aValues[$i] = CString::trim($aValues[$i]);
+                $values[$i] = CString::trim($values[$i]);
             }
-            $aValues = CArray::filter($aValues, function ($sElement)
+            $values = CArray::filter($values, function ($element)
                 {
-                    return !CString::isEmpty($sElement);
+                    return !CString::isEmpty($element);
                 });
-            $aValues = CArray::unique($aValues, function ($sElement0, $sElement1)
+            $values = CArray::unique($values, function ($element0, $element1)
                 {
-                    return CString::equalsCi($sElement0, $sElement1);
+                    return CString::equalsCi($element0, $element1);
                 });
-            $sCombinedValue = CArray::join($aValues, ", ");
-            $sHeaderLine = "$sHeaderName: $sCombinedValue";
+            $combinedValue = CArray::join($values, ", ");
+            $headerLine = "$headerName: $combinedValue";
         }
-        header($sHeaderLine, true);
+        header($headerLine, true);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Adds an HTTP header to the response so that it is allowed to appear repeated in the outgoing header list if the
      * list already contains a header with the same name.
      *
-     * @param  string $sHeaderName The name of the header.
-     * @param  string $sValue The value of the header.
+     * @param  string $headerName The name of the header.
+     * @param  string $value The value of the header.
      *
      * @return void
      */
 
-    public static function addHeaderPlural ($sHeaderName, $sValue)
+    public static function addHeaderPlural ($headerName, $value)
     {
-        assert( 'is_cstring($sHeaderName) && is_cstring($sValue)', vs(isset($this), get_defined_vars()) );
-        assert( 'CRegex::find($sHeaderName, "/^[\\\\w\\\\-]+\\\\z/")', vs(isset($this), get_defined_vars()) );
-        assert( '!CRegex::find($sValue, "/\\\\v/")', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($headerName) && is_cstring($value)', vs(isset($this), get_defined_vars()) );
+        assert( 'CRegex::find($headerName, "/^[\\\\w\\\\-]+\\\\z/")', vs(isset($this), get_defined_vars()) );
+        assert( '!CRegex::find($value, "/\\\\v/")', vs(isset($this), get_defined_vars()) );
 
-        header("$sHeaderName: $sValue", false);
+        header("$headerName: $value", false);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Adds an HTTP cookie to the response for the cookie to be set on the client side when the response is received.
      *
-     * @param  CCookie $oCookie The cookie to be added.
+     * @param  CCookie $cookie The cookie to be added.
      *
      * @return void
      */
 
-    public static function addCookie (CCookie $oCookie)
+    public static function addCookie (CCookie $cookie)
     {
-        $bRes = setcookie($oCookie->name(), $oCookie->value(), $oCookie->expireUTime(), $oCookie->path(),
-            $oCookie->domain(), $oCookie->secure(), $oCookie->httpOnly());
-        assert( '$bRes', vs(isset($this), get_defined_vars()) );
+        $res = setcookie($cookie->name(), $cookie->value(), $cookie->expireUTime(), $cookie->path(),
+            $cookie->domain(), $cookie->secure(), $cookie->httpOnly());
+        assert( '$res', vs(isset($this), get_defined_vars()) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Marks an HTTP cookie for deletion to take place on the client side when the response is received.
      *
-     * @param  string $sCookieName The name of the cookie to be deleted.
+     * @param  string $cookieName The name of the cookie to be deleted.
      *
      * @return void
      */
 
-    public static function setCookieForDeletion ($sCookieName)
+    public static function setCookieForDeletion ($cookieName)
     {
-        assert( 'is_cstring($sCookieName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($cookieName)', vs(isset($this), get_defined_vars()) );
 
-        $bRes = setcookie($sCookieName, "");
-        assert( '$bRes', vs(isset($this), get_defined_vars()) );
+        $res = setcookie($cookieName, "");
+        assert( '$res', vs(isset($this), get_defined_vars()) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -161,21 +161,21 @@ class CResponse extends CHttpResponse
      *
      * ---
      *
-     * @param  string $sTargetUrl The location to which the user's agent should be redirected (can be absolute or
+     * @param  string $targetUrl The location to which the user's agent should be redirected (can be absolute or
      * relative).
-     * @param  string $sCodeString **OPTIONAL. Default is** `FOUND` ("302 Found"). The response code's string of the
+     * @param  string $codeString **OPTIONAL. Default is** `FOUND` ("302 Found"). The response code's string of the
      * response. This is usually `FOUND`, `MOVED_PERMANENTLY`, or `SEE_OTHER`.
      *
      * @return void
      */
 
-    public static function setRedirect ($sTargetUrl, $sCodeString = self::FOUND)
+    public static function setRedirect ($targetUrl, $codeString = self::FOUND)
     {
-        assert( 'is_cstring($sTargetUrl) && is_cstring($sCodeString)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($targetUrl) && is_cstring($codeString)', vs(isset($this), get_defined_vars()) );
         assert( '!self::hasHeader(self::LOCATION)', vs(isset($this), get_defined_vars()) );
 
-        self::setCode($sCodeString);
-        self::addHeader(self::LOCATION, $sTargetUrl);
+        self::setCode($codeString);
+        self::addHeader(self::LOCATION, $targetUrl);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -189,26 +189,26 @@ class CResponse extends CHttpResponse
      *
      * ---
      *
-     * @param  int $iInNumSeconds The number of seconds for the user's agent to wait before refreshing.
-     * @param  string $sTargetUrl **OPTIONAL.** The location to which the user's agent should be redirected instead of
+     * @param  int $inNumSeconds The number of seconds for the user's agent to wait before refreshing.
+     * @param  string $targetUrl **OPTIONAL.** The location to which the user's agent should be redirected instead of
      * refreshing to the same page (can be absolute or relative).
      *
      * @return void
      */
 
-    public static function setRefresh ($iInNumSeconds, $sTargetUrl = null)
+    public static function setRefresh ($inNumSeconds, $targetUrl = null)
     {
-        assert( 'is_int($iInNumSeconds) && (!isset($sTargetUrl) || is_cstring($sTargetUrl))',
+        assert( 'is_int($inNumSeconds) && (!isset($targetUrl) || is_cstring($targetUrl))',
             vs(isset($this), get_defined_vars()) );
-        assert( '$iInNumSeconds >= 0', vs(isset($this), get_defined_vars()) );
+        assert( '$inNumSeconds >= 0', vs(isset($this), get_defined_vars()) );
         assert( '!self::hasHeader(self::REFRESH)', vs(isset($this), get_defined_vars()) );
 
-        $sValue = CString::fromInt($iInNumSeconds);
-        if ( isset($sTargetUrl) )
+        $value = CString::fromInt($inNumSeconds);
+        if ( isset($targetUrl) )
         {
-            $sValue .= "; url=$sTargetUrl";
+            $value .= "; url=$targetUrl";
         }
-        self::addHeader(self::REFRESH, $sValue);
+        self::addHeader(self::REFRESH, $value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -255,37 +255,37 @@ class CResponse extends CHttpResponse
      *
      * ---
      *
-     * @param  string $sFileName The name by which the response's contents should be downloaded by the user's agent as
+     * @param  string $fileName The name by which the response's contents should be downloaded by the user's agent as
      * a file.
-     * @param  int $iFileSize The size of the data to be downloaded by the user's agent, in bytes.
+     * @param  int $fileSize The size of the data to be downloaded by the user's agent, in bytes.
      *
      * @return void
      */
 
-    public static function setFileDownload ($sFileName, $iFileSize)
+    public static function setFileDownload ($fileName, $fileSize)
     {
-        assert( 'is_cstring($sFileName) && is_int($iFileSize)', vs(isset($this), get_defined_vars()) );
-        assert( '$iFileSize >= 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($fileName) && is_int($fileSize)', vs(isset($this), get_defined_vars()) );
+        assert( '$fileSize >= 0', vs(isset($this), get_defined_vars()) );
         assert( '!self::hasHeader(self::CONTENT_TYPE)', vs(isset($this), get_defined_vars()) );
         assert( '!self::hasHeader(self::CONTENT_DISPOSITION)', vs(isset($this), get_defined_vars()) );
         assert( '!self::hasHeader(self::CONTENT_LENGTH)', vs(isset($this), get_defined_vars()) );
 
         self::addHeader(self::CONTENT_TYPE, CMimeType::OCTET_STREAM);
 
-        $sFnPart;
-        if ( CString::isValid($sFileName) )
+        $fnPart;
+        if ( CString::isValid($fileName) )
         {
-            $sFnPart = "filename=\"$sFileName\"";
+            $fnPart = "filename=\"$fileName\"";
         }
         else
         {
             // The file's name contains one or more Unicode characters. Use percent-encoding.
-            $sFileNamePe = CUrl::enterTdNew($sFileName);
-            $sFnPart = "filename*=UTF-8''$sFileNamePe";
+            $fileNamePe = CUrl::enterTdNew($fileName);
+            $fnPart = "filename*=UTF-8''$fileNamePe";
         }
-        self::addHeader(self::CONTENT_DISPOSITION, "attachment; $sFnPart");
+        self::addHeader(self::CONTENT_DISPOSITION, "attachment; $fnPart");
 
-        self::addHeader(self::CONTENT_LENGTH, CString::fromInt($iFileSize));
+        self::addHeader(self::CONTENT_LENGTH, CString::fromInt($fileSize));
 
         self::disableCaching();
     }
@@ -293,68 +293,68 @@ class CResponse extends CHttpResponse
     /**
      * Determines if the response includes an HTTP header with a specified name.
      *
-     * @param  string $sHeaderName The name of the header to be looked for.
+     * @param  string $headerName The name of the header to be looked for.
      *
      * @return bool `true` if the response includes a header with the name specified, `false` otherwise.
      */
 
-    public static function hasHeader ($sHeaderName)
+    public static function hasHeader ($headerName)
     {
-        assert( 'is_cstring($sHeaderName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($headerName)', vs(isset($this), get_defined_vars()) );
 
-        $mHeaders = self::headersLcKeys();
-        $sHeaderNameLc = CString::toLowerCase($sHeaderName);
-        return CMap::hasKey($mHeaders, $sHeaderNameLc);
+        $headers = self::headersLcKeys();
+        $headerNameLc = CString::toLowerCase($headerName);
+        return CMap::hasKey($headers, $headerNameLc);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the value of an HTTP header included in the response.
      *
-     * @param  string $sHeaderName The name of the header.
+     * @param  string $headerName The name of the header.
      *
      * @return CUStringObject The value of the header.
      */
 
-    public static function header ($sHeaderName)
+    public static function header ($headerName)
     {
-        assert( 'is_cstring($sHeaderName)', vs(isset($this), get_defined_vars()) );
-        assert( 'self::hasHeader($sHeaderName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($headerName)', vs(isset($this), get_defined_vars()) );
+        assert( 'self::hasHeader($headerName)', vs(isset($this), get_defined_vars()) );
 
-        $mHeaders = self::headersLcKeys();
-        $sHeaderNameLc = CString::toLowerCase($sHeaderName);
-        return $mHeaders[$sHeaderNameLc];
+        $headers = self::headersLcKeys();
+        $headerNameLc = CString::toLowerCase($headerName);
+        return $headers[$headerNameLc];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes an HTTP header from the response.
      *
-     * @param  string $sHeaderName The name of the header to be removed.
+     * @param  string $headerName The name of the header to be removed.
      *
      * @return void
      */
 
-    public static function removeHeader ($sHeaderName)
+    public static function removeHeader ($headerName)
     {
-        assert( 'is_cstring($sHeaderName)', vs(isset($this), get_defined_vars()) );
-        assert( 'self::hasHeader($sHeaderName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($headerName)', vs(isset($this), get_defined_vars()) );
+        assert( 'self::hasHeader($headerName)', vs(isset($this), get_defined_vars()) );
 
-        header_remove($sHeaderName);
+        header_remove($headerName);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected static function headersLcKeys ()
     {
-        $mHeaders = CMap::make();
-        $aHeaders = CArray::fromPArray(headers_list());
-        $iLen = CArray::length($aHeaders);
-        for ($i = 0; $i < $iLen; $i++)
+        $paHeaders = CMap::make();
+        $headers = CArray::fromPArray(headers_list());
+        $len = CArray::length($headers);
+        for ($i = 0; $i < $len; $i++)
         {
-            $aFoundGroups;
-            $bRes = CRegex::findGroups($aHeaders[$i], "/^\\s*(.+?)\\h*:\\h*(.+?)\\s*\\z/", $aFoundGroups);
-            assert( '$bRes', vs(isset($this), get_defined_vars()) );
-            $sHeaderNameLc = CString::toLowerCase($aFoundGroups[0]);
-            $mHeaders[$sHeaderNameLc] = $aFoundGroups[1];
+            $foundGroups;
+            $res = CRegex::findGroups($headers[$i], "/^\\s*(.+?)\\h*:\\h*(.+?)\\s*\\z/", $foundGroups);
+            assert( '$res', vs(isset($this), get_defined_vars()) );
+            $headerNameLc = CString::toLowerCase($foundGroups[0]);
+            $paHeaders[$headerNameLc] = $foundGroups[1];
         }
-        return $mHeaders;
+        return $paHeaders;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }

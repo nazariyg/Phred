@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * The home of the static methods that check on files and directories as to whether they exist and on their attributes,
  * read from and write to files, create files and directories, copy, move, rename, and delete files and directories,
@@ -19,61 +20,61 @@
  */
 
 // Method signatures:
-//   static bool exists ($sFileOrDirectoryPath)
-//   static int size ($sFilePath)
-//   static CUStringObject read ($sFilePath)
-//   static void write ($sFilePath, $byData)
-//   static void append ($sFilePath, $byData)
-//   static void create ($sFilePath, $bSetPermissions = false)
-//   static CUStringObject createTemporary ($sInDirectoryPath = null,
-//     $sNamePrefix = self::DEFAULT_TEMPORARY_FILE_PREFIX)
-//   static void createDirectory ($sDirectoryPath, $bSetPermissions = false)
-//   static void copy ($sFileOrDirectoryPath, $sCopyPath, $bCopyPermissions = true)
-//   static void move ($sFileOrDirectoryPath, $sNewPath)
-//   static void rename ($sFileOrDirectoryPath, $sNewName)
-//   static void delete ($sFilePath)
-//   static void deleteEmptyDirectory ($sDirectoryPath)
-//   static void deleteDirectoryRecursive ($sDirectoryPath)
-//   static CUStringObject permissions ($sFileOrDirectoryPath)
-//   static void setPermissions ($sFileOrDirectoryPath, $sPermissions)
-//   static CTime modificationTime ($sFilePath)
-//   static bool isFile ($sPath)
-//   static bool isDirectory ($sPath)
-//   static CArrayObject listItems ($sInDirectoryPath, $bSort = false)
-//   static CArrayObject listFiles ($sInDirectoryPath, $bSort = false)
-//   static CArrayObject listDirectories ($sInDirectoryPath, $bSort = false)
-//   static CArrayObject listItemsRecursive ($sInDirectoryPath, $bSort = false)
-//   static CArrayObject listFilesRecursive ($sInDirectoryPath, $bSort = false)
-//   static CArrayObject listDirectoriesRecursive ($sInDirectoryPath, $bSort = false)
-//   static CArrayObject findItems ($sWildcardPattern, $bSort = false)
-//   static CArrayObject findFiles ($sWildcardPattern, $bSort = false)
-//   static CArrayObject findDirectories ($sWildcardPattern, $bSort = false)
-//   static CArrayObject findItemsRecursive ($sWildcardPattern, $bSort = false)
-//   static CArrayObject findFilesRecursive ($sWildcardPattern, $bSort = false)
-//   static CArrayObject findDirectoriesRecursive ($sWildcardPattern, $bSort = false)
-//   static CArrayObject reFindItems ($sInDirectoryPath, $sRegexPattern, $bSort = false)
-//   static CArrayObject reFindFiles ($sInDirectoryPath, $sRegexPattern, $bSort = false)
-//   static CArrayObject reFindDirectories ($sInDirectoryPath, $sRegexPattern, $bSort = false)
-//   static CArrayObject reFindItemsRecursive ($sInDirectoryPath, $sRegexPattern, $bSort = false)
-//   static CArrayObject reFindFilesRecursive ($sInDirectoryPath, $sRegexPattern, $bSort = false)
-//   static CArrayObject reFindDirectoriesRecursive ($sInDirectoryPath, $sRegexPattern, $bSort = false)
-//   static CArrayObject reFindItemsOnName ($sInDirectoryPath, $sRegexPattern, $bSort = false)
-//   static CArrayObject reFindFilesOnName ($sInDirectoryPath, $sRegexPattern, $bSort = false)
-//   static CArrayObject reFindDirectoriesOnName ($sInDirectoryPath, $sRegexPattern, $bSort = false)
-//   static CArrayObject reFindItemsOnNameRecursive ($sInDirectoryPath, $sRegexPattern, $bSort = false)
-//   static CArrayObject reFindFilesOnNameRecursive ($sInDirectoryPath, $sRegexPattern, $bSort = false)
-//   static CArrayObject reFindDirectoriesOnNameRecursive ($sInDirectoryPath, $sRegexPattern, $bSort = false)
-//   __construct ($sFilePath, $eMode, $eWrapper = self::NONE)
+//   static bool exists ($fileOrDirectoryPath)
+//   static int size ($filePath)
+//   static CUStringObject read ($filePath)
+//   static void write ($filePath, $data)
+//   static void append ($filePath, $data)
+//   static void create ($filePath, $setPermissions = false)
+//   static CUStringObject createTemporary ($inDirectoryPath = null,
+//     $namePrefix = self::DEFAULT_TEMPORARY_FILE_PREFIX)
+//   static void createDirectory ($directoryPath, $setPermissions = false)
+//   static void copy ($fileOrDirectoryPath, $copyPath, $copyPermissions = true)
+//   static void move ($fileOrDirectoryPath, $newPath)
+//   static void rename ($fileOrDirectoryPath, $newName)
+//   static void delete ($filePath)
+//   static void deleteEmptyDirectory ($directoryPath)
+//   static void deleteDirectoryRecursive ($directoryPath)
+//   static CUStringObject permissions ($fileOrDirectoryPath)
+//   static void setPermissions ($fileOrDirectoryPath, $permissions)
+//   static CTime modificationTime ($filePath)
+//   static bool isFile ($path)
+//   static bool isDirectory ($path)
+//   static CArrayObject listItems ($inDirectoryPath, $sort = false)
+//   static CArrayObject listFiles ($inDirectoryPath, $sort = false)
+//   static CArrayObject listDirectories ($inDirectoryPath, $sort = false)
+//   static CArrayObject listItemsRecursive ($inDirectoryPath, $sort = false)
+//   static CArrayObject listFilesRecursive ($inDirectoryPath, $sort = false)
+//   static CArrayObject listDirectoriesRecursive ($inDirectoryPath, $sort = false)
+//   static CArrayObject findItems ($wildcardPattern, $sort = false)
+//   static CArrayObject findFiles ($wildcardPattern, $sort = false)
+//   static CArrayObject findDirectories ($wildcardPattern, $sort = false)
+//   static CArrayObject findItemsRecursive ($wildcardPattern, $sort = false)
+//   static CArrayObject findFilesRecursive ($wildcardPattern, $sort = false)
+//   static CArrayObject findDirectoriesRecursive ($wildcardPattern, $sort = false)
+//   static CArrayObject reFindItems ($inDirectoryPath, $regexPattern, $sort = false)
+//   static CArrayObject reFindFiles ($inDirectoryPath, $regexPattern, $sort = false)
+//   static CArrayObject reFindDirectories ($inDirectoryPath, $regexPattern, $sort = false)
+//   static CArrayObject reFindItemsRecursive ($inDirectoryPath, $regexPattern, $sort = false)
+//   static CArrayObject reFindFilesRecursive ($inDirectoryPath, $regexPattern, $sort = false)
+//   static CArrayObject reFindDirectoriesRecursive ($inDirectoryPath, $regexPattern, $sort = false)
+//   static CArrayObject reFindItemsOnName ($inDirectoryPath, $regexPattern, $sort = false)
+//   static CArrayObject reFindFilesOnName ($inDirectoryPath, $regexPattern, $sort = false)
+//   static CArrayObject reFindDirectoriesOnName ($inDirectoryPath, $regexPattern, $sort = false)
+//   static CArrayObject reFindItemsOnNameRecursive ($inDirectoryPath, $regexPattern, $sort = false)
+//   static CArrayObject reFindFilesOnNameRecursive ($inDirectoryPath, $regexPattern, $sort = false)
+//   static CArrayObject reFindDirectoriesOnNameRecursive ($inDirectoryPath, $regexPattern, $sort = false)
+//   __construct ($filePath, $mode, $wrapper = self::NONE)
 //   CUStringObject filePath ()
 //   enum mode ()
 //   resource systemResource ()
-//   bool equals ($oToFile)
-//   CUStringObject readBytes ($iQuantity)
-//   CUStringObject readAvailableBytes ($iMaxQuantity)
-//   void writeBytes ($byData, $iMaxQuantity = null)
+//   bool equals ($toFile)
+//   CUStringObject readBytes ($quantity)
+//   CUStringObject readAvailableBytes ($maxQuantity)
+//   void writeBytes ($data, $maxQuantity = null)
 //   int pos ()
-//   void setPos ($iPos)
-//   void shiftPos ($iShift)
+//   void setPos ($pos)
+//   void shiftPos ($shift)
 //   void setPosToStart ()
 //   void setPosToEnd ()
 //   bool isPosPastEnd ()
@@ -160,20 +161,20 @@ class CFile extends CRootClass implements IEquality
      * The method always reports on a file or directory how it really is at the moment, without using any information
      * that was previously cached by the OS.
      *
-     * @param  string $sFileOrDirectoryPath The path to be checked (in case of a directory, its path is not required to
+     * @param  string $fileOrDirectoryPath The path to be checked (in case of a directory, its path is not required to
      * end with "/").
      *
      * @return bool `true` if the file or directory exists, `false` otherwise.
      */
 
-    public static function exists ($sFileOrDirectoryPath)
+    public static function exists ($fileOrDirectoryPath)
     {
-        assert( 'is_cstring($sFileOrDirectoryPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($fileOrDirectoryPath)', vs(isset($this), get_defined_vars()) );
 
-        $sFileOrDirectoryPath = CFilePath::frameworkPath($sFileOrDirectoryPath);
+        $fileOrDirectoryPath = CFilePath::frameworkPath($fileOrDirectoryPath);
 
-        clearstatcache(true, $sFileOrDirectoryPath);
-        return file_exists($sFileOrDirectoryPath);
+        clearstatcache(true, $fileOrDirectoryPath);
+        return file_exists($fileOrDirectoryPath);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -182,40 +183,40 @@ class CFile extends CRootClass implements IEquality
      * The method always reports on a file how it really is at the moment, without using any information that was
      * previously cached by the OS.
      *
-     * @param  string $sFilePath The path to the file.
+     * @param  string $filePath The path to the file.
      *
      * @return int The size of the file, in bytes.
      */
 
-    public static function size ($sFilePath)
+    public static function size ($filePath)
     {
-        assert( 'is_cstring($sFilePath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($filePath)', vs(isset($this), get_defined_vars()) );
 
-        $sFilePath = CFilePath::frameworkPath($sFilePath);
+        $filePath = CFilePath::frameworkPath($filePath);
 
-        clearstatcache(true, $sFilePath);
-        $iSize = filesize($sFilePath);
-        assert( 'is_int($iSize)', vs(isset($this), get_defined_vars()) );
-        return $iSize;
+        clearstatcache(true, $filePath);
+        $size = filesize($filePath);
+        assert( 'is_int($size)', vs(isset($this), get_defined_vars()) );
+        return $size;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Reads and returns the entire contents of a file.
      *
-     * @param  string $sFilePath The path to the source file.
+     * @param  string $filePath The path to the source file.
      *
      * @return CUStringObject The contents of the file.
      */
 
-    public static function read ($sFilePath)
+    public static function read ($filePath)
     {
-        assert( 'is_cstring($sFilePath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($filePath)', vs(isset($this), get_defined_vars()) );
 
-        $sFilePath = CFilePath::frameworkPath($sFilePath);
+        $filePath = CFilePath::frameworkPath($filePath);
 
-        $byData = file_get_contents($sFilePath, false);
-        assert( 'is_cstring($byData)', vs(isset($this), get_defined_vars()) );
-        return $byData;
+        $data = file_get_contents($filePath, false);
+        assert( 'is_cstring($data)', vs(isset($this), get_defined_vars()) );
+        return $data;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -224,20 +225,20 @@ class CFile extends CRootClass implements IEquality
      * To prevent any other process from writing into the file during the operation, the method locks the file until
      * the operation is complete.
      *
-     * @param  string $sFilePath The path to the destination file.
-     * @param  data $byData The contents to be written into the file.
+     * @param  string $filePath The path to the destination file.
+     * @param  data $data The contents to be written into the file.
      *
      * @return void
      */
 
-    public static function write ($sFilePath, $byData)
+    public static function write ($filePath, $data)
     {
-        assert( 'is_cstring($sFilePath) && is_cstring($byData)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($filePath) && is_cstring($data)', vs(isset($this), get_defined_vars()) );
 
-        $sFilePath = CFilePath::frameworkPath($sFilePath);
+        $filePath = CFilePath::frameworkPath($filePath);
 
-        $iWrittenByteQty = file_put_contents($sFilePath, $byData, LOCK_EX);
-        assert( 'is_int($iWrittenByteQty) && $iWrittenByteQty == CString::length($byData)',
+        $writtenByteQty = file_put_contents($filePath, $data, LOCK_EX);
+        assert( 'is_int($writtenByteQty) && $writtenByteQty == CString::length($data)',
             vs(isset($this), get_defined_vars()) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -247,20 +248,20 @@ class CFile extends CRootClass implements IEquality
      * To prevent any other process from writing into the file during the operation, the method locks the file until
      * the operation is complete.
      *
-     * @param  string $sFilePath The path to the destination file.
-     * @param  data $byData The contents to be appended to the file.
+     * @param  string $filePath The path to the destination file.
+     * @param  data $data The contents to be appended to the file.
      *
      * @return void
      */
 
-    public static function append ($sFilePath, $byData)
+    public static function append ($filePath, $data)
     {
-        assert( 'is_cstring($sFilePath) && is_cstring($byData)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($filePath) && is_cstring($data)', vs(isset($this), get_defined_vars()) );
 
-        $sFilePath = CFilePath::frameworkPath($sFilePath);
+        $filePath = CFilePath::frameworkPath($filePath);
 
-        $iWrittenByteQty = file_put_contents($sFilePath, $byData, LOCK_EX | FILE_APPEND);
-        assert( 'is_int($iWrittenByteQty) && $iWrittenByteQty == CString::length($byData)',
+        $writtenByteQty = file_put_contents($filePath, $data, LOCK_EX | FILE_APPEND);
+        assert( 'is_int($writtenByteQty) && $writtenByteQty == CString::length($data)',
             vs(isset($this), get_defined_vars()) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -269,8 +270,8 @@ class CFile extends CRootClass implements IEquality
      *
      * If a file already exists at the specified path, it will be overwritten.
      *
-     * @param  string $sFilePath The path at which the file is to be created.
-     * @param  bool $bSetPermissions **OPTIONAL. Default is** `false`. Tells whether to set access permissions for the
+     * @param  string $filePath The path at which the file is to be created.
+     * @param  bool $setPermissions **OPTIONAL. Default is** `false`. Tells whether to set access permissions for the
      * file. If this parameter is `false`, then the permissions default to the ones determined by the OS's
      * configuration. And if it is `true`, then the file is created with the access permissions of "644", which means
      * read/write access for the file's owner (the user on whose behalf the application runs) and read-only access for
@@ -279,18 +280,18 @@ class CFile extends CRootClass implements IEquality
      * @return void
      */
 
-    public static function create ($sFilePath, $bSetPermissions = false)
+    public static function create ($filePath, $setPermissions = false)
     {
-        assert( 'is_cstring($sFilePath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($filePath)', vs(isset($this), get_defined_vars()) );
 
-        $sFilePath = CFilePath::frameworkPath($sFilePath);
+        $filePath = CFilePath::frameworkPath($filePath);
 
         // The `file_put_contents` function works faster than `touch`.
-        $iRes = file_put_contents($sFilePath, "");
-        assert( 'is_int($iRes)', vs(isset($this), get_defined_vars()) );
-        if ( $bSetPermissions )
+        $res = file_put_contents($filePath, "");
+        assert( 'is_int($res)', vs(isset($this), get_defined_vars()) );
+        if ( $setPermissions )
         {
-            self::setPermissions($sFilePath, "644");
+            self::setPermissions($filePath, "644");
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -301,34 +302,34 @@ class CFile extends CRootClass implements IEquality
      * After creating the file, the method sets the file's access permissions as "644", which means read/write access
      * for the file's owner (the user on whose behalf the application runs) and read-only access for other users.
      *
-     * @param  string $sInDirectoryPath **OPTIONAL. Default is** *the default directory for temporary files*. The path
+     * @param  string $inDirectoryPath **OPTIONAL. Default is** *the default directory for temporary files*. The path
      * to the directory where the file is to be created. If this parameter is omitted, the used directory is either the
      * OS's default directory for temporary files or, if specified, the directory read from the application's
      * configuration. If specified, the path is not required to end with "/".
-     * @param  string $sNamePrefix **OPTIONAL. Default is** "tmp-". The name prefix for the file.
+     * @param  string $namePrefix **OPTIONAL. Default is** "tmp-". The name prefix for the file.
      *
      * @return CUStringObject The path to the created file.
      */
 
-    public static function createTemporary ($sInDirectoryPath = null,
-        $sNamePrefix = self::DEFAULT_TEMPORARY_FILE_PREFIX)
+    public static function createTemporary ($inDirectoryPath = null,
+        $namePrefix = self::DEFAULT_TEMPORARY_FILE_PREFIX)
     {
-        assert( '(!isset($sInDirectoryPath) || is_cstring($sInDirectoryPath)) && is_cstring($sNamePrefix)',
+        assert( '(!isset($inDirectoryPath) || is_cstring($inDirectoryPath)) && is_cstring($namePrefix)',
             vs(isset($this), get_defined_vars()) );
 
-        if ( isset($sInDirectoryPath) )
+        if ( isset($inDirectoryPath) )
         {
-            $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+            $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
         }
         else
         {
-            $sInDirectoryPath = CSystem::temporaryFilesDp();
+            $inDirectoryPath = CSystem::temporaryFilesDp();
         }
 
-        $sFilePath = tempnam($sInDirectoryPath, $sNamePrefix);
-        assert( 'is_cstring($sFilePath)', vs(isset($this), get_defined_vars()) );
-        self::setPermissions($sFilePath, self::DEFAULT_TEMPORARY_FILE_PERMISSIONS);
-        return $sFilePath;
+        $filePath = tempnam($inDirectoryPath, $namePrefix);
+        assert( 'is_cstring($filePath)', vs(isset($this), get_defined_vars()) );
+        self::setPermissions($filePath, self::DEFAULT_TEMPORARY_FILE_PERMISSIONS);
+        return $filePath;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -336,8 +337,8 @@ class CFile extends CRootClass implements IEquality
      *
      * If the path along the way mentions any other directories that don't exist, all of them will be created as well.
      *
-     * @param  string $sDirectoryPath The path at which the directory is to be created (not required to end with "/").
-     * @param  bool $bSetPermissions **OPTIONAL. Default is** `false`. Tells whether to set access permissions for the
+     * @param  string $directoryPath The path at which the directory is to be created (not required to end with "/").
+     * @param  bool $setPermissions **OPTIONAL. Default is** `false`. Tells whether to set access permissions for the
      * directory. If this parameter is `false`, then the permissions default to the ones determined by the OS's
      * configuration. And if it is `true`, then the directory is created with the access permissions of "755", which
      * means the ability to list items in the directory, add items to or remove items from the directory, and access
@@ -347,17 +348,17 @@ class CFile extends CRootClass implements IEquality
      * @return void
      */
 
-    public static function createDirectory ($sDirectoryPath, $bSetPermissions = false)
+    public static function createDirectory ($directoryPath, $setPermissions = false)
     {
-        assert( 'is_cstring($sDirectoryPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($directoryPath)', vs(isset($this), get_defined_vars()) );
 
-        $sDirectoryPath = CFilePath::frameworkPath($sDirectoryPath);
+        $directoryPath = CFilePath::frameworkPath($directoryPath);
 
-        $bRes = mkdir($sDirectoryPath, 0777, true);
-        assert( '$bRes', vs(isset($this), get_defined_vars()) );
-        if ( $bSetPermissions )
+        $res = mkdir($directoryPath, 0777, true);
+        assert( '$res', vs(isset($this), get_defined_vars()) );
+        if ( $setPermissions )
         {
-            self::setPermissions($sDirectoryPath, "755");
+            self::setPermissions($directoryPath, "755");
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -369,23 +370,23 @@ class CFile extends CRootClass implements IEquality
      * When copying a directory, it is copied recursively so that any subdirectories, including all of their files and
      * subdirectories and so on, are all copied as well, maintaining the directory hierarchy.
      *
-     * @param  string $sFileOrDirectoryPath The path to the file or directory to be copied (in case of a directory, its
+     * @param  string $fileOrDirectoryPath The path to the file or directory to be copied (in case of a directory, its
      * path is not required to end with "/").
-     * @param  string $sCopyPath The destination path.
-     * @param  bool $bCopyPermissions **OPTIONAL. Default is** `true`. Tells whether the access permissions should be
+     * @param  string $copyPath The destination path.
+     * @param  bool $copyPermissions **OPTIONAL. Default is** `true`. Tells whether the access permissions should be
      * copied too per each item.
      *
      * @return void
      */
 
-    public static function copy ($sFileOrDirectoryPath, $sCopyPath, $bCopyPermissions = true)
+    public static function copy ($fileOrDirectoryPath, $copyPath, $copyPermissions = true)
     {
-        assert( 'is_cstring($sFileOrDirectoryPath) && is_cstring($sCopyPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($fileOrDirectoryPath) && is_cstring($copyPath)', vs(isset($this), get_defined_vars()) );
 
-        $sFileOrDirectoryPath = CFilePath::frameworkPath($sFileOrDirectoryPath);
-        $sCopyPath = CFilePath::frameworkPath($sCopyPath);
+        $fileOrDirectoryPath = CFilePath::frameworkPath($fileOrDirectoryPath);
+        $copyPath = CFilePath::frameworkPath($copyPath);
 
-        self::recurseCopy($sFileOrDirectoryPath, $sCopyPath, $bCopyPermissions);
+        self::recurseCopy($fileOrDirectoryPath, $copyPath, $copyPermissions);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -393,22 +394,22 @@ class CFile extends CRootClass implements IEquality
      *
      * If any file or directory already exists at the destination path, it will be overwritten.
      *
-     * @param  string $sFileOrDirectoryPath The path to the file or directory to be moved (in case of a directory, its
+     * @param  string $fileOrDirectoryPath The path to the file or directory to be moved (in case of a directory, its
      * path is not required to end with "/").
-     * @param  string $sNewPath The destination path.
+     * @param  string $newPath The destination path.
      *
      * @return void
      */
 
-    public static function move ($sFileOrDirectoryPath, $sNewPath)
+    public static function move ($fileOrDirectoryPath, $newPath)
     {
-        assert( 'is_cstring($sFileOrDirectoryPath) && is_cstring($sNewPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($fileOrDirectoryPath) && is_cstring($newPath)', vs(isset($this), get_defined_vars()) );
 
-        $sFileOrDirectoryPath = CFilePath::frameworkPath($sFileOrDirectoryPath);
-        $sNewPath = CFilePath::frameworkPath($sNewPath);
+        $fileOrDirectoryPath = CFilePath::frameworkPath($fileOrDirectoryPath);
+        $newPath = CFilePath::frameworkPath($newPath);
 
-        $bRes = rename($sFileOrDirectoryPath, $sNewPath);
-        assert( '$bRes', vs(isset($this), get_defined_vars()) );
+        $res = rename($fileOrDirectoryPath, $newPath);
+        assert( '$res', vs(isset($this), get_defined_vars()) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -416,19 +417,19 @@ class CFile extends CRootClass implements IEquality
      *
      * If any file or directory already exists at the resulting path, it will be overwritten.
      *
-     * @param  string $sFileOrDirectoryPath The path to the file or directory to be renamed (in case of a directory,
+     * @param  string $fileOrDirectoryPath The path to the file or directory to be renamed (in case of a directory,
      * its path is not required to end with "/").
-     * @param  string $sNewName The new name for the file or directory.
+     * @param  string $newName The new name for the file or directory.
      *
      * @return void
      */
 
-    public static function rename ($sFileOrDirectoryPath, $sNewName)
+    public static function rename ($fileOrDirectoryPath, $newName)
     {
-        assert( 'is_cstring($sFileOrDirectoryPath) && is_cstring($sNewName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($fileOrDirectoryPath) && is_cstring($newName)', vs(isset($this), get_defined_vars()) );
 
-        $sNewPath = CFilePath::add(CFilePath::directory($sFileOrDirectoryPath), $sNewName);
-        self::move($sFileOrDirectoryPath, $sNewPath);
+        $newPath = CFilePath::add(CFilePath::directory($fileOrDirectoryPath), $newName);
+        self::move($fileOrDirectoryPath, $newPath);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -436,7 +437,7 @@ class CFile extends CRootClass implements IEquality
      *
      * Use either `deleteEmptyDirectory` or `deleteDirectoryRecursive` method to delete a directory.
      *
-     * @param  string $sFilePath The path to the file to be deleted.
+     * @param  string $filePath The path to the file to be deleted.
      *
      * @return void
      *
@@ -444,14 +445,14 @@ class CFile extends CRootClass implements IEquality
      * @link   #method_deleteDirectoryRecursive deleteDirectoryRecursive
      */
 
-    public static function delete ($sFilePath)
+    public static function delete ($filePath)
     {
-        assert( 'is_cstring($sFilePath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($filePath)', vs(isset($this), get_defined_vars()) );
 
-        $sFilePath = CFilePath::frameworkPath($sFilePath);
+        $filePath = CFilePath::frameworkPath($filePath);
 
-        $bRes = unlink($sFilePath);
-        assert( '$bRes', vs(isset($this), get_defined_vars()) );
+        $res = unlink($filePath);
+        assert( '$res', vs(isset($this), get_defined_vars()) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -460,38 +461,38 @@ class CFile extends CRootClass implements IEquality
      * This method is a safeguard against data losses. Use `deleteDirectoryRecursive` method to delete a directory that
      * contains or may contain files or subdirectories.
      *
-     * @param  string $sDirectoryPath The path to the directory to be deleted (not required to end with "/").
+     * @param  string $directoryPath The path to the directory to be deleted (not required to end with "/").
      *
      * @return void
      *
      * @link   #method_deleteDirectoryRecursive deleteDirectoryRecursive
      */
 
-    public static function deleteEmptyDirectory ($sDirectoryPath)
+    public static function deleteEmptyDirectory ($directoryPath)
     {
-        assert( 'is_cstring($sDirectoryPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($directoryPath)', vs(isset($this), get_defined_vars()) );
 
-        $sDirectoryPath = CFilePath::frameworkPath($sDirectoryPath);
+        $directoryPath = CFilePath::frameworkPath($directoryPath);
 
-        $bRes = rmdir($sDirectoryPath);
-        assert( '$bRes', vs(isset($this), get_defined_vars()) );
+        $res = rmdir($directoryPath);
+        assert( '$res', vs(isset($this), get_defined_vars()) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Deletes a directory together with all of its files and subdirectories.
      *
-     * @param  string $sDirectoryPath The path to the directory to be deleted (not required to end with "/").
+     * @param  string $directoryPath The path to the directory to be deleted (not required to end with "/").
      *
      * @return void
      */
 
-    public static function deleteDirectoryRecursive ($sDirectoryPath)
+    public static function deleteDirectoryRecursive ($directoryPath)
     {
-        assert( 'is_cstring($sDirectoryPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($directoryPath)', vs(isset($this), get_defined_vars()) );
 
-        $sDirectoryPath = CFilePath::frameworkPath($sDirectoryPath);
+        $directoryPath = CFilePath::frameworkPath($directoryPath);
 
-        self::recurseDeleteDirectory($sDirectoryPath);
+        self::recurseDeleteDirectory($directoryPath);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -503,21 +504,21 @@ class CFile extends CRootClass implements IEquality
      * The method always reports on a file or directory how it really is at the moment, without using any information
      * that was previously cached by the OS.
      *
-     * @param  string $sFileOrDirectoryPath The path to the file or directory (in case of a directory, its path is not
+     * @param  string $fileOrDirectoryPath The path to the file or directory (in case of a directory, its path is not
      * required to end with "/").
      *
      * @return CUStringObject The access permissions used for the file or directory.
      */
 
-    public static function permissions ($sFileOrDirectoryPath)
+    public static function permissions ($fileOrDirectoryPath)
     {
-        assert( 'is_cstring($sFileOrDirectoryPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($fileOrDirectoryPath)', vs(isset($this), get_defined_vars()) );
 
-        $sFileOrDirectoryPath = CFilePath::frameworkPath($sFileOrDirectoryPath);
+        $fileOrDirectoryPath = CFilePath::frameworkPath($fileOrDirectoryPath);
 
-        clearstatcache(true, $sFileOrDirectoryPath);
-        $iOctalPerms = fileperms($sFileOrDirectoryPath);
-        return decoct($iOctalPerms & 0777);
+        clearstatcache(true, $fileOrDirectoryPath);
+        $octalPerms = fileperms($fileOrDirectoryPath);
+        return decoct($octalPerms & 0777);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -526,23 +527,23 @@ class CFile extends CRootClass implements IEquality
      * The permissions are embodied in a string with three digits. For instance, the permissions on a file that is
      * allowed to be accessed by any user and with any intent are "777".
      *
-     * @param  string $sFileOrDirectoryPath The path to the file or directory (in case of a directory, its path is not
+     * @param  string $fileOrDirectoryPath The path to the file or directory (in case of a directory, its path is not
      * required to end with "/").
-     * @param  string $sPermissions The access permissions to be used for the file or directory.
+     * @param  string $permissions The access permissions to be used for the file or directory.
      *
      * @return void
      */
 
-    public static function setPermissions ($sFileOrDirectoryPath, $sPermissions)
+    public static function setPermissions ($fileOrDirectoryPath, $permissions)
     {
-        assert( 'is_cstring($sFileOrDirectoryPath) && is_cstring($sPermissions)',
+        assert( 'is_cstring($fileOrDirectoryPath) && is_cstring($permissions)',
             vs(isset($this), get_defined_vars()) );
 
-        $sFileOrDirectoryPath = CFilePath::frameworkPath($sFileOrDirectoryPath);
+        $fileOrDirectoryPath = CFilePath::frameworkPath($fileOrDirectoryPath);
 
-        $iOctalPerms = octdec($sPermissions);
-        $bRes = chmod($sFileOrDirectoryPath, $iOctalPerms);
-        assert( '$bRes', vs(isset($this), get_defined_vars()) );
+        $octalPerms = octdec($permissions);
+        $res = chmod($fileOrDirectoryPath, $octalPerms);
+        assert( '$res', vs(isset($this), get_defined_vars()) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -551,21 +552,21 @@ class CFile extends CRootClass implements IEquality
      * The method always reports on a file how it really is at the moment, without using any information that was
      * previously cached by the OS.
      *
-     * @param  string $sFilePath The path to the file.
+     * @param  string $filePath The path to the file.
      *
      * @return CTime The point in time when the file was last modified.
      */
 
-    public static function modificationTime ($sFilePath)
+    public static function modificationTime ($filePath)
     {
-        assert( 'is_cstring($sFilePath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($filePath)', vs(isset($this), get_defined_vars()) );
 
-        $sFilePath = CFilePath::frameworkPath($sFilePath);
+        $filePath = CFilePath::frameworkPath($filePath);
 
-        clearstatcache(true, $sFilePath);
-        $iUTime = filemtime($sFilePath);
-        assert( 'is_int($iUTime)', vs(isset($this), get_defined_vars()) );
-        return new CTime($iUTime);
+        clearstatcache(true, $filePath);
+        $UTime = filemtime($filePath);
+        assert( 'is_int($UTime)', vs(isset($this), get_defined_vars()) );
+        return new CTime($UTime);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -574,19 +575,19 @@ class CFile extends CRootClass implements IEquality
      * The method always reports on a path how it really is at the moment, without using any information that was
      * previously cached by the OS.
      *
-     * @param  string $sPath The path to be checked.
+     * @param  string $path The path to be checked.
      *
      * @return bool `true` if the path leads to a file, `false` in any other case.
      */
 
-    public static function isFile ($sPath)
+    public static function isFile ($path)
     {
-        assert( 'is_cstring($sPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($path)', vs(isset($this), get_defined_vars()) );
 
-        $sPath = CFilePath::frameworkPath($sPath);
+        $path = CFilePath::frameworkPath($path);
 
-        clearstatcache(true, $sPath);
-        return is_file($sPath);
+        clearstatcache(true, $path);
+        return is_file($path);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -595,19 +596,19 @@ class CFile extends CRootClass implements IEquality
      * The method always reports on a path how it really is at the moment, without using any information that was
      * previously cached by the OS.
      *
-     * @param  string $sPath The path to be checked (not required to end with "/").
+     * @param  string $path The path to be checked (not required to end with "/").
      *
      * @return bool `true` if the path leads to a directory, `false` in any other case.
      */
 
-    public static function isDirectory ($sPath)
+    public static function isDirectory ($path)
     {
-        assert( 'is_cstring($sPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($path)', vs(isset($this), get_defined_vars()) );
 
-        $sPath = CFilePath::frameworkPath($sPath);
+        $path = CFilePath::frameworkPath($path);
 
-        clearstatcache(true, $sPath);
-        return is_dir($sPath);
+        clearstatcache(true, $path);
+        return is_dir($path);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -618,8 +619,8 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sInDirectoryPath The path to the directory to be looked into (not required to end with "/").
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $inDirectoryPath The path to the directory to be looked into (not required to end with "/").
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the files and subdirectories contained in the directory specified.
@@ -627,29 +628,29 @@ class CFile extends CRootClass implements IEquality
      * @link   #method_listItemsRecursive listItemsRecursive
      */
 
-    public static function listItems ($sInDirectoryPath, $bSort = false)
+    public static function listItems ($inDirectoryPath, $sort = false)
     {
-        assert( 'is_cstring($sInDirectoryPath) && is_bool($bSort)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($inDirectoryPath) && is_bool($sort)', vs(isset($this), get_defined_vars()) );
 
-        $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+        $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
 
-        $mListingRes = scandir($sInDirectoryPath, SCANDIR_SORT_NONE);
-        assert( 'is_cmap($mListingRes)', vs(isset($this), get_defined_vars()) );
-        $aListingRes = CArray::fromPArray($mListingRes);
-        $aListingRes = CArray::filter($aListingRes, function ($sPath)
+        $paListingRes = scandir($inDirectoryPath, SCANDIR_SORT_NONE);
+        assert( 'is_cmap($paListingRes)', vs(isset($this), get_defined_vars()) );
+        $listingRes = CArray::fromPArray($paListingRes);
+        $listingRes = CArray::filter($listingRes, function ($path)
             {
-                return ( !CString::equals($sPath, "..") && !CString::equals($sPath, ".") );
+                return ( !CString::equals($path, "..") && !CString::equals($path, ".") );
             });
-        $iLen = CArray::length($aListingRes);
-        for ($i = 0; $i < $iLen; $i++)
+        $len = CArray::length($listingRes);
+        for ($i = 0; $i < $len; $i++)
         {
-            $aListingRes[$i] = CFilePath::add($sInDirectoryPath, $aListingRes[$i]);
+            $listingRes[$i] = CFilePath::add($inDirectoryPath, $listingRes[$i]);
         }
-        if ( $bSort )
+        if ( $sort )
         {
-            CArray::sortUStringsNatCi($aListingRes);
+            CArray::sortUStringsNatCi($listingRes);
         }
-        return oop_a($aListingRes);
+        return oop_a($listingRes);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -660,8 +661,8 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sInDirectoryPath The path to the directory to be looked into (not required to end with "/").
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $inDirectoryPath The path to the directory to be looked into (not required to end with "/").
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the files contained in the directory specified.
@@ -669,13 +670,13 @@ class CFile extends CRootClass implements IEquality
      * @link   #method_listFilesRecursive listFilesRecursive
      */
 
-    public static function listFiles ($sInDirectoryPath, $bSort = false)
+    public static function listFiles ($inDirectoryPath, $sort = false)
     {
-        assert( 'is_cstring($sInDirectoryPath) && is_bool($bSort)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($inDirectoryPath) && is_bool($sort)', vs(isset($this), get_defined_vars()) );
 
-        $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+        $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
 
-        return oop_a(CArray::filter(self::listItems($sInDirectoryPath, $bSort), "CFile::isFile"));
+        return oop_a(CArray::filter(self::listItems($inDirectoryPath, $sort), "CFile::isFile"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -686,8 +687,8 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sInDirectoryPath The path to the directory to be looked into (not required to end with "/").
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $inDirectoryPath The path to the directory to be looked into (not required to end with "/").
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the subdirectories contained in the directory specified.
@@ -695,13 +696,13 @@ class CFile extends CRootClass implements IEquality
      * @link   #method_listDirectoriesRecursive listDirectoriesRecursive
      */
 
-    public static function listDirectories ($sInDirectoryPath, $bSort = false)
+    public static function listDirectories ($inDirectoryPath, $sort = false)
     {
-        assert( 'is_cstring($sInDirectoryPath) && is_bool($bSort)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($inDirectoryPath) && is_bool($sort)', vs(isset($this), get_defined_vars()) );
 
-        $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+        $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
 
-        return oop_a(CArray::filter(self::listItems($sInDirectoryPath, $bSort), "CFile::isDirectory"));
+        return oop_a(CArray::filter(self::listItems($inDirectoryPath, $sort), "CFile::isDirectory"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -709,21 +710,21 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sInDirectoryPath The path to the directory to be looked into (not required to end with "/").
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $inDirectoryPath The path to the directory to be looked into (not required to end with "/").
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the files and subdirectories contained in the directory specified, in the
      * subdirectories of the directory, and so on.
      */
 
-    public static function listItemsRecursive ($sInDirectoryPath, $bSort = false)
+    public static function listItemsRecursive ($inDirectoryPath, $sort = false)
     {
-        assert( 'is_cstring($sInDirectoryPath) && is_bool($bSort)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($inDirectoryPath) && is_bool($sort)', vs(isset($this), get_defined_vars()) );
 
-        $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+        $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
 
-        return oop_a(self::recurseListItems($sInDirectoryPath, $bSort));
+        return oop_a(self::recurseListItems($inDirectoryPath, $sort));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -731,21 +732,21 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sInDirectoryPath The path to the directory to be looked into (not required to end with "/").
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $inDirectoryPath The path to the directory to be looked into (not required to end with "/").
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the files contained in the directory specified, in the subdirectories of the
      * directory, and so on.
      */
 
-    public static function listFilesRecursive ($sInDirectoryPath, $bSort = false)
+    public static function listFilesRecursive ($inDirectoryPath, $sort = false)
     {
-        assert( 'is_cstring($sInDirectoryPath) && is_bool($bSort)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($inDirectoryPath) && is_bool($sort)', vs(isset($this), get_defined_vars()) );
 
-        $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+        $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
 
-        return oop_a(CArray::filter(self::listItemsRecursive($sInDirectoryPath, $bSort), "CFile::isFile"));
+        return oop_a(CArray::filter(self::listItemsRecursive($inDirectoryPath, $sort), "CFile::isFile"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -753,21 +754,21 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sInDirectoryPath The path to the directory to be looked into (not required to end with "/").
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $inDirectoryPath The path to the directory to be looked into (not required to end with "/").
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the subdirectories contained in the directory specified, in the subdirectories
      * of the directory, and so on.
      */
 
-    public static function listDirectoriesRecursive ($sInDirectoryPath, $bSort = false)
+    public static function listDirectoriesRecursive ($inDirectoryPath, $sort = false)
     {
-        assert( 'is_cstring($sInDirectoryPath) && is_bool($bSort)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($inDirectoryPath) && is_bool($sort)', vs(isset($this), get_defined_vars()) );
 
-        $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+        $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
 
-        return oop_a(CArray::filter(self::listItemsRecursive($sInDirectoryPath, $bSort), "CFile::isDirectory"));
+        return oop_a(CArray::filter(self::listItemsRecursive($inDirectoryPath, $sort), "CFile::isDirectory"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -787,8 +788,8 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sWildcardPattern The wildcard pattern to be used for searching.
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $wildcardPattern The wildcard pattern to be used for searching.
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the files and subdirectories found by the wildcard pattern specified.
@@ -796,20 +797,20 @@ class CFile extends CRootClass implements IEquality
      * @link   #method_findItemsRecursive findItemsRecursive
      */
 
-    public static function findItems ($sWildcardPattern, $bSort = false)
+    public static function findItems ($wildcardPattern, $sort = false)
     {
-        assert( 'is_cstring($sWildcardPattern) && is_bool($bSort)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($wildcardPattern) && is_bool($sort)', vs(isset($this), get_defined_vars()) );
 
-        $sWildcardPattern = CFilePath::frameworkPath($sWildcardPattern);
+        $wildcardPattern = CFilePath::frameworkPath($wildcardPattern);
 
-        $mSearchRes = glob($sWildcardPattern, GLOB_NOSORT);
-        assert( 'is_cmap($mSearchRes)', vs(isset($this), get_defined_vars()) );
-        $aSearchRes = CArray::fromPArray($mSearchRes);
-        if ( $bSort )
+        $paSearchRes = glob($wildcardPattern, GLOB_NOSORT);
+        assert( 'is_cmap($paSearchRes)', vs(isset($this), get_defined_vars()) );
+        $searchRes = CArray::fromPArray($paSearchRes);
+        if ( $sort )
         {
-            CArray::sortUStringsNatCi($aSearchRes);
+            CArray::sortUStringsNatCi($searchRes);
         }
-        return oop_a($aSearchRes);
+        return oop_a($searchRes);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -829,8 +830,8 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sWildcardPattern The wildcard pattern to be used for searching.
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $wildcardPattern The wildcard pattern to be used for searching.
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the files found by the wildcard pattern specified.
@@ -838,13 +839,13 @@ class CFile extends CRootClass implements IEquality
      * @link   #method_findFilesRecursive findFilesRecursive
      */
 
-    public static function findFiles ($sWildcardPattern, $bSort = false)
+    public static function findFiles ($wildcardPattern, $sort = false)
     {
-        assert( 'is_cstring($sWildcardPattern) && is_bool($bSort)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($wildcardPattern) && is_bool($sort)', vs(isset($this), get_defined_vars()) );
 
-        $sWildcardPattern = CFilePath::frameworkPath($sWildcardPattern);
+        $wildcardPattern = CFilePath::frameworkPath($wildcardPattern);
 
-        return oop_a(CArray::filter(self::findItems($sWildcardPattern, $bSort), "CFile::isFile"));
+        return oop_a(CArray::filter(self::findItems($wildcardPattern, $sort), "CFile::isFile"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -864,8 +865,8 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sWildcardPattern The wildcard pattern to be used for searching.
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $wildcardPattern The wildcard pattern to be used for searching.
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the subdirectories found by the wildcard pattern specified.
@@ -873,20 +874,20 @@ class CFile extends CRootClass implements IEquality
      * @link   #method_findDirectoriesRecursive findDirectoriesRecursive
      */
 
-    public static function findDirectories ($sWildcardPattern, $bSort = false)
+    public static function findDirectories ($wildcardPattern, $sort = false)
     {
-        assert( 'is_cstring($sWildcardPattern) && is_bool($bSort)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($wildcardPattern) && is_bool($sort)', vs(isset($this), get_defined_vars()) );
 
-        $sWildcardPattern = CFilePath::frameworkPath($sWildcardPattern);
+        $wildcardPattern = CFilePath::frameworkPath($wildcardPattern);
 
-        $mSearchRes = glob($sWildcardPattern, GLOB_NOSORT | GLOB_ONLYDIR);
-        assert( 'is_cmap($mSearchRes)', vs(isset($this), get_defined_vars()) );
-        $aSearchRes = CArray::fromPArray($mSearchRes);
-        if ( $bSort )
+        $paSearchRes = glob($wildcardPattern, GLOB_NOSORT | GLOB_ONLYDIR);
+        assert( 'is_cmap($paSearchRes)', vs(isset($this), get_defined_vars()) );
+        $searchRes = CArray::fromPArray($paSearchRes);
+        if ( $sort )
         {
-            CArray::sortUStringsNatCi($aSearchRes);
+            CArray::sortUStringsNatCi($searchRes);
         }
-        return oop_a($aSearchRes);
+        return oop_a($searchRes);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -904,22 +905,22 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sWildcardPattern The wildcard pattern to be used for searching.
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $wildcardPattern The wildcard pattern to be used for searching.
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the files and subdirectories found by the wildcard pattern specified,
      * including ones found in the subdirectories and so on.
      */
 
-    public static function findItemsRecursive ($sWildcardPattern, $bSort = false)
+    public static function findItemsRecursive ($wildcardPattern, $sort = false)
     {
-        assert( 'is_cstring($sWildcardPattern) && is_bool($bSort)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($wildcardPattern) && is_bool($sort)', vs(isset($this), get_defined_vars()) );
 
-        $sWildcardPattern = CFilePath::frameworkPath($sWildcardPattern);
+        $wildcardPattern = CFilePath::frameworkPath($wildcardPattern);
 
-        return oop_a(self::recurseFindItems(CFilePath::directory($sWildcardPattern),
-            CFilePath::name($sWildcardPattern), $bSort));
+        return oop_a(self::recurseFindItems(CFilePath::directory($wildcardPattern),
+            CFilePath::name($wildcardPattern), $sort));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -936,21 +937,21 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sWildcardPattern The wildcard pattern to be used for searching.
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $wildcardPattern The wildcard pattern to be used for searching.
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the files found by the wildcard pattern specified, including ones found in the
      * subdirectories and so on.
      */
 
-    public static function findFilesRecursive ($sWildcardPattern, $bSort = false)
+    public static function findFilesRecursive ($wildcardPattern, $sort = false)
     {
-        assert( 'is_cstring($sWildcardPattern) && is_bool($bSort)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($wildcardPattern) && is_bool($sort)', vs(isset($this), get_defined_vars()) );
 
-        $sWildcardPattern = CFilePath::frameworkPath($sWildcardPattern);
+        $wildcardPattern = CFilePath::frameworkPath($wildcardPattern);
 
-        return oop_a(CArray::filter(self::findItemsRecursive($sWildcardPattern, $bSort), "CFile::isFile"));
+        return oop_a(CArray::filter(self::findItemsRecursive($wildcardPattern, $sort), "CFile::isFile"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -968,21 +969,21 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sWildcardPattern The wildcard pattern to be used for searching.
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $wildcardPattern The wildcard pattern to be used for searching.
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the subdirectories found by the wildcard pattern specified, including ones
      * found in the subdirectories and so on.
      */
 
-    public static function findDirectoriesRecursive ($sWildcardPattern, $bSort = false)
+    public static function findDirectoriesRecursive ($wildcardPattern, $sort = false)
     {
-        assert( 'is_cstring($sWildcardPattern) && is_bool($bSort)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($wildcardPattern) && is_bool($sort)', vs(isset($this), get_defined_vars()) );
 
-        $sWildcardPattern = CFilePath::frameworkPath($sWildcardPattern);
+        $wildcardPattern = CFilePath::frameworkPath($wildcardPattern);
 
-        return oop_a(CArray::filter(self::findItemsRecursive($sWildcardPattern, $bSort), "CFile::isDirectory"));
+        return oop_a(CArray::filter(self::findItemsRecursive($wildcardPattern, $sort), "CFile::isDirectory"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -994,9 +995,9 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sInDirectoryPath The path to the directory to be looked into (not required to end with "/").
-     * @param  string $sRegexPattern The regular expression pattern to be used for searching.
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $inDirectoryPath The path to the directory to be looked into (not required to end with "/").
+     * @param  string $regexPattern The regular expression pattern to be used for searching.
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the files and subdirectories found by the regular expression pattern
@@ -1005,16 +1006,16 @@ class CFile extends CRootClass implements IEquality
      * @link   #method_reFindItemsRecursive reFindItemsRecursive
      */
 
-    public static function reFindItems ($sInDirectoryPath, $sRegexPattern, $bSort = false)
+    public static function reFindItems ($inDirectoryPath, $regexPattern, $sort = false)
     {
-        assert( 'is_cstring($sInDirectoryPath) && is_cstring($sRegexPattern) && is_bool($bSort)',
+        assert( 'is_cstring($inDirectoryPath) && is_cstring($regexPattern) && is_bool($sort)',
             vs(isset($this), get_defined_vars()) );
 
-        $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+        $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
 
-        return oop_a(CArray::filter(self::listItems($sInDirectoryPath, $bSort), function ($sPath) use ($sRegexPattern)
+        return oop_a(CArray::filter(self::listItems($inDirectoryPath, $sort), function ($path) use ($regexPattern)
             {
-                return CRegex::find($sPath, $sRegexPattern);
+                return CRegex::find($path, $regexPattern);
             }));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1027,9 +1028,9 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sInDirectoryPath The path to the directory to be looked into (not required to end with "/").
-     * @param  string $sRegexPattern The regular expression pattern to be used for searching.
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $inDirectoryPath The path to the directory to be looked into (not required to end with "/").
+     * @param  string $regexPattern The regular expression pattern to be used for searching.
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the files found by the regular expression pattern specified.
@@ -1037,16 +1038,16 @@ class CFile extends CRootClass implements IEquality
      * @link   #method_reFindFilesRecursive reFindFilesRecursive
      */
 
-    public static function reFindFiles ($sInDirectoryPath, $sRegexPattern, $bSort = false)
+    public static function reFindFiles ($inDirectoryPath, $regexPattern, $sort = false)
     {
-        assert( 'is_cstring($sInDirectoryPath) && is_cstring($sRegexPattern) && is_bool($bSort)',
+        assert( 'is_cstring($inDirectoryPath) && is_cstring($regexPattern) && is_bool($sort)',
             vs(isset($this), get_defined_vars()) );
 
-        $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+        $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
 
-        return oop_a(CArray::filter(self::listFiles($sInDirectoryPath, $bSort), function ($sPath) use ($sRegexPattern)
+        return oop_a(CArray::filter(self::listFiles($inDirectoryPath, $sort), function ($path) use ($regexPattern)
             {
-                return CRegex::find($sPath, $sRegexPattern);
+                return CRegex::find($path, $regexPattern);
             }));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1059,9 +1060,9 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sInDirectoryPath The path to the directory to be looked into (not required to end with "/").
-     * @param  string $sRegexPattern The regular expression pattern to be used for searching.
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $inDirectoryPath The path to the directory to be looked into (not required to end with "/").
+     * @param  string $regexPattern The regular expression pattern to be used for searching.
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the subdirectories found by the regular expression pattern specified.
@@ -1069,17 +1070,17 @@ class CFile extends CRootClass implements IEquality
      * @link   #method_reFindDirectoriesRecursive reFindDirectoriesRecursive
      */
 
-    public static function reFindDirectories ($sInDirectoryPath, $sRegexPattern, $bSort = false)
+    public static function reFindDirectories ($inDirectoryPath, $regexPattern, $sort = false)
     {
-        assert( 'is_cstring($sInDirectoryPath) && is_cstring($sRegexPattern) && is_bool($bSort)',
+        assert( 'is_cstring($inDirectoryPath) && is_cstring($regexPattern) && is_bool($sort)',
             vs(isset($this), get_defined_vars()) );
 
-        $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+        $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
 
-        return oop_a(CArray::filter(self::listDirectories($sInDirectoryPath, $bSort),
-            function ($sPath) use ($sRegexPattern)
+        return oop_a(CArray::filter(self::listDirectories($inDirectoryPath, $sort),
+            function ($path) use ($regexPattern)
             {
-                return CRegex::find($sPath, $sRegexPattern);
+                return CRegex::find($path, $regexPattern);
             }));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1090,26 +1091,26 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sInDirectoryPath The path to the directory to be looked into (not required to end with "/").
-     * @param  string $sRegexPattern The regular expression pattern to be used for searching.
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $inDirectoryPath The path to the directory to be looked into (not required to end with "/").
+     * @param  string $regexPattern The regular expression pattern to be used for searching.
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the files and subdirectories found by the regular expression pattern
      * specified, including ones found in the subdirectories of the specified directory and so on.
      */
 
-    public static function reFindItemsRecursive ($sInDirectoryPath, $sRegexPattern, $bSort = false)
+    public static function reFindItemsRecursive ($inDirectoryPath, $regexPattern, $sort = false)
     {
-        assert( 'is_cstring($sInDirectoryPath) && is_cstring($sRegexPattern) && is_bool($bSort)',
+        assert( 'is_cstring($inDirectoryPath) && is_cstring($regexPattern) && is_bool($sort)',
             vs(isset($this), get_defined_vars()) );
 
-        $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+        $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
 
-        return oop_a(CArray::filter(self::listItemsRecursive($sInDirectoryPath, $bSort),
-            function ($sPath) use ($sRegexPattern)
+        return oop_a(CArray::filter(self::listItemsRecursive($inDirectoryPath, $sort),
+            function ($path) use ($regexPattern)
             {
-                return CRegex::find($sPath, $sRegexPattern);
+                return CRegex::find($path, $regexPattern);
             }));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1119,26 +1120,26 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sInDirectoryPath The path to the directory to be looked into (not required to end with "/").
-     * @param  string $sRegexPattern The regular expression pattern to be used for searching.
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $inDirectoryPath The path to the directory to be looked into (not required to end with "/").
+     * @param  string $regexPattern The regular expression pattern to be used for searching.
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the files found by the regular expression pattern specified, including ones
      * found in the subdirectories of the specified directory and so on.
      */
 
-    public static function reFindFilesRecursive ($sInDirectoryPath, $sRegexPattern, $bSort = false)
+    public static function reFindFilesRecursive ($inDirectoryPath, $regexPattern, $sort = false)
     {
-        assert( 'is_cstring($sInDirectoryPath) && is_cstring($sRegexPattern) && is_bool($bSort)',
+        assert( 'is_cstring($inDirectoryPath) && is_cstring($regexPattern) && is_bool($sort)',
             vs(isset($this), get_defined_vars()) );
 
-        $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+        $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
 
-        return oop_a(CArray::filter(self::listFilesRecursive($sInDirectoryPath, $bSort),
-            function ($sPath) use ($sRegexPattern)
+        return oop_a(CArray::filter(self::listFilesRecursive($inDirectoryPath, $sort),
+            function ($path) use ($regexPattern)
             {
-                return CRegex::find($sPath, $sRegexPattern);
+                return CRegex::find($path, $regexPattern);
             }));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1149,26 +1150,26 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sInDirectoryPath The path to the directory to be looked into (not required to end with "/").
-     * @param  string $sRegexPattern The regular expression pattern to be used for searching.
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $inDirectoryPath The path to the directory to be looked into (not required to end with "/").
+     * @param  string $regexPattern The regular expression pattern to be used for searching.
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the subdirectories found by the regular expression pattern specified,
      * including ones found in the subdirectories of the specified directory and so on.
      */
 
-    public static function reFindDirectoriesRecursive ($sInDirectoryPath, $sRegexPattern, $bSort = false)
+    public static function reFindDirectoriesRecursive ($inDirectoryPath, $regexPattern, $sort = false)
     {
-        assert( 'is_cstring($sInDirectoryPath) && is_cstring($sRegexPattern) && is_bool($bSort)',
+        assert( 'is_cstring($inDirectoryPath) && is_cstring($regexPattern) && is_bool($sort)',
             vs(isset($this), get_defined_vars()) );
 
-        $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+        $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
 
-        return oop_a(CArray::filter(self::listDirectoriesRecursive($sInDirectoryPath, $bSort),
-            function ($sPath) use ($sRegexPattern)
+        return oop_a(CArray::filter(self::listDirectoriesRecursive($inDirectoryPath, $sort),
+            function ($path) use ($regexPattern)
             {
-                return CRegex::find($sPath, $sRegexPattern);
+                return CRegex::find($path, $regexPattern);
             }));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1181,9 +1182,9 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sInDirectoryPath The path to the directory to be looked into (not required to end with "/").
-     * @param  string $sRegexPattern The regular expression pattern to be used for searching.
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $inDirectoryPath The path to the directory to be looked into (not required to end with "/").
+     * @param  string $regexPattern The regular expression pattern to be used for searching.
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the files and subdirectories found by the regular expression pattern
@@ -1192,16 +1193,16 @@ class CFile extends CRootClass implements IEquality
      * @link   #method_reFindItemsOnNameRecursive reFindItemsOnNameRecursive
      */
 
-    public static function reFindItemsOnName ($sInDirectoryPath, $sRegexPattern, $bSort = false)
+    public static function reFindItemsOnName ($inDirectoryPath, $regexPattern, $sort = false)
     {
-        assert( 'is_cstring($sInDirectoryPath) && is_cstring($sRegexPattern) && is_bool($bSort)',
+        assert( 'is_cstring($inDirectoryPath) && is_cstring($regexPattern) && is_bool($sort)',
             vs(isset($this), get_defined_vars()) );
 
-        $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+        $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
 
-        return oop_a(CArray::filter(self::listItems($sInDirectoryPath, $bSort), function ($sPath) use ($sRegexPattern)
+        return oop_a(CArray::filter(self::listItems($inDirectoryPath, $sort), function ($path) use ($regexPattern)
             {
-                return CRegex::find(CFilePath::name($sPath), $sRegexPattern);
+                return CRegex::find(CFilePath::name($path), $regexPattern);
             }));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1214,9 +1215,9 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sInDirectoryPath The path to the directory to be looked into (not required to end with "/").
-     * @param  string $sRegexPattern The regular expression pattern to be used for searching.
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $inDirectoryPath The path to the directory to be looked into (not required to end with "/").
+     * @param  string $regexPattern The regular expression pattern to be used for searching.
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the files found by the regular expression pattern specified.
@@ -1224,16 +1225,16 @@ class CFile extends CRootClass implements IEquality
      * @link   #method_reFindFilesOnNameRecursive reFindFilesOnNameRecursive
      */
 
-    public static function reFindFilesOnName ($sInDirectoryPath, $sRegexPattern, $bSort = false)
+    public static function reFindFilesOnName ($inDirectoryPath, $regexPattern, $sort = false)
     {
-        assert( 'is_cstring($sInDirectoryPath) && is_cstring($sRegexPattern) && is_bool($bSort)',
+        assert( 'is_cstring($inDirectoryPath) && is_cstring($regexPattern) && is_bool($sort)',
             vs(isset($this), get_defined_vars()) );
 
-        $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+        $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
 
-        return oop_a(CArray::filter(self::listFiles($sInDirectoryPath, $bSort), function ($sPath) use ($sRegexPattern)
+        return oop_a(CArray::filter(self::listFiles($inDirectoryPath, $sort), function ($path) use ($regexPattern)
             {
-                return CRegex::find(CFilePath::name($sPath), $sRegexPattern);
+                return CRegex::find(CFilePath::name($path), $regexPattern);
             }));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1246,9 +1247,9 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sInDirectoryPath The path to the directory to be looked into (not required to end with "/").
-     * @param  string $sRegexPattern The regular expression pattern to be used for searching.
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $inDirectoryPath The path to the directory to be looked into (not required to end with "/").
+     * @param  string $regexPattern The regular expression pattern to be used for searching.
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the subdirectories found by the regular expression pattern specified.
@@ -1256,17 +1257,17 @@ class CFile extends CRootClass implements IEquality
      * @link   #method_reFindDirectoriesOnNameRecursive reFindDirectoriesOnNameRecursive
      */
 
-    public static function reFindDirectoriesOnName ($sInDirectoryPath, $sRegexPattern, $bSort = false)
+    public static function reFindDirectoriesOnName ($inDirectoryPath, $regexPattern, $sort = false)
     {
-        assert( 'is_cstring($sInDirectoryPath) && is_cstring($sRegexPattern) && is_bool($bSort)',
+        assert( 'is_cstring($inDirectoryPath) && is_cstring($regexPattern) && is_bool($sort)',
             vs(isset($this), get_defined_vars()) );
 
-        $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+        $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
 
-        return oop_a(CArray::filter(self::listDirectories($sInDirectoryPath, $bSort),
-            function ($sPath) use ($sRegexPattern)
+        return oop_a(CArray::filter(self::listDirectories($inDirectoryPath, $sort),
+            function ($path) use ($regexPattern)
             {
-                return CRegex::find(CFilePath::name($sPath), $sRegexPattern);
+                return CRegex::find(CFilePath::name($path), $regexPattern);
             }));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1277,26 +1278,26 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sInDirectoryPath The path to the directory to be looked into (not required to end with "/").
-     * @param  string $sRegexPattern The regular expression pattern to be used for searching.
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $inDirectoryPath The path to the directory to be looked into (not required to end with "/").
+     * @param  string $regexPattern The regular expression pattern to be used for searching.
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the files and subdirectories found by the regular expression pattern
      * specified, including ones found in the subdirectories of the specified directory and so on.
      */
 
-    public static function reFindItemsOnNameRecursive ($sInDirectoryPath, $sRegexPattern, $bSort = false)
+    public static function reFindItemsOnNameRecursive ($inDirectoryPath, $regexPattern, $sort = false)
     {
-        assert( 'is_cstring($sInDirectoryPath) && is_cstring($sRegexPattern) && is_bool($bSort)',
+        assert( 'is_cstring($inDirectoryPath) && is_cstring($regexPattern) && is_bool($sort)',
             vs(isset($this), get_defined_vars()) );
 
-        $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+        $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
 
-        return oop_a(CArray::filter(self::listItemsRecursive($sInDirectoryPath, $bSort),
-            function ($sPath) use ($sRegexPattern)
+        return oop_a(CArray::filter(self::listItemsRecursive($inDirectoryPath, $sort),
+            function ($path) use ($regexPattern)
             {
-                return CRegex::find(CFilePath::name($sPath), $sRegexPattern);
+                return CRegex::find(CFilePath::name($path), $regexPattern);
             }));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1306,26 +1307,26 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sInDirectoryPath The path to the directory to be looked into (not required to end with "/").
-     * @param  string $sRegexPattern The regular expression pattern to be used for searching.
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $inDirectoryPath The path to the directory to be looked into (not required to end with "/").
+     * @param  string $regexPattern The regular expression pattern to be used for searching.
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the files found by the regular expression pattern specified, including ones
      * found in the subdirectories of the specified directory and so on.
      */
 
-    public static function reFindFilesOnNameRecursive ($sInDirectoryPath, $sRegexPattern, $bSort = false)
+    public static function reFindFilesOnNameRecursive ($inDirectoryPath, $regexPattern, $sort = false)
     {
-        assert( 'is_cstring($sInDirectoryPath) && is_cstring($sRegexPattern) && is_bool($bSort)',
+        assert( 'is_cstring($inDirectoryPath) && is_cstring($regexPattern) && is_bool($sort)',
             vs(isset($this), get_defined_vars()) );
 
-        $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+        $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
 
-        return oop_a(CArray::filter(self::listFilesRecursive($sInDirectoryPath, $bSort),
-            function ($sPath) use ($sRegexPattern)
+        return oop_a(CArray::filter(self::listFilesRecursive($inDirectoryPath, $sort),
+            function ($path) use ($regexPattern)
             {
-                return CRegex::find(CFilePath::name($sPath), $sRegexPattern);
+                return CRegex::find(CFilePath::name($path), $regexPattern);
             }));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1336,26 +1337,26 @@ class CFile extends CRootClass implements IEquality
      *
      * The returned paths are always absolute.
      *
-     * @param  string $sInDirectoryPath The path to the directory to be looked into (not required to end with "/").
-     * @param  string $sRegexPattern The regular expression pattern to be used for searching.
-     * @param  bool $bSort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
+     * @param  string $inDirectoryPath The path to the directory to be looked into (not required to end with "/").
+     * @param  string $regexPattern The regular expression pattern to be used for searching.
+     * @param  bool $sort **OPTIONAL. Default is** `false`. Tells whether the returned paths should be sorted, in the
      * ascending order.
      *
      * @return CArrayObject The paths to the subdirectories found by the regular expression pattern specified,
      * including ones found in the subdirectories of the specified directory and so on.
      */
 
-    public static function reFindDirectoriesOnNameRecursive ($sInDirectoryPath, $sRegexPattern, $bSort = false)
+    public static function reFindDirectoriesOnNameRecursive ($inDirectoryPath, $regexPattern, $sort = false)
     {
-        assert( 'is_cstring($sInDirectoryPath) && is_cstring($sRegexPattern) && is_bool($bSort)',
+        assert( 'is_cstring($inDirectoryPath) && is_cstring($regexPattern) && is_bool($sort)',
             vs(isset($this), get_defined_vars()) );
 
-        $sInDirectoryPath = CFilePath::frameworkPath($sInDirectoryPath);
+        $inDirectoryPath = CFilePath::frameworkPath($inDirectoryPath);
 
-        return oop_a(CArray::filter(self::listDirectoriesRecursive($sInDirectoryPath, $bSort),
-            function ($sPath) use ($sRegexPattern)
+        return oop_a(CArray::filter(self::listDirectoriesRecursive($inDirectoryPath, $sort),
+            function ($path) use ($regexPattern)
             {
-                return CRegex::find(CFilePath::name($sPath), $sRegexPattern);
+                return CRegex::find(CFilePath::name($path), $regexPattern);
             }));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1370,67 +1371,67 @@ class CFile extends CRootClass implements IEquality
      * longer needed and gets destructed by the runtime, or when `done` method is called on the object to close the
      * file manually.
      *
-     * @param  string $sFilePath The path to the file to be opened for access.
-     * @param  enum $eMode The access mode to be used for the file. Can be `READ`, `READ_WRITE`, `WRITE_NEW`,
+     * @param  string $filePath The path to the file to be opened for access.
+     * @param  enum $mode The access mode to be used for the file. Can be `READ`, `READ_WRITE`, `WRITE_NEW`,
      * `READ_WRITE_NEW`, `WRITE_APPEND`, and `READ_WRITE_APPEND`. See [Summary](#summary) for the description of a
      * mode.
-     * @param  enum $eWrapper **OPTIONAL. Default is** `NONE`. The wrapper to be used for accessing the file.
+     * @param  enum $wrapper **OPTIONAL. Default is** `NONE`. The wrapper to be used for accessing the file.
      * Currently, only `ZLIB` wrapper is supported.
      */
 
-    public function __construct ($sFilePath, $eMode, $eWrapper = self::NONE)
+    public function __construct ($filePath, $mode, $wrapper = self::NONE)
     {
-        assert( 'is_cstring($sFilePath) && is_enum($eMode) && is_enum($eWrapper)',
+        assert( 'is_cstring($filePath) && is_enum($mode) && is_enum($wrapper)',
             vs(isset($this), get_defined_vars()) );
 
-        $sFilePath = CFilePath::frameworkPath($sFilePath);
+        $filePath = CFilePath::frameworkPath($filePath);
 
-        $this->m_sFilePath = $sFilePath;
-        $this->m_eMode = $eMode;
+        $this->m_filePath = $filePath;
+        $this->m_mode = $mode;
 
-        $sMode;
-        switch ( $eMode )
+        $strMode;
+        switch ( $mode )
         {
         case self::READ:
-            $sMode = "rb";
+            $strMode = "rb";
             break;
         case self::READ_WRITE:
-            $sMode = "r+b";
+            $strMode = "r+b";
             break;
         case self::WRITE_NEW:
-            $sMode = "wb";
+            $strMode = "wb";
             break;
         case self::READ_WRITE_NEW:
-            $sMode = "w+b";
+            $strMode = "w+b";
             break;
         case self::WRITE_APPEND:
-            $sMode = "ab";
+            $strMode = "ab";
             break;
         case self::READ_WRITE_APPEND:
-            $sMode = "a+b";
+            $strMode = "a+b";
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
 
-        $sWrapper;
-        switch ( $eWrapper )
+        $strWrapper;
+        switch ( $wrapper )
         {
         case self::NONE:
-            $sWrapper = "";
+            $strWrapper = "";
             break;
         case self::ZLIB:
-            $sWrapper = "compress.zlib://";
+            $strWrapper = "compress.zlib://";
             break;
         default:
             assert( 'false', vs(isset($this), get_defined_vars()) );
             break;
         }
-        $sFilePath = $sWrapper . $sFilePath;
+        $filePath = $strWrapper . $filePath;
 
-        $this->m_rcFile = fopen($sFilePath, $sMode);
-        assert( 'is_resource($this->m_rcFile)', vs(isset($this), get_defined_vars()) );
+        $this->m_file = fopen($filePath, $strMode);
+        assert( 'is_resource($this->m_file)', vs(isset($this), get_defined_vars()) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1441,7 +1442,7 @@ class CFile extends CRootClass implements IEquality
 
     public function filePath ()
     {
-        return $this->m_sFilePath;
+        return $this->m_filePath;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1453,7 +1454,7 @@ class CFile extends CRootClass implements IEquality
 
     public function mode ()
     {
-        return $this->m_eMode;
+        return $this->m_mode;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1464,22 +1465,22 @@ class CFile extends CRootClass implements IEquality
 
     public function systemResource ()
     {
-        return $this->m_rcFile;
+        return $this->m_file;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if an accessor is associated with the same file as another accessor.
      *
-     * @param  CFile $oToFile The second accessor for comparison.
+     * @param  CFile $toFile The second accessor for comparison.
      *
      * @return bool `true` if the two accessors are associated with the same file, `false` otherwise.
      */
 
-    public function equals ($oToFile)
+    public function equals ($toFile)
     {
         // Parameter type hinting is not used for the purpose of interface compatibility.
-        assert( 'is_cfile($oToFile)', vs(isset($this), get_defined_vars()) );
-        return CString::equals(CFilePath::absolute($this->m_sFilePath), CFilePath::absolute($oToFile->m_sFilePath));
+        assert( 'is_cfile($toFile)', vs(isset($this), get_defined_vars()) );
+        return CString::equals(CFilePath::absolute($this->m_filePath), CFilePath::absolute($toFile->m_filePath));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1487,24 +1488,24 @@ class CFile extends CRootClass implements IEquality
      *
      * Bytes are read starting from the current reading/writing position.
      *
-     * @param  int $iQuantity The number of bytes to be read (cannot be zero).
+     * @param  int $quantity The number of bytes to be read (cannot be zero).
      *
      * @return CUStringObject The read bytes.
      */
 
-    public function readBytes ($iQuantity)
+    public function readBytes ($quantity)
     {
-        assert( 'is_int($iQuantity)', vs(isset($this), get_defined_vars()) );
-        assert( '$iQuantity > 0', vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eMode == self::READ || ' .
-                '$this->m_eMode == self::READ_WRITE || ' .
-                '$this->m_eMode == self::READ_WRITE_NEW || ' .
-                '$this->m_eMode == self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
-        assert( '!$this->m_bDone', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($quantity)', vs(isset($this), get_defined_vars()) );
+        assert( '$quantity > 0', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_mode == self::READ || ' .
+                '$this->m_mode == self::READ_WRITE || ' .
+                '$this->m_mode == self::READ_WRITE_NEW || ' .
+                '$this->m_mode == self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
+        assert( '!$this->m_done', vs(isset($this), get_defined_vars()) );
 
-        $byData = fread($this->m_rcFile, $iQuantity);
-        assert( 'is_cstring($byData) && CString::length($byData) == $iQuantity', vs(isset($this), get_defined_vars()) );
-        return $byData;
+        $data = fread($this->m_file, $quantity);
+        assert( 'is_cstring($data) && CString::length($data) == $quantity', vs(isset($this), get_defined_vars()) );
+        return $data;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1514,24 +1515,24 @@ class CFile extends CRootClass implements IEquality
      * available than indicated by the parameter's value, the operation will succeed and the bytes starting from the
      * current reading/writing position and up to the end of the file will be returned.
      *
-     * @param  int $iMaxQuantity The maximum number of available bytes to be read (cannot be zero).
+     * @param  int $maxQuantity The maximum number of available bytes to be read (cannot be zero).
      *
      * @return CUStringObject The read bytes.
      */
 
-    public function readAvailableBytes ($iMaxQuantity)
+    public function readAvailableBytes ($maxQuantity)
     {
-        assert( 'is_int($iMaxQuantity)', vs(isset($this), get_defined_vars()) );
-        assert( '$iMaxQuantity > 0', vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eMode == self::READ || ' .
-                '$this->m_eMode == self::READ_WRITE || ' .
-                '$this->m_eMode == self::READ_WRITE_NEW || ' .
-                '$this->m_eMode == self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
-        assert( '!$this->m_bDone', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($maxQuantity)', vs(isset($this), get_defined_vars()) );
+        assert( '$maxQuantity > 0', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_mode == self::READ || ' .
+                '$this->m_mode == self::READ_WRITE || ' .
+                '$this->m_mode == self::READ_WRITE_NEW || ' .
+                '$this->m_mode == self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
+        assert( '!$this->m_done', vs(isset($this), get_defined_vars()) );
 
-        $byData = fread($this->m_rcFile, $iMaxQuantity);
-        assert( 'is_cstring($byData)', vs(isset($this), get_defined_vars()) );
-        return $byData;
+        $data = fread($this->m_file, $maxQuantity);
+        assert( 'is_cstring($data)', vs(isset($this), get_defined_vars()) );
+        return $data;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1539,36 +1540,36 @@ class CFile extends CRootClass implements IEquality
      *
      * Bytes are written starting from the current reading/writing position.
      *
-     * @param  data $byData The bytes to be written.
-     * @param  int $iMaxQuantity **OPTIONAL. Default is** *all of the provided bytes*. The maximum number of bytes to
+     * @param  data $data The bytes to be written.
+     * @param  int $maxQuantity **OPTIONAL. Default is** *all of the provided bytes*. The maximum number of bytes to
      * be written.
      *
      * @return void
      */
 
-    public function writeBytes ($byData, $iMaxQuantity = null)
+    public function writeBytes ($data, $maxQuantity = null)
     {
-        assert( 'is_cstring($byData) && (!isset($iMaxQuantity) || is_int($iMaxQuantity))',
+        assert( 'is_cstring($data) && (!isset($maxQuantity) || is_int($maxQuantity))',
             vs(isset($this), get_defined_vars()) );
-        assert( '!isset($iMaxQuantity) || (0 <= $iMaxQuantity && $iMaxQuantity <= CString::length($byData))',
+        assert( '!isset($maxQuantity) || (0 <= $maxQuantity && $maxQuantity <= CString::length($data))',
             vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eMode == self::READ_WRITE || ' .
-                '$this->m_eMode == self::WRITE_NEW || ' .
-                '$this->m_eMode == self::READ_WRITE_NEW || ' .
-                '$this->m_eMode == self::WRITE_APPEND || ' .
-                '$this->m_eMode == self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
-        assert( '!$this->m_bDone', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_mode == self::READ_WRITE || ' .
+                '$this->m_mode == self::WRITE_NEW || ' .
+                '$this->m_mode == self::READ_WRITE_NEW || ' .
+                '$this->m_mode == self::WRITE_APPEND || ' .
+                '$this->m_mode == self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
+        assert( '!$this->m_done', vs(isset($this), get_defined_vars()) );
 
-        if ( !isset($iMaxQuantity) )
+        if ( !isset($maxQuantity) )
         {
-            $iWrittenByteQty = fwrite($this->m_rcFile, $byData);
-            assert( 'is_int($iWrittenByteQty) && $iWrittenByteQty == CString::length($byData)',
+            $writtenByteQty = fwrite($this->m_file, $data);
+            assert( 'is_int($writtenByteQty) && $writtenByteQty == CString::length($data)',
                 vs(isset($this), get_defined_vars()) );
         }
         else
         {
-            $iWrittenByteQty = fwrite($this->m_rcFile, $byData, $iMaxQuantity);
-            assert( 'is_int($iWrittenByteQty) && $iWrittenByteQty == $iMaxQuantity',
+            $writtenByteQty = fwrite($this->m_file, $data, $maxQuantity);
+            assert( 'is_int($writtenByteQty) && $writtenByteQty == $maxQuantity',
                 vs(isset($this), get_defined_vars()) );
         }
     }
@@ -1584,13 +1585,13 @@ class CFile extends CRootClass implements IEquality
 
     public function pos ()
     {
-        assert( '$this->m_eMode != self::WRITE_APPEND && ' .
-                '$this->m_eMode != self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
-        assert( '!$this->m_bDone', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_mode != self::WRITE_APPEND && ' .
+                '$this->m_mode != self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
+        assert( '!$this->m_done', vs(isset($this), get_defined_vars()) );
 
-        $iPos = ftell($this->m_rcFile);
-        assert( 'is_int($iPos)', vs(isset($this), get_defined_vars()) );
-        return $iPos;
+        $pos = ftell($this->m_file);
+        assert( 'is_int($pos)', vs(isset($this), get_defined_vars()) );
+        return $pos;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1599,41 +1600,41 @@ class CFile extends CRootClass implements IEquality
      * Positions are zero-based, so the position of the first byte in a file is `0`, the position of the second byte is
      * `1`, and so on.
      *
-     * @param  int $iPos The new reading/writing position.
+     * @param  int $pos The new reading/writing position.
      *
      * @return void
      */
 
-    public function setPos ($iPos)
+    public function setPos ($pos)
     {
-        assert( 'is_int($iPos)', vs(isset($this), get_defined_vars()) );
-        assert( '$iPos >= 0', vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eMode != self::WRITE_APPEND && ' .
-                '$this->m_eMode != self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
-        assert( '!$this->m_bDone', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($pos)', vs(isset($this), get_defined_vars()) );
+        assert( '$pos >= 0', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_mode != self::WRITE_APPEND && ' .
+                '$this->m_mode != self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
+        assert( '!$this->m_done', vs(isset($this), get_defined_vars()) );
 
-        $iRes = fseek($this->m_rcFile, $iPos, SEEK_SET);
-        assert( '$iRes == 0', vs(isset($this), get_defined_vars()) );
+        $res = fseek($this->m_file, $pos, SEEK_SET);
+        assert( '$res == 0', vs(isset($this), get_defined_vars()) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Shifts the current reading/writing position of an accessor in any direction by a specified number of bytes.
      *
-     * @param  int $iShift The positive or negative number of bytes by which the reading/writing position is to be
+     * @param  int $shift The positive or negative number of bytes by which the reading/writing position is to be
      * shifted.
      *
      * @return void
      */
 
-    public function shiftPos ($iShift)
+    public function shiftPos ($shift)
     {
-        assert( 'is_int($iShift)', vs(isset($this), get_defined_vars()) );
-        assert( '$this->m_eMode != self::WRITE_APPEND && ' .
-                '$this->m_eMode != self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
-        assert( '!$this->m_bDone', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($shift)', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_mode != self::WRITE_APPEND && ' .
+                '$this->m_mode != self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
+        assert( '!$this->m_done', vs(isset($this), get_defined_vars()) );
 
-        $iRes = fseek($this->m_rcFile, $iShift, SEEK_CUR);
-        assert( '$iRes == 0', vs(isset($this), get_defined_vars()) );
+        $res = fseek($this->m_file, $shift, SEEK_CUR);
+        assert( '$res == 0', vs(isset($this), get_defined_vars()) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1646,12 +1647,12 @@ class CFile extends CRootClass implements IEquality
 
     public function setPosToStart ()
     {
-        assert( '$this->m_eMode != self::WRITE_APPEND && ' .
-                '$this->m_eMode != self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
-        assert( '!$this->m_bDone', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_mode != self::WRITE_APPEND && ' .
+                '$this->m_mode != self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
+        assert( '!$this->m_done', vs(isset($this), get_defined_vars()) );
 
-        $bRes = rewind($this->m_rcFile);
-        assert( '$bRes', vs(isset($this), get_defined_vars()) );
+        $res = rewind($this->m_file);
+        assert( '$res', vs(isset($this), get_defined_vars()) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1665,12 +1666,12 @@ class CFile extends CRootClass implements IEquality
 
     public function setPosToEnd ()
     {
-        assert( '$this->m_eMode != self::WRITE_APPEND && ' .
-                '$this->m_eMode != self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
-        assert( '!$this->m_bDone', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_mode != self::WRITE_APPEND && ' .
+                '$this->m_mode != self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
+        assert( '!$this->m_done', vs(isset($this), get_defined_vars()) );
 
-        $iRes = fseek($this->m_rcFile, 0, SEEK_END);
-        assert( '$iRes == 0', vs(isset($this), get_defined_vars()) );
+        $res = fseek($this->m_file, 0, SEEK_END);
+        assert( '$res == 0', vs(isset($this), get_defined_vars()) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1685,11 +1686,11 @@ class CFile extends CRootClass implements IEquality
 
     public function isPosPastEnd ()
     {
-        assert( '$this->m_eMode != self::WRITE_APPEND && ' .
-                '$this->m_eMode != self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
-        assert( '!$this->m_bDone', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_mode != self::WRITE_APPEND && ' .
+                '$this->m_mode != self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
+        assert( '!$this->m_done', vs(isset($this), get_defined_vars()) );
 
-        return feof($this->m_rcFile);
+        return feof($this->m_file);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1701,15 +1702,15 @@ class CFile extends CRootClass implements IEquality
 
     public function flush ()
     {
-        assert( '$this->m_eMode == self::READ_WRITE || ' .
-                '$this->m_eMode == self::WRITE_NEW || ' .
-                '$this->m_eMode == self::READ_WRITE_NEW || ' .
-                '$this->m_eMode == self::WRITE_APPEND || ' .
-                '$this->m_eMode == self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
-        assert( '!$this->m_bDone', vs(isset($this), get_defined_vars()) );
+        assert( '$this->m_mode == self::READ_WRITE || ' .
+                '$this->m_mode == self::WRITE_NEW || ' .
+                '$this->m_mode == self::READ_WRITE_NEW || ' .
+                '$this->m_mode == self::WRITE_APPEND || ' .
+                '$this->m_mode == self::READ_WRITE_APPEND', vs(isset($this), get_defined_vars()) );
+        assert( '!$this->m_done', vs(isset($this), get_defined_vars()) );
 
-        $bRes = fflush($this->m_rcFile);
-        assert( '$bRes', vs(isset($this), get_defined_vars()) );
+        $res = fflush($this->m_file);
+        assert( '$res', vs(isset($this), get_defined_vars()) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1724,7 +1725,7 @@ class CFile extends CRootClass implements IEquality
 
     public function done ()
     {
-        assert( '!$this->m_bDone', vs(isset($this), get_defined_vars()) );
+        assert( '!$this->m_done', vs(isset($this), get_defined_vars()) );
         $this->finalize();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1734,123 +1735,123 @@ class CFile extends CRootClass implements IEquality
 
     public function __destruct ()
     {
-        if ( !$this->m_bDone )
+        if ( !$this->m_done )
         {
             $this->finalize();
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function recurseCopy ($sFileOrDirectoryPath, $sCopyPath, $bCopyPermissions)
+    protected static function recurseCopy ($fileOrDirectoryPath, $copyPath, $copyPermissions)
     {
-        if ( is_link($sFileOrDirectoryPath) )
+        if ( is_link($fileOrDirectoryPath) )
         {
             // The source is a symlink, so make another symlink.
-            $sSymlinkTargetPath = readlink($sFileOrDirectoryPath);
-            assert( 'is_cstring($sSymlinkTargetPath)', vs(isset($this), get_defined_vars()) );
-            $bRes = symlink($sSymlinkTargetPath, $sCopyPath);
-            assert( '$bRes', vs(isset($this), get_defined_vars()) );
+            $symlinkTargetPath = readlink($fileOrDirectoryPath);
+            assert( 'is_cstring($symlinkTargetPath)', vs(isset($this), get_defined_vars()) );
+            $res = symlink($symlinkTargetPath, $copyPath);
+            assert( '$res', vs(isset($this), get_defined_vars()) );
             return;
         }
 
-        if ( $bCopyPermissions )
+        if ( $copyPermissions )
         {
-            clearstatcache(true, $sFileOrDirectoryPath);
+            clearstatcache(true, $fileOrDirectoryPath);
         }
-        if ( is_file($sFileOrDirectoryPath) )
+        if ( is_file($fileOrDirectoryPath) )
         {
             // A file.
-            $bRes = copy($sFileOrDirectoryPath, $sCopyPath);
-            assert( '$bRes', vs(isset($this), get_defined_vars()) );
-            if ( $bCopyPermissions )
+            $res = copy($fileOrDirectoryPath, $copyPath);
+            assert( '$res', vs(isset($this), get_defined_vars()) );
+            if ( $copyPermissions )
             {
-                $bRes = chmod($sCopyPath, fileperms($sFileOrDirectoryPath));
-                assert( '$bRes', vs(isset($this), get_defined_vars()) );
+                $res = chmod($copyPath, fileperms($fileOrDirectoryPath));
+                assert( '$res', vs(isset($this), get_defined_vars()) );
             }
         }
         else
         {
             // A directory.
 
-            if ( !is_dir($sCopyPath) )
+            if ( !is_dir($copyPath) )
             {
                 // Create the destination directory.
-                $bRes = mkdir($sCopyPath);
-                assert( '$bRes', vs(isset($this), get_defined_vars()) );
+                $res = mkdir($copyPath);
+                assert( '$res', vs(isset($this), get_defined_vars()) );
             }
-            if ( $bCopyPermissions )
+            if ( $copyPermissions )
             {
-                $bRes = chmod($sCopyPath, fileperms($sFileOrDirectoryPath));
-                assert( '$bRes', vs(isset($this), get_defined_vars()) );
+                $res = chmod($copyPath, fileperms($fileOrDirectoryPath));
+                assert( '$res', vs(isset($this), get_defined_vars()) );
             }
 
             // Iterate through contained items.
-            $oDir = dir($sFileOrDirectoryPath);
-            assert( 'is_object($oDir)', vs(isset($this), get_defined_vars()) );
-            while ( false !== $sItem = $oDir->read() )
+            $dir = dir($fileOrDirectoryPath);
+            assert( 'is_object($dir)', vs(isset($this), get_defined_vars()) );
+            while ( false !== $item = $dir->read() )
             {
-                if ( CString::equals($sItem, ".") || CString::equals($sItem, "..") )
+                if ( CString::equals($item, ".") || CString::equals($item, "..") )
                 {
                     continue;
                 }
-                self::recurseCopy("$sFileOrDirectoryPath/$sItem", "$sCopyPath/$sItem", $bCopyPermissions);
+                self::recurseCopy("$fileOrDirectoryPath/$item", "$copyPath/$item", $copyPermissions);
             }
-            $oDir->close();
+            $dir->close();
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function recurseDeleteDirectory ($sDirectoryPath)
+    protected static function recurseDeleteDirectory ($directoryPath)
     {
-        $aItems = self::listItems($sDirectoryPath);
-        $aFiles = CArray::filter($aItems, "CFile::isFile");
-        $aDirs = CArray::filter($aItems, "CFile::isDirectory");
-        $iDirQty = CArray::length($aDirs);
-        for ($i = 0; $i < $iDirQty; $i++)
+        $items = self::listItems($directoryPath);
+        $files = CArray::filter($items, "CFile::isFile");
+        $dirs = CArray::filter($items, "CFile::isDirectory");
+        $dirQty = CArray::length($dirs);
+        for ($i = 0; $i < $dirQty; $i++)
         {
-            self::recurseDeleteDirectory($aDirs[$i]);
+            self::recurseDeleteDirectory($dirs[$i]);
         }
-        $iFileQty = CArray::length($aFiles);
-        for ($i = 0; $i < $iFileQty; $i++)
+        $fileQty = CArray::length($files);
+        for ($i = 0; $i < $fileQty; $i++)
         {
-            self::delete($aFiles[$i]);
+            self::delete($files[$i]);
         }
-        self::deleteEmptyDirectory($sDirectoryPath);
+        self::deleteEmptyDirectory($directoryPath);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function recurseListItems ($sDirectoryPath, $bSort)
+    protected static function recurseListItems ($directoryPath, $sort)
     {
-        $aItems = self::listItems($sDirectoryPath, $bSort);
-        $aDirs = CArray::filter($aItems, "CFile::isDirectory");
-        $iDirQty = CArray::length($aDirs);
-        for ($i = 0; $i < $iDirQty; $i++)
+        $items = self::listItems($directoryPath, $sort);
+        $dirs = CArray::filter($items, "CFile::isDirectory");
+        $dirQty = CArray::length($dirs);
+        for ($i = 0; $i < $dirQty; $i++)
         {
-            CArray::pushArray($aItems, self::recurseListItems($aDirs[$i], $bSort));
+            CArray::pushArray($items, self::recurseListItems($dirs[$i], $sort));
         }
-        return $aItems;
+        return $items;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function recurseFindItems ($sDirectoryPath, $sWc, $bSort)
+    protected static function recurseFindItems ($directoryPath, $wc, $sort)
     {
-        $aItems = self::findItems(CFilePath::add($sDirectoryPath, $sWc), $bSort);
-        $aDirs = self::findDirectories(CFilePath::add($sDirectoryPath, "*"), $bSort);
-        $iDirQty = CArray::length($aDirs);
-        for ($i = 0; $i < $iDirQty; $i++)
+        $items = self::findItems(CFilePath::add($directoryPath, $wc), $sort);
+        $dirs = self::findDirectories(CFilePath::add($directoryPath, "*"), $sort);
+        $dirQty = CArray::length($dirs);
+        for ($i = 0; $i < $dirQty; $i++)
         {
-            CArray::pushArray($aItems, self::recurseFindItems($aDirs[$i], $sWc, $bSort));
+            CArray::pushArray($items, self::recurseFindItems($dirs[$i], $wc, $sort));
         }
-        return $aItems;
+        return $items;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     protected function finalize ()
     {
-        $bRes = fclose($this->m_rcFile);
-        assert( '$bRes', vs(isset($this), get_defined_vars()) );
-        $this->m_bDone = true;
+        $res = fclose($this->m_file);
+        assert( '$res', vs(isset($this), get_defined_vars()) );
+        $this->m_done = true;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    protected $m_sFilePath;
-    protected $m_eMode;
-    protected $m_rcFile;
-    protected $m_bDone = false;
+    protected $m_filePath;
+    protected $m_mode;
+    protected $m_file;
+    protected $m_done = false;
 }
 

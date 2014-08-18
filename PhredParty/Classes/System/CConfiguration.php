@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -30,10 +30,10 @@
  */
 
 // Method signatures:
-//   static mixed option ($sPath)
-//   static void setOption ($sPath, $xValue)
-//   static mixed appOption ($sOptionName)
-//   static void setAppOption ($sOptionName, $xValue)
+//   static mixed option ($path)
+//   static void setOption ($path, $value)
+//   static mixed appOption ($optionName)
+//   static void setAppOption ($optionName, $value)
 
 class CConfiguration extends CRootClass
 {
@@ -41,63 +41,63 @@ class CConfiguration extends CRootClass
     /**
      * Returns the value of the application's configuration option specified by a global path.
      *
-     * @param  string $sPath The global path to the option.
+     * @param  string $path The global path to the option.
      *
      * @return mixed The option's value.
      */
 
-    public static function option ($sPath)
+    public static function option ($path)
     {
-        assert( 'is_cstring($sPath)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($path)', vs(isset($this), get_defined_vars()) );
 
-        $xValue = CMap::valueByPath(self::$ms_mConfig, $sPath);
-        return ( is_bool($xValue) ) ? $xValue : oop_x($xValue);
+        $value = CMap::valueByPath(self::$ms_config, $path);
+        return ( is_bool($value) ) ? $value : oop_x($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the value of the application's configuration option specified by a global path.
      *
-     * @param  string $sPath The global path to the option.
-     * @param  mixed $xValue The new value.
+     * @param  string $path The global path to the option.
+     * @param  mixed $value The new value.
      *
      * @return void
      */
 
-    public static function setOption ($sPath, $xValue)
+    public static function setOption ($path, $value)
     {
-        assert( 'is_cstring($sPath)', vs(isset($this), get_defined_vars()) );
-        CMap::setValueByPath(self::$ms_mConfig, $sPath, $xValue);
+        assert( 'is_cstring($path)', vs(isset($this), get_defined_vars()) );
+        CMap::setValueByPath(self::$ms_config, $path, $value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the value of an application's configuration option under the "Application" branch.
      *
-     * @param  string $sOptionName The name of the option, under the "Application" branch.
+     * @param  string $optionName The name of the option, under the "Application" branch.
      *
      * @return mixed The option's value.
      */
 
-    public static function appOption ($sOptionName)
+    public static function appOption ($optionName)
     {
-        assert( 'is_cstring($sOptionName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($optionName)', vs(isset($this), get_defined_vars()) );
 
-        $xValue = self::$ms_mConfig[self::$ms_mConfigAliases["Application"]][$sOptionName];
-        return ( is_bool($xValue) ) ? $xValue : oop_x($xValue);
+        $value = self::$ms_config[self::$ms_configAliases["Application"]][$optionName];
+        return ( is_bool($value) ) ? $value : oop_x($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sets the value of an application's configuration option under the "Application" branch.
      *
-     * @param  string $sOptionName The name of the option, under the "Application" branch.
-     * @param  mixed $xValue The new value.
+     * @param  string $optionName The name of the option, under the "Application" branch.
+     * @param  mixed $value The new value.
      *
      * @return void
      */
 
-    public static function setAppOption ($sOptionName, $xValue)
+    public static function setAppOption ($optionName, $value)
     {
-        assert( 'is_cstring($sOptionName)', vs(isset($this), get_defined_vars()) );
-        self::$ms_mConfig[self::$ms_mConfigAliases["Application"]][$sOptionName] = $xValue;
+        assert( 'is_cstring($optionName)', vs(isset($this), get_defined_vars()) );
+        self::$ms_config[self::$ms_configAliases["Application"]][$optionName] = $value;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -106,7 +106,7 @@ class CConfiguration extends CRootClass
 
     public static function isInitialized ()
     {
-        return self::$ms_bIsInitialized;
+        return self::$ms_isInitialized;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -115,75 +115,75 @@ class CConfiguration extends CRootClass
 
     public static function initialize ()
     {
-        $sConfigDp = CFilePath::add($GLOBALS["PHRED_PATH_TO_APP"], "Configuration");
-        $sConfigEnvsDp = CFilePath::add($sConfigDp, "Environments");
+        $configDp = CFilePath::add($GLOBALS["PHRED_PATH_TO_APP"], "Configuration");
+        $configEnvsDp = CFilePath::add($configDp, "Environments");
 
-        $aConfigs = CArray::make();
-        $sCurrEnv;
+        $configs = CArray::make();
+        $currEnv;
 
         if ( $GLOBALS["PHRED_TESTS"] )
         {
-            $sCurrEnv = "tst";
+            $currEnv = "tst";
         }
 
         // Main configuration files.
-        $aConfigFps = CFile::findFiles(CFilePath::add($sConfigDp, "*.json"));
-        $iNumConfigs = CArray::length($aConfigFps);
-        for ($i = 0; $i < $iNumConfigs; $i++)
+        $configFps = CFile::findFiles(CFilePath::add($configDp, "*.json"));
+        $numConfigs = CArray::length($configFps);
+        for ($i = 0; $i < $numConfigs; $i++)
         {
-            $sConfigFp = $aConfigFps[$i];
-            $sConfigName = CFilePath::nameOnly($sConfigFp);
-            self::readAndAddConfig($sConfigFp, $sConfigName, $aConfigs);
+            $configFp = $configFps[$i];
+            $configName = CFilePath::nameOnly($configFp);
+            self::readAndAddConfig($configFp, $configName, $configs);
 
-            if ( !isset($sCurrEnv) && CString::equals($sConfigName, "Application") )
+            if ( !isset($currEnv) && CString::equals($configName, "Application") )
             {
-                $mConfig = CArray::last($aConfigs);
-                $sCurrEnv = $mConfig[self::$ms_mConfigAliases["Application"]]["environment"];
+                $config = CArray::last($configs);
+                $currEnv = $config[self::$ms_configAliases["Application"]]["environment"];
             }
         }
-        assert( 'is_cstring($sCurrEnv)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($currEnv)', vs(isset($this), get_defined_vars()) );
 
         // The configuration files from the current environment's directory.
-        $sCurrEnvDp = CFilePath::add($sConfigEnvsDp, $sCurrEnv);
-        assert( 'CFile::exists($sCurrEnvDp)', vs(isset($this), get_defined_vars()) );
-        $aConfigFps = CFile::findFiles(CFilePath::add($sCurrEnvDp, "*.json"));
-        $iNumConfigs = CArray::length($aConfigFps);
-        for ($i = 0; $i < $iNumConfigs; $i++)
+        $currEnvDp = CFilePath::add($configEnvsDp, $currEnv);
+        assert( 'CFile::exists($currEnvDp)', vs(isset($this), get_defined_vars()) );
+        $configFps = CFile::findFiles(CFilePath::add($currEnvDp, "*.json"));
+        $numConfigs = CArray::length($configFps);
+        for ($i = 0; $i < $numConfigs; $i++)
         {
-            $sConfigFp = $aConfigFps[$i];
-            $sConfigName = CFilePath::nameOnly($sConfigFp);
-            self::readAndAddConfig($sConfigFp, $sConfigName, $aConfigs);
+            $configFp = $configFps[$i];
+            $configName = CFilePath::nameOnly($configFp);
+            self::readAndAddConfig($configFp, $configName, $configs);
         }
 
-        self::$ms_mConfig = call_user_func_array("CMap::merge", CArray::toPArray($aConfigs));
-        self::$ms_bIsInitialized = true;
+        self::$ms_config = call_user_func_array("CMap::merge", CArray::toPArray($configs));
+        self::$ms_isInitialized = true;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function readAndAddConfig ($sConfigFp, $sConfigName, $aConfigs)
+    protected static function readAndAddConfig ($configFp, $configName, $configs)
     {
-        if ( CMap::hasKey(self::$ms_mConfigAliases, $sConfigName) )
+        if ( CMap::hasKey(self::$ms_configAliases, $configName) )
         {
-            $sConfigName = self::$ms_mConfigAliases[$sConfigName];
+            $configName = self::$ms_configAliases[$configName];
         }
-        $sConfigName = CString::toLowerCase($sConfigName);
+        $configName = CString::toLowerCase($configName);
 
-        $sConfigJson = CFile::read($sConfigFp);
-        $sConfigJson = CRegex::remove($sConfigJson, "/^\\h*\\/\\/.*/m");  // remove comments
-        $sConfigJson = "{\"$sConfigName\": $sConfigJson}";
+        $configJson = CFile::read($configFp);
+        $configJson = CRegex::remove($configJson, "/^\\h*\\/\\/.*/m");  // remove comments
+        $configJson = "{\"$configName\": $configJson}";
 
-        $oJson = new CJson($sConfigJson);
-        $bSuccess;
-        $mConfig = $oJson->decode($bSuccess);
-        assert( '$bSuccess', vs(isset($this), get_defined_vars()) );
-        CArray::push($aConfigs, $mConfig);
+        $json = new CJson($configJson);
+        $success;
+        $config = $json->decode($success);
+        assert( '$success', vs(isset($this), get_defined_vars()) );
+        CArray::push($configs, $config);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    protected static $ms_bIsInitialized = false;
-    protected static $ms_mConfig;
+    protected static $ms_isInitialized = false;
+    protected static $ms_config;
 
     // Some of the configuration names are just too lengthy.
-    protected static $ms_mConfigAliases = [
+    protected static $ms_configAliases = [
         "Application" => "app",
         "Database" => "db",
         "Session" => "sess",

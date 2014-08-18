@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-370470446"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-555654232"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-370470446" class="accordion-body collapse in">
+            <div id="namespace-555654232" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -234,7 +234,7 @@ methods, you can also access a value in a multi-dimensional (or one-dimensional)
 string hierarchically indicating the keys following which the value can be found, chained together with "."
 separator, as in "level1key.level2key". The <code>merge</code> method is proud of being able to merge maps in the <em>correct</em>
 way. You can make a copy of an OOP map using <code>clone</code> keyword like so:</p>
-<pre><code>$mMapCopy = clone $mMap;</code></pre>
+<pre><code>$mapCopy = clone $map;</code></pre>
 
                     <section id="summary">
                         <h2>Summary</h2>
@@ -287,7 +287,7 @@ way. You can make a copy of an OOP map using <code>clone</code> keyword like so:
                                 <em>N/A</em>
                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/CMapObject.html#property_m_mMap" class="">$m_mMap</a><br />
+                                                                    <a href="../classes/CMapObject.html#property_m_map" class="">$m_map</a><br />
                                                             </section>
                         </section>
                         <section class="row-fluid private">
@@ -549,7 +549,7 @@ only those key-value pairs that were let through by the filter.</p></td>
             <article class="method">
                 <h3 class="public ">equals()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">equals (map&nbsp;<span class="argument">$mToMap</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fnComparator</span></span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">equals (map&nbsp;<span class="argument">$toMap</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$comparator</span></span>) : bool</pre>
                 <p><em><p>Determines if a map is equal to another map.</p></em></p>
                 <p>For any two maps to be equal, they need to have the same key-value pairs.</p>
 <p>You can use your own comparator for the comparison of the values in the maps, but the default comparator has got
@@ -561,12 +561,12 @@ the <a href="CComparator.html">CComparator</a> class for more on this.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$mToMap</code> </td>
+                                <td><code style="border: none; background: none">$toMap</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/map.html">map</a></code></td>
                                 <td><p>The second map for comparison.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnComparator</code> </td>
+                                <td><code style="border: none; background: none">$comparator</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CComparator::EQUALITY</code>. The function or method to be
 used for the comparison of any two values. If this parameter is provided, the comparator should take two
@@ -608,7 +608,7 @@ the second map, and return <code>true</code> if the two values are equal and <co
             <article class="method">
                 <h3 class="public ">compare()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">compare (map&nbsp;<span class="argument">$mToMap</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fnComparator</span></span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">compare (map&nbsp;<span class="argument">$toMap</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$comparator</span></span>) : int</pre>
                 <p><em><p>Determines the order in which two maps should appear in a place where it matters.</p></em></p>
                 <p>You can use your own comparator for the comparison of the values in the maps, but the default comparator has got
 you covered when comparing scalar values, such as <code>string</code>, <code>int</code>, <code>float</code>, and <code>bool</code> in the ascending order or
@@ -620,12 +620,12 @@ more on this.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$mToMap</code> </td>
+                                <td><code style="border: none; background: none">$toMap</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/map.html">map</a></code></td>
                                 <td><p>The second map for comparison.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnComparator</code> </td>
+                                <td><code style="border: none; background: none">$comparator</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CComparator::ORDER_ASC</code>. The function or method to be
 used for the comparison of any two values. If this parameter is provided, the comparator should take two
@@ -669,14 +669,14 @@ map if the two were being ordered in separate, <code>1</code> if the other way a
             <article class="method">
                 <h3 class="public ">hasKey()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">hasKey (mixed&nbsp;<span class="argument">$xKey</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">hasKey (mixed&nbsp;<span class="argument">$key</span>) : bool</pre>
                 <p><em><p>Determines if a map contains a value under a specified key.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xKey</code> </td>
+                                <td><code style="border: none; background: none">$key</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The key to be looked for.</p></td>
                             </tr>
@@ -713,14 +713,14 @@ map if the two were being ordered in separate, <code>1</code> if the other way a
             <article class="method">
                 <h3 class="public ">hasPath()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">hasPath (string&nbsp;<span class="argument">$sPath</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">hasPath (string&nbsp;<span class="argument">$path</span>) : bool</pre>
                 <p><em><p>Determines if a map contains a value by a specified key path.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPath</code> </td>
+                                <td><code style="border: none; background: none">$path</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The key path to be looked by, e.g. "level1key.level2key".</p></td>
                             </tr>
@@ -757,14 +757,14 @@ map if the two were being ordered in separate, <code>1</code> if the other way a
             <article class="method">
                 <h3 class="public ">valueByPath()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">valueByPath (string&nbsp;<span class="argument">$sPath</span>) : mixed</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">valueByPath (string&nbsp;<span class="argument">$path</span>) : mixed</pre>
                 <p><em><p>From a map, returns the value found by a specified key path.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPath</code> </td>
+                                <td><code style="border: none; background: none">$path</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The key path by which the value is to be found, e.g. "level1key.level2key".</p></td>
                             </tr>
@@ -801,19 +801,19 @@ map if the two were being ordered in separate, <code>1</code> if the other way a
             <article class="method">
                 <h3 class="public ">setValueByPath()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setValueByPath (string&nbsp;<span class="argument">$sPath</span>, mixed&nbsp;<span class="argument">$xValue</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setValueByPath (string&nbsp;<span class="argument">$path</span>, mixed&nbsp;<span class="argument">$value</span>) : void</pre>
                 <p><em><p>In a map, modifies the value found by a specified key path.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPath</code> </td>
+                                <td><code style="border: none; background: none">$path</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The key path by which the value is to be found, e.g. "level1key.level2key".</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$xValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The new value.</p></td>
                             </tr>
@@ -845,7 +845,7 @@ map if the two were being ordered in separate, <code>1</code> if the other way a
             <article class="method">
                 <h3 class="public ">find()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">find (mixed&nbsp;<span class="argument">$xWhatValue</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fnComparator</span></span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$rxFoundUnderKey</span></span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">find (mixed&nbsp;<span class="argument">$whatValue</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$comparator</span></span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$foundUnderKey</span></span>) : bool</pre>
                 <p><em><p>Determines if a map contains a specified value.</p></em></p>
                 <p>You can use your own comparator for the search, but the default comparator has got you covered when searching
 for scalar values, such as <code>string</code>, <code>int</code>, <code>float</code>, and <code>bool</code>. And the default comparator is smart enough to
@@ -856,12 +856,12 @@ know how to compare objects of those classes that conform to the IEquality or IE
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xWhatValue</code> </td>
+                                <td><code style="border: none; background: none">$whatValue</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The searched value.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnComparator</code> </td>
+                                <td><code style="border: none; background: none">$comparator</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CComparator::EQUALITY</code>. The function or method to be
 used for the comparison of values while searching. If this parameter is provided, the comparator should take two
@@ -869,7 +869,7 @@ parameters, with the first parameter being a value from the map and the second p
 value, and return <code>true</code> if the two values are equal and <code>false</code> otherwise.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$rxFoundUnderKey</code> </td>
+                                <td><code style="border: none; background: none">$foundUnderKey</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL. OUTPUT.</strong> If a value has been found after the method was called
 with this parameter provided, the parameter's value is being the first key under which the value was seen. If
@@ -910,7 +910,7 @@ the key is a string, its output type is <a href="../classes/CUStringObject.html"
             <article class="method">
                 <h3 class="public ">findScalar()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">findScalar (mixed&nbsp;<span class="argument">$xWhatValue</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$rxFoundUnderKey</span></span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">findScalar (mixed&nbsp;<span class="argument">$whatValue</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$foundUnderKey</span></span>) : bool</pre>
                 <p><em><p>Determines if a map contains a specified scalar value.</p></em></p>
                 <p>If a map only contains values of scalar types i.e. <code>int</code>, <code>float</code>, <code>bool</code>, <code>string</code> (ASCII only), or <code>null</code>,
 this method allows for faster searches compared to <code>find</code> method. In case of <code>string</code> type, the search is
@@ -922,12 +922,12 @@ such as making the search case-insensitive for any kind of strings.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xWhatValue</code> </td>
+                                <td><code style="border: none; background: none">$whatValue</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The searched value.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$rxFoundUnderKey</code> </td>
+                                <td><code style="border: none; background: none">$foundUnderKey</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL. OUTPUT.</strong> If a value has been found after the method was called
 with this parameter provided, the parameter's value is being the first key under which the value was seen. If
@@ -968,7 +968,7 @@ the key is a string, its output type is <a href="../classes/CUStringObject.html"
             <article class="method">
                 <h3 class="public ">countValue()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">countValue (mixed&nbsp;<span class="argument">$xValue</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fnComparator</span></span>) : int</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">countValue (mixed&nbsp;<span class="argument">$value</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$comparator</span></span>) : int</pre>
                 <p><em><p>Tells how many occurrences of a specified value there are in a map.</p></em></p>
                 <p>You can use your own comparator for the search, but the default comparator has got you covered when searching
 for scalar values, such as <code>string</code>, <code>int</code>, <code>float</code>, and <code>bool</code>. And the default comparator is smart enough to
@@ -979,12 +979,12 @@ know how to compare objects of those classes that conform to the IEquality or IE
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The searched value.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnComparator</code> </td>
+                                <td><code style="border: none; background: none">$comparator</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>CComparator::EQUALITY</code>. The function or method to be
 used for the comparison of values while searching. If this parameter is provided, the comparator should take two
@@ -1026,14 +1026,14 @@ value, and return <code>true</code> if the two values are equal and <code>false<
             <article class="method">
                 <h3 class="public ">remove()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">remove (mixed&nbsp;<span class="argument">$xKey</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">remove (mixed&nbsp;<span class="argument">$key</span>) : void</pre>
                 <p><em><p>Removes a key-value pair from a map.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xKey</code> </td>
+                                <td><code style="border: none; background: none">$key</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The key of the key-value pair to be removed.</p></td>
                             </tr>
@@ -1065,7 +1065,7 @@ value, and return <code>true</code> if the two values are equal and <code>false<
             <article class="method">
                 <h3 class="public ">filter()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">filter (callable&nbsp;<span class="argument">$fnFilter</span>) : OOPMap</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">filter (callable&nbsp;<span class="argument">$filter</span>) : OOPMap</pre>
                 <p><em><p>Filters the key-value pairs in a map by calling a function or method on each value and returns a new map with
 only those key-value pairs that were let through by the filter.</p></em></p>
                 <p>The map is not modified by this method.</p>
@@ -1073,7 +1073,7 @@ only those key-value pairs that were let through by the filter.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnFilter</code> </td>
+                                <td><code style="border: none; background: none">$filter</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p>The function or method to be used for filtering. The filter should take a value as a
 parameter and return <code>true</code> if the corresponding key-value pair should make its way into the resulting map and
@@ -1268,7 +1268,7 @@ of a regular array.</p>
             <article class="method">
                 <h3 class="public ">insertValue()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">insertValue (mixed&nbsp;<span class="argument">$xValue</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">insertValue (mixed&nbsp;<span class="argument">$value</span>) : void</pre>
                 <p><em><p>Inserts a value into a map under the next integer key.</p></em></p>
                 <p>This method could serve as a more eloquent alternative when dealing with interfaces that are using the PHP's
 associative array in the role of a regular array.</p>
@@ -1278,7 +1278,7 @@ already in the map or under <code>0</code> if there were no integer keys.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">mixed</code></td>
                                 <td><p>The value to be inserted.</p></td>
                             </tr>
@@ -1349,10 +1349,10 @@ already in the map or under <code>0</code> if there were no integer keys.</p>
 
                                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_mMap" name="property_m_mMap" class="anchor"></a>
+            <a id="property_m_map" name="property_m_map" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_mMap</h3>
-                <pre class="signature">$m_mMap</pre>
+                <h3 class="protected ">$m_map</h3>
+                <pre class="signature">$m_map</pre>
                 <p><em></em></p>
                 
 
@@ -1425,7 +1425,7 @@ already in the map or under <code>0</code> if there were no integer keys.</p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

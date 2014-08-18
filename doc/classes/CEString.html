@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1807993655"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1808342418"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1807993655" class="accordion-body collapse in">
+            <div id="namespace-1808342418" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -295,9 +295,9 @@ ebcdic-xml-us, gsm-03.38-2000, iso-8859_16-2001.</p>
                                 <em>N/A</em>
                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/CEString.html#property_ms_mWin1252ToUtf8" class="">$ms_mWin1252ToUtf8</a><br />
-                                                                    <a href="../classes/CEString.html#property_ms_mUtf8ToWin1252" class="">$ms_mUtf8ToWin1252</a><br />
-                                                                    <a href="../classes/CEString.html#property_ms_iFixUtf8MoreMaxNumIterations" class="">$ms_iFixUtf8MoreMaxNumIterations</a><br />
+                                                                    <a href="../classes/CEString.html#property_ms_win1252ToUtf8" class="">$ms_win1252ToUtf8</a><br />
+                                                                    <a href="../classes/CEString.html#property_ms_utf8ToWin1252" class="">$ms_utf8ToWin1252</a><br />
+                                                                    <a href="../classes/CEString.html#property_ms_fixUtf8MoreMaxNumIterations" class="">$ms_fixUtf8MoreMaxNumIterations</a><br />
                                                             </section>
                         </section>
                         <section class="row-fluid private">
@@ -531,7 +531,7 @@ Windows-1252 text that has been re-encoded into UTF-8 one or more times, and ret
             <article class="method">
                 <h3 class="public ">convert()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convert (string&nbsp;<span class="argument">$sString</span>, enum|string&nbsp;<span class="argument">$xFromEnc</span>, enum|string&nbsp;<span class="argument">$xToEnc</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convert (string&nbsp;<span class="argument">$string</span>, enum|string&nbsp;<span class="argument">$fromEnc</span>, enum|string&nbsp;<span class="argument">$toEnc</span>) : OOPString</pre>
                 <p><em><p>Converts a string from one character encoding into another and returns the new string.</p></em></p>
                 <p>If you specify a character encoding by name, you don't need to worry about the letter case used within the name
 or about hyphens, underscores, or whitespace in it, the method will focus on just the meaningful parts and will
@@ -542,19 +542,19 @@ will come out as "�" (U+FFFD) when converting to Unicode or as "?" when conver
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none">$string</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The string to be converted.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$xFromEnc</code> </td>
+                                <td><code style="border: none; background: none">$fromEnc</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a>|string</code></td>
                                 <td><p>The character encoding of the string. This is either the enumerand of one of the
 three main encodings, which are <code>UTF8</code>, <code>ASCII</code>, and <code>LATIN1</code>, or a character encoding name, primary one or an
 alias.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$xToEnc</code> </td>
+                                <td><code style="border: none; background: none">$toEnc</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/enum.html">enum</a>|string</code></td>
                                 <td><p>The output character encoding. This is either the enumerand of one of the three
 main encodings, which are <code>UTF8</code>, <code>ASCII</code>, and <code>LATIN1</code>, or a character encoding name, primary one or an alias.</p></td>
@@ -593,14 +593,14 @@ main encodings, which are <code>UTF8</code>, <code>ASCII</code>, and <code>LATIN
             <article class="method">
                 <h3 class="public ">convertLatin1ToUtf8()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertLatin1ToUtf8 (string&nbsp;<span class="argument">$sString</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> convertLatin1ToUtf8 (string&nbsp;<span class="argument">$string</span>) : OOPString</pre>
                 <p><em><p>Converts a Latin-1 (ISO-8859-1) string into a UTF-8 string and returns it.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none">$string</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The string to be converted.</p></td>
                             </tr>
@@ -638,7 +638,7 @@ main encodings, which are <code>UTF8</code>, <code>ASCII</code>, and <code>LATIN
             <article class="method">
                 <h3 class="public ">flattenUnicodeToAscii()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> flattenUnicodeToAscii (string&nbsp;<span class="argument">$sString</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bTransliterate</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> flattenUnicodeToAscii (string&nbsp;<span class="argument">$string</span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$transliterate</span></span>) : OOPString</pre>
                 <p><em><p>Converts any Unicode string into ASCII, preserving as much information as possible, by default having
 transliterated the string into the Latin script beforehand, and returns the new string.</p></em></p>
                 <p>Flattening Unicode strings to ASCII might be useful for the purposes of indexing Unicode text, searching inside
@@ -652,12 +652,12 @@ characters are converted into ASCII LF characters. ASCII control characters (0x0
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none">$string</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The string to be flattened.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bTransliterate</code> </td>
+                                <td><code style="border: none; background: none">$transliterate</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>true</code>. Tells whether to transliterate the string into the
 Latin script before flattening. This is what you would normally wish to happen for an arbitrary Unicode string
@@ -699,7 +699,7 @@ becomes straightforward. For example, "こんにちは" is transliterated to "ko
             <article class="method">
                 <h3 class="public ">looksLikeUtf8()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> looksLikeUtf8 (string&nbsp;<span class="argument">$sString</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> looksLikeUtf8 (string&nbsp;<span class="argument">$string</span>) : bool</pre>
                 <p><em><p>Determines if a string appears to be a valid Unicode string encoded in UTF-8.</p></em></p>
                 <p>Thanks to the fact that the ASCII charset and encoding are compatible with UTF-8, this method will return <code>true</code>
 for any valid ASCII string.</p>
@@ -707,7 +707,7 @@ for any valid ASCII string.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none">$string</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The string to be looked into.</p></td>
                             </tr>
@@ -745,7 +745,7 @@ for any valid ASCII string.</p>
             <article class="method">
                 <h3 class="public ">looksLikeAscii()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> looksLikeAscii (string&nbsp;<span class="argument">$sString</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> looksLikeAscii (string&nbsp;<span class="argument">$string</span>) : bool</pre>
                 <p><em><p>Determines if a string appears to be an ASCII string.</p></em></p>
                 <p>The method will return <code>false</code> if the string contains any control characters other than HT (0x09), LF (0x0A),
 and CR (0x0D).</p>
@@ -753,7 +753,7 @@ and CR (0x0D).</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none">$string</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The string to be looked into.</p></td>
                             </tr>
@@ -791,7 +791,7 @@ and CR (0x0D).</p>
             <article class="method">
                 <h3 class="public ">looksLikeLatin1()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> looksLikeLatin1 (string&nbsp;<span class="argument">$sString</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> looksLikeLatin1 (string&nbsp;<span class="argument">$string</span>) : bool</pre>
                 <p><em><p>Determines if a string appears to be a Latin-1 (ISO-8859-1) string.</p></em></p>
                 <p>The method will return <code>false</code> if the string contains any control characters other than HT (0x09), LF (0x0A),
 and CR (0x0D).</p>
@@ -799,7 +799,7 @@ and CR (0x0D).</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none">$string</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The string to be looked into.</p></td>
                             </tr>
@@ -837,7 +837,7 @@ and CR (0x0D).</p>
             <article class="method">
                 <h3 class="public ">guessEnc()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> guessEnc (string&nbsp;<span class="argument">$sString</span>, reference&nbsp;<span class="argument">$reEnc</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> guessEnc (string&nbsp;<span class="argument">$string</span>, reference&nbsp;<span class="argument">$enc</span>) : bool</pre>
                 <p><em><p>Tries to determine the character encoding used by a string.</p></em></p>
                 <p>For the reason that any ASCII string is indistinguishable from the same UTF-8 string, the character encoding of
 a string is guessed only between UTF-8 and Latin-1.</p>
@@ -845,12 +845,12 @@ a string is guessed only between UTF-8 and Latin-1.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none">$string</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The string to be looked into.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$reEnc</code> </td>
+                                <td><code style="border: none; background: none">$enc</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OUTPUT.</strong> If the method returned <code>true</code>, the value of this parameter is the enumerand
 of the character encoding determined for the string, that is either <code>UTF8</code> or <code>LATIN1</code>.</p></td>
@@ -929,7 +929,7 @@ character encoding name, primary one or an alias, can be used with the class.</p
             <article class="method">
                 <h3 class="public ">isEncNameKnown()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isEncNameKnown (string&nbsp;<span class="argument">$sName</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isEncNameKnown (string&nbsp;<span class="argument">$name</span>) : bool</pre>
                 <p><em><p>Determines if a character encoding name is known to the class and thus can be used with it, looking among known
 aliases as well.</p></em></p>
                 <p>You don't need to worry about the letter case used within the character encoding name or about hyphens,
@@ -939,7 +939,7 @@ right.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none">$name</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The character encoding name to be looked for.</p></td>
                             </tr>
@@ -977,7 +977,7 @@ right.</p>
             <article class="method">
                 <h3 class="public ">encNameAliases()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> encNameAliases (string&nbsp;<span class="argument">$sName</span>) : OOPArray</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> encNameAliases (string&nbsp;<span class="argument">$name</span>) : OOPArray</pre>
                 <p><em><p>Returns the aliases that are known for a character encoding name.</p></em></p>
                 <p>You don't need to worry about the letter case used within the character encoding name or about hyphens,
 underscores, or whitespace in it, the method will focus on just the meaningful parts and will get any valid name
@@ -986,7 +986,7 @@ right.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none">$name</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The character encoding name to be looked for. Can be an alias itself.</p></td>
                             </tr>
@@ -1024,7 +1024,7 @@ right.</p>
             <article class="method">
                 <h3 class="public ">areEncNamesEquivalent()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> areEncNamesEquivalent (string&nbsp;<span class="argument">$sName0</span>, string&nbsp;<span class="argument">$sName1</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> areEncNamesEquivalent (string&nbsp;<span class="argument">$name0</span>, string&nbsp;<span class="argument">$name1</span>) : bool</pre>
                 <p><em><p>Determines if a character encoding name refers to the same encoding as another name.</p></em></p>
                 <p>The method looks into the aliases of the character encoding names too.</p>
 <p>You don't need to worry about the letter case used within the character encoding names or about hyphens,
@@ -1034,12 +1034,12 @@ name right.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sName0</code> </td>
+                                <td><code style="border: none; background: none">$name0</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The first character encoding name for comparison.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sName1</code> </td>
+                                <td><code style="border: none; background: none">$name1</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The second character encoding name for comparison.</p></td>
                             </tr>
@@ -1077,7 +1077,7 @@ name right.</p>
             <article class="method">
                 <h3 class="public ">isEncNameUtf8()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isEncNameUtf8 (string&nbsp;<span class="argument">$sName</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isEncNameUtf8 (string&nbsp;<span class="argument">$name</span>) : bool</pre>
                 <p><em><p>Determines if a character encoding name refers to UTF-8.</p></em></p>
                 <p>You don't need to worry about the letter case used within the character encoding name or about hyphens,
 underscores, or whitespace in it, the method will focus on just the meaningful parts and will get any valid name
@@ -1086,7 +1086,7 @@ right.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none">$name</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The character encoding name to be looked into.</p></td>
                             </tr>
@@ -1124,7 +1124,7 @@ right.</p>
             <article class="method">
                 <h3 class="public ">isEncNameAscii()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isEncNameAscii (string&nbsp;<span class="argument">$sName</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isEncNameAscii (string&nbsp;<span class="argument">$name</span>) : bool</pre>
                 <p><em><p>Determines if a character encoding name refers to ASCII.</p></em></p>
                 <p>You don't need to worry about the letter case used within the character encoding name or about hyphens,
 underscores, or whitespace in it, the method will focus on just the meaningful parts and will get any valid name
@@ -1133,7 +1133,7 @@ right.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none">$name</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The character encoding name to be looked into.</p></td>
                             </tr>
@@ -1171,7 +1171,7 @@ right.</p>
             <article class="method">
                 <h3 class="public ">isEncNameLatin1()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isEncNameLatin1 (string&nbsp;<span class="argument">$sName</span>) : bool</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> isEncNameLatin1 (string&nbsp;<span class="argument">$name</span>) : bool</pre>
                 <p><em><p>Determines if a character encoding name refers to Latin-1 (ISO-8859-1).</p></em></p>
                 <p>You don't need to worry about the letter case used within the character encoding name or about hyphens,
 underscores, or whitespace in it, the method will focus on just the meaningful parts and will get any valid name
@@ -1180,7 +1180,7 @@ right.</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none">$name</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The character encoding name to be looked into.</p></td>
                             </tr>
@@ -1218,7 +1218,7 @@ right.</p>
             <article class="method">
                 <h3 class="public ">fixUtf8()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fixUtf8 (string&nbsp;<span class="argument">$sString</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fixUtf8 (string&nbsp;<span class="argument">$string</span>) : OOPString</pre>
                 <p><em><p>Tries to fix a presumably UTF-8 string that contains or may contain UTF-8 text mixed with Latin-1 (ISO-8859-1)
 or Windows-1252 text and returns the new UTF-8 string.</p></em></p>
                 
@@ -1226,7 +1226,7 @@ or Windows-1252 text and returns the new UTF-8 string.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none">$string</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The string to be fixed.</p></td>
                             </tr>
@@ -1264,7 +1264,7 @@ or Windows-1252 text and returns the new UTF-8 string.</p></em></p>
             <article class="method">
                 <h3 class="public ">fixUtf8More()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fixUtf8More (string&nbsp;<span class="argument">$sString</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fixUtf8More (string&nbsp;<span class="argument">$string</span>) : OOPString</pre>
                 <p><em><p>Tries to fix a garbled UTF-8 string, that is a string containing UTF-8 text mixed with Latin-1 (ISO-8859-1) or
 Windows-1252 text that has been re-encoded into UTF-8 one or more times, and returns the new UTF-8 string.</p></em></p>
                 <p>For example, if this method is given "FÃ©dÃ©ration Camerounaise de Football", it will return "Fédération
@@ -1273,7 +1273,7 @@ Camerounaise de Football".</p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sString</code> </td>
+                                <td><code style="border: none; background: none">$string</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The string to be fixed.</p></td>
                             </tr>
@@ -1312,14 +1312,14 @@ Camerounaise de Football".</p>
             <article class="method">
                 <h3 class="protected ">flattenEncName()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> flattenEncName (&nbsp;<span class="argument">$sName</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> flattenEncName (&nbsp;<span class="argument">$name</span>)</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sName</code> </td>
+                                <td><code style="border: none; background: none">$name</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
@@ -1359,10 +1359,10 @@ Camerounaise de Football".</p>
 
                                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_ms_mWin1252ToUtf8" name="property_ms_mWin1252ToUtf8" class="anchor"></a>
+            <a id="property_ms_win1252ToUtf8" name="property_ms_win1252ToUtf8" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$ms_mWin1252ToUtf8</h3>
-                <pre class="signature">$ms_mWin1252ToUtf8</pre>
+                <h3 class="protected ">$ms_win1252ToUtf8</h3>
+                <pre class="signature">$ms_win1252ToUtf8</pre>
                 <p><em></em></p>
                 
 
@@ -1387,10 +1387,10 @@ Camerounaise de Football".</p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_ms_mUtf8ToWin1252" name="property_ms_mUtf8ToWin1252" class="anchor"></a>
+            <a id="property_ms_utf8ToWin1252" name="property_ms_utf8ToWin1252" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$ms_mUtf8ToWin1252</h3>
-                <pre class="signature">$ms_mUtf8ToWin1252</pre>
+                <h3 class="protected ">$ms_utf8ToWin1252</h3>
+                <pre class="signature">$ms_utf8ToWin1252</pre>
                 <p><em></em></p>
                 
 
@@ -1415,10 +1415,10 @@ Camerounaise de Football".</p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_ms_iFixUtf8MoreMaxNumIterations" name="property_ms_iFixUtf8MoreMaxNumIterations" class="anchor"></a>
+            <a id="property_ms_fixUtf8MoreMaxNumIterations" name="property_ms_fixUtf8MoreMaxNumIterations" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$ms_iFixUtf8MoreMaxNumIterations</h3>
-                <pre class="signature">$ms_iFixUtf8MoreMaxNumIterations</pre>
+                <h3 class="protected ">$ms_fixUtf8MoreMaxNumIterations</h3>
+                <pre class="signature">$ms_fixUtf8MoreMaxNumIterations</pre>
                 <p><em></em></p>
                 
 
@@ -1491,7 +1491,7 @@ Camerounaise de Football".</p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

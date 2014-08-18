@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * @ignore
  */
@@ -9,67 +10,67 @@ class CCookieTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testMake ()
     {
-        $oCookie = new CCookie("name", "value");
-        $this->assertTrue( $oCookie->name()->equals("name") && $oCookie->value()->equals("value") );
+        $cookie = new CCookie("name", "value");
+        $this->assertTrue( $cookie->name()->equals("name") && $cookie->value()->equals("value") );
 
-        $oCookie = new CCookie("name", true);
-        $this->assertTrue( $oCookie->name()->equals("name") && $oCookie->value()->equals("1") );
+        $cookie = new CCookie("name", true);
+        $this->assertTrue( $cookie->name()->equals("name") && $cookie->value()->equals("1") );
 
-        $oCookie = new CCookie("name", 1234);
-        $this->assertTrue( $oCookie->name()->equals("name") && $oCookie->value()->equals("1234") );
+        $cookie = new CCookie("name", 1234);
+        $this->assertTrue( $cookie->name()->equals("name") && $cookie->value()->equals("1234") );
 
-        $oCookie = new CCookie("name", 12.34);
-        $this->assertTrue( $oCookie->name()->equals("name") && $oCookie->value()->equals("12.34") );
+        $cookie = new CCookie("name", 12.34);
+        $this->assertTrue( $cookie->name()->equals("name") && $cookie->value()->equals("12.34") );
 
-        $oCookie = new CCookie("name", CArray::fe("a", "b", "c"));
-        $this->assertTrue( $oCookie->name()->equals("name") && $oCookie->value()->equals("[\"a\",\"b\",\"c\"]") );
+        $cookie = new CCookie("name", CArray::fe("a", "b", "c"));
+        $this->assertTrue( $cookie->name()->equals("name") && $cookie->value()->equals("[\"a\",\"b\",\"c\"]") );
 
-        $oCookie = new CCookie("name", ["one" => "a", "two" => "b", "three" => "c"]);
-        $this->assertTrue( $oCookie->name()->equals("name") &&
-            $oCookie->value()->equals("{\"one\":\"a\",\"two\":\"b\",\"three\":\"c\"}") );
+        $cookie = new CCookie("name", ["one" => "a", "two" => "b", "three" => "c"]);
+        $this->assertTrue( $cookie->name()->equals("name") &&
+            $cookie->value()->equals("{\"one\":\"a\",\"two\":\"b\",\"three\":\"c\"}") );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetExpireTime ()
     {
-        $oCookie = new CCookie("name", "value");
-        $oCookie->setExpireTime(new CTime(1234567890));
-        $this->assertTrue( $oCookie->expireUTime() == 1234567890 );
+        $cookie = new CCookie("name", "value");
+        $cookie->setExpireTime(new CTime(1234567890));
+        $this->assertTrue( $cookie->expireUTime() == 1234567890 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetPath ()
     {
-        $oCookie = new CCookie("name", "value");
-        $oCookie->setPath("/path");
-        $this->assertTrue($oCookie->path()->equals("/path"));
+        $cookie = new CCookie("name", "value");
+        $cookie->setPath("/path");
+        $this->assertTrue($cookie->path()->equals("/path"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetDomain ()
     {
-        $oCookie = new CCookie("name", "value");
-        $oCookie->setDomain("example.com");
-        $this->assertTrue($oCookie->domain()->equals("example.com"));
+        $cookie = new CCookie("name", "value");
+        $cookie->setDomain("example.com");
+        $this->assertTrue($cookie->domain()->equals("example.com"));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetSecure ()
     {
-        $oCookie = new CCookie("name", "value");
-        $oCookie->setSecure(true);
-        $this->assertTrue( $oCookie->secure() == true );
+        $cookie = new CCookie("name", "value");
+        $cookie->setSecure(true);
+        $this->assertTrue( $cookie->secure() == true );
 
-        $oCookie = new CCookie("name", "value");
-        $oCookie->setSecure(false);
-        $this->assertTrue( $oCookie->secure() == false );
+        $cookie = new CCookie("name", "value");
+        $cookie->setSecure(false);
+        $this->assertTrue( $cookie->secure() == false );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testSetHttpOnly ()
     {
-        $oCookie = new CCookie("name", "value");
-        $oCookie->setHttpOnly(true);
-        $this->assertTrue( $oCookie->httpOnly() == true );
+        $cookie = new CCookie("name", "value");
+        $cookie->setHttpOnly(true);
+        $this->assertTrue( $cookie->httpOnly() == true );
 
-        $oCookie = new CCookie("name", "value");
-        $oCookie->setHttpOnly(false);
-        $this->assertTrue( $oCookie->httpOnly() == false );
+        $cookie = new CCookie("name", "value");
+        $cookie->setHttpOnly(false);
+        $this->assertTrue( $cookie->httpOnly() == false );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }

@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -44,70 +44,70 @@
  */
 
 // Method signatures:
-//   static CArray make ($iLength = 0)
-//   static CArray makeDim2 ($iLengthDim1, $iLengthDim2 = 0)
-//   static CArray makeDim3 ($iLengthDim1, $iLengthDim2, $iLengthDim3 = 0)
-//   static CArray makeDim4 ($iLengthDim1, $iLengthDim2, $iLengthDim3, $iLengthDim4 = 0)
-//   static CArray makeCopy ($aArray)
-//   static CArray fromPArray ($mMap)
+//   static CArray make ($length = 0)
+//   static CArray makeDim2 ($lengthDim1, $lengthDim2 = 0)
+//   static CArray makeDim3 ($lengthDim1, $lengthDim2, $lengthDim3 = 0)
+//   static CArray makeDim4 ($lengthDim1, $lengthDim2, $lengthDim3, $lengthDim4 = 0)
+//   static CArray makeCopy ($array)
+//   static CArray fromPArray ($map)
 //   static CArray fromElements (/*element0, element1, ...*/)
 //   static CArray fe (/*element0, element1, ...*/)
-//   static CMap toPArray ($aArray)
-//   static string join ($aArray, $sBinder)
-//   static int length ($aArray)
-//   static bool isEmpty ($aArray)
-//   static bool equals ($aArray, $aToArray, $fnComparator = CComparator::EQUALITY)
-//   static int compare ($aArray, $aToArray, $fnComparator = CComparator::ORDER_ASC)
-//   static mixed first ($aArray)
-//   static mixed last ($aArray)
-//   static mixed random ($aArray)
-//   static CArray subar ($aArray, $iStartPos, $iLength = null)
-//   static CArray subarray ($aArray, $iStartPos, $iEndPos)
-//   static CArray slice ($aArray, $iStartPos, $iEndPos)
-//   static bool find ($aArray, $xWhatElement, $fnComparator = CComparator::EQUALITY, &$riFoundAtPos = null)
-//   static bool findScalar ($aArray, $xWhatElement, &$riFoundAtPos = null)
-//   static bool findBinary ($aArray, $xWhatElement, $fnComparator = CComparator::ORDER_ASC, &$riFoundAtPos = null)
-//   static int countElement ($aArray, $xElement, $fnComparator = CComparator::EQUALITY)
-//   static void setLength ($aArray, $iNewLength)
-//   static int push ($aArray, $xElement)
-//   static mixed pop ($aArray)
-//   static int pushArray ($aArray, $aPushArray)
-//   static int unshift ($aArray, $xElement)
-//   static mixed shift ($aArray)
-//   static int unshiftArray ($aArray, $aAddArray)
-//   static void insert ($aArray, $iAtPos, $xInsertElement)
-//   static void insertArray ($aArray, $iAtPos, $aInsertArray)
-//   static void padStart ($aArray, $xPaddingElement, $iNewLength)
-//   static void padEnd ($aArray, $xPaddingElement, $iNewLength)
-//   static void remove ($aArray, $iElementPos)
-//   static bool removeByValue ($aArray, $xElementValue, $fnComparator = CComparator::EQUALITY)
-//   static void removeSubarray ($aArray, $iStartPos, $iLength = null)
-//   static CArray splice ($aArray, $iStartPos, $iLength = null)
-//   static void removeSubarrayByRange ($aArray, $iStartPos, $iEndPos)
-//   static void reverse ($aArray)
-//   static void shuffle ($aArray)
-//   static void sort ($aArray, $fnComparator = CComparator::ORDER_ASC)
-//   static void sortOn ($aArray, $sOnMethodName, $fnComparator = CComparator::ORDER_ASC/*, methodArg0, methodArg1,
+//   static CMap toPArray ($array)
+//   static string join ($array, $binder)
+//   static int length ($array)
+//   static bool isEmpty ($array)
+//   static bool equals ($array, $toArray, $comparator = CComparator::EQUALITY)
+//   static int compare ($array, $toArray, $comparator = CComparator::ORDER_ASC)
+//   static mixed first ($array)
+//   static mixed last ($array)
+//   static mixed random ($array)
+//   static CArray subar ($array, $startPos, $length = null)
+//   static CArray subarray ($array, $startPos, $endPos)
+//   static CArray slice ($array, $startPos, $endPos)
+//   static bool find ($array, $whatElement, $comparator = CComparator::EQUALITY, &$foundAtPos = null)
+//   static bool findScalar ($array, $whatElement, &$foundAtPos = null)
+//   static bool findBinary ($array, $whatElement, $comparator = CComparator::ORDER_ASC, &$foundAtPos = null)
+//   static int countElement ($array, $element, $comparator = CComparator::EQUALITY)
+//   static void setLength ($array, $newLength)
+//   static int push ($array, $element)
+//   static mixed pop ($array)
+//   static int pushArray ($array, $pushArray)
+//   static int unshift ($array, $element)
+//   static mixed shift ($array)
+//   static int unshiftArray ($array, $addArray)
+//   static void insert ($array, $atPos, $insertElement)
+//   static void insertArray ($array, $atPos, $insertArray)
+//   static void padStart ($array, $paddingElement, $newLength)
+//   static void padEnd ($array, $paddingElement, $newLength)
+//   static void remove ($array, $elementPos)
+//   static bool removeByValue ($array, $elementValue, $comparator = CComparator::EQUALITY)
+//   static void removeSubarray ($array, $startPos, $length = null)
+//   static CArray splice ($array, $startPos, $length = null)
+//   static void removeSubarrayByRange ($array, $startPos, $endPos)
+//   static void reverse ($array)
+//   static void shuffle ($array)
+//   static void sort ($array, $comparator = CComparator::ORDER_ASC)
+//   static void sortOn ($array, $onMethodName, $comparator = CComparator::ORDER_ASC/*, methodArg0, methodArg1,
 //     ...*/)
-//   static void sortStrings ($aArray)
-//   static void sortStringsCi ($aArray)
-//   static void sortStringsNat ($aArray)
-//   static void sortStringsNatCi ($aArray)
-//   static void sortUStrings ($aArray, $bfCollationFlags = CUString::COLLATION_DEFAULT, CULocale $oInLocale = null)
-//   static void sortUStringsCi ($aArray, $bfCollationFlags = CUString::COLLATION_DEFAULT, CULocale $oInLocale = null)
-//   static void sortUStringsNat ($aArray, $bfCollationFlags = CUString::COLLATION_DEFAULT, CULocale $oInLocale = null)
-//   static void sortUStringsNatCi ($aArray, $bfCollationFlags = CUString::COLLATION_DEFAULT,
-//     CULocale $oInLocale = null)
-//   static CArray filter ($aArray, $fnFilter)
-//   static CArray unique ($aArray, $fnComparator = CComparator::EQUALITY)
-//   static number elementsSum ($aArray)
-//   static number elementsProduct ($aArray)
-//   static bool isSubsetOf ($aArray, $aOfArray, $fnComparator = CComparator::EQUALITY)
+//   static void sortStrings ($array)
+//   static void sortStringsCi ($array)
+//   static void sortStringsNat ($array)
+//   static void sortStringsNatCi ($array)
+//   static void sortUStrings ($array, $collationFlags = CUString::COLLATION_DEFAULT, CULocale $inLocale = null)
+//   static void sortUStringsCi ($array, $collationFlags = CUString::COLLATION_DEFAULT, CULocale $inLocale = null)
+//   static void sortUStringsNat ($array, $collationFlags = CUString::COLLATION_DEFAULT, CULocale $inLocale = null)
+//   static void sortUStringsNatCi ($array, $collationFlags = CUString::COLLATION_DEFAULT,
+//     CULocale $inLocale = null)
+//   static CArray filter ($array, $filter)
+//   static CArray unique ($array, $comparator = CComparator::EQUALITY)
+//   static number elementsSum ($array)
+//   static number elementsProduct ($array)
+//   static bool isSubsetOf ($array, $ofArray, $comparator = CComparator::EQUALITY)
 //   static CArray union (/*addendArray0, addendArray1, ...*/)
-//   static CArray intersection ($aLeftArray, $aRightArray, $fnComparator = CComparator::EQUALITY)
-//   static CArray difference ($aMinuendArray, $aSubtrahendArray, $fnComparator = CComparator::EQUALITY)
-//   static CArray symmetricDifference ($aLeftArray, $aRightArray, $fnComparator = CComparator::EQUALITY)
-//   static CArray repeat ($xElement, $iTimes)
+//   static CArray intersection ($leftArray, $rightArray, $comparator = CComparator::EQUALITY)
+//   static CArray difference ($minuendArray, $subtrahendArray, $comparator = CComparator::EQUALITY)
+//   static CArray symmetricDifference ($leftArray, $rightArray, $comparator = CComparator::EQUALITY)
+//   static CArray repeat ($element, $times)
 
 class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStatic
 {
@@ -116,119 +116,119 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * Constructs an object of the SplFixedArray class (called CArray) as either an empty array or an array having a
      * specified length.
      *
-     * @param  int $iLength **OPTIONAL. Default is** `0`. The length of the array. Don't forget to give values to all
+     * @param  int $length **OPTIONAL. Default is** `0`. The length of the array. Don't forget to give values to all
      * of the allocated elements when using this parameter.
      *
      * @return CArray The new array.
      */
 
-    public static function make ($iLength = 0)
+    public static function make ($length = 0)
     {
-        assert( 'is_int($iLength)', vs(isset($this), get_defined_vars()) );
-        assert( '$iLength >= 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($length)', vs(isset($this), get_defined_vars()) );
+        assert( '$length >= 0', vs(isset($this), get_defined_vars()) );
 
-        return new SplFixedArray($iLength);
+        return new SplFixedArray($length);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Constructs an object of the SplFixedArray class (called CArray) as a two-dimensional array.
      *
-     * @param  int $iLengthDim1 The length of the array at the first level.
-     * @param  int $iLengthDim2 **OPTIONAL. Default is** `0`. The length(s) of the array(s) at the second level.
+     * @param  int $lengthDim1 The length of the array at the first level.
+     * @param  int $lengthDim2 **OPTIONAL. Default is** `0`. The length(s) of the array(s) at the second level.
      *
      * @return CArray The new array.
      */
 
-    public static function makeDim2 ($iLengthDim1, $iLengthDim2 = 0)
+    public static function makeDim2 ($lengthDim1, $lengthDim2 = 0)
     {
-        assert( 'is_int($iLengthDim1) && is_int($iLengthDim2)', vs(isset($this), get_defined_vars()) );
-        assert( '$iLengthDim1 >= 0 && $iLengthDim2 >= 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($lengthDim1) && is_int($lengthDim2)', vs(isset($this), get_defined_vars()) );
+        assert( '$lengthDim1 >= 0 && $lengthDim2 >= 0', vs(isset($this), get_defined_vars()) );
 
-        $aArray = self::make($iLengthDim1);
-        for ($i = 0; $i < $iLengthDim1; $i++)
+        $array = self::make($lengthDim1);
+        for ($i = 0; $i < $lengthDim1; $i++)
         {
-            $aArray[$i] = self::make($iLengthDim2);
+            $array[$i] = self::make($lengthDim2);
         }
-        return $aArray;
+        return $array;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Constructs an object of the SplFixedArray class (called CArray) as a three-dimensional array.
      *
-     * @param  int $iLengthDim1 The length of the array at the first level.
-     * @param  int $iLengthDim2 The length(s) of the array(s) at the second level.
-     * @param  int $iLengthDim3 **OPTIONAL. Default is** `0`. The length(s) of the array(s) at the third level.
+     * @param  int $lengthDim1 The length of the array at the first level.
+     * @param  int $lengthDim2 The length(s) of the array(s) at the second level.
+     * @param  int $lengthDim3 **OPTIONAL. Default is** `0`. The length(s) of the array(s) at the third level.
      *
      * @return CArray The new array.
      */
 
-    public static function makeDim3 ($iLengthDim1, $iLengthDim2, $iLengthDim3 = 0)
+    public static function makeDim3 ($lengthDim1, $lengthDim2, $lengthDim3 = 0)
     {
-        assert( 'is_int($iLengthDim1) && is_int($iLengthDim2) && is_int($iLengthDim3)',
+        assert( 'is_int($lengthDim1) && is_int($lengthDim2) && is_int($lengthDim3)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$iLengthDim1 >= 0 && $iLengthDim2 >= 0 && $iLengthDim3 >= 0', vs(isset($this), get_defined_vars()) );
+        assert( '$lengthDim1 >= 0 && $lengthDim2 >= 0 && $lengthDim3 >= 0', vs(isset($this), get_defined_vars()) );
 
-        $aArray = self::make($iLengthDim1);
-        for ($i0 = 0; $i0 < $iLengthDim1; $i0++)
+        $array = self::make($lengthDim1);
+        for ($i0 = 0; $i0 < $lengthDim1; $i0++)
         {
-            $aArray[$i0] = self::make($iLengthDim2);
-            for ($i1 = 0; $i1 < $iLengthDim2; $i1++)
+            $array[$i0] = self::make($lengthDim2);
+            for ($i1 = 0; $i1 < $lengthDim2; $i1++)
             {
-                $aArray[$i0][$i1] = self::make($iLengthDim3);
+                $array[$i0][$i1] = self::make($lengthDim3);
             }
         }
-        return $aArray;
+        return $array;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Constructs an object of the SplFixedArray class (called CArray) as a four-dimensional array.
      *
-     * @param  int $iLengthDim1 The length of the array at the first level.
-     * @param  int $iLengthDim2 The length(s) of the array(s) at the second level.
-     * @param  int $iLengthDim3 The length(s) of the array(s) at the third level.
-     * @param  int $iLengthDim4 **OPTIONAL. Default is** `0`. The length(s) of the array(s) at the fourth level.
+     * @param  int $lengthDim1 The length of the array at the first level.
+     * @param  int $lengthDim2 The length(s) of the array(s) at the second level.
+     * @param  int $lengthDim3 The length(s) of the array(s) at the third level.
+     * @param  int $lengthDim4 **OPTIONAL. Default is** `0`. The length(s) of the array(s) at the fourth level.
      *
      * @return CArray The new array.
      */
 
-    public static function makeDim4 ($iLengthDim1, $iLengthDim2, $iLengthDim3, $iLengthDim4 = 0)
+    public static function makeDim4 ($lengthDim1, $lengthDim2, $lengthDim3, $lengthDim4 = 0)
     {
-        assert( 'is_int($iLengthDim1) && is_int($iLengthDim2) && is_int($iLengthDim3) && is_int($iLengthDim4)',
+        assert( 'is_int($lengthDim1) && is_int($lengthDim2) && is_int($lengthDim3) && is_int($lengthDim4)',
             vs(isset($this), get_defined_vars()) );
-        assert( '$iLengthDim1 >= 0 && $iLengthDim2 >= 0 && $iLengthDim3 >= 0 && $iLengthDim4 >= 0',
+        assert( '$lengthDim1 >= 0 && $lengthDim2 >= 0 && $lengthDim3 >= 0 && $lengthDim4 >= 0',
             vs(isset($this), get_defined_vars()) );
 
-        $aArray = self::make($iLengthDim1);
-        for ($i0 = 0; $i0 < $iLengthDim1; $i0++)
+        $array = self::make($lengthDim1);
+        for ($i0 = 0; $i0 < $lengthDim1; $i0++)
         {
-            $aArray[$i0] = self::make($iLengthDim2);
-            for ($i1 = 0; $i1 < $iLengthDim2; $i1++)
+            $array[$i0] = self::make($lengthDim2);
+            for ($i1 = 0; $i1 < $lengthDim2; $i1++)
             {
-                $aArray[$i0][$i1] = self::make($iLengthDim3);
-                for ($i2 = 0; $i2 < $iLengthDim3; $i2++)
+                $array[$i0][$i1] = self::make($lengthDim3);
+                for ($i2 = 0; $i2 < $lengthDim3; $i2++)
                 {
-                    $aArray[$i0][$i1][$i2] = self::make($iLengthDim4);
+                    $array[$i0][$i1][$i2] = self::make($lengthDim4);
                 }
             }
         }
-        return $aArray;
+        return $array;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Makes an independent copy of an array.
      *
-     * @param  array $aArray The array to be copied.
+     * @param  array $array The array to be copied.
      *
      * @return CArray A copy of the array.
      */
 
-    public static function makeCopy ($aArray)
+    public static function makeCopy ($array)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        return clone $aArray;
+        return clone $array;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -237,18 +237,18 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * All keys in the PHP's associative array are discarded and indexes for the resulting array are generated
      * according to the order in which values appear in the associative array, without gaps.
      *
-     * @param  map $mMap The PHP's associative array to be converted.
+     * @param  map $map The PHP's associative array to be converted.
      *
      * @return CArray The resulting array.
      */
 
-    public static function fromPArray ($mMap)
+    public static function fromPArray ($map)
     {
-        assert( 'is_cmap($mMap)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cmap($map)', vs(isset($this), get_defined_vars()) );
 
-        $mMap = parray($mMap);
+        $map = parray($map);
 
-        return SplFixedArray::fromArray($mMap, false);
+        return SplFixedArray::fromArray($map, false);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -261,8 +261,8 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
 
     public static function fromElements (/*element0, element1, ...*/)
     {
-        $iFuncNumArgs = func_num_args();
-        assert( '$iFuncNumArgs != 0', vs(isset($this), get_defined_vars()) );
+        $funcNumArgs = func_num_args();
+        assert( '$funcNumArgs != 0', vs(isset($this), get_defined_vars()) );
         return self::fromPArray(func_get_args());
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -278,8 +278,8 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
 
     public static function fe (/*element0, element1, ...*/)
     {
-        $iFuncNumArgs = func_num_args();
-        assert( '$iFuncNumArgs != 0', vs(isset($this), get_defined_vars()) );
+        $funcNumArgs = func_num_args();
+        assert( '$funcNumArgs != 0', vs(isset($this), get_defined_vars()) );
         return self::fromPArray(func_get_args());
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -289,18 +289,18 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * The first element from the source array is put into the resulting associative array under the integer key of
      * `0`, the second element under `1`, and so forth.
      *
-     * @param  array $aArray The array to be converted.
+     * @param  array $array The array to be converted.
      *
      * @return CMap The resulting associative array.
      */
 
-    public static function toPArray ($aArray)
+    public static function toPArray ($array)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        return $aArray->toArray();
+        return $array->toArray();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -312,73 +312,73 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      *
      * As a special case, the array is allowed to be empty.
      *
-     * @param  array $aArray The array containing the elements to be joined.
-     * @param  string $sBinder The string to be put between any two elements in the resulting string, such as ", ".
+     * @param  array $array The array containing the elements to be joined.
+     * @param  string $binder The string to be put between any two elements in the resulting string, such as ", ".
      * Can be empty.
      *
      * @return string The resulting string.
      */
 
-    public static function join ($aArray, $sBinder)
+    public static function join ($array, $binder)
     {
-        assert( 'is_carray($aArray) && is_cstring($sBinder)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array) && is_cstring($binder)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $aArray = self::makeCopy($aArray);
-        for ($i = 0; $i < $aArray->getSize(); $i++)
+        $array = self::makeCopy($array);
+        for ($i = 0; $i < $array->getSize(); $i++)
         {
-            if ( !is_cstring($aArray[$i]) )
+            if ( !is_cstring($array[$i]) )
             {
-                if ( is_bool($aArray[$i]) )
+                if ( is_bool($array[$i]) )
                 {
-                    $aArray[$i] = CString::fromBool10($aArray[$i]);
+                    $array[$i] = CString::fromBool10($array[$i]);
                 }
-                else if ( is_int($aArray[$i]) )
+                else if ( is_int($array[$i]) )
                 {
-                    $aArray[$i] = CString::fromInt($aArray[$i]);
+                    $array[$i] = CString::fromInt($array[$i]);
                 }
-                else if ( is_float($aArray[$i]) )
+                else if ( is_float($array[$i]) )
                 {
-                    $aArray[$i] = CString::fromFloat($aArray[$i]);
+                    $array[$i] = CString::fromFloat($array[$i]);
                 }
             }
         }
-        return implode($sBinder, self::toPArray($aArray));
+        return implode($binder, self::toPArray($array));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Tells how many elements there are in an array.
      *
-     * @param  array $aArray The array to be looked into.
+     * @param  array $array The array to be looked into.
      *
      * @return int The length of the array.
      */
 
-    public static function length ($aArray)
+    public static function length ($array)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        return $aArray->getSize();
+        return $array->getSize();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if an array is empty.
      *
-     * @param  array $aArray The array to be looked into.
+     * @param  array $array The array to be looked into.
      *
      * @return bool `true` if the array is empty, `false` otherwise.
      */
 
-    public static function isEmpty ($aArray)
+    public static function isEmpty ($array)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        return ( $aArray->getSize() == 0 );
+        return ( $array->getSize() == 0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -393,9 +393,9 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * IEqualityAndOrder interface (static or not), including CArray and CMap. See the [CComparator](CComparator.html)
      * class for more on this.
      *
-     * @param  array $aArray The first array for comparison.
-     * @param  array $aToArray The second array for comparison.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  array $array The first array for comparison.
+     * @param  array $toArray The second array for comparison.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of any two elements. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being an element from the first array and the second parameter being an
      * element from the second array, and return `true` if the two elements are equal and `false` otherwise.
@@ -405,21 +405,21 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   CComparator.html CComparator
      */
 
-    public static function equals ($aArray, $aToArray, $fnComparator = CComparator::EQUALITY)
+    public static function equals ($array, $toArray, $comparator = CComparator::EQUALITY)
     {
-        assert( 'is_carray($aArray) && is_carray($aToArray) && is_callable($fnComparator)',
+        assert( 'is_carray($array) && is_carray($toArray) && is_callable($comparator)',
             vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
-        $aToArray = splarray($aToArray);
+        $array = splarray($array);
+        $toArray = splarray($toArray);
 
-        if ( $aArray->getSize() != $aToArray->getSize() )
+        if ( $array->getSize() != $toArray->getSize() )
         {
             return false;
         }
-        for ($i = 0; $i < $aArray->getSize(); $i++)
+        for ($i = 0; $i < $array->getSize(); $i++)
         {
-            if ( !call_user_func($fnComparator, $aArray[$i], $aToArray[$i]) )
+            if ( !call_user_func($comparator, $array[$i], $toArray[$i]) )
             {
                 return false;
             }
@@ -436,9 +436,9 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * enough to know how to compare objects of those classes that conform to the IEqualityAndOrder interface (static
      * or not), including CArray and CMap. See the [CComparator](CComparator.html) class for more on this.
      *
-     * @param  array $aArray The first array for comparison.
-     * @param  array $aToArray The second array for comparison.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
+     * @param  array $array The first array for comparison.
+     * @param  array $toArray The second array for comparison.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
      * used for the comparison of any two elements. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being an element from the first array and the second parameter being an
      * element from the second array, and return `-1` if the element from the first array would need to go before the
@@ -451,24 +451,24 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   CComparator.html CComparator
      */
 
-    public static function compare ($aArray, $aToArray, $fnComparator = CComparator::ORDER_ASC)
+    public static function compare ($array, $toArray, $comparator = CComparator::ORDER_ASC)
     {
-        assert( 'is_carray($aArray) && is_carray($aToArray) && is_callable($fnComparator)',
+        assert( 'is_carray($array) && is_carray($toArray) && is_callable($comparator)',
             vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
-        $aToArray = splarray($aToArray);
+        $array = splarray($array);
+        $toArray = splarray($toArray);
 
-        if ( $aArray->getSize() != $aToArray->getSize() )
+        if ( $array->getSize() != $toArray->getSize() )
         {
-            return CMathi::sign($aArray->getSize() - $aToArray->getSize());
+            return CMathi::sign($array->getSize() - $toArray->getSize());
         }
-        for ($i = 0; $i < $aArray->getSize(); $i++)
+        for ($i = 0; $i < $array->getSize(); $i++)
         {
-            $iCompRes = call_user_func($fnComparator, $aArray[$i], $aToArray[$i]);
-            if ( $iCompRes != 0 )
+            $compRes = call_user_func($comparator, $array[$i], $toArray[$i]);
+            if ( $compRes != 0 )
             {
-                return $iCompRes;
+                return $compRes;
             }
         }
         return 0;
@@ -477,55 +477,55 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
     /**
      * Returns the first element from an array.
      *
-     * @param  array $aArray The array to be looked into.
+     * @param  array $array The array to be looked into.
      *
      * @return mixed The first element in the array.
      */
 
-    public static function first ($aArray)
+    public static function first ($array)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
-        assert( '!self::isEmpty($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
+        assert( '!self::isEmpty($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        return $aArray[0];
+        return $array[0];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the last element from an array.
      *
-     * @param  array $aArray The array to be looked into.
+     * @param  array $array The array to be looked into.
      *
      * @return mixed The last element in the array.
      */
 
-    public static function last ($aArray)
+    public static function last ($array)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
-        assert( '!self::isEmpty($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
+        assert( '!self::isEmpty($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        return $aArray[$aArray->getSize() - 1];
+        return $array[$array->getSize() - 1];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns a randomly picked element from an array.
      *
-     * @param  array $aArray The array to be looked into.
+     * @param  array $array The array to be looked into.
      *
      * @return mixed A randomly picked element in the array.
      */
 
-    public static function random ($aArray)
+    public static function random ($array)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
-        assert( '!self::isEmpty($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
+        assert( '!self::isEmpty($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        return $aArray[CMathi::intervalRandom(0, $aArray->getSize() - 1)];
+        return $array[CMathi::intervalRandom(0, $array->getSize() - 1)];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -535,43 +535,43 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      *
      * The method allows for an empty array to be returned.
      *
-     * @param  array $aArray The array to be looked into.
-     * @param  int $iStartPos The position of the first element in the sequence to be copied.
-     * @param  int $iLength **OPTIONAL. Default is** *as many elements as the starting element is followed by*. The
+     * @param  array $array The array to be looked into.
+     * @param  int $startPos The position of the first element in the sequence to be copied.
+     * @param  int $length **OPTIONAL. Default is** *as many elements as the starting element is followed by*. The
      * number of elements in the sequence to be copied.
      *
      * @return CArray The array containing the copied elements.
      */
 
-    public static function subar ($aArray, $iStartPos, $iLength = null)
+    public static function subar ($array, $startPos, $length = null)
     {
-        assert( 'is_carray($aArray) && is_int($iStartPos) && (!isset($iLength) || is_int($iLength))',
+        assert( 'is_carray($array) && is_int($startPos) && (!isset($length) || is_int($length))',
             vs(isset($this), get_defined_vars()) );
-        assert( '(0 <= $iStartPos && $iStartPos < $aArray->getSize()) || ($iStartPos == $aArray->getSize() && ' .
-                '(!isset($iLength) || $iLength == 0))', vs(isset($this), get_defined_vars()) );
-        assert( '!isset($iLength) || ($iLength >= 0 && $iStartPos + $iLength <= $aArray->getSize())',
+        assert( '(0 <= $startPos && $startPos < $array->getSize()) || ($startPos == $array->getSize() && ' .
+                '(!isset($length) || $length == 0))', vs(isset($this), get_defined_vars()) );
+        assert( '!isset($length) || ($length >= 0 && $startPos + $length <= $array->getSize())',
             vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $mSubarray;
-        if ( !isset($iLength) )
+        $subarray;
+        if ( !isset($length) )
         {
-            if ( $iStartPos == $aArray->getSize() )
+            if ( $startPos == $array->getSize() )
             {
                 return self::make();
             }
-            $mSubarray = array_slice(self::toPArray($aArray), $iStartPos);
+            $subarray = array_slice(self::toPArray($array), $startPos);
         }
         else
         {
-            if ( $iLength == 0 )
+            if ( $length == 0 )
             {
                 return self::make();
             }
-            $mSubarray = array_slice(self::toPArray($aArray), $iStartPos, $iLength);
+            $subarray = array_slice(self::toPArray($array), $startPos, $length);
         }
-        return self::fromPArray($mSubarray);
+        return self::fromPArray($subarray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -582,17 +582,17 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      *
      * The method allows for an empty array to be returned.
      *
-     * @param  array $aArray The array to be looked into.
-     * @param  int $iStartPos The position of the first element in the sequence to be copied.
-     * @param  int $iEndPos The position of the element that *follows* the last element in the sequence to be copied.
+     * @param  array $array The array to be looked into.
+     * @param  int $startPos The position of the first element in the sequence to be copied.
+     * @param  int $endPos The position of the element that *follows* the last element in the sequence to be copied.
      *
      * @return CArray The array containing the copied elements.
      */
 
-    public static function subarray ($aArray, $iStartPos, $iEndPos)
+    public static function subarray ($array, $startPos, $endPos)
     {
-        assert( 'is_carray($aArray) && is_int($iStartPos) && is_int($iEndPos)', vs(isset($this), get_defined_vars()) );
-        return self::subar($aArray, $iStartPos, $iEndPos - $iStartPos);
+        assert( 'is_carray($array) && is_int($startPos) && is_int($endPos)', vs(isset($this), get_defined_vars()) );
+        return self::subar($array, $startPos, $endPos - $startPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -605,17 +605,17 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      *
      * The method allows for an empty array to be returned.
      *
-     * @param  array $aArray The array to be looked into.
-     * @param  int $iStartPos The position of the first element in the sequence to be copied.
-     * @param  int $iEndPos The position of the element that *follows* the last element in the sequence to be copied.
+     * @param  array $array The array to be looked into.
+     * @param  int $startPos The position of the first element in the sequence to be copied.
+     * @param  int $endPos The position of the element that *follows* the last element in the sequence to be copied.
      *
      * @return CArray The array containing the copied elements.
      */
 
-    public static function slice ($aArray, $iStartPos, $iEndPos)
+    public static function slice ($array, $startPos, $endPos)
     {
-        assert( 'is_carray($aArray) && is_int($iStartPos) && is_int($iEndPos)', vs(isset($this), get_defined_vars()) );
-        return self::subarray($aArray, $iStartPos, $iEndPos);
+        assert( 'is_carray($array) && is_int($startPos) && is_int($endPos)', vs(isset($this), get_defined_vars()) );
+        return self::subarray($array, $startPos, $endPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -626,13 +626,13 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * know how to compare objects of those classes that conform to the IEquality or IEqualityAndOrder interface
      * (static or not), including CArray and CMap. See the [CComparator](CComparator.html) class for more on this.
      *
-     * @param  array $aArray The array to be looked into.
-     * @param  mixed $xWhatElement The value of the searched element.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  array $array The array to be looked into.
+     * @param  mixed $whatElement The value of the searched element.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of element values while searching. If this parameter is provided, the comparator should
      * take two parameters, with the first parameter being an element from the array and the second parameter being the
      * searched element, and return `true` if the two elements are equal and `false` otherwise.
-     * @param  reference $riFoundAtPos **OPTIONAL. OUTPUT.** If an element has been found after the method was called
+     * @param  reference $foundAtPos **OPTIONAL. OUTPUT.** If an element has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `int`, indicates the position of the first
      * found element, i.e. the element at the leftmost position if the array contains more than one of such elements.
      *
@@ -641,19 +641,19 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   CComparator.html CComparator
      */
 
-    public static function find ($aArray, $xWhatElement, $fnComparator = CComparator::EQUALITY, &$riFoundAtPos = null)
+    public static function find ($array, $whatElement, $comparator = CComparator::EQUALITY, &$foundAtPos = null)
     {
         // Linear search.
 
-        assert( 'is_carray($aArray) && is_callable($fnComparator)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array) && is_callable($comparator)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        for ($i = 0; $i < $aArray->getSize(); $i++)
+        for ($i = 0; $i < $array->getSize(); $i++)
         {
-            if ( call_user_func($fnComparator, $aArray[$i], $xWhatElement) )
+            if ( call_user_func($comparator, $array[$i], $whatElement) )
             {
-                $riFoundAtPos = $i;
+                $foundAtPos = $i;
                 return true;
             }
         }
@@ -667,9 +667,9 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * this method allows for faster searches compared to `find` method. In case of `string` type, the search is
      * case-sensitive.
      *
-     * @param  array $aArray The array to be looked into.
-     * @param  mixed $xWhatElement The value of the searched element.
-     * @param  reference $riFoundAtPos **OPTIONAL. OUTPUT.** If an element has been found after the method was called
+     * @param  array $array The array to be looked into.
+     * @param  mixed $whatElement The value of the searched element.
+     * @param  reference $foundAtPos **OPTIONAL. OUTPUT.** If an element has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `int`, indicates the position of the first
      * found element, i.e. the element at the leftmost position if the array contains more than one of such elements.
      *
@@ -678,19 +678,19 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   #method_find find
      */
 
-    public static function findScalar ($aArray, $xWhatElement, &$riFoundAtPos = null)
+    public static function findScalar ($array, $whatElement, &$foundAtPos = null)
     {
         // Linear search.
 
-        assert( 'is_carray($aArray) && (is_scalar($xWhatElement) || is_null($xWhatElement))',
+        assert( 'is_carray($array) && (is_scalar($whatElement) || is_null($whatElement))',
             vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $xRes = array_search($xWhatElement, $aArray->toArray(), true);
-        if ( $xRes !== false )
+        $res = array_search($whatElement, $array->toArray(), true);
+        if ( $res !== false )
         {
-            $riFoundAtPos = (int)$xRes;
+            $foundAtPos = (int)$res;
             return true;
         }
         else
@@ -714,15 +714,15 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * "CString::compare" comparator when sorting on ASCII strings as return values and then provide the same
      * comparator to this method, and do it with "CUString::compare" comparator when sorting on Unicode strings.
      *
-     * @param  array $aArray The array to be looked into.
-     * @param  mixed $xWhatElement The value of the searched element.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
+     * @param  array $array The array to be looked into.
+     * @param  mixed $whatElement The value of the searched element.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
      * used for the comparison of element values while searching. If this parameter is provided, the comparator should
      * take two parameters, with the first parameter being an element from the array and the second parameter being the
      * searched element, and return `-1` if the value of the first parameter would need to go before the value of the
      * second parameter if the two were being ordered in separate, `1` if the other way around, and `0` if the two
      * elements are equal.
-     * @param  reference $riFoundAtPos **OPTIONAL. OUTPUT.** If an element has been found after the method was called
+     * @param  reference $foundAtPos **OPTIONAL. OUTPUT.** If an element has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `int`, indicates the position of the first
      * found element (if the searched element is not unique in the array, the position can differ from that with linear
      * search).
@@ -732,45 +732,45 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   CComparator.html CComparator
      */
 
-    public static function findBinary ($aArray, $xWhatElement, $fnComparator = CComparator::ORDER_ASC,
-        &$riFoundAtPos = null)
+    public static function findBinary ($array, $whatElement, $comparator = CComparator::ORDER_ASC,
+        &$foundAtPos = null)
     {
         // Binary search.
 
-        assert( 'is_carray($aArray) && is_callable($fnComparator)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array) && is_callable($comparator)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        if ( self::isEmpty($aArray) )
+        if ( self::isEmpty($array) )
         {
             return false;
         }
 
-        $iStartPos = 0;
-        $iEndPos = $aArray->getSize();
+        $startPos = 0;
+        $endPos = $array->getSize();
         while ( true )
         {
-            $iSpanLength = $iEndPos - $iStartPos;
-            if ( $iSpanLength == 1 )
+            $spanLength = $endPos - $startPos;
+            if ( $spanLength == 1 )
             {
                 break;
             }
-            $iPivotPos = $iStartPos + ($iSpanLength >> 1);
+            $pivotPos = $startPos + ($spanLength >> 1);
             // The `-` is because of the reversed argument order.
-            if ( -call_user_func($fnComparator, $aArray[$iPivotPos], $xWhatElement) < 0 )
+            if ( -call_user_func($comparator, $array[$pivotPos], $whatElement) < 0 )
             {
                 // Go left.
-                $iEndPos = $iPivotPos;
+                $endPos = $pivotPos;
             }
             else
             {
                 // Go right.
-                $iStartPos = $iPivotPos;
+                $startPos = $pivotPos;
             }
         }
-        if ( call_user_func($fnComparator, $aArray[$iStartPos], $xWhatElement) == 0 )
+        if ( call_user_func($comparator, $array[$startPos], $whatElement) == 0 )
         {
-            $riFoundAtPos = $iStartPos;
+            $foundAtPos = $startPos;
             return true;
         }
         else
@@ -787,9 +787,9 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * know how to compare objects of those classes that conform to the IEquality or IEqualityAndOrder interface
      * (static or not), including CArray and CMap. See the [CComparator](CComparator.html) class for more on this.
      *
-     * @param  array $aArray The array to be looked into.
-     * @param  mixed $xElement The value of the searched element.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  array $array The array to be looked into.
+     * @param  mixed $element The value of the searched element.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of element values while searching. If this parameter is provided, the comparator should
      * take two parameters, with the first parameter being an element from the array and the second parameter being the
      * searched element, and return `true` if the two elements are equal and `false` otherwise.
@@ -799,21 +799,21 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   CComparator.html CComparator
      */
 
-    public static function countElement ($aArray, $xElement, $fnComparator = CComparator::EQUALITY)
+    public static function countElement ($array, $element, $comparator = CComparator::EQUALITY)
     {
-        assert( 'is_carray($aArray) && is_callable($fnComparator)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array) && is_callable($comparator)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $iCount = 0;
-        for ($i = 0; $i < $aArray->getSize(); $i++)
+        $count = 0;
+        for ($i = 0; $i < $array->getSize(); $i++)
         {
-            if ( call_user_func($fnComparator, $aArray[$i], $xElement) )
+            if ( call_user_func($comparator, $array[$i], $element) )
             {
-                $iCount++;
+                $count++;
             }
         }
-        return $iCount;
+        return $count;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -822,139 +822,139 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * No elements are lost if the array grows in size and all elements that are allowed by the new length are kept if
      * the array shrinks.
      *
-     * @param  array $aArray The array to be resized.
-     * @param  int $iNewLength The new length.
+     * @param  array $array The array to be resized.
+     * @param  int $newLength The new length.
      *
      * @return void
      */
 
-    public static function setLength ($aArray, $iNewLength)
+    public static function setLength ($array, $newLength)
     {
-        assert( 'is_carray($aArray) && is_int($iNewLength)', vs(isset($this), get_defined_vars()) );
-        assert( '$iNewLength >= 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array) && is_int($newLength)', vs(isset($this), get_defined_vars()) );
+        assert( '$newLength >= 0', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $aArray->setSize($iNewLength);
+        $array->setSize($newLength);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Adds an element to the end of an array.
      *
-     * @param  array $aArray The array to be grown.
-     * @param  mixed $xElement The element to be added.
+     * @param  array $array The array to be grown.
+     * @param  mixed $element The element to be added.
      *
      * @return int The array's new length.
      */
 
-    public static function push ($aArray, $xElement)
+    public static function push ($array, $element)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $iLen = $aArray->getSize();
-        $aArray->setSize($iLen + 1);
-        $aArray[$iLen] = $xElement;
-        return $aArray->getSize();
+        $len = $array->getSize();
+        $array->setSize($len + 1);
+        $array[$len] = $element;
+        return $array->getSize();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes an element from the end of an array.
      *
-     * @param  array $aArray The array to be shrunk.
+     * @param  array $array The array to be shrunk.
      *
      * @return mixed The removed element.
      */
 
-    public static function pop ($aArray)
+    public static function pop ($array)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $iLenMinusOne = $aArray->getSize() - 1;
-        $xElement = $aArray[$iLenMinusOne];
-        $aArray->setSize($iLenMinusOne);
-        return $xElement;
+        $lenMinusOne = $array->getSize() - 1;
+        $element = $array[$lenMinusOne];
+        $array->setSize($lenMinusOne);
+        return $element;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Adds the elements of an array to the end of another array.
      *
-     * @param  array $aArray The array to be grown.
-     * @param  array $aPushArray The array containing the elements to be added.
+     * @param  array $array The array to be grown.
+     * @param  array $pushArray The array containing the elements to be added.
      *
      * @return int The array's new length.
      */
 
-    public static function pushArray ($aArray, $aPushArray)
+    public static function pushArray ($array, $pushArray)
     {
-        assert( 'is_carray($aArray) && is_carray($aPushArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array) && is_carray($pushArray)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
-        $aPushArray = splarray($aPushArray);
+        $array = splarray($array);
+        $pushArray = splarray($pushArray);
 
-        self::assignArrayToArray($aArray, self::union($aArray, $aPushArray));
-        return $aArray->getSize();
+        self::assignArrayToArray($array, self::union($array, $pushArray));
+        return $array->getSize();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Adds an element to the start of an array.
      *
-     * @param  array $aArray The array to be grown.
-     * @param  mixed $xElement The element to be added.
+     * @param  array $array The array to be grown.
+     * @param  mixed $element The element to be added.
      *
      * @return int The array's new length.
      */
 
-    public static function unshift ($aArray, $xElement)
+    public static function unshift ($array, $element)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        self::insert($aArray, 0, $xElement);
-        return $aArray->getSize();
+        self::insert($array, 0, $element);
+        return $array->getSize();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes an element from the start of an array.
      *
-     * @param  array $aArray The array to be shrunk.
+     * @param  array $array The array to be shrunk.
      *
      * @return mixed The removed element.
      */
 
-    public static function shift ($aArray)
+    public static function shift ($array)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $xElement = $aArray[0];
-        self::remove($aArray, 0);
-        return $xElement;
+        $element = $array[0];
+        self::remove($array, 0);
+        return $element;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Adds the elements of an array to the start of another array.
      *
-     * @param  array $aArray The array to be grown.
-     * @param  array $aAddArray The array containing the elements to be added.
+     * @param  array $array The array to be grown.
+     * @param  array $addArray The array containing the elements to be added.
      *
      * @return int The array's new length.
      */
 
-    public static function unshiftArray ($aArray, $aAddArray)
+    public static function unshiftArray ($array, $addArray)
     {
-        assert( 'is_carray($aArray) && is_carray($aAddArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array) && is_carray($addArray)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
-        $aAddArray = splarray($aAddArray);
+        $array = splarray($array);
+        $addArray = splarray($addArray);
 
-        self::assignArrayToArray($aArray, self::union($aAddArray, $aArray));
-        return $aArray->getSize();
+        self::assignArrayToArray($array, self::union($addArray, $array));
+        return $array->getSize();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -963,22 +963,22 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * As a special case, the position of insertion can be equal to the array's length, which would make this method
      * work like `push` method.
      *
-     * @param  array $aArray The array to be modified.
-     * @param  int $iAtPos The position at which the new element is to be inserted.
-     * @param  mixed $xInsertElement The new element.
+     * @param  array $array The array to be modified.
+     * @param  int $atPos The position at which the new element is to be inserted.
+     * @param  mixed $insertElement The new element.
      *
      * @return void
      */
 
-    public static function insert ($aArray, $iAtPos, $xInsertElement)
+    public static function insert ($array, $atPos, $insertElement)
     {
-        assert( 'is_carray($aArray) && is_int($iAtPos)', vs(isset($this), get_defined_vars()) );
-        assert( '0 <= $iAtPos && $iAtPos <= $aArray->getSize()', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array) && is_int($atPos)', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $atPos && $atPos <= $array->getSize()', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        self::assignArrayToArray($aArray, self::union(self::subar($aArray, 0, $iAtPos),
-            self::fromElements($xInsertElement), self::subar($aArray, $iAtPos)));
+        self::assignArrayToArray($array, self::union(self::subar($array, 0, $atPos),
+            self::fromElements($insertElement), self::subar($array, $atPos)));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -987,91 +987,91 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * As a special case, the position of insertion can be equal to the array's length, which would make this method
      * work like `pushArray` method.
      *
-     * @param  array $aArray The array to be modified.
-     * @param  int $iAtPos The position at which the new elements are to be inserted.
-     * @param  array $aInsertArray The array containing the elements to be inserted.
+     * @param  array $array The array to be modified.
+     * @param  int $atPos The position at which the new elements are to be inserted.
+     * @param  array $insertArray The array containing the elements to be inserted.
      *
      * @return void
      */
 
-    public static function insertArray ($aArray, $iAtPos, $aInsertArray)
+    public static function insertArray ($array, $atPos, $insertArray)
     {
-        assert( 'is_carray($aArray) && is_int($iAtPos) && is_carray($aInsertArray)',
+        assert( 'is_carray($array) && is_int($atPos) && is_carray($insertArray)',
             vs(isset($this), get_defined_vars()) );
-        assert( '0 <= $iAtPos && $iAtPos <= $aArray->getSize()', vs(isset($this), get_defined_vars()) );
+        assert( '0 <= $atPos && $atPos <= $array->getSize()', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
-        $aInsertArray = splarray($aInsertArray);
+        $array = splarray($array);
+        $insertArray = splarray($insertArray);
 
-        self::assignArrayToArray($aArray, self::union(self::subar($aArray, 0, $iAtPos), $aInsertArray,
-            self::subar($aArray, $iAtPos)));
+        self::assignArrayToArray($array, self::union(self::subar($array, 0, $atPos), $insertArray,
+            self::subar($array, $atPos)));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Adds elements to the start of an array to make it grow to a specified length.
      *
-     * @param  array $aArray The array to be padded.
-     * @param  mixed $xPaddingElement The element to be used for padding.
-     * @param  int $iNewLength The array's new length.
+     * @param  array $array The array to be padded.
+     * @param  mixed $paddingElement The element to be used for padding.
+     * @param  int $newLength The array's new length.
      *
      * @return void
      */
 
-    public static function padStart ($aArray, $xPaddingElement, $iNewLength)
+    public static function padStart ($array, $paddingElement, $newLength)
     {
-        assert( 'is_carray($aArray) && is_int($iNewLength)', vs(isset($this), get_defined_vars()) );
-        assert( '$iNewLength >= $aArray->getSize()', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array) && is_int($newLength)', vs(isset($this), get_defined_vars()) );
+        assert( '$newLength >= $array->getSize()', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $iDiff = $iNewLength - $aArray->getSize();
-        $aPadding = self::make($iDiff);
-        for ($i = 0; $i < $iDiff; $i++)
+        $diff = $newLength - $array->getSize();
+        $padding = self::make($diff);
+        for ($i = 0; $i < $diff; $i++)
         {
-            $aPadding[$i] = $xPaddingElement;
+            $padding[$i] = $paddingElement;
         }
-        self::assignArrayToArray($aArray, self::union($aPadding, $aArray));
+        self::assignArrayToArray($array, self::union($padding, $array));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Adds elements to the end of an array to make it grow to a specified length.
      *
-     * @param  array $aArray The array to be padded.
-     * @param  mixed $xPaddingElement The element to be used for padding.
-     * @param  int $iNewLength The array's new length.
+     * @param  array $array The array to be padded.
+     * @param  mixed $paddingElement The element to be used for padding.
+     * @param  int $newLength The array's new length.
      *
      * @return void
      */
 
-    public static function padEnd ($aArray, $xPaddingElement, $iNewLength)
+    public static function padEnd ($array, $paddingElement, $newLength)
     {
-        assert( 'is_carray($aArray) && is_int($iNewLength)', vs(isset($this), get_defined_vars()) );
-        assert( '$iNewLength >= $aArray->getSize()', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array) && is_int($newLength)', vs(isset($this), get_defined_vars()) );
+        assert( '$newLength >= $array->getSize()', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $iDiff = $iNewLength - $aArray->getSize();
-        $aPadding = self::make($iDiff);
-        for ($i = 0; $i < $iDiff; $i++)
+        $diff = $newLength - $array->getSize();
+        $padding = self::make($diff);
+        for ($i = 0; $i < $diff; $i++)
         {
-            $aPadding[$i] = $xPaddingElement;
+            $padding[$i] = $paddingElement;
         }
-        self::assignArrayToArray($aArray, self::union($aArray, $aPadding));
+        self::assignArrayToArray($array, self::union($array, $padding));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Removes an element from an array.
      *
-     * @param  array $aArray The array to be modified.
-     * @param  int $iElementPos The position of the element to be removed.
+     * @param  array $array The array to be modified.
+     * @param  int $elementPos The position of the element to be removed.
      *
      * @return void
      */
 
-    public static function remove ($aArray, $iElementPos)
+    public static function remove ($array, $elementPos)
     {
-        assert( 'is_carray($aArray) && is_int($iElementPos)', vs(isset($this), get_defined_vars()) );
-        self::removeSubarray($aArray, $iElementPos, 1);
+        assert( 'is_carray($array) && is_int($elementPos)', vs(isset($this), get_defined_vars()) );
+        self::removeSubarray($array, $elementPos, 1);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1082,9 +1082,9 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * know how to compare objects of those classes that conform to the IEquality or IEqualityAndOrder interface
      * (static or not), including CArray and CMap. See the [CComparator](CComparator.html) class for more on this.
      *
-     * @param  array $aArray The array to be modified.
-     * @param  mixed $xElementValue The value that is common to the elements to be removed.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  array $array The array to be modified.
+     * @param  mixed $elementValue The value that is common to the elements to be removed.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of element values while searching. If this parameter is provided, the comparator should
      * take two parameters, with the first parameter being an element from the array and the second parameter being the
      * searched element, and return `true` if the two elements are equal and `false` otherwise.
@@ -1094,25 +1094,25 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   CComparator.html CComparator
      */
 
-    public static function removeByValue ($aArray, $xElementValue, $fnComparator = CComparator::EQUALITY)
+    public static function removeByValue ($array, $elementValue, $comparator = CComparator::EQUALITY)
     {
-        assert( 'is_carray($aArray) && is_callable($fnComparator)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array) && is_callable($comparator)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $bAnyRemoval = false;
+        $anyRemoval = false;
         while ( true )
         {
-            $iFoundAtPos;
-            $bIsIn = self::find($aArray, $xElementValue, $fnComparator, $iFoundAtPos);
-            if ( $bIsIn )
+            $foundAtPos;
+            $isIn = self::find($array, $elementValue, $comparator, $foundAtPos);
+            if ( $isIn )
             {
-                self::remove($aArray, $iFoundAtPos);
-                $bAnyRemoval = true;
+                self::remove($array, $foundAtPos);
+                $anyRemoval = true;
             }
             else
             {
-                return $bAnyRemoval;
+                return $anyRemoval;
             }
         }
     }
@@ -1122,45 +1122,45 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      *
      * The method allows for the targeted sequence to be empty.
      *
-     * @param  array $aArray The array to be modified.
-     * @param  int $iStartPos The position of the first element in the sequence to be removed.
-     * @param  int $iLength **OPTIONAL. Default is** *as many elements as the starting element is followed by*. The
+     * @param  array $array The array to be modified.
+     * @param  int $startPos The position of the first element in the sequence to be removed.
+     * @param  int $length **OPTIONAL. Default is** *as many elements as the starting element is followed by*. The
      * number of elements in the sequence to be removed.
      *
      * @return void
      */
 
-    public static function removeSubarray ($aArray, $iStartPos, $iLength = null)
+    public static function removeSubarray ($array, $startPos, $length = null)
     {
-        assert( 'is_carray($aArray) && is_int($iStartPos) && (!isset($iLength) || is_int($iLength))',
+        assert( 'is_carray($array) && is_int($startPos) && (!isset($length) || is_int($length))',
             vs(isset($this), get_defined_vars()) );
-        assert( '(0 <= $iStartPos && $iStartPos < $aArray->getSize()) || ($iStartPos == $aArray->getSize() && ' .
-                '(!isset($iLength) || $iLength == 0))', vs(isset($this), get_defined_vars()) );
-        assert( '!isset($iLength) || ($iLength >= 0 && $iStartPos + $iLength <= $aArray->getSize())',
+        assert( '(0 <= $startPos && $startPos < $array->getSize()) || ($startPos == $array->getSize() && ' .
+                '(!isset($length) || $length == 0))', vs(isset($this), get_defined_vars()) );
+        assert( '!isset($length) || ($length >= 0 && $startPos + $length <= $array->getSize())',
             vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $mResArray;
-        if ( !isset($iLength) )
+        $resArray;
+        if ( !isset($length) )
         {
-            if ( $iStartPos == $aArray->getSize() )
+            if ( $startPos == $array->getSize() )
             {
                 return;
             }
-            $mResArray = self::toPArray($aArray);
-            array_splice($mResArray, $iStartPos);
+            $resArray = self::toPArray($array);
+            array_splice($resArray, $startPos);
         }
         else
         {
-            if ( $iLength == 0 )
+            if ( $length == 0 )
             {
                 return;
             }
-            $mResArray = self::toPArray($aArray);
-            array_splice($mResArray, $iStartPos, $iLength);
+            $resArray = self::toPArray($array);
+            array_splice($resArray, $startPos, $length);
         }
-        self::assignArrayToMap($aArray, $mResArray);
+        self::assignArrayToMap($array, $resArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1170,9 +1170,9 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      *
      * The method allows for the targeted sequence to be empty.
      *
-     * @param  array $aArray The array to be modified.
-     * @param  int $iStartPos The position of the first element in the sequence to be removed.
-     * @param  int $iLength **OPTIONAL. Default is** *as many elements as the starting element is followed by*. The
+     * @param  array $array The array to be modified.
+     * @param  int $startPos The position of the first element in the sequence to be removed.
+     * @param  int $length **OPTIONAL. Default is** *as many elements as the starting element is followed by*. The
      * number of elements in the sequence to be removed.
      *
      * @return CArray The array containing the removed elements.
@@ -1180,39 +1180,39 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   #method_removeSubarray removeSubarray
      */
 
-    public static function splice ($aArray, $iStartPos, $iLength = null)
+    public static function splice ($array, $startPos, $length = null)
     {
-        assert( 'is_carray($aArray) && is_int($iStartPos) && (!isset($iLength) || is_int($iLength))',
+        assert( 'is_carray($array) && is_int($startPos) && (!isset($length) || is_int($length))',
             vs(isset($this), get_defined_vars()) );
-        assert( '(0 <= $iStartPos && $iStartPos < $aArray->getSize()) || ($iStartPos == $aArray->getSize() && ' .
-                '(!isset($iLength) || $iLength == 0))', vs(isset($this), get_defined_vars()) );
-        assert( '!isset($iLength) || ($iLength >= 0 && $iStartPos + $iLength <= $aArray->getSize())',
+        assert( '(0 <= $startPos && $startPos < $array->getSize()) || ($startPos == $array->getSize() && ' .
+                '(!isset($length) || $length == 0))', vs(isset($this), get_defined_vars()) );
+        assert( '!isset($length) || ($length >= 0 && $startPos + $length <= $array->getSize())',
             vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $mResArray;
-        $mRetArray;
-        if ( !isset($iLength) )
+        $resArray;
+        $retArray;
+        if ( !isset($length) )
         {
-            if ( $iStartPos == $aArray->getSize() )
+            if ( $startPos == $array->getSize() )
             {
                 return self::make();
             }
-            $mResArray = self::toPArray($aArray);
-            $mRetArray = array_splice($mResArray, $iStartPos);
+            $resArray = self::toPArray($array);
+            $retArray = array_splice($resArray, $startPos);
         }
         else
         {
-            if ( $iLength == 0 )
+            if ( $length == 0 )
             {
                 return self::make();
             }
-            $mResArray = self::toPArray($aArray);
-            $mRetArray = array_splice($mResArray, $iStartPos, $iLength);
+            $resArray = self::toPArray($array);
+            $retArray = array_splice($resArray, $startPos, $length);
         }
-        self::assignArrayToMap($aArray, $mResArray);
-        return self::fromPArray($mRetArray);
+        self::assignArrayToMap($array, $resArray);
+        return self::fromPArray($retArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1220,63 +1220,63 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      *
      * The method allows for the targeted sequence to be empty.
      *
-     * @param  array $aArray The array to be modified.
-     * @param  int $iStartPos The position of the first element in the sequence to be removed.
-     * @param  int $iEndPos The position of the element that *follows* the last element in the sequence to be removed.
+     * @param  array $array The array to be modified.
+     * @param  int $startPos The position of the first element in the sequence to be removed.
+     * @param  int $endPos The position of the element that *follows* the last element in the sequence to be removed.
      *
      * @return void
      */
 
-    public static function removeSubarrayByRange ($aArray, $iStartPos, $iEndPos)
+    public static function removeSubarrayByRange ($array, $startPos, $endPos)
     {
-        assert( 'is_carray($aArray) && is_int($iStartPos) && is_int($iEndPos)', vs(isset($this), get_defined_vars()) );
-        self::removeSubarray($aArray, $iStartPos, $iEndPos - $iStartPos);
+        assert( 'is_carray($array) && is_int($startPos) && is_int($endPos)', vs(isset($this), get_defined_vars()) );
+        self::removeSubarray($array, $startPos, $endPos - $startPos);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Reverses the order of the elements in an array.
      *
-     * @param  array $aArray The array to be reversed.
+     * @param  array $array The array to be reversed.
      *
      * @return void
      */
 
-    public static function reverse ($aArray)
+    public static function reverse ($array)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $iLenDiv2 = $aArray->getSize() >> 1;
-        for ($i0 = 0, $i1 = $aArray->getSize() - 1; $i0 < $iLenDiv2; $i0++, $i1--)
+        $lenDiv2 = $array->getSize() >> 1;
+        for ($i0 = 0, $i1 = $array->getSize() - 1; $i0 < $lenDiv2; $i0++, $i1--)
         {
-            $xSave = $aArray[$i0];
-            $aArray[$i0] = $aArray[$i1];
-            $aArray[$i1] = $xSave;
+            $save = $array[$i0];
+            $array[$i0] = $array[$i1];
+            $array[$i1] = $save;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Randomizes the positions of the elements in an array.
      *
-     * @param  array $aArray The array to be shuffled.
+     * @param  array $array The array to be shuffled.
      *
      * @return void
      */
 
-    public static function shuffle ($aArray)
+    public static function shuffle ($array)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
         // The Fisher-Yates algorithm.
-        for ($i = $aArray->getSize() - 1; $i > 0; $i--)
+        for ($i = $array->getSize() - 1; $i > 0; $i--)
         {
-            $iExchangeIdx = CMathi::intervalRandom(0, $i);
-            $xSave = $aArray[$iExchangeIdx];
-            $aArray[$iExchangeIdx] = $aArray[$i];
-            $aArray[$i] = $xSave;
+            $exchangeIdx = CMathi::intervalRandom(0, $i);
+            $save = $array[$exchangeIdx];
+            $array[$exchangeIdx] = $array[$i];
+            $array[$i] = $save;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1290,8 +1290,8 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * IEqualityAndOrder interface (static or not), including CArray and CMap. See the [CComparator](CComparator.html)
      * class for more on this.
      *
-     * @param  array $aArray The array to be sorted.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
+     * @param  array $array The array to be sorted.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
      * used for the comparison of any two elements. If this parameter is provided, the comparator should take two
      * parameters, which are the two elements being compared, and return `-1` if the first element needs to go before
      * the second element in the sorted array, `1` if the other way around, and `0` if the two elements are equal.
@@ -1301,16 +1301,16 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   CComparator.html CComparator
      */
 
-    public static function sort ($aArray, $fnComparator = CComparator::ORDER_ASC)
+    public static function sort ($array, $comparator = CComparator::ORDER_ASC)
     {
-        assert( 'is_carray($aArray) && is_callable($fnComparator)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array) && is_callable($comparator)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $mArray = self::toPArray($aArray);
-        $bRes = usort($mArray, $fnComparator);
-        assert( '$bRes', vs(isset($this), get_defined_vars()) );
-        self::assignArrayToMap($aArray, $mArray);
+        $pArray = self::toPArray($array);
+        $res = usort($pArray, $comparator);
+        assert( '$res', vs(isset($this), get_defined_vars()) );
+        self::assignArrayToMap($array, $pArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1318,7 +1318,7 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      *
      * For example, if you had an array of UserClass objects and UserClass had a public method named `numPosts` that
      * would return an integer value, you could sort the users by the number of posts they've made by calling this
-     * method with "numPosts" as the value of `$sOnMethodName` parameter.
+     * method with "numPosts" as the value of `$onMethodName` parameter.
      *
      * If you want to pass any custom arguments to the method that the array needs to be sorted on, just add them after
      * the comparator parameter when calling this method and the custom arguments will be passed to that method in the
@@ -1335,9 +1335,9 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * conform to the IEqualityAndOrder interface (static or not), including CArray and CMap. See the
      * [CComparator](CComparator.html) class for more on this.
      *
-     * @param  array $aArray The array to be sorted.
-     * @param  string $sOnMethodName The name of the method on which the elements are to be sorted.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
+     * @param  array $array The array to be sorted.
+     * @param  string $onMethodName The name of the method on which the elements are to be sorted.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::ORDER_ASC`. The function or method to be
      * used for the comparison of any two return values. If this parameter is provided, the comparator should take two
      * parameters, which are the return values for the two elements being compared, and return `-1` if the first
      * element needs to go before the second element in the sorted array, `1` if the other way around, and `0` if the
@@ -1348,68 +1348,68 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   CComparator.html CComparator
      */
 
-    public static function sortOn ($aArray, $sOnMethodName, $fnComparator = CComparator::ORDER_ASC/*, methodArg0,
+    public static function sortOn ($array, $onMethodName, $comparator = CComparator::ORDER_ASC/*, methodArg0,
         methodArg1, ...*/)
     {
-        assert( 'is_carray($aArray) && is_cstring($sOnMethodName) && is_callable($fnComparator)',
+        assert( 'is_carray($array) && is_cstring($onMethodName) && is_callable($comparator)',
             vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        static $s_iMethodArgsStartPos = 3;
-        $mMethodArgs = ( func_num_args() == $s_iMethodArgsStartPos ) ? [] :
-            array_slice(func_get_args(), $s_iMethodArgsStartPos);
-        $fnUseComparator = function ($xElement0, $xElement1) use ($sOnMethodName, $fnComparator, $mMethodArgs)
+        static $s_methodArgsStartPos = 3;
+        $methodArgs = ( func_num_args() == $s_methodArgsStartPos ) ? [] :
+            array_slice(func_get_args(), $s_methodArgsStartPos);
+        $useComparator = function ($element0, $element1) use ($onMethodName, $comparator, $methodArgs)
             {
-                $sClassName;
-                $bTypeIsNonScalar = phred_classify_duo($xElement0, $xElement1, $sClassName);
+                $className;
+                $typeIsNonScalar = phred_classify_duo($element0, $element1, $className);
                 if ( CDebug::isDebugModeOn() )
                 {
                     // Except for a few special cases, any two elements being compared must be objects of the same
                     // class.
-                    assert( '$bTypeIsNonScalar', vs(isset($this), get_defined_vars()) );
-                    $sClassName0;
-                    $sClassName1;
-                    phred_classify($xElement0, $sClassName0);
-                    phred_classify($xElement1, $sClassName1);
-                    assert( 'CString::equals($sClassName0, $sClassName1)', vs(isset($this), get_defined_vars()) );
+                    assert( '$typeIsNonScalar', vs(isset($this), get_defined_vars()) );
+                    $className0;
+                    $className1;
+                    phred_classify($element0, $className0);
+                    phred_classify($element1, $className1);
+                    assert( 'CString::equals($className0, $className1)', vs(isset($this), get_defined_vars()) );
                 }
-                $oReflClass = new ReflectionClass($sClassName);
+                $reflClass = new ReflectionClass($className);
 
-                assert( '$oReflClass->hasMethod($sOnMethodName)', vs(isset($this), get_defined_vars()) );
-                $oReflMethod = $oReflClass->getMethod($sOnMethodName);
-                assert( '$oReflMethod->isPublic()', vs(isset($this), get_defined_vars()) );
-                $xMethodInvokeRes0;
-                $xMethodInvokeRes1;
-                if ( !$oReflMethod->isStatic() )
+                assert( '$reflClass->hasMethod($onMethodName)', vs(isset($this), get_defined_vars()) );
+                $reflMethod = $reflClass->getMethod($onMethodName);
+                assert( '$reflMethod->isPublic()', vs(isset($this), get_defined_vars()) );
+                $methodInvokeRes0;
+                $methodInvokeRes1;
+                if ( !$reflMethod->isStatic() )
                 {
-                    if ( empty($mMethodArgs) )
+                    if ( empty($methodArgs) )
                     {
-                        $xMethodInvokeRes0 = $oReflMethod->invoke($xElement0);
-                        $xMethodInvokeRes1 = $oReflMethod->invoke($xElement1);
+                        $methodInvokeRes0 = $reflMethod->invoke($element0);
+                        $methodInvokeRes1 = $reflMethod->invoke($element1);
                     }
                     else
                     {
-                        $xMethodInvokeRes0 = $oReflMethod->invokeArgs($xElement0, $mMethodArgs);
-                        $xMethodInvokeRes1 = $oReflMethod->invokeArgs($xElement1, $mMethodArgs);
+                        $methodInvokeRes0 = $reflMethod->invokeArgs($element0, $methodArgs);
+                        $methodInvokeRes1 = $reflMethod->invokeArgs($element1, $methodArgs);
                     }
                 }
                 else
                 {
-                    if ( empty($mMethodArgs) )
+                    if ( empty($methodArgs) )
                     {
-                        $xMethodInvokeRes0 = $oReflMethod->invoke(null, $xElement0);
-                        $xMethodInvokeRes1 = $oReflMethod->invoke(null, $xElement1);
+                        $methodInvokeRes0 = $reflMethod->invoke(null, $element0);
+                        $methodInvokeRes1 = $reflMethod->invoke(null, $element1);
                     }
                     else
                     {
-                        $xMethodInvokeRes0 = $oReflMethod->invokeArgs(null, $xElement0, $mMethodArgs);
-                        $xMethodInvokeRes1 = $oReflMethod->invokeArgs(null, $xElement1, $mMethodArgs);
+                        $methodInvokeRes0 = $reflMethod->invokeArgs(null, $element0, $methodArgs);
+                        $methodInvokeRes1 = $reflMethod->invokeArgs(null, $element1, $methodArgs);
                     }
                 }
-                return call_user_func($fnComparator, $xMethodInvokeRes0, $xMethodInvokeRes1);
+                return call_user_func($comparator, $methodInvokeRes0, $methodInvokeRes1);
             };
-        self::sort($aArray, $fnUseComparator);
+        self::sort($array, $useComparator);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1420,7 +1420,7 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * **NOTE.** This method puts all uppercase in front of all lowercase (because it's dealing with ASCII text), so
      * you may consider using `sortUStrings` method instead if you don't want this.
      *
-     * @param  array $aArray The array to be sorted.
+     * @param  array $array The array to be sorted.
      *
      * @return void
      *
@@ -1428,24 +1428,24 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   #method_sortUStrings sortUStrings
      */
 
-    public static function sortStrings ($aArray)
+    public static function sortStrings ($array)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
-        self::sort($aArray, "CString::compare");
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
+        self::sort($array, "CString::compare");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sorts the elements in an array of ASCII strings, in the ascending order, case-insensitively.
      *
-     * @param  array $aArray The array to be sorted.
+     * @param  array $array The array to be sorted.
      *
      * @return void
      */
 
-    public static function sortStringsCi ($aArray)
+    public static function sortStringsCi ($array)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
-        self::sort($aArray, "CString::compareCi");
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
+        self::sort($array, "CString::compareCi");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1459,17 +1459,17 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * **NOTE.** This method puts all uppercase in front of all lowercase (because it's dealing with ASCII text), so
      * you may consider using `sortUStringsNat` method instead if you don't want this.
      *
-     * @param  array $aArray The array to be sorted.
+     * @param  array $array The array to be sorted.
      *
      * @return void
      *
      * @link   #method_sortUStringsNat sortUStringsNat
      */
 
-    public static function sortStringsNat ($aArray)
+    public static function sortStringsNat ($array)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
-        self::sort($aArray, "CString::compareNat");
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
+        self::sort($array, "CString::compareNat");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1480,15 +1480,15 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * same array with `sortStringsCi` method, but as "a3", "a20", "a100" with this method, which is the order a human
      * being would choose.
      *
-     * @param  array $aArray The array to be sorted.
+     * @param  array $array The array to be sorted.
      *
      * @return void
      */
 
-    public static function sortStringsNatCi ($aArray)
+    public static function sortStringsNatCi ($array)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
-        self::sort($aArray, "CString::compareNatCi");
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
+        self::sort($array, "CString::compareNatCi");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1498,11 +1498,11 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      *
      * **NOTE.** This method puts lowercase in front of uppercase on per-character basis.
      *
-     * @param  array $aArray The array to be sorted.
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `CUString::COLLATION_DEFAULT`. The Unicode collation
+     * @param  array $array The array to be sorted.
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `CUString::COLLATION_DEFAULT`. The Unicode collation
      * option(s) to be used for string comparison. See the [CUString](CUString.html) class for information on collation
      * options.
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which
      * strings are to be compared with each other.
      *
      * @return void
@@ -1511,29 +1511,29 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   #method_sort sort
      */
 
-    public static function sortUStrings ($aArray, $bfCollationFlags = CUString::COLLATION_DEFAULT,
-        CULocale $oInLocale = null)
+    public static function sortUStrings ($array, $collationFlags = CUString::COLLATION_DEFAULT,
+        CULocale $inLocale = null)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $sLocale = ( isset($oInLocale) ) ? $oInLocale->name() : CULocale::defaultLocaleName();
-        $oColl = CUString::collatorObject(false, false, $sLocale, $bfCollationFlags);
-        $mArray = self::toPArray($aArray);
-        $bRes = $oColl->sort($mArray);
-        assert( '$bRes', vs(isset($this), get_defined_vars()) );
-        self::assignArrayToMap($aArray, $mArray);
+        $locale = ( isset($inLocale) ) ? $inLocale->name() : CULocale::defaultLocaleName();
+        $coll = CUString::collatorObject(false, false, $locale, $collationFlags);
+        $pArray = self::toPArray($array);
+        $res = $coll->sort($pArray);
+        assert( '$res', vs(isset($this), get_defined_vars()) );
+        self::assignArrayToMap($array, $pArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sorts the elements in an array of Unicode or ASCII strings, in the ascending order, case-insensitively.
      *
-     * @param  array $aArray The array to be sorted.
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `CUString::COLLATION_DEFAULT`. The Unicode collation
+     * @param  array $array The array to be sorted.
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `CUString::COLLATION_DEFAULT`. The Unicode collation
      * option(s) to be used for string comparison. See the [CUString](CUString.html) class for information on collation
      * options.
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which
      * strings are to be compared with each other.
      *
      * @return void
@@ -1541,19 +1541,19 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   CUString.html CUString
      */
 
-    public static function sortUStringsCi ($aArray, $bfCollationFlags = CUString::COLLATION_DEFAULT,
-        CULocale $oInLocale = null)
+    public static function sortUStringsCi ($array, $collationFlags = CUString::COLLATION_DEFAULT,
+        CULocale $inLocale = null)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $sLocale = ( isset($oInLocale) ) ? $oInLocale->name() : CULocale::defaultLocaleName();
-        $oColl = CUString::collatorObject(true, false, $sLocale, $bfCollationFlags);
-        $mArray = self::toPArray($aArray);
-        $bRes = $oColl->sort($mArray);
-        assert( '$bRes', vs(isset($this), get_defined_vars()) );
-        self::assignArrayToMap($aArray, $mArray);
+        $locale = ( isset($inLocale) ) ? $inLocale->name() : CULocale::defaultLocaleName();
+        $coll = CUString::collatorObject(true, false, $locale, $collationFlags);
+        $pArray = self::toPArray($array);
+        $res = $coll->sort($pArray);
+        assert( '$res', vs(isset($this), get_defined_vars()) );
+        self::assignArrayToMap($array, $pArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1566,11 +1566,11 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      *
      * **NOTE.** This method puts lowercase in front of uppercase on per-character basis.
      *
-     * @param  array $aArray The array to be sorted.
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `CUString::COLLATION_DEFAULT`. The Unicode collation
+     * @param  array $array The array to be sorted.
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `CUString::COLLATION_DEFAULT`. The Unicode collation
      * option(s) to be used for string comparison. See the [CUString](CUString.html) class for information on collation
      * options.
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which
      * strings are to be compared with each other.
      *
      * @return void
@@ -1578,19 +1578,19 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   CUString.html CUString
      */
 
-    public static function sortUStringsNat ($aArray, $bfCollationFlags = CUString::COLLATION_DEFAULT,
-        CULocale $oInLocale = null)
+    public static function sortUStringsNat ($array, $collationFlags = CUString::COLLATION_DEFAULT,
+        CULocale $inLocale = null)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $sLocale = ( isset($oInLocale) ) ? $oInLocale->name() : CULocale::defaultLocaleName();
-        $oColl = CUString::collatorObject(false, true, $sLocale, $bfCollationFlags);
-        $mArray = self::toPArray($aArray);
-        $bRes = $oColl->sort($mArray);
-        assert( '$bRes', vs(isset($this), get_defined_vars()) );
-        self::assignArrayToMap($aArray, $mArray);
+        $locale = ( isset($inLocale) ) ? $inLocale->name() : CULocale::defaultLocaleName();
+        $coll = CUString::collatorObject(false, true, $locale, $collationFlags);
+        $pArray = self::toPArray($array);
+        $res = $coll->sort($pArray);
+        assert( '$res', vs(isset($this), get_defined_vars()) );
+        self::assignArrayToMap($array, $pArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1601,11 +1601,11 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * same array with `sortUStringsCi` method, but as "a3", "a20", "a100" with this method, which is the order a human
      * being would choose.
      *
-     * @param  array $aArray The array to be sorted.
-     * @param  bitfield $bfCollationFlags **OPTIONAL. Default is** `CUString::COLLATION_DEFAULT`. The Unicode collation
+     * @param  array $array The array to be sorted.
+     * @param  bitfield $collationFlags **OPTIONAL. Default is** `CUString::COLLATION_DEFAULT`. The Unicode collation
      * option(s) to be used for string comparison. See the [CUString](CUString.html) class for information on collation
      * options.
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which
      * strings are to be compared with each other.
      *
      * @return void
@@ -1613,19 +1613,19 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   CUString.html CUString
      */
 
-    public static function sortUStringsNatCi ($aArray, $bfCollationFlags = CUString::COLLATION_DEFAULT,
-        CULocale $oInLocale = null)
+    public static function sortUStringsNatCi ($array, $collationFlags = CUString::COLLATION_DEFAULT,
+        CULocale $inLocale = null)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $sLocale = ( isset($oInLocale) ) ? $oInLocale->name() : CULocale::defaultLocaleName();
-        $oColl = CUString::collatorObject(true, true, $sLocale, $bfCollationFlags);
-        $mArray = self::toPArray($aArray);
-        $bRes = $oColl->sort($mArray);
-        assert( '$bRes', vs(isset($this), get_defined_vars()) );
-        self::assignArrayToMap($aArray, $mArray);
+        $locale = ( isset($inLocale) ) ? $inLocale->name() : CULocale::defaultLocaleName();
+        $coll = CUString::collatorObject(true, true, $locale, $collationFlags);
+        $pArray = self::toPArray($array);
+        $res = $coll->sort($pArray);
+        assert( '$res', vs(isset($this), get_defined_vars()) );
+        self::assignArrayToMap($array, $pArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1634,20 +1634,20 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      *
      * The input array is not modified by this method.
      *
-     * @param  array $aArray The array to be filtered.
-     * @param  callable $fnFilter The function or method to be used for filtering. The filter should take an element as
+     * @param  array $array The array to be filtered.
+     * @param  callable $filter The function or method to be used for filtering. The filter should take an element as
      * a parameter and return `true` if the element should make its way into the resulting array and `false` if not.
      *
      * @return CArray The filtered array.
      */
 
-    public static function filter ($aArray, $fnFilter)
+    public static function filter ($array, $filter)
     {
-        assert( 'is_carray($aArray) && is_callable($fnFilter)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array) && is_callable($filter)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        return self::fromPArray(array_filter(self::toPArray($aArray), $fnFilter));
+        return self::fromPArray(array_filter(self::toPArray($array), $filter));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1661,8 +1661,8 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * interface (static or not), including CArray and CMap. See the [CComparator](CComparator.html) class for more on
      * this.
      *
-     * @param  array $aArray The array to be cleaned up.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  array $array The array to be cleaned up.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for element comparison. If this parameter is provided, the comparator should take two parameters, which are
      * the two elements being compared, and return `true` if the two elements are equal and `false` otherwise.
      *
@@ -1671,76 +1671,76 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   CComparator.html CComparator
      */
 
-    public static function unique ($aArray, $fnComparator = CComparator::EQUALITY)
+    public static function unique ($array, $comparator = CComparator::EQUALITY)
     {
-        assert( 'is_carray($aArray) && is_callable($fnComparator)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array) && is_callable($comparator)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $aResArray = self::make();
-        for ($i0 = 0; $i0 < $aArray->getSize(); $i0++)
+        $resArray = self::make();
+        for ($i0 = 0; $i0 < $array->getSize(); $i0++)
         {
-            $xElement = $aArray[$i0];
-            $bIsIn = false;
+            $element = $array[$i0];
+            $isIn = false;
             for ($i1 = 0; $i1 < $i0; $i1++)
             {
-                if ( call_user_func($fnComparator, $xElement, $aArray[$i1]) )
+                if ( call_user_func($comparator, $element, $array[$i1]) )
                 {
-                    $bIsIn = true;
+                    $isIn = true;
                     break;
                 }
             }
-            if ( !$bIsIn )
+            if ( !$isIn )
             {
-                self::push($aResArray, $xElement);
+                self::push($resArray, $element);
             }
         }
-        return $aResArray;
+        return $resArray;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Sums up all the elements in an array and returns the result.
      *
-     * @param  array $aArray The array to be looked into.
+     * @param  array $array The array to be looked into.
      *
      * @return number The sum of all the elements in the array.
      */
 
-    public static function elementsSum ($aArray)
+    public static function elementsSum ($array)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $nSum = 0;
-        for ($i = 0; $i < $aArray->getSize(); $i++)
+        $sum = 0;
+        for ($i = 0; $i < $array->getSize(); $i++)
         {
-            $nSum += $aArray[$i];
+            $sum += $array[$i];
         }
-        return $nSum;
+        return $sum;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Multiplies all the elements in an array and returns the result.
      *
-     * @param  array $aArray The array to be looked into.
+     * @param  array $array The array to be looked into.
      *
      * @return number The product of all the elements in the array.
      */
 
-    public static function elementsProduct ($aArray)
+    public static function elementsProduct ($array)
     {
-        assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
-        assert( '!self::isEmpty($aArray)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
+        assert( '!self::isEmpty($array)', vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
+        $array = splarray($array);
 
-        $nProduct = 1;
-        for ($i = 0; $i < $aArray->getSize(); $i++)
+        $product = 1;
+        for ($i = 0; $i < $array->getSize(); $i++)
         {
-            $nProduct *= $aArray[$i];
+            $product *= $array[$i];
         }
-        return $nProduct;
+        return $product;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1752,9 +1752,9 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * IEqualityAndOrder interface (static or not), including CArray and CMap. See the [CComparator](CComparator.html)
      * class for more on this.
      *
-     * @param  array $aArray The array to be looked into.
-     * @param  array $aOfArray The reference array.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  array $array The array to be looked into.
+     * @param  array $ofArray The reference array.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of any two elements. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being an element from the array and the second parameter being an element
      * from the reference array, and return `true` if the two elements are equal and `false` otherwise.
@@ -1764,32 +1764,32 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   CComparator.html CComparator
      */
 
-    public static function isSubsetOf ($aArray, $aOfArray, $fnComparator = CComparator::EQUALITY)
+    public static function isSubsetOf ($array, $ofArray, $comparator = CComparator::EQUALITY)
     {
-        assert( 'is_carray($aArray) && is_carray($aOfArray) && is_callable($fnComparator)',
+        assert( 'is_carray($array) && is_carray($ofArray) && is_callable($comparator)',
             vs(isset($this), get_defined_vars()) );
 
-        $aArray = splarray($aArray);
-        $aOfArray = splarray($aOfArray);
+        $array = splarray($array);
+        $ofArray = splarray($ofArray);
 
-        if ( self::isEmpty($aArray) && !self::isEmpty($aOfArray) )
+        if ( self::isEmpty($array) && !self::isEmpty($ofArray) )
         {
             // Special case.
             return false;
         }
 
-        for ($i0 = 0; $i0 < $aArray->getSize(); $i0++)
+        for ($i0 = 0; $i0 < $array->getSize(); $i0++)
         {
-            $bIsIn = false;
-            for ($i1 = 0; $i1 < $aOfArray->getSize(); $i1++)
+            $isIn = false;
+            for ($i1 = 0; $i1 < $ofArray->getSize(); $i1++)
             {
-                if ( call_user_func($fnComparator, $aArray[$i0], $aOfArray[$i1]) )
+                if ( call_user_func($comparator, $array[$i0], $ofArray[$i1]) )
                 {
-                    $bIsIn = true;
+                    $isIn = true;
                     break;
                 }
             }
-            if ( !$bIsIn )
+            if ( !$isIn )
             {
                 return false;
             }
@@ -1810,20 +1810,20 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
 
     public static function union (/*addendArray0, addendArray1, ...*/)
     {
-        $iFuncNumArgs = func_num_args();
-        assert( '$iFuncNumArgs >= 2', vs(isset($this), get_defined_vars()) );
+        $funcNumArgs = func_num_args();
+        assert( '$funcNumArgs >= 2', vs(isset($this), get_defined_vars()) );
 
-        $mResArray = CMap::make();
-        $mArguments = func_get_args();
-        foreach ($mArguments as $aArray)
+        $resArray = CMap::make();
+        $arguments = func_get_args();
+        foreach ($arguments as $array)
         {
-            assert( 'is_carray($aArray)', vs(isset($this), get_defined_vars()) );
+            assert( 'is_carray($array)', vs(isset($this), get_defined_vars()) );
 
-            $aArray = splarray($aArray);
+            $array = splarray($array);
 
-            $mResArray = array_merge($mResArray, self::toPArray($aArray));
+            $resArray = array_merge($resArray, self::toPArray($array));
         }
-        return self::fromPArray($mResArray);
+        return self::fromPArray($resArray);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1838,9 +1838,9 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * IEqualityAndOrder interface (static or not), including CArray and CMap. See the [CComparator](CComparator.html)
      * class for more on this.
      *
-     * @param  array $aLeftArray The first array.
-     * @param  array $aRightArray The second array.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  array $leftArray The first array.
+     * @param  array $rightArray The second array.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of any two elements. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being an element from the first array and the second parameter being an
      * element from the second array, and return `true` if the two elements are equal and `false` otherwise.
@@ -1850,33 +1850,33 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   CComparator.html CComparator
      */
 
-    public static function intersection ($aLeftArray, $aRightArray, $fnComparator = CComparator::EQUALITY)
+    public static function intersection ($leftArray, $rightArray, $comparator = CComparator::EQUALITY)
     {
-        assert( 'is_carray($aLeftArray) && is_carray($aRightArray) && is_callable($fnComparator)',
+        assert( 'is_carray($leftArray) && is_carray($rightArray) && is_callable($comparator)',
             vs(isset($this), get_defined_vars()) );
 
-        $aLeftArray = splarray($aLeftArray);
-        $aRightArray = splarray($aRightArray);
+        $leftArray = splarray($leftArray);
+        $rightArray = splarray($rightArray);
 
-        $aResArray = self::make();
-        for ($i0 = 0; $i0 < $aLeftArray->getSize(); $i0++)
+        $resArray = self::make();
+        for ($i0 = 0; $i0 < $leftArray->getSize(); $i0++)
         {
-            $xElement = $aLeftArray[$i0];
-            $bIsIn = false;
-            for ($i1 = 0; $i1 < $aRightArray->getSize(); $i1++)
+            $element = $leftArray[$i0];
+            $isIn = false;
+            for ($i1 = 0; $i1 < $rightArray->getSize(); $i1++)
             {
-                if ( call_user_func($fnComparator, $xElement, $aRightArray[$i1]) )
+                if ( call_user_func($comparator, $element, $rightArray[$i1]) )
                 {
-                    $bIsIn = true;
+                    $isIn = true;
                     break;
                 }
             }
-            if ( $bIsIn )
+            if ( $isIn )
             {
-                self::push($aResArray, $xElement);
+                self::push($resArray, $element);
             }
         }
-        return $aResArray;
+        return $resArray;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1890,9 +1890,9 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * IEqualityAndOrder interface (static or not), including CArray and CMap. See the [CComparator](CComparator.html)
      * class for more on this.
      *
-     * @param  array $aMinuendArray The minuend array.
-     * @param  array $aSubtrahendArray The subtrahend array.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  array $minuendArray The minuend array.
+     * @param  array $subtrahendArray The subtrahend array.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of any two elements. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being an element from the minuend array and the second parameter being an
      * element from the subtrahend array, and return `true` if the two elements are equal and `false` otherwise.
@@ -1902,33 +1902,33 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   CComparator.html CComparator
      */
 
-    public static function difference ($aMinuendArray, $aSubtrahendArray, $fnComparator = CComparator::EQUALITY)
+    public static function difference ($minuendArray, $subtrahendArray, $comparator = CComparator::EQUALITY)
     {
-        assert( 'is_carray($aMinuendArray) && is_carray($aSubtrahendArray) && is_callable($fnComparator)',
+        assert( 'is_carray($minuendArray) && is_carray($subtrahendArray) && is_callable($comparator)',
             vs(isset($this), get_defined_vars()) );
 
-        $aMinuendArray = splarray($aMinuendArray);
-        $aSubtrahendArray = splarray($aSubtrahendArray);
+        $minuendArray = splarray($minuendArray);
+        $subtrahendArray = splarray($subtrahendArray);
 
-        $aResArray = self::make();
-        for ($i0 = 0; $i0 < $aMinuendArray->getSize(); $i0++)
+        $resArray = self::make();
+        for ($i0 = 0; $i0 < $minuendArray->getSize(); $i0++)
         {
-            $xElement = $aMinuendArray[$i0];
-            $bIsIn = false;
-            for ($i1 = 0; $i1 < $aSubtrahendArray->getSize(); $i1++)
+            $element = $minuendArray[$i0];
+            $isIn = false;
+            for ($i1 = 0; $i1 < $subtrahendArray->getSize(); $i1++)
             {
-                if ( call_user_func($fnComparator, $xElement, $aSubtrahendArray[$i1]) )
+                if ( call_user_func($comparator, $element, $subtrahendArray[$i1]) )
                 {
-                    $bIsIn = true;
+                    $isIn = true;
                     break;
                 }
             }
-            if ( !$bIsIn )
+            if ( !$isIn )
             {
-                self::push($aResArray, $xElement);
+                self::push($resArray, $element);
             }
         }
-        return $aResArray;
+        return $resArray;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1943,9 +1943,9 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * IEqualityAndOrder interface (static or not), including CArray and CMap. See the [CComparator](CComparator.html)
      * class for more on this.
      *
-     * @param  array $aLeftArray The first array.
-     * @param  array $aRightArray The second array.
-     * @param  callable $fnComparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
+     * @param  array $leftArray The first array.
+     * @param  array $rightArray The second array.
+     * @param  callable $comparator **OPTIONAL. Default is** `CComparator::EQUALITY`. The function or method to be
      * used for the comparison of any two elements. If this parameter is provided, the comparator should take two
      * parameters, with the first parameter being an element from the first array and the second parameter being an
      * element from the second array, and return `true` if the two elements are equal and `false` otherwise.
@@ -1955,17 +1955,17 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      * @link   CComparator.html CComparator
      */
 
-    public static function symmetricDifference ($aLeftArray, $aRightArray, $fnComparator = CComparator::EQUALITY)
+    public static function symmetricDifference ($leftArray, $rightArray, $comparator = CComparator::EQUALITY)
     {
-        assert( 'is_carray($aLeftArray) && is_carray($aRightArray) && is_callable($fnComparator)',
+        assert( 'is_carray($leftArray) && is_carray($rightArray) && is_callable($comparator)',
             vs(isset($this), get_defined_vars()) );
 
-        $aLeftArray = splarray($aLeftArray);
-        $aRightArray = splarray($aRightArray);
+        $leftArray = splarray($leftArray);
+        $rightArray = splarray($rightArray);
 
-        $aUnionArray = self::union($aLeftArray, $aRightArray);
-        $aIntersectionArray = self::intersection($aLeftArray, $aRightArray, $fnComparator);
-        return self::difference($aUnionArray, $aIntersectionArray, $fnComparator);
+        $unionArray = self::union($leftArray, $rightArray);
+        $intersectionArray = self::intersection($leftArray, $rightArray, $comparator);
+        return self::difference($unionArray, $intersectionArray, $comparator);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -1973,44 +1973,44 @@ class CArray extends CRootClass implements ICopyingStatic, IEqualityAndOrderStat
      *
      * For instance, an element of "a" repeated three times would result in an array of "a", "a", "a".
      *
-     * @param  mixed $xElement The element to be repeated.
-     * @param  int $iTimes The length of the resulting array.
+     * @param  mixed $element The element to be repeated.
+     * @param  int $times The length of the resulting array.
      *
      * @return CArray The resulting array.
      */
 
-    public static function repeat ($xElement, $iTimes)
+    public static function repeat ($element, $times)
     {
-        assert( 'is_int($iTimes)', vs(isset($this), get_defined_vars()) );
-        assert( '$iTimes > 0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_int($times)', vs(isset($this), get_defined_vars()) );
+        assert( '$times > 0', vs(isset($this), get_defined_vars()) );
 
-        $aResArray = self::make($iTimes);
-        for ($i = 0; $i < $iTimes; $i++)
+        $resArray = self::make($times);
+        for ($i = 0; $i < $times; $i++)
         {
-            $aResArray[$i] = $xElement;
+            $resArray[$i] = $element;
         }
-        return $aResArray;
+        return $resArray;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function assignArrayToArray ($aArray0, $aArray1)
+    protected static function assignArrayToArray ($array0, $array1)
     {
-        $iLen = $aArray1->getSize();
-        $aArray0->setSize(0);
-        $aArray0->setSize($iLen);
-        for ($i = 0; $i < $iLen; $i++)
+        $len = $array1->getSize();
+        $array0->setSize(0);
+        $array0->setSize($len);
+        for ($i = 0; $i < $len; $i++)
         {
-            $aArray0[$i] = $aArray1[$i];
+            $array0[$i] = $array1[$i];
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function assignArrayToMap ($aArray, $mMap)
+    protected static function assignArrayToMap ($array, $map)
     {
-        $aArray->setSize(0);
-        $aArray->setSize(count($mMap));
+        $array->setSize(0);
+        $array->setSize(count($map));
         $i = 0;
-        foreach ($mMap as $xValue)
+        foreach ($map as $value)
         {
-            $aArray[$i++] = $xValue;
+            $array[$i++] = $value;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

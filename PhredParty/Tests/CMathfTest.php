@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -95,25 +95,25 @@ class CMathfTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testMinMax ()
     {
-        $fMin;
-        $fMax;
-        CMathf::minMax(1.2, 2.8, $fMin, $fMax);
-        $this->assertTrue( $fMin === 1.2 && $fMax === 2.8 );
+        $min;
+        $max;
+        CMathf::minMax(1.2, 2.8, $min, $max);
+        $this->assertTrue( $min === 1.2 && $max === 2.8 );
 
-        $fMin;
-        $fMax;
-        CMathf::minMax(-1.2, -2.8, $fMin, $fMax);
-        $this->assertTrue( $fMin === -2.8 && $fMax === -1.2 );
+        $min;
+        $max;
+        CMathf::minMax(-1.2, -2.8, $min, $max);
+        $this->assertTrue( $min === -2.8 && $max === -1.2 );
 
-        $fMin;
-        $fMax;
-        CMathf::minMax(1, 2, $fMin, $fMax);
-        $this->assertTrue( $fMin === 1.0 && $fMax === 2.0 );
+        $min;
+        $max;
+        CMathf::minMax(1, 2, $min, $max);
+        $this->assertTrue( $min === 1.0 && $max === 2.0 );
 
-        $fMin;
-        $fMax;
-        CMathf::minMax(-1, -2, $fMin, $fMax);
-        $this->assertTrue( $fMin === -2.0 && $fMax === -1.0 );
+        $min;
+        $max;
+        CMathf::minMax(-1, -2, $min, $max);
+        $this->assertTrue( $min === -2.0 && $max === -1.0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testClamp ()
@@ -392,8 +392,8 @@ class CMathfTest extends CTestCase
     {
         for ($i = 0; $i < 10; $i++)
         {
-            $fRnd = CMathf::random();
-            $this->assertTrue( 0.0 <= $fRnd && $fRnd < 1.0 );
+            $rnd = CMathf::random();
+            $this->assertTrue( 0.0 <= $rnd && $rnd < 1.0 );
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -401,8 +401,8 @@ class CMathfTest extends CTestCase
     {
         for ($i = 0; $i < 10; $i++)
         {
-            $fRnd = CMathf::symmetricRandom();
-            $this->assertTrue( -1.0 <= $fRnd && $fRnd < 1.0 );
+            $rnd = CMathf::symmetricRandom();
+            $this->assertTrue( -1.0 <= $rnd && $rnd < 1.0 );
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -410,18 +410,18 @@ class CMathfTest extends CTestCase
     {
         for ($i = 0; $i < 10; $i++)
         {
-            $fRnd = CMathf::intervalRandom(12.0, 34.0);
-            $this->assertTrue( 12.0 <= $fRnd && $fRnd < 34.0 );
+            $rnd = CMathf::intervalRandom(12.0, 34.0);
+            $this->assertTrue( 12.0 <= $rnd && $rnd < 34.0 );
         }
 
         for ($i = 0; $i < 10; $i++)
         {
-            $fRnd = CMathf::intervalRandom(56.0, 78.0);
-            $this->assertTrue( 56.0 <= $fRnd && $fRnd < 78.0 );
+            $rnd = CMathf::intervalRandom(56.0, 78.0);
+            $this->assertTrue( 56.0 <= $rnd && $rnd < 78.0 );
         }
 
-        $fRnd = CMathf::intervalRandom(0, 0);
-        $this->assertTrue( $fRnd === 0.0 );
+        $rnd = CMathf::intervalRandom(0, 0);
+        $this->assertTrue( $rnd === 0.0 );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testFromIntAndFracParts ()

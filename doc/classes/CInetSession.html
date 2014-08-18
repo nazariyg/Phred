@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1042336853"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1092573398"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1042336853" class="accordion-body collapse in">
+            <div id="namespace-1092573398" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -273,14 +273,14 @@ session after a request is complete.</p>
                                 <em>N/A</em>
                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/CInetSession.html#property_m_aRequestRecordsQueue" class="">$m_aRequestRecordsQueue</a><br />
-                                                                    <a href="../classes/CInetSession.html#property_m_rcMultiCurl" class="">$m_rcMultiCurl</a><br />
-                                                                    <a href="../classes/CInetSession.html#property_m_bDone" class="">$m_bDone</a><br />
-                                                                    <a href="../classes/CInetSession.html#property_m_bHasError" class="">$m_bHasError</a><br />
-                                                                    <a href="../classes/CInetSession.html#property_m_sErrorMessage" class="">$m_sErrorMessage</a><br />
-                                                                    <a href="../classes/CInetSession.html#property_m_bCookiesAreEnabled" class="">$m_bCookiesAreEnabled</a><br />
-                                                                    <a href="../classes/CInetSession.html#property_m_iMaxNumConcurrentRequests" class="">$m_iMaxNumConcurrentRequests</a><br />
-                                                                    <a href="../classes/CInetSession.html#property_m_sCookiesFp" class="">$m_sCookiesFp</a><br />
+                                                                    <a href="../classes/CInetSession.html#property_m_requestRecordsQueue" class="">$m_requestRecordsQueue</a><br />
+                                                                    <a href="../classes/CInetSession.html#property_m_multiCurl" class="">$m_multiCurl</a><br />
+                                                                    <a href="../classes/CInetSession.html#property_m_done" class="">$m_done</a><br />
+                                                                    <a href="../classes/CInetSession.html#property_m_hasError" class="">$m_hasError</a><br />
+                                                                    <a href="../classes/CInetSession.html#property_m_errorMessage" class="">$m_errorMessage</a><br />
+                                                                    <a href="../classes/CInetSession.html#property_m_cookiesAreEnabled" class="">$m_cookiesAreEnabled</a><br />
+                                                                    <a href="../classes/CInetSession.html#property_m_maxNumConcurrentRequests" class="">$m_maxNumConcurrentRequests</a><br />
+                                                                    <a href="../classes/CInetSession.html#property_m_cookiesFp" class="">$m_cookiesFp</a><br />
                                                             </section>
                         </section>
                         <section class="row-fluid private">
@@ -448,19 +448,19 @@ session after a request is complete.</p>
             <article class="method">
                 <h3 class="public ">addRequest()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">addRequest (CInetRequest&nbsp;<span class="argument">$oRequest</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$fnOnCompleteCallback</span></span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$bNewCookieSession</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">addRequest (CInetRequest&nbsp;<span class="argument">$request</span>, <span style="color: rgb(144, 144, 144)">callable&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$onCompleteCallback</span></span>, <span style="color: rgb(144, 144, 144)">bool&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$newCookieSession</span></span>) : void</pre>
                 <p><em><p>Adds a request to a session.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$oRequest</code> </td>
+                                <td><code style="border: none; background: none">$request</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CInetRequest.html">CInetRequest</a></code></td>
                                 <td><p>The request to be added.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$fnOnCompleteCallback</code> </td>
+                                <td><code style="border: none; background: none">$onCompleteCallback</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">callable</code></td>
                                 <td><p><strong>OPTIONAL.</strong> The callback function or method to be called by the session
 when the request completes. The function is expected to take four parameters: a flag of type <code>bool</code> that tells
@@ -470,7 +470,7 @@ the session to which the request belongs, in this order. You can use the session
 to the request queue of the session depending on the response or any other factors.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$bNewCookieSession</code> </td>
+                                <td><code style="border: none; background: none">$newCookieSession</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><strong>OPTIONAL. Default is</strong> <code>false</code>. Tells whether to delete all previously stored
 cookies that were set by the remote server(s) to expire when the "browsing session" during which those cookies
@@ -505,14 +505,14 @@ is <code>true</code>, the "browsing session" cookies are deleted before the requ
             <article class="method">
                 <h3 class="public ">setEnableCookies()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setEnableCookies (bool&nbsp;<span class="argument">$bEnable</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setEnableCookies (bool&nbsp;<span class="argument">$enable</span>) : void</pre>
                 <p><em><p>Enables or disables cookies for a session.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$bEnable</code> </td>
+                                <td><code style="border: none; background: none">$enable</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">bool</code></td>
                                 <td><p><code>true</code> to enable cookies for the session, <code>false</code> otherwise.</p></td>
                             </tr>
@@ -544,14 +544,14 @@ is <code>true</code>, the "browsing session" cookies are deleted before the requ
             <article class="method">
                 <h3 class="public ">setMaxNumConcurrentRequests()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setMaxNumConcurrentRequests (int&nbsp;<span class="argument">$iMaxNumConcurrentRequests</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">setMaxNumConcurrentRequests (int&nbsp;<span class="argument">$maxNumConcurrentRequests</span>) : void</pre>
                 <p><em><p>Sets the maximum number of requests that are allowed to be processed in parallel by a session.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$iMaxNumConcurrentRequests</code> </td>
+                                <td><code style="border: none; background: none">$maxNumConcurrentRequests</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">int</code></td>
                                 <td><p>The maximum number of concurrent requests.</p></td>
                             </tr>
@@ -583,14 +583,14 @@ is <code>true</code>, the "browsing session" cookies are deleted before the requ
             <article class="method">
                 <h3 class="public ">start()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">start (<span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$rbSuccess</span></span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">start (<span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$success</span></span>) : void</pre>
                 <p><em><p>Starts a session by sending out the added requests.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$rbSuccess</code> </td>
+                                <td><code style="border: none; background: none">$success</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL. OUTPUT.</strong> After the method is called with this parameter provided, the
 parameter's value tells whether the session was successful.</p></td>
@@ -662,10 +662,10 @@ parameter's value tells whether the session was successful.</p></td>
 
                                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_aRequestRecordsQueue" name="property_m_aRequestRecordsQueue" class="anchor"></a>
+            <a id="property_m_requestRecordsQueue" name="property_m_requestRecordsQueue" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_aRequestRecordsQueue</h3>
-                <pre class="signature">$m_aRequestRecordsQueue</pre>
+                <h3 class="protected ">$m_requestRecordsQueue</h3>
+                <pre class="signature">$m_requestRecordsQueue</pre>
                 <p><em></em></p>
                 
 
@@ -690,10 +690,10 @@ parameter's value tells whether the session was successful.</p></td>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_rcMultiCurl" name="property_m_rcMultiCurl" class="anchor"></a>
+            <a id="property_m_multiCurl" name="property_m_multiCurl" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_rcMultiCurl</h3>
-                <pre class="signature">$m_rcMultiCurl</pre>
+                <h3 class="protected ">$m_multiCurl</h3>
+                <pre class="signature">$m_multiCurl</pre>
                 <p><em></em></p>
                 
 
@@ -718,10 +718,10 @@ parameter's value tells whether the session was successful.</p></td>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_bDone" name="property_m_bDone" class="anchor"></a>
+            <a id="property_m_done" name="property_m_done" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_bDone</h3>
-                <pre class="signature">$m_bDone</pre>
+                <h3 class="protected ">$m_done</h3>
+                <pre class="signature">$m_done</pre>
                 <p><em></em></p>
                 
 
@@ -746,10 +746,10 @@ parameter's value tells whether the session was successful.</p></td>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_bHasError" name="property_m_bHasError" class="anchor"></a>
+            <a id="property_m_hasError" name="property_m_hasError" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_bHasError</h3>
-                <pre class="signature">$m_bHasError</pre>
+                <h3 class="protected ">$m_hasError</h3>
+                <pre class="signature">$m_hasError</pre>
                 <p><em></em></p>
                 
 
@@ -774,10 +774,10 @@ parameter's value tells whether the session was successful.</p></td>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_sErrorMessage" name="property_m_sErrorMessage" class="anchor"></a>
+            <a id="property_m_errorMessage" name="property_m_errorMessage" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_sErrorMessage</h3>
-                <pre class="signature">$m_sErrorMessage</pre>
+                <h3 class="protected ">$m_errorMessage</h3>
+                <pre class="signature">$m_errorMessage</pre>
                 <p><em></em></p>
                 
 
@@ -802,10 +802,10 @@ parameter's value tells whether the session was successful.</p></td>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_bCookiesAreEnabled" name="property_m_bCookiesAreEnabled" class="anchor"></a>
+            <a id="property_m_cookiesAreEnabled" name="property_m_cookiesAreEnabled" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_bCookiesAreEnabled</h3>
-                <pre class="signature">$m_bCookiesAreEnabled</pre>
+                <h3 class="protected ">$m_cookiesAreEnabled</h3>
+                <pre class="signature">$m_cookiesAreEnabled</pre>
                 <p><em></em></p>
                 
 
@@ -830,10 +830,10 @@ parameter's value tells whether the session was successful.</p></td>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_iMaxNumConcurrentRequests" name="property_m_iMaxNumConcurrentRequests" class="anchor"></a>
+            <a id="property_m_maxNumConcurrentRequests" name="property_m_maxNumConcurrentRequests" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_iMaxNumConcurrentRequests</h3>
-                <pre class="signature">$m_iMaxNumConcurrentRequests</pre>
+                <h3 class="protected ">$m_maxNumConcurrentRequests</h3>
+                <pre class="signature">$m_maxNumConcurrentRequests</pre>
                 <p><em></em></p>
                 
 
@@ -858,10 +858,10 @@ parameter's value tells whether the session was successful.</p></td>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_m_sCookiesFp" name="property_m_sCookiesFp" class="anchor"></a>
+            <a id="property_m_cookiesFp" name="property_m_cookiesFp" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$m_sCookiesFp</h3>
-                <pre class="signature">$m_sCookiesFp</pre>
+                <h3 class="protected ">$m_cookiesFp</h3>
+                <pre class="signature">$m_cookiesFp</pre>
                 <p><em></em></p>
                 
 
@@ -934,7 +934,7 @@ parameter's value tells whether the session was successful.</p></td>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

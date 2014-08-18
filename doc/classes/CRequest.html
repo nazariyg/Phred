@@ -138,10 +138,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1789537352"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1698538076"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1789537352" class="accordion-body collapse in">
+            <div id="namespace-1698538076" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -325,9 +325,9 @@ of sent HTTP cookies, and more.</p></em></p>
                                 <em>N/A</em>
                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/CRequest.html#property_ms_mBrowsCap" class="">$ms_mBrowsCap</a><br />
-                                                                    <a href="../classes/CRequest.html#property_ms_bTreatEmptyRequestValuesAsAbsent" class="">$ms_bTreatEmptyRequestValuesAsAbsent</a><br />
-                                                                    <a href="../classes/CRequest.html#property_ms_iMaxRecursionDepth" class="">$ms_iMaxRecursionDepth</a><br />
+                                                                    <a href="../classes/CRequest.html#property_ms_browsCap" class="">$ms_browsCap</a><br />
+                                                                    <a href="../classes/CRequest.html#property_ms_treatEmptyRequestValuesAsAbsent" class="">$ms_treatEmptyRequestValuesAsAbsent</a><br />
+                                                                    <a href="../classes/CRequest.html#property_ms_maxRecursionDepth" class="">$ms_maxRecursionDepth</a><br />
                                                             </section>
                         </section>
                         <section class="row-fluid private">
@@ -1899,7 +1899,7 @@ e.g. "129.78.138.66".</p></p>
             <article class="method">
                 <h3 class="public ">userAgentProperty()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> userAgentProperty (string&nbsp;<span class="argument">$sPropertyName</span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> userAgentProperty (string&nbsp;<span class="argument">$propertyName</span>) : OOPString</pre>
                 <p><em><p>Returns the value of a property of the user's agent, according to the BrowsCap project.</p></em></p>
                 <p>The names of the properties and their meanings are defined by the
 <a href="http://browscap.org/">Browser Capabilities Project</a>.</p>
@@ -1907,7 +1907,7 @@ e.g. "129.78.138.66".</p></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sPropertyName</code> </td>
+                                <td><code style="border: none; background: none">$propertyName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the BrowsCap property.</p></td>
                             </tr>
@@ -2278,19 +2278,19 @@ e.g. "129.78.138.66".</p></p>
             <article class="method">
                 <h3 class="public ">header()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> header (string&nbsp;<span class="argument">$sHeaderName</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$rbSuccess</span></span>) : OOPString</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> header (string&nbsp;<span class="argument">$headerName</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$success</span></span>) : OOPString</pre>
                 <p><em><p>Returns the value of an HTTP header that was sent with the request.</p></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sHeaderName</code> </td>
+                                <td><code style="border: none; background: none">$headerName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the HTTP header.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$rbSuccess</code> </td>
+                                <td><code style="border: none; background: none">$success</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL.</strong> After the method is called with this parameter provided, the
 parameter's value tells whether the request contained a header with the name specified.</p></td>
@@ -2329,24 +2329,24 @@ parameter's value tells whether the request contained a header with the name spe
             <article class="method">
                 <h3 class="public ">fieldGet()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fieldGet (string&nbsp;<span class="argument">$sFieldName</span>, CInputFilter&nbsp;<span class="argument">$oInputFilter</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$rbSuccess</span></span>) : mixed</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fieldGet (string&nbsp;<span class="argument">$fieldName</span>, CInputFilter&nbsp;<span class="argument">$inputFilter</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$success</span></span>) : mixed</pre>
                 <p><em><p>Returns the value of a field from the URL's query string if the request's HTTP method is GET.</p></em></p>
                 <p>Different from raw PHP, you can use "." within field names as much as you like.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFieldName</code> </td>
+                                <td><code style="border: none; background: none">$fieldName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the field.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$oInputFilter</code> </td>
+                                <td><code style="border: none; background: none">$inputFilter</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CInputFilter.html">CInputFilter</a></code></td>
                                 <td><p>The input filter to be used to validate and sanitize the field's value.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$rbSuccess</code> </td>
+                                <td><code style="border: none; background: none">$success</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL.</strong> After the method is called with this parameter provided, the
 parameter's value tells whether the query string contained a field with the name specified and the field's value
@@ -2388,7 +2388,7 @@ e.g. "name[key0]=value0&amp;name[key1]=value1".</p>
             <article class="method">
                 <h3 class="public ">fieldPost()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fieldPost (string&nbsp;<span class="argument">$sFieldName</span>, CInputFilter&nbsp;<span class="argument">$oInputFilter</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$rbSuccess</span></span>) : mixed</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> fieldPost (string&nbsp;<span class="argument">$fieldName</span>, CInputFilter&nbsp;<span class="argument">$inputFilter</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$success</span></span>) : mixed</pre>
                 <p><em><p>Returns the value of a field from the POST fields, which are key-value pairs that can arrive with a request if
 the request's HTTP method is POST.</p></em></p>
                 <p>Different from raw PHP, you can use "." within field names as much as you like.</p>
@@ -2396,17 +2396,17 @@ the request's HTTP method is POST.</p></em></p>
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFieldName</code> </td>
+                                <td><code style="border: none; background: none">$fieldName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the field.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$oInputFilter</code> </td>
+                                <td><code style="border: none; background: none">$inputFilter</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CInputFilter.html">CInputFilter</a></code></td>
                                 <td><p>The input filter to be used to validate and sanitize the field's value.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$rbSuccess</code> </td>
+                                <td><code style="border: none; background: none">$success</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL.</strong> After the method is called with this parameter provided, the
 parameter's value tells whether the POST fields included a field with the name specified and the field's value
@@ -2485,24 +2485,24 @@ e.g. "name[key0]=value0&amp;name[key1]=value1".</p>
             <article class="method">
                 <h3 class="public ">cookie()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> cookie (string&nbsp;<span class="argument">$sCookieName</span>, CInputFilter&nbsp;<span class="argument">$oInputFilter</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$rbSuccess</span></span>) : mixed</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> cookie (string&nbsp;<span class="argument">$cookieName</span>, CInputFilter&nbsp;<span class="argument">$inputFilter</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$success</span></span>) : mixed</pre>
                 <p><em><p>Returns the value of an HTTP cookie that was sent with the request.</p></em></p>
                 <p>Different from raw PHP, you can use "." within cookie names as much as you like.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$sCookieName</code> </td>
+                                <td><code style="border: none; background: none">$cookieName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">string</code></td>
                                 <td><p>The name of the cookie.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$oInputFilter</code> </td>
+                                <td><code style="border: none; background: none">$inputFilter</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CInputFilter.html">CInputFilter</a></code></td>
                                 <td><p>The input filter to be used to validate and sanitize the cookie's value.</p></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$rbSuccess</code> </td>
+                                <td><code style="border: none; background: none">$success</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)">reference</code></td>
                                 <td><p><strong>OPTIONAL.</strong> After the method is called with this parameter provided, the
 parameter's value tells whether the request contained a cookie with the name specified and the cookie's value
@@ -2804,29 +2804,29 @@ e.g. "name[key0]=value0&amp;name[key1]=value1".</p>
             <article class="method">
                 <h3 class="protected ">requestField()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> requestField (&nbsp;<span class="argument">$mMap</span>, &nbsp;<span class="argument">$sFieldName</span>, CInputFilter&nbsp;<span class="argument">$oInputFilter</span>, &nbsp;<span class="argument">$rbSuccess</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> requestField (&nbsp;<span class="argument">$map</span>, &nbsp;<span class="argument">$fieldName</span>, CInputFilter&nbsp;<span class="argument">$inputFilter</span>, &nbsp;<span class="argument">$success</span>)</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$mMap</code> </td>
+                                <td><code style="border: none; background: none">$map</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$sFieldName</code> </td>
+                                <td><code style="border: none; background: none">$fieldName</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$oInputFilter</code> </td>
+                                <td><code style="border: none; background: none">$inputFilter</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"><a href="../classes/CInputFilter.html">CInputFilter</a></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$rbSuccess</code> </td>
+                                <td><code style="border: none; background: none">$success</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
@@ -2859,29 +2859,29 @@ e.g. "name[key0]=value0&amp;name[key1]=value1".</p>
             <article class="method">
                 <h3 class="protected ">recurseValueBeforeFiltering()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseValueBeforeFiltering (&nbsp;<span class="argument">$xValue</span>, &nbsp;<span class="argument">$xInputFilterOrFilterCollection</span>, &nbsp;<span class="argument">$rbSuccess</span>, &nbsp;<span class="argument">$iCurrDepth</span>)</pre>
+                <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;"><span class="label label-info">static</span> recurseValueBeforeFiltering (&nbsp;<span class="argument">$value</span>, &nbsp;<span class="argument">$inputFilterOrFilterCollection</span>, &nbsp;<span class="argument">$success</span>, &nbsp;<span class="argument">$currDepth</span>)</pre>
                 <p><em></em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td><code style="border: none; background: none">$xValue</code> </td>
+                                <td><code style="border: none; background: none">$value</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$xInputFilterOrFilterCollection</code> </td>
+                                <td><code style="border: none; background: none">$inputFilterOrFilterCollection</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$rbSuccess</code> </td>
+                                <td><code style="border: none; background: none">$success</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><code style="border: none; background: none">$iCurrDepth</code> </td>
+                                <td><code style="border: none; background: none">$currDepth</code> </td>
                                 <td><code style="border: none; background: none; color: rgb(51, 51, 51)"></code></td>
                                 <td></td>
                             </tr>
@@ -2921,10 +2921,10 @@ e.g. "name[key0]=value0&amp;name[key1]=value1".</p>
 
                                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_ms_mBrowsCap" name="property_ms_mBrowsCap" class="anchor"></a>
+            <a id="property_ms_browsCap" name="property_ms_browsCap" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$ms_mBrowsCap</h3>
-                <pre class="signature">$ms_mBrowsCap</pre>
+                <h3 class="protected ">$ms_browsCap</h3>
+                <pre class="signature">$ms_browsCap</pre>
                 <p><em></em></p>
                 
 
@@ -2949,10 +2949,10 @@ e.g. "name[key0]=value0&amp;name[key1]=value1".</p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_ms_bTreatEmptyRequestValuesAsAbsent" name="property_ms_bTreatEmptyRequestValuesAsAbsent" class="anchor"></a>
+            <a id="property_ms_treatEmptyRequestValuesAsAbsent" name="property_ms_treatEmptyRequestValuesAsAbsent" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$ms_bTreatEmptyRequestValuesAsAbsent</h3>
-                <pre class="signature">$ms_bTreatEmptyRequestValuesAsAbsent</pre>
+                <h3 class="protected ">$ms_treatEmptyRequestValuesAsAbsent</h3>
+                <pre class="signature">$ms_treatEmptyRequestValuesAsAbsent</pre>
                 <p><em></em></p>
                 
 
@@ -2977,10 +2977,10 @@ e.g. "name[key0]=value0&amp;name[key1]=value1".</p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_ms_iMaxRecursionDepth" name="property_ms_iMaxRecursionDepth" class="anchor"></a>
+            <a id="property_ms_maxRecursionDepth" name="property_ms_maxRecursionDepth" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$ms_iMaxRecursionDepth</h3>
-                <pre class="signature">$ms_iMaxRecursionDepth</pre>
+                <h3 class="protected ">$ms_maxRecursionDepth</h3>
+                <pre class="signature">$ms_maxRecursionDepth</pre>
                 <p><em></em></p>
                 
 
@@ -3053,7 +3053,7 @@ e.g. "name[key0]=value0&amp;name[key1]=value1".</p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 13th, 2014 at 18:15.
+                    on August 18th, 2014 at 15:48.
                 </section>
             </section>
         </section>

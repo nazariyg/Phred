@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * This class allows you to parse the query string of a URL into fields (key-value pairs), compose a query string from
  * one-dimensional or multi-dimensional fields, while automatically handling percent-encoding in both cases.
@@ -20,16 +21,16 @@
  * You can make a copy of a URL query object using `clone` keyword like so:
  *
  * ```
- * $oUrlQueryCopy = clone $oUrlQuery;
+ * $urlQueryCopy = clone $urlQuery;
  * ```
  */
 
 // Method signatures:
-//   __construct ($sQueryString = null, &$rbParsingWasFruitful = null)
-//   bool hasField ($sFieldName)
-//   CUStringObject|CArrayObject|CMapObject field ($sFieldName)
-//   void addField ($sFieldName, $xValue)
-//   CUStringObject queryString ($bSortFields = false)
+//   __construct ($queryString = null, &$parsingWasFruitful = null)
+//   bool hasField ($fieldName)
+//   CUStringObject|CArrayObject|CMapObject field ($fieldName)
+//   void addField ($fieldName, $value)
+//   CUStringObject queryString ($sortFields = false)
 
 class CUrlQuery extends CRootClass
 {
@@ -42,47 +43,47 @@ class CUrlQuery extends CRootClass
      * should not contain a leading "?" because it's rather a delimiter that is used to separate the query string from
      * the preceding URL part.
      *
-     * @param  string $sQueryString **OPTIONAL. Default is** *create an empty URL query*. The source query string.
-     * @param  reference $rbParsingWasFruitful **OPTIONAL. OUTPUT.** After the object is constructed, this parameter,
+     * @param  string $queryString **OPTIONAL. Default is** *create an empty URL query*. The source query string.
+     * @param  reference $parsingWasFruitful **OPTIONAL. OUTPUT.** After the object is constructed, this parameter,
      * which is of type `bool`, tells whether the parsing of the query string resulted in any valid fields.
      */
 
-    public function __construct ($sQueryString = null, &$rbParsingWasFruitful = null)
+    public function __construct ($queryString = null, &$parsingWasFruitful = null)
     {
-        assert( '!isset($sQueryString) || is_cstring($sQueryString)', vs(isset($this), get_defined_vars()) );
+        assert( '!isset($queryString) || is_cstring($queryString)', vs(isset($this), get_defined_vars()) );
 
-        if ( isset($sQueryString) )
+        if ( isset($queryString) )
         {
-            if ( !CString::isEmpty($sQueryString) )
+            if ( !CString::isEmpty($queryString) )
             {
                 // Before parsing, normalize field delimiters to the default one (e.g. make ";" to be "&").
-                $aDelimiters = CString::splitIntoChars(self::$ms_sFieldDelimiters);
-                $aFields = CString::split($sQueryString, $aDelimiters);
-                $sQueryString = CArray::join($aFields, self::$ms_sFieldDelimiters[0]);
+                $delimiters = CString::splitIntoChars(self::$ms_fieldDelimiters);
+                $fields = CString::split($queryString, $delimiters);
+                $queryString = CArray::join($fields, self::$ms_fieldDelimiters[0]);
 
                 // Parse the query string.
-                parse_str($sQueryString, $this->m_mQuery);
-                if ( !is_cmap($this->m_mQuery) )
+                parse_str($queryString, $this->m_query);
+                if ( !is_cmap($this->m_query) )
                 {
-                    $this->m_mQuery = CMap::make();
+                    $this->m_query = CMap::make();
                 }
 
                 // Recursively convert any PHP's associative array with sequential keys into a CArray.
-                foreach ($this->m_mQuery as &$rxValue)
+                foreach ($this->m_query as &$value)
                 {
-                    $rxValue = self::recurseQueryValueAfterParsing($rxValue, 0);
-                } unset($rxValue);
+                    $value = self::recurseQueryValueAfterParsing($value, 0);
+                } unset($value);
             }
             else
             {
-                $this->m_mQuery = CMap::make();
+                $this->m_query = CMap::make();
             }
 
-            $rbParsingWasFruitful = !CMap::isEmpty($this->m_mQuery);
+            $parsingWasFruitful = !CMap::isEmpty($this->m_query);
         }
         else
         {
-            $this->m_mQuery = CMap::make();
+            $this->m_query = CMap::make();
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -92,16 +93,16 @@ class CUrlQuery extends CRootClass
      * In case of nested fields, i.e. multi-dimensional values, the method only looks into the fields that belong to
      * the topmost level.
      *
-     * @param  string $sFieldName The name of the field to be looked for. The characters in the string should be
+     * @param  string $fieldName The name of the field to be looked for. The characters in the string should be
      * represented literally and no characters should be percent-encoded.
      *
      * @return bool `true` if the URL query contains a field with the name specified, `false` otherwise.
      */
 
-    public function hasField ($sFieldName)
+    public function hasField ($fieldName)
     {
-        assert( 'is_cstring($sFieldName)', vs(isset($this), get_defined_vars()) );
-        return CMap::hasKey($this->m_mQuery, $sFieldName);
+        assert( 'is_cstring($fieldName)', vs(isset($this), get_defined_vars()) );
+        return CMap::hasKey($this->m_query, $fieldName);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -111,19 +112,19 @@ class CUrlQuery extends CRootClass
      * arrays and maps, and so on. If the field's value is a string, it's returned without any of its characters being
      * percent-encoded.
      *
-     * @param  string $sFieldName The name of the field to be looked for. The characters in the string should be
+     * @param  string $fieldName The name of the field to be looked for. The characters in the string should be
      * represented literally and no characters should be percent-encoded.
      *
      * @return CUStringObject|CArrayObject|CMapObject The value of the field with the name specified. This can be a
      * string (the most common case), an array, or a map.
      */
 
-    public function field ($sFieldName)
+    public function field ($fieldName)
     {
-        assert( 'is_cstring($sFieldName)', vs(isset($this), get_defined_vars()) );
-        assert( '$this->hasField($sFieldName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($fieldName)', vs(isset($this), get_defined_vars()) );
+        assert( '$this->hasField($fieldName)', vs(isset($this), get_defined_vars()) );
 
-        return $this->m_mQuery[$sFieldName];
+        return $this->m_query[$fieldName];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -133,25 +134,25 @@ class CUrlQuery extends CRootClass
      * arrays and maps, and so on. If the field's value is a string, the characters in it should be represented
      * literally and no characters should be percent-encoded.
      *
-     * @param  string $sFieldName The name of the field. The characters in the string should be represented literally
+     * @param  string $fieldName The name of the field. The characters in the string should be represented literally
      * and no characters should be percent-encoded.
-     * @param  mixed $xValue The value of the field. This can be a string (the most common case), a `bool`, an `int`, a
+     * @param  mixed $value The value of the field. This can be a string (the most common case), a `bool`, an `int`, a
      * `float`, an array, or a map.
      *
      * @return void
      */
 
-    public function addField ($sFieldName, $xValue)
+    public function addField ($fieldName, $value)
     {
-        assert( 'is_cstring($sFieldName) && (is_cstring($xValue) || ' .
-            'is_bool($xValue) || is_int($xValue) || is_float($xValue) || is_collection($xValue))',
+        assert( 'is_cstring($fieldName) && (is_cstring($value) || ' .
+            'is_bool($value) || is_int($value) || is_float($value) || is_collection($value))',
             vs(isset($this), get_defined_vars()) );
         if ( CDebug::isDebugModeOn() )
         {
-            self::recurseFieldValidation($xValue, 0);
+            self::recurseFieldValidation($value, 0);
         }
 
-        $this->m_mQuery[$sFieldName] = $xValue;
+        $this->m_query[$fieldName] = $value;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -167,67 +168,67 @@ class CUrlQuery extends CRootClass
      * was constructed from a query string with duplicate fields in it) and "=" is added after any field name that goes
      * without a value and is not followed by "=".
      *
-     * @param  bool $bSortFields **OPTIONAL. Default is** `false`. Tells whether the fields in the query string should
+     * @param  bool $sortFields **OPTIONAL. Default is** `false`. Tells whether the fields in the query string should
      * appear sorted in the ascending order, case-insensitively, and with natural order comparison used for sorting.
      *
      * @return CUStringObject The query string.
      */
 
-    public function queryString ($bSortFields = false)
+    public function queryString ($sortFields = false)
     {
-        assert( 'is_bool($bSortFields)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_bool($sortFields)', vs(isset($this), get_defined_vars()) );
 
-        if ( !CMap::isEmpty($this->m_mQuery) )
+        if ( !CMap::isEmpty($this->m_query) )
         {
-            $mUseQuery = CMap::makeCopy($this->m_mQuery);
+            $useQuery = CMap::makeCopy($this->m_query);
 
             // Recursively convert any CArray into a CMap for `http_build_query` function to accept the query.
-            $mUseQuery = self::recurseQueryValueBeforeComposingQs($mUseQuery, 0);
+            $useQuery = self::recurseQueryValueBeforeComposingQs($useQuery, 0);
 
             // Compose a preliminary query string.
-            $sQueryString = http_build_query($mUseQuery, "", self::$ms_sFieldDelimiters[0], PHP_QUERY_RFC1738);
-            if ( !is_cstring($sQueryString) )
+            $queryString = http_build_query($useQuery, "", self::$ms_fieldDelimiters[0], PHP_QUERY_RFC1738);
+            if ( !is_cstring($queryString) )
             {
                 return "";
             }
 
             // Break the string into fields.
-            $aFields = CString::split($sQueryString, self::$ms_sFieldDelimiters[0]);
+            $fields = CString::split($queryString, self::$ms_fieldDelimiters[0]);
 
             // Adjust the result of `http_build_query` function.
-            $iLen = CArray::length($aFields);
-            for ($i = 0; $i < $iLen; $i++)
+            $len = CArray::length($fields);
+            for ($i = 0; $i < $len; $i++)
             {
-                if ( CString::find($aFields[$i], "=") )
+                if ( CString::find($fields[$i], "=") )
                 {
                     // Revert excessive percent-encoding of the square brackets next to the identifiers of
                     // multidimensional data.
-                    $aFields[$i] = CRegex::replaceWithCallback($aFields[$i],
-                        "/(?:%5B(?:[^%]++|%(?!5B|5D))*+%5D)+?=/i", function ($mMatches)
+                    $fields[$i] = CRegex::replaceWithCallback($fields[$i],
+                        "/(?:%5B(?:[^%]++|%(?!5B|5D))*+%5D)+?=/i", function ($matches)
                         {
-                            $sValue = $mMatches[0];
-                            $sValue = CString::replace($sValue, "%5B", "[");
-                            $sValue = CString::replace($sValue, "%5D", "]");
-                            return $sValue;
+                            $value = $matches[0];
+                            $value = CString::replace($value, "%5B", "[");
+                            $value = CString::replace($value, "%5D", "]");
+                            return $value;
                         });
 
                     // Remove redundant indexing next to the identifiers of simple arrays.
-                    $aFields[$i] = CRegex::replaceWithCallback($aFields[$i], "/^.+?=/",
-                        function ($mMatches)
+                    $fields[$i] = CRegex::replaceWithCallback($fields[$i], "/^.+?=/",
+                        function ($matches)
                         {
-                            return CRegex::replace($mMatches[0], "/\\[\\d+\\]/", "[]");
+                            return CRegex::replace($matches[0], "/\\[\\d+\\]/", "[]");
                         });
                 }
             }
 
-            if ( $bSortFields )
+            if ( $sortFields )
             {
                 // Normalize the order of fields.
-                CArray::sortStringsNatCi($aFields);
+                CArray::sortStringsNatCi($fields);
             }
 
-            $sQueryString = CArray::join($aFields, self::$ms_sFieldDelimiters[0]);
-            return $sQueryString;
+            $queryString = CArray::join($fields, self::$ms_fieldDelimiters[0]);
+            return $queryString;
         }
         else
         {
@@ -235,131 +236,131 @@ class CUrlQuery extends CRootClass
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function recurseQueryValueAfterParsing ($xValue, $iCurrDepth)
+    protected static function recurseQueryValueAfterParsing ($value, $currDepth)
     {
-        if ( $iCurrDepth == self::$ms_iMaxRecursionDepth )
+        if ( $currDepth == self::$ms_maxRecursionDepth )
         {
-            return $xValue;
+            return $value;
         }
-        $iCurrDepth++;
+        $currDepth++;
 
-        if ( !is_cmap($xValue) )
+        if ( !is_cmap($value) )
         {
             // Only interested in PHP's associative arrays.
-            return $xValue;
+            return $value;
         }
 
-        if ( CMap::areKeysSequential($xValue) )
+        if ( CMap::areKeysSequential($value) )
         {
-            $xValue = CArray::fromPArray($xValue);
+            $value = CArray::fromPArray($value);
 
-            $iLen = CArray::length($xValue);
-            for ($i = 0; $i < $iLen; $i++)
+            $len = CArray::length($value);
+            for ($i = 0; $i < $len; $i++)
             {
-                $xValue[$i] = self::recurseQueryValueAfterParsing($xValue[$i], $iCurrDepth);
+                $value[$i] = self::recurseQueryValueAfterParsing($value[$i], $currDepth);
             }
 
-            return oop_a($xValue);
+            return oop_a($value);
         }
         else
         {
-            foreach ($xValue as &$rxMapValue)
+            foreach ($value as &$mapValue)
             {
-                $rxMapValue = self::recurseQueryValueAfterParsing($rxMapValue, $iCurrDepth);
-            } unset($rxMapValue);
+                $mapValue = self::recurseQueryValueAfterParsing($mapValue, $currDepth);
+            } unset($mapValue);
 
-            return oop_m($xValue);
+            return oop_m($value);
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function recurseFieldValidation ($xValue, $iCurrDepth)
+    protected static function recurseFieldValidation ($value, $currDepth)
     {
-        if ( $iCurrDepth == self::$ms_iMaxRecursionDepth )
+        if ( $currDepth == self::$ms_maxRecursionDepth )
         {
             return;
         }
-        $iCurrDepth++;
+        $currDepth++;
 
-        if ( !is_collection($xValue) )
+        if ( !is_collection($value) )
         {
-            assert( 'is_cstring($xValue) || is_bool($xValue) || is_int($xValue) || is_float($xValue)',
+            assert( 'is_cstring($value) || is_bool($value) || is_int($value) || is_float($value)',
                 vs(isset($this), get_defined_vars()) );
             return;
         }
 
-        if ( is_carray($xValue) )
+        if ( is_carray($value) )
         {
-            $iLen = CArray::length($xValue);
-            for ($i = 0; $i < $iLen; $i++)
+            $len = CArray::length($value);
+            for ($i = 0; $i < $len; $i++)
             {
-                self::recurseFieldValidation($xValue[$i], $iCurrDepth);
+                self::recurseFieldValidation($value[$i], $currDepth);
             }
         }
         else  // a CMap
         {
-            foreach ($xValue as $xMapValue)
+            foreach ($value as $mapValue)
             {
-                self::recurseFieldValidation($xMapValue, $iCurrDepth);
+                self::recurseFieldValidation($mapValue, $currDepth);
             }
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    protected static function recurseQueryValueBeforeComposingQs ($xValue, $iCurrDepth)
+    protected static function recurseQueryValueBeforeComposingQs ($value, $currDepth)
     {
-        if ( $iCurrDepth == self::$ms_iMaxRecursionDepth )
+        if ( $currDepth == self::$ms_maxRecursionDepth )
         {
-            return $xValue;
+            return $value;
         }
-        $iCurrDepth++;
+        $currDepth++;
 
-        if ( !is_collection($xValue) )
+        if ( !is_collection($value) )
         {
-            if ( !is_cstring($xValue) )
+            if ( !is_cstring($value) )
             {
-                if ( is_bool($xValue) )
+                if ( is_bool($value) )
                 {
-                    $xValue = CString::fromBool10($xValue);
+                    $value = CString::fromBool10($value);
                 }
-                else if ( is_int($xValue) )
+                else if ( is_int($value) )
                 {
-                    $xValue = CString::fromInt($xValue);
+                    $value = CString::fromInt($value);
                 }
-                else if ( is_float($xValue) )
+                else if ( is_float($value) )
                 {
-                    $xValue = CString::fromFloat($xValue);
+                    $value = CString::fromFloat($value);
                 }
                 else
                 {
                     assert( 'false', vs(isset($this), get_defined_vars()) );
                 }
             }
-            return $xValue;
+            return $value;
         }
 
-        if ( is_carray($xValue) )
+        if ( is_carray($value) )
         {
-            $xValue = splarray($xValue)->toArray();
+            $value = splarray($value)->toArray();
         }
         else  // map
         {
-            $xValue = parray($xValue);
+            $value = parray($value);
         }
 
-        foreach ($xValue as &$rxMapValue)
+        foreach ($value as &$mapValue)
         {
-            $rxMapValue = self::recurseQueryValueBeforeComposingQs($rxMapValue, $iCurrDepth);
-        } unset($rxMapValue);
+            $mapValue = self::recurseQueryValueBeforeComposingQs($mapValue, $currDepth);
+        } unset($mapValue);
 
-        return $xValue;
+        return $value;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    protected $m_mQuery;
+    protected $m_query;
 
     // The set of field delimiters in a query string. The first character in the string is used as the default
     // delimiter.
-    protected static $ms_sFieldDelimiters = "&;";
+    protected static $ms_fieldDelimiters = "&;";
 
-    protected static $ms_iMaxRecursionDepth = CSystem::DEFAULT_MAX_RECURSION_DEPTH;
+    protected static $ms_maxRecursionDepth = CSystem::DEFAULT_MAX_RECURSION_DEPTH;
 }
 

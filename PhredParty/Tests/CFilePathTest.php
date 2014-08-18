@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -160,21 +160,21 @@ class CFilePathTest extends CTestCase
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testAbsolute ()
     {
-        $sDirectoryPath = CFilePath::add(CSystem::temporaryFilesDp(),
-            CFile::DEFAULT_TEMPORARY_FILE_PREFIX . self::$ms_sTempDirName);
-        if ( CFile::exists($sDirectoryPath) )
+        $directoryPath = CFilePath::add(CSystem::temporaryFilesDp(),
+            CFile::DEFAULT_TEMPORARY_FILE_PREFIX . self::$ms_tempDirName);
+        if ( CFile::exists($directoryPath) )
         {
-            CFile::deleteDirectoryRecursive($sDirectoryPath);
+            CFile::deleteDirectoryRecursive($directoryPath);
         }
-        CFile::createDirectory($sDirectoryPath);
+        CFile::createDirectory($directoryPath);
 
-        $sFilePathAbs = CFilePath::add($sDirectoryPath, "file");
-        CFile::create($sFilePathAbs);
-        CSystem::cd($sDirectoryPath);
-        $this->assertTrue(CFilePath::absolute("file")->equals(CFilePath::absolute($sFilePathAbs)));
-        $this->assertTrue(CFilePath::absolute("./file")->equals(CFilePath::absolute($sFilePathAbs)));
+        $filePathAbs = CFilePath::add($directoryPath, "file");
+        CFile::create($filePathAbs);
+        CSystem::cd($directoryPath);
+        $this->assertTrue(CFilePath::absolute("file")->equals(CFilePath::absolute($filePathAbs)));
+        $this->assertTrue(CFilePath::absolute("./file")->equals(CFilePath::absolute($filePathAbs)));
 
-        CFile::deleteDirectoryRecursive($sDirectoryPath);
+        CFile::deleteDirectoryRecursive($directoryPath);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     public function testIsAbsolute ()
@@ -201,5 +201,5 @@ class CFilePathTest extends CTestCase
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    protected static $ms_sTempDirName = "test-dir-ivr27kwb";
+    protected static $ms_tempDirName = "test-dir-ivr27kwb";
 }

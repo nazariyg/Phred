@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -28,10 +28,10 @@
  */
 
 // Method signatures:
-//   __construct ($sLocaleName)
-//   static CULocale fromCountryCode ($sCode)
-//   static CULocale fromComponents ($sLanguage, $sRegion = null, $sScript = null/*, variants...*/)
-//   static CULocale fromRfc2616 ($sLocaleName, &$rbSuccess = null)
+//   __construct ($localeName)
+//   static CULocale fromCountryCode ($code)
+//   static CULocale fromComponents ($language, $region = null, $script = null/*, variants...*/)
+//   static CULocale fromRfc2616 ($localeName, &$success = null)
 //   static CULocale makeDefault ()
 //   CUStringObject name ()
 //   CUStringObject languageCode ()
@@ -43,19 +43,19 @@
 //   CArrayObject variants ()
 //   bool hasKeywords ()
 //   CMapObject keywords ()
-//   void components (&$rsLanguage, &$rsRegion = null, &$rsScript = null, &$raVariants = null, &$rmKeywords = null)
-//   CUStringObject dispName (CULocale $oInLocale = null)
-//   CUStringObject dispLanguage (CULocale $oInLocale = null)
-//   CUStringObject dispRegion (CULocale $oInLocale = null)
-//   CUStringObject dispScript (CULocale $oInLocale = null)
-//   CUStringObject dispVariants (CULocale $oInLocale = null)
-//   void addKeyword ($sKeyword, $sValue)
-//   bool equals ($oToLocale)
+//   void components (&$language, &$region = null, &$script = null, &$variants = null, &$keywords = null)
+//   CUStringObject dispName (CULocale $inLocale = null)
+//   CUStringObject dispLanguage (CULocale $inLocale = null)
+//   CUStringObject dispRegion (CULocale $inLocale = null)
+//   CUStringObject dispScript (CULocale $inLocale = null)
+//   CUStringObject dispVariants (CULocale $inLocale = null)
+//   void addKeyword ($keyword, $value)
+//   bool equals ($toLocale)
 //   static CArrayObject knownCountryCodes ()
-//   static bool isCountryCodeKnown ($sCode)
-//   static CUStringObject countryEnNameForCountryCode ($sCode)
-//   static CUStringObject currencyForCountryCode ($sCode)
-//   static bool isValid ($sLocaleName)
+//   static bool isCountryCodeKnown ($code)
+//   static CUStringObject countryEnNameForCountryCode ($code)
+//   static CUStringObject currencyForCountryCode ($code)
+//   static bool isValid ($localeName)
 //   static CUStringObject defaultLocaleName ()
 
 class CULocale extends CRootClass implements IEquality
@@ -3995,29 +3995,29 @@ class CULocale extends CRootClass implements IEquality
     /**
      * Creates a locale from a locale name.
      *
-     * @param  string $sLocaleName The name of the locale (case-insensitive).
+     * @param  string $localeName The name of the locale (case-insensitive).
      */
 
-    public function __construct ($sLocaleName)
+    public function __construct ($localeName)
     {
-        assert( 'is_cstring($sLocaleName)', vs(isset($this), get_defined_vars()) );
-        assert( 'self::isValid($sLocaleName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($localeName)', vs(isset($this), get_defined_vars()) );
+        assert( 'self::isValid($localeName)', vs(isset($this), get_defined_vars()) );
 
-        $this->m_sName = Locale::canonicalize($sLocaleName);
+        $this->m_name = Locale::canonicalize($localeName);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Creates a locale from a country/region code.
      *
-     * @param  string $sCode The two-letter ISO 3166 (or ISO 639) country/region code (case-insensitive).
+     * @param  string $code The two-letter ISO 3166 (or ISO 639) country/region code (case-insensitive).
      *
      * @return CULocale The new locale.
      */
 
-    public static function fromCountryCode ($sCode)
+    public static function fromCountryCode ($code)
     {
-        assert( 'is_cstring($sCode)', vs(isset($this), get_defined_vars()) );
-        return new self(DULocale::$CountryCodeToInfo[CString::toUpperCase($sCode)]["locale"]);
+        assert( 'is_cstring($code)', vs(isset($this), get_defined_vars()) );
+        return new self(DULocale::$CountryCodeToInfo[CString::toUpperCase($code)]["locale"]);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -4026,71 +4026,71 @@ class CULocale extends CRootClass implements IEquality
      * If the locale is to indicate any variants, the variants follow the script code's argument when calling this
      * method.
      *
-     * @param  string $sLanguage The two-letter ISO 639 language code (case-insensitive).
-     * @param  string $sRegion **OPTIONAL. Default is** *none*. The two-letter ISO 3166 (or ISO 639) country/region
+     * @param  string $language The two-letter ISO 639 language code (case-insensitive).
+     * @param  string $region **OPTIONAL. Default is** *none*. The two-letter ISO 3166 (or ISO 639) country/region
      * code (case-insensitive).
-     * @param  string $sScript **OPTIONAL. Default is** *none*. The four-letter script code (case-insensitive).
+     * @param  string $script **OPTIONAL. Default is** *none*. The four-letter script code (case-insensitive).
      *
      * @return CULocale The new locale.
      */
 
-    public static function fromComponents ($sLanguage, $sRegion = null, $sScript = null/*, variants...*/)
+    public static function fromComponents ($language, $region = null, $script = null/*, variants...*/)
     {
-        assert( 'is_cstring($sLanguage) && (!isset($sRegion) || is_cstring($sRegion)) && ' .
-                '(!isset($sScript) || is_cstring($sScript))', vs(isset($this), get_defined_vars()) );
-        assert( 'CRegex::find($sLanguage, "/^[a-z]{2,3}\\\\z/i")', vs(isset($this), get_defined_vars()) );
-        assert( '!isset($sRegion) || CRegex::find($sRegion, "/^[a-z]{2,3}\\\\z/i")',
+        assert( 'is_cstring($language) && (!isset($region) || is_cstring($region)) && ' .
+                '(!isset($script) || is_cstring($script))', vs(isset($this), get_defined_vars()) );
+        assert( 'CRegex::find($language, "/^[a-z]{2,3}\\\\z/i")', vs(isset($this), get_defined_vars()) );
+        assert( '!isset($region) || CRegex::find($region, "/^[a-z]{2,3}\\\\z/i")',
             vs(isset($this), get_defined_vars()) );
-        assert( '!isset($sScript) || CRegex::find($sScript, "/^[a-z]{4}\\\\z/i")',
+        assert( '!isset($script) || CRegex::find($script, "/^[a-z]{4}\\\\z/i")',
             vs(isset($this), get_defined_vars()) );
-        $iFuncNumArgs = func_num_args();
-        assert( '$iFuncNumArgs - 3 <= 15', vs(isset($this), get_defined_vars()) );  // the variants are limited by 15
+        $funcNumArgs = func_num_args();
+        assert( '$funcNumArgs - 3 <= 15', vs(isset($this), get_defined_vars()) );  // the variants are limited by 15
 
-        $mSubtags = CMap::make();
-        $mSubtags[Locale::LANG_TAG] = $sLanguage;
-        if ( isset($sRegion) )
+        $subtags = CMap::make();
+        $subtags[Locale::LANG_TAG] = $language;
+        if ( isset($region) )
         {
-            $mSubtags[Locale::REGION_TAG] = $sRegion;
+            $subtags[Locale::REGION_TAG] = $region;
         }
-        if ( isset($sScript) )
+        if ( isset($script) )
         {
-            $mSubtags[Locale::SCRIPT_TAG] = $sScript;
+            $subtags[Locale::SCRIPT_TAG] = $script;
         }
-        $iVariantIdx = 0;
+        $variantIdx = 0;
         for ($i = 3; $i < func_num_args(); $i++)
         {
-            $sVariant = func_get_arg($i);
-            assert( 'is_cstring($sVariant)', vs(isset($this), get_defined_vars()) );
-            $mSubtags[Locale::VARIANT_TAG . $iVariantIdx] = $sVariant;
-            $iVariantIdx++;
+            $variant = func_get_arg($i);
+            assert( 'is_cstring($variant)', vs(isset($this), get_defined_vars()) );
+            $subtags[Locale::VARIANT_TAG . $variantIdx] = $variant;
+            $variantIdx++;
         }
-        $sLocaleName = Locale::composeLocale($mSubtags);
-        return new self($sLocaleName);
+        $localeName = Locale::composeLocale($subtags);
+        return new self($localeName);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Tries to create a locale based on the value of an HTTP "Accept-Language" header.
      *
-     * @param  string $sLocaleName The name of the locale (case-insensitive, possibly with "-" used instead of "_").
-     * @param  reference $rbSuccess **OPTIONAL. OUTPUT.** After an object is constructed, this parameter tells whether
+     * @param  string $localeName The name of the locale (case-insensitive, possibly with "-" used instead of "_").
+     * @param  reference $success **OPTIONAL. OUTPUT.** After an object is constructed, this parameter tells whether
      * the provided string was successfully parsed as a valid locale name.
      *
      * @return CULocale The new locale.
      */
 
-    public static function fromRfc2616 ($sLocaleName, &$rbSuccess = null)
+    public static function fromRfc2616 ($localeName, &$success = null)
     {
-        assert( 'is_cstring($sLocaleName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($localeName)', vs(isset($this), get_defined_vars()) );
 
-        $sResLocaleName = Locale::acceptFromHttp($sLocaleName);
-        if ( is_cstring($sResLocaleName) )
+        $resLocaleName = Locale::acceptFromHttp($localeName);
+        if ( is_cstring($resLocaleName) )
         {
-            $rbSuccess = true;
-            return new self($sResLocaleName);
+            $success = true;
+            return new self($resLocaleName);
         }
         else
         {
-            $rbSuccess = false;
+            $success = false;
             return self::makeDefault();
         }
     }
@@ -4114,7 +4114,7 @@ class CULocale extends CRootClass implements IEquality
 
     public function name ()
     {
-        return $this->m_sName;
+        return $this->m_name;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -4125,7 +4125,7 @@ class CULocale extends CRootClass implements IEquality
 
     public function languageCode ()
     {
-        return Locale::getPrimaryLanguage($this->m_sName);
+        return Locale::getPrimaryLanguage($this->m_name);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -4136,7 +4136,7 @@ class CULocale extends CRootClass implements IEquality
 
     public function hasRegionCode ()
     {
-        return !CString::isEmpty(Locale::getRegion($this->m_sName));
+        return !CString::isEmpty(Locale::getRegion($this->m_name));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -4148,7 +4148,7 @@ class CULocale extends CRootClass implements IEquality
     public function regionCode ()
     {
         assert( '$this->hasRegionCode()', vs(isset($this), get_defined_vars()) );
-        return Locale::getRegion($this->m_sName);
+        return Locale::getRegion($this->m_name);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -4159,7 +4159,7 @@ class CULocale extends CRootClass implements IEquality
 
     public function hasScriptCode ()
     {
-        return !CString::isEmpty(Locale::getScript($this->m_sName));
+        return !CString::isEmpty(Locale::getScript($this->m_name));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -4171,7 +4171,7 @@ class CULocale extends CRootClass implements IEquality
     public function scriptCode ()
     {
         assert( '$this->hasScriptCode()', vs(isset($this), get_defined_vars()) );
-        return Locale::getScript($this->m_sName);
+        return Locale::getScript($this->m_name);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -4182,8 +4182,8 @@ class CULocale extends CRootClass implements IEquality
 
     public function hasVariants ()
     {
-        $mVariants = Locale::getAllVariants($this->m_sName);
-        return ( is_cmap($mVariants) && !CMap::isEmpty($mVariants) );
+        $variants = Locale::getAllVariants($this->m_name);
+        return ( is_cmap($variants) && !CMap::isEmpty($variants) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -4196,10 +4196,10 @@ class CULocale extends CRootClass implements IEquality
     {
         assert( '$this->hasVariants()', vs(isset($this), get_defined_vars()) );
 
-        $mVariants = Locale::getAllVariants($this->m_sName);
-        if ( is_cmap($mVariants) )
+        $variants = Locale::getAllVariants($this->m_name);
+        if ( is_cmap($variants) )
         {
-            return oop_a(CArray::fromPArray($mVariants));
+            return oop_a(CArray::fromPArray($variants));
         }
         else
         {
@@ -4215,8 +4215,8 @@ class CULocale extends CRootClass implements IEquality
 
     public function hasKeywords ()
     {
-        $mKeywords = Locale::getKeywords($this->m_sName);
-        return ( is_cmap($mKeywords) && !CMap::isEmpty($mKeywords) );
+        $keywords = Locale::getKeywords($this->m_name);
+        return ( is_cmap($keywords) && !CMap::isEmpty($keywords) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -4229,162 +4229,162 @@ class CULocale extends CRootClass implements IEquality
     {
         assert( '$this->hasKeywords()', vs(isset($this), get_defined_vars()) );
 
-        $mKeywords = Locale::getKeywords($this->m_sName);
-        return oop_m(( is_cmap($mKeywords) ) ? $mKeywords : CMap::make());
+        $keywords = Locale::getKeywords($this->m_name);
+        return oop_m(( is_cmap($keywords) ) ? $keywords : CMap::make());
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Parses a locale into components.
      *
-     * @param  reference $rsLanguage The two-letter language code of type `CUStringObject` (always lowercased).
-     * @param  reference $rsRegion **OPTIONAL. OUTPUT.** The two-letter country/region code of type `CUStringObject`
+     * @param  reference $language The two-letter language code of type `CUStringObject` (always lowercased).
+     * @param  reference $region **OPTIONAL. OUTPUT.** The two-letter country/region code of type `CUStringObject`
      * (always uppercased).
-     * @param  reference $rsScript **OPTIONAL. OUTPUT.** The four-letter script code of type `CUStringObject` (always
+     * @param  reference $script **OPTIONAL. OUTPUT.** The four-letter script code of type `CUStringObject` (always
      * titlecased).
-     * @param  reference $raVariants **OPTIONAL. OUTPUT.** The variants of type `CArrayObject` with elements of type
+     * @param  reference $variants **OPTIONAL. OUTPUT.** The variants of type `CArrayObject` with elements of type
      * `CUStringObject` (always uppercased).
-     * @param  reference $rmKeywords **OPTIONAL. OUTPUT.** The keyword-value pairs of type `CMapObject` with values of
+     * @param  reference $keywords **OPTIONAL. OUTPUT.** The keyword-value pairs of type `CMapObject` with values of
      * type `CUStringObject`.
      *
      * @return void
      */
 
-    public function components (&$rsLanguage, &$rsRegion = null, &$rsScript = null, &$raVariants = null,
-        &$rmKeywords = null)
+    public function components (&$language, &$region = null, &$script = null, &$variants = null,
+        &$keywords = null)
     {
-        $mSubtags = Locale::parseLocale($this->m_sName);
-        if ( CMap::hasKey($mSubtags, Locale::LANG_TAG) )
+        $subtags = Locale::parseLocale($this->m_name);
+        if ( CMap::hasKey($subtags, Locale::LANG_TAG) )
         {
-            $rsLanguage = $mSubtags[Locale::LANG_TAG];
+            $language = $subtags[Locale::LANG_TAG];
         }
-        if ( CMap::hasKey($mSubtags, Locale::REGION_TAG) )
+        if ( CMap::hasKey($subtags, Locale::REGION_TAG) )
         {
-            $rsRegion = $mSubtags[Locale::REGION_TAG];
+            $region = $subtags[Locale::REGION_TAG];
         }
-        if ( CMap::hasKey($mSubtags, Locale::SCRIPT_TAG) )
+        if ( CMap::hasKey($subtags, Locale::SCRIPT_TAG) )
         {
-            $rsScript = $mSubtags[Locale::SCRIPT_TAG];
+            $script = $subtags[Locale::SCRIPT_TAG];
         }
-        $raVariants = CArray::make();
+        $variants = CArray::make();
         for ($i = 0; $i < 15; $i++)
         {
-            $sKey = Locale::VARIANT_TAG . $i;
-            if ( CMap::hasKey($mSubtags, $sKey) )
+            $key = Locale::VARIANT_TAG . $i;
+            if ( CMap::hasKey($subtags, $key) )
             {
-                CArray::push($raVariants, $mSubtags[$sKey]);
+                CArray::push($variants, $subtags[$key]);
             }
         }
-        $raVariants = oop_a($raVariants);
-        $rmKeywords = oop_m($this->keywords($this->m_sName));
+        $variants = oop_a($variants);
+        $keywords = oop_m($this->keywords($this->m_name));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the name of a locale after localizing it in the default or some other locale.
      *
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * name is to be localized.
      *
      * @return CUStringObject The locale's localized name.
      */
 
-    public function dispName (CULocale $oInLocale = null)
+    public function dispName (CULocale $inLocale = null)
     {
-        $sInLocale = ( isset($oInLocale) ) ? $oInLocale->m_sName : self::defaultLocaleName();
-        return Locale::getDisplayName($this->m_sName, $sInLocale);
+        $strInLocale = ( isset($inLocale) ) ? $inLocale->m_name : self::defaultLocaleName();
+        return Locale::getDisplayName($this->m_name, $strInLocale);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the language of a locale after localizing it in the default or some other locale.
      *
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * language is to be localized.
      *
      * @return CUStringObject The locale's localized language.
      */
 
-    public function dispLanguage (CULocale $oInLocale = null)
+    public function dispLanguage (CULocale $inLocale = null)
     {
-        $sInLocale = ( isset($oInLocale) ) ? $oInLocale->m_sName : self::defaultLocaleName();
-        return Locale::getDisplayLanguage($this->m_sName, $sInLocale);
+        $strInLocale = ( isset($inLocale) ) ? $inLocale->m_name : self::defaultLocaleName();
+        return Locale::getDisplayLanguage($this->m_name, $strInLocale);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the country/region of a locale after localizing it in the default or some other locale.
      *
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * country/region is to be localized.
      *
      * @return CUStringObject The locale's localized country/region.
      */
 
-    public function dispRegion (CULocale $oInLocale = null)
+    public function dispRegion (CULocale $inLocale = null)
     {
-        $sInLocale = ( isset($oInLocale) ) ? $oInLocale->m_sName : self::defaultLocaleName();
-        return Locale::getDisplayRegion($this->m_sName, $sInLocale);
+        $strInLocale = ( isset($inLocale) ) ? $inLocale->m_name : self::defaultLocaleName();
+        return Locale::getDisplayRegion($this->m_name, $strInLocale);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the script of a locale after localizing it in the default or some other locale.
      *
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * script is to be localized.
      *
      * @return CUStringObject The locale's localized script.
      */
 
-    public function dispScript (CULocale $oInLocale = null)
+    public function dispScript (CULocale $inLocale = null)
     {
-        $sInLocale = ( isset($oInLocale) ) ? $oInLocale->m_sName : self::defaultLocaleName();
-        return Locale::getDisplayScript($this->m_sName, $sInLocale);
+        $strInLocale = ( isset($inLocale) ) ? $inLocale->m_name : self::defaultLocaleName();
+        return Locale::getDisplayScript($this->m_name, $strInLocale);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the variants of a locale after localizing them in the default or some other locale.
      *
-     * @param  CULocale $oInLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
+     * @param  CULocale $inLocale **OPTIONAL. Default is** *the application's default locale*. The locale in which the
      * variants are to be localized.
      *
      * @return CUStringObject The locale's localized variants, as a single string.
      */
 
-    public function dispVariants (CULocale $oInLocale = null)
+    public function dispVariants (CULocale $inLocale = null)
     {
-        $sInLocale = ( isset($oInLocale) ) ? $oInLocale->m_sName : self::defaultLocaleName();
-        return Locale::getDisplayVariant($this->m_sName, $sInLocale);
+        $strInLocale = ( isset($inLocale) ) ? $inLocale->m_name : self::defaultLocaleName();
+        return Locale::getDisplayVariant($this->m_name, $strInLocale);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Adds a keyword-value pair to a locale.
      *
-     * @param  string $sKeyword The keyword.
-     * @param  string $sValue The value.
+     * @param  string $keyword The keyword.
+     * @param  string $value The value.
      *
      * @return void
      */
 
-    public function addKeyword ($sKeyword, $sValue)
+    public function addKeyword ($keyword, $value)
     {
-        assert( 'is_cstring($sKeyword) && is_cstring($sValue)', vs(isset($this), get_defined_vars()) );
-        assert( 'CRegex::find($sKeyword, "/^\\\\w+\\\\z/")', vs(isset($this), get_defined_vars()) );
-        assert( 'CRegex::find($sValue, "/^\\\\w+\\\\z/")', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($keyword) && is_cstring($value)', vs(isset($this), get_defined_vars()) );
+        assert( 'CRegex::find($keyword, "/^\\\\w+\\\\z/")', vs(isset($this), get_defined_vars()) );
+        assert( 'CRegex::find($value, "/^\\\\w+\\\\z/")', vs(isset($this), get_defined_vars()) );
 
-        $this->m_sName .=
-            (( !CString::find($this->m_sName, "@") ) ? "@" : ";") . CString::toLowerCase($sKeyword) . "=" . $sValue;
+        $this->m_name .=
+            (( !CString::find($this->m_name, "@") ) ? "@" : ";") . CString::toLowerCase($keyword) . "=" . $value;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines if a locale is equal to another locale, comparing them by normalized names.
      *
-     * @param  CULocale $oToLocale The second locale for comparison.
+     * @param  CULocale $toLocale The second locale for comparison.
      *
      * @return bool `true` if *this* locale is equal to the second locale, `false` otherwise.
      */
 
-    public function equals ($oToLocale)
+    public function equals ($toLocale)
     {
         // Parameter type hinting is not used for the purpose of interface compatibility.
-        assert( 'is_culocale($oToLocale)', vs(isset($this), get_defined_vars()) );
-        return CString::equalsCi($this->m_sName, $oToLocale->m_sName);
+        assert( 'is_culocale($toLocale)', vs(isset($this), get_defined_vars()) );
+        return CString::equalsCi($this->m_name, $toLocale->m_name);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -4401,52 +4401,52 @@ class CULocale extends CRootClass implements IEquality
     /**
      * Determines if a country/region code is known.
      *
-     * @param  string $sCode The two-letter ISO 3166 (or ISO 639) country/region code to be looked for
+     * @param  string $code The two-letter ISO 3166 (or ISO 639) country/region code to be looked for
      * .
      *
      * @return bool `true` if the country/region code is known, `false` otherwise.
      */
 
-    public static function isCountryCodeKnown ($sCode)
+    public static function isCountryCodeKnown ($code)
     {
-        assert( 'is_cstring($sCode)', vs(isset($this), get_defined_vars()) );
-        return CMap::hasKey(DULocale::$CountryCodeToInfo, CString::toUpperCase($sCode));
+        assert( 'is_cstring($code)', vs(isset($this), get_defined_vars()) );
+        return CMap::hasKey(DULocale::$CountryCodeToInfo, CString::toUpperCase($code));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the country name for a specified country/region code, in English.
      *
-     * @param  string $sCode The two-letter ISO 3166 (or ISO 639) country/region code (case-insensitive).
+     * @param  string $code The two-letter ISO 3166 (or ISO 639) country/region code (case-insensitive).
      *
      * @return CUStringObject The country name for the country/region code.
      */
 
-    public static function countryEnNameForCountryCode ($sCode)
+    public static function countryEnNameForCountryCode ($code)
     {
-        assert( 'is_cstring($sCode)', vs(isset($this), get_defined_vars()) );
-        return DULocale::$CountryCodeToInfo[CString::toUpperCase($sCode)]["enName"];
+        assert( 'is_cstring($code)', vs(isset($this), get_defined_vars()) );
+        return DULocale::$CountryCodeToInfo[CString::toUpperCase($code)]["enName"];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the code of the currency that is default for a specified country/region code.
      *
-     * @param  string $sCode The two-letter ISO 3166 (or ISO 639) country/region code (case-insensitive).
+     * @param  string $code The two-letter ISO 3166 (or ISO 639) country/region code (case-insensitive).
      *
      * @return CUStringObject The three-letter currency code for the country/region code.
      */
 
-    public static function currencyForCountryCode ($sCode)
+    public static function currencyForCountryCode ($code)
     {
-        assert( 'is_cstring($sCode)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($code)', vs(isset($this), get_defined_vars()) );
 
-        $sCode = CString::toUpperCase($sCode);
-        $oLocale = self::fromCountryCode($sCode);
-        if ( !$oLocale->hasRegionCode() )
+        $code = CString::toUpperCase($code);
+        $locale = self::fromCountryCode($code);
+        if ( !$locale->hasRegionCode() )
         {
             return self::DEFAULT_CURRENCY;
         }
-        $oNumberFormatter = new NumberFormatter($oLocale->m_sName, NumberFormatter::CURRENCY);
-        return $oNumberFormatter->getSymbol(NumberFormatter::INTL_CURRENCY_SYMBOL);
+        $numberFormatter = new NumberFormatter($locale->m_name, NumberFormatter::CURRENCY);
+        return $numberFormatter->getSymbol(NumberFormatter::INTL_CURRENCY_SYMBOL);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -4454,28 +4454,28 @@ class CULocale extends CRootClass implements IEquality
      *
      * Scripts, variants, and keyword-value pairs are ignored.
      *
-     * @param  string $sLocaleName The locale name to be looked into.
+     * @param  string $localeName The locale name to be looked into.
      *
      * @return bool `true` if the locale name is valid and known, `false` otherwise.
      */
 
-    public static function isValid ($sLocaleName)
+    public static function isValid ($localeName)
     {
-        assert( 'is_cstring($sLocaleName)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_cstring($localeName)', vs(isset($this), get_defined_vars()) );
 
-        if ( !CRegex::findGroups($sLocaleName,
+        if ( !CRegex::findGroups($localeName,
              "/^([a-z]{2,3}(?![^_\\-]))(?|[_\\-]([a-z]{2,3}(?![^_\\-]))|[_\\-][a-z]{4}(?![^_\\-])[_\\-]([a-z]{2,3}" .
-             "(?![^_\\-]))|(?:\\z|[_\\-][a-z])).*\\z(?<=[a-z0-9])/i", $aFoundGroups) )
+             "(?![^_\\-]))|(?:\\z|[_\\-][a-z])).*\\z(?<=[a-z0-9])/i", $foundGroups) )
         {
             return false;
         }
 
-        $sRfc2616 = $aFoundGroups[0];
-        if ( CArray::length($aFoundGroups) > 1 )
+        $rfc2616 = $foundGroups[0];
+        if ( CArray::length($foundGroups) > 1 )
         {
-            $sRfc2616 .= "-" . $aFoundGroups[1];
+            $rfc2616 .= "-" . $foundGroups[1];
         }
-        return is_cstring(Locale::acceptFromHttp($sRfc2616));
+        return is_cstring(Locale::acceptFromHttp($rfc2616));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -4490,5 +4490,5 @@ class CULocale extends CRootClass implements IEquality
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    protected $m_sName;
+    protected $m_name;
 }

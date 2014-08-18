@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -13,39 +13,39 @@
  */
 
 // Method signatures:
-//   static float floor ($nValue)
-//   static float ceil ($nValue)
-//   static float round ($nValue, $iFracLength = 0)
-//   static float abs ($nValue)
-//   static float sign ($nValue)
-//   static float min ($nValue0, $nValue1)
-//   static float max ($nValue0, $nValue1)
-//   static void minMax ($nValue0, $nValue1, &$rfMin, &$rfMax)
-//   static float clamp ($nValue, $nRangeMin, $nRangeMax)
-//   static float unitClamp ($nValue)
-//   static float mod ($nX, $nY)
-//   static float sqr ($nValue)
-//   static float sqrt ($nValue)
-//   static float pow ($nBase, $nExponent)
-//   static float exp ($nValue)
-//   static float log ($nValue)
-//   static float log10 ($nValue)
-//   static float log2 ($nValue)
-//   static float sin ($nValue)
-//   static float cos ($nValue)
-//   static float tan ($nValue)
-//   static float asin ($nValue)
-//   static float acos ($nValue)
-//   static float atan ($nValue)
-//   static float atan2 ($nY, $nX)
-//   static float degToRad ($nDegrees)
-//   static float radToDeg ($nRadians)
+//   static float floor ($value)
+//   static float ceil ($value)
+//   static float round ($value, $fracLength = 0)
+//   static float abs ($value)
+//   static float sign ($value)
+//   static float min ($value0, $value1)
+//   static float max ($value0, $value1)
+//   static void minMax ($value0, $value1, &$min, &$max)
+//   static float clamp ($value, $rangeMin, $rangeMax)
+//   static float unitClamp ($value)
+//   static float mod ($x, $y)
+//   static float sqr ($value)
+//   static float sqrt ($value)
+//   static float pow ($base, $exponent)
+//   static float exp ($value)
+//   static float log ($value)
+//   static float log10 ($value)
+//   static float log2 ($value)
+//   static float sin ($value)
+//   static float cos ($value)
+//   static float tan ($value)
+//   static float asin ($value)
+//   static float acos ($value)
+//   static float atan ($value)
+//   static float atan2 ($y, $x)
+//   static float degToRad ($degrees)
+//   static float radToDeg ($radians)
 //   static float random ()
 //   static float symmetricRandom ()
-//   static float intervalRandom ($nMin, $nMax)
-//   static void seedRandom ($iSeed)
-//   static float fromIntAndFracParts ($iIntPart, $iFracPart)
-//   static bool equalsZt ($nValue0, $nValue1)
+//   static float intervalRandom ($min, $max)
+//   static void seedRandom ($seed)
+//   static float fromIntAndFracParts ($intPart, $fracPart)
+//   static bool equalsZt ($value0, $value1)
 
 class CMathf extends CRootClass
 {
@@ -141,15 +141,15 @@ class CMathf extends CRootClass
      *
      * If the number is already rounded, the same (floating-point) number is returned.
      *
-     * @param  number $nValue The number to be rounded.
+     * @param  number $value The number to be rounded.
      *
      * @return float The rounded number.
      */
 
-    public static function floor ($nValue)
+    public static function floor ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        return floor($nValue);
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        return floor($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -157,46 +157,46 @@ class CMathf extends CRootClass
      *
      * If the number is already rounded, the same (floating-point) number is returned.
      *
-     * @param  number $nValue The number to be rounded.
+     * @param  number $value The number to be rounded.
      *
      * @return float The rounded number.
      */
 
-    public static function ceil ($nValue)
+    public static function ceil ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        return ceil($nValue);
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        return ceil($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Rounds a number to the nearest integer or to a specified number of digits after the decimal point, and returns
      * it as a floating-point value.
      *
-     * @param  number $nValue The number to be rounded.
-     * @param  int $iFracLength **OPTIONAL. Default is** `0`. The length of the fractional part in the rounded number,
+     * @param  number $value The number to be rounded.
+     * @param  int $fracLength **OPTIONAL. Default is** `0`. The length of the fractional part in the rounded number,
      * which is the number of digits after the decimal point.
      *
      * @return float The rounded number.
      */
 
-    public static function round ($nValue, $iFracLength = 0)
+    public static function round ($value, $fracLength = 0)
     {
-        assert( 'is_number($nValue) && is_int($iFracLength)', vs(isset($this), get_defined_vars()) );
-        return round($nValue, $iFracLength);
+        assert( 'is_number($value) && is_int($fracLength)', vs(isset($this), get_defined_vars()) );
+        return round($value, $fracLength);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the absolute value of a number.
      *
-     * @param  number $nValue The input number.
+     * @param  number $value The input number.
      *
      * @return float The absolute value of the number.
      */
 
-    public static function abs ($nValue)
+    public static function abs ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        return (float)abs($nValue);
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        return (float)abs($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -205,73 +205,73 @@ class CMathf extends CRootClass
      * The method returns `-1.0` if the number is negative, `1.0` if the number is positive, and `0.0` if the number is
      * exactly `0.0`.
      *
-     * @param  number $nValue The input number.
+     * @param  number $value The input number.
      *
      * @return float The sign of the number.
      */
 
-    public static function sign ($nValue)
+    public static function sign ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        return (float)((int)( $nValue > 0.0 ) - (int)( $nValue < 0.0 ));
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        return (float)((int)( $value > 0.0 ) - (int)( $value < 0.0 ));
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the smallest out of two numbers.
      *
-     * @param  number $nValue0 The first number for comparison.
-     * @param  number $nValue1 The second number for comparison.
+     * @param  number $value0 The first number for comparison.
+     * @param  number $value1 The second number for comparison.
      *
      * @return float The smallest number.
      */
 
-    public static function min ($nValue0, $nValue1)
+    public static function min ($value0, $value1)
     {
-        assert( 'is_number($nValue0) && is_number($nValue1)', vs(isset($this), get_defined_vars()) );
-        return (float)(( $nValue0 < $nValue1 ) ? $nValue0 : $nValue1);
+        assert( 'is_number($value0) && is_number($value1)', vs(isset($this), get_defined_vars()) );
+        return (float)(( $value0 < $value1 ) ? $value0 : $value1);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the largest out of two numbers.
      *
-     * @param  number $nValue0 The first number for comparison.
-     * @param  number $nValue1 The second number for comparison.
+     * @param  number $value0 The first number for comparison.
+     * @param  number $value1 The second number for comparison.
      *
      * @return float The largest number.
      */
 
-    public static function max ($nValue0, $nValue1)
+    public static function max ($value0, $value1)
     {
-        assert( 'is_number($nValue0) && is_number($nValue1)', vs(isset($this), get_defined_vars()) );
-        return (float)(( $nValue0 > $nValue1 ) ? $nValue0 : $nValue1);
+        assert( 'is_number($value0) && is_number($value1)', vs(isset($this), get_defined_vars()) );
+        return (float)(( $value0 > $value1 ) ? $value0 : $value1);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Determines which out of two numbers is smallest and which is largest.
      *
-     * @param  number $nValue0 The first number for comparison.
-     * @param  number $nValue1 The second number for comparison.
-     * @param  reference $rfMin **OUTPUT.** After the method is called, the value of this parameter, which is of type
+     * @param  number $value0 The first number for comparison.
+     * @param  number $value1 The second number for comparison.
+     * @param  reference $min **OUTPUT.** After the method is called, the value of this parameter, which is of type
      * `float`, is the smallest number.
-     * @param  reference $rfMax **OUTPUT.** After the method is called, the value of this parameter, which is of type
+     * @param  reference $max **OUTPUT.** After the method is called, the value of this parameter, which is of type
      * `float`, is the largest number.
      *
      * @return void
      */
 
-    public static function minMax ($nValue0, $nValue1, &$rfMin, &$rfMax)
+    public static function minMax ($value0, $value1, &$min, &$max)
     {
-        assert( 'is_number($nValue0) && is_number($nValue1)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($value0) && is_number($value1)', vs(isset($this), get_defined_vars()) );
 
-        if ( $nValue0 < $nValue1 )
+        if ( $value0 < $value1 )
         {
-            $rfMin = (float)$nValue0;
-            $rfMax = (float)$nValue1;
+            $min = (float)$value0;
+            $max = (float)$value1;
         }
         else
         {
-            $rfMin = (float)$nValue1;
-            $rfMax = (float)$nValue0;
+            $min = (float)$value1;
+            $max = (float)$value0;
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -280,29 +280,29 @@ class CMathf extends CRootClass
      *
      * The original (floating-point) number is returned if it's already within the range.
      *
-     * @param  number $nValue The number to be clamped.
-     * @param  number $nRangeMin The smallest acceptable number for output. Any number less than this value will be
+     * @param  number $value The number to be clamped.
+     * @param  number $rangeMin The smallest acceptable number for output. Any number less than this value will be
      * clamped to it.
-     * @param  number $nRangeMax The largest acceptable number for output. Any number greater than this value will
+     * @param  number $rangeMax The largest acceptable number for output. Any number greater than this value will
      * be clamped to it.
      *
      * @return float The clamped number.
      */
 
-    public static function clamp ($nValue, $nRangeMin, $nRangeMax)
+    public static function clamp ($value, $rangeMin, $rangeMax)
     {
-        assert( 'is_number($nValue) && is_number($nRangeMin) && is_number($nRangeMax)',
+        assert( 'is_number($value) && is_number($rangeMin) && is_number($rangeMax)',
             vs(isset($this), get_defined_vars()) );
 
-        if ( $nValue > $nRangeMax )
+        if ( $value > $rangeMax )
         {
-            return (float)$nRangeMax;
+            return (float)$rangeMax;
         }
-        if ( $nValue < $nRangeMin )
+        if ( $value < $rangeMin )
         {
-            return (float)$nRangeMin;
+            return (float)$rangeMin;
         }
-        return (float)$nValue;
+        return (float)$value;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -311,41 +311,41 @@ class CMathf extends CRootClass
      * This method clamps any number less than `0.0` to `0.0`, any number greater than `1.0` to `1.0`, and returns the
      * original (floating-point) number if it's already within the unit range.
      *
-     * @param  number $nValue The number to be clamped.
+     * @param  number $value The number to be clamped.
      *
      * @return float The clamped number.
      */
 
-    public static function unitClamp ($nValue)
+    public static function unitClamp ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
 
-        if ( $nValue > 1.0 )
+        if ( $value > 1.0 )
         {
             return 1.0;
         }
-        if ( $nValue < 0.0 )
+        if ( $value < 0.0 )
         {
             return 0.0;
         }
-        return (float)$nValue;
+        return (float)$value;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the reminder of the division of two numbers.
      *
-     * @param  number $nX The dividend.
-     * @param  number $nY The divisor (cannot be zero).
+     * @param  number $x The dividend.
+     * @param  number $y The divisor (cannot be zero).
      *
      * @return float The reminder of the division.
      */
 
-    public static function mod ($nX, $nY)
+    public static function mod ($x, $y)
     {
-        assert( 'is_number($nX) && is_number($nY)', vs(isset($this), get_defined_vars()) );
-        assert( 'abs($nY) > self::ZERO_TOLERANCE', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($x) && is_number($y)', vs(isset($this), get_defined_vars()) );
+        assert( 'abs($y) > self::ZERO_TOLERANCE', vs(isset($this), get_defined_vars()) );
 
-        return fmod($nX, $nY);
+        return fmod($x, $y);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -353,150 +353,150 @@ class CMathf extends CRootClass
      *
      * This method serves as an alternative to multiplying a number by itself manually with `*` operator.
      *
-     * @param  number $nValue The input number.
+     * @param  number $value The input number.
      *
      * @return float The squared number.
      */
 
-    public static function sqr ($nValue)
+    public static function sqr ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        return (float)($nValue*$nValue);
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        return (float)($value*$value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the square root of a number.
      *
-     * @param  number $nValue The input number (should be positive or zero).
+     * @param  number $value The input number (should be positive or zero).
      *
      * @return float The number's square root.
      */
 
-    public static function sqrt ($nValue)
+    public static function sqrt ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        assert( '$nValue >= 0.0', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        assert( '$value >= 0.0', vs(isset($this), get_defined_vars()) );
 
-        return sqrt($nValue);
+        return sqrt($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the result of raising of a number to the power of a specified exponent.
      *
-     * @param  number $nBase The number to be raised.
-     * @param  number $nExponent The exponent.
+     * @param  number $base The number to be raised.
+     * @param  number $exponent The exponent.
      *
      * @return float The raised number.
      */
 
-    public static function pow ($nBase, $nExponent)
+    public static function pow ($base, $exponent)
     {
-        assert( 'is_number($nBase) && is_number($nExponent)', vs(isset($this), get_defined_vars()) );
-        return (float)pow($nBase, $nExponent);
+        assert( 'is_number($base) && is_number($exponent)', vs(isset($this), get_defined_vars()) );
+        return (float)pow($base, $exponent);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the result of raising of **e** to the power of a specified number.
      *
-     * @param  number $nValue The number to be used as the exponent.
+     * @param  number $value The number to be used as the exponent.
      *
      * @return float The raised number.
      */
 
-    public static function exp ($nValue)
+    public static function exp ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        return exp($nValue);
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        return exp($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the natural logarithm of a number.
      *
-     * @param  number $nValue The input number (should be positive, non-zero).
+     * @param  number $value The input number (should be positive, non-zero).
      *
      * @return float The natural logarithm of the number.
      */
 
-    public static function log ($nValue)
+    public static function log ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        assert( '$nValue > self::ZERO_TOLERANCE', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        assert( '$value > self::ZERO_TOLERANCE', vs(isset($this), get_defined_vars()) );
 
-        return log($nValue);
+        return log($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the logarithm of a number, calculated against the base of 10.
      *
-     * @param  number $nValue The input number (should be positive, non-zero).
+     * @param  number $value The input number (should be positive, non-zero).
      *
      * @return float The base-10 logarithm of the number.
      */
 
-    public static function log10 ($nValue)
+    public static function log10 ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        assert( '$nValue > self::ZERO_TOLERANCE', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        assert( '$value > self::ZERO_TOLERANCE', vs(isset($this), get_defined_vars()) );
 
-        return self::INV_LN_10*log($nValue);
+        return self::INV_LN_10*log($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the logarithm of a number, calculated against the base of 2.
      *
-     * @param  number $nValue The input number (should be positive, non-zero).
+     * @param  number $value The input number (should be positive, non-zero).
      *
      * @return float The base-2 logarithm of the number.
      */
 
-    public static function log2 ($nValue)
+    public static function log2 ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        assert( '$nValue > self::ZERO_TOLERANCE', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        assert( '$value > self::ZERO_TOLERANCE', vs(isset($this), get_defined_vars()) );
 
-        return self::INV_LN_2*log($nValue);
+        return self::INV_LN_2*log($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the sine of a number.
      *
-     * @param  number $nValue The input number, in radians.
+     * @param  number $value The input number, in radians.
      *
      * @return float The sine of the number.
      */
 
-    public static function sin ($nValue)
+    public static function sin ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        return sin($nValue);
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        return sin($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the cosine of a number.
      *
-     * @param  number $nValue The input number, in radians.
+     * @param  number $value The input number, in radians.
      *
      * @return float The cosine of the number.
      */
 
-    public static function cos ($nValue)
+    public static function cos ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        return cos($nValue);
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        return cos($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns the tangent of a number.
      *
-     * @param  number $nValue The input number, in radians.
+     * @param  number $value The input number, in radians.
      *
      * @return float The tangent of the number.
      */
 
-    public static function tan ($nValue)
+    public static function tan ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        return tan($nValue);
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        return tan($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -505,20 +505,20 @@ class CMathf extends CRootClass
      * As special cases, the method returns -**π** /2 if the number is less than or equal to `-1.0` and **π** /2 if the
      * number is greater than or equal to `1.0`.
      *
-     * @param  number $nValue The input number.
+     * @param  number $value The input number.
      *
      * @return float The arc sine of the number, in radians.
      */
 
-    public static function asin ($nValue)
+    public static function asin ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
 
-        if ( $nValue > -1.0 )
+        if ( $value > -1.0 )
         {
-            if ( $nValue < 1.0 )
+            if ( $value < 1.0 )
             {
-                return asin($nValue);
+                return asin($value);
             }
             else
             {
@@ -537,20 +537,20 @@ class CMathf extends CRootClass
      * As special cases, the method returns **π** if the number is less than or equal to `-1.0` and `0.0` if the number
      * is greater than or equal to `1.0`.
      *
-     * @param  number $nValue The input number.
+     * @param  number $value The input number.
      *
      * @return float The arc cosine of the number, in radians.
      */
 
-    public static function acos ($nValue)
+    public static function acos ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
 
-        if ( $nValue > -1.0 )
+        if ( $value > -1.0 )
         {
-            if ( $nValue < 1.0 )
+            if ( $value < 1.0 )
             {
-                return acos($nValue);
+                return acos($value);
             }
             else
             {
@@ -566,15 +566,15 @@ class CMathf extends CRootClass
     /**
      * Returns the arc tangent of a number.
      *
-     * @param  number $nValue The input number.
+     * @param  number $value The input number.
      *
      * @return float The arc tangent of the number, in radians.
      */
 
-    public static function atan ($nValue)
+    public static function atan ($value)
     {
-        assert( 'is_number($nValue)', vs(isset($this), get_defined_vars()) );
-        return atan($nValue);
+        assert( 'is_number($value)', vs(isset($this), get_defined_vars()) );
+        return atan($value);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -586,47 +586,47 @@ class CMathf extends CRootClass
      * It's a common convention to have the Y coordinate going before the X coordinate in the parameter list. The
      * coordinates cannot be both zeros.
      *
-     * @param  number $nY The Y coordinate of the point.
-     * @param  number $nX The X coordinate of the point.
+     * @param  number $y The Y coordinate of the point.
+     * @param  number $x The X coordinate of the point.
      *
      * @return float The angle, in radians. The range is [-**π**, **π**].
      */
 
-    public static function atan2 ($nY, $nX)
+    public static function atan2 ($y, $x)
     {
-        assert( 'is_number($nY) && is_number($nX)', vs(isset($this), get_defined_vars()) );
-        assert( '!(abs($nY) <= self::ZERO_TOLERANCE && abs($nX) <= self::ZERO_TOLERANCE)',
+        assert( 'is_number($y) && is_number($x)', vs(isset($this), get_defined_vars()) );
+        assert( '!(abs($y) <= self::ZERO_TOLERANCE && abs($x) <= self::ZERO_TOLERANCE)',
             vs(isset($this), get_defined_vars()) );
 
-        return atan2($nY, $nX);
+        return atan2($y, $x);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a number from degrees to radians.
      *
-     * @param  number $nDegrees The number to be converted.
+     * @param  number $degrees The number to be converted.
      *
      * @return float The converted number.
      */
 
-    public static function degToRad ($nDegrees)
+    public static function degToRad ($degrees)
     {
-        assert( 'is_number($nDegrees)', vs(isset($this), get_defined_vars()) );
-        return $nDegrees*self::DEG_TO_RAD;
+        assert( 'is_number($degrees)', vs(isset($this), get_defined_vars()) );
+        return $degrees*self::DEG_TO_RAD;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Converts a number from radians to degrees.
      *
-     * @param  number $nRadians The number to be converted.
+     * @param  number $radians The number to be converted.
      *
      * @return float The converted number.
      */
 
-    public static function radToDeg ($nRadians)
+    public static function radToDeg ($radians)
     {
-        assert( 'is_number($nRadians)', vs(isset($this), get_defined_vars()) );
-        return $nRadians*self::RAD_TO_DEG;
+        assert( 'is_number($radians)', vs(isset($this), get_defined_vars()) );
+        return $radians*self::RAD_TO_DEG;
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -665,45 +665,45 @@ class CMathf extends CRootClass
      *
      * The algorithm behind the random number generator is Mersenne twister.
      *
-     * @param  number $nMin The lower bound of the range, inclusively.
-     * @param  number $nMax The higher bound of the range, non-inclusively.
+     * @param  number $min The lower bound of the range, inclusively.
+     * @param  number $max The higher bound of the range, non-inclusively.
      *
      * @return float A random number from the range specified.
      */
 
-    public static function intervalRandom ($nMin, $nMax)
+    public static function intervalRandom ($min, $max)
     {
-        assert( 'is_number($nMin) && is_number($nMax)', vs(isset($this), get_defined_vars()) );
-        return $nMin + ($nMax - $nMin)*self::random();
+        assert( 'is_number($min) && is_number($max)', vs(isset($this), get_defined_vars()) );
+        return $min + ($max - $min)*self::random();
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Seeds the random number generator.
      *
-     * @param  int $iSeed The value with which the generator is to be seeded.
+     * @param  int $seed The value with which the generator is to be seeded.
      *
      * @return void
      */
 
-    public static function seedRandom ($iSeed)
+    public static function seedRandom ($seed)
     {
-        assert( 'is_int($iSeed)', vs(isset($this), get_defined_vars()) );
-        mt_srand($iSeed);
+        assert( 'is_int($seed)', vs(isset($this), get_defined_vars()) );
+        mt_srand($seed);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Returns a number composed from specified integer and fractional parts.
      *
-     * @param  int $iIntPart The integer part.
-     * @param  int $iFracPart The fractional part.
+     * @param  int $intPart The integer part.
+     * @param  int $fracPart The fractional part.
      *
      * @return float The resulting floating-point number.
      */
 
-    public static function fromIntAndFracParts ($iIntPart, $iFracPart)
+    public static function fromIntAndFracParts ($intPart, $fracPart)
     {
-        assert( 'is_int($iIntPart) && is_int($iFracPart)', vs(isset($this), get_defined_vars()) );
-        return (float)"$iIntPart.$iFracPart";
+        assert( 'is_int($intPart) && is_int($fracPart)', vs(isset($this), get_defined_vars()) );
+        return (float)"$intPart.$fracPart";
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -713,17 +713,17 @@ class CMathf extends CRootClass
      * Since the accuracy of floating-point arithmetics is not ideal, this method can be useful for finding out whether
      * two floating-point numbers are equal in situations when exact equality is not required.
      *
-     * @param  number $nValue0 The first number for comparison.
-     * @param  number $nValue1 The second number for comparison.
+     * @param  number $value0 The first number for comparison.
+     * @param  number $value1 The second number for comparison.
      *
      * @return bool `true` if the absolute difference between the two numbers is less than or equal to the value of
      * `ZERO_TOLERANCE` constant of the class (which is `1e-08`), `false` otherwise.
      */
 
-    public static function equalsZt ($nValue0, $nValue1)
+    public static function equalsZt ($value0, $value1)
     {
-        assert( 'is_number($nValue0) && is_number($nValue1)', vs(isset($this), get_defined_vars()) );
-        return ( abs($nValue0 - $nValue1) <= self::ZERO_TOLERANCE );
+        assert( 'is_number($value0) && is_number($value1)', vs(isset($this), get_defined_vars()) );
+        return ( abs($value0 - $value1) <= self::ZERO_TOLERANCE );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 }

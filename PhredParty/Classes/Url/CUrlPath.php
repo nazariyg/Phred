@@ -1,7 +1,7 @@
 <?php
 
 // Phred is providing PHP with a consistent, Unicode-enabled, and completely object-oriented coding standard.
-// Copyright (c) 2013-2014  Nazariy Gorpynyuk
+// Copyright (c) 2013-2014 Nazariy Gorpynyuk
 // Distributed under the GNU General Public License, Version 2.0
 // https://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -17,17 +17,17 @@
  * You can make a copy of a URL path object using `clone` keyword like so:
  *
  * ```
- * $oUrlPathCopy = clone $oUrlPath;
+ * $urlPathCopy = clone $urlPath;
  * ```
  */
 
 // Method signatures:
-//   __construct ($sPath = null)
+//   __construct ($path = null)
 //   CUStringObject nextComponent ()
 //   bool isPosPastEnd ()
 //   int numComponents ()
-//   CUStringObject component ($iPos)
-//   void addComponent ($sComponent)
+//   CUStringObject component ($pos)
+//   void addComponent ($component)
 //   CUStringObject pathString ()
 
 class CUrlPath extends CRootClass
@@ -41,27 +41,27 @@ class CUrlPath extends CRootClass
      * used for any such characters. No trailing "/" are stripped off the path string, so if the path is e.g.
      * "/comp0/comp1/", it produces an empty string as the last component.
      *
-     * @param  string $sPath **OPTIONAL. Default is** *create an empty URL path*. A string with the source path.
+     * @param  string $path **OPTIONAL. Default is** *create an empty URL path*. A string with the source path.
      */
 
-    public function __construct ($sPath = null)
+    public function __construct ($path = null)
     {
-        assert( '!isset($sPath) || is_cstring($sPath)', vs(isset($this), get_defined_vars()) );
-        assert( '!isset($sPath) || CString::startsWith($sPath, "/")', vs(isset($this), get_defined_vars()) );
+        assert( '!isset($path) || is_cstring($path)', vs(isset($this), get_defined_vars()) );
+        assert( '!isset($path) || CString::startsWith($path, "/")', vs(isset($this), get_defined_vars()) );
 
-        if ( isset($sPath) )
+        if ( isset($path) )
         {
-            $sPath = CString::stripStart($sPath, "/");
-            $this->m_aComponents = CString::split($sPath, "/");
-            $iLen = CArray::length($this->m_aComponents);
-            for ($i = 0; $i < $iLen; $i++)
+            $path = CString::stripStart($path, "/");
+            $this->m_components = CString::split($path, "/");
+            $len = CArray::length($this->m_components);
+            for ($i = 0; $i < $len; $i++)
             {
-                $this->m_aComponents[$i] = CUrl::leaveTdNew($this->m_aComponents[$i]);
+                $this->m_components[$i] = CUrl::leaveTdNew($this->m_components[$i]);
             }
         }
         else
         {
-            $this->m_aComponents = CArray::make();
+            $this->m_components = CArray::make();
         }
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -82,9 +82,9 @@ class CUrlPath extends CRootClass
     {
         assert( '!$this->isPosPastEnd()', vs(isset($this), get_defined_vars()) );
 
-        $iPos = $this->m_iCurrPos;
-        $this->m_iCurrPos++;
-        return $this->m_aComponents[$iPos];
+        $pos = $this->m_currPos;
+        $this->m_currPos++;
+        return $this->m_components[$pos];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -95,7 +95,7 @@ class CUrlPath extends CRootClass
 
     public function isPosPastEnd ()
     {
-        return ( $this->m_iCurrPos >= CArray::length($this->m_aComponents) );
+        return ( $this->m_currPos >= CArray::length($this->m_components) );
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -106,7 +106,7 @@ class CUrlPath extends CRootClass
 
     public function numComponents ()
     {
-        return CArray::length($this->m_aComponents);
+        return CArray::length($this->m_components);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -114,31 +114,31 @@ class CUrlPath extends CRootClass
      *
      * No characters in the returned component are percent-encoded.
      *
-     * @param  int $iPos The component's position. Positions are zero-based, so the position of the first component in
+     * @param  int $pos The component's position. Positions are zero-based, so the position of the first component in
      * a URL path is `0`, the position of the second component is `1`, and so on.
      *
      * @return CUStringObject The component located at the position specified.
      */
 
-    public function component ($iPos)
+    public function component ($pos)
     {
-        assert( 'is_int($iPos)', vs(isset($this), get_defined_vars()) );
-        return $this->m_aComponents[$iPos];
+        assert( 'is_int($pos)', vs(isset($this), get_defined_vars()) );
+        return $this->m_components[$pos];
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
      * Adds a component to a URL path.
      *
-     * @param  string $sComponent The component to be added. All the characters in the component's string should be
+     * @param  string $component The component to be added. All the characters in the component's string should be
      * represented literally and none of the characters should be percent-encoded.
      *
      * @return void
      */
 
-    public function addComponent ($sComponent)
+    public function addComponent ($component)
     {
-        assert( 'is_cstring($sComponent)', vs(isset($this), get_defined_vars()) );
-        CArray::push($this->m_aComponents, $sComponent);
+        assert( 'is_cstring($component)', vs(isset($this), get_defined_vars()) );
+        CArray::push($this->m_components, $component);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -156,13 +156,13 @@ class CUrlPath extends CRootClass
 
     public function pathString ()
     {
-        $aComponents = CArray::makeCopy($this->m_aComponents);
-        $iLen = CArray::length($aComponents);
-        for ($i = 0; $i < $iLen; $i++)
+        $components = CArray::makeCopy($this->m_components);
+        $len = CArray::length($components);
+        for ($i = 0; $i < $len; $i++)
         {
-            $aComponents[$i] = CUrl::enterTdNew($aComponents[$i]);
+            $components[$i] = CUrl::enterTdNew($components[$i]);
         }
-        return "/" . CArray::join($aComponents, "/");
+        return "/" . CArray::join($components, "/");
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -171,10 +171,10 @@ class CUrlPath extends CRootClass
 
     public function __clone ()
     {
-        $this->m_aComponents = CArray::makeCopy($this->m_aComponents);
+        $this->m_components = CArray::makeCopy($this->m_components);
     }
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    protected $m_aComponents;
-    protected $m_iCurrPos = 0;
+    protected $m_components;
+    protected $m_currPos = 0;
 }
