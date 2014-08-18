@@ -805,11 +805,11 @@ Something curious was encountered on hostname (12.34.56.78) in 'doc-root-dir'
 
 [Location:] PhredParty/Classes/String/CUString.php, line 1476
 
-Assertion "!isset($iLength) || ($iLength >= 0 &&
-$iStartPos + $iLength <= self::length($sString))" failed ()
-  'sString' => 'Hello',
-  'iStartPos' => 0,
-  'iLength' => 10
+Assertion "!isset($length) || ($length >= 0 &&
+$startPos + $length <= self::length($string))" failed ()
+  'string' => 'Hello',
+  'startPos' => 0,
+  'length' => 10
 
 [Backtrace:]
 #1  assert() called at [PhredParty/Classes/String/CUString.php:1476]
@@ -839,11 +839,11 @@ Call to undefined method MyClass::typoMethod() (E_ERROR)
 
 [Location:] PhredParty/Classes/String/CUString.php, line 1476
 
-Assertion "!isset($iLength) || ($iLength >= 0 &&
-$iStartPos + $iLength <= self::length($sString))" failed ()
-  'sString' => 'Hello',
-  'iStartPos' => 0,
-  'iLength' => 10
+Assertion "!isset($length) || ($length >= 0 &&
+$startPos + $length <= self::length($string))" failed ()
+  'string' => 'Hello',
+  'startPos' => 0,
+  'length' => 10
 
 [Backtrace:]
 #1  assert() called at [PhredParty/Classes/String/CUString.php:1476]
