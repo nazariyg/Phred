@@ -16,18 +16,18 @@ Phred is striving to transform PHP into a cutting-edge, fully-featured, and easy
 
 ```php
 // An OOP Unicode string.
-$str = "Юникит Оопов";
+$str = "Юникод Ооп";
 
-echo $str->length();        // 12
-echo $str->toUpperCase();   // ЮНИКИТ ООПОВ
+echo $str->length();        // 10
+echo $str->toUpperCase();   // ЮНИКОД ООП
 
 $array = $str->split(" ");
-echo $array->join(", ");    // Юникит, Оопов
+echo $array->join(", ");    // Юникод, Ооп
 $array->sortOn("length");
-echo $array->join(", ");    // Оопов, Юникит
+echo $array->join(", ");    // Ооп, Юникод
 
-echo strlen($str);          // 23
-echo strtoupper($str);      // Юникит Оопов
+echo strlen($str);          // 19
+echo strtoupper($str);      // Юникод Ооп
 ```
 
 ***
@@ -709,7 +709,7 @@ And the types that currently implement the IEquality interface are:
 * CUrl
 * CFile
 
-When sorting Unicode string inside OOP arrays, you've got multiple methods at your disposal. There is `sort` method that would sorts your strings using the default or custom comparator and, in case of a default comparator i.e. `Cmpr::ORDER_ASC` or `Cmpr::ORDER_DESC`, the string would be sorted with all possible Unicode collation options set to their defaults. The next is `sortOn` method that lets you sort your strings based on return values from one of the OOP string's methods. And there are methods specifically optimized for string sorting.
+When sorting Unicode strings inside OOP arrays, you've got multiple methods at your disposal. There is `sort` method that would sorts your strings using the default or custom comparator and, in case of a default comparator i.e. `Cmpr::ORDER_ASC` or `Cmpr::ORDER_DESC`, the string would be sorted with all possible Unicode collation options set to their defaults. The next is `sortOn` method that lets you sort your strings based on return values from one of the OOP string's methods. And there are methods specifically optimized for string sorting.
 
 The `sortUStrings`, `sortUStringsCi`, `sortUStringsNat`, `sortUStringsNatCi` methods of the OOP array perform faster when sorting Unicode strings as compared to the other, more general-purpose sorting methods. What else makes this methods special is that, when calling any of the methods, you can specify Unicode collation to be used for string comparison:
 
@@ -778,7 +778,7 @@ However, because unit tests are only run occasionally after a significant change
 
 If you look into one or more of the unit testing classes, you would see calls to `assertTrue` and `assertFalse` methods of the unit testing class being made by every test. These asserts belong to PHPUnit framework and are the most common ways to verify if the results produced by a tested method appear to be correct. In a more general meaning, an assertion is a semantic check that determines whether or not a value or a mixture of values makes sense in a given context.
 
-In PHP and well as in C/C++, Java, and a good number other languages, assertions is a built-in feature. They have proved to be very helpful in saving lots of time that otherwise would be spent on bug researching and allowed developers to come up with fixes quickly and with minimum affect on users. A downside of assertions is that they may considerably influence performance in dynamic languages like PHP. But what's great about assertions in PHP is that they can be easily enabled or disabled. If disabled, the PHP runtime skips over all assertions when executing a PHP script, as if the assertions did not exist.
+In PHP and well as in C/C++, Java, and a good number other languages, assertions is a built-in feature. They have proved to be very helpful in saving lots of time that otherwise would be spent on bug researching and allowed developers to come up with fixes quickly and with minimum negative effect on users. A downside of assertions is that they may considerably influence performance in dynamic languages like PHP. But what's great about assertions in PHP is that they can be easily enabled or disabled. If disabled, the PHP runtime skips over all assertions when executing a PHP script, as if the assertions did not exist.
 
 Semantic checks in Phred are ubiquitous and are embedded in almost every method by means of PHP's `assert` functions. Diligently playing their roles of safeguards against any misuse of methods and their parameters, the Phred's semantic checks is another substantial obstacle for bugs to make their way into your application and remain undetected ever since. What assertions do in Phred when enabled is similar to what assertions are used for in unit tests with the key difference being that in unit tests assertions are focused on incorrect output while the primary focus of assertions in Phred is incorrect input.
 
