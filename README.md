@@ -708,9 +708,9 @@ And the types that currently implement the IEquality interface are:
 * CUrl
 * CFile
 
-When sorting Unicode strings inside OOP arrays, you've got multiple methods at your disposal. There is `sort` method that would sorts your strings using the default or custom comparator and, in case of a default comparator i.e. `Cmpr::ORDER_ASC` or `Cmpr::ORDER_DESC`, the string would be sorted with all possible Unicode collation options set to their defaults. The next is `sortOn` method that lets you sort your strings based on return values from one of the OOP string's methods. And there are methods specifically optimized for string sorting.
+When sorting Unicode strings inside OOP arrays, you've got multiple methods at your disposal. There is `sort` method that would sort your strings using the default or a custom comparator and, in case of `Cmpr::ORDER_ASC` or `Cmpr::ORDER_DESC` being the comparator, the strings would be sorted with all of the available Unicode collation options set to their defaults. The next is `sortOn` method that lets you sort strings based on return values from one of the string methods. And there are methods specifically optimized for string sorting.
 
-The `sortUStrings`, `sortUStringsCi`, `sortUStringsNat`, `sortUStringsNatCi` methods of the OOP array perform faster when sorting Unicode strings as compared to the other, more general-purpose sorting methods. What else makes this methods special is that, when calling any of the methods, you can specify Unicode collation to be used for string comparison:
+The `sortUStrings`, `sortUStringsCi`, `sortUStringsNat`, and `sortUStringsNatCi` methods of the OOP array perform faster when sorting Unicode strings as compared to the more general-purpose `sort` and `sortOn` methods. What else makes these methods special is that, when calling any of the four methods, you can specify Unicode collation options to be used for string comparison:
 
 ```php
 $array = a("c", "B", "d", "E", "D", "C", "a", "e", "b", "A");
