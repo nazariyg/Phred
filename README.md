@@ -710,7 +710,7 @@ And the types that currently implement the IEquality interface are:
 
 When sorting Unicode strings inside OOP arrays, you've got multiple methods at your disposal. There is `sort` method that would sort your strings using the default or a custom comparator and, in case of `Cmpr::ORDER_ASC` or `Cmpr::ORDER_DESC` being the comparator, the strings would be sorted with all of the available Unicode collation options set to their defaults. The next is `sortOn` method that lets you sort strings based on return values from one of the string methods. And there are methods specifically optimized for string sorting.
 
-The `sortUStrings`, `sortUStringsCi`, `sortUStringsNat`, and `sortUStringsNatCi` methods of the OOP array perform faster when sorting Unicode strings as compared to the more general-purpose `sort` and `sortOn` methods. What else makes these methods special is that, when calling any of the four methods, you can specify Unicode collation options to be used for string comparison:
+The `sortUStrings`, `sortUStringsCi`, `sortUStringsNat`, and `sortUStringsNatCi` methods of the OOP array perform faster when sorting Unicode strings as compared to the more general-purpose `sort` and `sortOn` methods. What else makes these methods special is that, when calling any of the four methods, you can specify the Unicode collation options to be used for string comparison:
 
 ```php
 $array = a("c", "B", "d", "E", "D", "C", "a", "e", "b", "A");
@@ -767,9 +767,9 @@ $array->sortUStrings(UStr::COLLATION_DEFAULT, new ULoc("de_DE"));
 
 # Enhanced Testing and Debugging
 
-Phred takes the reliability of your applications exceptionally serious. Consideration was given to how bugs can be best detected, tracked, are reported.
+Phred takes the reliability of your applications exceptionally serious. Consideration was given to how bugs can be best detected, tracked, and reported.
 
-The unit tests with which Phred is accompanied and that are located in [Tests](PhredParty/Tests/) directory are only one part of the Phred's effort in making your projects maximally bug-free, dependable, and therefore secure. Aside from a few classes that are still in development or require intricate testing techniques that are yet to be implemented, practically every method of every class was thoroughly tested to make sure that it works as intended with any combinations in the values passed for input with both required and optional parameters in order to achieve the highest method and line coverage. The Phred's unit tests are powered by [PHPUnit](http://phpunit.de/) testing framework and can be run with run-unit-tests.php script located in the root directory. A byproduct the unit tests is that they can serve as an abundant source of examples showing the majority of the Phred's classes and methods is use.
+The unit tests with which Phred is accompanied are just one part of the Phred's effort in making your projects maximally bug-free, dependable, and therefore secure. Aside from a few classes that are still in development or require intricate testing techniques that are yet to be implemented, practically every method of every class was thoroughly tested to make sure that it will work as intended and to achieve a high method and line coverage. The Phred's unit tests are powered by [PHPUnit](http://phpunit.de/) testing framework and can be run with `run-unit-tests.php` script located in the root directory. A byproduct of the unit tests is that they can serve as an abundant source of examples showing the majority of the Phred's classes and methods is use.
 
 However, because unit tests are only run occasionally after a significant change has been introduced into the code and because the diversity in the input values and their combinations is constantly limited by how the tests were initially shaped, Phred deems unit tests not sufficient enough. With the purpose of keeping the chances of bugs getting into your application as low as possible and in order to improve bug detection and bug tracking, Phred made a move to expand testing further on the runtime by means of semantic checks.
 
