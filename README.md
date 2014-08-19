@@ -1012,7 +1012,7 @@ With Phred, any method that takes as a parameter a path to a file or directory c
 
 ## Omnivorous JSON
 
-JSON is an essential element of many web sites and web applications. Severs use the JSON format to communicate data with user clients and mobile apps in the form of JavaScript-like objects and arrays. JSON is also the communication language used by many web-bases API, not all of which follow the standard strictly. The JSON decoding and encoding is implemented by the [CJson](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CJson.html) class (alias `Jn`).
+JSON is an essential element of many web sites and web applications. Severs use JSON to communicate data with user clients and mobile apps in the form of JavaScript-like objects and arrays. JSON is also the communication language used by many web-bases API, not all of which follow the standard strictly. The JSON decoding and encoding is implemented by the [CJson](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CJson.html) class (alias `Jn`).
 
 Previously, PHP would force you into making an ambiguous choice about how a JSON object should be represented in the PHP world, either as a PHP object or an associative array. Although the choice is far from being clear, it may look like the PHP's associative array would be a bit more optimal pick since a JSON object is an associative array for all intents and purposes. But then again, if the JSON data happens to contain arrays, both JSON objects and JSON arrays would end up being represented by the very same PHP type, which defies the separation of associative and simple arrays in JSON.
 
