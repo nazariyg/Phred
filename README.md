@@ -858,19 +858,19 @@ From the report above, it's easy to figure out that the error occurred in `subst
 
 # U14n
 
-Phred prefers to think about internationalization and localization, which are also known by their shortenings i18n and L10n, as two interrelated concepts that in many contexts can be unified under a single term, universalization or u14n. This is referred to as "globalization" by IBM and some other corporations, but Phred seems to dislike both the connotations and the affiliation of the term.
+Phred prefers thinking about internationalization and localization as two interrelated concepts that in many contexts can be unified under a single term, universalization or just u14n. This is referred to as "globalization" by IBM and some other corporations, but Phred seems to dislike both the connotations and the affiliation of "globalization".
 
-Just like with Unicode, character encodings, and time zones, Phred relies exclusively on the [ICU library](http://site.icu-project.org) (International Components for Unicode) for locale functionality and in the implementation of other components of internationalization and localization. Phred strives to avoid any dependency on POSIX data, which may be incomplete and outdated, and therefore does not use any PHP's built-in functions that may still live in the POSIX world. In contrast, the ICU library roots into the CLDR data (Common Locale Data Repository), which is collected and maintained by the Unicode Consortium and is the most extensive, all-inclusive, and consistent locale data repository available. The CLDR data is used by OS X, iOS, Android, Google Chrome, Java, Wikimedia Foundation and many others.
+Just like with Unicode, character encodings, and time zones, Phred relies exclusively on the [ICU library](http://site.icu-project.org) (International Components for Unicode) for locale functionality and in the implementation of other components of internationalization and localization. Phred strives to avoid any dependencies on the POSIX data, which may often be incomplete and outdated, and therefore does not use any PHP functions that may still live in the POSIX world. In contrast, the ICU library roots into the CLDR data (Common Locale Data Repository), which is being collected and maintained by the Unicode Consortium and is the most extensive, all-inclusive, and consistent locale data available. The CLDR data is used by OS X, iOS, Android, Google Chrome, Java, Wikimedia Foundation, and many others.
 
-Locales and locale-specific formatting is only a part of the u14n functionality that Phred is planning to have implemented. More of the functionality, such as message formatting and choice selection, is to be added with time.
+Locales and locale-specific formatting is only a part of the u14n functionality that Phred is planning to have implemented in the long run. More of the functionality, such as message formatting and choice selection, is to be added with time.
 
 ## Locales
 
 "Locale" is a term that designates a group of users with similar cultural and linguistic expectations for human-computer interaction. Locales are represented by objects of the [CULocale](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CULocale.html) class (alias `ULoc`).
 
-A locale is identified by its name, which is a string consisting of one or more components. The primary components of a locale name is the language code (two letters, usually in lowercase) and the country/region code (two letters, usually in uppercase). The components in a locale name are separated with "_". For example, "de_BE" locale name refers to the German language with all of the peculiarities of its usage in the country of Belgium.
+A locale is identified by its name, which is a string consisting of one or more components. The primary components of a locale name are the language code (two letters, usually in lowercase) and the country/region code (two letters, usually in uppercase). The components in a locale name are separated with "_". For example, "de_BE" locale name refers to the German language with all of the peculiarities of its usage in the country of Belgium.
 
-Additional components in a locale name can be the code of the writing script placed in between of the language code and the country/region code (four letters, as in e.g. "sr_Latn_RS"), one or more variants (sub-locales) indicated after the country/region code (usually in uppercase), and locale metadata in the form of keyword-value pairs that, if present, conclude the locale name separated from everything else with "@" and use ";" to delimit one "keyword=value" from another.
+Additional components in a locale name can be the code of the writing script placed in between of the language code and the country/region code (four letters e.g. "sr_Latn_RS"), one or more locale variants placed after the country/region code (usually in uppercase), and locale metadata in the form of keyword-value pairs that, if present, conclude the locale name separated from everything else with "@" and use ";" to delimit one "keyword=value" from another.
 
 For more detailed information on locales, you can look into [ICU User Guide](http://userguide.icu-project.org/locale).
 
@@ -878,7 +878,7 @@ For more detailed information on locales, you can look into [ICU User Guide](htt
 
 The [CUFormat](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CUFormat.html) class (alias `UFmt`) lets you format numbers, percentages, amounts of currency, as well as dates and time using the local formatting rules associated with a locale and, for some methods, the language of a locale.
 
-For example, the formatting that is habitually used for integer and fractional numbers by people in one country can look strange to people in other countries:
+For example, the formatting that is habitually used for integer and fractional numbers by people in one country may look strange to people in other countries:
 
 ```php
 echo UFmt::number(1234, new ULoc(ULoc::ENGLISH_UNITED_STATES));
@@ -972,7 +972,7 @@ Or you can use `timeWithPattern` method to format the date/time according to a c
 
 ## Input Filtering
 
-The security of a web site or web application starts with the security of its policy on input processing. Even if you made sure that any internal link on your site will contain fields in its query string that will exactly match the expectations for those fields on the server side, nothing prevents anyone from changing the fields to make any of them have a wrong type or to assign a field with a number that is out of the sane limits. Additionally, if a string value that is sent with a request is expected to be of some particular kind, for example email address, it would need to be validated as such. A failure to handle the input properly may result in an exploitable vulnerability, and not just with query strings sent in GET requests but also with POST requests or with any other HTTP method.
+The security of a web site or web application starts with the security of its policy on input processing. Even if you made sure that any internal link on your site will contain fields in its query string that will exactly match the expectations for those fields on the server side, nothing prevents anyone from changing a field in a request to make it have a wrong type or a value that is out of the sane limits. Additionally, if a string value that is sent with a request is expected to be of some particular kind, for example an email address, it would need to be validated as such. A failure to handle the input properly may result in an exploitable vulnerability, and not just with query strings sent in GET requests but also with POST requests or with any other HTTP method.
 
 With that kept in mind, Phred implements the [CInputFilter](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CInputFilter.html) class (alias `IFi`). An input filter works by taking in a string that, according to the data type specified at the time of the object's construction, represents a boolean, integer, or floating-point value, an ASCII or Unicode string, an email, or a URL, and after the validation and, optionally, the sanitization of the value, the filter outputs a value of the respective type. Since query strings in GET and POST requests are allowed to look like "name[]=value0&name[]=value1" or "name[key0]=value0&name[key1]=value1", the class also lets you filter multidimensional arrays and maps.
 
