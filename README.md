@@ -1004,15 +1004,15 @@ echo $success;  // false
 
 Phred gathers practically all of the PHP's functionality related to files and puts it into a single class, which is [CFile](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CFile.html) (alias `Fl`). The class lets you check on files and directories as to whether they exist and on their attributes, read from and write to files, create files and directories, copy, move, rename, and delete files and directories, list items in directories, and search for items in directories with wildcards or regular expressions.
 
-An object of the CFile class represents a file accessor that let you perform sequential read/write operations on a file. By creating a file accessor, you open a file for a session of read/write operations on its contents. Any such accessor keeps track of the current reading/writing position, which is measured in bytes and points to the byte starting at which the next portion of data is going to be read from or written to.
+An object of the CFile class represents a file accessor that lets you perform sequential read/write operations on a file. By creating a file accessor, you open a file for a session of read/write operations on its contents. Any such accessor keeps track of the current reading/writing position, which is measured in bytes and points to the byte starting at which the next portion of data is going to be read from or written to.
 
 Another class that falls into this category is [CFilePath](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CFilePath.html) (alias `Fp`). This class lets you extract file and directory names out of paths, get to know the name of the directory that is parent to a file or directory, extract file extensions, combine path components together, as well as normalize paths.
 
-With Phred, any method that takes as a parameter a path to a file or directory can contain an alias to a Phred-specific directory and any such alias will be automatically resolved to the actual directory path by the method. For example, if a path contains "{{PHRED_PATH_TO_APP}}" in it, this alias will be replaced with the absolute path to the Application directory that is located inside the Phred's root directory. The names of the Phred's directory aliases can be found in Bootstrap/Paths.php.
+With Phred, any method that takes as a parameter a path to a file or directory can contain an alias to a Phred-specific directory and any such alias will be automatically resolved to the actual directory path by the method. For example, if a path contains "{{PHRED_PATH_TO_APP}}" in it, this alias will be replaced with the absolute path to the `Application` directory that is located inside the Phred's root directory. The names of the Phred's directory aliases can be found in `Bootstrap/Paths.php`.
 
 ## Omnivorous JSON
 
-JSON is an essential elements of many web sites and web applications. Severs use the JSON format to communicate data with user clients and mobile apps in the form of JavaScript-like objects and arrays. JSON is also the communication language used by many web-bases API, not all of which follow the standard strictly. The JSON decoding and encoding is implemented by the [CJson](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CJson.html) class (alias `Jn`).
+JSON is an essential element of many web sites and web applications. Severs use the JSON format to communicate data with user clients and mobile apps in the form of JavaScript-like objects and arrays. JSON is also the communication language used by many web-bases API, not all of which follow the standard strictly. The JSON decoding and encoding is implemented by the [CJson](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/classes/CJson.html) class (alias `Jn`).
 
 Previously, PHP would force you into making an ambiguous choice about how a JSON object should be represented in the PHP world, either as a PHP object or an associative array. Although the choice is far from being clear, it may look like the PHP's associative array would be a bit more optimal pick since a JSON object is an associative array for all intents and purposes. But then again, if the JSON data happens to contain arrays, both JSON objects and JSON arrays would end up being represented by the very same PHP type, which defies the separation of associative and simple arrays in JSON.
 
@@ -1020,7 +1020,7 @@ In Phred, JSON objects are most naturally represented by OOP maps and JSON array
 
 The CJson class lets you decode even malformed JSON strings. There are three "difficulty levels" that you can choose from. The strictest level is `STRICT`, according to which the input JSON string is expected to be conforming to the JSON standard to the smallest detail, then goes `STRICT_WITH_COMMENTS`, which allows for "//" and "/\*" comments in the JSON string (the original JSON format does not mention comments), and `LENIENT`, with which you can still successfully decode a JSON string that contains "//" and "/\*" comments, uses single quotes on values (the JSON format requires double quotes), uses single quotes or no quotes at all on property names, or contains trailing commas where they are redundant.
 
-Let's see each strictness at work:
+Let's see each strictness level at work:
 
 ```php
 // With the default strictness.
@@ -1204,11 +1204,11 @@ $sess->start();
 
 # Backward Compatibility
 
-Any library, API, or any other third-party component is backward-compatible with Phred as long as it is installed via Composer, which is de facto standard package manager for PHP. Even Facebook is recommending Composer for installing its [Facebook SDK](https://developers.facebook.com/docs/php/gettingstarted/).
+Any library, API, or any other third-party component is backward-compatible with Phred as long as it is installed via Composer, which is de facto the standard package manager for PHP. Even Facebook is recommending Composer for installing its [Facebook SDK](https://developers.facebook.com/docs/php/gettingstarted/).
 
-From the perspective of any third-party component, every OOP string is just a regular PHP string without any memory overhead or use restrictions. A PHP's native array becomes an OOP array when a third-party component in any way outputs it and the PHP array's keys are sequential (0, 1, 2, ...) or, if the array's keys are non-sequential, it arrives as an OOP map, just like you would expect. And when you pass an OOP array or an OOP map to a third-party component, that PHP library or API receives it as a plain PHP array in all cases, just like the third-party component would expect.
+From the perspective of any third-party component, every OOP string is just a regular PHP string without any memory overhead or use restrictions. A PHP's native array becomes an OOP array when a third-party component in any way outputs it and the PHP array's keys are sequential (0, 1, 2, ...) or, if the array's keys are non-sequential, it arrives as an OOP map, just like you would expect. And when you pass an OOP array or an OOP map to a third-party component, that library or API receives it as a plain PHP array in all cases, just like the third-party component would expect.
 
-The Phred's backward compatibility does not only cover regular parameters in methods and functions, but also return values and values being output by means of parameters that are declared by reference in the methods and functions of third-party components. Furthermore, the backward compatibility comes into play even when you get or set a public property of an object of a class that was brought in by a third-party component, whether or not the class is using `__get` or `__set` "magic" methods for property access.
+The Phred's backward compatibility does not only cover parameters in methods and functions, but also return values and values being output by means of parameters that are declared by reference in methods and functions of third-party components. Furthermore, the backward compatibility comes into play even when you get or set a public property of an object of a class that was brought in by a third-party component, whether or not the class is using `__get` or `__set` "magic" methods for property access.
 
 # Donate
 
