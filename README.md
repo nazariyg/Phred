@@ -34,7 +34,7 @@ echo strtoupper($str);      // Юникод Ооп
 
 * [Preface](#preface)
     * [PHP 6 or Uniphant vs. Elecorn](#php-6-or-uniphant-vs-elecorn)
-    * [PHP 7 or Same as PHP 5.6+ but Faster](#php-7-or-same-as-php-56-but-faster)
+    * [PHP 7 or Much Like PHP 5.6+ but Faster](#php-7-or-much-like-php-56-but-faster)
     * [こんにちは, Phred](#こんにちは-phred)
     * [The Zen of Phred](#the-zen-of-phred)
 * [Installation](#installation)
@@ -82,11 +82,11 @@ Most of the hopes for a better PHP were being put in PHP 6 announced around 2006
 
 One of the main reasons behind PHP 6 getting abandoned was a disagreement inside the development team as to which character encoding would serve best for storing and processing Unicode strings. Despite of the fact that the team then picked UTF-16 as the internal encoding to be used for Unicode, the development ran out of steam and eventually came to a halt. This happened not only because the choice of UTF-16 turned out to be suboptimal, but also because of the immense body of work that was required to be done for the PHP's core and all the extensions by the developers becoming less and less enthusiastic with the direction that was chosen and due to other issues. Andrei Zmievski, who was the head of the PHP 6 project, later admitted that he would probably choose UTF-8 over UTF-16 if it was possible to start over.
 
-## PHP 7 or Same as PHP 5.6+ but Faster
+## PHP 7 or Much Like PHP 5.6+ but Faster
 
 In July of 2014, a vote was held by the PHP's steering group to decide under what name the next major version of PHP should be presented to the public when its development branch, called PHPNG for "PHP New Generation", would become a release candidate. The name that outvoted "PHP 6" and other names was "PHP 7". Skipping over "6" in the PHP's version was probably for the reason that PHP 6 had bit too much of disappointment associated with it and a number of books already existed at the time with "PHP 6" in their titles. 
 
-With the advent of PHPNG, which is going to become a basis for PHP 7, the mainstream implementation of PHP made a substantial progress in speed and memory consumption thanks to a great deal of optimization and code refactoring that eliminated numerous bottlenecks in the PHP's performance, while not breaking any backward compatibility. The modified engine also brought PHP closer to being able to benefit from just-in-time compilation in some of its future versions. The benchmarks that were run with PHP 7 showed surprisingly good results, indicating almost double increase in speed and significantly smaller memory footprint. 
+With the advent of PHPNG, which is going to become a basis for PHP 7, the mainstream implementation of PHP made a substantial progress in speed and memory consumption thanks to a great deal of optimization and code refactoring that eliminated numerous bottlenecks in the PHP's performance, while not breaking any backward compatibility. The modified engine also brought PHP closer to being able to benefit from just-in-time compilation in some of its future versions. The benchmarks that were run with PHPNG showed surprisingly good results, indicating almost double increase in speed and significantly smaller memory footprint. 
 
 ## こんにちは, Phred
 
