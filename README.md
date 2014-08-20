@@ -1018,7 +1018,7 @@ Previously, PHP would force you into making an ambiguous choice about how a JSON
 
 In Phred, JSON objects are most naturally represented by OOP maps and JSON arrays by OOP arrays. So no more confusion when working with JSON data.
 
-The CJson class lets you decode even malformed JSON strings. There are three "difficulty levels" that you can choose from. The strictest level is `STRICT`, according to which the input JSON string is expected conforming to the JSON standard to the smallest detail, then goes `STRICT_WITH_COMMENTS`, which allows for `//` and `/*` comments in the JSON string (the original JSON specification does not mention comments), and `LENIENT`, with which you can still successfully decode a JSON string that contains "//" and "/\*" comments, uses single quotes on values (the JSON format requires double quotes), uses single quotes or no quotes at all on property names, or contains trailing commas where they are redundant.
+The CJson class lets you decode even malformed JSON strings. There are three "difficulty levels" that you can choose from. The strictest level is `STRICT`, according to which an input JSON string is expected to conform to the JSON standard exactly, then goes `STRICT_WITH_COMMENTS`, which allows for `//` and `/*` comments in a JSON string (the original JSON specification does not mention comments), and `LENIENT`, with which you can still successfully decode a JSON string that contains `//` and `/*` comments, uses single quotes on values (the JSON format requires double quotes), uses single quotes or no quotes at all on property names, or contains commas where they are redundant.
 
 Let's see each strictness level at work:
 
