@@ -1779,10 +1779,6 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * Returns the position of the first occurrence of a regular expression pattern in a string, optionally reporting
      * the substring that matched the pattern.
      *
-     * The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-     * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-     * PCRE engine.
-     *
      * **NOTE.** Unlike the non-regex methods of the class, which count positions within a Unicode string in
      * characters, the PCRE engine and therefore this method count positions in bytes.
      *
@@ -1807,10 +1803,6 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
     /**
      * Returns the position of the last occurrence of a regular expression pattern in a string, optionally reporting
      * the substring that matched the pattern.
-     *
-     * The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-     * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-     * PCRE engine.
      *
      * **NOTE.** Unlike the non-regex methods of the class, which count positions within a Unicode string in
      * characters, the PCRE engine and therefore this method count positions in bytes.
@@ -1837,10 +1829,6 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * Determines if a string contains a specified regular expression pattern, optionally reporting the substring that
      * matched the pattern.
      *
-     * The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-     * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-     * PCRE engine.
-     *
      * @param  string $findPattern The searched pattern.
      * @param  reference $foundString **OPTIONAL. OUTPUT.** If the pattern has been found after the method was called
      * with this parameter provided, the parameter's value, which is of type `CUStringObject`, is the first substring
@@ -1860,10 +1848,6 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
     /**
      * Determines if a string contains a specified regular expression pattern, starting the search from a specified
      * position and optionally reporting the substring that matched the pattern.
-     *
-     * The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-     * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-     * PCRE engine.
      *
      * **NOTE.** Unlike the non-regex methods of the class, which count positions within a Unicode string in
      * characters, the PCRE engine and therefore this method count positions in bytes.
@@ -1890,10 +1874,6 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * regular expression group into an array for output and optionally reporting the substring that matched the
      * pattern.
      *
-     * The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-     * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-     * PCRE engine.
-     *
      * @param  string $findPattern The searched pattern, usually with groups.
      * @param  reference $foundGroups **OUTPUT.** If the pattern was found, this is an array of type `CArrayObject`
      * containing the substrings that matched the groups in the pattern, in the same order, if any.
@@ -1917,10 +1897,6 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * Determines if a string contains a specified regular expression pattern, starting the search from a specified
      * position and putting every substring that matches a regular expression group into an array for output,
      * optionally reporting the substring that matched the pattern.
-     *
-     * The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-     * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-     * PCRE engine.
      *
      * **NOTE.** Unlike the non-regex methods of the class, which count positions within a Unicode string in
      * characters, the PCRE engine and therefore this method count positions in bytes.
@@ -1949,10 +1925,6 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * Tells how many matches of a specified regular expression pattern there are in a string, optionally reporting the
      * substrings that matched the pattern.
      *
-     * The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-     * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-     * PCRE engine.
-     *
      * @param  string $findPattern The searched pattern.
      * @param  reference $foundStrings **OPTIONAL. OUTPUT.** If any patterns have been found after the method was
      * called with this parameter provided, the parameter's value is an array of type `CArrayObject` containing the
@@ -1972,10 +1944,6 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
     /**
      * Tells how many matches of a specified regular expression pattern there are in a string, starting the search from
      * a specified position and optionally reporting the substrings that matched the pattern.
-     *
-     * The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-     * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-     * PCRE engine.
      *
      * **NOTE.** Unlike the non-regex methods of the class, which count positions within a Unicode string in
      * characters, the PCRE engine and therefore this method count positions in bytes.
@@ -2002,10 +1970,6 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * that matches a regular expression group into an array for output so that each match of the pattern is associated
      * with an array of group matches and optionally reporting the substrings that matched the pattern.
      *
-     * The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-     * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-     * PCRE engine.
-     *
      * @param  string $findPattern The searched pattern, usually with groups.
      * @param  reference $foundGroupArrays **OUTPUT.** If any patterns were found, this is a two-dimensional array of
      * type `CArrayObject`, per each pattern match containing an array of the substrings that matched the groups in the
@@ -2031,10 +1995,6 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * a specified position and putting every substring that matches a regular expression group into an array for
      * output so that each match of the pattern is associated with an array of group matches, optionally reporting the
      * substrings that matched the pattern.
-     *
-     * The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-     * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-     * PCRE engine.
      *
      * **NOTE.** Unlike the non-regex methods of the class, which count positions within a Unicode string in
      * characters, the PCRE engine and therefore this method count positions in bytes.
@@ -2065,10 +2025,6 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * Replaces all occurrences of a regular expression pattern in a string with a specified string and returns the new
      * string, optionally reporting the number of replacements made.
      *
-     * The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-     * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-     * PCRE engine.
-     *
      * @param  string $whatPattern The pattern to be replaced.
      * @param  string $with The replacement string.
      * @param  reference $quantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
@@ -2087,10 +2043,6 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * Replaces any occurrence of a regular expression pattern in a string with the string returned by a function or
      * method called on the matching substring and returns the new string, optionally reporting the number of
      * replacements made.
-     *
-     * The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-     * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-     * PCRE engine.
      *
      * @param  string $whatPattern The pattern to be replaced.
      * @param  callable $callback A function or method that, as imposed by PHP's PCRE, takes a map as a parameter,
@@ -2118,10 +2070,6 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      * Removes all occurrences of a regular expression pattern in a string and returns the new string, optionally
      * reporting the number of removals made.
      *
-     * The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-     * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-     * PCRE engine.
-     *
      * @param  string $whatPattern The pattern to be removed.
      * @param  reference $quantity **OPTIONAL. OUTPUT.** After the method is called with this parameter provided, the
      * parameter's value, which is of type `int`, indicates the number of removals made.
@@ -2145,10 +2093,6 @@ class CUStringObject extends CRootClass implements IEqualityAndOrder/*, ArrayAcc
      *
      * As a special case, the delimiter pattern can be empty, which will split the string into its constituting
      * characters.
-     *
-     * The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-     * on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-     * PCRE engine.
      *
      * @param  string|array|map $delimiterPatternOrPatterns The pattern or array of patterns to be recognized as the
      * delimiter(s).
