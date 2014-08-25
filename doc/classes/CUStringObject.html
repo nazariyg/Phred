@@ -5847,9 +5847,7 @@ information on what you can do with ICU general transforms.</p>
                 <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">reIndexOf (string&nbsp;<span class="argument">$ofPattern</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$startPos</span></span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$foundString</span></span>) : int</pre>
                 <p><em><p>Returns the position of the first occurrence of a regular expression pattern in a string, optionally reporting
 the substring that matched the pattern.</p></em></p>
-                <p>The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-PCRE engine.</p>
+                
 <p><strong>NOTE.</strong> Unlike the non-regex methods of the class, which count positions within a Unicode string in
 characters, the PCRE engine and therefore this method count positions in bytes.</p>
 
@@ -5909,9 +5907,7 @@ found.</p>
                 <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">reLastIndexOf (string&nbsp;<span class="argument">$ofPattern</span>, <span style="color: rgb(144, 144, 144)">int&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$startPos</span></span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$foundString</span></span>) : int</pre>
                 <p><em><p>Returns the position of the last occurrence of a regular expression pattern in a string, optionally reporting
 the substring that matched the pattern.</p></em></p>
-                <p>The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-PCRE engine.</p>
+                
 <p><strong>NOTE.</strong> Unlike the non-regex methods of the class, which count positions within a Unicode string in
 characters, the PCRE engine and therefore this method count positions in bytes.</p>
 
@@ -5971,9 +5967,7 @@ found.</p>
                 <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">reFind (string&nbsp;<span class="argument">$findPattern</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$foundString</span></span>) : bool</pre>
                 <p><em><p>Determines if a string contains a specified regular expression pattern, optionally reporting the substring that
 matched the pattern.</p></em></p>
-                <p>The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-PCRE engine.</p>
+                
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -6025,9 +6019,7 @@ that matched the pattern.</p></td>
                 <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">reFindFrom (string&nbsp;<span class="argument">$findPattern</span>, int&nbsp;<span class="argument">$startPos</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$foundString</span></span>) : bool</pre>
                 <p><em><p>Determines if a string contains a specified regular expression pattern, starting the search from a specified
 position and optionally reporting the substring that matched the pattern.</p></em></p>
-                <p>The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-PCRE engine.</p>
+                
 <p><strong>NOTE.</strong> Unlike the non-regex methods of the class, which count positions within a Unicode string in
 characters, the PCRE engine and therefore this method count positions in bytes.</p>
 
@@ -6087,9 +6079,7 @@ that matched the pattern.</p></td>
                 <p><em><p>Determines if a string contains a specified regular expression pattern, putting every substring that matches a
 regular expression group into an array for output and optionally reporting the substring that matched the
 pattern.</p></em></p>
-                <p>The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-PCRE engine.</p>
+                
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -6148,9 +6138,7 @@ that matched the pattern.</p></td>
                 <p><em><p>Determines if a string contains a specified regular expression pattern, starting the search from a specified
 position and putting every substring that matches a regular expression group into an array for output,
 optionally reporting the substring that matched the pattern.</p></em></p>
-                <p>The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-PCRE engine.</p>
+                
 <p><strong>NOTE.</strong> Unlike the non-regex methods of the class, which count positions within a Unicode string in
 characters, the PCRE engine and therefore this method count positions in bytes.</p>
 
@@ -6215,9 +6203,7 @@ that matched the pattern.</p></td>
                 <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">reFindAll (string&nbsp;<span class="argument">$findPattern</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$foundStrings</span></span>) : int</pre>
                 <p><em><p>Tells how many matches of a specified regular expression pattern there are in a string, optionally reporting the
 substrings that matched the pattern.</p></em></p>
-                <p>The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-PCRE engine.</p>
+                
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -6269,9 +6255,7 @@ substrings that matched the pattern, in the order of appearance.</p></td>
                 <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">reFindAllFrom (string&nbsp;<span class="argument">$findPattern</span>, int&nbsp;<span class="argument">$startPos</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$foundStrings</span></span>) : int</pre>
                 <p><em><p>Tells how many matches of a specified regular expression pattern there are in a string, starting the search from
 a specified position and optionally reporting the substrings that matched the pattern.</p></em></p>
-                <p>The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-PCRE engine.</p>
+                
 <p><strong>NOTE.</strong> Unlike the non-regex methods of the class, which count positions within a Unicode string in
 characters, the PCRE engine and therefore this method count positions in bytes.</p>
 
@@ -6331,9 +6315,7 @@ substrings that matched the pattern, in the order of appearance.</p></td>
                 <p><em><p>Tells how many matches of a specified regular expression pattern there are in a string, putting every substring
 that matches a regular expression group into an array for output so that each match of the pattern is associated
 with an array of group matches and optionally reporting the substrings that matched the pattern.</p></em></p>
-                <p>The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-PCRE engine.</p>
+                
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -6394,9 +6376,7 @@ substrings that matched the pattern, in the order of appearance.</p></td>
 a specified position and putting every substring that matches a regular expression group into an array for
 output so that each match of the pattern is associated with an array of group matches, optionally reporting the
 substrings that matched the pattern.</p></em></p>
-                <p>The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-PCRE engine.</p>
+                
 <p><strong>NOTE.</strong> Unlike the non-regex methods of the class, which count positions within a Unicode string in
 characters, the PCRE engine and therefore this method count positions in bytes.</p>
 
@@ -6462,9 +6442,7 @@ substrings that matched the pattern, in the order of appearance.</p></td>
                 <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">reReplace (string&nbsp;<span class="argument">$whatPattern</span>, string&nbsp;<span class="argument">$with</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$quantity</span></span>) : OOPString</pre>
                 <p><em><p>Replaces all occurrences of a regular expression pattern in a string with a specified string and returns the new
 string, optionally reporting the number of replacements made.</p></em></p>
-                <p>The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-PCRE engine.</p>
+                
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -6521,9 +6499,7 @@ parameter's value, which is of type <code>int</code>, indicates the number of re
                 <p><em><p>Replaces any occurrence of a regular expression pattern in a string with the string returned by a function or
 method called on the matching substring and returns the new string, optionally reporting the number of
 replacements made.</p></em></p>
-                <p>The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-PCRE engine.</p>
+                
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -6582,9 +6558,7 @@ parameter's value, which is of type <code>int</code>, indicates the number of re
                 <pre class="signature" style="margin-right: 54px; word-wrap: normal; word-break: normal;">reRemove (string&nbsp;<span class="argument">$whatPattern</span>, <span style="color: rgb(144, 144, 144)">reference&nbsp;<span class="argument" style="color: rgb(144, 144, 144)">$quantity</span></span>) : OOPString</pre>
                 <p><em><p>Removes all occurrences of a regular expression pattern in a string and returns the new string, optionally
 reporting the number of removals made.</p></em></p>
-                <p>The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-PCRE engine.</p>
+                
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -6640,9 +6614,7 @@ string. If a delimiter is located at the very start or at the very end of the st
 delimiter, it will accordingly cause some string(s) in the resulting array to be empty.</p>
 <p>As a special case, the delimiter pattern can be empty, which will split the string into its constituting
 characters.</p>
-<p>The "u" modifier in the pattern is optional. If the pattern does not contain the "u" modifier, which is to turn
-on the Unicode mode for a regular expression, this method will add the modifier when passing the pattern to the
-PCRE engine.</p>
+
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
