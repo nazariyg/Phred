@@ -32,6 +32,10 @@ echo strtoupper($str);      // Юникод Ооп
 
 ***
 
+> The currently implemented object-oriented library & framework features are not yet an RC. Class names, method names, and other details need to be tuned in to the PHP developers' best preferences. Phred will most likely branch into an OOP library and a separate framework. But at this point, Phred requires code contributions to enable PHP developers with the advantages of Phred as soon as PHP 7 arrives. Hopefully, the advanced extension capabilities of PHP 7 would allow for more seamless backward compatibility as well as for dedicated syntax for data structures.
+
+***
+
 * [Preface](#preface)
     * [PHP 6 or Uniphant vs. Elecorn](#php-6-or-uniphant-vs-elecorn)
     * [PHP 7 or Much Like PHP 5.6+ but Faster](#php-7-or-much-like-php-56-but-faster)
