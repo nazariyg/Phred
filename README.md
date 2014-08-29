@@ -1227,3 +1227,8 @@ The Phred's backward compatibility does not only cover parameters in methods and
   <em>You can contact me at <a href="mailto:nazariyg@gmail.com">nazariyg@gmail.com</a></em>
 </p>
 
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="nazariygee" data-size="large" data-hashtags="php">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<a href="https://twitter.com/nazariygee" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @nazariygee</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
