@@ -30,7 +30,7 @@ echo strtoupper($str);      // Юникод Ооп
 
 ***
 
-> *Phred is young and the currently implemented object-oriented library and framework features are not yet RC. Class names, method names, and other details need to be tuned in to the best preferences of PHP developers. And Phred might branch into an OOP library and a separate framework. But at this point, Phred mainly requires code contributions to enable PHP developers with the benefits of OOP and native Unicode support by the time when PHP 7 arrives. Hopefully, the advanced extension capabilities of PHP 7 will allow for more seamless backward compatibility and dedicated syntax for data structures.*
+> *Phred is still young and the currently implemented object-oriented library and framework features are not yet RC. Class names, method names, and other details need to be tuned in to the best preferences of PHP developers. And Phred might branch into an OOP library and a separate framework. But at this point, Phred mainly requires code contributions to enable PHP developers with the benefits of OOP and native Unicode support by the time when PHP 7 arrives. Hopefully, the advanced extension capabilities of PHP 7 will allow for more seamless backward compatibility and dedicated syntax for data structures.*
 
 > **Phred might be looking for a new owner. There are circumstances that may prevent me from curating the project in the next months. If you are someone who would take a good care of it, contact me at [nazariyg@gmail.com](mailto:nazariyg@gmail.com)**
 
