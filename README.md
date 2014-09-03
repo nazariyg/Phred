@@ -10,8 +10,6 @@ Phred is also outlining a web application framework to let developers take the m
 
 One of the Phred's prime efforts is to maintain a clear and thorough [documentation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/doc/index.html).
 
-Phred is striving to transform PHP into a cutting-edge, fully-featured, and easy-to-use tool for contemporary web development, while remaining free for all and well-documented. And Phred is many months of work that has already been done and that still needs to be accomplished. *You can help Phred carry on and improve in its service to PHP developers by making a [donation](http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html).*
-
 ## At a Glance
 
 ```php
@@ -32,7 +30,9 @@ echo strtoupper($str);      // Юникод Ооп
 
 ***
 
-> *The currently implemented object-oriented library & framework features are not yet an RC. Class names, method names, and other details need to be tuned in to the best preferences of PHP developers. And Phred might branch into an OOP library and a separate framework. But at this point, Phred mainly requires code contributions to enable PHP developers with the benefits of OOP and native Unicode support by the time when PHP 7 arrives. Hopefully, the advanced extension capabilities of PHP 7 would allow for more seamless backward compatibility and dedicated syntax for data structures.*
+> *Phred is young and the currently implemented object-oriented library and framework features are not yet RC. Class names, method names, and other details need to be tuned in to the best preferences of PHP developers. And Phred might branch into an OOP library and a separate framework. But at this point, Phred mainly requires code contributions to enable PHP developers with the benefits of OOP and native Unicode support by the time when PHP 7 arrives. Hopefully, the advanced extension capabilities of PHP 7 will allow for more seamless backward compatibility and dedicated syntax for data structures.*
+
+> **Phred might be looking for a new owner. There are circumstances that may prevent me from curating the project in the next months. If you are someone who would take a good care of it, contact me at [nazariyg@gmail.com](mailto:nazariyg@gmail.com)**
 
 ***
 
@@ -66,7 +66,6 @@ echo strtoupper($str);      // Юникод Ооп
     * [Mailing](#mailing)
     * [Requesting](#requesting)
 * [Backward Compatibility](#backward-compatibility)
-* [Donate](#donate)
 
 ***
 
@@ -1213,17 +1212,3 @@ Any library, API, or any other third-party component is backward-compatible with
 From the perspective of any third-party component, every OOP string is just a regular PHP string without any memory overhead or use restrictions. A PHP's native array becomes an OOP array when a third-party component in any way outputs it and the PHP array's keys are sequential (0, 1, 2, ...) or, if the array's keys are non-sequential, it arrives as an OOP map, just like you would expect. And when you pass an OOP array or an OOP map to a third-party component, that library or API receives it as a plain PHP array in all cases, just like the third-party component would expect.
 
 The Phred's backward compatibility does not only cover parameters in methods and functions, but also return values and values being output by means of parameters that are declared by reference in methods and functions of third-party components. Furthermore, the backward compatibility comes into play even when you get or set a public property of an object of a class that was brought in by a third-party component, whether or not the class is using `__get` or `__set` "magic" methods for property access.
-
-# Donate
-
-**Developing Phred and maintaining decent documentation takes effort and time. And the project has only started. Donations are highly appreciated.**
-
-<p align="center">
-  <a href="http://htmlpreview.github.com/?https://github.com/nazariyg/Phred/blob/master/readme-files/donate.html"><img src="readme-files/ppd-button.png"/></a>
-</p>
-
-<p align="right">
-  <br>
-  <em>You can contact me at <a href="mailto:nazariyg@gmail.com">nazariyg@gmail.com</a></em>
-</p>
-
