@@ -12,22 +12,22 @@ One of the Phred's prime efforts is to maintain a clear and thorough [documentat
 
 ## At a Glance
 
-None of the below is natively supported by PHP.
+None of the OOP magic below is natively supported by PHP.
 
 ```php
 // An OOP Unicode string.
-$str = "Юникод Ооп";
+$str = "Юнікод Ооп";
 
 echo $str->length();        // 10
-echo $str->toUpperCase();   // ЮНИКОД ООП
+echo $str->toUpperCase();   // ЮНІКОД ООП
 
 $array = $str->split(" ");
-echo $array->join(", ");    // Юникод, Ооп
+echo $array->join(", ");    // Юнікод, Ооп
 $array->sortOn("length");
-echo $array->join(", ");    // Ооп, Юникод
+echo $array->join(", ");    // Ооп, Юнікод
 
 echo strlen($str);          // 19
-echo strtoupper($str);      // Юникод Ооп
+echo strtoupper($str);      // Юнікод Ооп
 ```
 
 ***
