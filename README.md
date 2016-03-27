@@ -12,7 +12,7 @@ One of the Phred's prime efforts is to maintain a clear and thorough [documentat
 
 ## At a Glance
 
-None of the OOP magic below is natively supported by PHP.
+The OOP magic below is not natively supported by PHP but is available with Phred:
 
 ```php
 // An OOP Unicode string.
